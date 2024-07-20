@@ -1,0 +1,32 @@
+Prologue:
+    - Item - Heart Refresh
+    - Item - Neutron Bomb
+Castle Entrance - Main Path:
+    - Item - Pot Roast
+    - Item - Turkey
+    - Relic - Cube of Zoe
+Castle Entrance - Attic:
+Castle Entrance - Jewel Sword Check:
+    - Item - Jewel Sword
+Castle Entrance - Power of Wolf Check:
+    - Relic - Power of Wolf
+Castle Entrance - Holy Mail Check:
+Castle Entrance - Hidden Room with Life Max Up:
+Castle Entrance - Hidden Room with Heart Max Up:
+Castle Entrance - Secret Trapdoor:
+Loading Room - Between Alchemy Laboratory and Marble Gallery:
+Loading Room - Between Castle Entrance and Alchemy Laboratory:
+Loading Room - Between Castle Entrance and Warp Room:
+    - Progression - Activate Shortcut between Castle Entrance and Warp Room
+Loading Room - Between Castle Entrance and Marble Gallery:
+    - Progression - Activate Shortcut between Castle Entrance and Marble Gallery
+Loading Room - Between Castle Entrance and Underground Caverns:
+Alchemy Laboratory - Main Path:
+Marble Gallery - Entrance:
+Marble Gallery - Below Dropoff:
+Marble Gallery - Hammer Check:
+Marble Gallery - Strength Potion Check:
+Long Library - Back Section:
+Underground Caverns - Path Below Waterfall:
+Underground Caverns - Path Above Waterfall:
+Warp Room:
