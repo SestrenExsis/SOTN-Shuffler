@@ -1,0 +1,48 @@
+Bat Card Check:
+    Slogra and Gaibon:
+        Alucard leaves the area:
+            - None
+Chapel Side:
+    Slogra and Gaibon:
+        Alucard fights Slogra and Gaibon:
+            - None
+    Save Room in Chapel Side:
+        Alucard enters the save room:
+            - None
+    Cloth Cape Check:
+        Alucard solves the Box Puzzle:
+            - Execution - Solve the Box Puzzle
+Cloth Cape Check:
+    Chapel Side:
+        Alucard leaves the area:
+            - None
+Gallery Side:
+    Slogra and Gaibon:
+        Alucard travels left through a hallway:
+            - None
+Save Room in Chapel Side:
+    Chapel Side:
+        Alucard leaves the save room:
+            - None
+Slogra and Gaibon:
+    Bat Card Check:
+        Alucard dive kicks repeatedly off of Gaibon to reach the ledge:
+            - Progression - Double Jump
+            - Execution - Repeated Dive Kick Head Stomps
+        Using Bat form to fly:
+            - Progression - Bat Transformation
+        Using Gravity Jump:
+            - Progression - Gravity Jump
+        Using Powered Mist form to travel:
+            - Progression - Mist Transformation
+            - Progression - Longer Mist Duration
+        Using Wolf-Mist Rise:
+            - Progression - Mist Transformation
+            - Progression - Wolf Transformation
+            - Execution - Wolf-Mist Rise
+    Chapel Side:
+        Alucard heads left:
+            - None
+    Gallery Side:
+        Alucard heads right:
+            - None

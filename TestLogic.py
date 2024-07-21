@@ -1,5 +1,5 @@
 
-def get_paths_from_yaml(open_file):
+def get_paths_from_yaml(open_file, zone_prefix=None):
     result = {}
     source = None
     target = None
@@ -11,9 +11,13 @@ def get_paths_from_yaml(open_file):
             continue
         if line[0] != ' ':
             source = line.lstrip().replace(':', '')
+            if zone_prefix is not None:
+                source = zone_prefix + ' - ' + source
             target = option = requirement = None
         elif line[4] != ' ':
             target = line.lstrip().replace(':', '')
+            if zone_prefix is not None:
+                target = zone_prefix + ' - ' + target
             option = requirement = None
         elif line[8] != ' ':
             option = line.lstrip().replace(':', '')
@@ -51,6 +55,40 @@ def get_checks_from_yaml(open_file):
             result[source].sort()
     return result
 
+def get_loading_rooms_yaml(open_file):
+    result = {}
+    loading_room = None
+    joining_room = None
+    while line := open_file.readline():
+        line = line.rstrip()
+        if len(line) < 1:
+            continue
+        if line[0] != ' ':
+            loading_room = line.lstrip().replace(':', '')
+            joining_room = None
+        elif line[4] != ' ':
+            joining_room = line.lstrip()[2:]
+        if loading_room is not None and loading_room not in result:
+            result[loading_room] = []
+        if joining_room is not None:
+            result[loading_room].append(joining_room)
+            result[loading_room].sort()
+    return result
+
+def paths_from_loading_rooms(loading_rooms):
+    result = {}
+    for loading_room, connecting_rooms in loading_rooms.items():
+        if loading_room not in result:
+            result[loading_room] = {}
+        for connecting_room in connecting_rooms:
+            if connecting_room not in result:
+                result[connecting_room] = {}
+            result[loading_room][connecting_room] = {}
+            result[loading_room][connecting_room]['Basic Movement'] = ['None']
+            result[connecting_room][loading_room] = {}
+            result[connecting_room][loading_room]['Basic Movement'] = ['None']
+    return result
+
 class Game:
     def __init__(self, paths, checks):
         self.paths = paths
@@ -86,9 +124,34 @@ class Game:
         command = input()
         self.location = valid_targets[int(command)]
 
+def dict_merge(base_dict: dict, dict_to_merge: dict):
+    for key in dict_to_merge:
+        if key in base_dict:
+            if (
+                isinstance(base_dict[key], dict) and
+                isinstance(dict_to_merge[key], dict)
+            ):
+                dict_merge(base_dict[key], dict_to_merge[key])
+        else:
+            base_dict[key] = dict_to_merge[key]
+    result = base_dict
+    return result
+
 if __name__ == '__main__':
-    with open('paths.yaml') as open_file:
-        paths = get_paths_from_yaml(open_file)
+    paths = {}
+    with open('paths/loading-rooms.yaml') as open_file:
+        loading_rooms = get_loading_rooms_yaml(open_file)
+        paths = paths_from_loading_rooms(loading_rooms)
+    for zone_id, zone_prefix in (
+        ['alchemy-laboratory', 'Alchemy Laboratory'],
+        ['castle-entrance', 'Castle Entrance'],
+        ['marble-gallery', 'Marble Gallery'],
+        ['prologue', None],
+        # ['warp-room', 'Warp Room'],
+    ):
+        with open('paths/' + zone_id + '.yaml') as open_file:
+            zone_paths = get_paths_from_yaml(open_file, zone_prefix)
+            dict_merge(paths, zone_paths)
     with open('checks.yaml') as open_file:
         checks = get_checks_from_yaml(open_file)
     game = Game(paths, checks)
