@@ -1,5 +1,19 @@
-Alchemy Laboratory - Main Path:
+Alchemy Laboratory - Chapel Side:
     - Item - Leather Shield
+    - Subweapon - Knife
+Alchemy Laboratory - Gallery Side:
+    - Action - Activate Shortcut Between Chapel Side and Gallery Side
+Alchemy Laboratory - Skill of Wolf Check:
+    - Relic - Skill of Wolf
+    - Subweapon - Agunea
+    - Subweapon - Axe
+    - Subweapon - Cross
+    - Subweapon - Holy Book
+    - Subweapon - Rebound Stone
+Alchemy Laboratory - Secret Room Beyond Breakable Floor:
+    - Enhancement - Life Max Up
+Alchemy Laboratory - Secret Room Beyond Breakable Wall:
+    - Enhancement - Heart Max Up
 Castle Entrance - Attic:
 Castle Entrance - Holy Mail Check:
     - Item - Holy mail
@@ -19,9 +33,9 @@ Castle Entrance - Secret Trapdoor:
 Loading Room - Between Alchemy Laboratory and Marble Gallery:
 Loading Room - Between Alchemy Laboratory and Castle Entrance:
 Loading Room - Between Castle Entrance and Warp Room:
-    - Progression - Activate Shortcut between Castle Entrance and Warp Room
+    - Action - Activate Shortcut between Castle Entrance and Warp Room
 Loading Room - Between Castle Entrance and Marble Gallery:
-    - Progression - Activate Shortcut between Castle Entrance and Marble Gallery
+    - Action - Activate Shortcut between Castle Entrance and Marble Gallery
 Loading Room - Between Castle Entrance and Underground Caverns:
 Long Library - Back Section:
 Marble Gallery - Below Dropoff:
@@ -37,4 +51,4 @@ Prologue:
 Underground Caverns - Path Above Waterfall:
 Underground Caverns - Path Below Waterfall:
 Warp Room:
-    - Progression - Unlock Warp to Castle Entrance
+    - Action - Reach a Warp Room

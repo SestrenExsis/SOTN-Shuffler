@@ -3,24 +3,67 @@ Bat Card Check:
         Basic Movement:
             - None
 Chapel Side:
-    Slogra and Gaibon:
-        Basic Movement:
-            - None
+    Cloth Cape Check:
+        Solve the Box Puzzle:
+            - Execution - Solve the Box Puzzle
+    Explodable Wall Room:
+        Solve the Red Skeleton Elevator Puzzle:
+            - Execution - Solve the Red Skeleton Elevator Puzzle
     Save Room in Chapel Side:
         Basic Movement:
             - None
-    Cloth Cape Check:
-        Alucard solves the Box Puzzle:
-            - Execution - Solve the Box Puzzle
+    Secret Room Beyond Breakable Floor:
+        Break the Floor:
+            - Execution - Break the Floor in Chapel Side
+    Secret Room Beyond Breakable Wall:
+        Break the Wall:
+            - Execution - Break the Wall in Chapel Side
+    Slogra and Gaibon:
+        Basic Movement:
+            - None
+    Skill of Wolf Check:
+        Using Bat form to fly:
+            - Progression - Bat Transformation
+        Using Gravity Jump:
+            - Progression - Gravity Jump
+        Using Powered Mist form to travel:
+            - Progression - Mist Transformation
+            - Progression - Longer Mist Duration
+        Using Wolf-Mist Rise:
+            - Progression - Mist Transformation
+            - Progression - Wolf Transformation
+            - Execution - Wolf-Mist Rise
 Cloth Cape Check:
     Chapel Side:
         Basic Movement:
             - None
+Explodable Wall Room:
+    Chapel Side:
+        Basic Movement:
+            - None
+    Gallery Side:
+        Shortcut:
+            - Progression - Shortcut Between Chapel Side and Gallery Side Activated
 Gallery Side:
+    Explodable Wall Room:
+        Shortcut:
+            - Progression - Shortcut Between Chapel Side and Gallery Side Activated
     Slogra and Gaibon:
         Basic Movement:
             - None
 Save Room in Chapel Side:
+    Chapel Side:
+        Basic Movement:
+            - None
+Secret Room Beyond Breakable Wall:
+    Chapel Side:
+        Basic Movement:
+            - None
+Secret Room Beyond Breakable Floor:
+    Chapel Side:
+        Basic Movement:
+            - None
+Skill of Wolf Check:
     Chapel Side:
         Basic Movement:
             - None

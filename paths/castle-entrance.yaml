@@ -110,7 +110,7 @@ Main Path:
             - Execution - Wolf-Mist Rise
     Weighted Pulley with Pressure Plate:
         Shortcut:
-            - Progression - Activate Shortcut between Castle Entrance and Marble Gallery
+            - Progression - Shortcut between Castle Entrance and Marble Gallery Activated
         Flight - Bat Form:
             - Progression - Bat Transformation
         Multiple Gravity Jumps with Wolf Transform Reset:
@@ -128,7 +128,7 @@ Main Path:
             - TODO(sestren)
     Wooden Partition with Lever Platform:
         Shortcut:
-            - Progression - Activate Shortcut between Castle Entrance and Underground Caverns
+            - Progression - Shortcut between Castle Entrance and Underground Caverns Activated
         Reverse Shift Line using Heart Refresh:
             - Item - Heart Refresh
             - Execution - Reverse Shift Line using Heart Refresh at Underground Cavern Shortcut
@@ -136,7 +136,7 @@ Main Path:
             - Execution - Reverse Shift Line using Level Up at Underground Cavern Shortcut
     Wooden Partition with Pressure Plate:
         Shortcut:
-            - Progression - Activate Shortcut between Castle Entrance and Warp Room
+            - Progression - Shortcut between Castle Entrance and Warp Room Activated
         Reverse Shift Line using Heart Refresh:
             - Item - Heart Refresh
             - Execution - Reverse Shift Line using Heart Refresh at Castle Entrance to Warp Room Shortcut
@@ -177,8 +177,8 @@ Weighted Pulley with Pressure Plate:
 Wooden Partition with Lever Platform:
     Main Path:
         Shortcut:
-            - Progression - Activate Shortcut between Castle Entrance and Underground Caverns
+            - Progression - Shortcut between Castle Entrance and Underground Caverns Activated
 Wooden Partition with Pressure Plate:
     Main Path:
         Shortcut:
-            - Progression - Activate Shortcut between Castle Entrance and Royal Chapel
+            - Progression - Shortcut between Castle Entrance and Royal Chapel Activated
