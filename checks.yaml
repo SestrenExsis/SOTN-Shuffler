@@ -1,32 +1,40 @@
-Prologue:
-    - Item - Heart Refresh
-    - Item - Neutron Bomb
+Alchemy Laboratory - Main Path:
+    - Item - Leather Shield
+Castle Entrance - Attic:
+Castle Entrance - Holy Mail Check:
+    - Item - Holy mail
+Castle Entrance - Hidden Room with Heart Max Up:
+    - Enhancement - Heart Max Up
+Castle Entrance - Hidden Room with Life Max Up:
+    - Enhancement - Life Max Up
+Castle Entrance - Jewel Sword Check:
+    - Item - Jewel Sword
 Castle Entrance - Main Path:
     - Item - Pot Roast
     - Item - Turkey
     - Relic - Cube of Zoe
-Castle Entrance - Attic:
-Castle Entrance - Jewel Sword Check:
-    - Item - Jewel Sword
 Castle Entrance - Power of Wolf Check:
     - Relic - Power of Wolf
-Castle Entrance - Holy Mail Check:
-Castle Entrance - Hidden Room with Life Max Up:
-Castle Entrance - Hidden Room with Heart Max Up:
 Castle Entrance - Secret Trapdoor:
 Loading Room - Between Alchemy Laboratory and Marble Gallery:
-Loading Room - Between Castle Entrance and Alchemy Laboratory:
+Loading Room - Between Alchemy Laboratory and Castle Entrance:
 Loading Room - Between Castle Entrance and Warp Room:
     - Progression - Activate Shortcut between Castle Entrance and Warp Room
 Loading Room - Between Castle Entrance and Marble Gallery:
     - Progression - Activate Shortcut between Castle Entrance and Marble Gallery
 Loading Room - Between Castle Entrance and Underground Caverns:
-Alchemy Laboratory - Main Path:
-Marble Gallery - Entrance:
+Long Library - Back Section:
 Marble Gallery - Below Dropoff:
+    - Relic - Spirit Orb
+Marble Gallery - Entrance:
 Marble Gallery - Hammer Check:
 Marble Gallery - Strength Potion Check:
-Long Library - Back Section:
-Underground Caverns - Path Below Waterfall:
+Outer Wall - DEFAULT:
+    - Relic - Soul of Wolf
+Prologue:
+    - Item - Heart Refresh
+    - Item - Neutron Bomb
 Underground Caverns - Path Above Waterfall:
+Underground Caverns - Path Below Waterfall:
 Warp Room:
+    - Progression - Unlock Warp to Castle Entrance

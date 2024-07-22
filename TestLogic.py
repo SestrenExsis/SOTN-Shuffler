@@ -90,17 +90,24 @@ def paths_from_loading_rooms(loading_rooms):
     return result
 
 class Game:
-    def __init__(self, paths, checks):
+    def __init__(self, paths, checks, progressions):
         self.paths = paths
         self.checks = checks
+        self.progressions = progressions
         self.executions = {}
-        self.progression = {
+        self.checks_made = {
+            'None',
+        }
+        self.progressions_made = {
             'None',
         }
         self.location = 'Prologue'
     
     def play(self):
         print('@', self.location)
+        if self.location in self.checks:
+            for check in self.checks[self.location]:
+                self.perform_check(check)
         id = 1
         valid_targets = {}
         for target in sorted(self.paths[self.location]):
@@ -111,7 +118,7 @@ class Game:
                 for requirement in requirements:
                     if (
                         requirement not in self.executions and
-                        requirement not in self.progression
+                        requirement not in self.progressions_made
                     ):
                         valid_option_ind = False
                         break
@@ -123,6 +130,13 @@ class Game:
                 id += 1
         command = input()
         self.location = valid_targets[int(command)]
+    
+    def perform_check(self, check):
+        print('   +', check)
+        self.checks_made.add(check)
+        if check in self.progressions:
+            for progression in self.progressions[check]:
+                self.progressions_made.add(progression)
 
 def dict_merge(base_dict: dict, dict_to_merge: dict):
     for key in dict_to_merge:
@@ -136,6 +150,8 @@ def dict_merge(base_dict: dict, dict_to_merge: dict):
             base_dict[key] = dict_to_merge[key]
     result = base_dict
     return result
+
+# TODO(sestren): Support different categories like Any%, RBO, Pacifist, etc?
 
 if __name__ == '__main__':
     paths = {}
@@ -155,7 +171,9 @@ if __name__ == '__main__':
             dict_merge(paths, zone_paths)
     with open('checks.yaml') as open_file:
         checks = get_checks_from_yaml(open_file)
-    game = Game(paths, checks)
-    # game.progression.add('Progression - Bat Transformation')
+    with open('progression.yaml') as open_file:
+        progressions = get_checks_from_yaml(open_file)
+    game = Game(paths, checks, progressions)
+    game.perform_check('Ruleset - Any Percent')
     while True:
         game.play()
