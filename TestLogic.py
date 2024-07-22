@@ -171,7 +171,7 @@ if __name__ == '__main__':
             dict_merge(paths, zone_paths)
     with open('checks.yaml') as open_file:
         checks = get_checks_from_yaml(open_file)
-    with open('progression.yaml') as open_file:
+    with open('progressions.yaml') as open_file:
         progressions = get_checks_from_yaml(open_file)
     game = Game(paths, checks, progressions)
     game.perform_check('Ruleset - Any Percent')

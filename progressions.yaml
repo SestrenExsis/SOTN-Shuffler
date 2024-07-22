@@ -1,0 +1,22 @@
+Ruleset - Any Percent:
+    - Execution - Candle Dive-Kick with Transformation Reset
+Knowledge - Casual:
+    - Execution - Solve the Box Puzzle
+    - Execution - Solve the Gear Puzzle
+Knowledge - Standard:
+    - Execution - Solve the Cave Transformation Puzzle 
+Relic - Cube of Zoe:
+    - Progression - Item Materialization
+Relic - Power of Wolf:
+    - Progression - Faster Wolf Speed
+Relic - Spirit Orb:
+Relic - Soul of Wolf:
+    - Progression - Wolf Transformation
+Item - Claymore:
+    - Progression - Thrust Weapon
+Item - Flamberge:
+    - Progression - Thrust Weapon
+Item - Zwei Hander:
+    - Progression - Thrust Weapon
+Item - Obsidian Sword:
+    - Progression - Thrust Weapon
