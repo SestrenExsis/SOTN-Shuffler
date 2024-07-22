@@ -139,15 +139,16 @@ def dict_merge(base_dict: dict, dict_to_merge: dict):
 
 if __name__ == '__main__':
     paths = {}
+    with open('paths/default.yaml') as open_file:
+        paths = get_paths_from_yaml(open_file, None)
     with open('paths/loading-rooms.yaml') as open_file:
         loading_rooms = get_loading_rooms_yaml(open_file)
-        paths = paths_from_loading_rooms(loading_rooms)
+        load_paths = paths_from_loading_rooms(loading_rooms)
+        paths = dict_merge(paths, load_paths)
     for zone_id, zone_prefix in (
         ['alchemy-laboratory', 'Alchemy Laboratory'],
         ['castle-entrance', 'Castle Entrance'],
         ['marble-gallery', 'Marble Gallery'],
-        ['prologue', None],
-        # ['warp-room', 'Warp Room'],
     ):
         with open('paths/' + zone_id + '.yaml') as open_file:
             zone_paths = get_paths_from_yaml(open_file, zone_prefix)

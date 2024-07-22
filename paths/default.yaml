@@ -1,0 +1,44 @@
+Castle Keep - DEFAULT:
+    Reverse Keep - DEFAULT:
+        Activate Warp:
+            - None
+Prologue:
+    Castle Entrance - Main Path:
+        Richter defeats Dracula:
+            - None
+Reverse Keep - DEFAULT:
+    Castle Keep - DEFAULT:
+        Activate Warp:
+            - None
+Reverse Warp Room:
+    Loading Room - Between Cave and Reverse Warp Room:
+        Activate Warp:
+            - Progression - Unlock Warp to Cave
+    Loading Room - Between Death Wing's Lair and Reverse Warp Room:
+        Activate Warp:
+            - Progression - Unlock Warp to Death Wing's Lair
+    Loading Room - Between Reverse Entrance and Reverse Warp Room:
+        Activate Warp:
+            - Progression - Unlock Warp to Reverse Entrance
+    Loading Room - Between Reverse Keep and Reverse Warp Room:
+        Activate Warp:
+            - Progression - Unlock Warp to Reverse Keep
+    Loading Room - Between Reverse Outer Wall and Reverse Warp Room:
+        Activate Warp:
+            - Progression - Unlock Warp to Reverse Outer Wall
+Warp Room:
+    Loading Room - Between Castle Entrance and Warp Room:
+        Activate Warp:
+            - Progression - Unlock Warp to Castle Entrance
+    Loading Room - Between Abandoned Mine and Warp Room:
+        Activate Warp:
+            - Progression - Unlock Warp to Abandoned Mine
+    Loading Room - Between Castle Keep and Warp Room:
+        Activate Warp:
+            - Progression - Unlock Warp to Castle Keep
+    Loading Room - Between Olrox's Quarters and Warp Room:
+        Activate Warp:
+            - Progression - Unlock Warp to Olrox's Quarters
+    Loading Room - Between Marble Gallery and Warp Room:
+        Activate Warp:
+            - Progression - Unlock Warp to Marble Gallery

@@ -1,28 +1,28 @@
 Bat Card Check:
     Slogra and Gaibon:
-        Alucard leaves the area:
+        Basic Movement:
             - None
 Chapel Side:
     Slogra and Gaibon:
-        Alucard fights Slogra and Gaibon:
+        Basic Movement:
             - None
     Save Room in Chapel Side:
-        Alucard enters the save room:
+        Basic Movement:
             - None
     Cloth Cape Check:
         Alucard solves the Box Puzzle:
             - Execution - Solve the Box Puzzle
 Cloth Cape Check:
     Chapel Side:
-        Alucard leaves the area:
+        Basic Movement:
             - None
 Gallery Side:
     Slogra and Gaibon:
-        Alucard travels left through a hallway:
+        Basic Movement:
             - None
 Save Room in Chapel Side:
     Chapel Side:
-        Alucard leaves the save room:
+        Basic Movement:
             - None
 Slogra and Gaibon:
     Bat Card Check:
@@ -41,8 +41,8 @@ Slogra and Gaibon:
             - Progression - Wolf Transformation
             - Execution - Wolf-Mist Rise
     Chapel Side:
-        Alucard heads left:
+        Basic Movement:
             - None
     Gallery Side:
-        Alucard heads right:
+        Basic Movement:
             - None
