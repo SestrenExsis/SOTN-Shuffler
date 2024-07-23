@@ -1,9 +1,9 @@
-Action - Activate Shortcut Between Chapel Side and Gallery Side:
-    - Progression - Shortcut Between Chapel Side and Gallery Side Activated
+Action - Activate Cannon Wall Shortcut:
+    - Progression - Cannon Wall Shortcut Activated
 Action - Activate Shortcut between Castle Entrance and Warp Room:
     - Progression - Shortcut between Castle Entrance and Warp Room Activated
-Action - Activate Shortcut between Castle Entrance and Marble Gallery:
-    - Progression - Shortcut between Castle Entrance and Marble Gallery Activated
+Action - Activate Stone Pulley Shortcut:
+    - Progression - Stone Pulley Shortcut Activated
 Action - Reach a Warp Room:
     - Progression - Unlock Warp to Castle Entrance
 Item - Claymore:
@@ -24,24 +24,16 @@ Item - Alucard Sword:
     - Progression - Floor-Striking Weapon
 Item - Shotel:
     - Progression - Floor-Striking Weapon
-Knowledge - Beginner:
-    - Execution - Solve the Box Puzzle
-    - Execution - Solve the Gear Puzzle
-    - Execution - Solve the Red Skeleton Elevator Puzzle
-Knowledge - Casual:
-    - Execution - Solve the Box Puzzle
-    - Execution - Solve the Gear Puzzle
-    - Execution - Solve the Red Skeleton Elevator Puzzle
-    - Execution - Break the Floor in Chapel Side
-    - Execution - Break the Wall in Chapel Side
-Knowledge - Standard:
-    - Execution - Break the Floor in Chapel Side
-    - Execution - Break the Wall in Chapel Side
-    - Execution - Candle Dive-Kick with Transformation Reset
-    - Execution - Solve the Box Puzzle
-    - Execution - Solve the Cave Transformation Puzzle
-    - Execution - Solve the Gear Puzzle
-    - Execution - Solve the Red Skeleton Elevator Puzzle
+Knowledge - Level 1:
+    - Knowledge - How to Solve the Box Puzzle
+    - Knowledge - How to Solve the Gear Puzzle
+    - Knowledge - How to Solve the Red Skeleton Elevator Puzzle
+Knowledge - Level 2:
+    - Knowledge - How to Break the Floor in Chapel Side of Alchemy Laboratory
+    - Knowledge - How to Break the Wall in Chapel Side of Alchemy Laboratory
+Knowledge - Level 3:
+    - Knowledge - How to Perform a Candle Dive-Kick with Transformation Reset
+    - Knowledge - How to Solve the Cave Transformation Puzzle
 Relic - Cube of Zoe:
     - Progression - Item Materialization
 Relic - Power of Wolf:

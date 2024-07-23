@@ -5,22 +5,31 @@ Bat Card Check:
 Chapel Side:
     Cloth Cape Check:
         Solve the Box Puzzle:
-            - Execution - Solve the Box Puzzle
+            - Knowledge - How to Solve the Box Puzzle
+    Save Room in Chapel Side:
+        Basic Movement:
+            - None
+    Slogra and Gaibon:
+        Basic Movement:
+            - None
+Cloth Cape Check:
+    Chapel Side:
+        Basic Movement:
+            - None
+Entrance Side:
     Explodable Wall Room:
         Solve the Red Skeleton Elevator Puzzle:
-            - Execution - Solve the Red Skeleton Elevator Puzzle
-    Save Room in Chapel Side:
+            - Knowledge - How to Solve the Red Skeleton Elevator Puzzle
+    Save Room in Entrance Side:
         Basic Movement:
             - None
     Secret Room Beyond Breakable Floor:
         Break the Floor:
-            - Execution - Break the Floor in Chapel Side
+            - Knowledge - How to Break the Floor in Chapel Side of Alchemy Laboratory
+            - Progression - Floor-Striking Weapon
     Secret Room Beyond Breakable Wall:
         Break the Wall:
-            - Execution - Break the Wall in Chapel Side
-    Slogra and Gaibon:
-        Basic Movement:
-            - None
+            - Knowledge - How to Break the Wall in Chapel Side of Alchemy Laboratory
     Skill of Wolf Check:
         Using Bat form to fly:
             - Progression - Bat Transformation
@@ -33,21 +42,17 @@ Chapel Side:
             - Progression - Mist Transformation
             - Progression - Wolf Transformation
             - Execution - Wolf-Mist Rise
-Cloth Cape Check:
-    Chapel Side:
-        Basic Movement:
-            - None
 Explodable Wall Room:
-    Chapel Side:
+    Entrance Side:
         Basic Movement:
             - None
-    Gallery Side:
+    Long Elevator:
         Shortcut:
-            - Progression - Shortcut Between Chapel Side and Gallery Side Activated
+            - Progression - Cannon Wall Shortcut Activated
 Gallery Side:
-    Explodable Wall Room:
-        Shortcut:
-            - Progression - Shortcut Between Chapel Side and Gallery Side Activated
+    Long Elevator:
+        Basic Movement:
+            - None
     Slogra and Gaibon:
         Basic Movement:
             - None
@@ -55,16 +60,20 @@ Save Room in Chapel Side:
     Chapel Side:
         Basic Movement:
             - None
+Save Room in Entrance Side:
+    Entrance Side:
+        Basic Movement:
+            - None
 Secret Room Beyond Breakable Wall:
-    Chapel Side:
+    Entrance Side:
         Basic Movement:
             - None
 Secret Room Beyond Breakable Floor:
-    Chapel Side:
+    Entrance Side:
         Basic Movement:
             - None
 Skill of Wolf Check:
-    Chapel Side:
+    Entrance Side:
         Basic Movement:
             - None
 Slogra and Gaibon:
@@ -86,6 +95,13 @@ Slogra and Gaibon:
     Chapel Side:
         Basic Movement:
             - None
+    Gallery Side:
+        Basic Movement:
+            - None
+Long Elevator:
+    Explodable Wall Room:
+        Shortcut:
+            - Progression - Cannon Wall Shortcut Activated
     Gallery Side:
         Basic Movement:
             - None

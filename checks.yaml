@@ -2,7 +2,7 @@ Alchemy Laboratory - Chapel Side:
     - Item - Leather Shield
     - Subweapon - Knife
 Alchemy Laboratory - Gallery Side:
-    - Action - Activate Shortcut Between Chapel Side and Gallery Side
+    - Action - Activate Cannon Wall Shortcut
 Alchemy Laboratory - Skill of Wolf Check:
     - Relic - Skill of Wolf
     - Subweapon - Agunea
@@ -14,6 +14,8 @@ Alchemy Laboratory - Secret Room Beyond Breakable Floor:
     - Enhancement - Life Max Up
 Alchemy Laboratory - Secret Room Beyond Breakable Wall:
     - Enhancement - Heart Max Up
+Alchemy Laboratory - Long Elevator:
+    - Item - Sunglasses
 Castle Entrance - Attic:
 Castle Entrance - Holy Mail Check:
     - Item - Holy mail
@@ -35,7 +37,7 @@ Loading Room - Between Alchemy Laboratory and Castle Entrance:
 Loading Room - Between Castle Entrance and Warp Room:
     - Action - Activate Shortcut between Castle Entrance and Warp Room
 Loading Room - Between Castle Entrance and Marble Gallery:
-    - Action - Activate Shortcut between Castle Entrance and Marble Gallery
+    - Action - Activate Stone Pulley Shortcut
 Loading Room - Between Castle Entrance and Underground Caverns:
 Long Library - Back Section:
 Marble Gallery - Below Dropoff:

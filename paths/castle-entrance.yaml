@@ -24,7 +24,7 @@ Hidden Room with Life Max Up:
     Main Path:
         Basic Movement:
             - None
-    Weighted Pulley with Pressure Plate:
+    Stone Pulley Shortcut:
         Diagonal Gravity Jump into Mist:
             - Progression - Gravity Jump
             - Progression - Mist Transformation
@@ -58,7 +58,7 @@ Main Path:
         Unlock using both transformations in the small cave:
             - Progression - Wolf Transformation
             - Progression - Bat Transformation
-            - Execution - Solve the Cave Transformation Puzzle 
+            - Knowledge - How to Solve the Cave Transformation Puzzle 
     Power of Wolf Check:
         Flight - Bat Form:
             - Progression - Bat Transformation
@@ -108,9 +108,9 @@ Main Path:
             - Progression - Mist Transformation
             - Progression - Wolf Transformation
             - Execution - Wolf-Mist Rise
-    Weighted Pulley with Pressure Plate:
+    Stone Pulley Shortcut:
         Shortcut:
-            - Progression - Shortcut between Castle Entrance and Marble Gallery Activated
+            - Progression - Stone Pulley Shortcut Activated
         Flight - Bat Form:
             - Progression - Bat Transformation
         Multiple Gravity Jumps with Wolf Transform Reset:
@@ -167,7 +167,7 @@ Secret Trapdoor:
     Save Room in Secret Trapdoor:
         Basic Movement:
             - None
-Weighted Pulley with Pressure Plate:
+Stone Pulley Shortcut:
     Hidden Room with Life Max Up:
         Well-timed Jump with a Fall:
             - Execution - TODO(sestren)

@@ -174,6 +174,8 @@ if __name__ == '__main__':
     with open('progressions.yaml') as open_file:
         progressions = get_checks_from_yaml(open_file)
     game = Game(paths, checks, progressions)
-    game.perform_check('Ruleset - Any Percent')
+    game.perform_check('Knowledge - Level 1')
+    game.perform_check('Knowledge - Level 2')
+    game.perform_check('Knowledge - Level 3')
     while True:
         game.play()
