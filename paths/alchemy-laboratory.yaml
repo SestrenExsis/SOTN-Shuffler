@@ -3,6 +3,9 @@ Bat Card Check:
         Basic Movement:
             - None
 Chapel Side:
+    Blue Door Hallway:
+        Walk Through Blue Door:
+            - Progression - Unlock Blue Doors
     Cloth Cape Check:
         Solve the Box Puzzle:
             - Knowledge - How to Solve the Box Puzzle
@@ -53,15 +56,26 @@ Gallery Side:
     Long Elevator:
         Basic Movement:
             - None
+    Save Room in Gallery Side:
+        Basic Movement:
+            - None
     Slogra and Gaibon:
         Basic Movement:
             - None
+Blue Door Hallway:
+    Chapel Side:
+        Walk Through Blue Door:
+            - Progression - Unlock Blue Doors
 Save Room in Chapel Side:
     Chapel Side:
         Basic Movement:
             - None
 Save Room in Entrance Side:
     Entrance Side:
+        Basic Movement:
+            - None
+Save Room in Gallery Side:
+    Gallery Side:
         Basic Movement:
             - None
 Secret Room Beyond Breakable Wall:
