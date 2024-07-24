@@ -19,15 +19,17 @@ Below Dropoff:
             - None
 Center Path:
     Clock Room:
-        TODO(sestren):
-            - Flight
-Clock Room:
-    Center Path:
         Basic Movement:
             - None
-    Elevator Room:
+Clock Room:
+    Center Path:
         TODO(sestren):
-            - UNKNOWN
+            - Flight
+    Elevator Room:
+        Wear Both Rings:
+            - Progression - Silver Ring
+            - Progression - Gold Ring
+            - Knowledge - How to Unlock Castle Center
     Left Statue Path:
         Flight - Bat Form:
             - Progression - Bat Transformation
@@ -61,10 +63,8 @@ Clock Room:
             - Execution - Corner Mist
 Elevator Room:
     Clock Room:
-        Wear Both Rings:
-            - Progression - Silver Ring
-            - Progression - Gold Ring
-            - Knowledge - How to Unlock Castle Center
+        TODO(sestren):
+            - UNKNOWN
     Save Room in Elevator Room:
         Basic Movement:
             - None
