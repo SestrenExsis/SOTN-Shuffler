@@ -1,3 +1,7 @@
+Castle Center - Elevator Room:
+    Marble Gallery - Elevator Room:
+        Activate Elevator:
+            - None
 Castle Keep - DEFAULT:
     Reverse Keep - DEFAULT:
         Activate Warp:
@@ -9,6 +13,10 @@ Prologue:
 Reverse Keep - DEFAULT:
     Castle Keep - DEFAULT:
         Activate Warp:
+            - None
+Marble Gallery - Elevator Room:
+    Castle Center - Elevator Room:
+        Activate Elevator:
             - None
 Reverse Warp Room:
     Loading Room - Between Cave and Reverse Warp Room:

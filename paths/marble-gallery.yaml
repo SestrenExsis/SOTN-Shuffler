@@ -1,9 +1,33 @@
+Alchemy Side:
+    Below Dropoff:
+        Alucard travels over the dropoff:
+            - None
 Below Dropoff:
-    Entrance:
+    Alchemy Side:
         Alucard reaches the ledge using Bat form to fly:
             - Progression - Bat Transformation
         Alucard reaches the ledge using Gravity Jump:
             - Progression - Gravity Jump
+    Save Room Below Dropoff:
+        Basic Movement:
+            - None
+    Short Hallway:
+        Basic Movement:
+            - None
+    Spirit Orb Check:
+        Basic Movement:
+            - None
+Center Path:
+    Clock Room:
+        TODO(sestren):
+            - Flight
+Clock Room:
+    Center Path:
+        Basic Movement:
+            - None
+    Elevator Room:
+        TODO(sestren):
+            - UNKNOWN
     Left Statue Path:
         Flight - Bat Form:
             - Progression - Bat Transformation
@@ -17,9 +41,110 @@ Below Dropoff:
         Mist Form:
             - Progression - Mist Transformation
             - Execution - Corner Mist
-Entrance:
-    Below Dropoff:
-        Alucard travels over the dropoff:
+    Right Statue Path:
+        Use Stopwatch, Then Flight - Bat Form:
+            - Subweapon - Stopwatch
+            - Progression - Bat Transformation
+        Use Stopwatch, Then Gravity Jump:
+            - Subweapon - Stopwatch
+            - Progression - Gravity Jump
+        Use Stopwatch, Then Double Jump with Candle Dive-Kick Reset:
+            - Subweapon - Stopwatch
+            - Progression - Double Jump
+        Use Stopwatch, Then Candle Dive-Kick with Transformation Reset:
+            - Subweapon - Stopwatch
+            - Progression - Wolf Transformation
+            - Knowledge - How to Perform a Candle Dive-Kick with Transformation Reset
+        Use Stopwatch, Then Mist Form:
+            - Subweapon - Stopwatch
+            - Progression - Mist Transformation
+            - Execution - Corner Mist
+Elevator Room:
+    Clock Room:
+        Wear Both Rings:
+            - Progression - Silver Ring
+            - Progression - Gold Ring
+            - Knowledge - How to Unlock Castle Center
+    Save Room in Elevator Room:
+        Basic Movement:
             - None
+Empty Check:
+    Spirit Orb Check:
+        Basic Movement:
+            - None
+Entrance Side:
+    Spirit Orb Check:
+        Basic Movement:
+            - None
+Floor Switch:
+    Long Hallway:
+        Unlock Blue Doors:
+            - Progression - Unlock Blue Doors
 Hammer Check:
+    Spirit Orb Check:
+        Basic Movement:
+            - None
+Left Statue Path:
+    Clock Room:
+        Basic Movement:
+            - None
+Library Card Check:
+    Long Hallway:
+        TODO(sestren):
+            - UNKNOWN
+Long Hallway:
+    Clock Room:
+        Basic Movement:
+            - None
+    Floor Switch:
+        Unlock Blue Doors:
+            - Progression - Unlock Blue Doors
+    Library Card Check:
+        Unlock Blue Doors:
+            - Progression - Unlock Blue Doors
+    Underground Cavern Side:
+        Unlock Blue Doors:
+            - Progression - Unlock Blue Doors
+Right Statue Path:
+    Clock Room:
+        Basic Movement:
+            - None
+Save Room Below Dropoff:
+    Below Dropoff:
+        Basic Movement:
+            - None
+Save Room in Elevator Room:
+    Elevator Room:
+        Basic Movement:
+            - None
+Short Hallway:
+    Below Dropoff:
+        Basic Movement:
+            - None
+    Clock Room:
+        Basic Movement:
+            - None
+Spirit Orb Check:
+    Below Dropoff:
+        Basic Movement:
+            - None
+    Empty Check:
+        TODO(sestren):
+            - UNKNOWN
+    Entrance Side:
+        Basic Movement:
+            - None
+    Hammer Check:
+        TODO(sestren):
+            - UNKNOWN
+    Strength Potion Check:
+        TODO(sestren):
+            - UNKNOWN
 Strength Potion Check:
+    Spirit Orb Check:
+        Basic Movement:
+            - None
+Underground Cavern Side:
+    Long Hallway:
+        TODO(sestren):
+            - UNKNOWN

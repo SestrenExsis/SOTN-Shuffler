@@ -92,10 +92,10 @@ Loading Room - Between Marble Gallery and Olrox's Quarters:
     - Marble Gallery - Left Statue Path
     - Olrox's Quarters - DEFAULT
 Loading Room - Between Marble Gallery and Outer Wall:
-    - Marble Gallery - Below Dropoff
+    - Marble Gallery - Long Hallway
     - Outer Wall - DEFAULT
 Loading Room - Between Marble Gallery and Underground Caverns:
-    - Marble Gallery - Basement Stairwell
+    - Marble Gallery - Underground Cavern Side
     - Underground Caverns - DEFAULT
 Loading Room - Between Necromancy Laboratory and Reverse Entrance:
     - Necromancy Laboratory - DEFAULT
@@ -106,8 +106,8 @@ Loading Room - Between Olrox's Quarters and Royal Chapel:
 Loading Room - Between Olrox's Quarters and Warp Room:
     - Olrox's Quarters - DEFAULT
     - Warp Room
-Loading Room - Between Marble Gallery and Warp Room:
-    - Marble Gallery - DEFAULT
+Loading Room - Between Outer Wall and Warp Room:
+    - Outer Wall - DEFAULT
     - Warp Room
 Loading Room - Between Reverse Caverns and Reverse Entrance:
     - Reverse Caverns - DEFAULT
