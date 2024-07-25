@@ -14,9 +14,25 @@ Elevator Section:
             - Knowledge - How to Unlock the Elevator
 Gallery Side:
     Garnet Check:
+        Corner Mist:
+            - Progression - Mist Transformation
+            - Knowledge - How to Perform Corner Mist
+        Double Jump:
+            - Progression - Double Jump
+        Flight - Bat Form:
+            - Progression - Bat Transformation
+        Flight - Powered Mist:
+            - Progression - Mist Transformation
+            - Progression - Longer Mist Duration
+        Gravity Jump:
+            - Progression - Gravity Jump
         Wolf Slope Jump:
             - Progression - Wolf Transformation
-        TODO(sestren):
+            - Knowledge - How to Perform a Wolf Slope Jump
+        Wolf-Mist Rise:
+            - Progression - Mist Transformation
+            - Progression - Wolf Transformation
+            - Execution - Wolf-Mist Rise
     Lower Section:
         Basic Movement:
             - None
