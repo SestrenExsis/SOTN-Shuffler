@@ -69,7 +69,7 @@ Loading Room - Between Cave and Reverse Warp Room:
     - Reverse Warp Room
 Loading Room - Between Clock Tower and Outer Wall:
     - Clock Tower - DEFAULT
-    - Outer Wall - DEFAULT
+    - Outer Wall - Tower Side
 Loading Room - Between Colosseum and Olrox's Quarters:
     - Colosseum - DEFAULT
     - Olrox's Quarters - DEFAULT
@@ -87,13 +87,13 @@ Loading Room - Between Forbidden Library and Reverse Outer Wall:
     - Reverse Outer Wall - DEFAULT
 Loading Room - Between Long Library and Outer Wall:
     - Long Library - DEFAULT
-    - Outer Wall - DEFAULT
+    - Outer Wall - Elevator Section
 Loading Room - Between Marble Gallery and Olrox's Quarters:
     - Marble Gallery - Left Statue Path
     - Olrox's Quarters - DEFAULT
 Loading Room - Between Marble Gallery and Outer Wall:
     - Marble Gallery - Long Hallway
-    - Outer Wall - DEFAULT
+    - Outer Wall - Gallery Side
 Loading Room - Between Marble Gallery and Underground Caverns:
     - Marble Gallery - Underground Cavern Side
     - Underground Caverns - DEFAULT
@@ -107,7 +107,7 @@ Loading Room - Between Olrox's Quarters and Warp Room:
     - Olrox's Quarters - DEFAULT
     - Warp Room
 Loading Room - Between Outer Wall and Warp Room:
-    - Outer Wall - DEFAULT
+    - Outer Wall - Elevator Section
     - Warp Room
 Loading Room - Between Reverse Caverns and Reverse Entrance:
     - Reverse Caverns - DEFAULT

@@ -1,4 +1,4 @@
-Castle Center - Elevator Room:
+Castle Center - Elevator:
     Marble Gallery - Elevator Room:
         Activate Elevator:
             - None
@@ -15,7 +15,7 @@ Reverse Keep - DEFAULT:
         Activate Warp:
             - None
 Marble Gallery - Elevator Room:
-    Castle Center - Elevator Room:
+    Castle Center - Elevator:
         Activate Elevator:
             - None
 Reverse Warp Room:
@@ -47,6 +47,6 @@ Warp Room:
     Loading Room - Between Olrox's Quarters and Warp Room:
         Activate Warp:
             - Progression - Unlock Warp to Olrox's Quarters
-    Loading Room - Between Marble Gallery and Warp Room:
+    Loading Room - Between Outer Wall and Warp Room:
         Activate Warp:
-            - Progression - Unlock Warp to Marble Gallery
+            - Progression - Unlock Warp to Outer Wall

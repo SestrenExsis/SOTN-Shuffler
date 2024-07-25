@@ -20,7 +20,7 @@ Castle Center - Holy Glasses Check:
     - Item - Holy Glasses
 Castle Entrance - Attic:
 Castle Entrance - Holy Mail Check:
-    - Item - Holy mail
+    - Item - Holy Mail
 Castle Entrance - Hidden Room with Heart Max Up:
     - Enhancement - Heart Max Up
 Castle Entrance - Hidden Room with Life Max Up:
@@ -47,7 +47,9 @@ Marble Gallery - Below Dropoff:
 Marble Gallery - Entrance:
 Marble Gallery - Hammer Check:
 Marble Gallery - Strength Potion Check:
-Outer Wall - DEFAULT:
+Outer Wall - Garnet Check:
+    - Item - Garnet
+Outer Wall - Soul of Wolf Check:
     - Relic - Soul of Wolf
 Prologue:
     - Item - Heart Refresh
