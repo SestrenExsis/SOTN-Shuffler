@@ -1,18 +1,26 @@
 Doppelganger Room:
     Gallery Side:
         Basic Movement:
-            - None
+            - Progression - Defeat Doppelganger10
     Elevator Section:
         Basic Movement:
-            - None
+            - Progression - Defeat Doppelganger10
 Elevator Section:
     Doppelganger Room:
+        Basic Movement:
+            - None
+    Gallery Side:
         Basic Movement:
             - None
     Soul of Wolf Check:
         Unlock the Elevator:
             - Knowledge - How to Unlock the Elevator
 Gallery Side:
+    Doppelganger Room:
+        Basic Movement:
+            - None
+    Elevator Section:
+        TODO(sestren):
     Garnet Check:
         Corner Mist:
             - Progression - Mist Transformation

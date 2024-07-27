@@ -8,11 +8,11 @@ Loading Room - Between Abandoned Mine and Warp Room:
     - Abandoned Mine - DEFAULT
     - Warp Room
 Loading Room - Between Alchemy Laboratory and Castle Entrance:
-    - Alchemy Laboratory - Chapel Side
+    - Alchemy Laboratory - Entrance Side
     - Castle Entrance - Main Path
 Loading Room - Between Alchemy Laboratory and Marble Gallery:
     - Alchemy Laboratory - Gallery Side
-    - Marble Gallery - Entrance
+    - Marble Gallery - Alchemy Side
 Loading Room - Between Alchemy Laboratory and Royal Chapel:
     - Alchemy Laboratory - Blue Door Hallway
     - Royal Chapel - Long Stairwell
@@ -71,10 +71,10 @@ Loading Room - Between Clock Tower and Outer Wall:
     - Clock Tower - DEFAULT
     - Outer Wall - Tower Side
 Loading Room - Between Colosseum and Olrox's Quarters:
-    - Colosseum - DEFAULT
+    - Colosseum - Upper Path
     - Olrox's Quarters - DEFAULT
 Loading Room - Between Colosseum and Royal Chapel:
-    - Colosseum - DEFAULT
+    - Colosseum - Chapel Side
     - Royal Chapel - DEFAULT
 Loading Room - Between Death Wing's Lair and Reverse Colosseum:
     - Death Wing's Lair - DEFAULT

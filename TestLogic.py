@@ -102,7 +102,7 @@ class Game:
             'None',
         }
         self.location = 'Prologue'
-    
+
     def play(self):
         print('@', self.location)
         if self.location in self.checks:
@@ -129,7 +129,10 @@ class Game:
                 valid_targets[id] = target
                 id += 1
         command = input()
-        self.location = valid_targets[int(command)]
+        if command in valid_targets.values():
+            self.location = command
+        else:
+            self.location = valid_targets[int(command)]
     
     def perform_check(self, check):
         print('   +', check)
@@ -164,7 +167,9 @@ if __name__ == '__main__':
     for zone_id, zone_prefix in (
         ['alchemy-laboratory', 'Alchemy Laboratory'],
         ['castle-entrance', 'Castle Entrance'],
+        ['colosseum', 'Colosseum'],
         ['marble-gallery', 'Marble Gallery'],
+        ['outer-wall', 'Outer Wall'],
     ):
         with open('paths/' + zone_id + '.yaml') as open_file:
             zone_paths = get_paths_from_yaml(open_file, zone_prefix)

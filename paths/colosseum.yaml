@@ -1,0 +1,67 @@
+Arena:
+    Form of Mist Check:
+        Basic Movement:
+            - Progression - Defeat Minotaur and Werewolf
+    Upper Path:
+        Basic Movement:
+            - Progression - Defeat Minotaur and Werewolf
+Chapel Side:
+    Upper Path:
+        Shortcut:
+            - Progression - Shortcut between Colosseum and Royal Chapel Activated
+Form of Mist Check:
+    Arena:
+        Basic Movement:
+            - None
+    Lower Path:
+        Elevator:
+            - Progression - Elevator in Colosseum Unlocked
+    Upper Path:
+        Mist:
+            - Progression - Mist Form
+Holy Sword Check:
+    Upper Path:
+        Break Floor:
+            - Progression - Floor-Striking Weapon
+Lower Path:
+    Save Room on the Left:
+        Basic Movement:
+            - None
+    Save Room on the Right:
+        Basic Movement:
+            - None
+    Shield Rod Check:
+        Difficult Room:
+            - Knowledge - How to Reach Shield Rod in Colosseum
+Save Room on the Left:
+    Lower Path:
+        Basic Movement:
+            - None
+Save Room on the Right:
+    Lower Path:
+        Basic Movement:
+            - None
+Shield Rod Check:
+    Lower Path:
+        Basic Movement:
+            - None
+Upper Path:
+    Arena:
+        Basic Movement:
+            - None
+    Chapel Side:
+        Shortcut:
+            - Progression - Shortcut between Colosseum and Royal Chapel Activated
+    Form of Mist Check:
+        Mist:
+            - Progression - Mist Form
+    Holy Sword Check:
+        Gravity Jump:
+            - Progression - Gravity Jump
+            - Knowledge - How to Break the Ceiling in Upper Path of Colosseum
+        TODO(sestren):
+            - Progression - Bat Transformation
+            - Knowledge - How to Break the Ceiling in Upper Path of Colosseum
+    Lower Path:
+        Basic Movement:
+            - None

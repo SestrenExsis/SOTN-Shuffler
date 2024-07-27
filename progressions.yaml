@@ -2,10 +2,18 @@ Action - Activate Cannon Wall Shortcut:
     - Progression - Cannon Wall Shortcut Activated
 Action - Activate Shortcut between Castle Entrance and Warp Room:
     - Progression - Shortcut between Castle Entrance and Warp Room Activated
+Action - Activate Shortcut between Colosseum and Royal Chapel:
+    - Progression - Shortcut between Colosseum and Royal Chapel Activated
 Action - Activate Stone Pulley Shortcut:
     - Progression - Stone Pulley Shortcut Activated
 Action - Reach a Warp Room:
     - Progression - Unlock Warp to Castle Entrance
+Boss - Doppelganger10:
+    - Progression - Defeat Doppelganger10
+Boss - Minotaur and Werewolf:
+    - Progression - Defeat Minotaur and Werewolf
+Boss - Slogra and Gaibon:
+    - Progression - Defeat Slogra and Gaibon
 Item - Claymore:
     - Progression - Floor-Striking Weapon
     - Progression - Long Thrust Special Weapon
@@ -26,18 +34,23 @@ Item - Holy Glasses:
     - Progression - See Beyond Magical Curses
 Item - Shotel:
     - Progression - Floor-Striking Weapon
+Item - Library Card:
+    - Progression - Library Card
 Knowledge - Level 1:
     - Knowledge - How to Solve the Box Puzzle
     - Knowledge - How to Solve the Gear Puzzle
     - Knowledge - How to Solve the Red Skeleton Elevator Puzzle
     - Knowledge - How to Unlock the Elevator
+    - Knowledge - How to Reach Shield Rod in Colosseum
 Knowledge - Level 2:
+    - Knowledge - How to Break the Ceiling in Upper Path of Colosseum
     - Knowledge - How to Break the Floor in Chapel Side of Alchemy Laboratory
     - Knowledge - How to Break the Wall in Chapel Side of Alchemy Laboratory
 Knowledge - Level 3:
     - Knowledge - How to Perform a Candle Dive-Kick with Transformation Reset
     - Knowledge - How to Reach Jewel Knuckles Check Without Mist
     - Knowledge - How to Solve the Cave Transformation Puzzle
+    - Knowledge - How to Perform a Wolf Slope Jump
 Relic - Cube of Zoe:
     - Progression - Item Materialization
 Relic - Jewel of Open:

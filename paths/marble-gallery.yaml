@@ -43,6 +43,9 @@ Clock Room:
         Mist Form:
             - Progression - Mist Transformation
             - Execution - Corner Mist
+    Long Hallway:
+        Basic Movement:
+            - None
     Right Statue Path:
         Use Stopwatch, Then Flight - Bat Form:
             - Subweapon - Stopwatch
@@ -61,6 +64,9 @@ Clock Room:
             - Subweapon - Stopwatch
             - Progression - Mist Transformation
             - Execution - Corner Mist
+    Short Hallway:
+        Basic Movement:
+            - None
 Elevator Room:
     Clock Room:
         TODO(sestren):

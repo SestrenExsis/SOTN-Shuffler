@@ -20,6 +20,9 @@ Cloth Cape Check:
         Basic Movement:
             - None
 Entrance Side:
+    Chapel Side:
+        Basic Movement:
+            - None
     Explodable Wall Room:
         Solve the Red Skeleton Elevator Puzzle:
             - Knowledge - How to Solve the Red Skeleton Elevator Puzzle
@@ -95,23 +98,28 @@ Slogra and Gaibon:
         Alucard dive kicks repeatedly off of Gaibon to reach the ledge:
             - Progression - Double Jump
             - Execution - Repeated Dive Kick Head Stomps
+            - Progression - Defeat Slogra and Gaibon
         Using Bat form to fly:
             - Progression - Bat Transformation
+            - Progression - Defeat Slogra and Gaibon
         Using Gravity Jump:
             - Progression - Gravity Jump
+            - Progression - Defeat Slogra and Gaibon
         Using Powered Mist form to travel:
             - Progression - Mist Transformation
             - Progression - Longer Mist Duration
+            - Progression - Defeat Slogra and Gaibon
         Using Wolf-Mist Rise:
             - Progression - Mist Transformation
             - Progression - Wolf Transformation
             - Execution - Wolf-Mist Rise
+            - Progression - Defeat Slogra and Gaibon
     Chapel Side:
         Basic Movement:
-            - None
+            - Progression - Defeat Slogra and Gaibon
     Gallery Side:
         Basic Movement:
-            - None
+            - Progression - Defeat Slogra and Gaibon
 Long Elevator:
     Explodable Wall Room:
         Shortcut:
