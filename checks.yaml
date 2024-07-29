@@ -38,6 +38,8 @@ Castle Entrance - Power of Wolf Check:
 Castle Entrance - Secret Trapdoor:
 Colosseum - Arena:
     - Boss - Minotaur and Werewolf
+Colosseum - Form of Mist Check:
+    - Relic - Form of Mist
 Colosseum - Upper Path:
     - Action - Activate Shortcut between Colosseum and Royal Chapel
     - Item - Library Card
@@ -49,6 +51,10 @@ Loading Room - Between Castle Entrance and Marble Gallery:
     - Action - Activate Stone Pulley Shortcut
 Loading Room - Between Castle Entrance and Underground Caverns:
 Long Library - Back Section:
+Long Library - Faerie Card Check:
+    - Relic - Faerie Card
+Long Library - Shop:
+    - Relic - Jewel of Open
 Marble Gallery - Below Dropoff:
     - Relic - Spirit Orb
 Marble Gallery - Entrance:

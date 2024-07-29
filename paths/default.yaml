@@ -34,6 +34,10 @@ Reverse Warp Room:
     Loading Room - Between Reverse Outer Wall and Reverse Warp Room:
         Activate Warp:
             - Progression - Unlock Warp to Reverse Outer Wall
+Teleport to Long Library:
+    Long Library - Outside Shop:
+        Basic Movement:
+            - None
 Warp Room:
     Loading Room - Between Castle Entrance and Warp Room:
         Activate Warp:

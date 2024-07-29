@@ -89,6 +89,17 @@ def paths_from_loading_rooms(loading_rooms):
             result[connecting_room][loading_room]['Basic Movement'] = ['None']
     return result
 
+def library_card_paths(paths):
+    result = {}
+    for starting_room in paths.keys():
+        result[starting_room] = {}
+        target_room = 'Teleport to Long Library'
+        result[starting_room][target_room] = {}
+        result[starting_room][target_room]['Use Library Card'] = [
+            'Progression - Library Teleportation'
+        ]
+    return result
+
 class Game:
     def __init__(self, paths, checks, progressions):
         self.paths = paths
@@ -168,12 +179,14 @@ if __name__ == '__main__':
         ['alchemy-laboratory', 'Alchemy Laboratory'],
         ['castle-entrance', 'Castle Entrance'],
         ['colosseum', 'Colosseum'],
+        ['long-library', 'Long Library'],
         ['marble-gallery', 'Marble Gallery'],
         ['outer-wall', 'Outer Wall'],
     ):
         with open('paths/' + zone_id + '.yaml') as open_file:
             zone_paths = get_paths_from_yaml(open_file, zone_prefix)
             dict_merge(paths, zone_paths)
+    dict_merge(paths, library_card_paths(paths))
     with open('checks.yaml') as open_file:
         checks = get_checks_from_yaml(open_file)
     with open('progressions.yaml') as open_file:
@@ -182,5 +195,7 @@ if __name__ == '__main__':
     game.perform_check('Knowledge - Level 1')
     game.perform_check('Knowledge - Level 2')
     game.perform_check('Knowledge - Level 3')
+    game.perform_check('Knowledge - Level 4')
+    game.perform_check('Knowledge - Any Percent NSC')
     while True:
         game.play()

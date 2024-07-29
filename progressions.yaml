@@ -22,6 +22,9 @@ Item - Estoc:
 Item - Flamberge:
     - Progression - Floor-Striking Weapon
     - Progression - Long Thrust Special Weapon
+Item - Garnet:
+    - Progression - Any Gem
+    - Progression - Onyx Gem or Better
 Item - Zwei Hander:
     - Progression - Floor-Striking Weapon
     - Progression - Long Thrust Special Weapon
@@ -35,13 +38,14 @@ Item - Holy Glasses:
 Item - Shotel:
     - Progression - Floor-Striking Weapon
 Item - Library Card:
-    - Progression - Library Card
+    - Progression - Library Teleportation
 Knowledge - Level 1:
     - Knowledge - How to Solve the Box Puzzle
     - Knowledge - How to Solve the Gear Puzzle
     - Knowledge - How to Solve the Red Skeleton Elevator Puzzle
     - Knowledge - How to Unlock the Elevator
     - Knowledge - How to Reach Shield Rod in Colosseum
+    - Knowledge - How to Perform Summon Spirit Spell
 Knowledge - Level 2:
     - Knowledge - How to Break the Ceiling in Upper Path of Colosseum
     - Knowledge - How to Break the Floor in Chapel Side of Alchemy Laboratory
@@ -51,8 +55,17 @@ Knowledge - Level 3:
     - Knowledge - How to Reach Jewel Knuckles Check Without Mist
     - Knowledge - How to Solve the Cave Transformation Puzzle
     - Knowledge - How to Perform a Wolf Slope Jump
+Knowledge - Any Percent NSC:
+    - Knowledge - How to Unlock the Elevator
+    - Knowledge - How to Perform a Candle Dive-Kick with Transformation Reset
+    - Knowledge - How to Perform Book Jump with Mist and Wolf
+    - Knowledge - How to Perform Faerie Card Shop Glitch with Onyx or Better
 Relic - Cube of Zoe:
     - Progression - Item Materialization
+Relic - Faerie Card:
+    - Progression - Summon Faerie Familiar
+Relic - Form of Mist:
+    - Progression - Mist Transformation
 Relic - Jewel of Open:
     - Progression - Unlock Blue Doors
 Relic - Power of Wolf:
