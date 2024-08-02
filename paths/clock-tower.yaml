@@ -1,1 +1,159 @@
-DEFAULT:
+Breakable Walls in Pendulum Room:
+    Pendulum Room:
+        Basic Movement:
+            - None
+Cloaked Knight:
+    Gear Puzzle:
+        Basic Movement:
+            - None
+Courtyard:
+    Fire of Bat Check:
+        Flight - Bat Form:
+            - Progression - Bat Transformation
+        Multiple Gravity Jumps:
+            - Progression - Gravity Jump
+            - Progression - Double Jump
+        Flight - Powered Mist:
+            - Progression - Mist Transformation
+            - Progression - Longer Mist Duration
+        Wolf-Mist Rise:
+            - Progression - Mist Transformation
+            - Progression - Wolf Transformation
+            - Execution - Wolf-Mist Rise
+            - Execution - Excessive Wolf-Mist Rise
+    Lower Right Path:
+        Flight - Bat Form:
+            - Progression - Bat Transformation
+        Double Jump:
+            - Progression - Double Jump
+        Gravity Jump:
+            - Progression - Gravity Jump
+        Flight - Powered Mist:
+            - Progression - Mist Transformation
+            - Progression - Longer Mist Duration
+        Wolf-Mist Rise:
+            - Progression - Mist Transformation
+            - Progression - Wolf Transformation
+            - Execution - Wolf-Mist Rise
+        Advanced Wolf Movement Using Terrain:
+            - Progression - Wolf Transformation
+            - Execution - Reaching Lower Right Path from Courtyard with Wolf only
+            - Execution - Non-repeatable
+        Advanced Movement Using Terrain:
+            - Execution - Reaching Lower Right Section from Courtyard without Relics
+            - Execution - Non-repeatable
+    Magic Missile Check:
+        Flight - Bat Form:
+            - Progression - Bat Transformation
+        Double Jump:
+            - Progression - Double Jump
+        Gravity Jump:
+            - Progression - Gravity Jump
+        Flight - Powered Mist:
+            - Progression - Mist Transformation
+            - Progression - Longer Mist Duration
+        Wolf-Mist Rise:
+            - Progression - Mist Transformation
+            - Progression - Wolf Transformation
+            - Execution - Wolf-Mist Rise
+        Advanced Wolf Movement Using Terrain:
+            - Progression - Wolf Transformation
+            - Execution - Reaching Lower Right Path from Courtyard with Wolf only
+            - Execution - Non-repeatable
+        Advanced Movement Using Terrain:
+            - Execution - Reaching Lower Right Section from Courtyard without Relics
+            - Execution - Non-repeatable
+    Pentagram Check:
+        Flight - Bat Form:
+            - Progression - Bat Transformation
+        Double Jump:
+            - Progression - Double Jump
+        Gravity Jump:
+            - Progression - Gravity Jump
+        Flight - Powered Mist:
+            - Progression - Mist Transformation
+            - Progression - Longer Mist Duration
+        Wolf-Mist Rise:
+            - Progression - Mist Transformation
+            - Progression - Wolf Transformation
+            - Execution - Wolf-Mist Rise
+        Advanced Wolf Movement Using Terrain:
+            - Progression - Wolf Transformation
+            - Execution - Reaching Lower Right Path from Courtyard with Wolf only
+            - Execution - Non-repeatable
+        Advanced Movement Using Terrain:
+            - Execution - Reaching Lower Right Section from Courtyard without Relics
+            - Execution - Non-repeatable
+    Three Pedestals:
+        Flight - Bat Form:
+            - Progression - Bat Transformation
+        Double Jump:
+            - Progression - Double Jump
+        Gravity Jump:
+            - Progression - Gravity Jump
+        Flight - Powered Mist:
+            - Progression - Mist Transformation
+            - Progression - Longer Mist Duration
+        Wolf-Mist Rise:
+            - Progression - Mist Transformation
+            - Progression - Wolf Transformation
+            - Execution - Wolf-Mist Rise
+    Upper Right Path:
+        Flight - Bat Form:
+            - Progression - Bat Transformation
+        Multiple Gravity Jumps:
+            - Progression - Double Jump
+            - Progression - Gravity Jump
+        Flight - Powered Mist:
+            - Progression - Mist Transformation
+            - Progression - Longer Mist Duration
+        Excessive Wolf-Mist Rise:
+            - Progression - Mist Transformation
+            - Progression - Wolf Transformation
+            - Execution - Excessive Wolf-Mist Rise
+            - Execution - Wolf-Mist Rise
+Fire of Bat Check:
+    Courtyard:
+        Basic Movement:
+            - None
+Gear Puzzle:
+Gold Plate Check:
+    Gear Puzzle:
+        Basic Movement:
+            - None
+Healing Mail Check:
+    Pendulum Room:
+        Basic Movement:
+            - None
+Karasuman:
+    Pendulum Room:
+        Basic Movement:
+            - Progression - Defeat Karasuman
+Lower Right Path:
+    Courtyard:
+        Basic Movement:
+            - Progression - Defeat Karasuman
+    Upper Right Path:
+        Candle Dive-Kick with Transformation Reset:
+            - Progression - Any Transformation
+            - Knowledge - How to Perform a Candle Dive-Kick with Transformation Reset
+        Flight - Bat Form:
+            - Progression - Bat Transformation
+        Double Jump:
+            - Progression - Double Jump
+        Gravity Jump:
+            - Progression - Gravity Jump
+        Medusa Head Damage Boost:
+            - Knowledge - How to Perform a Medusa Head Damage Boost
+        Flight - Powered Mist:
+            - Progression - Mist Transformation
+            - Progression - Longer Mist Duration
+        Wolf-Mist Rise:
+            - Progression - Mist Transformation
+            - Progression - Wolf Transformation
+            - Execution - Wolf-Mist Rise
+Magic Missile Check:
+Pendulum Room:
+Pentagram Check:
+Three Pedestals:
+Upper Right Path:

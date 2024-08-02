@@ -51,7 +51,7 @@ Loading Room - Between Castle Entrance and Warp Room:
     - Warp Room
 Loading Room - Between Castle Keep and Clock Tower:
     - Castle Keep - DEFAULT
-    - Clock Tower - DEFAULT
+    - Clock Tower - Karasuman
 Loading Room - Between Castle Keep and Royal Chapel:
     - Castle Keep - DEFAULT
     - Royal Chapel - DEFAULT
@@ -68,7 +68,7 @@ Loading Room - Between Cave and Reverse Warp Room:
     - Cave - DEFAULT
     - Reverse Warp Room
 Loading Room - Between Clock Tower and Outer Wall:
-    - Clock Tower - DEFAULT
+    - Clock Tower - Courtyard
     - Outer Wall - Tower Side
 Loading Room - Between Colosseum and Olrox's Quarters:
     - Colosseum - Upper Path
