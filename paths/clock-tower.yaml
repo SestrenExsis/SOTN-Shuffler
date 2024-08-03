@@ -117,6 +117,15 @@ Fire of Bat Check:
         Basic Movement:
             - None
 Gear Puzzle:
+    Cloaked Knight:
+        TODO(sestren):
+    Gold Plate Check:
+    Pendulum Room:
+        Basic Movement:
+            - None
+    Upper Right Path:
+        Basic Movement:
+            - None
 Gold Plate Check:
     Gear Puzzle:
         Basic Movement:
@@ -153,7 +162,38 @@ Lower Right Path:
             - Progression - Wolf Transformation
             - Execution - Wolf-Mist Rise
 Magic Missile Check:
+    Courtyard:
+        Basic Movement:
+            - None
 Pendulum Room:
+    Gear Puzzle:
+        Basic Movement:
+            - None
+    Karasuman:
+        Basic Movement:
+            - None
+    Loading Room - Between Castle Keep and Clock Tower:
+        Karasuman Skip:
+            - Item - Heart Refresh
+            - Execution - Reverse Shift Line using Heart Refresh to skip Karasuman
+            - Progression - Wolf Transformation
+    Healing Mail Check:
+        TODO(sestren):
 Pentagram Check:
+    Courtyard:
+        Basic Movement:
+            - None
 Three Pedestals:
+    Courtyard:
+        Basic Movement:
+            - None
 Upper Right Path:
+    Courtyard:
+        Basic Movement:
+            - None
+    Gear Puzzle:
+        Basic Movement:
+            - None
+    Lower Right Path:
+        Basic Movement:
+            - None

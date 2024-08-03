@@ -926,7 +926,176 @@
                 ]
             }
         },
+        "Clock Tower - Breakable Walls in Pendulum Room": {
+            "Clock Tower - Pendulum Room": {
+                "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Clock Tower - Cloaked Knight": {
+            "Clock Tower - Gear Puzzle": {
+                "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
         "Clock Tower - Courtyard": {
+            "Clock Tower - Fire of Bat Check": {
+                "Flight - Bat Form": [
+                    "Progression - Bat Transformation"
+                ],
+                "Flight - Powered Mist": [
+                    "Progression - Longer Mist Duration",
+                    "Progression - Mist Transformation"
+                ],
+                "Multiple Gravity Jumps": [
+                    "Progression - Double Jump",
+                    "Progression - Gravity Jump"
+                ],
+                "Wolf-Mist Rise": [
+                    "Execution - Excessive Wolf-Mist Rise",
+                    "Execution - Wolf-Mist Rise",
+                    "Progression - Mist Transformation",
+                    "Progression - Wolf Transformation"
+                ]
+            },
+            "Clock Tower - Lower Right Path": {
+                "Advanced Movement Using Terrain": [
+                    "Execution - Non-repeatable",
+                    "Execution - Reaching Lower Right Section from Courtyard without Relics"
+                ],
+                "Advanced Wolf Movement Using Terrain": [
+                    "Execution - Non-repeatable",
+                    "Execution - Reaching Lower Right Path from Courtyard with Wolf only",
+                    "Progression - Wolf Transformation"
+                ],
+                "Double Jump": [
+                    "Progression - Double Jump"
+                ],
+                "Flight - Bat Form": [
+                    "Progression - Bat Transformation"
+                ],
+                "Flight - Powered Mist": [
+                    "Progression - Longer Mist Duration",
+                    "Progression - Mist Transformation"
+                ],
+                "Gravity Jump": [
+                    "Progression - Gravity Jump"
+                ],
+                "Wolf-Mist Rise": [
+                    "Execution - Wolf-Mist Rise",
+                    "Progression - Mist Transformation",
+                    "Progression - Wolf Transformation"
+                ]
+            },
+            "Clock Tower - Magic Missile Check": {
+                "Advanced Movement Using Terrain": [
+                    "Execution - Non-repeatable",
+                    "Execution - Reaching Lower Right Section from Courtyard without Relics"
+                ],
+                "Advanced Wolf Movement Using Terrain": [
+                    "Execution - Non-repeatable",
+                    "Execution - Reaching Lower Right Path from Courtyard with Wolf only",
+                    "Progression - Wolf Transformation"
+                ],
+                "Double Jump": [
+                    "Progression - Double Jump"
+                ],
+                "Flight - Bat Form": [
+                    "Progression - Bat Transformation"
+                ],
+                "Flight - Powered Mist": [
+                    "Progression - Longer Mist Duration",
+                    "Progression - Mist Transformation"
+                ],
+                "Gravity Jump": [
+                    "Progression - Gravity Jump"
+                ],
+                "Wolf-Mist Rise": [
+                    "Execution - Wolf-Mist Rise",
+                    "Progression - Mist Transformation",
+                    "Progression - Wolf Transformation"
+                ]
+            },
+            "Clock Tower - Pentagram Check": {
+                "Advanced Movement Using Terrain": [
+                    "Execution - Non-repeatable",
+                    "Execution - Reaching Lower Right Section from Courtyard without Relics"
+                ],
+                "Advanced Wolf Movement Using Terrain": [
+                    "Execution - Non-repeatable",
+                    "Execution - Reaching Lower Right Path from Courtyard with Wolf only",
+                    "Progression - Wolf Transformation"
+                ],
+                "Double Jump": [
+                    "Progression - Double Jump"
+                ],
+                "Flight - Bat Form": [
+                    "Progression - Bat Transformation"
+                ],
+                "Flight - Powered Mist": [
+                    "Progression - Longer Mist Duration",
+                    "Progression - Mist Transformation"
+                ],
+                "Gravity Jump": [
+                    "Progression - Gravity Jump"
+                ],
+                "Wolf-Mist Rise": [
+                    "Execution - Wolf-Mist Rise",
+                    "Progression - Mist Transformation",
+                    "Progression - Wolf Transformation"
+                ]
+            },
+            "Clock Tower - Three Pedestals": {
+                "Double Jump": [
+                    "Progression - Double Jump"
+                ],
+                "Flight - Bat Form": [
+                    "Progression - Bat Transformation"
+                ],
+                "Flight - Powered Mist": [
+                    "Progression - Longer Mist Duration",
+                    "Progression - Mist Transformation"
+                ],
+                "Gravity Jump": [
+                    "Progression - Gravity Jump"
+                ],
+                "Wolf-Mist Rise": [
+                    "Execution - Wolf-Mist Rise",
+                    "Progression - Mist Transformation",
+                    "Progression - Wolf Transformation"
+                ]
+            },
+            "Clock Tower - Upper Right Path": {
+                "Excessive Wolf-Mist Rise": [
+                    "Execution - Excessive Wolf-Mist Rise",
+                    "Execution - Wolf-Mist Rise",
+                    "Progression - Mist Transformation",
+                    "Progression - Wolf Transformation"
+                ],
+                "Flight - Bat Form": [
+                    "Progression - Bat Transformation"
+                ],
+                "Flight - Powered Mist": [
+                    "Progression - Longer Mist Duration",
+                    "Progression - Mist Transformation"
+                ],
+                "Multiple Gravity Jumps": [
+                    "Progression - Double Jump",
+                    "Progression - Gravity Jump"
+                ]
+            },
             "Loading Room - Between Clock Tower and Outer Wall": {
                 "Basic Movement": [
                     "None"
@@ -938,8 +1107,194 @@
                 ]
             }
         },
+        "Clock Tower - Fire of Bat Check": {
+            "Clock Tower - Courtyard": {
+                "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Clock Tower - Gear Puzzle": {
+            "Clock Tower - Cloaked Knight": {
+                "TODO(sestren)": []
+            },
+            "Clock Tower - Gold Plate Check": {},
+            "Clock Tower - Pendulum Room": {
+                "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Clock Tower - Upper Right Path": {
+                "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Clock Tower - Gold Plate Check": {
+            "Clock Tower - Gear Puzzle": {
+                "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Clock Tower - Healing Mail Check": {
+            "Clock Tower - Pendulum Room": {
+                "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
         "Clock Tower - Karasuman": {
+            "Clock Tower - Pendulum Room": {
+                "Basic Movement": [
+                    "Progression - Defeat Karasuman"
+                ]
+            },
             "Loading Room - Between Castle Keep and Clock Tower": {
+                "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Clock Tower - Lower Right Path": {
+            "Clock Tower - Courtyard": {
+                "Basic Movement": [
+                    "Progression - Defeat Karasuman"
+                ]
+            },
+            "Clock Tower - Upper Right Path": {
+                "Candle Dive-Kick with Transformation Reset": [
+                    "Knowledge - How to Perform a Candle Dive-Kick with Transformation Reset",
+                    "Progression - Any Transformation"
+                ],
+                "Double Jump": [
+                    "Progression - Double Jump"
+                ],
+                "Flight - Bat Form": [
+                    "Progression - Bat Transformation"
+                ],
+                "Flight - Powered Mist": [
+                    "Progression - Longer Mist Duration",
+                    "Progression - Mist Transformation"
+                ],
+                "Gravity Jump": [
+                    "Progression - Gravity Jump"
+                ],
+                "Medusa Head Damage Boost": [
+                    "Knowledge - How to Perform a Medusa Head Damage Boost"
+                ],
+                "Wolf-Mist Rise": [
+                    "Execution - Wolf-Mist Rise",
+                    "Progression - Mist Transformation",
+                    "Progression - Wolf Transformation"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Clock Tower - Magic Missile Check": {
+            "Clock Tower - Courtyard": {
+                "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Clock Tower - Pendulum Room": {
+            "Clock Tower - Gear Puzzle": {
+                "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Clock Tower - Healing Mail Check": {
+                "TODO(sestren)": []
+            },
+            "Clock Tower - Karasuman": {
+                "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Clock Tower - Loading Room - Between Castle Keep and Clock Tower": {
+                "Karasuman Skip": [
+                    "Execution - Reverse Shift Line using Heart Refresh to skip Karasuman",
+                    "Item - Heart Refresh",
+                    "Progression - Wolf Transformation"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Clock Tower - Pentagram Check": {
+            "Clock Tower - Courtyard": {
+                "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Clock Tower - Three Pedestals": {
+            "Clock Tower - Courtyard": {
+                "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Clock Tower - Upper Right Path": {
+            "Clock Tower - Courtyard": {
+                "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Clock Tower - Gear Puzzle": {
+                "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Clock Tower - Lower Right Path": {
                 "Basic Movement": [
                     "None"
                 ]

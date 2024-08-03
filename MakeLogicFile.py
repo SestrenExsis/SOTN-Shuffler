@@ -125,6 +125,7 @@ if __name__ == '__main__':
     for zone_id, zone_prefix in (
         ['alchemy-laboratory', 'Alchemy Laboratory'],
         ['castle-entrance', 'Castle Entrance'],
+        ['clock-tower', 'Clock Tower'],
         ['colosseum', 'Colosseum'],
         ['long-library', 'Long Library'],
         ['marble-gallery', 'Marble Gallery'],
