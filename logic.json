@@ -100,6 +100,10 @@
             "Item - Heart Refresh",
             "Item - Neutron Bomb"
         ],
+        "Reverse Keep - Throne Room": [
+            "Item - Zircon",
+            "Subweapon - Holy Water"
+        ],
         "Underground Caverns - Path Above Waterfall": [],
         "Underground Caverns - Path Below Waterfall": [],
         "Warp Room": [
@@ -707,9 +711,7 @@
                 "Shortcut": [
                     "Progression - Stone Pulley Shortcut Activated"
                 ],
-                "TODO(sestren) Add more forms of movement": [
-                    "TODO(sestren)"
-                ]
+                "TODO(sestren)": []
             },
             "Castle Entrance - Wooden Partition with Lever Platform": {
                 "Reverse Shift Line using Heart Refresh": [
@@ -865,12 +867,53 @@
                 ]
             }
         },
-        "Castle Keep - DEFAULT": {
+        "Castle Keep - Base of Stairs": {
+            "Castle Keep - Top of Stairs": {
+                "Flight - Bat": [
+                    "Progression - Bat Transformation"
+                ],
+                "TODO(sestren)": []
+            },
             "Loading Room - Between Castle Keep and Clock Tower": {
                 "Basic Movement": [
                     "None"
                 ]
             },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Castle Keep - Chandelier Room": {
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Castle Keep - Falchion Check": {
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Castle Keep - Ghost Card Check": {
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Castle Keep - Lower Attic": {
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Castle Keep - Lower Path": {
             "Loading Room - Between Castle Keep and Royal Chapel": {
                 "Basic Movement": [
                     "None"
@@ -881,11 +924,59 @@
                     "None"
                 ]
             },
-            "Reverse Keep - DEFAULT": {
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Castle Keep - Power of Mist Check": {
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Castle Keep - Richter Fight": {
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Castle Keep - Save Room": {
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Castle Keep - Teleporter": {
+            "Reverse Keep - Teleporter": {
                 "Activate Warp": [
                     "None"
                 ]
             },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Castle Keep - Top of Stairs": {
+            "Castle Keep - Teleporter": {
+                "Richter Skip using Wolf": [
+                    "Knowledge - How to Perform Richter Skip with Wolf",
+                    "Progression - Wolf Transformation"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Castle Keep - Upper Attic": {
             "Teleport to Long Library": {
                 "Use Library Card": [
                     "Progression - Library Teleportation"
@@ -1666,7 +1757,7 @@
                     "None"
                 ]
             },
-            "Reverse Keep - DEFAULT": {
+            "Reverse Keep - Anti-Chapel Side": {
                 "Basic Movement": [
                     "None"
                 ]
@@ -1814,7 +1905,7 @@
             }
         },
         "Loading Room - Between Castle Keep and Clock Tower": {
-            "Castle Keep - DEFAULT": {
+            "Castle Keep - Base of Stairs": {
                 "Basic Movement": [
                     "None"
                 ]
@@ -1831,7 +1922,7 @@
             }
         },
         "Loading Room - Between Castle Keep and Royal Chapel": {
-            "Castle Keep - DEFAULT": {
+            "Castle Keep - Lower Path": {
                 "Basic Movement": [
                     "None"
                 ]
@@ -1848,7 +1939,7 @@
             }
         },
         "Loading Room - Between Castle Keep and Warp Room": {
-            "Castle Keep - DEFAULT": {
+            "Castle Keep - Lower Path": {
                 "Basic Movement": [
                     "None"
                 ]
@@ -2176,7 +2267,7 @@
                     "None"
                 ]
             },
-            "Reverse Keep - DEFAULT": {
+            "Reverse Keep - Upper Torch Section": {
                 "Basic Movement": [
                     "None"
                 ]
@@ -3236,27 +3327,202 @@
                 ]
             }
         },
-        "Reverse Keep - DEFAULT": {
-            "Castle Keep - DEFAULT": {
-                "Activate Warp": [
-                    "None"
-                ]
-            },
+        "Reverse Keep - Anti-Chapel Side": {
             "Loading Room - Between Anti-Chapel and Reverse Keep": {
                 "Basic Movement": [
                     "None"
                 ]
             },
-            "Loading Room - Between Reverse Clock Tower and Reverse Keep": {
+            "Reverse Keep - Lightning Mail Check": {
                 "Basic Movement": [
                     "None"
                 ]
             },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Reverse Keep - Attic": {
+            "Reverse Keep - Right Side of Stairs": {},
+            "Reverse Keep - Vase Checks": {},
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Reverse Keep - DEFAULT": {
             "Loading Room - Between Reverse Keep and Reverse Warp Room": {
                 "Basic Movement": [
                     "None"
                 ]
             },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Reverse Keep - Library Card Check": {
+            "Reverse Keep - Lower Torch Section": {},
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Reverse Keep - Lightning Mail Check": {
+            "Reverse Keep - Anti-Chapel Side": {
+                "Double Jump with Corner Mist": [
+                    "Progression - Double Jump",
+                    "Progression - Mist Transformation"
+                ],
+                "Flight - Bat Form": [
+                    "Progression - Bat Transformation"
+                ],
+                "Flight - Powered Mist": [
+                    "Progression - Longer Mist Duration",
+                    "Progression - Mist Transformation"
+                ],
+                "Gravity Jump": [
+                    "Progression - Gravity Jump"
+                ]
+            },
+            "Reverse Keep - Right Side of Stairs": {},
+            "Reverse Keep - Upper Torch Section": {},
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Reverse Keep - Lower Torch Section": {
+            "Reverse Keep - Library Card Check": {},
+            "Reverse Keep - Save Room": {},
+            "Reverse Keep - Upper Torch Section": {},
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Reverse Keep - Resistance Checks": {
+            "Reverse Keep - Yorick's Domain": {},
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Reverse Keep - Right Side of Stairs": {
+            "Reverse Keep - Lightning Mail Check": {
+                "Flight - Bat Form": [
+                    "Progression - Bat Transformation"
+                ],
+                "Flight - Powered Mist": [
+                    "Progression - Longer Mist Duration",
+                    "Progression - Mist Transformation"
+                ],
+                "Multiple Gravity Jumps": [
+                    "Progression - Double Jump",
+                    "Progression - Gravity Jump"
+                ]
+            },
+            "Reverse Keep - Throne Room": {},
+            "Reverse Keep - Yorick's Domain": {},
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Reverse Keep - Save Room": {
+            "Reverse Keep - Lower Torch Section": {},
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Reverse Keep - Teleporter": {
+            "Castle Keep - Teleporter": {
+                "Activate Warp": [
+                    "None"
+                ]
+            },
+            "Reverse Keep - Throne Room": {
+                "Corner Mist": [
+                    "Execution - How to Perform Corner Mist",
+                    "Progression - Mist Transformation"
+                ],
+                "Double Jump": [
+                    "Progression - Double Jump"
+                ],
+                "Flight - Bat Form": [
+                    "Progression - Bat Transformation"
+                ],
+                "Gravity Jump": [
+                    "Progression - Gravity Jump"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Reverse Keep - Throne Room": {
+            "Reverse Keep - Right Side of Stairs": {
+                "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Reverse Keep - Teleporter": {
+                "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Reverse Keep - Upper Torch Section": {
+            "Loading Room - Between Reverse Clock Tower and Reverse Keep": {
+                "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Reverse Keep - Lightning Mail Check": {
+                "Flight - Bat Form": [
+                    "Progression - Bat Transformation"
+                ],
+                "Flight - Powered Mist": [
+                    "Progression - Longer Mist Duration",
+                    "Progression - Mist Transformation"
+                ]
+            },
+            "Reverse Keep - Lower Torch Section": {},
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Reverse Keep - Vase Checks": {
+            "Reverse Keep - Attic": {},
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Reverse Keep - Yorick's Domain": {
+            "Reverse Keep - Resistance Checks": {},
+            "Reverse Keep - Right Side of Stairs": {},
             "Teleport to Long Library": {
                 "Use Library Card": [
                     "Progression - Library Teleportation"
@@ -3523,6 +3789,7 @@
         "Knowledge - Any Percent NSC": [
             "Knowledge - How to Perform Book Jump with Mist and Wolf",
             "Knowledge - How to Perform Faerie Card Shop Glitch with Onyx or Better",
+            "Knowledge - How to Perform Richter Skip with Wolf",
             "Knowledge - How to Perform a Candle Dive-Kick with Transformation Reset",
             "Knowledge - How to Unlock the Elevator"
         ],

@@ -24,7 +24,7 @@ Loading Room - Between Anti-Chapel and Necromancy Laboratory:
     - Necromancy Laboratory - DEFAULT
 Loading Room - Between Anti-Chapel and Reverse Keep:
     - Anti-Chapel - DEFAULT
-    - Reverse Keep - DEFAULT
+    - Reverse Keep - Anti-Chapel Side
 Loading Room - Between Black Marble Gallery and Death Wing's Lair:
     - Black Marble Gallery - DEFAULT
     - Death Wing's Lair - DEFAULT
@@ -50,13 +50,13 @@ Loading Room - Between Castle Entrance and Warp Room:
     - Castle Entrance - Wooden Partition with Pressure Plate
     - Warp Room
 Loading Room - Between Castle Keep and Clock Tower:
-    - Castle Keep - DEFAULT
+    - Castle Keep - Base of Stairs
     - Clock Tower - Karasuman
 Loading Room - Between Castle Keep and Royal Chapel:
-    - Castle Keep - DEFAULT
+    - Castle Keep - Lower Path
     - Royal Chapel - DEFAULT
 Loading Room - Between Castle Keep and Warp Room:
-    - Castle Keep - DEFAULT
+    - Castle Keep - Lower Path
     - Warp Room
 Loading Room - Between Cave and Floating Catacombs:
     - Cave - DEFAULT
@@ -114,7 +114,7 @@ Loading Room - Between Reverse Caverns and Reverse Entrance:
     - Reverse Entrance - DEFAULT
 Loading Room - Between Reverse Clock Tower and Reverse Keep:
     - Reverse Clock Tower - DEFAULT
-    - Reverse Keep - DEFAULT
+    - Reverse Keep - Upper Torch Section
 Loading Room - Between Reverse Clock Tower and Reverse Outer Wall:
     - Reverse Clock Tower - DEFAULT
     - Reverse Outer Wall - DEFAULT

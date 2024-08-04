@@ -1,1 +1,74 @@
-DEFAULT:
+Anti-Chapel Side:
+    Lightning Mail Check:
+        Basic Movement:
+            - None
+Attic:
+    Right Side of Stairs:
+    Vase Checks:
+Library Card Check:
+    Lower Torch Section:
+Lightning Mail Check:
+    Anti-Chapel Side:
+        Flight - Bat Form:
+            - Progression - Bat Transformation
+        Double Jump with Corner Mist:
+            - Progression - Double Jump
+            - Progression - Mist Transformation
+        Flight - Powered Mist:
+            - Progression - Mist Transformation
+            - Progression - Longer Mist Duration
+        Gravity Jump:
+            - Progression - Gravity Jump
+    Right Side of Stairs:
+    Upper Torch Section:
+Lower Torch Section:
+    Library Card Check:
+    Save Room:
+    Upper Torch Section:
+Resistance Checks:
+    Yorick's Domain:
+Right Side of Stairs:
+    Lightning Mail Check:
+        Flight - Bat Form:
+            - Progression - Bat Transformation
+        Flight - Powered Mist:
+            - Progression - Mist Transformation
+            - Progression - Longer Mist Duration
+        Multiple Gravity Jumps:
+            - Progression - Double Jump
+            - Progression - Gravity Jump
+    Throne Room:
+    Yorick's Domain:
+Save Room:
+    Lower Torch Section:
+Teleporter:
+    Throne Room:
+        Flight - Bat Form:
+            - Progression - Bat Transformation
+        Gravity Jump:
+            - Progression - Gravity Jump
+        Double Jump:
+            - Progression - Double Jump
+        Corner Mist:
+            - Progression - Mist Transformation
+            - Execution - How to Perform Corner Mist
+Throne Room:
+    Right Side of Stairs:
+        Basic Movement:
+            - None
+    Teleporter:
+        Basic Movement:
+            - None
+Upper Torch Section:
+    Lightning Mail Check:
+        Flight - Bat Form:
+            - Progression - Bat Transformation
+        Flight - Powered Mist:
+            - Progression - Mist Transformation
+            - Progression - Longer Mist Duration
+    Lower Torch Section:
+Vase Checks:
+    Attic:
+Yorick's Domain:
+    Resistance Checks:
+    Right Side of Stairs:

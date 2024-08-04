@@ -125,11 +125,13 @@ if __name__ == '__main__':
     for zone_id, zone_prefix in (
         ['alchemy-laboratory', 'Alchemy Laboratory'],
         ['castle-entrance', 'Castle Entrance'],
+        ['castle-keep', 'Castle Keep'],
         ['clock-tower', 'Clock Tower'],
         ['colosseum', 'Colosseum'],
         ['long-library', 'Long Library'],
         ['marble-gallery', 'Marble Gallery'],
         ['outer-wall', 'Outer Wall'],
+        ['reverse-keep', 'Reverse Keep'],
     ):
         with open('paths/' + zone_id + '.yaml') as open_file:
             zone_paths = get_paths_from_yaml(open_file, zone_prefix)

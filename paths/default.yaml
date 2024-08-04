@@ -2,16 +2,16 @@ Castle Center - Elevator:
     Marble Gallery - Elevator Room:
         Activate Elevator:
             - None
-Castle Keep - DEFAULT:
-    Reverse Keep - DEFAULT:
+Castle Keep - Teleporter:
+    Reverse Keep - Teleporter:
         Activate Warp:
             - None
 Prologue:
     Castle Entrance - Main Path:
         Richter defeats Dracula:
             - None
-Reverse Keep - DEFAULT:
-    Castle Keep - DEFAULT:
+Reverse Keep - Teleporter:
+    Castle Keep - Teleporter:
         Activate Warp:
             - None
 Marble Gallery - Elevator Room:
