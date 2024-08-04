@@ -471,11 +471,6 @@
                 "Start Game": [
                     "None"
                 ]
-            },
-            "Teleport to Long Library": {
-                "Use Library Card": [
-                    "Progression - Library Teleportation"
-                ]
             }
         },
         "Black Marble Gallery - DEFAULT": {
@@ -2619,11 +2614,6 @@
                 "Start Game": [
                     "None"
                 ]
-            },
-            "Teleport to Long Library": {
-                "Use Library Card": [
-                    "Progression - Library Teleportation"
-                ]
             }
         },
         "Marble Gallery - Alchemy Side": {
@@ -3034,11 +3024,6 @@
                 "Start Game": [
                     "None"
                 ]
-            },
-            "Teleport to Long Library": {
-                "Use Library Card": [
-                    "Progression - Library Teleportation"
-                ]
             }
         },
         "Olrox's Quarters - DEFAULT": {
@@ -3290,11 +3275,6 @@
             "Castle Entrance - Main Path": {
                 "Richter defeats Dracula": [
                     "None"
-                ]
-            },
-            "Teleport to Long Library": {
-                "Use Library Card": [
-                    "Progression - Library Teleportation"
                 ]
             }
         },
@@ -3657,11 +3637,6 @@
                 "Start Game": [
                     "None"
                 ]
-            },
-            "Teleport to Long Library": {
-                "Use Library Card": [
-                    "Progression - Library Teleportation"
-                ]
             }
         },
         "Royal Chapel - DEFAULT": {
@@ -3717,11 +3692,6 @@
             "Richter Mode": {
                 "Richter Mode": [
                     "Knowledge - How to Access Richter Mode"
-                ]
-            },
-            "Teleport to Long Library": {
-                "Use Library Card": [
-                    "Progression - Library Teleportation"
                 ]
             }
         },
@@ -3888,6 +3858,7 @@
             "Knowledge - How to Perform Faerie Card Shop Glitch with Onyx or Better",
             "Knowledge - How to Perform Richter Skip with Wolf",
             "Knowledge - How to Perform a Candle Dive-Kick with Transformation Reset",
+            "Knowledge - How to Perform a Wolf Slope Jump",
             "Knowledge - How to Unlock the Elevator"
         ],
         "Knowledge - Forbidden Tech": [

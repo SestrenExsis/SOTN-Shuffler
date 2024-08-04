@@ -87,18 +87,34 @@ def paths_from_loading_rooms(loading_rooms):
             result[loading_room][connecting_room] = {}
             result[loading_room][connecting_room]['Basic Movement'] = ['None']
             result[connecting_room][loading_room] = {}
-            result[connecting_room][loading_room]['Basic Movement'] = ['None']
+            if loading_room in (
+                'Clock Tower - Karasuman',
+                'Reverse Clock Tower - Darkwing Bat',
+            ):
+                boss_name = loading_room.split(' - ')[0]
+                progression = 'Progression - ' + boss_name + ' Defeated'
+                result[connecting_room][loading_room]['Defeat Boss'] = [progression]
+            else:
+                result[connecting_room][loading_room]['Basic Movement'] = ['None']
     return result
 
 def library_card_paths(paths):
     result = {}
     for starting_room in paths.keys():
-        result[starting_room] = {}
-        target_room = 'Teleport to Long Library'
-        result[starting_room][target_room] = {}
-        result[starting_room][target_room]['Use Library Card'] = [
-            'Progression - Library Teleportation'
-        ]
+        if starting_room not in (
+            'Axe Armor Mode',
+            'Luck Mode',
+            'Normal Mode',
+            'Prologue',
+            'Richter Mode',
+            'Start New Game',
+        ):
+            result[starting_room] = {}
+            target_room = 'Teleport to Long Library'
+            result[starting_room][target_room] = {}
+            result[starting_room][target_room]['Use Library Card'] = [
+                'Progression - Library Teleportation'
+            ]
     return result
 
 def dict_merge(base_dict: dict, dict_to_merge: dict):
@@ -114,12 +130,9 @@ def dict_merge(base_dict: dict, dict_to_merge: dict):
     result = base_dict
     return result
 
-# TODO(sestren): Figure out how to require Karasuman defeat coming from Loading Room
-
-if __name__ == '__main__':
+def get_standard_logic():
+    result = {}
     paths = {}
-    with open('paths/default.yaml') as open_file:
-        paths = get_paths_from_yaml(open_file, None)
     with open('paths/loading-rooms.yaml') as open_file:
         loading_rooms = get_loading_rooms_yaml(open_file)
         load_paths = paths_from_loading_rooms(loading_rooms)
@@ -138,16 +151,21 @@ if __name__ == '__main__':
         with open('paths/' + zone_id + '.yaml') as open_file:
             zone_paths = get_paths_from_yaml(open_file, zone_prefix)
             dict_merge(paths, zone_paths)
+    with open('paths/default.yaml') as open_file:
+        default_paths = get_paths_from_yaml(open_file, None)
+        paths = dict_merge(paths, default_paths)
     dict_merge(paths, library_card_paths(paths))
+    result['paths'] = paths
     with open('checks.yaml') as open_file:
         checks = get_checks_from_yaml(open_file)
+    result['checks'] = checks
     with open('progressions.yaml') as open_file:
         progressions = get_checks_from_yaml(open_file)
-    logic = {
-        'paths': paths,
-        'checks': checks,
-        'progressions': progressions,
-    }
+    result['progressions'] = progressions
+    return result
+
+if __name__ == '__main__':
+    logic = get_standard_logic()
     json_string = json.dumps(
         logic,
         indent='    ',
@@ -155,3 +173,29 @@ if __name__ == '__main__':
     )
     with open('logic.json', 'w') as open_file:
         open_file.write(json_string)
+
+# Adjustments for RBO ruleset:
+    # Shaft:
+    # Galamoth: Progression - Shaft Defeated
+    # Beezlebub: Progression - Galamoth Defeated
+    # Trio: Progression - Beezlebub Defeated
+    # Doppleganger40: Progression - Trio Defeated
+    # Death: Progression - Doppleganger40 Defeated
+    # Creature: Progression - Death Defeated
+    # Medusa: Progression - Creature Defeated
+    # Akmodan: Progression - Medusa Defeated
+    # Darkwing Bat: Progression - Akmodan Defeated
+    # Save Richter: Progression - Darkwing Bat Defeated
+    # Granfalloon: Progression - Richter Saved
+    # Olrox: Progression - Granfalloon Defeated
+    # Cerebus: Progression - Olrox Defeated
+    # Succubus: Progression - Cerebus Defeated
+    # Karasuman: Progression - Succubus Defeated
+    # Minotaur and Werewolf: Progression - Karasuman Defeated
+    # Scylla: Progression - Minotaur and Werewolf Defeated
+    # Hippogryph: Progression - Scylla Defeated
+    # Slogra and Gaibon: Progression - Hippogryph Defeated
+    # Dracula: Progression - Slogra and Gaibon Defeated
+
+# TODO(sestren): To handle Pacifist, add the concept of Disqualifiers?
+    # Remove all the "Action - Defeat BOSS" should work

@@ -11,6 +11,7 @@ class Game:
 
     def play(self):
         print('@', self.location)
+        # TODO(sestren): Reserve a key (maybe 'z') for 'Use Library Card'
         command_keys = '1234567890abcdefghijklmnopqrstuvwxyz'
         command_index = 0
         valid_commands = {}
@@ -85,10 +86,6 @@ if __name__ == '__main__':
     with open('logic.json') as open_file:
         logic = json.load(open_file)
         game = Game(logic)
-        game.perform_check('Knowledge - Level 1')
-        game.perform_check('Knowledge - Level 2')
-        game.perform_check('Knowledge - Level 3')
-        game.perform_check('Knowledge - Level 4')
         game.perform_check('Knowledge - Any Percent NSC')
         while True:
             game.play()
