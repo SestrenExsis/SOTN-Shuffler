@@ -1,8 +1,14 @@
+Normal Mode
+Prologue
+    Item - Neutron Bomb
+    Item - Heart Refresh
 Castle Entrance - Main Path
+    Relic - Cube of Zoe
 Loading Room - Between Alchemy Laboratory and Castle Entrance
 Alchemy Laboratory - Entrance Side
 Alchemy Laboratory - Chapel Side
 Alchemy Laboratory - Slogra and Gaibon
+    Action - Defeat Slogra and Gaibon
 Alchemy Laboratory - Gallery Side
 Loading Room - Between Alchemy Laboratory and Marble Gallery
 Marble Gallery - Alchemy Side
@@ -13,11 +19,15 @@ Marble Gallery - Long Hallway
 Loading Room - Between Marble Gallery and Outer Wall
 Outer Wall - Gallery Side
 Outer Wall - Doppelganger Room
+    Action - Defeat Doppelganger10
 Outer Wall - Elevator Section
+    Action - Activate Outer Wall Elevator
 Outer Wall - Soul of Wolf Check
+    Relic - Soul of Wolf
 Outer Wall - Elevator Section
 Outer Wall - Gallery Side
 Outer Wall - Garnet Check
+    Item - Garnet
 Outer Wall - Gallery Side
 Loading Room - Between Marble Gallery and Outer Wall
 Marble Gallery - Long Hallway
@@ -27,18 +37,23 @@ Loading Room - Between Marble Gallery and Olrox's Quarters
 Olrox's Quarters - DEFAULT
 Loading Room - Between Colosseum and Olrox's Quarters
 Colosseum - Upper Path
+    Item - Library Card
 Colosseum - Arena
+    Action - Defeat Minotaur and Werewolf
 Colosseum - Form of Mist Check
+    Relic - Form of Mist
 Teleport to Long Library
 Long Library - Outside Shop
 Long Library - Front Section
 Long Library - Faerie Card Check
+    Relic - Faerie Card
 Long Library - Front Section
 Long Library - Outside Shop
 Long Library - Shop
 Long Library - Purchase Library Card
 Long Library - Shop
 Long Library - Purchase Duplicator
+    Item - Duplicator
 Long Library - Shop
 Long Library - Outside Shop
 Long Library - Front Section
@@ -46,9 +61,11 @@ Long Library - Ledge in Front Section
 Long Library - Save Room
 Long Library - Back Section
 Long Library - Lesser Demon
+    Action - Defeat Lesser Demon
 Long Library - Ledge in Basement
 Long Library - Basement
 Long Library - Soul of Bat Check
+    Relic - Soul of Bat
 Teleport to Long Library
 Long Library - Outside Shop
 Long Library - Front Section

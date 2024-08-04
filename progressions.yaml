@@ -1,19 +1,25 @@
 Action - Activate Cannon Wall Shortcut:
     - Progression - Cannon Wall Shortcut Activated
+Action - Activate Outer Wall Elevator:
+    - Progression - Outer Wall Elevator Activated
 Action - Activate Shortcut between Castle Entrance and Warp Room:
     - Progression - Shortcut between Castle Entrance and Warp Room Activated
 Action - Activate Shortcut between Colosseum and Royal Chapel:
     - Progression - Shortcut between Colosseum and Royal Chapel Activated
 Action - Activate Stone Pulley Shortcut:
     - Progression - Stone Pulley Shortcut Activated
+Action - Defeat Doppelganger10:
+    - Progression - Doppelganger10 Defeated
+Action - Defeat Karasuman:
+    - Progression - Karasuman Defeated
+Action - Defeat Lesser Demon:
+    - Progression - Lesser Demon Defeated
+Action - Defeat Minotaur and Werewolf:
+    - Progression - Minotaur and Werewolf Defeated
+Action - Defeat Slogra and Gaibon:
+    - Progression - Slogra and Gaibon Defeated
 Action - Reach a Warp Room:
     - Progression - Unlock Warp to Castle Entrance
-Boss - Doppelganger10:
-    - Progression - Defeat Doppelganger10
-Boss - Minotaur and Werewolf:
-    - Progression - Defeat Minotaur and Werewolf
-Boss - Slogra and Gaibon:
-    - Progression - Defeat Slogra and Gaibon
 Item - Claymore:
     - Progression - Floor-Striking Weapon
     - Progression - Long Thrust Special Weapon

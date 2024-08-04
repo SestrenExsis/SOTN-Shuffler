@@ -136,12 +136,12 @@ Healing Mail Check:
             - None
 Karasuman:
     Pendulum Room:
-        Basic Movement:
-            - Progression - Defeat Karasuman
+        Defeat Boss:
+            - Progression - Karasuman Defeated
 Lower Right Path:
     Courtyard:
         Basic Movement:
-            - Progression - Defeat Karasuman
+            - None
     Upper Right Path:
         Candle Dive-Kick with Transformation Reset:
             - Progression - Any Transformation

@@ -25,7 +25,7 @@
             "Subweapon - Rebound Stone"
         ],
         "Alchemy Laboratory - Slogra and Gaibon": [
-            "Boss - Slogra and Gaibon"
+            "Action - Defeat Slogra and Gaibon"
         ],
         "Castle Center - Holy Glasses Check": [
             "Item - Holy Glasses"
@@ -53,7 +53,7 @@
         ],
         "Castle Entrance - Secret Trapdoor": [],
         "Colosseum - Arena": [
-            "Boss - Minotaur and Werewolf"
+            "Action - Defeat Minotaur and Werewolf"
         ],
         "Colosseum - Form of Mist Check": [
             "Relic - Form of Mist"
@@ -75,8 +75,11 @@
         "Long Library - Faerie Card Check": [
             "Relic - Faerie Card"
         ],
-        "Long Library - Shop": [
-            "Relic - Jewel of Open"
+        "Long Library - Lesser Demon": [
+            "Action - Defeat Lesser Demon"
+        ],
+        "Long Library - Purchase Duplicator": [
+            "Item - Duplicator"
         ],
         "Long Library - Soul of Bat Check": [
             "Relic - Soul of Bat"
@@ -88,7 +91,10 @@
         "Marble Gallery - Hammer Check": [],
         "Marble Gallery - Strength Potion Check": [],
         "Outer Wall - Doppelganger Room": [
-            "Boss - Doppelganger10"
+            "Action - Defeat Doppelganger10"
+        ],
+        "Outer Wall - Elevator Section": [
+            "Action - Activate Outer Wall Elevator"
         ],
         "Outer Wall - Garnet Check": [
             "Item - Garnet"
@@ -99,6 +105,12 @@
         "Prologue": [
             "Item - Heart Refresh",
             "Item - Neutron Bomb"
+        ],
+        "Purchase Jewel of Open": [
+            "Relic - Jewel of Open"
+        ],
+        "Purchase Library Card": [
+            "Item - Library Card"
         ],
         "Reverse Keep - Throne Room": [
             "Item - Zircon",
@@ -393,37 +405,37 @@
             "Alchemy Laboratory - Bat Card Check": {
                 "Alucard dive kicks repeatedly off of Gaibon to reach the ledge": [
                     "Execution - Repeated Dive Kick Head Stomps",
-                    "Progression - Defeat Slogra and Gaibon",
-                    "Progression - Double Jump"
+                    "Progression - Double Jump",
+                    "Progression - Slogra and Gaibon Defeated"
                 ],
                 "Using Bat form to fly": [
                     "Progression - Bat Transformation",
-                    "Progression - Defeat Slogra and Gaibon"
+                    "Progression - Slogra and Gaibon Defeated"
                 ],
                 "Using Gravity Jump": [
-                    "Progression - Defeat Slogra and Gaibon",
-                    "Progression - Gravity Jump"
+                    "Progression - Gravity Jump",
+                    "Progression - Slogra and Gaibon Defeated"
                 ],
                 "Using Powered Mist form to travel": [
-                    "Progression - Defeat Slogra and Gaibon",
                     "Progression - Longer Mist Duration",
-                    "Progression - Mist Transformation"
+                    "Progression - Mist Transformation",
+                    "Progression - Slogra and Gaibon Defeated"
                 ],
                 "Using Wolf-Mist Rise": [
                     "Execution - Wolf-Mist Rise",
-                    "Progression - Defeat Slogra and Gaibon",
                     "Progression - Mist Transformation",
+                    "Progression - Slogra and Gaibon Defeated",
                     "Progression - Wolf Transformation"
                 ]
             },
             "Alchemy Laboratory - Chapel Side": {
                 "Basic Movement": [
-                    "Progression - Defeat Slogra and Gaibon"
+                    "Progression - Slogra and Gaibon Defeated"
                 ]
             },
             "Alchemy Laboratory - Gallery Side": {
                 "Basic Movement": [
-                    "Progression - Defeat Slogra and Gaibon"
+                    "Progression - Slogra and Gaibon Defeated"
                 ]
             },
             "Teleport to Long Library": {
@@ -445,6 +457,18 @@
             },
             "Loading Room - Between Anti-Chapel and Reverse Keep": {
                 "Basic Movement": [
+                    "None"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Axe Armor Mode": {
+            "Prologue": {
+                "Start Game": [
                     "None"
                 ]
             },
@@ -1257,8 +1281,8 @@
         },
         "Clock Tower - Karasuman": {
             "Clock Tower - Pendulum Room": {
-                "Basic Movement": [
-                    "Progression - Defeat Karasuman"
+                "Defeat Boss": [
+                    "Progression - Karasuman Defeated"
                 ]
             },
             "Loading Room - Between Castle Keep and Clock Tower": {
@@ -1275,7 +1299,7 @@
         "Clock Tower - Lower Right Path": {
             "Clock Tower - Courtyard": {
                 "Basic Movement": [
-                    "Progression - Defeat Karasuman"
+                    "None"
                 ]
             },
             "Clock Tower - Upper Right Path": {
@@ -1399,7 +1423,7 @@
         "Colosseum - Arena": {
             "Colosseum - Form of Mist Check": {
                 "Basic Movement": [
-                    "Progression - Defeat Minotaur and Werewolf"
+                    "Progression - Minotaur and Werewolf Defeated"
                 ]
             },
             "Colosseum - Upper Path": {
@@ -2590,6 +2614,18 @@
                 ]
             }
         },
+        "Luck Mode": {
+            "Prologue": {
+                "Start Game": [
+                    "None"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
         "Marble Gallery - Alchemy Side": {
             "Loading Room - Between Alchemy Laboratory and Marble Gallery": {
                 "Basic Movement": [
@@ -2993,6 +3029,18 @@
                 ]
             }
         },
+        "Normal Mode": {
+            "Prologue": {
+                "Start Game": [
+                    "None"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
         "Olrox's Quarters - DEFAULT": {
             "Loading Room - Between Colosseum and Olrox's Quarters": {
                 "Basic Movement": [
@@ -3023,12 +3071,12 @@
         "Outer Wall - Doppelganger Room": {
             "Outer Wall - Elevator Section": {
                 "Basic Movement": [
-                    "Progression - Defeat Doppelganger10"
+                    "Progression - Doppelganger10 Defeated"
                 ]
             },
             "Outer Wall - Gallery Side": {
                 "Basic Movement": [
-                    "Progression - Defeat Doppelganger10"
+                    "Progression - Doppelganger10 Defeated"
                 ]
             },
             "Teleport to Long Library": {
@@ -3060,7 +3108,8 @@
             },
             "Outer Wall - Soul of Wolf Check": {
                 "Unlock the Elevator": [
-                    "Knowledge - How to Unlock the Elevator"
+                    "Knowledge - How to Unlock the Elevator",
+                    "Progression - Outer Wall Elevator Activated"
                 ]
             },
             "Outer Wall - Tower Side": {
@@ -3425,7 +3474,7 @@
                     "Progression - Longer Mist Duration",
                     "Progression - Mist Transformation"
                 ],
-                "Multiple Gravity Jumps": [
+                "Multiple Gravity Jumpsh": [
                     "Progression - Double Jump",
                     "Progression - Gravity Jump"
                 ]
@@ -3603,6 +3652,18 @@
                 ]
             }
         },
+        "Richter Mode": {
+            "Castle Entrance - Main Path": {
+                "Start Game": [
+                    "None"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
         "Royal Chapel - DEFAULT": {
             "Loading Room - Between Castle Keep and Royal Chapel": {
                 "Basic Movement": [
@@ -3629,6 +3690,33 @@
             "Loading Room - Between Alchemy Laboratory and Royal Chapel": {
                 "Basic Movement": [
                     "None"
+                ]
+            },
+            "Teleport to Long Library": {
+                "Use Library Card": [
+                    "Progression - Library Teleportation"
+                ]
+            }
+        },
+        "Start New Game": {
+            "Axe Armor Mode": {
+                "Axe Armor Mode": [
+                    "Knowledge - How to Access Axe Armor Mode"
+                ]
+            },
+            "Luck Mode": {
+                "Luck Mode": [
+                    "Knowledge - How to Access Luck Mode"
+                ]
+            },
+            "Normal Mode": {
+                "Normal Mode": [
+                    "None"
+                ]
+            },
+            "Richter Mode": {
+                "Richter Mode": [
+                    "Knowledge - How to Access Richter Mode"
                 ]
             },
             "Teleport to Long Library": {
@@ -3730,6 +3818,9 @@
         "Action - Activate Cannon Wall Shortcut": [
             "Progression - Cannon Wall Shortcut Activated"
         ],
+        "Action - Activate Outer Wall Elevator": [
+            "Progression - Outer Wall Elevator Activated"
+        ],
         "Action - Activate Shortcut between Castle Entrance and Warp Room": [
             "Progression - Shortcut between Castle Entrance and Warp Room Activated"
         ],
@@ -3739,17 +3830,23 @@
         "Action - Activate Stone Pulley Shortcut": [
             "Progression - Stone Pulley Shortcut Activated"
         ],
+        "Action - Defeat Doppelganger10": [
+            "Progression - Doppelganger10 Defeated"
+        ],
+        "Action - Defeat Karasuman": [
+            "Progression - Karasuman Defeated"
+        ],
+        "Action - Defeat Lesser Demon": [
+            "Progression - Lesser Demon Defeated"
+        ],
+        "Action - Defeat Minotaur and Werewolf": [
+            "Progression - Minotaur and Werewolf Defeated"
+        ],
+        "Action - Defeat Slogra and Gaibon": [
+            "Progression - Slogra and Gaibon Defeated"
+        ],
         "Action - Reach a Warp Room": [
             "Progression - Unlock Warp to Castle Entrance"
-        ],
-        "Boss - Doppelganger10": [
-            "Progression - Defeat Doppelganger10"
-        ],
-        "Boss - Minotaur and Werewolf": [
-            "Progression - Defeat Minotaur and Werewolf"
-        ],
-        "Boss - Slogra and Gaibon": [
-            "Progression - Defeat Slogra and Gaibon"
         ],
         "Item - Alucard Sword": [
             "Progression - Floor-Striking Weapon"

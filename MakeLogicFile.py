@@ -114,6 +114,8 @@ def dict_merge(base_dict: dict, dict_to_merge: dict):
     result = base_dict
     return result
 
+# TODO(sestren): Figure out how to require Karasuman defeat coming from Loading Room
+
 if __name__ == '__main__':
     paths = {}
     with open('paths/default.yaml') as open_file:

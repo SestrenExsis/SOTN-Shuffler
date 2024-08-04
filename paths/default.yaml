@@ -34,6 +34,35 @@ Reverse Warp Room:
     Loading Room - Between Reverse Outer Wall and Reverse Warp Room:
         Activate Warp:
             - Progression - Unlock Warp to Reverse Outer Wall
+Start New Game:
+    Axe Armor Mode:
+        Axe Armor Mode:
+            - Knowledge - How to Access Axe Armor Mode
+    Luck Mode:
+        Luck Mode:
+            - Knowledge - How to Access Luck Mode
+    Normal Mode:
+        Normal Mode:
+            - None
+    Richter Mode:
+        Richter Mode:
+            - Knowledge - How to Access Richter Mode
+Axe Armor Mode:
+    Prologue:
+        Start Game:
+            - None
+Luck Mode:
+    Prologue:
+        Start Game:
+            - None
+Normal Mode:
+    Prologue:
+        Start Game:
+            - None
+Richter Mode:
+    Castle Entrance - Main Path:
+        Start Game:
+            - None
 Teleport to Long Library:
     Long Library - Outside Shop:
         Basic Movement:

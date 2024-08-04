@@ -15,7 +15,7 @@ Alchemy Laboratory - Skill of Wolf Check:
     - Subweapon - Holy Book
     - Subweapon - Rebound Stone
 Alchemy Laboratory - Slogra and Gaibon:
-    - Boss - Slogra and Gaibon
+    - Action - Defeat Slogra and Gaibon
 Alchemy Laboratory - Long Elevator:
     - Item - Sunglasses
 Castle Center - Holy Glasses Check:
@@ -37,7 +37,7 @@ Castle Entrance - Power of Wolf Check:
     - Relic - Power of Wolf
 Castle Entrance - Secret Trapdoor:
 Colosseum - Arena:
-    - Boss - Minotaur and Werewolf
+    - Action - Defeat Minotaur and Werewolf
 Colosseum - Form of Mist Check:
     - Relic - Form of Mist
 Colosseum - Upper Path:
@@ -53,8 +53,14 @@ Loading Room - Between Castle Entrance and Underground Caverns:
 Long Library - Back Section:
 Long Library - Faerie Card Check:
     - Relic - Faerie Card
-Long Library - Shop:
+Long Library - Lesser Demon:
+    - Action - Defeat Lesser Demon
+Long Library - Purchase Duplicator:
+    - Item - Duplicator
+Purchase Jewel of Open:
     - Relic - Jewel of Open
+Purchase Library Card:
+    - Item - Library Card
 Long Library - Soul of Bat Check:
     - Relic - Soul of Bat
 Marble Gallery - Below Dropoff:
@@ -63,7 +69,9 @@ Marble Gallery - Entrance:
 Marble Gallery - Hammer Check:
 Marble Gallery - Strength Potion Check:
 Outer Wall - Doppelganger Room:
-    - Boss - Doppelganger10
+    - Action - Defeat Doppelganger10
+Outer Wall - Elevator Section:
+    - Action - Activate Outer Wall Elevator
 Outer Wall - Garnet Check:
     - Item - Garnet
 Outer Wall - Soul of Wolf Check:

@@ -1,10 +1,10 @@
 Doppelganger Room:
     Gallery Side:
         Basic Movement:
-            - Progression - Defeat Doppelganger10
+            - Progression - Doppelganger10 Defeated
     Elevator Section:
         Basic Movement:
-            - Progression - Defeat Doppelganger10
+            - Progression - Doppelganger10 Defeated
 Elevator Section:
     Doppelganger Room:
         Basic Movement:
@@ -14,6 +14,7 @@ Elevator Section:
             - None
     Soul of Wolf Check:
         Unlock the Elevator:
+            - Progression - Outer Wall Elevator Activated
             - Knowledge - How to Unlock the Elevator
     Tower Side:
         Basic Movement:
