@@ -1,91 +1,96 @@
 import json
 
 class Game:
-    def __init__(self, logic):
+    def __init__(self, logic, starting_location: str='Name Entry Screen'):
         self.logic = logic
-        self.checks_made = {}
-        self.progressions_made = {
-            'None',
+        self.starting_location = starting_location
+        self.player = {
+            'Location': self.starting_location,
         }
-        self.location = 'Start New Game'
+        self.commands = []
+    
+    def validate(self, requirements):
+        result = False
+        for requirement in requirements.values():
+            # All checks within a requirement list must pass
+            valid_ind = True
+            for key, value in requirement.items():
+                target_value = None
+                if key not in self.player:
+                    if type(value) == str:
+                        target_value = 'NONE'
+                    elif type(value) == bool:
+                        target_value = False
+                    elif type(value) in (int, dict):
+                        target_value = 0
+                else:
+                    target_value = self.player[key]
+                if type(value) == dict:
+                    if 'Minimum' in value:
+                        if target_value < value['Minimum']:
+                            valid_ind = False
+                            break
+                    if 'Maximum' in value:
+                        if target_value > value['Maximum']:
+                            valid_ind = False
+                            break
+                elif target_value != value:
+                    valid_ind = False
+                    break
+            # Satisfying even one requirement list is sufficient
+            if valid_ind:
+                result = True
+                break
+        return result
+
+    def process_outcomes(self, outcomes):
+        for key, value in outcomes.items():
+            if type(value) in (str, bool):
+                if key not in self.player or self.player[key] != value:
+                    print('  +', key, ': ', value)
+                self.player[key] = value
+            elif type(value) in (int, float):
+                if key not in self.player:
+                    self.player[key] = 0
+                print('  +', key, ': ', value)
+                self.player[key] += value
 
     def play(self):
-        print('@', self.location)
-        # TODO(sestren): Reserve a key (maybe 'z') for 'Use Library Card'
-        command_keys = '1234567890abcdefghijklmnopqrstuvwxyz'
-        command_index = 0
-        valid_commands = {}
-        # Add choices for locations currently reachable by the player
-        for target in sorted(self.logic['paths'][self.location]):
-            options = self.logic['paths'][self.location][target]
-            valid_options = set()
-            for option, requirements in options.items():
-                valid_option_ind = True
-                for requirement in requirements:
-                    if requirement not in self.progressions_made:
-                        valid_option_ind = False
-                        break
-                if valid_option_ind:
-                    valid_options.add(option)
-            if len(valid_options) > 0:
-                command_key = command_keys[command_index]
-                print(' ', command_key + ':', target)
-                valid_commands[command_key] = target
-                command_index += 1
-        # Add choices pertaining to checks the player has not already made
-        if self.location in self.logic['checks']:
-            for check in self.logic['checks'][self.location]:
-                if self.location not in self.checks_made:
-                    self.checks_made[self.location] = set()
-                if check not in self.checks_made[self.location]:
-                    command_key = command_keys[command_index]
-                    print(' ', command_key + ': +', check)
-                    valid_commands[command_key] = check
-                    command_index += 1
+        print('@', self.player['Location'])
+        valid_command_names = set()
+        # Add choices for valid commands the player can issue
+        for command_key, command_info in self.logic.items():
+            if self.validate(command_info['Requirements']):
+                valid_command_names.add(command_key)
+        valid_command_names = list(reversed(sorted(valid_command_names)))
+        command_map = {}
+        codes = '1234567890abcdefghijklmnopqrstuvwxyz'
+        for i, command_name in enumerate(valid_command_names):
+            command_key = codes[i]
+            command_map[command_key] = command_name
+            print(command_key + ':', command_name)
         # Ask player for next command
-        command = input('> ').strip()
-        if command in valid_commands.values():
-            self.perform_command(command)
-        elif command in valid_commands.keys():
-            self.perform_command(valid_commands[command])
+        command_input = input('> ').strip()
+        if command_input in command_map.keys():
+            command = command_map[command_input]
+            self.process_outcomes(self.logic[command]['Outcomes'])
+        elif command_input in command_map.values():
+            command = command_input
+            self.process_outcomes(self.logic[command]['Outcomes'])
         else:
-            print('command not valid:', command)
+            print('command not valid:', command_input)
             raise Exception()
         print('')
-    
-    def perform_command(self, command):
-        if command in self.logic['paths'][self.location]:
-            self.location = command
-        elif self.location in self.logic['checks']:
-            if command in self.logic['checks'][self.location]:
-                self.perform_check(command, self.location)
-            else:
-                print('check already made:', command)
-        else:
-            print('command not understood:', command)
-            raise Exception()
-    
-    def perform_check(self, check, location=None):
-        if location is None:
-            print('   +', check)
-        else:
-            if location not in self.checks_made:
-                self.checks_made[location] = set()
-            if check not in self.checks_made[location]:
-                print('   +', check)
-            self.checks_made[location].add(check)
-        if check in self.logic['progressions']:
-            for progression in self.logic['progressions'][check]:
-                if progression not in self.progressions_made:
-                    print('     +', progression)
-                self.progressions_made.add(progression)
 
 # TODO(sestren): Support different categories like Any%, RBO, Pacifist, etc?
 
 if __name__ == '__main__':
-    with open('logic.json') as open_file:
+    with open('logic/logic.json') as open_file:
         logic = json.load(open_file)
         game = Game(logic)
-        game.perform_check('Knowledge - Any Percent NSC')
+        game.player['Knowledge - How to Acquire Neutron Bomb in Prologue'] = True
+        game.player['Knowledge - How to Acquire Heart Refresh in Prologue'] = True
+        game.player['Knowledge - How to Perform Neutron Bomb Death Skip'] = True
+        # game.perform_check('Knowledge - Any Percent NSC')
         while True:
             game.play()
