@@ -5,32 +5,57 @@ def _hex(val: int, size: int):
     return result
 
 def get_swap_rooms_ppf():
-    address = roomrando.Address()
-    address.addresses['Castle Map'] = 0x001AF800
-    address.addresses['Packed Room Data, Alchemy Lab 0x0D'] = 0x049BEA6C
-    address.addresses['Packed Room Data, Alchemy Lab 0x0E'] = 0x049BEA7C
-    address.addresses['Room Data - Alchemy Lab'] = 0x049C0F2C
-    def F(address_name, offset):
-        return address.get_disc_address(address.addresses[address_name] + offset)
+    addresses = {
+        ('Castle Map'): roomrando.Address(0x001AF800),
+        ('Room Data', 'NZ0'): roomrando.Address(0x049C0F2C),
+        ('Packed Room Data', 'NZ0', 0x09): roomrando.Address(0x049BEA1C),
+        ('Packed Room Data', 'NZ0', 0x0A): roomrando.Address(0x049BEA2C),
+        ('Packed Room Data', 'NZ0', 0x0B): roomrando.Address(0x049BEA4C),
+        ('Packed Room Data', 'NZ0', 0x0C): roomrando.Address(0x049BEA5C),
+        ('Packed Room Data', 'NZ0', 0x0D): roomrando.Address(0x049BEA6C),
+        ('Packed Room Data', 'NZ0', 0x0E): roomrando.Address(0x049BEA7C),
+        ('Packed Room Data', 'NZ0', 0x0F): roomrando.Address(0x049BEA8C),
+    }
+    rooms = {
+        'Alchemy Lab 0x09': roomrando.Room(('NZ0', 0x09), (11, 34, 1, 1), [
+            # (0, 0, 'RIGHT'),
+        ]),
+        'Alchemy Lab 0x0D': roomrando.Room(('NZ0', 0x0D), (11, 31, 1, 2), [
+            (0, 0, 'LEFT'),
+            (1, 0, 'RIGHT'),
+        ]),
+        'Alchemy Lab 0x0E': roomrando.Room(('NZ0', 0x0E), (12, 32, 1, 3), [
+            (0, 0, 'LEFT'),
+            (2, 0, 'RIGHT'),
+            # (2, 0, 'DOWN'),
+            # (2, 0, 'RIGHT'),
+        ]),
+        'Alchemy Lab 0x0F': roomrando.Room(('NZ0', 0x0F), (12, 35, 1, 2), [
+            # (0, 0, 'UP'),
+        ]),
+    }
+    rooms['Alchemy Lab 0x09'].top -= 1
+    rooms['Alchemy Lab 0x09'].left -= 1
+    rooms['Alchemy Lab 0x0D'].top += 2
+    rooms['Alchemy Lab 0x0D'].left += 1
+    rooms['Alchemy Lab 0x0E'].top -= 1
+    rooms['Alchemy Lab 0x0E'].left -= 1
+    rooms['Alchemy Lab 0x0F'].top -= 1
+    rooms['Alchemy Lab 0x0F'].left -= 1
     result = roomrando.PPF('Two rooms in Alchemy Lab have swapped places')
-    # result.patch_string(0x04389C76, '!ROOMS!')
-    for (offset_in_file, patch_data) in (
-        (F('Room Data - Alchemy Lab', 8 * 0x0D), [12, 33, 12, 34]),
-        (F('Packed Room Data, Alchemy Lab 0x0D', 0), list(reversed([0x01, 0x88, 0xC8, 0x4C]))),
-        (F('Room Data - Alchemy Lab', 8 * 0x0E), [11, 31, 11, 33]),
-        (F('Packed Room Data, Alchemy Lab 0x0E', 0), list(reversed([0x01, 0x84, 0xB7, 0xCB]))),
-    ):
-        result.write_u32(offset_in_file)
-        size = len(patch_data)
-        result.write_byte(size)
-        for i in range(size):
-            result.write_byte(patch_data[i])
     canvas = roomrando.IndexedBitmapCanvas(256, 256)
-    canvas.fill_rect(160, 8, 5, 5, 0)
-    canvas.fill_rect(161, 9, 3, 3, 1)
-    canvas.set_pixel(160, 10, 5)
-    canvas.set_pixel(162, 12, 2)
-    result.patch_bitmap(canvas, address.addresses['Castle Map'])
+    # result.patch_string(0x04389C76, '!ROOMS!')
+    for room in rooms.values():
+        result.patch_room_data(
+            room,
+            addresses[('Room Data', room.stage_id)]
+        )
+        result.patch_packed_room_data(
+            room,
+            addresses[('Packed Room Data', room.stage_id, room.room_id)]
+        )
+        canvas.draw_room(room)
+    result.patch_bitmap(canvas, addresses[('Castle Map')])
     return result
 
 if __name__ == '__main__':
