@@ -1,5 +1,5 @@
 
-Name: Red Skeleton Elevator Room
+Name: Red Skeleton Lift Room
 Default:
     Stage: Alchemy Laboratory
     Index: 18
@@ -39,20 +39,20 @@ Nodes:
         Column: 2
         Edge: Right
 Commands:
-    Action - Solve Red Skeleton Elevator Puzzle:
+    Action - Solve Red Skeleton Lift Puzzle:
         Outcomes:
-            Progression - Red Skeleton Elevator Puzzle Solved: true
+            Progression - Red Skeleton Lift Puzzle Solved: true
         Requirements:
             Default:
                 Section: Ground
-                Progression - Red Skeleton Elevator Puzzle Solved: false
+                Progression - Red Skeleton Lift Puzzle Solved: false
     Movement - Alcove:
         Outcomes:
             Location: Alcove
         Requirements:
-            Red Skeleton Elevator Puzzle:
+            Red Skeleton Lift Puzzle:
                 Section: Ground
-                Progression - Red Skeleton Elevator Puzzle Solved: true
+                Progression - Red Skeleton Lift Puzzle Solved: true
             Bat:
                 Section: Ground
                 Progression - Bat Transformation: true
