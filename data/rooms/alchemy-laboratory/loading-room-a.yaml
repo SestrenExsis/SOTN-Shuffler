@@ -1,0 +1,39 @@
+
+Name: Loading Room A
+Default:
+    Stage: Alchemy Laboratory
+    Index: 26
+    Left: 21
+    Top: 26
+Columns: 1
+Rows: 1
+Total Cells: 1
+Entities:
+Sections:
+    - Default
+Nodes:
+    Left Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+    Right Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+Commands:
+    Action - Use Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Loading Room A (Left Exit)
+        Requirements:
+            Default:
+                Section: Default
+    Action - Use Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Loading Room A (Right Exit)
+        Requirements:
+            Default:
+                Section: Default

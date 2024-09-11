@@ -1,0 +1,36 @@
+
+Name: Skill of Wolf Room
+Default:
+    Stage: Alchemy Laboratory
+    Index: 8
+    Left: 15
+    Top: 33
+Columns: 1
+Rows: 1
+Total Cells: 1
+Entities:
+Sections:
+    - Default
+Nodes:
+    Left Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+Commands:
+    Action - Collect Object at Skill of Wolf Location:
+        Outcomes:
+            Progression - Object at Skill of Wolf Location Collected: true
+            Object Hook:
+                - Object at Skill of Wolf Location
+        Requirements:
+            Default:
+                Section: Default
+                Progression - Object at Skill of Wolf Location Collected: false
+    Action - Use Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Skill of Wolf Room (Left Exit)
+        Requirements:
+            Default:
+                Section: Default

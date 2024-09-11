@@ -1,0 +1,36 @@
+
+name: Bat Card Room
+default:
+    stage: Alchemy Laboratory
+    index: 0
+    left: 13
+    top: 27
+Columns: 1
+Rows: 1
+Total Cells: 1
+Entities:
+Sections:
+    - Default
+Nodes:
+    Left Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+Commands:
+    Action - Collect Object at Bat Card Location:
+        Outcomes:
+            Progression - Object at Bat Card Location Collected: true
+            Object Hook:
+                - Object at Bat Card Location
+        Requirements:
+            Default:
+                Section: Default
+                Progression - Object at Bat Card Location Collected: false
+    Action - Use Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Bat Card Room (Left Exit)
+        Requirements:
+            Default:
+                Section: Default

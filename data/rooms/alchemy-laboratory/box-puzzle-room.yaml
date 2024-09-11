@@ -1,0 +1,90 @@
+
+Name: Box Puzzle Room
+Default:
+    Stage: Alchemy Laboratory
+    Index: 17
+    Left: 9
+    Top: 30
+Columns: 2
+Rows: 2
+Total Cells: 4
+Entities:
+Sections:
+    - Ground
+    - Ledge
+Nodes:
+    Lower-Right Exit:
+        Type: Passage
+        Row: 1
+        Column: 1
+        Edge: Right
+    Upper-Left Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+    Upper-Right Exit:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Right
+Commands:
+    Action - Use Lower-Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Box Puzzle Room (Lower-Right Exit)
+        Requirements:
+            Default:
+                Section: Ground
+    Action - Use Upper-Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Box Puzzle Room (Upper-Left Exit)
+        Requirements:
+            Default:
+                Section: Ground
+    Action - Use Upper-Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Box Puzzle Room (Upper-Right Exit)
+        Requirements:
+            Default:
+                Section: Ledge
+    Action - Solve Box Puzzle:
+        Outcomes:
+            Progression - Box Puzzle Solved: true
+        Requirements:
+            Default:
+                Section: Ground
+                Progression - Box Puzzle Solved: false
+    Movement - Ledge:
+        Outcomes:
+            Location: Ledge
+        Requirements:
+            Box Puzzle:
+                Section: Ground
+                Progression - Box Puzzle Solved: true
+            Bat:
+                Section: Ground
+                Progression - Bat Transformation: true
+            Double Jump:
+                Section: Ground
+                Progression - Double Jump: true
+            Gravity Jump:
+                Section: Ground
+                Progression - Gravity Jump: true
+            Powered Mist:
+                Section: Ground
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Wolf-Mist Rise:
+                Section: Ground
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+    Movement - Ground:
+        Outcomes:
+            Location: Ground
+        Requirements:
+            Bat:
+                Section: Ledge

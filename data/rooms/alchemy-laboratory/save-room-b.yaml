@@ -1,0 +1,31 @@
+
+Name: Save Room B
+Default:
+    Stage: Alchemy Laboratory
+    Index: 24
+    Left: 15
+    Top: 27
+Columns: 1
+Rows: 1
+Total Cells: 1
+Entities:
+Sections:
+    - Default
+Nodes:
+    Left Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+Commands:
+    Action - Save Game:
+        Requirements:
+            Default:
+                Section: Default
+    Action - Use Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Save Room B (Left Exit)
+        Requirements:
+            Default:
+                Section: Default

@@ -1,0 +1,79 @@
+
+Name: Red Skeleton Elevator Room
+Default:
+    Stage: Alchemy Laboratory
+    Index: 18
+    Left: 13
+    Top: 34
+Columns: 3
+Rows: 2
+Total Cells: 6
+Entities:
+Sections:
+    - Ground
+    - Alcove
+Nodes:
+    Lower Exit:
+        Type: Passage
+        Row: 1
+        Column: 2
+        Edge: Down
+    Lower-Right Exit:
+        Type: Passage
+        Row: 1
+        Column: 2
+        Edge: Right
+    Upper Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Up
+    Upper-Left Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+    Upper-Right Exit:
+        Type: Passage
+        Row: 0
+        Column: 2
+        Edge: Right
+Commands:
+    Action - Solve Red Skeleton Elevator Puzzle:
+        Outcomes:
+            Progression - Red Skeleton Elevator Puzzle Solved: true
+        Requirements:
+            Default:
+                Section: Ground
+                Progression - Red Skeleton Elevator Puzzle Solved: false
+    Movement - Alcove:
+        Outcomes:
+            Location: Alcove
+        Requirements:
+            Red Skeleton Elevator Puzzle:
+                Section: Ground
+                Progression - Red Skeleton Elevator Puzzle Solved: true
+            Bat:
+                Section: Ground
+                Progression - Bat Transformation: true
+            Double Jump:
+                Section: Ground
+                Progression - Double Jump: true
+            Gravity Jump:
+                Section: Ground
+                Progression - Gravity Jump: true
+            Powered Mist:
+                Section: Ground
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Wolf-Mist Rise:
+                Section: Ground
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+    Movement - Ground:
+        Outcomes:
+            Location: Ground
+        Requirements:
+            Bat:
+                Section: Alcove

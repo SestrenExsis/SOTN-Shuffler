@@ -1,0 +1,31 @@
+
+Name: Save Room A
+Default:
+    Stage: Alchemy Laboratory
+    Index: 23
+    Left: 7
+    Top: 30
+Columns: 1
+Rows: 1
+Total Cells: 1
+Entities:
+Sections:
+    - Default
+Nodes:
+    Right Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+Commands:
+    Action - Save Game:
+        Requirements:
+            Default:
+                Section: Default
+    Action - Use Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Save Room A (Right Exit)
+        Requirements:
+            Default:
+                Section: Default

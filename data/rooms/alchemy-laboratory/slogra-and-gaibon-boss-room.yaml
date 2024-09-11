@@ -1,0 +1,91 @@
+
+Name: Slogra and Gaibon Boss Room
+Default:
+    Stage: Alchemy Laboratory
+    Index: 16
+    Left: 9
+    Top: 27
+Columns: 4
+Rows: 2
+Total Cells: 8
+Entities:
+Sections:
+    - Ground
+    - Alcove
+Nodes:
+    Lower-Right Exit:
+        Type: Passage
+        Row: 1
+        Column: 3
+        Edge: Right
+    Upper-Left Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+    Upper-Right Exit:
+        Type: Passage
+        Row: 0
+        Column: 3
+        Edge: Right
+Commands:
+    Action - Defeat Slogra and Gaibon:
+        Outcomes:
+            Progression - Slogra and Gaibon Defeated: true
+        Requirements:
+            Default:
+                Progression - Slogra and Gaibon Defeated: false
+    Action - Use Lower-Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Slogra and Gaibon Boss Room (Lower-Right Exit)
+        Requirements:
+            Default:
+                Section: Ground
+                Progression - Slogra and Gaibon Defeated: true
+    Action - Use Upper-Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Slogra and Gaibon Boss Room (Upper-Left Exit)
+        Requirements:
+            Default:
+                Section: Ground
+                Progression - Slogra and Gaibon Defeated: true
+    Action - Use Upper-Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Slogra and Gaibon Boss Room (Upper-Right Exit)
+        Requirements:
+            Default:
+                Section: Alcove
+                Progression - Slogra and Gaibon Defeated: true
+    Movement - Alcove:
+        Outcomes:
+            Location: Alcove
+        Requirements:
+            Bat:
+                Section: Ground
+                Progression - Bat Transformation: true
+            Repeated Dive Kicks Off Gaibon:
+                Section: Ground
+                Execution - Repeated Dive Kick Head Stomps: true
+                Progression - Double Jump: true
+                Progression - Slogra and Gaibon Defeated: false
+            Gravity Jump:
+                Section: Ground
+                Progression - Gravity Jump: true
+            Powered Mist:
+                Section: Ground
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Wolf-Mist Rise:
+                Section: Ground
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+    Movement - Ground:
+        Outcomes:
+            Location: Ground
+        Requirements:
+            Bat:
+                Section: Alcove

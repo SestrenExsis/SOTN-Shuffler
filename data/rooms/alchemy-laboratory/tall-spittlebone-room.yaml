@@ -1,0 +1,64 @@
+
+Name: Tall Spittlebone Room
+Default:
+    Stage: Alchemy Laboratory
+    Index: 11
+    Left: 8
+    Top: 27
+Columns: 1
+Rows: 5
+Total Cells: 5
+Entities:
+    - Spittlebone
+Sections:
+    - Default
+Nodes:
+    Lower-Left Exit:
+        Type: Passage
+        Row: 3
+        Column: 0
+        Edge: Left
+    Lower-Right Exit:
+        Type: Passage
+        Row: 3
+        Column: 0
+        Edge: Right
+    Upper-Left Exit:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+    Upper-Right Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+Commands:
+    Action - Use Lower-Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Tall Spittlebone Room (Lower-Left Exit)
+        Requirements:
+            Default:
+                Section: Default
+    Action - Use Lower-Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Tall Spittlebone Room (Lower-Right Exit)
+        Requirements:
+            Default:
+                Section: Default
+    Action - Use Upper-Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Tall Spittlebone Room (Upper-Left Exit)
+        Requirements:
+            Default:
+                Section: Default
+    Action - Use Upper-Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Tall Spittlebone Room (Upper-Right Exit)
+        Requirements:
+            Default:
+                Section: Default

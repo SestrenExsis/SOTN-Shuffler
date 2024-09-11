@@ -1,0 +1,14 @@
+
+Name: Fake Room - Marble Gallery
+Default:
+    Stage: Alchemy Laboratory
+    Index: 29
+    Left: 22
+    Top: 26
+Columns: 1
+Rows: 1
+Total Cells: 1
+Entities:
+Sections:
+Nodes:
+Commands:

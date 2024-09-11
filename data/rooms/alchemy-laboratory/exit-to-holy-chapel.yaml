@@ -1,0 +1,39 @@
+
+Name: Exit to Holy Chapel
+Default:
+    Stage: Alchemy Laboratory
+    Index: 1
+    Left: 5
+    Top: 28
+Columns: 1
+Rows: 1
+Total Cells: 1
+Entities:
+Sections:
+    - Default
+Nodes:
+    Left Exit:
+        Type: Red Door
+        Row: 0
+        Column: 0
+        Edge: Left
+    Right Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+Commands:
+    Action - Use Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Exit to Holy Chapel (Left Exit)
+        Requirements:
+            Default:
+                Section: Default
+    Action - Use Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Exit to Holy Chapel (Right Exit)
+        Requirements:
+            Default:
+                Section: Default

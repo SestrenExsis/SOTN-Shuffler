@@ -1,0 +1,36 @@
+
+Name: Cloth Cape Room
+Default:
+    Stage: Alchemy Laboratory
+    Index: 5
+    Left: 10
+    Top: 29
+Columns: 1
+Rows: 1
+Total Cells: 1
+Entities:
+Sections:
+    - Default
+Nodes:
+    Right Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+Commands:
+    Action - Collect Object at Cloth Cape Location:
+        Outcomes:
+            Progression - Object at Cloth Cape Location Collected: true
+            Object Hook:
+                - Object at Cloth Cape Location
+        Requirements:
+            Default:
+                Section: Default
+                Progression - Object at Cloth Cape Location Collected: false
+    Action - Use Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Cloth Cape Room (Right Exit)
+        Requirements:
+            Default:
+                Section: Default

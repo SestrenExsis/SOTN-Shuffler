@@ -1,0 +1,50 @@
+
+Name: Entryway
+Default:
+    Stage: Alchemy Laboratory
+    Index: 10
+    Left: 14
+    Top: 36
+Columns: 3
+Rows: 1
+Total Cells: 3
+Entities:
+    - Bone Scimitar
+    - Red Skeleton
+Sections:
+    - Default
+Nodes:
+    Right Exit:
+        Type: Red Door
+        Row: 0
+        Column: 0
+        Edge: Right
+    Upper Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Upper
+Commands:
+    Action - Collect Object at Hide Cuirass Location:
+        Outcomes:
+            Progression - Object at Hide Cuirass Location Collected: true
+            Object Hook:
+                - Object at Hide Cuirass Location
+        Requirements:
+            Default:
+                Section: Default
+                Progression - Object at Hide Cuirass Location Collected: false
+    Action - Use Upper Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Entryway (Upper Exit)
+        Requirements:
+            Default:
+                Section: Default
+    Action - Use Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Entryway (Right Exit)
+        Requirements:
+            Default:
+                Section: Default

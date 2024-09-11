@@ -1,0 +1,36 @@
+
+Name: Heart Max-Up Room
+Default:
+    Stage: Alchemy Laboratory
+    Index: 9
+    Left: 11
+    Top: 34
+Columns: 1
+Rows: 1
+Total Cells: 1
+Entities:
+Sections:
+    - Default
+Nodes:
+    Right Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+Commands:
+    Action - Collect Object at Alchemy Lab Heart Max-Up Location:
+        Outcomes:
+            Progression - Object at Alchemy Lab Heart Max-Up Location Collected: true
+            Object Hook:
+                - Object at Alchemy Lab Heart Max-Up Location
+        Requirements:
+            Default:
+                Section: Default
+                Progression - Object at Alchemy Lab Heart Max-Up Location Collected: false
+    Action - Use Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Heart Max-Up Room (Right Exit)
+        Requirements:
+            Default:
+                Section: Default

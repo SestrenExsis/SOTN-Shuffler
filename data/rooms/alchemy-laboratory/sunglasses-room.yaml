@@ -1,0 +1,36 @@
+
+Name: Sunglasses Room
+Default:
+    Stage: Alchemy Laboratory
+    Index: 6
+    Left: 16
+    Top: 31
+Columns: 1
+Rows: 1
+Total Cells: 1
+Entities:
+Sections:
+    - Default
+Nodes:
+    Right Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+Commands:
+    Action - Collect Object at Sunglasses Location:
+        Outcomes:
+            Progression - Object at Sunglasses Location Collected: true
+            Object Hook:
+                - Object at Sunglasses Location
+        Requirements:
+            Default:
+                Section: Default
+                Progression - Object at Sunglasses Location Collected: false
+    Action - Use Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Sunglasses Room (Right Exit)
+        Requirements:
+            Default:
+                Section: Default

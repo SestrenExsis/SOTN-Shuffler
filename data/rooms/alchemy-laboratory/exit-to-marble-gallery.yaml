@@ -1,0 +1,39 @@
+
+Name: Exit to Marble Gallery
+Default:
+    Stage: Alchemy Laboratory
+    Index: 20
+    Left: 19
+    Top: 25
+Columns: 2
+Rows: 3
+Total Cells: 6
+Entities:
+Sections:
+    - Default
+Nodes:
+    Left Exit:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+    Right Exit:
+        Type: Red Door
+        Row: 1
+        Column: 1
+        Edge: Right
+Commands:
+    Action - Use Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Exit to Marble Gallery (Left Exit)
+        Requirements:
+            Default:
+                Section: Default
+    Action - Use Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Exit to Marble Gallery (Right Exit)
+        Requirements:
+            Default:
+                Section: Default

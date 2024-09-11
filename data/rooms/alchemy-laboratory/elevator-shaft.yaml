@@ -1,0 +1,51 @@
+
+Name: Elevator Shaft
+Default:
+    Stage: Alchemy Laboratory
+    Index: 22
+    Left: 17
+    Top: 28
+Columns: 1
+Rows: 7
+Total Cells: 7
+Entities:
+Sections:
+    - Default
+Nodes:
+    Upper-Left Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+    Left Exit:
+        Type: Passage
+        Row: 3
+        Column: 0
+        Edge: Left
+    Lower-Left Exit:
+        Type: Passage
+        Row: 6
+        Column: 0
+        Edge: Left
+Commands:
+    Action - Use Upper-Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Elevator Shaft (Upper-Left Exit)
+        Requirements:
+            Default:
+                Section: Default
+    Action - Use Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Elevator Shaft (Left Exit)
+        Requirements:
+            Default:
+                Section: Default
+    Action - Use Lower-Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Elevator Shaft (Lower-Left Exit)
+        Requirements:
+            Default:
+                Section: Default

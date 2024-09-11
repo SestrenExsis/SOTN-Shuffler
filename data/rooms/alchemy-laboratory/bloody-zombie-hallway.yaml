@@ -1,0 +1,40 @@
+
+Name: Bloody Zombie Hallway
+Default:
+    Stage: Alchemy Laboratory
+    Index: 3
+    Left: 15
+    Top: 26
+Columns: 4
+Rows: 1
+Total Cells: 4
+Entities:
+    - Bloody Zombie
+Sections:
+    - Default
+Nodes:
+    Left Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+    Right Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+Commands:
+    Action - Use Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Bloody Zombie Hallway (Left Exit)
+        Requirements:
+            Default:
+                Section: Default
+    Action - Use Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Bloody Zombie Hallway (Right Exit)
+        Requirements:
+            Default:
+                Section: Default

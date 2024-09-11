@@ -1,0 +1,39 @@
+
+Name: Corridor to Elevator
+Default:
+    Stage: Alchemy Laboratory
+    Index: 21
+    Left: 15
+    Top: 28
+Columns: 2
+Rows: 1
+Total Cells: 2
+Entities:
+Sections:
+    - Default
+Nodes:
+    Left Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+    Right Exit:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Right
+Commands:
+    Action - Use Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Exit to Marble Gallery (Left Exit)
+        Requirements:
+            Default:
+                Section: Default
+    Action - Use Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Exit to Marble Gallery (Right Exit)
+        Requirements:
+            Default:
+                Section: Default

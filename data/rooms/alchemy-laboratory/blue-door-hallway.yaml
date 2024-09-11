@@ -1,0 +1,54 @@
+
+Name: Blue Door Hallway
+Default:
+    Stage: Alchemy Laboratory
+    Index: 2
+    Left: 6
+    Top: 28
+Columns: 2
+Rows: 1
+Total Cells: 2
+Entities:
+Sections:
+    - Left Side
+    - Right Side
+Nodes:
+    Left Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+    Right Exit:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Right
+Commands:
+    Movement - Left Side:
+        Outcomes:
+            Section: Left Side
+        Requirements:
+            Default:
+                Section: Right Side
+                Progression - Unlock Blue Doors: true
+    Movement - Right Side:
+        Outcomes:
+            Section: Right Side
+        Requirements:
+            Default:
+                Section: Left Side
+                Progression - Unlock Blue Doors: true
+    Action - Use Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Blue Door Hallway (Left Exit)
+        Requirements:
+            Default:
+                Section: Left Side
+    Action - Use Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Blue Door Hallway (Right Exit)
+        Requirements:
+            Default:
+                Section: Right Side

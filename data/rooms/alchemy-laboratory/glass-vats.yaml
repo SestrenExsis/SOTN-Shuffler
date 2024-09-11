@@ -1,0 +1,84 @@
+
+Name: Glass Vats
+Default:
+    Stage: Alchemy Laboratory
+    Index: 7
+    Left: 13
+    Top: 33
+Columns: 2
+Rows: 1
+Total Cells: 2
+Entities:
+Sections:
+    - Default
+Nodes:
+    Lower-Left Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Down
+    Right Exit:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Right
+Commands:
+    Action - Collect Object at Glass Vat 1 Location:
+        Outcomes:
+            Progression - Object at Glass Vat 1 Location Collected: true
+            Object Hook:
+                - Object at Glass Vat 1 Location
+        Requirements:
+            Default:
+                Section: Default
+                Progression - Object at Glass Vat 1 Location Collected: false
+    Action - Collect Object at Glass Vat 2 Location:
+        Outcomes:
+            Progression - Object at Glass Vat 2 Location Collected: true
+            Object Hook:
+                - Object at Glass Vat 2 Location
+        Requirements:
+            Default:
+                Section: Default
+                Progression - Object at Glass Vat 2 Location Collected: false
+    Action - Collect Object at Glass Vat 3 Location:
+        Outcomes:
+            Progression - Object at Glass Vat 3 Location Collected: true
+            Object Hook:
+                - Object at Glass Vat 3 Location
+        Requirements:
+            Default:
+                Section: Default
+                Progression - Object at Glass Vat 3 Location Collected: false
+    Action - Collect Object at Glass Vat 4 Location:
+        Outcomes:
+            Progression - Object at Glass Vat 4 Location Collected: true
+            Object Hook:
+                - Object at Glass Vat 4 Location
+        Requirements:
+            Default:
+                Section: Default
+                Progression - Object at Glass Vat 4 Location Collected: false
+    Action - Collect Object at Glass Vat 5 Location:
+        Outcomes:
+            Progression - Object at Glass Vat 5 Location Collected: true
+            Object Hook:
+                - Object at Glass Vat 5 Location
+        Requirements:
+            Default:
+                Section: Default
+                Progression - Object at Glass Vat 5 Location Collected: false
+    Action - Use Lower-Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Glass Vats (Lower-Left Exit)
+        Requirements:
+            Default:
+                Section: Default
+    Action - Use Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Glass Vats (Right Exit)
+        Requirements:
+            Default:
+                Section: Default

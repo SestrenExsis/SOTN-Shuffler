@@ -1,0 +1,39 @@
+
+Name: Empty Zig Zag Room
+Default:
+    Stage: Alchemy Laboratory
+    Index: 12
+    Left: 11
+    Top: 29
+Columns: 1
+Rows: 2
+Total Cells: 2
+Entities:
+Sections:
+    - Default
+Nodes:
+    Lower-Left Exit:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+    Upper-Left Exit:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+Commands:
+    Action - Use Lower-Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Empty Zig Zag Room (Lower-Left Exit)
+        Requirements:
+            Default:
+                Section: Default
+    Action - Use Upper-Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Empty Zig Zag Room (Upper-Left Exit)
+        Requirements:
+            Default:
+                Section: Default

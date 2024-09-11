@@ -1,0 +1,14 @@
+
+Name: Fake Room - Castle Entrance
+Default:
+    Stage: Alchemy Laboratory
+    Index: 31
+    Left: 18
+    Top: 36
+Columns: 1
+Rows: 1
+Total Cells: 1
+Entities:
+Sections:
+Nodes:
+Commands:

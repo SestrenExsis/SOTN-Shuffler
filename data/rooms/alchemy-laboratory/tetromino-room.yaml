@@ -1,0 +1,87 @@
+
+Name: Tetromino Room
+Default:
+    Stage: Alchemy Laboratory
+    Index: 19
+    Left: 13
+    Top: 26
+Columns: 2
+Rows: 3
+Total Cells: 5
+Cells:
+    - Row: 0
+      Column: 1
+    - Row: 1
+      Column: 0
+    - Row: 1
+      Column: 1
+    - Row: 2
+      Column: 0
+    - Row: 2
+      Column: 1
+Entities:
+Sections:
+    - Vanilla
+    - Bat Card Room Duplicate
+Nodes:
+    Lower-Left Exit:
+        Type: Passage
+        Row: 2
+        Column: 0
+        Edge: Left
+    Lower-Right Exit:
+        Type: Passage
+        Row: 2
+        Column: 1
+        Edge: Right
+    Left Exit:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+    Right Exit:
+        Type: Passage
+        Row: 1
+        Column: 1
+        Edge: Right
+    Upper-Right Exit:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Right
+Commands:
+    Action - Use Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Tetromino Room (Left Exit)
+        Requirements:
+            Default:
+                Section: Bat Card Room Duplicate
+    Action - Use Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Tetromino Room (Right Exit)
+        Requirements:
+            Default:
+                Section: Vanilla
+    Action - Use Lower-Left Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Tetromino Room (Lower-Left Exit)
+        Requirements:
+            Default:
+                Section: Vanilla
+    Action - Use Lower-Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Tetromino Room (Lower-Right Exit)
+        Requirements:
+            Default:
+                Section: Vanilla
+    Action - Use Upper-Right Exit:
+        Outcomes:
+            Location Hook:
+                - Alchemy Laboratory - Tetromino Room (Upper-Right Exit)
+        Requirements:
+            Default:
+                Section: Vanilla
