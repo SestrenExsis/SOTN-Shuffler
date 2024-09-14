@@ -1,0 +1,51 @@
+
+Stage: Alchemy Laboratory
+Room: Exit to Holy Chapel
+Index: 1
+Left: 5
+Top: 28
+Columns: 1
+Rows: 1
+Total Cells: 1
+Empty Cells:
+Entities:
+Node Sections:
+    Left Node:
+        Type: Red Door
+        Row: 0
+        Column: 0
+        Edge: Left
+    Right Node:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+Triggers:
+    Entry - Left Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Exit to Holy Chapel
+                Section: Left Node
+    Exit - Left Node:
+        Outcomes:
+            Section: Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Exit to Holy Chapel
+                Section: Primary
+    Entry - Right Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Exit to Holy Chapel
+                Section: Right Node
+    Exit - Right Node:
+        Outcomes:
+            Section: Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Exit to Holy Chapel
+                Section: Primary

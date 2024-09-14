@@ -1,0 +1,51 @@
+
+Stage: Alchemy Laboratory
+Room: Exit to Marble Gallery
+Index: 20
+Left: 19
+Top: 25
+Columns: 2
+Rows: 3
+Total Cells: 6
+Empty Cells:
+Entities:
+Node Sections:
+    Left Node:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+    Right Node:
+        Type: Red Door
+        Row: 1
+        Column: 1
+        Edge: Right
+Triggers:
+    Entry - Left Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Exit to Marble Gallery
+                Section: Left Node
+    Exit - Left Node:
+        Outcomes:
+            Section: Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Exit to Marble Gallery
+                Section: Primary
+    Entry - Right Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Exit to Marble Gallery
+                Section: Right Node
+    Exit - Right Node:
+        Outcomes:
+            Section: Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Exit to Marble Gallery
+                Section: Primary

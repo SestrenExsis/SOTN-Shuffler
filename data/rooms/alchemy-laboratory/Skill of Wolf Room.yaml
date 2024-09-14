@@ -1,0 +1,41 @@
+
+Stage: Alchemy Laboratory
+Room: Skill of Wolf Room
+Index: 8
+Left: 15
+Top: 33
+Columns: 1
+Rows: 1
+Total Cells: 1
+Empty Cells:
+Entities:
+Nodes:
+    Left:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+Triggers:
+    Entry - Left Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Skill of Wolf Room
+                Section: Left Node
+    Exit - Left Node:
+        Outcomes:
+            Section: Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Skill of Wolf Room
+                Section: Primary
+    Action - Collect Object at Skill of Wolf Location:
+        Outcomes:
+            Progression - Object at Skill of Wolf Location Collected: true
+            Object:
+                Relic - Skill of Wolf: 1
+        Requirements:
+            Default:
+                Section: Default
+                Progression - Object at Skill of Wolf Location Collected: false

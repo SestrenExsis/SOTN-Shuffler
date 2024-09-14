@@ -1,0 +1,52 @@
+
+Stage: Alchemy Laboratory
+Room: Short Zig Zag Room
+Index: 13
+Left: 11
+Top: 31
+Columns: 1
+Rows: 2
+Total Cells: 2
+Empty Cells:
+Entities:
+    - Bone Scimitar
+Node Sections:
+    Lower-Right Node:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Right
+    Upper-Left Node:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+Triggers:
+    Entry - Lower-Right Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Short Zig Zag Room
+                Section: Lower-Right Node
+    Exit - Lower-Right Node:
+        Outcomes:
+            Section: Lower-Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Short Zig Zag Room
+                Section: Primary
+    Entry - Upper-Left Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Short Zig Zag Room
+                Section: Upper-Left Node
+    Exit - Upper-Left Node:
+        Outcomes:
+            Section: Upper-Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Short Zig Zag Room
+                Section: Primary

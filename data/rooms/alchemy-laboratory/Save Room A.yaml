@@ -1,0 +1,36 @@
+
+Stage: Alchemy Laboratory
+Room: Save Room A
+Index: 23
+Left: 7
+Top: 30
+Columns: 1
+Rows: 1
+Total Cells: 1
+Empty Cells:
+Entities:
+Node Sections:
+    Right Node:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+Triggers:
+    Entry - Right Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Save Room A
+                Section: Right Node
+    Exit - Right Node:
+        Outcomes:
+            Section: Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Save Room A
+                Section: Primary
+    Action - Save Game:
+        Requirements:
+            Default:
+                Section: Primary

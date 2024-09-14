@@ -1,0 +1,74 @@
+Action - Start Game in Luck Mode:
+    Outcomes:
+        Character: Richter
+        Game Mode: Luck
+        Location: Prologue
+    Requirements:
+        DEFAULT:
+            Location: Name Entry Screen
+            Knowledge - How to Enable Luck Mode: true
+            Rules - Luck Mode Allowed: true
+Action - Start Game in Normal Mode:
+    Outcomes:
+        Character: Richter
+        Game Mode: Normal
+        Location: Prologue
+    Requirements:
+        DEFAULT:
+            Location: Name Entry Screen
+Action - Use Library Card:
+    Outcomes:
+        Location: Long Library, Outside Shop
+        Item - Library Card: -1
+    Requirements:
+        DEFAULT:
+            Character: Alucard
+            Item - Library Card:
+                Minimum: 1
+Action - Use Library Card with Duplicator:
+    Outcomes:
+        Location: Long Library, Outside Shop
+    Requirements:
+        DEFAULT:
+            Character: Alucard
+            Item - Library Card:
+                Minimum: 1
+            Item - Duplicator:
+                Minimum: 1
+Action - Acquire Heart Refresh in Prologue:
+    Outcomes:
+        Item - Heart Refresh: 1
+        Progression - Heart Refresh in Prologue Acquired: true
+    Requirements:
+        DEFAULT:
+            Location: Prologue
+            Progression - Heart Refresh in Prologue Acquired: false
+            Knowledge - How to Acquire Heart Refresh in Prologue: true
+Action - Acquire Neutron Bomb in Prologue:
+    Outcomes:
+        Item - Neutron Bomb: 1
+        Progression - Neutron Bomb in Prologue Acquired: true
+    Requirements:
+        DEFAULT:
+            Location: Prologue
+            Progression - Neutron Bomb in Prologue Acquired: false
+            Knowledge - How to Acquire Neutron Bomb in Prologue: true
+Action - Defeat Dracula in Prologue as Richter:
+    Outcomes:
+        Character: Alucard
+        Location: Castle Entrance, After Drawbridge
+        Item - Alucard Shield: 1
+        Item - Alucard Sword: 1
+        Item - Dragon Helm: 1
+    Requirements:
+        DEFAULT:
+          Location: Prologue
+          Progression - Dracula Defeated: false
+Movement - Loading Room, Between Alchemy Laboratory and Castle Entrance:
+    Outcomes:
+        Location: Loading Room, Between Alchemy Laboratory and Castle Entrance
+    Requirements:
+        Alchemy Laboratory:
+            Location: Alchemy Laboratory, DEFAULT
+        Castle Entrance:
+            Location: Castle Entrance, Cube of Zoe Room

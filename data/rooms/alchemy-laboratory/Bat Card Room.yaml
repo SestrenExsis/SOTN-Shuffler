@@ -1,0 +1,42 @@
+
+Stage: Alchemy Laboratory
+Room: Bat Card Room
+Index: 0
+Left: 13
+Top: 27
+Columns: 1
+Rows: 1
+Total Cells: 1
+Empty Cells:
+Entities:
+Node Sections:
+    Left Node:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+Triggers:
+    Entry - Left Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Bat Card Room
+                Section: Left Node
+    Exit - Left Node:
+        Outcomes:
+            Section: Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Bat Card Room
+                Section: Primary
+    Action - Collect Object at Bat Card Location:
+        Outcomes:
+            Progression - Object at Bat Card Location Collected: true
+            Object:
+                Relic - Bat Card: 1
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Bat Card Room
+                Section: Primary
+                Progression - Object at Bat Card Location Collected: false

@@ -1,0 +1,51 @@
+
+Stage: Alchemy Laboratory
+Room: Corridor to Elevator
+Index: 21
+Left: 15
+Top: 28
+Columns: 2
+Rows: 1
+Total Cells: 2
+Empty Cells:
+Entities:
+Node Sections:
+    Left Node:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+    Right Node:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Right
+Triggers:
+    Entry - Left Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Corridor to Elevator
+                Section: Left Node
+    Exit - Left Node:
+        Outcomes:
+            Section: Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Corridor to Elevator
+                Section: Primary
+    Entry - Right Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Corridor to Elevator
+                Section: Right Node
+    Exit - Right Node:
+        Outcomes:
+            Section: Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Corridor to Elevator
+                Section: Primary

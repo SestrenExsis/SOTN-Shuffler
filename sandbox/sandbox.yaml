@@ -1,0 +1,269 @@
+Action - Activate Elevator in Outer Wall:
+    Standard:
+        o Location - Outer Wall, Elevator Section
+        o Knowledge - How to Unlock the Elevator
+        * Progression - Elevator in Outer Wall Activated
+Action - Collect Item at Outer Wall Garnet Location:
+    Corner Mist:
+        o Knowledge - How to Perform Corner Mist
+        o Location - Outer Wall, Gallery Side
+        o Progression - Mist Transformation
+        + Item - Garnet
+        * Progression - Item at Outer Wall Garnet Location Collected
+    Double Jump:
+        o Location - Outer Wall, Gallery Side
+        o Progression - Double Jump
+        + Item - Garnet
+        * Progression - Item at Outer Wall Garnet Location Collected
+    Flight - Bat Form:
+        o Location - Outer Wall, Gallery Side
+        o Progression - Bat Transformation
+        + Item - Garnet
+        * Progression - Item at Outer Wall Garnet Location Collected
+    Flight - Powered Mist:
+        o Location - Outer Wall, Gallery Side
+        o Progression - Longer Mist Duration
+        o Progression - Mist Transformation
+        + Item - Garnet
+        * Progression - Item at Outer Wall Garnet Location Collected
+    Gravity Jump:
+        o Location - Outer Wall, Gallery Side
+        o Progression - Gravity Jump
+        + Item - Garnet
+        * Progression - Item at Outer Wall Garnet Location Collected
+    Wolf Slope Jump:
+        o Knowledge - How to Perform a Wolf Slope Jump
+        o Location - Outer Wall, Gallery Side
+        o Progression - Wolf Transformation
+        + Item - Garnet
+        * Progression - Item at Outer Wall Garnet Location Collected
+    Wolf-Mist Rise:
+        o Execution - Wolf-Mist Rise
+        o Location - Outer Wall, Gallery Side
+        o Progression - Mist Transformation
+        o Progression - Wolf Transformation
+        + Item - Garnet
+        * Progression - Item at Outer Wall Garnet Location Collected
+Action - Collect Item at Soul of Wolf Relic Location:
+    Standard:
+        o Location - Outer Wall, Elevator Section
+        o Progression - Elevator in Outer Wall Activated
+        + Relic - Soul of Wolf
+        * Progression - Item at Soul of Wolf Relic Location Collected
+Action - Collect Item at Jewel Knuckles Location:
+    With Mist:
+        o Location - Outer Wall, Lower Section
+        o Progression - Mist Transformation
+        + Item - Jewel Knuckles
+        * Progression - Item at Jewel Knuckles Location Collected
+    Without Mist:
+        o Location - Outer Wall, Lower Section
+        o Knowledge - How to Reach Jewel Knuckles Check Without Mist
+        + Item - Jewel Knuckles
+        * Progression - Item at Jewel Knuckles Location Collected
+Action - Defeat Doppelganger10:
+    Standard:
+        o Location - Outer Wall, Doppelganger Room
+        * Progression - Doppelganger10 Defeated
+    Revenge Tech:
+        o Location - Outer Wall, Doppelganger Room
+        o Subweapon - Stopwatch
+        o Knowledge - How to Revenge Tech Doppelganger with Stopwatch
+        * Progression - Doppelganger10 Defeated
+Action - Collect Item for Defeating Doppelganger10:
+    Standard:
+        o Location - Outer Wall, Doppelganger Room
+        o Progression - Doppelganger10 Defeated
+        + Item - Life Max Up
+        * Progression - Item for Defeating Doppelganger10 Collected
+Action - Save Game:
+    Outer Wall, Gallery Side:
+        o Location - Outer Wall, Gallery Side
+        + Refill HP
+        + Refill MP
+        + Save Game
+    Outer Wall, Clock Tower Side:
+        o Location - Outer Wall, Clock Tower Side
+        + Refill HP
+        + Refill MP
+        + Save Game
+Movement - Outer Wall, Clock Tower Side:
+    Loading Room via Clock Tower:
+        o Location - Loading Room between Clock Tower and Outer Wall
+        + Location - Outer Wall, Clock Tower Side
+    Elevator Section:
+        o Location - Outer Wall, Elevator Section
+        + Location - Outer Wall, Clock Tower Side
+Movement - Outer Wall, Doppelganger Room:
+    Elevator Section:
+        o Location - Outer Wall, Elevator Section
+        + Location - Outer Wall, Doppelganger Room
+    Gallery Side:
+        o Location - Outer Wall, Gallery Side
+        + Location - Outer Wall, Doppelganger Room
+Movement - Outer Wall, Elevator Section:
+    Clock Tower Side:
+        o Location - Outer Wall, Clock Tower Side
+        + Location - Outer Wall, Elevator Section
+    Doppelganger Room:
+        o Location - Outer Wall, Doppelganger Room
+        o Progression - Doppelganger10 Defeated
+        + Location - Outer Wall, Elevator Section
+    Gallery Side using Bat Form:
+        o Location - Outer Wall, Gallery Side
+        o Progression - Bat Transformation
+        + Location - Outer Wall, Elevator Section
+    Gallery Side using Powered Mist:
+        o Location - Outer Wall, Gallery Side
+        o Progression - Longer Mist Duration
+        o Progression - Mist Transformation
+        + Location - Outer Wall, Elevator Section
+    Gallery Side using Gravity Jump:
+        o Location - Outer Wall, Gallery Side
+        o Progression - Gravity Jump
+        + Location - Outer Wall, Elevator Section
+    Gallery Side using Wolf-Mist Rise:
+        o Execution - Wolf-Mist Rise
+        o Location - Outer Wall, Gallery Side
+        o Progression - Mist Transformation
+        o Progression - Wolf Transformation
+        + Location - Outer Wall, Elevator Section
+    Loading Room via Warp Room:
+        o Location - Loading Room between Outer Wall and Warp Room
+        + Location - Outer Wall, Elevator Section
+Movement - Outer Wall, Gallery Side:
+    Doppelganger Room:
+        o Location - Outer Wall, Doppelganger Room
+        o Progression - Doppelganger10 Defeated
+        + Location - Outer Wall, Gallery Side
+    Elevator Section:
+        o Location - Outer Wall, Elevator Section
+        + Location - Outer Wall, Gallery Side
+    Loading Room via Marble Gallery:
+        o Location - Loading Room between Marble Gallery and Outer Wall
+        + Location - Outer Wall, Gallery Side
+    Lower Section:
+        o Location - Outer Wall, Lower Section
+        + Location - Outer Wall, Gallery Side
+Movement - Outer Wall, Lower Section:
+    Gallery Side:
+        o Location - Outer Wall, Gallery Side
+        + Location - Outer Wall, Lower Section
+
+
+Teleport to Library:
+    Use Library Card:
+        - Consumable - Library Card
+        + Location - Long Library, Outside Shop
+Movement - Loading Room between Marble Gallery and Outer Wall:
+    Marble Gallery:
+        o Location - Marble Gallery, Long Hallway
+        + Location - Loading Room between Marble Gallery and Outer Wall
+    Outer Wall:
+        o Location - Outer Wall, Gallery Side
+        + Location - Loading Room between Marble Gallery and Outer Wall
+
+
+Normal Mode:
+    DEFAULT:
+        o 
+Action - Defeat Dracula in Prologue:
+    Collecting Neutron Bomb and Heart Refresh:
+        o Location - Prologue
+        o Knowledge - How to Acquire Heart Refresh in Prologue
+        o Knowledge - How to Acquire Neutron Bomb in Prologue
+        + Progression - Dracula Defeated
+        + Item - Alucard Shield
+        + Item - Alucard Sword
+        + Item - Neutron Bomb
+        + Item - Heart Refresh
+        + Location - Castle Entrance, Main Path
+    DEFAULT:
+        o Location - Prologue
+        + Progression - Dracula Defeated
+        + Starting Equipment - Alucard Shield
+        + Item - Alucard Sword
+        + Location - Castle Entrance, Main Path
+
+
+Item - Heart Refresh:
+    - Progression - Screen Freeze
+Item - Garnet:
+    - Progression - Any Gem
+    - Progression - Onyx Gem or Better
+Relic - Soul of Wolf:
+    + Progression - Wolf Transformation
+    + Progression - Any Transformation
+Starting Equipment - Alucard Shield:
+    + Item - Alucard Shield
+Starting Equipment - Alucard Sword:
+    + Item - Alucard Sword
+
+
+DEFAULT:
+    Location - Name Entry Screen
+    Ruleset - Alucard
+    Ruleset - Glitchless
+Location - Name Entry Screen:
+    Action - Enter Axe Armor Mode:
+        + Character - Richter
+        + Item - Alucard Shield
+        + Item - Alucard Sword
+        + TODO(sestren)
+        + Location - Prologue
+    Action - Enter Luck Mode:
+        + Character - Richter
+        + Item - Alucard Shield
+        + Item - Alucard Sword
+        + TODO(sestren)
+        + Location - Prologue
+    Action - Enter Normal Mode:
+        + Character - Richter
+        + Item - Alucard Shield
+        + Item - Alucard Sword
+        + TODO(sestren)
+        + Location - Prologue
+    Action - Enter Richter Mode:
+        o Ruleset - Richter
+        + Progression - Run
+        + Progression - Blade Dash
+        + Progression - Uppercut
+        + Progression - Slide
+        + Progression - Unlock Blue Doors
+        + TODO(sestren)
+        + Location - Castle Entrance
+Location - Prologue:
+    Action - Acquire Neutron Bomb:
+        -x: Knowledge - How to Acquire Neutron Bomb in Prologue
+        +1: Progression - Add Neutron Bomb to Starting Equipment
+    Action - Acquire Heart Refresh:
+        -x: Knowledge - How to Acquire Heart Refresh in Prologue
+        +1: Progression - Add Heart Refresh to Starting Equipment
+    Action - Be Saved by Maria:
+        +0: TODO(sestren)
+    Action - Defeat Dracula:
+        +1: Progression - Dracula Defeated
+        +0: Character - Alucard
+        +0: Location - Castle Entrance
+Location - Castle Entrance, Main Path:
+    Event - Receive Neutron Bomb:
+        limit: 1
+        -x: Progression - Add Neutron Bomb to Starting Equipment
+        +1: Item - Neutron Bomb
+    Event - Receive Heart Refresh:
+        limit: 1
+        -x: Progression - Add Heart Refresh to Starting Equipment
+        +1: Item - Heart Refresh
+    Action - Check Skill of Wolf:
+        limit: 1
+        Method - Bat:
+            -0: Progression - Bat Transformation
+            +1: Relic - Skill of Wolf
+        Method - Powered Mist:
+            -0: Progression - Mist Transformation
+            -0: Progression - Empowered Mist
+            +1: Relic - Skill of Wolf
+        Method - Multiple Gravity Jumps:
+            -0: Progression - Double Jump
+            -0: Progression - Empowered Mist
+            +1: Relic - Skill of 

@@ -1,0 +1,51 @@
+
+Stage: Alchemy Laboratory
+Room: Loading Room A
+Index: 26
+Left: 21
+Top: 26
+Columns: 1
+Rows: 1
+Total Cells: 1
+Empty Cells:
+Entities:
+Node Sections:
+    Left Node:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+    Right Node:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+Triggers:
+    Entry - Left Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Loading Room A
+                Section: Left Node
+    Exit - Left Node:
+        Outcomes:
+            Section: Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Loading Room A
+                Section: Primary
+    Entry - Right Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Loading Room A
+                Section: Right Node
+    Exit - Right Node:
+        Outcomes:
+            Section: Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Loading Room A
+                Section: Primary

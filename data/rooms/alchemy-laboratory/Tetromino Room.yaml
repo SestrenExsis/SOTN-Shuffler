@@ -1,0 +1,110 @@
+
+Stage: Alchemy Laboratory
+Room: Tetromino Room
+Index: 19
+Left: 13
+Top: 26
+Columns: 2
+Rows: 3
+Total Cells: 5
+Empty Cells:
+    - Row: 0
+      Column: 0
+Entities:
+Node Sections:
+    Lower-Left Node:
+        Type: Passage
+        Row: 2
+        Column: 0
+        Edge: Left
+    Lower-Right Node:
+        Type: Passage
+        Row: 2
+        Column: 1
+        Edge: Right
+    Left Node:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+    Right Node:
+        Type: Passage
+        Row: 1
+        Column: 1
+        Edge: Right
+    Upper-Right Node:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Right
+Triggers:
+    Entry - Left Node:
+        Outcomes:
+            Section: Bat Card Room Duplicate
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tetromino Room
+                Section: Left Node
+    Exit - Left Node:
+        Outcomes:
+            Section: Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tetromino Room
+                Section: Bat Card Room Duplicate
+    Entry - Lower-Left Node:
+        Outcomes:
+            Section: Vanilla
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tetromino Room
+                Section: Lower-Left Node
+    Exit - Lower-Left Node:
+        Outcomes:
+            Section: Lower-Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tetromino Room
+                Section: Vanilla
+    Entry - Lower-Right Node:
+        Outcomes:
+            Section: Vanilla
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tetromino Room
+                Section: Lower-Right Node
+    Exit - Lower-Right Node:
+        Outcomes:
+            Section: Lower-Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tetromino Room
+                Section: Vanilla
+    Entry - Right Node:
+        Outcomes:
+            Section: Vanilla
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tetromino Room
+                Section: Right Node
+    Exit - Right Node:
+        Outcomes:
+            Section: Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tetromino Room
+                Section: Vanilla
+    Entry - Upper-Right Node:
+        Outcomes:
+            Section: Vanilla
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tetromino Room
+                Section: Upper-Right Node
+    Exit - Upper-Right Node:
+        Outcomes:
+            Section: Upper-Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tetromino Room
+                Section: Vanilla

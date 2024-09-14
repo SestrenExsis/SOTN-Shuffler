@@ -1,0 +1,70 @@
+
+Stage: Alchemy Laboratory
+Room: Elevator Shaft
+Index: 22
+Left: 17
+Top: 28
+Columns: 1
+Rows: 7
+Total Cells: 7
+Empty Cells:
+Entities:
+Node Sections:
+    Upper-Left Node:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+    Left Node:
+        Type: Passage
+        Row: 3
+        Column: 0
+        Edge: Left
+    Lower-Left Node:
+        Type: Passage
+        Row: 6
+        Column: 0
+        Edge: Left
+Triggers:
+    Entry - Upper-Left Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Elevator Shaft
+                Section: Upper-Left Node
+    Exit - Upper-Left Node:
+        Outcomes:
+            Section: Upper-Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Elevator Shaft
+                Section: Primary
+    Entry - Left Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Elevator Shaft
+                Section: Left Node
+    Exit - Left Node:
+        Outcomes:
+            Section: Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Elevator Shaft
+                Section: Primary
+    Entry - Lower-Left Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Elevator Shaft
+                Section: Lower-Left Node
+    Exit - Lower-Left Node:
+        Outcomes:
+            Section: Lower-Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Elevator Shaft
+                Section: Primary

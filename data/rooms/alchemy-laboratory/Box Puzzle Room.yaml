@@ -1,0 +1,108 @@
+
+Stage: Alchemy Laboratory
+Room: Box Puzzle Room
+Index: 17
+Left: 9
+Top: 30
+Columns: 2
+Rows: 2
+Total Cells: 4
+Empty Cells:
+Entities:
+Node Sections:
+    Lower-Right Node:
+        Type: Passage
+        Row: 1
+        Column: 1
+        Edge: Right
+    Upper-Left Node:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+    Upper-Right Node:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Right
+Triggers:
+    Entry - Lower-Right:
+        Outcomes:
+            Section: Ground
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Box Puzzle Room
+                Section: Lower-Right Node
+    Exit - Lower-Right:
+        Outcomes:
+            Section: Lower-Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Box Puzzle Room
+                Section: Ground
+    Entry - Upper-Left:
+        Outcomes:
+            Section: Ground
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Box Puzzle Room
+                Section: Upper-Left Node
+    Exit - Upper-Left:
+        Outcomes:
+            Section: Upper-Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Box Puzzle Room
+                Section: Ground
+    Entry - Upper-Right:
+        Outcomes:
+            Section: Ledge
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Box Puzzle Room
+                Section: Upper-Right Node
+    Exit - Upper-Right:
+        Outcomes:
+            Section: Upper-Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Box Puzzle Room
+                Section: Ledge
+    Action - Solve Box Puzzle:
+        Outcomes:
+            Progression - Box Puzzle Solved: true
+        Requirements:
+            Default:
+                Section: Ground
+                Progression - Box Puzzle Solved: false
+    Move - Ledge:
+        Outcomes:
+            Location: Alchemy Laboratory, Ledge
+        Requirements:
+            Box Puzzle:
+                Section: Ground
+                Progression - Box Puzzle Solved: true
+            Bat:
+                Section: Ground
+                Progression - Bat Transformation: true
+            Double Jump:
+                Section: Ground
+                Progression - Double Jump: true
+            Gravity Jump:
+                Section: Ground
+                Progression - Gravity Jump: true
+            Powered Mist:
+                Section: Ground
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Wolf-Mist Rise:
+                Section: Ground
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+    Move - Ground:
+        Outcomes:
+            Location: Alchemy Laboratory, Ground
+        Requirements:
+            Bat:
+                Section: Ledge

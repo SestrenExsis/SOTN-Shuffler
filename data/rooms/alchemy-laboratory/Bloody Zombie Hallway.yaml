@@ -1,0 +1,52 @@
+
+Stage: Alchemy Laboratory
+Room: Bloody Zombie Hallway
+Index: 3
+Left: 15
+Top: 26
+Columns: 4
+Rows: 1
+Total Cells: 4
+Empty Cells:
+Entities:
+    - Bloody Zombie
+Node Sections:
+    Left Node:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+    Right Node:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+Triggers:
+    Entry - Left Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Alchemy Laboratory, Bloody Zombie Hallway
+                Section: Left Node
+    Exit - Left Node:
+        Outcomes:
+            Section: Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Bloody Zombie Hallway
+                Section: Primary
+    Entry - Right Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Bloody Zombie Hallway
+                Section: Right Node
+    Exit - Right Node:
+        Outcomes:
+            Section: Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Bloody Zombie Hallway
+                Section: Primary
