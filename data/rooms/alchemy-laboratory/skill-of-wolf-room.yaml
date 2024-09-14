@@ -9,28 +9,33 @@ Columns: 1
 Rows: 1
 Total Cells: 1
 Entities:
-Sections:
-    - Default
 Nodes:
-    Left Exit:
+    Left:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-Commands:
+Triggers:
+    Entry - Left Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Skill of Wolf Room
+                Section: Left Node
+    Exit - Left Node:
+        Outcomes:
+            Section: Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Skill of Wolf Room
+                Section: Primary
     Action - Collect Object at Skill of Wolf Location:
         Outcomes:
             Progression - Object at Skill of Wolf Location Collected: true
-            Object Hook:
-                - Object at Skill of Wolf Location
+            Object:
+                Relic - Skill of Wolf: 1
         Requirements:
             Default:
                 Section: Default
                 Progression - Object at Skill of Wolf Location Collected: false
-    Action - Use Left Exit:
-        Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Skill of Wolf Room (Left Exit)
-        Requirements:
-            Default:
-                Section: Default

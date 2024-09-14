@@ -9,23 +9,28 @@ Columns: 1
 Rows: 1
 Total Cells: 1
 Entities:
-Sections:
-    - Default
-Nodes:
-    Left Exit:
+Node Sections:
+    Left Node:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-Commands:
+Triggers:
+    Entry - Left Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Save Room B
+                Section: Left Node
+    Exit - Left Node:
+        Outcomes:
+            Section: Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Save Room B
+                Section: Primary
     Action - Save Game:
         Requirements:
             Default:
-                Section: Default
-    Action - Use Left Exit:
-        Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Save Room B (Left Exit)
-        Requirements:
-            Default:
-                Section: Default
+                Section: Primary

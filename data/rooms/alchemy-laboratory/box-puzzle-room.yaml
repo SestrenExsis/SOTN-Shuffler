@@ -9,46 +9,64 @@ Columns: 2
 Rows: 2
 Total Cells: 4
 Entities:
-Sections:
-    - Ground
-    - Ledge
-Nodes:
-    Lower-Right Exit:
+Node Sections:
+    Lower-Right Node:
         Type: Passage
         Row: 1
         Column: 1
         Edge: Right
-    Upper-Left Exit:
+    Upper-Left Node:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Upper-Right Exit:
+    Upper-Right Node:
         Type: Passage
         Row: 0
         Column: 1
         Edge: Right
-Commands:
-    Action - Use Lower-Right Exit:
+Triggers:
+    Entry - Lower-Right:
         Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Box Puzzle Room (Lower-Right Exit)
+            Section: Ground
         Requirements:
             Default:
+                Location: Alchemy Laboratory, Box Puzzle Room
+                Section: Lower-Right Node
+    Exit - Lower-Right:
+        Outcomes:
+            Section: Lower-Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Box Puzzle Room
                 Section: Ground
-    Action - Use Upper-Left Exit:
+    Entry - Upper-Left:
         Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Box Puzzle Room (Upper-Left Exit)
+            Section: Ground
         Requirements:
             Default:
+                Location: Alchemy Laboratory, Box Puzzle Room
+                Section: Upper-Left Node
+    Exit - Upper-Left:
+        Outcomes:
+            Section: Upper-Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Box Puzzle Room
                 Section: Ground
-    Action - Use Upper-Right Exit:
+    Entry - Upper-Right:
         Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Box Puzzle Room (Upper-Right Exit)
+            Section: Ledge
         Requirements:
             Default:
+                Location: Alchemy Laboratory, Box Puzzle Room
+                Section: Upper-Right Node
+    Exit - Upper-Right:
+        Outcomes:
+            Section: Upper-Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Box Puzzle Room
                 Section: Ledge
     Action - Solve Box Puzzle:
         Outcomes:
@@ -57,9 +75,9 @@ Commands:
             Default:
                 Section: Ground
                 Progression - Box Puzzle Solved: false
-    Movement - Ledge:
+    Move - Ledge:
         Outcomes:
-            Location: Ledge
+            Location: Alchemy Laboratory, Ledge
         Requirements:
             Box Puzzle:
                 Section: Ground
@@ -82,9 +100,9 @@ Commands:
                 Execution - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
-    Movement - Ground:
+    Move - Ground:
         Outcomes:
-            Location: Ground
+            Location: Alchemy Laboratory, Ground
         Requirements:
             Bat:
                 Section: Ledge

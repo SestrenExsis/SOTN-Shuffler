@@ -9,28 +9,33 @@ Columns: 1
 Rows: 1
 Total Cells: 1
 Entities:
-Sections:
-    - Default
-Nodes:
-    Right Exit:
+Node Sections:
+    Right Node:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Commands:
+Triggers:
+    Entry - Right Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Cloth Cape Room
+                Section: Right Node
+    Exit - Right Node:
+        Outcomes:
+            Section: Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Cloth Cape Room
+                Section: Primary
     Action - Collect Object at Cloth Cape Location:
         Outcomes:
             Progression - Object at Cloth Cape Location Collected: true
-            Object Hook:
-                - Object at Cloth Cape Location
+            Object:
+                Item - Cloth Cape: 1
         Requirements:
             Default:
-                Section: Default
+                Section: Primary
                 Progression - Object at Cloth Cape Location Collected: false
-    Action - Use Right Exit:
-        Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Cloth Cape Room (Right Exit)
-        Requirements:
-            Default:
-                Section: Default

@@ -20,68 +20,100 @@ Cells:
     - Row: 2
       Column: 1
 Entities:
-Sections:
-    - Vanilla
-    - Bat Card Room Duplicate
-Nodes:
-    Lower-Left Exit:
+Node Sections:
+    Lower-Left Node:
         Type: Passage
         Row: 2
         Column: 0
         Edge: Left
-    Lower-Right Exit:
+    Lower-Right Node:
         Type: Passage
         Row: 2
         Column: 1
         Edge: Right
-    Left Exit:
+    Left Node:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Left
-    Right Exit:
+    Right Node:
         Type: Passage
         Row: 1
         Column: 1
         Edge: Right
-    Upper-Right Exit:
+    Upper-Right Node:
         Type: Passage
         Row: 0
         Column: 1
         Edge: Right
-Commands:
-    Action - Use Left Exit:
+Triggers:
+    Entry - Left Node:
         Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Tetromino Room (Left Exit)
+            Section: Bat Card Room Duplicate
         Requirements:
             Default:
+                Location: Alchemy Laboratory, Tetromino Room
+                Section: Left Node
+    Exit - Left Node:
+        Outcomes:
+            Section: Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tetromino Room
                 Section: Bat Card Room Duplicate
-    Action - Use Right Exit:
+    Entry - Lower-Left Node:
         Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Tetromino Room (Right Exit)
+            Section: Vanilla
         Requirements:
             Default:
+                Location: Alchemy Laboratory, Tetromino Room
+                Section: Lower-Left Node
+    Exit - Lower-Left Node:
+        Outcomes:
+            Section: Lower-Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tetromino Room
                 Section: Vanilla
-    Action - Use Lower-Left Exit:
+    Entry - Lower-Right Node:
         Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Tetromino Room (Lower-Left Exit)
+            Section: Vanilla
         Requirements:
             Default:
+                Location: Alchemy Laboratory, Tetromino Room
+                Section: Lower-Right Node
+    Exit - Lower-Right Node:
+        Outcomes:
+            Section: Lower-Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tetromino Room
                 Section: Vanilla
-    Action - Use Lower-Right Exit:
+    Entry - Right Node:
         Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Tetromino Room (Lower-Right Exit)
+            Section: Vanilla
         Requirements:
             Default:
+                Location: Alchemy Laboratory, Tetromino Room
+                Section: Right Node
+    Exit - Right Node:
+        Outcomes:
+            Section: Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tetromino Room
                 Section: Vanilla
-    Action - Use Upper-Right Exit:
+    Entry - Upper-Right Node:
         Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Tetromino Room (Upper-Right Exit)
+            Section: Vanilla
         Requirements:
             Default:
+                Location: Alchemy Laboratory, Tetromino Room
+                Section: Upper-Right Node
+    Exit - Upper-Right Node:
+        Outcomes:
+            Section: Upper-Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tetromino Room
                 Section: Vanilla

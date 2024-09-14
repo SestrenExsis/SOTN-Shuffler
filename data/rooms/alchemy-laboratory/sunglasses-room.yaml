@@ -9,28 +9,33 @@ Columns: 1
 Rows: 1
 Total Cells: 1
 Entities:
-Sections:
-    - Default
-Nodes:
-    Right Exit:
+Node Sections:
+    Right Node:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Commands:
+Triggers:
+    Entry - Right Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Sunglasses Room
+                Section: Right Node
+    Exit - Right Node:
+        Outcomes:
+            Section: Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Sunglasses Room
+                Section: Primary
     Action - Collect Object at Sunglasses Location:
         Outcomes:
             Progression - Object at Sunglasses Location Collected: true
-            Object Hook:
-                - Object at Sunglasses Location
+            Object:
+                Item - Sunglasses: 1
         Requirements:
             Default:
                 Section: Default
                 Progression - Object at Sunglasses Location Collected: false
-    Action - Use Right Exit:
-        Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Sunglasses Room (Right Exit)
-        Requirements:
-            Default:
-                Section: Default

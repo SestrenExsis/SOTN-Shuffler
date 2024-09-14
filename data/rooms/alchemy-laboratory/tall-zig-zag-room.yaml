@@ -9,30 +9,88 @@ Columns: 1
 Rows: 3
 Total Cells: 3
 Entities:
-Sections:
-    - Default
-Nodes:
-    Lower Exit:
+Node Sections:
+    Lower Node:
         Type: Passage
         Row: 2
         Column: 0
         Edge: Down
-    Lower-Left Exit:
+    Lower-Left Node:
         Type: Passage
         Row: 2
         Column: 0
         Edge: Left
-    Lower-Right Exit:
+    Lower-Right Node:
         Type: Passage
         Row: 2
         Column: 0
         Edge: Right
-    Upper-Left Exit:
+    Upper-Left Node:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-Commands:
+Triggers:
+    Entry - Lower Node, Unblocked:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Section: Lower Node
+                Progression - Breakable Floor in Tall Zig Zag Room Broken: true
+    Entry - Lower Node, Blocked:
+        Outcomes:
+            Section: Softlocked
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Section: Lower Node
+                Progression - Breakable Floor in Tall Zig Zag Room Broken: false
+    Entry - Lower-Left Node, Unblocked:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Section: Lower-Left Node
+                Progression - Breakable Wall in Tall Zig Zag Room Broken: true
+    Entry - Lower-Left Node, Blocked:
+        Outcomes:
+            Section: Softlocked
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Section: Lower-Left Node
+                Progression - Breakable Wall in Tall Zig Zag Room Broken: false
+    Entry - Lower-Right Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Section: Lower-Right Node
+    Exit - Lower-Right Node:
+        Outcomes:
+            Section: Lower-Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Section: Primary
+    Entry - Upper-Left Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Section: Upper-Left Node
+    Exit - Upper-Left Node:
+        Outcomes:
+            Section: Upper-Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Section: Primary
     Action - Break Floor:
         Outcomes:
             Progression - Breakable Floor in Tall Zig Zag Room Broken: false
@@ -50,33 +108,3 @@ Commands:
                 Section: Default
                 Knowledge - How to Break the Wall in Tall Zig Zag Room: true
                 Progression - Breakable Wall in Tall Zig Zag Room Broken: false
-    Action - Use Lower Exit:
-        Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Tall Zig Zag Room (Lower Exit)
-        Requirements:
-            Default:
-                Section: Default
-                Progression - Breakable Floor in Tall Zig Zag Room Broken: true
-    Action - Use Lower-Left Exit:
-        Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Tall Zig Zag Room (Lower-Left Exit)
-        Requirements:
-            Default:
-                Section: Default
-                Progression - Breakable Wall in Tall Zig Zag Room Broken: true
-    Action - Use Lower-Right Exit:
-        Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Tall Zig Zag Room (Lower-Right Exit)
-        Requirements:
-            Default:
-                Section: Default
-    Action - Use Upper-Left Exit:
-        Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Tall Zig Zag Room (Upper-Left Exit)
-        Requirements:
-            Default:
-                Section: Default

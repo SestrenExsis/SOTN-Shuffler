@@ -10,55 +10,81 @@ Rows: 5
 Total Cells: 5
 Entities:
     - Spittlebone
-Sections:
-    - Default
-Nodes:
-    Lower-Left Exit:
+Node Sections:
+    Lower-Left Node:
         Type: Passage
         Row: 3
         Column: 0
         Edge: Left
-    Lower-Right Exit:
+    Lower-Right Node:
         Type: Passage
         Row: 3
         Column: 0
         Edge: Right
-    Upper-Left Exit:
+    Upper-Left Node:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Left
-    Upper-Right Exit:
+    Upper-Right Node:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Commands:
-    Action - Use Lower-Left Exit:
+Triggers:
+    Entry - Lower-Left Node:
         Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Tall Spittlebone Room (Lower-Left Exit)
+            Section: Primary
         Requirements:
             Default:
-                Section: Default
-    Action - Use Lower-Right Exit:
+                Location: Alchemy Laboratory, Tall Spittlebone Room
+                Section: Lower-Left Node
+    Exit - Lower-Left Node:
         Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Tall Spittlebone Room (Lower-Right Exit)
+            Section: Lower-Left Node
         Requirements:
             Default:
-                Section: Default
-    Action - Use Upper-Left Exit:
+                Location: Alchemy Laboratory, Tall Spittlebone Room
+                Section: Primary
+    Entry - Lower-Right Node:
         Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Tall Spittlebone Room (Upper-Left Exit)
+            Section: Primary
         Requirements:
             Default:
-                Section: Default
-    Action - Use Upper-Right Exit:
+                Location: Alchemy Laboratory, Tall Spittlebone Room
+                Section: Lower-Right Node
+    Exit - Lower-Right Node:
         Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Tall Spittlebone Room (Upper-Right Exit)
+            Section: Lower-Right Node
         Requirements:
             Default:
-                Section: Default
+                Location: Alchemy Laboratory, Tall Spittlebone Room
+                Section: Primary
+    Entry - Upper-Left Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tall Spittlebone Room
+                Section: Upper-Left Node
+    Exit - Upper-Left Node:
+        Outcomes:
+            Section: Upper-Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tall Spittlebone Room
+                Section: Primary
+    Entry - Upper-Right Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tall Spittlebone Room
+                Section: Upper-Right Node
+    Exit - Upper-Right Node:
+        Outcomes:
+            Section: Upper-Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tall Spittlebone Room
+                Section: Primary

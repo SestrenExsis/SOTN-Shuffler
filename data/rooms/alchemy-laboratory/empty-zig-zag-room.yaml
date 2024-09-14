@@ -9,31 +9,43 @@ Columns: 1
 Rows: 2
 Total Cells: 2
 Entities:
-Sections:
-    - Default
-Nodes:
-    Lower-Left Exit:
+Node Sections:
+    Lower-Left:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Left
-    Upper-Left Exit:
+    Upper-Left:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-Commands:
-    Action - Use Lower-Left Exit:
+Triggers:
+    Entry - Lower-Left Node:
         Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Empty Zig Zag Room (Lower-Left Exit)
+            Section: Primary
         Requirements:
             Default:
-                Section: Default
-    Action - Use Upper-Left Exit:
+                Location: Alchemy Laboratory, Empty Zig Zag Room
+                Section: Lower-Left Node
+    Exit - Lower-Left Node:
         Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Empty Zig Zag Room (Upper-Left Exit)
+            Section: Lower-Left Node
         Requirements:
             Default:
-                Section: Default
+                Location: Alchemy Laboratory, Empty Zig Zag Room
+                Section: Primary
+    Entry - Upper-Left Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Empty Zig Zag Room
+                Section: Upper-Left Node
+    Exit - Upper-Left Node:
+        Outcomes:
+            Section: Upper-Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Empty Zig Zag Room
+                Section: Primary

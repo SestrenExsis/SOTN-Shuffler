@@ -9,31 +9,43 @@ Columns: 1
 Rows: 1
 Total Cells: 1
 Entities:
-Sections:
-    - Default
-Nodes:
-    Left Exit:
+Node Sections:
+    Left Node:
         Type: Red Door
         Row: 0
         Column: 0
         Edge: Left
-    Right Exit:
+    Right Node:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Commands:
-    Action - Use Left Exit:
+Triggers:
+    Entry - Left Node:
         Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Exit to Holy Chapel (Left Exit)
+            Section: Primary
         Requirements:
             Default:
-                Section: Default
-    Action - Use Right Exit:
+                Location: Alchemy Laboratory, Exit to Holy Chapel
+                Section: Left Node
+    Exit - Left Node:
         Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Exit to Holy Chapel (Right Exit)
+            Section: Left Node
         Requirements:
             Default:
-                Section: Default
+                Location: Alchemy Laboratory, Exit to Holy Chapel
+                Section: Primary
+    Entry - Right Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Exit to Holy Chapel
+                Section: Right Node
+    Exit - Right Node:
+        Outcomes:
+            Section: Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Exit to Holy Chapel
+                Section: Primary

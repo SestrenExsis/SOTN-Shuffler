@@ -9,46 +9,57 @@ Columns: 2
 Rows: 1
 Total Cells: 2
 Entities:
-Sections:
-    - Left Side
-    - Right Side
-Nodes:
-    Left Exit:
+Node Sections:
+    Left Node:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Right Exit:
+    Right Node:
         Type: Passage
         Row: 0
         Column: 1
         Edge: Right
-Commands:
-    Movement - Left Side:
+Triggers:
+    Entry - Left Node:
+        Outcomes:
+            Section: Left Side
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Blue Door Hallway
+                Section: Left Node
+    Exit - Left Node:
+        Outcomes:
+            Section: Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Blue Door Hallway
+                Section: Left Side
+    Entry - Right Node:
+        Outcomes:
+            Section: Right Side
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Blue Door Hallway
+                Section: Right Node
+    Exit - Right Node:
+        Outcomes:
+            Section: Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Blue Door Hallway
+                Section: Right Side
+    Move - Left Side:
         Outcomes:
             Section: Left Side
         Requirements:
             Default:
                 Section: Right Side
                 Progression - Unlock Blue Doors: true
-    Movement - Right Side:
+    Move - Right Side:
         Outcomes:
             Section: Right Side
         Requirements:
             Default:
                 Section: Left Side
                 Progression - Unlock Blue Doors: true
-    Action - Use Left Exit:
-        Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Blue Door Hallway (Left Exit)
-        Requirements:
-            Default:
-                Section: Left Side
-    Action - Use Right Exit:
-        Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Blue Door Hallway (Right Exit)
-        Requirements:
-            Default:
-                Section: Right Side

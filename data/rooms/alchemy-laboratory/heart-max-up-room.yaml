@@ -9,28 +9,33 @@ Columns: 1
 Rows: 1
 Total Cells: 1
 Entities:
-Sections:
-    - Default
-Nodes:
-    Right Exit:
+Node Sections:
+    Right Node:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Commands:
+Triggers:
+    Entry - Right Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Heart Max-Up Room
+                Section: Right Node
+    Exit - Right Node:
+        Outcomes:
+            Section: Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Heart Max-Up Room
+                Section: Primary
     Action - Collect Object at Alchemy Lab Heart Max-Up Location:
         Outcomes:
             Progression - Object at Alchemy Lab Heart Max-Up Location Collected: true
-            Object Hook:
-                - Object at Alchemy Lab Heart Max-Up Location
+            Object:
+                Item - Heart Max-Up: 1
         Requirements:
             Default:
                 Section: Default
                 Progression - Object at Alchemy Lab Heart Max-Up Location Collected: false
-    Action - Use Right Exit:
-        Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Heart Max-Up Room (Right Exit)
-        Requirements:
-            Default:
-                Section: Default

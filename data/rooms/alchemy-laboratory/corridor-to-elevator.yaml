@@ -9,31 +9,43 @@ Columns: 2
 Rows: 1
 Total Cells: 2
 Entities:
-Sections:
-    - Default
-Nodes:
-    Left Exit:
+Node Sections:
+    Left Node:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Right Exit:
+    Right Node:
         Type: Passage
         Row: 0
         Column: 1
         Edge: Right
-Commands:
-    Action - Use Left Exit:
+Triggers:
+    Entry - Left Node:
         Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Exit to Marble Gallery (Left Exit)
+            Section: Primary
         Requirements:
             Default:
-                Section: Default
-    Action - Use Right Exit:
+                Location: Alchemy Laboratory, Corridor to Elevator
+                Section: Left Node
+    Exit - Left Node:
         Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Exit to Marble Gallery (Right Exit)
+            Section: Left Node
         Requirements:
             Default:
-                Section: Default
+                Location: Alchemy Laboratory, Corridor to Elevator
+                Section: Primary
+    Entry - Right Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Corridor to Elevator
+                Section: Right Node
+    Exit - Right Node:
+        Outcomes:
+            Section: Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Corridor to Elevator
+                Section: Primary

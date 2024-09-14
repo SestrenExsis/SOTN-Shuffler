@@ -9,29 +9,54 @@ Columns: 1
 Rows: 1
 Total Cells: 1
 Entities:
-Sections:
-    - Left Side
-    - Right Side
-Nodes:
-    Left Exit:
+Node Sections:
+    Left Node:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Right Exit:
+    Right Node:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Commands:
-    Movement - Left Side:
+Triggers:
+    Entry - Left Node:
+        Outcomes:
+            Section: Left Side
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Cannon Room
+                Section: Left Node
+    Exit - Left Node:
+        Outcomes:
+            Section: Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Cannon Room
+                Section: Left Side
+    Entry - Right Node:
+        Outcomes:
+            Section: Right Side
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Cannon Room
+                Section: Right Node
+    Exit - Right Node:
+        Outcomes:
+            Section: Right Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Cannon Room
+                Section: Right Side
+    Move - Left Side:
         Outcomes:
             Section: Left Side
         Requirements:
             Default:
                 Section: Right Side
                 Progression - Activate Cannon: true
-    Movement - Right Side:
+    Move - Right Side:
         Outcomes:
             Section: Right Side
         Requirements:
@@ -45,17 +70,3 @@ Commands:
             Default:
                 Section: Right Side
                 Progression - Activate Cannon: false
-    Action - Use Left Exit:
-        Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Cannon Room (Left Exit)
-        Requirements:
-            Default:
-                Section: Left Side
-    Action - Use Right Exit:
-        Outcomes:
-            Location Hook:
-                - Alchemy Laboratory - Cannon Room (Right Exit)
-        Requirements:
-            Default:
-                Section: Right Side
