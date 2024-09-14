@@ -9,8 +9,8 @@ Rows: 1
 Total Cells: 1
 Empty Cells:
 Entities:
-Nodes:
-    Left:
+Node Sections:
+    Left Node:
         Type: Passage
         Row: 0
         Column: 0
@@ -37,5 +37,5 @@ Triggers:
                 Relic - Skill of Wolf: 1
         Requirements:
             Default:
-                Section: Default
+                Section: Primary
                 Progression - Object at Skill of Wolf Location Collected: false

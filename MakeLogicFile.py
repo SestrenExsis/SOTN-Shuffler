@@ -45,8 +45,7 @@ if __name__ == '__main__':
         file_name = 'data/rooms/alchemy-laboratory/' + room_name + '.yaml'
         with open(file_name) as open_file:
             yaml_obj = yaml.safe_load(open_file)
-            logic[room_name] = {}
-            logic[room_name] = yaml_obj
+            logic['Alchemy Laboratory, ' + room_name] = yaml_obj
     with open('build/logic.json', 'w') as open_file:
         json_string = json.dumps(
             logic,

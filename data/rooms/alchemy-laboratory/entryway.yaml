@@ -15,13 +15,13 @@ Node Sections:
     Right Node:
         Type: Red Door
         Row: 0
-        Column: 0
+        Column: 2
         Edge: Right
     Upper Node:
         Type: Passage
         Row: 0
-        Column: 0
-        Edge: Upper
+        Column: 1
+        Edge: Top
 Triggers:
     Entry - Right Node:
         Outcomes:
@@ -58,5 +58,5 @@ Triggers:
                 Item - Hide Cuirass: 1
         Requirements:
             Default:
-                Section: Default
+                Section: Primary
                 Progression - Object at Hide Cuirass Location Collected: false

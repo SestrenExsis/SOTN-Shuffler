@@ -1,11 +1,18 @@
+import heapq
 import json
 
 class Game:
-    def __init__(self, logic, starting_location: str='Name Entry Screen'):
+    def __init__(self,
+        logic,
+        starting_location: str='Name Entry Screen',
+        starting_section: str='Primary'
+    ):
         self.logic = logic
         self.starting_location = starting_location
+        self.starting_section = starting_section
         self.player = {
             'Location': self.starting_location,
+            'Section': self.starting_section,
         }
         self.commands = []
     
@@ -55,11 +62,55 @@ class Game:
                 print('  +', key, ': ', value)
                 self.player[key] += value
 
+    def process_position_update(self):
+        room_data = self.logic[self.player['Location']]
+        if self.player['Section'] not in room_data['Node Sections']:
+            return
+        node = room_data['Node Sections'][self.player['Section']]
+        matching_left = room_data['Left'] + node['Column']
+        matching_top = room_data['Top'] + node['Row']
+        matching_edge = None
+        if node['Edge'] == 'Left':
+            matching_left -= 1
+            matching_edge = 'Right'
+        elif node['Edge'] == 'Right':
+            matching_left += 1
+            matching_edge = 'Left'
+        elif node['Edge'] == 'Top':
+            matching_top -= 1
+            matching_edge = 'Bottom'
+        elif node['Edge'] == 'Bottom':
+            matching_top += 1
+            matching_edge = 'Top'
+        possible_locations = []
+        for (location_name, location_data) in self.logic.items():
+            if location_name == self.player['Location']:
+                continue
+            if location_data['Node Sections'] is None:
+                continue
+            for (node_name, node_data) in location_data['Node Sections'].items():
+                node_left = location_data['Left'] + node_data['Column']
+                node_top = location_data['Top'] + node_data['Row']
+                if (
+                    node_left == matching_left and
+                    node_top == matching_top and
+                    node_data['Edge'] == matching_edge
+                ):
+                    location = (location_data['Index'], location_name, node_name)
+                    heapq.heappush(possible_locations, location)
+        (_, location_name, node_name) = heapq.heappop(possible_locations)
+        self.player['Location'] = location_name
+        self.player['Section'] = node_name
+
     def play(self):
-        print('@', self.player['Location'])
+        print('@', self.player['Location'], '-', self.player['Section'])
         valid_command_names = set()
         # Add choices for valid commands the player can issue
-        for command_key, command_info in self.logic.items():
+        room_data = self.logic[self.player['Location']]
+        triggers = {}
+        if 'Triggers' in room_data:
+            triggers = room_data['Triggers']
+        for command_key, command_info in triggers.items():
             if self.validate(command_info['Requirements']):
                 valid_command_names.add(command_key)
         valid_command_names = list(reversed(sorted(valid_command_names)))
@@ -73,24 +124,25 @@ class Game:
         command_input = input('> ').strip()
         if command_input in command_map.keys():
             command = command_map[command_input]
-            self.process_outcomes(self.logic[command]['Outcomes'])
+            self.process_outcomes(triggers[command]['Outcomes'])
         elif command_input in command_map.values():
             command = command_input
-            self.process_outcomes(self.logic[command]['Outcomes'])
+            self.process_outcomes(triggers[command]['Outcomes'])
         else:
             print('command not valid:', command_input)
             raise Exception()
+        # Process nodes, if any
+        self.process_position_update()
         print('')
 
 # TODO(sestren): Support different categories like Any%, RBO, Pacifist, etc?
 
 if __name__ == '__main__':
-    with open('logic/logic.json') as open_file:
+    with open('build/logic.json') as open_file:
         logic = json.load(open_file)
-        game = Game(logic)
-        game.player['Knowledge - How to Acquire Neutron Bomb in Prologue'] = True
-        game.player['Knowledge - How to Acquire Heart Refresh in Prologue'] = True
-        game.player['Knowledge - How to Perform Neutron Bomb Death Skip'] = True
-        # game.perform_check('Knowledge - Any Percent NSC')
+        game = Game(logic, 'Alchemy Laboratory, Entryway', 'Primary')
+        game.player['Knowledge - How to Break the Floor in Tall Zig Zag Room'] = True
+        game.player['Knowledge - How to Break the Wall in Tall Zig Zag Room'] = True
+        # game.player['Knowledge - How to Perform Neutron Bomb Death Skip'] = True
         while True:
             game.play()

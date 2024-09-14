@@ -37,5 +37,5 @@ Triggers:
                 Item - Sunglasses: 1
         Requirements:
             Default:
-                Section: Default
+                Section: Primary
                 Progression - Object at Sunglasses Location Collected: false

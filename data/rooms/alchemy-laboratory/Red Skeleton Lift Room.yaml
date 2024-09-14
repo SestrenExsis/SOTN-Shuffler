@@ -17,7 +17,7 @@ Node Sections:
         Type: Passage
         Row: 1
         Column: 2
-        Edge: Down
+        Edge: Bottom
     Lower-Right Node:
         Type: Passage
         Row: 1
@@ -27,7 +27,7 @@ Node Sections:
         Type: Passage
         Row: 0
         Column: 0
-        Edge: Up
+        Edge: Top
     Upper-Left Node:
         Type: Passage
         Row: 0

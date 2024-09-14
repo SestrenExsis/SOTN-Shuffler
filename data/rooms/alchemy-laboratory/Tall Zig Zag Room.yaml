@@ -14,7 +14,7 @@ Node Sections:
         Type: Passage
         Row: 2
         Column: 0
-        Edge: Down
+        Edge: Bottom
     Lower-Left Node:
         Type: Passage
         Row: 2
@@ -47,6 +47,14 @@ Triggers:
                 Location: Alchemy Laboratory, Tall Zig Zag Room
                 Section: Lower Node
                 Progression - Breakable Floor in Tall Zig Zag Room Broken: false
+    Exit - Lower Node:
+        Outcomes:
+            Section: Lower Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Section: Primary
+                Progression - Breakable Floor in Tall Zig Zag Room Broken: true
     Entry - Lower-Left Node, Unblocked:
         Outcomes:
             Section: Primary
@@ -63,6 +71,14 @@ Triggers:
                 Location: Alchemy Laboratory, Tall Zig Zag Room
                 Section: Lower-Left Node
                 Progression - Breakable Wall in Tall Zig Zag Room Broken: false
+    Exit - Lower-Left Node:
+        Outcomes:
+            Section: Lower-Left Node
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Section: Primary
+                Progression - Breakable Wall in Tall Zig Zag Room Broken: true
     Entry - Lower-Right Node:
         Outcomes:
             Section: Primary
@@ -93,18 +109,18 @@ Triggers:
                 Section: Primary
     Action - Break Floor:
         Outcomes:
-            Progression - Breakable Floor in Tall Zig Zag Room Broken: false
+            Progression - Breakable Floor in Tall Zig Zag Room Broken: true
         Requirements:
             Default:
-                Section: Default
+                Section: Primary
                 Knowledge - How to Break the Floor in Tall Zig Zag Room: true
                 Progression - Ability to Strike at Floor: true
                 Progression - Breakable Floor in Tall Zig Zag Room Broken: false
     Action - Break Wall:
         Outcomes:
-            Progression - Breakable Wall in Tall Zig Zag Room Broken: false
+            Progression - Breakable Wall in Tall Zig Zag Room Broken: true
         Requirements:
             Default:
-                Section: Default
+                Section: Primary
                 Knowledge - How to Break the Wall in Tall Zig Zag Room: true
                 Progression - Breakable Wall in Tall Zig Zag Room Broken: false

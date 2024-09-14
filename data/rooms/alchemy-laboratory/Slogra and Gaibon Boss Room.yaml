@@ -78,6 +78,7 @@ Triggers:
             Default:
                 Location: Alchemy Laboratory, Slogra and Gaibon Boss Room
                 Progression - Slogra and Gaibon Defeated: false
+                Section: Ground
     Move - Alcove:
         Outcomes:
             Location: Alchemy Laboratory, Alcove

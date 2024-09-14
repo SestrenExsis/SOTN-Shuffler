@@ -14,7 +14,7 @@ Node Sections:
         Type: Passage
         Row: 0
         Column: 0
-        Edge: Down
+        Edge: Bottom
     Right Node:
         Type: Passage
         Row: 0
@@ -57,6 +57,7 @@ Triggers:
         Requirements:
             Default:
                 Location: Alchemy Laboratory, Glass Vats
+                Section: Primary
     Action - Collect Object at Glass Vat 1 Location:
         Outcomes:
             Progression - Object at Glass Vat 1 Location Collected: true
@@ -64,7 +65,7 @@ Triggers:
                 Subweapon: Agunea
         Requirements:
             Default:
-                Section: Default
+                Section: Primary
                 Progression - Object at Glass Vat 1 Location Collected: false
     Action - Collect Object at Glass Vat 2 Location:
         Outcomes:
@@ -73,7 +74,7 @@ Triggers:
                 Subweapon: Rebound Stone
         Requirements:
             Default:
-                Section: Default
+                Section: Primary
                 Progression - Object at Glass Vat 2 Location Collected: false
     Action - Collect Object at Glass Vat 3 Location:
         Outcomes:
@@ -82,7 +83,7 @@ Triggers:
                 Subweapon: Cross
         Requirements:
             Default:
-                Section: Default
+                Section: Primary
                 Progression - Object at Glass Vat 3 Location Collected: false
     Action - Collect Object at Glass Vat 4 Location:
         Outcomes:
@@ -91,7 +92,7 @@ Triggers:
                 Subweapon: Holy Book
         Requirements:
             Default:
-                Section: Default
+                Section: Primary
                 Progression - Object at Glass Vat 4 Location Collected: false
     Action - Collect Object at Glass Vat 5 Location:
         Outcomes:
@@ -100,5 +101,5 @@ Triggers:
                 Subweapon: Axe
         Requirements:
             Default:
-                Section: Default
+                Section: Primary
                 Progression - Object at Glass Vat 5 Location Collected: false

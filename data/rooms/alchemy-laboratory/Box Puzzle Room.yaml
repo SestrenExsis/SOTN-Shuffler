@@ -77,7 +77,7 @@ Triggers:
                 Progression - Box Puzzle Solved: false
     Move - Ledge:
         Outcomes:
-            Location: Alchemy Laboratory, Ledge
+            Section: Ledge
         Requirements:
             Box Puzzle:
                 Section: Ground
