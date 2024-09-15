@@ -19,7 +19,7 @@ Node Sections:
     Right Node:
         Type: Passage
         Row: 0
-        Column: 0
+        Column: 3
         Edge: Right
 Triggers:
     Entry - Left Node:
@@ -27,7 +27,7 @@ Triggers:
             Section: Primary
         Requirements:
             Default:
-                Location: Alchemy Laboratory, Alchemy Laboratory, Bloody Zombie Hallway
+                Location: Alchemy Laboratory, Bloody Zombie Hallway
                 Section: Left Node
     Exit - Left Node:
         Outcomes:

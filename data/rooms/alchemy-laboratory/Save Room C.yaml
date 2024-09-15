@@ -21,7 +21,7 @@ Triggers:
             Section: Primary
         Requirements:
             Default:
-                Location: Alchemy Laboratory, Alchemy Laboratory, Alchemy Laboratory, Save Room C
+                Location: Alchemy Laboratory, Save Room C
                 Section: Left Node
     Exit - Left Node:
         Outcomes:
@@ -31,6 +31,8 @@ Triggers:
                 Location: Alchemy Laboratory, Save Room C
                 Section: Primary
     Action - Save Game:
+        Outcomes:
+            Save: true
         Requirements:
             Default:
                 Section: Primary

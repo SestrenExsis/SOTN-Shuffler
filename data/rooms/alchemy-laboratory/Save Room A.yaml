@@ -31,6 +31,8 @@ Triggers:
                 Location: Alchemy Laboratory, Save Room A
                 Section: Primary
     Action - Save Game:
+        Outcomes:
+            Save: true
         Requirements:
             Default:
                 Section: Primary

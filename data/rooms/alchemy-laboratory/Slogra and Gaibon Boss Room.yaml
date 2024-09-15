@@ -81,7 +81,7 @@ Triggers:
                 Section: Ground
     Move - Alcove:
         Outcomes:
-            Location: Alchemy Laboratory, Alcove
+            Section: Alcove
         Requirements:
             Bat:
                 Location: Alchemy Laboratory, Slogra and Gaibon Boss Room
@@ -110,8 +110,8 @@ Triggers:
                 Progression - Wolf Transformation: true
     Move - Ground:
         Outcomes:
-            Location: Alchemy Laboratory, Ground
+            Section: Ground
         Requirements:
-            Bat:
+            Default:
                 Location: Alchemy Laboratory, Slogra and Gaibon Boss Room
                 Section: Alcove

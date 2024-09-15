@@ -26,42 +26,42 @@ Node Sections:
         Column: 1
         Edge: Right
 Triggers:
-    Entry - Lower-Right:
+    Entry - Lower-Right Node:
         Outcomes:
             Section: Ground
         Requirements:
             Default:
                 Location: Alchemy Laboratory, Box Puzzle Room
                 Section: Lower-Right Node
-    Exit - Lower-Right:
+    Exit - Lower-Right Node:
         Outcomes:
             Section: Lower-Right Node
         Requirements:
             Default:
                 Location: Alchemy Laboratory, Box Puzzle Room
                 Section: Ground
-    Entry - Upper-Left:
+    Entry - Upper-Left Node:
         Outcomes:
             Section: Ground
         Requirements:
             Default:
                 Location: Alchemy Laboratory, Box Puzzle Room
                 Section: Upper-Left Node
-    Exit - Upper-Left:
+    Exit - Upper-Left Node:
         Outcomes:
             Section: Upper-Left Node
         Requirements:
             Default:
                 Location: Alchemy Laboratory, Box Puzzle Room
                 Section: Ground
-    Entry - Upper-Right:
+    Entry - Upper-Right Node:
         Outcomes:
             Section: Ledge
         Requirements:
             Default:
                 Location: Alchemy Laboratory, Box Puzzle Room
                 Section: Upper-Right Node
-    Exit - Upper-Right:
+    Exit - Upper-Right Node:
         Outcomes:
             Section: Upper-Right Node
         Requirements:
@@ -102,7 +102,7 @@ Triggers:
                 Progression - Wolf Transformation: true
     Move - Ground:
         Outcomes:
-            Location: Alchemy Laboratory, Ground
+            Section: Ground
         Requirements:
-            Bat:
+            Default:
                 Section: Ledge

@@ -10,4 +10,17 @@ Total Cells: 1
 Empty Cells:
 Entities:
 Node Sections:
+    Right Node:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
 Triggers:
+    Entry - Right Node:
+        Outcomes:
+            Location: Royal Chapel, Unknown
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Alchemy Laboratory, Fake Castle Entrance Room
+                Section: Right Node

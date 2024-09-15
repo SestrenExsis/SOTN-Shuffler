@@ -10,12 +10,12 @@ Total Cells: 2
 Empty Cells:
 Entities:
 Node Sections:
-    Lower-Left:
+    Lower-Left Node:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Left
-    Upper-Left:
+    Upper-Left Node:
         Type: Passage
         Row: 0
         Column: 0

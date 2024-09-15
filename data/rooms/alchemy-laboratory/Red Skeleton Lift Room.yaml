@@ -118,7 +118,7 @@ Triggers:
                 Progression - Red Skeleton Lift Puzzle Solved: false
     Move - Alcove:
         Outcomes:
-            Location: Alchemy Laboratory, Alcove
+            Section: Alcove
         Requirements:
             Red Skeleton Lift Puzzle:
                 Section: Ground
@@ -143,7 +143,7 @@ Triggers:
                 Progression - Wolf Transformation: true
     Move - Ground:
         Outcomes:
-            Location: Alchemy Laboratory, Ground
+            Section: Ground
         Requirements:
-            Bat:
+            Default:
                 Section: Alcove

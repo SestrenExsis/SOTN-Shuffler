@@ -39,6 +39,7 @@ Triggers:
         Requirements:
             Default:
                 Location: Alchemy Laboratory, Glass Vats
+                Section: Primary
     Entry - Right Node:
         Outcomes:
             Section: Primary
