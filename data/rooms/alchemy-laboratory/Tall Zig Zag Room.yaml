@@ -11,12 +11,12 @@ Empty Cells:
 Entities:
 Node Sections:
     Lower Node:
-        Type: Passage
+        Type: Secret Passage
         Row: 2
         Column: 0
         Edge: Bottom
     Lower-Left Node:
-        Type: Passage
+        Type: Secret Passage
         Row: 2
         Column: 0
         Edge: Left

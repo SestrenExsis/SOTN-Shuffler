@@ -45,13 +45,12 @@ class Address:
         return result
 
 class Room:
-    def __init__(self, room_id: tuple, box: tuple[int], exits: list[tuple]):
-        self.stage_id = room_id[0]
-        self.room_id = room_id[1]
-        self.left = box[0]
-        self.top = box[1]
-        self.width = box[2]
-        self.height = box[3]
+    def __init__(self, room_index: int, box: tuple[int], exits: list[tuple]):
+        self.room_index = room_index
+        self.top = box[0]
+        self.left = box[1]
+        self.height = box[2]
+        self.width = box[3]
         self.exits = exits
 
 class IndexedBitmapCanvas():
@@ -77,22 +76,22 @@ class IndexedBitmapCanvas():
                 self.set_pixel(top + row, left + col, fill)
     
     def draw_room(self, room: Room):
-        left = 4 * room.left
         top = 4 * room.top
+        left = 4 * room.left
         height = 4 * room.height + 1
         width = 4 * room.width + 1
         self.fill_rect(top, left, height, width, 0)
         self.fill_rect(top + 1, left + 1, height - 2, width - 2, 1)
-        for (row, col, direction) in room.exits:
+        for (row, col, edge) in room.exits:
             y = top + 4 * row + 2
             x = left + 4 * col + 2
-            if direction == 'LEFT':
+            if edge == 'Left':
                 x -= 2
-            elif direction == 'RIGHT':
+            elif edge == 'Right':
                 x += 2
-            elif direction == 'TOP':
+            elif edge == 'Top':
                 y -= 2
-            elif direction == 'BOTTOM':
+            elif edge == 'Bottom':
                 y += 2
             self.set_pixel(y, x, 1)
 
@@ -149,12 +148,12 @@ class PPF:
                 self.write_u32(disc_address)
                 self.write_byte(1)
                 # If either side of the pair is unspecified, supply the default
-                left = 0xF & (left or canvas.default)
-                right = 0xF & (right or canvas.default)
+                left = 0xF & (left if left is not None else canvas.default)
+                right = 0xF & (right if right is not None else canvas.default)
                 self.write_byte((right << 4) | left)
     
     def patch_room_data(self, room: Room, address: Address):
-        self.write_u32(address.to_disc_address(8 * room.room_id))
+        self.write_u32(address.to_disc_address(8 * room.room_index))
         size = 4
         self.write_byte(size)
         self.write_byte(room.left)
