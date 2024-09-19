@@ -33,20 +33,38 @@ class RoomRandomizer:
     def __init__(self, logic):
         self.logic = logic
         self.changes = {}
-        self.remaining_cells = self.get_empty_cells()
+        self.empty_cells = set()
+        self.segments = collections.defaultdict(set)
+        self.unplaced_nodes = {
+            'Left': set(),
+            'Top': set(),
+            'Right': set(),
+            'Bottom': set(),
+        }
+        self.reset()
 
-    def get_empty_cells(self):
-        result = set()
-        top = 23
-        left = 0
+    def reset(self):
+        self.empty_cells = set()
+        TOP = 23
+        LEFT = 0
         for row in range(len(self.stage_cells)):
             for col in range(len(self.stage_cells[row])):
                 if self.stage_cells[row][col] == ' ':
                     continue
-                result.add((top + row, left + col))
-        return result
+                self.empty_cells.add((TOP + row, LEFT + col))
+        self.changes = {}
+        self.unplaced_nodes = {
+            'Left': set(),
+            'Top': set(),
+            'Right': set(),
+            'Bottom': set(),
+        }
+        for (room_name, room) in self.logic.items():
+            for (node_name, node) in room['Node Sections'].items():
+                self.unplaced_nodes[node['Edge']].add((room_name, node_name))
+        self.segments = collections.defaultdict(set)
     
-    def get_segment(self, row, col, edge) -> tuple[int]:
+    def to_segment(self, row: int, col: int, edge: str) -> tuple[int]:
         top = None
         left = None
         bottom = None
@@ -62,26 +80,40 @@ class RoomRandomizer:
         result = (top, left, bottom, right)
         return result
     
+    def to_matching_edge(self, edge: str) -> str:
+        result = None
+        if edge == 'Top':
+            result = 'Bottom'
+        elif edge == 'Bottom':
+            result = 'Top'
+        elif edge == 'Left':
+            result = 'Right'
+        elif edge == 'Right':
+            result = 'Left'
+        return result
+
+    def open_edges(self):
+        result = set(
+            (segment, list(edges)[0]) for (segment, edges) in
+            self.segments.items() if len(edges) == 1
+        )
+        return result
+
+    def place_room(self, room_name, top, left):
+        self.changes[room_name] = {}
+        # Room indexes are left at default values for now
+        self.changes[room_name]['Index'] = self.logic[room_name]['Index']
+        self.changes[room_name]['Top'] = top
+        self.changes[room_name]['Left'] = left
+        for (node_name, node) in self.logic[room_name]['Node Sections'].items():
+            row = self.changes[room_name]['Top'] + node['Row']
+            col = self.changes[room_name]['Left'] + node['Column']
+            segment = self.to_segment(row, col, node['Edge'])
+            self.segments[segment].add(node['Edge'])
+            self.unplaced_nodes[node['Edge']].remove((room_name, node_name))
+
     def shuffle_rooms(self) -> dict:
-        def F(room_name):
-            for (node_name, node) in self.logic[room_name]['Node Sections'].items():
-                row = self.changes[room_name]['Top'] + node['Row']
-                col = self.changes[room_name]['Left'] + node['Column']
-                segment = self.get_segment(row, col, node['Edge'])
-                segments[segment].add(node['Edge'])
-                unplaced_nodes[node['Edge']].remove((room_name, node_name))
-        self.remaining_cells = self.get_empty_cells()
-        self.changes = {}
-        unplaced_nodes = {
-            'Left': set(),
-            'Top': set(),
-            'Right': set(),
-            'Bottom': set(),
-        }
-        for (room_name, room) in self.logic.items():
-            for (node_name, node) in room['Node Sections'].items():
-                unplaced_nodes[node['Edge']].add((room_name, node_name))
-        segments = collections.defaultdict(set)
+        self.reset()
         # The location of these rooms do not change for now
         for room_name in (
             'Alchemy Laboratory, Fake Castle Entrance Room',
@@ -92,57 +124,55 @@ class RoomRandomizer:
             'Alchemy Laboratory, Loading Room C',
             'Alchemy Laboratory, Exit to Holy Chapel',
         ):
-            self.changes[room_name] = {}
-            self.changes[room_name]['Index'] = self.logic[room_name]['Index']
-            self.changes[room_name]['Top'] = self.logic[room_name]['Top']
-            self.changes[room_name]['Left'] = self.logic[room_name]['Left']
-            F(room_name)
-        # Hard-code possible red door placements for now
+            self.place_room(
+                room_name,
+                self.logic[room_name]['Top'],
+                self.logic[room_name]['Left']
+            )
+        # Hard-code placing the other two red door rooms randomly
         if random.random() < 0.5:
             room_name = 'Alchemy Laboratory, Exit to Marble Gallery'
-            self.changes[room_name] = {}
-            self.changes[room_name]['Index'] = self.logic[room_name]['Index']
-            self.changes[room_name]['Top'] = self.logic[room_name]['Top']
-            self.changes[room_name]['Left'] = self.logic[room_name]['Left']
-            F(room_name)
+            self.place_room(
+                room_name,
+                self.logic[room_name]['Top'],
+                self.logic[room_name]['Left']
+            )
             room_name = 'Alchemy Laboratory, Entryway'
-            self.changes[room_name] = {}
-            self.changes[room_name]['Index'] = self.logic[room_name]['Index']
-            self.changes[room_name]['Top'] = self.logic[room_name]['Top']
-            self.changes[room_name]['Left'] = self.logic[room_name]['Left']
-            F(room_name)
+            self.place_room(
+                room_name,
+                self.logic[room_name]['Top'],
+                self.logic[room_name]['Left']
+            )
         else:
             room_name = 'Alchemy Laboratory, Exit to Marble Gallery'
-            self.changes[room_name] = {}
-            self.changes[room_name]['Index'] = self.logic[room_name]['Index']
-            self.changes[room_name]['Top'] = 35
-            self.changes[room_name]['Left'] = 15
-            F(room_name)
+            self.place_room(room_name, 35, 15)
             room_name = 'Alchemy Laboratory, Entryway'
-            self.changes[room_name] = {}
-            self.changes[room_name]['Index'] = self.logic[room_name]['Index']
-            self.changes[room_name]['Top'] = 26
-            self.changes[room_name]['Left'] = 18
-            F(room_name)
+            self.place_room(room_name, 26, 18)
+        # Eventually, loop through all remaining rooms
         # Check all placed nodes for openness
-        
+        open_edges = self.open_edges()
         # Choose random open node A
+        ((top, left, bottom, right), edge) = random.choice(tuple(open_edges))
         # Choose random unplaced node B that complements A
+        matching_edge = self.to_matching_edge(edge)
+        (room_name, node_name) = random.choice(tuple(self.unplaced_nodes[matching_edge]))
         # Place all nodes from B's room, relative to where B was placed
-
+        top = 32
+        left = 4
+        self.place_room(room_name, top, left)
         # Always place Bat Card Room inside Tetromino Room for now
         # room_name = 'Alchemy Laboratory, Bat Card Room'
-        # result[room_name] = {}
-        # result[room_name]['Index'] = self.logic[room_name]['Index']
-        # result[room_name]['Top'] = self.logic['Alchemy Laboratory, Tetromino Room']['Top'] + 1
-        # result[room_name]['Left'] = self.logic['Alchemy Laboratory, Tetromino Room']['Left']
-        result = segments
-        return result
+        # self.place_room(
+        #     room_name,
+        #     self.logic[room_name]['Index'],
+        #     self.logic['Alchemy Laboratory, Tetromino Room']['Top'] + 1,
+        #     self.logic['Alchemy Laboratory, Tetromino Room']['Left']
+        # )
     
-    def show_spoiler(self, open_segments):
+    def show_spoiler(self):
         codes = '0123456789abcdefghijklmnopqrstuv+. '
         result = [[' ' for col in range(64)] for row in range(64)]
-        for (row, col) in self.get_empty_cells():
+        for (row, col) in self.empty_cells:
             result[row][col] = '.'
         for room_name in self.changes.keys():
             (index, top, left, rows, cols) = (
@@ -159,7 +189,7 @@ class RoomRandomizer:
                     prev_index = codes.find(result[row][col])
                     if index < prev_index:
                         result[row][col] = code
-        for (segment, edge) in open_segments:
+        for (segment, edge) in self.open_edges():
             (top, left, bottom, right) = segment
             (row, col) = (None, None)
             if edge == 'Top':
@@ -185,11 +215,8 @@ if __name__ == '__main__':
     with open('build/logic.json') as open_file:
         logic = json.load(open_file)
         room_randomizer = RoomRandomizer(logic)
-        segments = room_randomizer.shuffle_rooms()
-        room_randomizer.show_spoiler(
-            set((segment, list(edges)[0]) for (segment, edges) in segments.items() if
-            len(edges) == 1)
-        )
+        room_randomizer.shuffle_rooms()
+        room_randomizer.show_spoiler()
     file_name = 'build/AlchemyLabChanges.yaml'
     with open(file_name, 'w') as open_file:
         yaml.dump(changes, open_file, default_flow_style=False)
