@@ -47,11 +47,16 @@ class RoomRandomizer:
         self.empty_cells = set()
         TOP = 23
         LEFT = 0
-        for row in range(len(self.stage_cells)):
-            for col in range(len(self.stage_cells[row])):
-                if self.stage_cells[row][col] == ' ':
-                    continue
-                self.empty_cells.add((TOP + row, LEFT + col))
+        # NOTE(sestren): For now, allow Alchemy Lab to overlap other stages
+        for row in range(64):
+            for col in range(64):
+                self.empty_cells.add((row, col))
+        # TODO(sestren): Restore obeying other stage's boundaries later
+        # for row in range(len(self.stage_cells)):
+        #     for col in range(len(self.stage_cells[row])):
+        #         if self.stage_cells[row][col] == ' ':
+        #             continue
+        #         self.empty_cells.add((TOP + row, LEFT + col))
         self.changes = {}
         self.unplaced_nodes = {
             'Left': set(),
@@ -154,7 +159,23 @@ class RoomRandomizer:
                 for col in range(self.logic[room_name]['Columns']):
                     if (room_top + row, room_left + col) not in self.empty_cells:
                         legal_ind = False
-            # TODO(sestren): All nodes of the room must connect or remain open
+                        break
+                if not legal_ind:
+                    break
+            if not legal_ind:
+                continue
+            # All nodes of the room must complete an open node or start a new one
+            for (other_node_name, node) in self.logic[room_name]['Node Sections'].items():
+                row = room_top + node['Row']
+                col = room_left + node['Column']
+                segment = self.to_segment(row, col, node['Edge'])
+                (target_row, target_col) = self.to_cell(segment, node['Edge'])
+                if (room_top + row, room_left + col) in self.empty_cells:
+                    continue
+                if len(self.segments[segment]) == 1:
+                    continue
+                legal_ind = False
+                break
             if legal_ind:
                 result.append((room_name, node_name))
         return result
@@ -195,12 +216,16 @@ class RoomRandomizer:
             self.place_room(room_name, 35, 15)
             room_name = 'Alchemy Laboratory, Entryway'
             self.place_room(room_name, 26, 18)
+        rooms_placed = 0
         while len(self.unplaced_nodes) > 0:
             # Check all placed nodes for openness
             open_edges = self.open_edges()
             # Choose random open node A
-            (segment, edge) = random.choice(tuple(open_edges))
-            nodes = self.possible_matching_nodes(segment, edge)
+            for _ in range(1_000):
+                (segment, edge) = random.choice(tuple(open_edges))
+                nodes = self.possible_matching_nodes(segment, edge)
+                if len(nodes) > 0:
+                    break
             if len(nodes) < 1:
                 # Halt if you can't find a matching node
                 break
@@ -213,17 +238,18 @@ class RoomRandomizer:
             room_top = target_row - node_row
             room_left = target_col - node_col
             self.place_room(room_name, room_top, room_left)
-            # break
+            rooms_placed += 1
         # Always place Bat Card Room inside Tetromino Room for now
-        room_name = 'Alchemy Laboratory, Bat Card Room'
-        room = self.logic[room_name]
-        for (node_name, node) in room['Node Sections'].items():
-            self.unplaced_nodes[node['Edge']].add((room_name, node_name))
-        self.place_room(
-            room_name,
-            self.logic['Alchemy Laboratory, Tetromino Room']['Top'] + 1,
-            self.logic['Alchemy Laboratory, Tetromino Room']['Left']
-        )
+        if 'Alchemy Laboratory, Tetromino Room' in self.changes:
+            room_name = 'Alchemy Laboratory, Bat Card Room'
+            room = self.logic[room_name]
+            for (node_name, node) in room['Node Sections'].items():
+                self.unplaced_nodes[node['Edge']].add((room_name, node_name))
+            self.place_room(
+                room_name,
+                self.changes['Alchemy Laboratory, Tetromino Room']['Top'] + 1,
+                self.changes['Alchemy Laboratory, Tetromino Room']['Left']
+            )
     
     def show_spoiler(self):
         codes = '0123456789abcdefghijklmnopqrstuv+. '
