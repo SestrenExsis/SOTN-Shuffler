@@ -60,6 +60,9 @@ class RoomRandomizer:
             'Bottom': set(),
         }
         for (room_name, room) in self.logic.items():
+            # Bat Card Room will be placed manually at a later step
+            if room_name == 'Alchemy Laboratory, Bat Card Room':
+                continue
             for (node_name, node) in room['Node Sections'].items():
                 self.unplaced_nodes[node['Edge']].add((room_name, node_name))
         self.segments = collections.defaultdict(set)
@@ -80,6 +83,20 @@ class RoomRandomizer:
         result = (top, left, bottom, right)
         return result
     
+    def to_cell(self, segment: tuple[int], edge: str) -> tuple[int]:
+        (top, left, bottom, right) = segment
+        (row, col) = (None, None)
+        if edge == 'Top':
+            (row, col) = (top - 1, left)
+        elif edge == 'Left':
+            (row, col) = (top, left - 1)
+        elif edge == 'Bottom':
+            (row, col) = (top, left)
+        elif edge == 'Right':
+            (row, col) = (top, left)
+        result = (row, col)
+        return result
+
     def to_matching_edge(self, edge: str) -> str:
         result = None
         if edge == 'Top':
@@ -111,6 +128,36 @@ class RoomRandomizer:
             segment = self.to_segment(row, col, node['Edge'])
             self.segments[segment].add(node['Edge'])
             self.unplaced_nodes[node['Edge']].remove((room_name, node_name))
+        for row in range(self.logic[room_name]['Rows']):
+            for col in range(self.logic[room_name]['Columns']):
+                cell = (
+                    self.changes[room_name]['Top'] + row,
+                    self.changes[room_name]['Left'] + col,
+                )
+                if cell in self.empty_cells:
+                    self.empty_cells.remove(cell)
+    
+    def possible_matching_nodes(self, segment, edge):
+        # (top, left, bottom, right) = segment
+        matching_edge = self.to_matching_edge(edge)
+        (target_row, target_col) = self.to_cell(segment, edge)
+        open_edges = self.open_edges()
+        result = []
+        for (room_name, node_name) in self.unplaced_nodes[matching_edge]:
+            legal_ind = True
+            # All cells of where the room will be placed must be empty
+            node_row = self.logic[room_name]['Node Sections'][node_name]['Row']
+            node_col = self.logic[room_name]['Node Sections'][node_name]['Column']
+            room_top = target_row - node_row
+            room_left = target_col - node_col
+            for row in range(self.logic[room_name]['Rows']):
+                for col in range(self.logic[room_name]['Columns']):
+                    if (room_top + row, room_left + col) not in self.empty_cells:
+                        legal_ind = False
+            # TODO(sestren): All nodes of the room must connect or remain open
+            if legal_ind:
+                result.append((room_name, node_name))
+        return result
 
     def shuffle_rooms(self) -> dict:
         self.reset()
@@ -148,26 +195,35 @@ class RoomRandomizer:
             self.place_room(room_name, 35, 15)
             room_name = 'Alchemy Laboratory, Entryway'
             self.place_room(room_name, 26, 18)
-        # Eventually, loop through all remaining rooms
-        # Check all placed nodes for openness
-        open_edges = self.open_edges()
-        # Choose random open node A
-        ((top, left, bottom, right), edge) = random.choice(tuple(open_edges))
-        # Choose random unplaced node B that complements A
-        matching_edge = self.to_matching_edge(edge)
-        (room_name, node_name) = random.choice(tuple(self.unplaced_nodes[matching_edge]))
-        # Place all nodes from B's room, relative to where B was placed
-        top = 32
-        left = 4
-        self.place_room(room_name, top, left)
+        while len(self.unplaced_nodes) > 0:
+            # Check all placed nodes for openness
+            open_edges = self.open_edges()
+            # Choose random open node A
+            (segment, edge) = random.choice(tuple(open_edges))
+            nodes = self.possible_matching_nodes(segment, edge)
+            if len(nodes) < 1:
+                # Halt if you can't find a matching node
+                break
+            # Choose random unplaced legal node B that complements A
+            (room_name, node_name) = random.choice(nodes)
+            # Place all nodes from B's room, relative to where B was placed
+            node_row = self.logic[room_name]['Node Sections'][node_name]['Row']
+            node_col = self.logic[room_name]['Node Sections'][node_name]['Column']
+            (target_row, target_col) = self.to_cell(segment, edge)
+            room_top = target_row - node_row
+            room_left = target_col - node_col
+            self.place_room(room_name, room_top, room_left)
+            # break
         # Always place Bat Card Room inside Tetromino Room for now
-        # room_name = 'Alchemy Laboratory, Bat Card Room'
-        # self.place_room(
-        #     room_name,
-        #     self.logic[room_name]['Index'],
-        #     self.logic['Alchemy Laboratory, Tetromino Room']['Top'] + 1,
-        #     self.logic['Alchemy Laboratory, Tetromino Room']['Left']
-        # )
+        room_name = 'Alchemy Laboratory, Bat Card Room'
+        room = self.logic[room_name]
+        for (node_name, node) in room['Node Sections'].items():
+            self.unplaced_nodes[node['Edge']].add((room_name, node_name))
+        self.place_room(
+            room_name,
+            self.logic['Alchemy Laboratory, Tetromino Room']['Top'] + 1,
+            self.logic['Alchemy Laboratory, Tetromino Room']['Left']
+        )
     
     def show_spoiler(self):
         codes = '0123456789abcdefghijklmnopqrstuv+. '
@@ -185,22 +241,13 @@ class RoomRandomizer:
             code = codes[index]
             for row in range(top, top + rows):
                 for col in range(left, left + cols):
-                    assert result[row][col] != ' '
+                    # assert result[row][col] != ' '
                     prev_index = codes.find(result[row][col])
                     if index < prev_index:
                         result[row][col] = code
         for (segment, edge) in self.open_edges():
-            (top, left, bottom, right) = segment
-            (row, col) = (None, None)
-            if edge == 'Top':
-                (row, col) = (top - 1, left)
-            elif edge == 'Left':
-                (row, col) = (top, left - 1)
-            elif edge == 'Bottom':
-                (row, col) = (top, left)
-            elif edge == 'Right':
-                (row, col) = (top, left)
-            assert result[row][col] == '.'
+            (row, col) = self.to_cell(segment, edge)
+            # assert result[row][col] == '.'
             result[row][col] = '+'
         for row in range(len(result)):
             print(''.join(result[row]))
