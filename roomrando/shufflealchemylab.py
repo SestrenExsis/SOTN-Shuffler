@@ -1,7 +1,6 @@
 import collections
 import json
 import random
-import roomrando
 import yaml
 
 '''
@@ -30,7 +29,12 @@ class RoomRandomizer:
         '..  .  .........           ',
         '..  .       .......        ',
     ]
-    def __init__(self, logic):
+    def __init__(self, logic, initial_seed: int=None):
+        if initial_seed is None:
+            self.initial_seed = random.randint(0, 2 ** 64)
+        else:
+            self.initial_seed = initial_seed
+        random.seed(self.initial_seed)
         self.logic = logic
         self.changes = {}
         self.empty_cells = set()
@@ -147,6 +151,7 @@ class RoomRandomizer:
         matching_edge = self.to_matching_edge(edge)
         (target_row, target_col) = self.to_cell(segment, edge)
         open_edges = self.open_edges()
+        # (segment, edge)
         result = []
         for (room_name, node_name) in self.unplaced_nodes[matching_edge]:
             legal_ind = True
@@ -170,7 +175,7 @@ class RoomRandomizer:
                 col = room_left + node['Column']
                 segment = self.to_segment(row, col, node['Edge'])
                 (target_row, target_col) = self.to_cell(segment, node['Edge'])
-                if (room_top + row, room_left + col) in self.empty_cells:
+                if (target_row, target_col) in self.empty_cells:
                     continue
                 if len(self.segments[segment]) == 1:
                     continue
@@ -220,8 +225,10 @@ class RoomRandomizer:
         while len(self.unplaced_nodes) > 0:
             # Check all placed nodes for openness
             open_edges = self.open_edges()
+            if len(open_edges) < 1:
+                break
             # Choose random open node A
-            for _ in range(1_000):
+            for _ in range(2_000):
                 (segment, edge) = random.choice(tuple(open_edges))
                 nodes = self.possible_matching_nodes(segment, edge)
                 if len(nodes) > 0:
@@ -273,10 +280,22 @@ class RoomRandomizer:
                         result[row][col] = code
         for (segment, edge) in self.open_edges():
             (row, col) = self.to_cell(segment, edge)
-            # assert result[row][col] == '.'
+            assert result[row][col] == '.'
             result[row][col] = '+'
         for row in range(len(result)):
             print(''.join(result[row]))
+        return result
+
+    def fitness(self):
+        result = (
+            sum((
+                len(self.unplaced_nodes['Top']),
+                len(self.unplaced_nodes['Left']),
+                len(self.unplaced_nodes['Bottom']),
+                len(self.unplaced_nodes['Right']),
+            )),
+            len(self.open_edges()),
+        )
         return result
 
 if __name__ == '__main__':
@@ -287,9 +306,21 @@ if __name__ == '__main__':
     changes = {}
     with open('build/logic.json') as open_file:
         logic = json.load(open_file)
-        room_randomizer = RoomRandomizer(logic)
-        room_randomizer.shuffle_rooms()
-        room_randomizer.show_spoiler()
+        best_fit = None
+        for _ in range(8_000):
+            seed = random.randint(0, 2 ** 64)
+            room_randomizer = RoomRandomizer(logic, seed)
+            room_randomizer.shuffle_rooms()
+            if (
+                best_fit is None or
+                room_randomizer.fitness() < best_fit.fitness()
+            ):
+                best_fit = room_randomizer
+        best_fit.show_spoiler()
+        print(best_fit.initial_seed)
+        print(best_fit.fitness())
+        print(best_fit.unplaced_nodes)
+        print(best_fit.open_edges())
     file_name = 'build/AlchemyLabChanges.yaml'
     with open(file_name, 'w') as open_file:
         yaml.dump(changes, open_file, default_flow_style=False)
