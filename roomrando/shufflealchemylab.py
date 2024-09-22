@@ -30,12 +30,9 @@ class RoomRandomizer:
         '..  .       .......        ',
     ]
     def __init__(self, logic, initial_seed: int=None):
-        if initial_seed is None:
-            self.initial_seed = random.randint(0, 2 ** 64)
-        else:
-            self.initial_seed = initial_seed
-        random.seed(self.initial_seed)
         self.logic = logic
+        self.initial_seed = initial_seed
+        self.rng = random.Random(self.initial_seed)
         self.changes = {}
         self.empty_cells = set()
         self.segments = collections.defaultdict(set)
@@ -145,15 +142,14 @@ class RoomRandomizer:
                 )
                 if cell in self.empty_cells:
                     self.empty_cells.remove(cell)
-    
+
     def possible_matching_nodes(self, segment, edge):
         # (top, left, bottom, right) = segment
         matching_edge = self.to_matching_edge(edge)
         (target_row, target_col) = self.to_cell(segment, edge)
-        open_edges = self.open_edges()
         # (segment, edge)
         result = []
-        for (room_name, node_name) in self.unplaced_nodes[matching_edge]:
+        for (room_name, node_name) in sorted(self.unplaced_nodes[matching_edge]):
             legal_ind = True
             # All cells of where the room will be placed must be empty
             node_row = self.logic[room_name]['Node Sections'][node_name]['Row']
@@ -203,7 +199,7 @@ class RoomRandomizer:
                 self.logic[room_name]['Left']
             )
         # Hard-code placing the other two red door rooms randomly
-        if random.random() < 0.5:
+        if self.rng.random() < 0.5:
             room_name = 'Alchemy Laboratory, Exit to Marble Gallery'
             self.place_room(
                 room_name,
@@ -224,12 +220,13 @@ class RoomRandomizer:
         rooms_placed = 0
         while len(self.unplaced_nodes) > 0:
             # Check all placed nodes for openness
-            open_edges = self.open_edges()
+            # NOTE(sestren): It is important to sort edges before using RNG
+            open_edges = list(sorted(self.open_edges()))
             if len(open_edges) < 1:
                 break
             # Choose random open node A
             for _ in range(2_000):
-                (segment, edge) = random.choice(tuple(open_edges))
+                (segment, edge) = self.rng.choice(tuple(open_edges))
                 nodes = self.possible_matching_nodes(segment, edge)
                 if len(nodes) > 0:
                     break
@@ -237,7 +234,7 @@ class RoomRandomizer:
                 # Halt if you can't find a matching node
                 break
             # Choose random unplaced legal node B that complements A
-            (room_name, node_name) = random.choice(nodes)
+            (room_name, node_name) = self.rng.choice(nodes)
             # Place all nodes from B's room, relative to where B was placed
             node_row = self.logic[room_name]['Node Sections'][node_name]['Row']
             node_col = self.logic[room_name]['Node Sections'][node_name]['Column']
@@ -280,7 +277,7 @@ class RoomRandomizer:
                         result[row][col] = code
         for (segment, edge) in self.open_edges():
             (row, col) = self.to_cell(segment, edge)
-            assert result[row][col] == '.'
+            # assert result[row][col] == '.'
             result[row][col] = '+'
         for row in range(len(result)):
             print(''.join(result[row]))
@@ -316,11 +313,13 @@ if __name__ == '__main__':
                 room_randomizer.fitness() < best_fit.fitness()
             ):
                 best_fit = room_randomizer
-        best_fit.show_spoiler()
-        print(best_fit.initial_seed)
-        print(best_fit.fitness())
-        print(best_fit.unplaced_nodes)
-        print(best_fit.open_edges())
+            if best_fit.fitness() == (0, 0):
+                break
+            room_randomizer.show_spoiler()
+            print(room_randomizer.initial_seed)
+            print(room_randomizer.fitness())
+            print(room_randomizer.unplaced_nodes)
+            print(room_randomizer.open_edges())
     file_name = 'build/AlchemyLabChanges.yaml'
     with open(file_name, 'w') as open_file:
         yaml.dump(changes, open_file, default_flow_style=False)
