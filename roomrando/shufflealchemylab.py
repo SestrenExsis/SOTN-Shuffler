@@ -199,7 +199,7 @@ class RoomRandomizer:
                 self.logic[room_name]['Left']
             )
         # Hard-code placing the other two red door rooms randomly
-        if self.rng.random() < 0.5:
+        if self.rng.random() <= 1.0:
             room_name = 'Alchemy Laboratory, Exit to Marble Gallery'
             self.place_room(
                 room_name,
@@ -213,6 +213,7 @@ class RoomRandomizer:
                 self.logic[room_name]['Left']
             )
         else:
+            # TODO(sestren): Fix teleport locations between stages
             room_name = 'Alchemy Laboratory, Exit to Marble Gallery'
             self.place_room(room_name, 35, 15)
             room_name = 'Alchemy Laboratory, Entryway'
@@ -224,9 +225,9 @@ class RoomRandomizer:
             open_edges = list(sorted(self.open_edges()))
             if len(open_edges) < 1:
                 break
+            self.rng.shuffle(open_edges)
             # Choose random open node A
-            for _ in range(2_000):
-                (segment, edge) = self.rng.choice(tuple(open_edges))
+            for (segment, edge) in open_edges:
                 nodes = self.possible_matching_nodes(segment, edge)
                 if len(nodes) > 0:
                     break
@@ -300,11 +301,10 @@ if __name__ == '__main__':
     Usage
     python shufflealchemylab.py
     '''
-    changes = {}
     with open('build/logic.json') as open_file:
         logic = json.load(open_file)
         best_fit = None
-        for _ in range(8_000):
+        for _ in range(64_000):
             seed = random.randint(0, 2 ** 64)
             room_randomizer = RoomRandomizer(logic, seed)
             room_randomizer.shuffle_rooms()
@@ -315,11 +315,12 @@ if __name__ == '__main__':
                 best_fit = room_randomizer
             if best_fit.fitness() == (0, 0):
                 break
-            room_randomizer.show_spoiler()
-            print(room_randomizer.initial_seed)
-            print(room_randomizer.fitness())
-            print(room_randomizer.unplaced_nodes)
-            print(room_randomizer.open_edges())
-    file_name = 'build/AlchemyLabChanges.yaml'
-    with open(file_name, 'w') as open_file:
-        yaml.dump(changes, open_file, default_flow_style=False)
+        best_fit.show_spoiler()
+        print(best_fit.initial_seed)
+        print(best_fit.fitness())
+        print(best_fit.unplaced_nodes)
+        print(best_fit.open_edges())
+        changes = best_fit.changes
+        file_name = 'build/AlchemyLabChanges.yaml'
+        with open(file_name, 'w') as open_file:
+            yaml.dump(changes, open_file, default_flow_style=False)

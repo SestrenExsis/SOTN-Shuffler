@@ -1,11 +1,10 @@
 import roomrando
 import json
+import yaml
 
 '''
-- A dummy copy of NZ0-00 is visible from NZ0-13
-- Initially, NZ0-00 and NZ0-13 should be moved around as one unit
-- Once the ability to alter tilemaps becomes possible, that can be revisited
-- TODO(sestren): Clear old map tiles when rooms change locations
+TODO(sestren): Clear old map tiles when rooms change locations
+TODO(sestren): Update teleport locations to match where rooms are
 '''
 
 def _hex(val: int, size: int):
@@ -53,13 +52,19 @@ def get_swap_rooms_ppf(logic, changes):
     canvas = roomrando.IndexedBitmapCanvas(256, 256)
     # result.patch_string(0x04389C76, '!ROOMS!')
     for room_name in sorted(changes.keys()):
+        if (
+            changes[room_name]['Index'] == logic[room_name]['Index'] and
+            changes[room_name]['Top'] == logic[room_name]['Top'] and
+            changes[room_name]['Left'] == logic[room_name]['Left']
+        ):
+            continue
         exits = []
         for node in logic[room_name]['Node Sections'].values():
             if 'Secret' not in node['Type']:
                 exit = (node['Row'], node['Column'], node['Edge'])
                 exits.append(exit)
         room = roomrando.Room(
-            logic[room_name]['Index'],
+            changes[room_name]['Index'],
             (
                 changes[room_name]['Top'],
                 changes[room_name]['Left'],
@@ -83,26 +88,12 @@ def get_swap_rooms_ppf(logic, changes):
 if __name__ == '__main__':
     '''
     Usage
-    python ShuffleRooms.py
+    python alchemylab.py
     '''
-    changes = {
-        'Alchemy Laboratory, Heart Max-Up Room': {
-            'Top': 33,
-            'Left': 10,
-        },
-        'Alchemy Laboratory, Short Zig Zag Room': {
-            'Top': 33,
-            'Left': 12,
-        },
-        'Alchemy Laboratory, Tall Zig Zag Room': {
-            'Top': 31,
-            'Left': 11,
-        },
-        'Alchemy Laboratory, Secret Life Max-Up Room': {
-            'Top': 34,
-            'Left': 11,
-        },
-    }
+    changes = {}
+    file_name = 'build/AlchemyLabChanges.yaml'
+    with open(file_name) as open_file:
+        changes = yaml.safe_load(open_file)
     with open('build/logic.json') as open_file:
         logic = json.load(open_file)
         patch = get_swap_rooms_ppf(logic, changes)
