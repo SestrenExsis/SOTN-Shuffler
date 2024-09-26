@@ -127,17 +127,22 @@ class PPF:
             self.write_byte(ord(char))
     
     def write_u16(self, value):
-        for i in range(4):
+        for _ in range(2):
             value, byte = divmod(value, 0x100)
             self.write_byte(byte)
     
     def write_u32(self, value):
-        for i in range(8):
+        for _ in range(4):
+            value, byte = divmod(value, 0x100)
+            self.write_byte(byte)
+    
+    def write_u64(self, value):
+        for _ in range(8):
             value, byte = divmod(value, 0x100)
             self.write_byte(byte)
     
     def patch_string(self, offset_in_file: int, value: str):
-        self.write_u32(offset_in_file)
+        self.write_u64(offset_in_file)
         size = len(value)
         self.write_byte(size)
         self.write_string(value)
@@ -154,26 +159,25 @@ class PPF:
                 disc_address = address.to_disc_address(
                     row * (canvas.cols // 2) + col // 2
                 )
-                self.write_u32(disc_address)
-                self.write_byte(1)
+                self.write_u64(disc_address)
+                size = 1
+                self.write_byte(size)
                 # If either side of the pair is unspecified, supply the default
                 left = 0xF & (left if left is not None else canvas.default)
                 right = 0xF & (right if right is not None else canvas.default)
                 self.write_byte((right << 4) | left)
     
     def patch_room_data(self, room: Room, address: Address):
-        self.write_u32(address.to_disc_address(8 * room.room_index))
-        size = 4 if room.teleport_index is None else 5
+        self.write_u64(address.to_disc_address(8 * room.room_index))
+        size = 4
         self.write_byte(size)
         self.write_byte(room.left)
         self.write_byte(room.top)
         self.write_byte(room.left + room.width - 1)
         self.write_byte(room.top + room.height - 1)
-        if room.teleport_index is not None:
-            self.write_byte(room.teleport_index)
     
     def patch_teleporter_data(self, teleporter: Teleporter, address: Address):
-        self.write_u32(address.to_disc_address(10 * teleporter.teleporter_index))
+        self.write_u64(address.to_disc_address(10 * teleporter.teleporter_index))
         size = 10
         self.write_byte(size) 
         self.write_u16(teleporter.x)
@@ -183,7 +187,7 @@ class PPF:
         self.write_u16(teleporter.next_stage_id)
     
     def patch_packed_room_data(self, room: Room, address: Address):
-        self.write_u32(address.to_disc_address())
+        self.write_u64(address.to_disc_address())
         size = 4
         self.write_byte(size)
         data = [
@@ -193,7 +197,7 @@ class PPF:
             0x3F & (room.top),
             0x3F & (room.left),
         ]
-        self.write_u16(
+        self.write_u32(
             (data[0] << 24) |
             (data[1] << 18) |
             (data[2] << 12) |

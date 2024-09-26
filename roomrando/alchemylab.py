@@ -51,7 +51,7 @@ def get_room_rando_ppf(logic, changes):
         ('Packed Room Data', 'Alchemy Laboratory, Fake Room With Teleporter B'): roomrando.Address(0x049BEBAC),
         ('Packed Room Data', 'Alchemy Laboratory, Fake Room With Teleporter C'): roomrando.Address(0x049BEBBC),
     }
-    result = roomrando.PPF('Two rooms in Alchemy Lab have swapped places')
+    result = roomrando.PPF('Rooms in Alchemy Lab have been shuffled')
     canvas = roomrando.IndexedBitmapCanvas(256, 256)
     # result.patch_string(0x04389C76, '!ROOMS!')
     for room_name in sorted(changes['Rooms'].keys()):
@@ -85,6 +85,7 @@ def get_room_rando_ppf(logic, changes):
             addresses[('Packed Room Data', room_name)]
         )
         canvas.draw_room(room)
+    result.patch_bitmap(canvas, addresses[('Castle Map')])
     stages = {
         'Marble Gallery': 0x00,
         'Castle Entrance Revisited': 0x07,
@@ -97,9 +98,9 @@ def get_room_rando_ppf(logic, changes):
             continue
         source_stage_name = logic['Teleporters']['Sources'][source_name]['Stage']
         target_stage_name = logic['Teleporters']['Targets'][target_name]['Stage']
-        room_name = logic['Teleporters']['Targets'][target_name]['Room']
         source_stage_id = stages[source_stage_name]
         target_stage_id = stages[target_stage_name]
+        room_name = logic['Teleporters']['Targets'][target_name]['Stage'] + ', ' + logic['Teleporters']['Targets'][target_name]['Room']
         teleporter = roomrando.Teleporter(
             logic['Teleporters']['Sources'][source_name]['Index'],
             logic['Teleporters']['Targets'][target_name]['Player X'],
@@ -112,7 +113,6 @@ def get_room_rando_ppf(logic, changes):
             teleporter,
             addresses['Teleporter Data']
         )
-    result.patch_bitmap(canvas, addresses[('Castle Map')])
     return result
 
 if __name__ == '__main__':

@@ -150,8 +150,8 @@ class RoomRandomizer:
     def place_teleporter(self, source_name: str, target_name: str):
         if 'Sources' not in self.changes['Teleporters']:
             self.changes['Teleporters']['Sources'] = {}
-            if source_name not in self.changes['Teleporters']['Sources']:
-                self.changes['Teleporters']['Sources'][source_name] = {}
+        if source_name not in self.changes['Teleporters']['Sources']:
+            self.changes['Teleporters']['Sources'][source_name] = {}
         self.changes['Teleporters']['Sources'][source_name]['Target'] = target_name
 
     def possible_matching_nodes(self, segment, edge):
@@ -210,7 +210,7 @@ class RoomRandomizer:
                 self.logic['Rooms'][room_name]['Left'],
             )
         # Hard-code placing the other two red door rooms randomly
-        if self.rng.random() <= 1.0:
+        if self.rng.random() <= 0.0:
             for room_name in (
                 'Alchemy Laboratory, Exit to Marble Gallery',
                 'Alchemy Laboratory, Entryway',
