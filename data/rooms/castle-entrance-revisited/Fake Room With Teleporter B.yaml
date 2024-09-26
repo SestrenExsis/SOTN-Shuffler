@@ -1,9 +1,9 @@
 
-Stage: Alchemy Laboratory
-Room: Fake Royal Chapel Room
-Index: 30
-Left: 3
-Top: 28
+Stage: Castle Entrance Revisited
+Room: Fake Room With Teleporter B
+Index: 25
+Left: 16
+Top: 36
 Columns: 1
 Rows: 1
 Total Cells: 1
@@ -16,11 +16,11 @@ Node Sections:
         Column: 0
         Edge: Right
 Triggers:
-    Entry - Right Node:
+    Entry - Left Node:
         Outcomes:
-            Location: Royal Chapel, Unknown
+            Location: Alchemy Laboratory, Entryway
             Section: Primary
         Requirements:
             Default:
-                Location: Alchemy Laboratory, Fake Castle Entrance Room
+                Location: Castle Entrance Revisited, Fake Room With Teleporter B
                 Section: Right Node

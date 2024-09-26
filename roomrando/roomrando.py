@@ -53,6 +53,15 @@ class Room:
         self.width = box[3]
         self.exits = exits
 
+class Teleporter:
+    def __init__(self, teleporter_index: int, x: int, y: int, room_index: int, current_stage_id: int, next_stage_id: int):
+        self.teleporter_index = teleporter_index
+        self.x = x
+        self.y = y
+        self.room_index = room_index
+        self.current_stage_id = current_stage_id
+        self.next_stage_id = next_stage_id
+
 class IndexedBitmapCanvas():
     def __init__(self, rows, cols):
         self.address = Address(0x001AF800, 'GAMEDATA')
@@ -154,12 +163,24 @@ class PPF:
     
     def patch_room_data(self, room: Room, address: Address):
         self.write_u32(address.to_disc_address(8 * room.room_index))
-        size = 4
+        size = 4 if room.teleport_index is None else 5
         self.write_byte(size)
         self.write_byte(room.left)
         self.write_byte(room.top)
         self.write_byte(room.left + room.width - 1)
         self.write_byte(room.top + room.height - 1)
+        if room.teleport_index is not None:
+            self.write_byte(room.teleport_index)
+    
+    def patch_teleporter_data(self, teleporter: Teleporter, address: Address):
+        self.write_u32(address.to_disc_address(10 * teleporter.teleporter_index))
+        size = 10
+        self.write_byte(size) 
+        self.write_u16(teleporter.x)
+        self.write_u16(teleporter.y)
+        self.write_u16(8 * teleporter.room_index)
+        self.write_u16(teleporter.current_stage_id)
+        self.write_u16(teleporter.next_stage_id)
     
     def patch_packed_room_data(self, room: Room, address: Address):
         self.write_u32(address.to_disc_address())

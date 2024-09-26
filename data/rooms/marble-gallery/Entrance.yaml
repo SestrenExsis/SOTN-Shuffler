@@ -1,0 +1,51 @@
+
+Stage: Marble Gallery
+Room: Entrance
+Index: 6
+Left: 22
+Top: 26
+Columns: 4
+Rows: 1
+Total Cells: 4
+Empty Cells:
+Entities:
+Node Sections:
+    Left Node:
+        Type: Red Door
+        Row: 0
+        Column: 0
+        Edge: Left
+    Right Node:
+        Type: Passage
+        Row: 0
+        Column: 3
+        Edge: Right
+Triggers:
+    Entry - Left Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Marble Gallery, Entrance
+                Section: Left Node
+    Exit - Left Node:
+        Outcomes:
+            Section: Left Node
+        Requirements:
+            Default:
+                Location: Marble Gallery, Entrance
+                Section: Primary
+    Entry - Right Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Marble Gallery, Entrance
+                Section: Right Node
+    Exit - Right Node:
+        Outcomes:
+            Section: Right Node
+        Requirements:
+            Default:
+                Location: Marble Gallery, Entrance
+                Section: Primary

@@ -1,0 +1,30 @@
+
+Sources:
+    Castle Entrance, Fake Room With Teleporter B:
+        Index: 13
+        Stage: Castle Entrance
+        Room: Fake Room With Teleporter B
+        Target: Alchemy Laboratory, Entryway (Right Node)
+    Castle Entrance Revisited, Fake Room With Teleporter B:
+        Index: 58
+        Stage: Castle Entrance Revisited
+        Room: Fake Room With Teleporter B
+        Target: Alchemy Laboratory, Entryway (Right Node)
+    Marble Gallery, Fake Room With Teleporter A:
+        Index: 0
+        Stage: Marble Gallery
+        Room: Fake Room With Teleporter A
+        Target: Alchemy Laboratory, Exit to Marble Gallery (Right Node)
+Targets:
+    Alchemy Laboratory, Entryway (Right Node):
+        Stage: Alchemy Laboratory
+        Room: Entryway
+        Node: Right Node
+        Player X: 752
+        Player Y: 132
+    Alchemy Laboratory, Exit to Marble Gallery (Right Node):
+        Stage: Alchemy Laboratory
+        Room: Exit to Marble Gallery
+        Node: Right Node
+        Player X: 496
+        Player Y: 392

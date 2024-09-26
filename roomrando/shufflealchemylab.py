@@ -33,7 +33,10 @@ class RoomRandomizer:
         self.logic = logic
         self.initial_seed = initial_seed
         self.rng = random.Random(self.initial_seed)
-        self.changes = {}
+        self.changes = {
+            'Rooms': {},
+            'Teleporters': {},
+        }
         self.empty_cells = set()
         self.segments = collections.defaultdict(set)
         self.unplaced_nodes = {
@@ -58,14 +61,15 @@ class RoomRandomizer:
         #         if self.stage_cells[row][col] == ' ':
         #             continue
         #         self.empty_cells.add((TOP + row, LEFT + col))
-        self.changes = {}
+        self.changes['Rooms'] = {}
+        self.changes['Teleporters'] = {}
         self.unplaced_nodes = {
             'Left': set(),
             'Top': set(),
             'Right': set(),
             'Bottom': set(),
         }
-        for (room_name, room) in self.logic.items():
+        for (room_name, room) in self.logic['Rooms'].items():
             # Bat Card Room will be placed manually at a later step
             if room_name == 'Alchemy Laboratory, Bat Card Room':
                 continue
@@ -122,26 +126,33 @@ class RoomRandomizer:
         )
         return result
 
-    def place_room(self, room_name, top, left):
-        self.changes[room_name] = {}
+    def place_room(self, room_name: str, top: int, left: int):
+        self.changes['Rooms'][room_name] = {}
         # Room indexes are left at default values for now
-        self.changes[room_name]['Index'] = self.logic[room_name]['Index']
-        self.changes[room_name]['Top'] = top
-        self.changes[room_name]['Left'] = left
-        for (node_name, node) in self.logic[room_name]['Node Sections'].items():
-            row = self.changes[room_name]['Top'] + node['Row']
-            col = self.changes[room_name]['Left'] + node['Column']
+        self.changes['Rooms'][room_name]['Index'] = self.logic['Rooms'][room_name]['Index']
+        self.changes['Rooms'][room_name]['Top'] = top
+        self.changes['Rooms'][room_name]['Left'] = left
+        for (node_name, node) in self.logic['Rooms'][room_name]['Node Sections'].items():
+            row = self.changes['Rooms'][room_name]['Top'] + node['Row']
+            col = self.changes['Rooms'][room_name]['Left'] + node['Column']
             segment = self.to_segment(row, col, node['Edge'])
             self.segments[segment].add(node['Edge'])
             self.unplaced_nodes[node['Edge']].remove((room_name, node_name))
-        for row in range(self.logic[room_name]['Rows']):
-            for col in range(self.logic[room_name]['Columns']):
+        for row in range(self.logic['Rooms'][room_name]['Rows']):
+            for col in range(self.logic['Rooms'][room_name]['Columns']):
                 cell = (
-                    self.changes[room_name]['Top'] + row,
-                    self.changes[room_name]['Left'] + col,
+                    self.changes['Rooms'][room_name]['Top'] + row,
+                    self.changes['Rooms'][room_name]['Left'] + col,
                 )
                 if cell in self.empty_cells:
                     self.empty_cells.remove(cell)
+    
+    def place_teleporter(self, source_name: str, target_name: str):
+        if 'Sources' not in self.changes['Teleporters']:
+            self.changes['Teleporters']['Sources'] = {}
+            if source_name not in self.changes['Teleporters']['Sources']:
+                self.changes['Teleporters']['Sources'][source_name] = {}
+        self.changes['Teleporters']['Sources'][source_name]['Target'] = target_name
 
     def possible_matching_nodes(self, segment, edge):
         # (top, left, bottom, right) = segment
@@ -152,12 +163,12 @@ class RoomRandomizer:
         for (room_name, node_name) in sorted(self.unplaced_nodes[matching_edge]):
             legal_ind = True
             # All cells of where the room will be placed must be empty
-            node_row = self.logic[room_name]['Node Sections'][node_name]['Row']
-            node_col = self.logic[room_name]['Node Sections'][node_name]['Column']
+            node_row = self.logic['Rooms'][room_name]['Node Sections'][node_name]['Row']
+            node_col = self.logic['Rooms'][room_name]['Node Sections'][node_name]['Column']
             room_top = target_row - node_row
             room_left = target_col - node_col
-            for row in range(self.logic[room_name]['Rows']):
-                for col in range(self.logic[room_name]['Columns']):
+            for row in range(self.logic['Rooms'][room_name]['Rows']):
+                for col in range(self.logic['Rooms'][room_name]['Columns']):
                     if (room_top + row, room_left + col) not in self.empty_cells:
                         legal_ind = False
                         break
@@ -166,7 +177,7 @@ class RoomRandomizer:
             if not legal_ind:
                 continue
             # All nodes of the room must complete an open node or start a new one
-            for (other_node_name, node) in self.logic[room_name]['Node Sections'].items():
+            for (other_node_name, node) in self.logic['Rooms'][room_name]['Node Sections'].items():
                 row = room_top + node['Row']
                 col = room_left + node['Column']
                 segment = self.to_segment(row, col, node['Edge'])
@@ -185,39 +196,36 @@ class RoomRandomizer:
         self.reset()
         # The location of these rooms do not change for now
         for room_name in (
-            'Alchemy Laboratory, Fake Castle Entrance Room',
-            'Alchemy Laboratory, Fake Marble Gallery Room',
-            'Alchemy Laboratory, Fake Royal Chapel Room',
+            'Alchemy Laboratory, Fake Room With Teleporter A',
+            'Alchemy Laboratory, Fake Room With Teleporter B',
+            'Alchemy Laboratory, Fake Room With Teleporter C',
             'Alchemy Laboratory, Loading Room A',
             'Alchemy Laboratory, Loading Room B',
             'Alchemy Laboratory, Loading Room C',
-            'Alchemy Laboratory, Exit to Holy Chapel',
+            'Alchemy Laboratory, Exit to Holy Chapel', # Because it has the only matching Red Door for Loading Room B
         ):
             self.place_room(
                 room_name,
-                self.logic[room_name]['Top'],
-                self.logic[room_name]['Left']
+                self.logic['Rooms'][room_name]['Top'],
+                self.logic['Rooms'][room_name]['Left'],
             )
         # Hard-code placing the other two red door rooms randomly
         if self.rng.random() <= 1.0:
-            room_name = 'Alchemy Laboratory, Exit to Marble Gallery'
-            self.place_room(
-                room_name,
-                self.logic[room_name]['Top'],
-                self.logic[room_name]['Left']
-            )
-            room_name = 'Alchemy Laboratory, Entryway'
-            self.place_room(
-                room_name,
-                self.logic[room_name]['Top'],
-                self.logic[room_name]['Left']
-            )
+            for room_name in (
+                'Alchemy Laboratory, Exit to Marble Gallery',
+                'Alchemy Laboratory, Entryway',
+            ):
+                self.place_room(
+                    room_name,
+                    self.logic['Rooms'][room_name]['Top'],
+                    self.logic['Rooms'][room_name]['Left'],
+                )
         else:
-            # TODO(sestren): Fix teleport locations between stages
-            room_name = 'Alchemy Laboratory, Exit to Marble Gallery'
-            self.place_room(room_name, 35, 15)
-            room_name = 'Alchemy Laboratory, Entryway'
-            self.place_room(room_name, 26, 18)
+            self.place_room('Alchemy Laboratory, Exit to Marble Gallery', 35, 15)
+            self.place_room('Alchemy Laboratory, Entryway', 26, 18)
+            self.place_teleporter('Castle Entrance, Fake Room With Teleporter B', 'Alchemy Laboratory, Exit to Marble Gallery (Right Node)')
+            self.place_teleporter('Castle Entrance Revisited, Fake Room With Teleporter B', 'Alchemy Laboratory, Exit to Marble Gallery (Right Node)')
+            self.place_teleporter('Marble Gallery, Fake Room With Teleporter A', 'Alchemy Laboratory, Entryway (Right Node)')
         rooms_placed = 0
         while len(self.unplaced_nodes) > 0:
             # Check all placed nodes for openness
@@ -237,8 +245,8 @@ class RoomRandomizer:
             # Choose random unplaced legal node B that complements A
             (room_name, node_name) = self.rng.choice(nodes)
             # Place all nodes from B's room, relative to where B was placed
-            node_row = self.logic[room_name]['Node Sections'][node_name]['Row']
-            node_col = self.logic[room_name]['Node Sections'][node_name]['Column']
+            node_row = self.logic['Rooms'][room_name]['Node Sections'][node_name]['Row']
+            node_col = self.logic['Rooms'][room_name]['Node Sections'][node_name]['Column']
             (target_row, target_col) = self.to_cell(segment, edge)
             room_top = target_row - node_row
             room_left = target_col - node_col
@@ -247,13 +255,13 @@ class RoomRandomizer:
         # Always place Bat Card Room inside Tetromino Room for now
         if 'Alchemy Laboratory, Tetromino Room' in self.changes:
             room_name = 'Alchemy Laboratory, Bat Card Room'
-            room = self.logic[room_name]
+            room = self.logic['Rooms'][room_name]
             for (node_name, node) in room['Node Sections'].items():
                 self.unplaced_nodes[node['Edge']].add((room_name, node_name))
             self.place_room(
                 room_name,
-                self.changes['Alchemy Laboratory, Tetromino Room']['Top'] + 1,
-                self.changes['Alchemy Laboratory, Tetromino Room']['Left']
+                self.changes['Rooms']['Alchemy Laboratory, Tetromino Room']['Top'] + 1,
+                self.changes['Rooms']['Alchemy Laboratory, Tetromino Room']['Left']
             )
     
     def show_spoiler(self):
@@ -261,13 +269,13 @@ class RoomRandomizer:
         result = [[' ' for col in range(64)] for row in range(64)]
         for (row, col) in self.empty_cells:
             result[row][col] = '.'
-        for room_name in self.changes.keys():
+        for room_name in self.changes['Rooms'].keys():
             (index, top, left, rows, cols) = (
-                self.changes[room_name]['Index'],
-                self.changes[room_name]['Top'],
-                self.changes[room_name]['Left'],
-                self.logic[room_name]['Rows'],
-                self.logic[room_name]['Columns'],
+                self.changes['Rooms'][room_name]['Index'],
+                self.changes['Rooms'][room_name]['Top'],
+                self.changes['Rooms'][room_name]['Left'],
+                self.logic['Rooms'][room_name]['Rows'],
+                self.logic['Rooms'][room_name]['Columns'],
             )
             code = codes[index]
             for row in range(top, top + rows):

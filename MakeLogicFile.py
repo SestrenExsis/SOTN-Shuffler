@@ -7,45 +7,54 @@ import yaml
 # - Requirements may not alter state
 
 if __name__ == '__main__':
-    logic = {}
-    for room_name in (
-        'Bat Card Room',
-        'Bloody Zombie Hallway',
-        'Blue Door Hallway',
-        'Box Puzzle Room',
-        'Cannon Room',
-        'Cloth Cape Room',
-        'Corridor to Elevator',
-        'Elevator Shaft',
-        'Empty Zig Zag Room',
-        'Entryway',
-        'Exit to Holy Chapel',
-        'Exit to Marble Gallery',
-        'Fake Castle Entrance Room',
-        'Fake Marble Gallery Room',
-        'Fake Royal Chapel Room',
-        'Glass Vats',
-        'Heart Max-Up Room',
-        'Loading Room A',
-        'Loading Room B',
-        'Loading Room C',
-        'Red Skeleton Lift Room',
-        'Save Room A',
-        'Save Room B',
-        'Save Room C',
-        'Secret Life Max-Up Room',
-        'Short Zig Zag Room',
-        'Skill of Wolf Room',
-        'Slogra and Gaibon Boss Room',
-        'Sunglasses Room',
-        'Tall Spittlebone Room',
-        'Tall Zig Zag Room',
-        'Tetromino Room',
+    logic = {
+        'Rooms': {},
+        'Teleporters': {},
+    }
+    for (stage_path, stage_name, room_name) in (
+        # ('castle-entrance', 'Castle Entrance', 'Fake Room With Teleporter A'),
+        # ('castle-entrance-revisited', 'Castle Entrance Revisited', 'Fake Room With Teleporter A'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Bat Card Room'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Bloody Zombie Hallway'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Blue Door Hallway'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Box Puzzle Room'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Cannon Room'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Cloth Cape Room'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Corridor to Elevator'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Elevator Shaft'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Empty Zig Zag Room'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Entryway'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Exit to Holy Chapel'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Exit to Marble Gallery'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Fake Room With Teleporter A'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Fake Room With Teleporter B'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Fake Room With Teleporter C'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Glass Vats'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Heart Max-Up Room'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Loading Room A'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Loading Room B'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Loading Room C'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Red Skeleton Lift Room'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Save Room A'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Save Room B'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Save Room C'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Secret Life Max-Up Room'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Short Zig Zag Room'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Skill of Wolf Room'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Slogra and Gaibon Boss Room'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Sunglasses Room'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Tall Spittlebone Room'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Tall Zig Zag Room'),
+        ('alchemy-laboratory', 'Alchemy Laboratory', 'Tetromino Room'),
     ):
-        file_name = 'data/rooms/alchemy-laboratory/' + room_name + '.yaml'
+        file_name = 'data/rooms/' + stage_path + '/' + room_name + '.yaml'
         with open(file_name) as open_file:
             yaml_obj = yaml.safe_load(open_file)
-            logic['Alchemy Laboratory, ' + room_name] = yaml_obj
+            logic['Rooms'][stage_name + ', ' + room_name] = yaml_obj
+    file_name = 'data/Teleporters.yaml'
+    with open(file_name) as open_file:
+        yaml_obj = yaml.safe_load(open_file)
+        logic['Teleporters'] = yaml_obj
     with open('build/logic.json', 'w') as open_file:
         json_string = json.dumps(
             logic,
