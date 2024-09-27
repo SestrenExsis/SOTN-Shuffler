@@ -1,0 +1,18 @@
+
+Stage: Castle Entrance
+Room: After Drawbridge
+Index: 0
+Left: 2
+Top: 38
+Columns: 2
+Rows: 3
+Total Cells: 6
+Empty Cells:
+Entities:
+Node Sections:
+    Lower-Right Node:
+        Type: Passage
+        Row: 2
+        Column: 1
+        Edge: Right
+Triggers:

@@ -1,12 +1,12 @@
 
 Stage: Castle Entrance
-Room: Fake Room With Teleporter B
-Index: 29
-Left: 21
-Top: 36
-Columns: 1
+Room: Zombie Hallway
+Index: 2
+Left: 4
+Top: 40
+Columns: 7
 Rows: 1
-Total Cells: 1
+Total Cells: 7
 Empty Cells:
 Entities:
 Node Sections:
@@ -15,4 +15,9 @@ Node Sections:
         Row: 0
         Column: 0
         Edge: Left
+    Right Node:
+        Type: Passage
+        Row: 0
+        Column: 6
+        Edge: Right
 Triggers:
