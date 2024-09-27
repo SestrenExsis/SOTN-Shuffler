@@ -1,0 +1,43 @@
+
+Stage: Castle Entrance
+Room: Cube of Zoe Room
+Index: 15
+Left: 18
+Top: 36
+Columns: 2
+Rows: 3
+Total Cells: 6
+Empty Cells:
+Entities:
+Node Sections:
+    Upper-Left Node:
+        Type: Red Door
+        Row: 0
+        Column: 0
+        Edge: Left
+    Upper-Right Node:
+        Type: Red Door
+        Row: 0
+        Column: 1
+        Edge: Right
+    Left Node:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+    Right Node:
+        Type: Passage
+        Row: 1
+        Column: 1
+        Edge: Right
+    Lower-Left Node:
+        Type: Passage
+        Row: 2
+        Column: 0
+        Edge: Left
+    Lower-Right Node:
+        Type: Passage
+        Row: 2
+        Column: 1
+        Edge: Right
+Triggers:

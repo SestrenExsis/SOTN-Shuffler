@@ -1,0 +1,23 @@
+
+Stage: Castle Entrance
+Room: Drop Under Portcullis
+Index: 1
+Left: 2
+Top: 41
+Columns: 1
+Rows: 2
+Total Cells: 2
+Empty Cells:
+Entities:
+Node Sections:
+    Upper Node:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Top
+    Lower-Right Node:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Right
+Triggers:

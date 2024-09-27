@@ -1,0 +1,23 @@
+
+Stage: Castle Entrance
+Room: Shortcut to Warp
+Index: 16
+Left: 17
+Top: 38
+Columns: 1
+Rows: 1
+Total Cells: 1
+Empty Cells:
+Entities:
+Node Sections:
+    Left Node:
+        Type: Red Door
+        Row: 1
+        Column: 0
+        Edge: Left
+    Right Node:
+        Type: Passage
+        Row: 1
+        Column: 1
+        Edge: Right
+Triggers:

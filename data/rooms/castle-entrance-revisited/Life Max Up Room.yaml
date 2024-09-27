@@ -1,9 +1,9 @@
 
 Stage: Castle Entrance
-Room: Fake Room With Teleporter B
-Index: 26
-Left: 21
-Top: 36
+Room: Life Max Up Room
+Index: 17
+Left: 20
+Top: 37
 Columns: 1
 Rows: 1
 Total Cells: 1
@@ -12,7 +12,7 @@ Entities:
 Node Sections:
     Left Node:
         Type: Passage
-        Row: 0
+        Row: 1
         Column: 0
         Edge: Left
 Triggers:

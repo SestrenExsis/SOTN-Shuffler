@@ -1,0 +1,33 @@
+
+Stage: Castle Entrance
+Room: Merman Room
+Index: 7
+Left: 11
+Top: 40
+Columns: 3
+Rows: 2
+Total Cells: 6
+Empty Cells:
+Entities:
+Node Sections:
+    Upper-Left Node:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+    Upper-Right Node:
+        Type: Passage
+        Row: 0
+        Column: 2
+        Edge: Right
+    Lower-Left Node:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+    Lower-Right Node:
+        Type: Passage
+        Row: 1
+        Column: 2
+        Edge: Right
+Triggers:

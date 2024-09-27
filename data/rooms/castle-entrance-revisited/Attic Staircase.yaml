@@ -1,0 +1,28 @@
+
+Stage: Castle Entrance
+Room: Attic Staircase
+Index: 4
+Left: 6
+Top: 38
+Columns: 1
+Rows: 2
+Total Cells: 2
+Empty Cells:
+Entities:
+Node Sections:
+    Upper-Left Node:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+    Lower-Left Node:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+    Lower-Right Node:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Right
+Triggers:
