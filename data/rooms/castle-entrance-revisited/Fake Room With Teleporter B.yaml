@@ -8,6 +8,8 @@ Columns: 1
 Rows: 1
 Total Cells: 1
 Empty Cells:
+    - Row: 0
+      Column: 0
 Entities:
 Node Sections:
     Left Node:

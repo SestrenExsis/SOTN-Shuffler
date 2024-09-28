@@ -10,59 +10,65 @@ import yaml
 '''
 
 class RoomRandomizer:
-    stage_cells = [
-        '..        ....             ',
-        '..        ...              ',
-        '..        .................',
-        '..        .............    ',
-        '..      ...................',
-        '.. ......................  ',
-        '.........................  ',
-        '.........................  ',
-        '.........................  ',
-        '.........................  ',
-        '...........................',
-        '.....................      ',
-        '.....................      ',
-        '...................        ',
-        '.................          ',
-        '..  .  .........           ',
-        '..  .       .......        ',
-    ]
+    room_sets = {
+        'Alchemy Laboratory, Tetromino Room':
+        {
+            'Alchemy Laboratory, Bat Card Room': (1, 0),
+        },
+        'Alchemy Laboratory, Exit to Marble Gallery':
+        {
+            'Alchemy Laboratory, Loading Room A': (1, 2),
+            'Alchemy Laboratory, Fake Room With Teleporter A': (1, 3),
+        },
+        'Alchemy Laboratory, Exit to Holy Chapel':
+        {
+            'Alchemy Laboratory, Loading Room B': (0, -1),
+            'Alchemy Laboratory, Fake Room With Teleporter B': (0, -2),
+        },
+        'Alchemy Laboratory, Entryway':
+        {
+            'Alchemy Laboratory, Loading Room C': (0, 3),
+            'Alchemy Laboratory, Fake Room With Teleporter C': (0, 4),
+        },
+        'Castle Entrance, Cube of Zoe Room':
+        {
+            'Castle Entrance, Loading Room A': (0, 2),
+            'Castle Entrance, Fake Room With Teleporter B': (0, 3),
+            'Castle Entrance, Loading Room C': (0, -1),
+            'Castle Entrance, Fake Room With Teleporter A': (0, -2),
+        },
+        'Castle Entrance, Shortcut to Warp':
+        {
+            'Castle Entrance, Loading Room B': (0, -1),
+            'Castle Entrance, Fake Room With Teleporter C': (0, -2),
+        },
+        'Castle Entrance, Shortcut to Underground Caverns':
+        {
+            'Castle Entrance, Loading Room D': (0, 1),
+            'Castle Entrance, Fake Room With Teleporter D': (0, 2),
+        },
+    }
     def __init__(self, logic, initial_seed: int=None):
         self.logic = logic
+        for (room_name, room) in self.logic['Rooms'].items():
+            # NOTE: Treat loading rooms as having red door nodes for stage connection purposes
+            if 'Loading Room' in room_name:
+                for node_name in room['Node Sections']:
+                    self.logic['Rooms'][room_name]['Node Sections'][node_name]['Type'] = 'Red Door'
         self.initial_seed = initial_seed
         self.rng = random.Random(self.initial_seed)
-        self.changes = {
-            'Rooms': {},
-            'Teleporters': {},
-        }
-        self.empty_cells = set()
-        self.segments = collections.defaultdict(set)
-        self.unplaced_nodes = {
-            'Left': set(),
-            'Top': set(),
-            'Right': set(),
-            'Bottom': set(),
-        }
         self.reset()
 
     def reset(self):
         self.empty_cells = set()
-        TOP = 23
-        LEFT = 0
-        # NOTE(sestren): For now, allow Alchemy Lab to overlap other stages
+        # For now, allow the shuffled rooms to overlap all other rooms and stages
         for row in range(64):
             for col in range(64):
                 self.empty_cells.add((row, col))
-        # TODO(sestren): Restore obeying other stage's boundaries later
-        # for row in range(len(self.stage_cells)):
-        #     for col in range(len(self.stage_cells[row])):
-        #         if self.stage_cells[row][col] == ' ':
-        #             continue
-        #         self.empty_cells.add((TOP + row, LEFT + col))
-        self.changes['Rooms'] = {}
-        self.changes['Teleporters'] = {}
+        self.changes = {
+            'Rooms': {},
+            'Teleporters': {},
+        }
         self.unplaced_nodes = {
             'Left': set(),
             'Top': set(),
@@ -70,8 +76,54 @@ class RoomRandomizer:
             'Bottom': set(),
         }
         for (room_name, room) in self.logic['Rooms'].items():
-            # Bat Card Room will be placed manually at a later step
-            if room_name == 'Alchemy Laboratory, Bat Card Room':
+            if room_name not in (
+                'Castle Entrance, After Drawbridge',
+                'Castle Entrance, Attic Entrance',
+                'Castle Entrance, Attic Hallway',
+                'Castle Entrance, Attic Staircase',
+                'Castle Entrance, Cube of Zoe Room',
+                'Castle Entrance, Drop Under Portcullis',
+                'Castle Entrance, Gargoyle Room',
+                'Castle Entrance, Heart Max-Up Room',
+                'Castle Entrance, Holy Mail Room',
+                'Castle Entrance, Jewel Sword Room',
+                'Castle Entrance, Life Max-Up Room',
+                'Castle Entrance, Meeting Room With Death',
+                'Castle Entrance, Merman Room',
+                'Castle Entrance, Save Room A',
+                'Castle Entrance, Save Room B',
+                'Castle Entrance, Save Room C',
+                'Castle Entrance, Shortcut to Underground Caverns',
+                'Castle Entrance, Shortcut to Warp',
+                'Castle Entrance, Stairwell After Death',
+                'Castle Entrance, Warg Hallway',
+                'Castle Entrance, Zombie Hallway',
+                # 'Alchemy Laboratory, Bloody Zombie Hallway',
+                # 'Alchemy Laboratory, Blue Door Hallway',
+                # 'Alchemy Laboratory, Box Puzzle Room',
+                # 'Alchemy Laboratory, Cannon Room',
+                # 'Alchemy Laboratory, Cloth Cape Room',
+                # 'Alchemy Laboratory, Corridor to Elevator',
+                # 'Alchemy Laboratory, Elevator Shaft',
+                # 'Alchemy Laboratory, Empty Zig Zag Room',
+                # 'Alchemy Laboratory, Entryway',
+                # 'Alchemy Laboratory, Exit to Holy Chapel',
+                # 'Alchemy Laboratory, Exit to Marble Gallery',
+                # 'Alchemy Laboratory, Glass Vats',
+                # 'Alchemy Laboratory, Heart Max-Up Room',
+                # 'Alchemy Laboratory, Red Skeleton Lift Room',
+                # 'Alchemy Laboratory, Save Room A',
+                # 'Alchemy Laboratory, Save Room B',
+                # 'Alchemy Laboratory, Save Room C',
+                # 'Alchemy Laboratory, Secret Life Max-Up Room',
+                # 'Alchemy Laboratory, Short Zig Zag Room',
+                # 'Alchemy Laboratory, Skill of Wolf Room',
+                # 'Alchemy Laboratory, Slogra and Gaibon Boss Room',
+                # 'Alchemy Laboratory, Sunglasses Room',
+                # 'Alchemy Laboratory, Tall Spittlebone Room',
+                # 'Alchemy Laboratory, Tall Zig Zag Room',
+                # 'Alchemy Laboratory, Tetromino Room',
+            ):
                 continue
             for (node_name, node) in room['Node Sections'].items():
                 self.unplaced_nodes[node['Edge']].add((room_name, node_name))
@@ -127,17 +179,24 @@ class RoomRandomizer:
         return result
 
     def place_room(self, room_name: str, top: int, left: int):
+        # TODO: If room is part of a set, place all rooms in that set together
         self.changes['Rooms'][room_name] = {}
         # Room indexes are left at default values for now
         self.changes['Rooms'][room_name]['Index'] = self.logic['Rooms'][room_name]['Index']
         self.changes['Rooms'][room_name]['Top'] = top
         self.changes['Rooms'][room_name]['Left'] = left
         for (node_name, node) in self.logic['Rooms'][room_name]['Node Sections'].items():
+            # NOTE: Red door connections will be handled in a hard-coded way in a later step
+            if node['Type'] == 'Red Door':
+                continue
             row = self.changes['Rooms'][room_name]['Top'] + node['Row']
             col = self.changes['Rooms'][room_name]['Left'] + node['Column']
             segment = self.to_segment(row, col, node['Edge'])
             self.segments[segment].add(node['Edge'])
-            self.unplaced_nodes[node['Edge']].remove((room_name, node_name))
+            try:
+                self.unplaced_nodes[node['Edge']].remove((room_name, node_name))
+            except KeyError:
+                pass
         for row in range(self.logic['Rooms'][room_name]['Rows']):
             for col in range(self.logic['Rooms'][room_name]['Columns']):
                 cell = (
@@ -196,13 +255,10 @@ class RoomRandomizer:
         self.reset()
         # The location of these rooms do not change for now
         for room_name in (
-            'Alchemy Laboratory, Fake Room With Teleporter A',
-            'Alchemy Laboratory, Fake Room With Teleporter B',
-            'Alchemy Laboratory, Fake Room With Teleporter C',
-            'Alchemy Laboratory, Loading Room A',
-            'Alchemy Laboratory, Loading Room B',
-            'Alchemy Laboratory, Loading Room C',
-            'Alchemy Laboratory, Exit to Holy Chapel', # Because it has the only matching Red Door for Loading Room B
+            'Castle Entrance, Forest Cutscene',
+            'Castle Entrance, Unknown 19',
+            'Castle Entrance, Unknown 20',
+            'Castle Entrance, After Drawbridge',
         ):
             self.place_room(
                 room_name,
@@ -210,33 +266,34 @@ class RoomRandomizer:
                 self.logic['Rooms'][room_name]['Left'],
             )
         # Hard-code placing the other two red door rooms randomly
-        if self.rng.random() <= 0.0:
-            for room_name in (
-                'Alchemy Laboratory, Exit to Marble Gallery',
-                'Alchemy Laboratory, Entryway',
-            ):
-                self.place_room(
-                    room_name,
-                    self.logic['Rooms'][room_name]['Top'],
-                    self.logic['Rooms'][room_name]['Left'],
-                )
-        else:
-            self.place_room('Alchemy Laboratory, Exit to Marble Gallery', 35, 15)
-            self.place_room('Alchemy Laboratory, Entryway', 26, 18)
-            self.place_teleporter('Castle Entrance, Fake Room With Teleporter B', 'Alchemy Laboratory, Exit to Marble Gallery (Right Node)')
-            self.place_teleporter('Castle Entrance Revisited, Fake Room With Teleporter B', 'Alchemy Laboratory, Exit to Marble Gallery (Right Node)')
-            self.place_teleporter('Marble Gallery, Fake Room With Teleporter A', 'Alchemy Laboratory, Entryway (Right Node)')
+        # if self.rng.random() <= 0.0:
+        #     for room_name in (
+        #         'Alchemy Laboratory, Exit to Marble Gallery',
+        #         'Alchemy Laboratory, Entryway',
+        #     ):
+        #         self.place_room(
+        #             room_name,
+        #             self.logic['Rooms'][room_name]['Top'],
+        #             self.logic['Rooms'][room_name]['Left'],
+        #         )
+        # else:
+        #     self.place_room('Alchemy Laboratory, Exit to Marble Gallery', 35, 15)
+        #     self.place_room('Alchemy Laboratory, Entryway', 26, 18)
+        #     self.place_teleporter('Castle Entrance, Fake Room With Teleporter A', 'Alchemy Laboratory, Exit to Marble Gallery (Right Node)')
+        #     self.place_teleporter('Castle Entrance Revisited, Fake Room With Teleporter A', 'Alchemy Laboratory, Exit to Marble Gallery (Right Node)')
+        #     self.place_teleporter('Marble Gallery, Fake Room With Teleporter A', 'Alchemy Laboratory, Entryway (Right Node)')
         rooms_placed = 0
         while len(self.unplaced_nodes) > 0:
             # Check all placed nodes for openness
-            # NOTE(sestren): It is important to sort edges before using RNG
+            # NOTE: It is important to always sort before using RNG for consistency
             open_edges = list(sorted(self.open_edges()))
             if len(open_edges) < 1:
                 break
+            # Choose random open node A, if any exist
             self.rng.shuffle(open_edges)
-            # Choose random open node A
             for (segment, edge) in open_edges:
                 nodes = self.possible_matching_nodes(segment, edge)
+                # Stop looking once you've found at least one open node
                 if len(nodes) > 0:
                     break
             if len(nodes) < 1:
@@ -244,6 +301,7 @@ class RoomRandomizer:
                 break
             # Choose random unplaced legal node B that complements A
             (room_name, node_name) = self.rng.choice(nodes)
+            # print(' ', len(self.unplaced_nodes), room_name, '(', node_name, ')') # , self.unplaced_nodes)
             # Place all nodes from B's room, relative to where B was placed
             node_row = self.logic['Rooms'][room_name]['Node Sections'][node_name]['Row']
             node_col = self.logic['Rooms'][room_name]['Node Sections'][node_name]['Column']
@@ -251,18 +309,12 @@ class RoomRandomizer:
             room_top = target_row - node_row
             room_left = target_col - node_col
             self.place_room(room_name, room_top, room_left)
+            if room_name in self.room_sets:
+                for other_room_name, (offset_row, offset_col) in self.room_sets[room_name].items():
+                    self.place_room(other_room_name, room_top + offset_row, room_left + offset_col)
+                    # print('  ', len(self.unplaced_nodes), other_room_name, (offset_row, offset_col))
+                    rooms_placed += 1
             rooms_placed += 1
-        # Always place Bat Card Room inside Tetromino Room for now
-        if 'Alchemy Laboratory, Tetromino Room' in self.changes:
-            room_name = 'Alchemy Laboratory, Bat Card Room'
-            room = self.logic['Rooms'][room_name]
-            for (node_name, node) in room['Node Sections'].items():
-                self.unplaced_nodes[node['Edge']].add((room_name, node_name))
-            self.place_room(
-                room_name,
-                self.changes['Rooms']['Alchemy Laboratory, Tetromino Room']['Top'] + 1,
-                self.changes['Rooms']['Alchemy Laboratory, Tetromino Room']['Left']
-            )
     
     def show_spoiler(self):
         codes = '0123456789abcdefghijklmnopqrstuv+. '
@@ -312,7 +364,7 @@ if __name__ == '__main__':
     with open('build/logic.json') as open_file:
         logic = json.load(open_file)
         best_fit = None
-        for _ in range(64_000):
+        for i in range(1_000):
             seed = random.randint(0, 2 ** 64)
             room_randomizer = RoomRandomizer(logic, seed)
             room_randomizer.shuffle_rooms()
@@ -323,12 +375,13 @@ if __name__ == '__main__':
                 best_fit = room_randomizer
             if best_fit.fitness() == (0, 0):
                 break
+            # print(i, best_fit.fitness(), seed)
         best_fit.show_spoiler()
         print(best_fit.initial_seed)
         print(best_fit.fitness())
         print(best_fit.unplaced_nodes)
         print(best_fit.open_edges())
         changes = best_fit.changes
-        file_name = 'build/AlchemyLabChanges.yaml'
+        file_name = 'build/RoomChanges.yaml'
         with open(file_name, 'w') as open_file:
             yaml.dump(changes, open_file, default_flow_style=False)

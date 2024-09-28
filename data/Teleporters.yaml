@@ -1,14 +1,14 @@
 
 Sources:
-    Castle Entrance, Fake Room With Teleporter B:
+    Castle Entrance, Fake Room With Teleporter A:
         Index: 13
         Stage: Castle Entrance
-        Room: Fake Room With Teleporter B
+        Room: Fake Room With Teleporter A
         Target: Alchemy Laboratory, Entryway (Right Node)
-    Castle Entrance Revisited, Fake Room With Teleporter B:
+    Castle Entrance Revisited, Fake Room With Teleporter A:
         Index: 58
         Stage: Castle Entrance Revisited
-        Room: Fake Room With Teleporter B
+        Room: Fake Room With Teleporter A
         Target: Alchemy Laboratory, Entryway (Right Node)
     Marble Gallery, Fake Room With Teleporter A:
         Index: 0
@@ -28,3 +28,9 @@ Targets:
         Node: Right Node
         Player X: 496
         Player Y: 392
+    Castle Entrance, Cube of Zoe Room (Upper-Left Node):
+        Stage: Castle Entrance
+        Room: Cube of Zoe Room
+        Node: Upper-Left Node
+        Player X: 16
+        Player Y: 132
