@@ -106,7 +106,7 @@ class RoomRandomizer:
                 # 'Alchemy Laboratory, Corridor to Elevator',
                 # 'Alchemy Laboratory, Elevator Shaft',
                 # 'Alchemy Laboratory, Empty Zig Zag Room',
-                # 'Alchemy Laboratory, Entryway',
+                'Alchemy Laboratory, Entryway',
                 # 'Alchemy Laboratory, Exit to Holy Chapel',
                 # 'Alchemy Laboratory, Exit to Marble Gallery',
                 # 'Alchemy Laboratory, Glass Vats',
@@ -192,7 +192,7 @@ class RoomRandomizer:
             row = self.changes['Rooms'][room_name]['Top'] + node['Row']
             col = self.changes['Rooms'][room_name]['Left'] + node['Column']
             segment = self.to_segment(row, col, node['Edge'])
-            self.segments[segment].add(node['Edge'])
+            self.segments[segment].add((node['Edge'], node['Type']))
             try:
                 self.unplaced_nodes[node['Edge']].remove((room_name, node_name))
             except KeyError:
@@ -213,7 +213,7 @@ class RoomRandomizer:
             self.changes['Teleporters']['Sources'][source_name] = {}
         self.changes['Teleporters']['Sources'][source_name]['Target'] = target_name
 
-    def possible_matching_nodes(self, segment, edge):
+    def possible_matching_nodes(self, segment, edge, node_type):
         # (top, left, bottom, right) = segment
         matching_edge = self.to_matching_edge(edge)
         (target_row, target_col) = self.to_cell(segment, edge)
@@ -222,13 +222,20 @@ class RoomRandomizer:
         for (room_name, node_name) in sorted(self.unplaced_nodes[matching_edge]):
             legal_ind = True
             # All cells of where the room will be placed must be empty
-            node_row = self.logic['Rooms'][room_name]['Node Sections'][node_name]['Row']
-            node_col = self.logic['Rooms'][room_name]['Node Sections'][node_name]['Column']
-            room_top = target_row - node_row
-            room_left = target_col - node_col
+            room_node_row = self.logic['Rooms'][room_name]['Node Sections'][node_name]['Row']
+            room_node_col = self.logic['Rooms'][room_name]['Node Sections'][node_name]['Column']
+            room_node_type = self.logic['Rooms'][room_name]['Node Sections'][node_name]['Type']
+            if room_node_type != node_type:
+                # print(room_node_type, node_type, 'room_node_type != node_type')
+                legal_ind = False
+            if not legal_ind:
+                continue
+            room_top = target_row - room_node_row
+            room_left = target_col - room_node_col
             for row in range(self.logic['Rooms'][room_name]['Rows']):
                 for col in range(self.logic['Rooms'][room_name]['Columns']):
                     if (room_top + row, room_left + col) not in self.empty_cells:
+                        # print('(room_top + row, room_left + col) not in self.empty_cells')
                         legal_ind = False
                         break
                 if not legal_ind:
@@ -236,17 +243,21 @@ class RoomRandomizer:
             if not legal_ind:
                 continue
             # All nodes of the room must complete an open node or start a new one
-            for (other_node_name, node) in self.logic['Rooms'][room_name]['Node Sections'].items():
-                row = room_top + node['Row']
-                col = room_left + node['Column']
-                segment = self.to_segment(row, col, node['Edge'])
-                (target_row, target_col) = self.to_cell(segment, node['Edge'])
+            for (other_node_name, other_node) in self.logic['Rooms'][room_name]['Node Sections'].items():
+                row = room_top + other_node['Row']
+                col = room_left + other_node['Column']
+                segment = self.to_segment(row, col, other_node['Edge'])
+                (target_row, target_col) = self.to_cell(segment, other_node['Edge'])
                 if (target_row, target_col) in self.empty_cells:
-                    continue
-                if len(self.segments[segment]) == 1:
-                    continue
-                legal_ind = False
-                break
+                    pass
+                elif len(self.segments[segment]) == 1:
+                    (segment_edge, segment_node_type) = list(self.segments[segment])[0]
+                    if segment_node_type != other_node['Type']:
+                        legal_ind = False
+                        break
+                else:
+                    legal_ind = False
+                    break
             if legal_ind:
                 result.append((room_name, node_name))
         return result
@@ -291,8 +302,8 @@ class RoomRandomizer:
                 break
             # Choose random open node A, if any exist
             self.rng.shuffle(open_edges)
-            for (segment, edge) in open_edges:
-                nodes = self.possible_matching_nodes(segment, edge)
+            for (segment, (edge, node_type)) in open_edges:
+                nodes = self.possible_matching_nodes(segment, edge, node_type)
                 # Stop looking once you've found at least one open node
                 if len(nodes) > 0:
                     break
@@ -336,10 +347,13 @@ class RoomRandomizer:
                     prev_index = codes.find(result[row][col])
                     if index < prev_index:
                         result[row][col] = code
-        for (segment, edge) in self.open_edges():
+        for (segment, (edge, node_type)) in self.open_edges():
             (row, col) = self.to_cell(segment, edge)
             # assert result[row][col] == '.'
-            result[row][col] = '+'
+            char = '+'
+            if node_type == 'Red Door':
+                char = '*'
+            result[row][col] = char
         for row in range(len(result)):
             print(''.join(result[row]))
         return result
@@ -364,7 +378,7 @@ if __name__ == '__main__':
     with open('build/logic.json') as open_file:
         logic = json.load(open_file)
         best_fit = None
-        for i in range(1_000):
+        for i in range(2_000):
             seed = random.randint(0, 2 ** 64)
             room_randomizer = RoomRandomizer(logic, seed)
             room_randomizer.shuffle_rooms()
@@ -379,8 +393,12 @@ if __name__ == '__main__':
         best_fit.show_spoiler()
         print(best_fit.initial_seed)
         print(best_fit.fitness())
-        print(best_fit.unplaced_nodes)
-        print(best_fit.open_edges())
+        for (key, value) in best_fit.unplaced_nodes.items():
+            print(key)
+            for node in value:
+                print(' ' , node)
+        for open_edge in best_fit.open_edges():
+            print(open_edge)
         changes = best_fit.changes
         file_name = 'build/RoomChanges.yaml'
         with open(file_name, 'w') as open_file:
