@@ -7,7 +7,7 @@ Top: 36
 Columns: 3
 Rows: 1
 Total Cells: 3
-Empty Cells:
+Empty Cells: {}
 Entities:
     - Bone Scimitar
     - Red Skeleton

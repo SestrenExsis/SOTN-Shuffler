@@ -11,18 +11,5 @@ Empty Cells:
     - Row: 0
       Column: 0
 Entities:
-Node Sections:
-    Right Node:
-        Type: Passage
-        Row: 0
-        Column: 0
-        Edge: Right
+Node Sections: {}
 Triggers:
-    Entry - Right Node:
-        Outcomes:
-            Location: Royal Chapel, Unknown
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Fake Room With Teleporter B
-                Section: Right Node

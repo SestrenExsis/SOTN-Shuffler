@@ -7,20 +7,7 @@ Top: X
 Columns: 1
 Rows: 1
 Total Cells: 1
-Empty Cells:
+Empty Cells: {}
 Entities:
-Node Sections:
-    Right Node:
-        Type: Passage
-        Row: 0
-        Column: 0
-        Edge: Right
+Node Sections: {}
 Triggers:
-    Entry - Left Node:
-        Outcomes:
-            Location: Alchemy Laboratory, Entryway
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Marble Gallery, Fake Room With Teleporter A
-                Section: Right Node

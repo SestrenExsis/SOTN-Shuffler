@@ -7,7 +7,7 @@ Top: 27
 Columns: 1
 Rows: 5
 Total Cells: 5
-Empty Cells:
+Empty Cells: {}
 Entities:
     - Spittlebone
 Node Sections:

@@ -11,18 +11,5 @@ Empty Cells:
     - Row: 0
       Column: 0
 Entities:
-Node Sections:
-    Left Node:
-        Type: Passage
-        Row: 0
-        Column: 0
-        Edge: Left
+Node Sections: {}
 Triggers:
-    Entry - Left Node:
-        Outcomes:
-            Location: Castle Entrance, Cube of Zoe Room
-            Section: Ground
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Fake Room With Teleporter C
-                Section: Left Node
