@@ -15,10 +15,10 @@ class RoomCell:
             self.edges.add(edge)
 
 class RoomNode:
-    def __init__(self, room, top: int, left: int, edge: str, type: str):
+    def __init__(self, room, row: int, column: int, edge: str, type: str):
         self.room = room
-        self.top = top
-        self.left = left
+        self.top = row + (1 if edge == 'Bottom' else 0)
+        self.left = column + (1 if edge == 'Right' else 0)
         self.edge = edge
         self.type = type
         self.direction = None
@@ -31,6 +31,7 @@ class RoomNode:
         result = (self.top, self.left, self.edge, self.type, self.room.room_name, (self.room.top + self.top), (self.room.left + self.left))
         return str(result)
     
+    # TODO(sestren): Implement __eq__, __gt__, etc.
     def __lt__(self, other) -> bool:
         result = (
             self.room.room_name, self.top, self.left, self.edge, self.type
@@ -81,7 +82,7 @@ class RoomSet:
             room_name = room.stage_name + ', ' + room.room_name
             self.rooms[room_name] = room
 
-    def get_open_nodes(self, matching_node: RoomNode=None) -> set:
+    def get_open_nodes(self, matching_node: RoomNode=None) -> list:
         edges = {}
         for (room_name, room) in self.rooms.items():
             for (node_name, node) in room.nodes.items():
@@ -95,6 +96,7 @@ class RoomSet:
                 node = nodes[0]
                 if node.matches(matching_node):
                     result.append(node)
+        result.sort()
         return result
 
     def add_roomset(self, source_node: RoomNode, target_node: RoomNode):
@@ -102,35 +104,24 @@ class RoomSet:
         offset_top = (target_node.room.top + target_node.top) - (source_node.room.top + source_node.top)
         offset_left = (target_node.room.left + target_node.left) - (source_node.room.left + source_node.left)
         # room_name = room['Stage'] + ', ' + room['Room']
-        valid_ind = True
+        result = True
         for (room_name, room) in roomset.rooms.items():
             room.roomset = self
             room.top += offset_top
             room.left += offset_left
             self.rooms[room_name] = room
+        return result
     
     def get_changes(self) -> dict:
-        '''
-        Rooms:
-            Castle Entrance, After Drawbridge:
-                Index: 0
-                Left: 2
-                Top: 38
-            Castle Entrance, Forest Cutscene:
-                Index: 18
-                Left: 0
-                Top: 44
-            Castle Entrance, Unknown 19:
-                Index: 19
-                Left: 18
-                Top: 44
-            Castle Entrance, Unknown 20:
-                Index: 20
-                Left: 18
-                Top: 44
-        Teleporters: {}
-        '''
-        result = None
+        result = {
+            'Rooms': {}
+        }
+        for (room_name, room) in self.rooms.items():
+            result['Rooms'][room_name] = {
+                'Index': room.index,
+                'Top': room.top,
+                'Left': room.left,
+            }
         return result
 
     def remove_room(self, room_name):
@@ -171,23 +162,20 @@ if __name__ == '__main__':
         roomset_pool['4'] = RoomSet('4', [[rooms['Castle Entrance, Attic Entrance'], 0, 0]])
         roomset_pool['5'] = RoomSet('5', [[rooms['Castle Entrance, Attic Hallway'], 0, 0]])
         roomset_pool['6'] = RoomSet('6', [[rooms['Castle Entrance, Attic Staircase'], 0, 0]])
-        roomset_pool['7'] = RoomSet('7', [[rooms['Castle Entrance, Cube of Zoe Room'], 0, 0]])
-        roomset_pool['8'] = RoomSet('8', [[rooms['Castle Entrance, Drop Under Portcullis'], 0, 0]])
-        roomset_pool['9'] = RoomSet('9', [[rooms['Castle Entrance, Gargoyle Room'], 0, 0]])
-        roomset_pool['10'] = RoomSet('10', [[rooms['Castle Entrance, Heart Max-Up Room'], 0, 0]])
-        roomset_pool['11'] = RoomSet('11', [[rooms['Castle Entrance, Holy Mail Room'], 0, 0]])
-        roomset_pool['12'] = RoomSet('12', [[rooms['Castle Entrance, Jewel Sword Room'], 0, 0]])
-        roomset_pool['13'] = RoomSet('13', [[rooms['Castle Entrance, Life Max-Up Room'], 0, 0]])
-        roomset_pool['14'] = RoomSet('14', [[rooms['Castle Entrance, Meeting Room With Death'], 0, 0]])
-        roomset_pool['15'] = RoomSet('15', [[rooms['Castle Entrance, Merman Room'], 0, 0]])
-        roomset_pool['16'] = RoomSet('16', [[rooms['Castle Entrance, Save Room A'], 0, 0]])
-        roomset_pool['17'] = RoomSet('17', [[rooms['Castle Entrance, Save Room B'], 0, 0]])
-        roomset_pool['18'] = RoomSet('18', [[rooms['Castle Entrance, Save Room C'], 0, 0]])
-        roomset_pool['19'] = RoomSet('19', [[rooms['Castle Entrance, Shortcut to Underground Caverns'], 0, 0]])
-        roomset_pool['20'] = RoomSet('20', [[rooms['Castle Entrance, Shortcut to Warp'], 0, 0]])
-        roomset_pool['21'] = RoomSet('21', [[rooms['Castle Entrance, Stairwell After Death'], 0, 0]])
-        roomset_pool['22'] = RoomSet('22', [[rooms['Castle Entrance, Warg Hallway'], 0, 0]])
-        roomset_pool['23'] = RoomSet('23', [[rooms['Castle Entrance, Zombie Hallway'], 0, 0]])
+        roomset_pool['7'] = RoomSet('7', [[rooms['Castle Entrance, Drop Under Portcullis'], 0, 0]])
+        roomset_pool['8'] = RoomSet('8', [[rooms['Castle Entrance, Gargoyle Room'], 0, 0]])
+        roomset_pool['9'] = RoomSet('9', [[rooms['Castle Entrance, Heart Max-Up Room'], 0, 0]])
+        roomset_pool['10'] = RoomSet('10', [[rooms['Castle Entrance, Holy Mail Room'], 0, 0]])
+        roomset_pool['11'] = RoomSet('11', [[rooms['Castle Entrance, Jewel Sword Room'], 0, 0]])
+        roomset_pool['12'] = RoomSet('12', [[rooms['Castle Entrance, Life Max-Up Room'], 0, 0]])
+        roomset_pool['13'] = RoomSet('13', [[rooms['Castle Entrance, Meeting Room With Death'], 0, 0]])
+        roomset_pool['14'] = RoomSet('14', [[rooms['Castle Entrance, Merman Room'], 0, 0]])
+        roomset_pool['15'] = RoomSet('15', [[rooms['Castle Entrance, Save Room A'], 0, 0]])
+        roomset_pool['16'] = RoomSet('16', [[rooms['Castle Entrance, Save Room B'], 0, 0]])
+        roomset_pool['17'] = RoomSet('17', [[rooms['Castle Entrance, Save Room C'], 0, 0]])
+        roomset_pool['18'] = RoomSet('18', [[rooms['Castle Entrance, Stairwell After Death'], 0, 0]])
+        roomset_pool['19'] = RoomSet('19', [[rooms['Castle Entrance, Warg Hallway'], 0, 0]])
+        roomset_pool['20'] = RoomSet('20', [[rooms['Castle Entrance, Zombie Hallway'], 0, 0]])
         stage = RoomSet('stage', [
             [rooms['Castle Entrance, Forest Cutscene'], None, None],
             [rooms['Castle Entrance, Unknown 19'], None, None],
@@ -195,22 +183,29 @@ if __name__ == '__main__':
             [rooms['Castle Entrance, After Drawbridge'], None, None],
         ])
         while len(roomset_pool) > 0:
-            target_node = rng.choice(list(sorted(stage.get_open_nodes())))
-            print('target_node:', target_node)
+            print(len(roomset_pool), stage.rooms['Castle Entrance, After Drawbridge'].top, stage.rooms['Castle Entrance, After Drawbridge'].left)
+            possible_target_nodes = stage.get_open_nodes()
+            if len(possible_target_nodes) < 1:
+                break
+            target_node = rng.choice(possible_target_nodes)
+            print(' ', target_node)
             open_nodes = []
             for (roomset_name, roomset) in roomset_pool.items():
                 for open_node in roomset.get_open_nodes(matching_node=target_node):
                     open_nodes.append(open_node)
-            for open_node in open_nodes:
-                print('open_node:', open_node)
             # Go through possible source nodes in random order until we get a valid source node
+            if len(open_nodes) < 1:
+                break
             open_nodes.sort()
             rng.shuffle(open_nodes)
             for source_node in open_nodes:
+                print('  ', source_node)
+                roomset_key = source_node.room.roomset.roomset_name
                 valid_ind = stage.add_roomset(source_node, target_node)
-                if valid_ind:
-                    roomset = roomset_pool.pop(source_node.room.roomset.roomset_name, None)
-                    break
+                # if valid_ind:
+                print('  ', roomset_key)
+                roomset = roomset_pool.pop(roomset_key, None)
+                # break
             else:
                 # Failed to find a valid source node for the target node
                 break
