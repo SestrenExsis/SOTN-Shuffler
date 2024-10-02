@@ -119,7 +119,7 @@ def get_room_rando_ppf(logic, changes):
         'Alchemy Laboratory': 0x0C,
         'Castle Entrance': 0x41,
     }
-    if 'Sources' in changes['Teleporters']:
+    if 'Teleporters' in changes and 'Sources' in changes['Teleporters']:
         for source_name in sorted(changes['Teleporters']['Sources'].keys()):
             target_name = changes['Teleporters']['Sources'][source_name]['Target']
             if target_name == logic['Teleporters']['Sources'][source_name]['Target']:
