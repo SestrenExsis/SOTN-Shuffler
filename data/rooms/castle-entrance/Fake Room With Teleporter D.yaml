@@ -11,5 +11,10 @@ Empty Cells:
     - Row: 0
       Column: 0
 Entities:
-Node Sections: {}
+Node Sections:
+    Left Node:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
 Triggers:

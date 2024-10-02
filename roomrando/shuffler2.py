@@ -17,10 +17,12 @@ class RoomCell:
 class RoomNode:
     def __init__(self, room, row: int, column: int, edge: str, type: str):
         self.room = room
-        self.top = row + (1 if edge == 'Bottom' else 0)
-        self.left = column + (1 if edge == 'Right' else 0)
+        self.row = row
+        self.column = column
         self.edge = edge
         self.type = type
+        self.top = self.row + (1 if self.edge == 'Bottom' else 0)
+        self.left = self.column + (1 if self.edge == 'Right' else 0)
         self.direction = None
         if edge in ('Top', 'Bottom'):
             self.direction = 'Right'
@@ -34,9 +36,9 @@ class RoomNode:
     # TODO(sestren): Implement __eq__, __gt__, etc.
     def __lt__(self, other) -> bool:
         result = (
-            self.room.room_name, self.top, self.left, self.edge, self.type
+            self.room.room_name, self.row, self.column, self.edge, self.type
         ) < (
-            other.room.room_name, other.top, other.left, other.edge, other.type
+            other.room.room_name, other.row, other.column, other.edge, other.type
         )
         return result
     
@@ -100,12 +102,11 @@ class RoomSet:
         return result
 
     def add_roomset(self, source_node: RoomNode, target_node: RoomNode):
-        roomset = source_node.room.roomset
+        source_roomset = source_node.room.roomset
         offset_top = (target_node.room.top + target_node.top) - (source_node.room.top + source_node.top)
         offset_left = (target_node.room.left + target_node.left) - (source_node.room.left + source_node.left)
-        # room_name = room['Stage'] + ', ' + room['Room']
-        result = True
-        for (room_name, room) in roomset.rooms.items():
+        result = False
+        for (room_name, room) in source_roomset.rooms.items():
             room.roomset = self
             room.top += offset_top
             room.left += offset_left
@@ -122,6 +123,37 @@ class RoomSet:
                 'Top': room.top,
                 'Left': room.left,
             }
+        return result
+    
+    def get_spoiler(self, logic: dict, changes: dict) -> list[str]:
+        codes = '0123456789abcdefghijklmnopqrstuv+. '
+        legend = {}
+        grid = [['.' for col in range(64)] for row in range(64)]
+        for room_name in changes['Rooms'].keys():
+            (index, top, left, rows, cols) = (
+                changes['Rooms'][room_name]['Index'],
+                changes['Rooms'][room_name]['Top'],
+                changes['Rooms'][room_name]['Left'],
+                logic['Rooms'][room_name]['Rows'],
+                logic['Rooms'][room_name]['Columns'],
+            )
+            code = codes[index]
+            legend[code] = room_name
+            for row in range(max(0, top), min(64, top + rows)):
+                for col in range(max(0, left), min(64, left + cols)):
+                    prev_index = codes.find(grid[row][col])
+                    if index < prev_index:
+                        grid[row][col] = code
+        result = []
+        for row_data in grid:
+            result.append(''.join(row_data))
+        for code, room_name in legend.items():
+            index = logic['Rooms'][room_name]['Index']
+            top = changes['Rooms'][room_name]['Top']
+            left = changes['Rooms'][room_name]['Left']
+            width = logic['Rooms'][room_name]['Columns']
+            height = logic['Rooms'][room_name]['Rows']
+            result.append(str((code, room_name, ('I:', index, 'T:', top, 'L:', left, 'H:', height, 'W:', width))))
         return result
 
     def remove_room(self, room_name):
@@ -182,13 +214,12 @@ if __name__ == '__main__':
             [rooms['Castle Entrance, Unknown 20'], None, None],
             [rooms['Castle Entrance, After Drawbridge'], None, None],
         ])
+        steps = 0
         while len(roomset_pool) > 0:
-            print(len(roomset_pool), stage.rooms['Castle Entrance, After Drawbridge'].top, stage.rooms['Castle Entrance, After Drawbridge'].left)
             possible_target_nodes = stage.get_open_nodes()
             if len(possible_target_nodes) < 1:
                 break
             target_node = rng.choice(possible_target_nodes)
-            print(' ', target_node)
             open_nodes = []
             for (roomset_name, roomset) in roomset_pool.items():
                 for open_node in roomset.get_open_nodes(matching_node=target_node):
@@ -199,16 +230,21 @@ if __name__ == '__main__':
             open_nodes.sort()
             rng.shuffle(open_nodes)
             for source_node in open_nodes:
-                print('  ', source_node)
                 roomset_key = source_node.room.roomset.roomset_name
                 valid_ind = stage.add_roomset(source_node, target_node)
-                # if valid_ind:
-                print('  ', roomset_key)
-                roomset = roomset_pool.pop(roomset_key, None)
-                # break
+                if valid_ind:
+                    # print('  ', roomset_key)
+                    roomset = roomset_pool.pop(roomset_key, None)
+                    break
             else:
                 # Failed to find a valid source node for the target node
                 break
+            steps += 1
+            if steps > 0:
+                break
         file_name = 'build/RoomChanges.yaml'
         with open(file_name, 'w') as open_file:
+            changes = stage.get_changes()
+            for row_data in stage.get_spoiler(logic, changes):
+                print(row_data)
             yaml.dump(stage.get_changes(), open_file, default_flow_style=False)
