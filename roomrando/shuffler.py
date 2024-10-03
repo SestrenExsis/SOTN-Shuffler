@@ -109,7 +109,7 @@ class RoomSet:
     def get_cells(self, offset_top: int=0, offset_left: int=0) -> set[tuple[int, int]]:
         result = set()
         for (room_name, room) in self.rooms.items():
-            result.union(room.get_cells(offset_top, offset_left))
+            result = result.union(room.get_cells(offset_top, offset_left))
         return result
 
     def get_open_nodes(self, matching_node: RoomNode=None) -> list:
@@ -139,7 +139,6 @@ class RoomSet:
         for (source_room_name, source_room) in source_roomset.rooms.items():
             source_cells = source_room.get_cells(offset_top, offset_left)
             if len(source_cells.intersection(target_cells)) > 0:
-                print('ERROR: INTERSECTION', source_cells.intersection(target_cells))
                 valid_ind = False
                 break
             (min_row, min_col, max_row, max_col) = (float('inf'), float('inf'), float('-inf'), float('-inf'))
@@ -305,12 +304,15 @@ if __name__ == '__main__':
         rooms = {}
         for (room_name, room_data) in logic['Rooms'].items():
             rooms[room_name] = Room(room_data)
-        initial_seed = random.randint(0, 2 ** 64)
-        rng = random.Random(initial_seed)
+        current_seed = random.randint(0, 2 ** 64)
+        rng = random.Random(current_seed)
         while True:
+            print(current_seed)
             stage = get_roomset(rng)
             if len(stage.rooms) >= 32:
                 break
+            current_seed = rng.randint(0, 2 ** 64)
+            rng = random.Random(current_seed)
         file_name = 'build/RoomChanges.yaml'
         with open(file_name, 'w') as open_file:
             changes = stage.get_changes()
