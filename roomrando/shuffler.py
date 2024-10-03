@@ -4,16 +4,6 @@ import json
 import random
 import yaml
 
-class RoomCell:
-    def __init__(self, top: int, left: int, edges: set[str]):
-        self.top = top
-        self.left = left
-        self.edges = set()
-        # Edge: (stage, type, direction)
-        # ('Castle Entrance', 'Red Door', 'Left')
-        for edge in edges:
-            self.edges.add(edge)
-
 class RoomNode:
     def __init__(self, room, row: int, column: int, edge: str, type: str):
         self.room = room
@@ -288,16 +278,12 @@ def get_roomset(rng) -> RoomSet:
             print('ERROR: All matching source nodes for the target node result in invalid room placement')
             break
         steps += 1
-    if len(roomset_pool) > 0:
-        print('ERROR: Roomsets left unplaced')
     return result
 
 if __name__ == '__main__':
     '''
     Usage
-    python shuffler2.py
-
-    Rooms don't "link", they are just placed where they are at, and links are implied
+    python shuffler.py
     '''
     with open('build/logic.json') as open_file:
         logic = json.load(open_file)
