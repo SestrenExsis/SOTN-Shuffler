@@ -139,8 +139,31 @@ class RoomSet:
         for (source_room_name, source_room) in source_roomset.rooms.items():
             source_cells = source_room.get_cells(offset_top, offset_left)
             if len(source_cells.intersection(target_cells)) > 0:
+                print('ERROR: INTERSECTION', source_cells.intersection(target_cells))
                 valid_ind = False
                 break
+            (min_row, min_col, max_row, max_col) = (float('inf'), float('inf'), float('-inf'), float('-inf'))
+            for (row, col) in source_cells:
+                min_row = min(min_row, row)
+                min_col = min(min_col, col)
+                max_row = min(max_row, row)
+                max_col = min(max_col, col)
+            if min_row >= 0 and min_col >= 0 and max_row < 64 and max_col < 64:
+                pass
+            else:
+                valid_ind = False
+                break
+        if valid_ind:
+            edges = set()
+            for other_target_node in self.get_open_nodes():
+                edges.add((other_target_node.top, other_target_node.left, other_target_node.direction))
+            # Verify each open node in the source roomset faces a vacant cell or connects with a matching node
+            for other_source_node in source_roomset.get_open_nodes():
+                facing_cell = other_source_node.get_facing_cell()
+                if facing_cell in target_cells:
+                    if (other_source_node.top, other_source_node.left, other_source_node.direction) not in edges:
+                        valid_ind = False
+                        break
         if valid_ind:
             for (source_room_name, source_room) in source_roomset.rooms.items():
                 source_room.roomset = self
@@ -286,7 +309,7 @@ if __name__ == '__main__':
         rng = random.Random(initial_seed)
         while True:
             stage = get_roomset(rng)
-            if len(stage.rooms) > 25:
+            if len(stage.rooms) >= 32:
                 break
         file_name = 'build/RoomChanges.yaml'
         with open(file_name, 'w') as open_file:
