@@ -51,6 +51,20 @@ class RoomNode:
                 self.edge != node.edge
             )
         return result
+    
+    def get_facing_cell(self) -> set[int, int]:
+        top = self.room.top + self.top
+        left = self.room.left + self.left
+        if self.edge == 'Top':
+            top -= 1
+        elif self.edge == 'Left':
+            left -= 1
+        elif self.edge == 'Bottom':
+            top += 1
+        elif self.edge == 'Right':
+            left += 1
+        result = (top, left)
+        return result
 
 class Room:
     def __init__(self, room_data: dict, top: int=None, left: int=None):
@@ -72,12 +86,12 @@ class Room:
             )
             self.nodes[node_name] = node
     
-    def get_cells(self) -> set[tuple[int, int]]:
+    def get_cells(self, offset_top: int=0, offset_left: int=0) -> set[tuple[int, int]]:
         result = set()
         for row in range(self.top, self.top + self.rows):
             for col in range(self.left, self.left + self.columns):
                 if (row, col) not in self.empty_cells:
-                    result.add((row, col))
+                    result.add((row + offset_top, col + offset_left))
         return result
 
 class RoomSet:
@@ -92,11 +106,10 @@ class RoomSet:
             room_name = room.stage_name + ', ' + room.room_name
             self.rooms[room_name] = room
     
-    def get_cells(self) -> set[tuple[int, int]]:
+    def get_cells(self, offset_top: int=0, offset_left: int=0) -> set[tuple[int, int]]:
         result = set()
         for (room_name, room) in self.rooms.items():
-            for (row, col) in room.get_cells():
-                result.add((row, col))
+            result.union(room.get_cells(offset_top, offset_left))
         return result
 
     def get_open_nodes(self, matching_node: RoomNode=None) -> list:
@@ -122,29 +135,18 @@ class RoomSet:
         offset_top = (target_node.room.top + target_node.top) - (source_node.room.top + source_node.top)
         offset_left = (target_node.room.left + target_node.left) - (source_node.room.left + source_node.left)
         valid_ind = True
-        backup = {}
+        # Verify each cell where the source roomset will be placed is vacant and in bounds
         for (source_room_name, source_room) in source_roomset.rooms.items():
-            backup[source_room_name] = {
-                'Roomset': source_room.roomset,
-                'Top': source_room.top,
-                'Left': source_room.left,
-            }
-            source_room.roomset = self
-            source_room.top += offset_top
-            source_room.left += offset_left
-            self.rooms[source_room_name] = source_room
-            source_cells = source_room.get_cells()
+            source_cells = source_room.get_cells(offset_top, offset_left)
             if len(source_cells.intersection(target_cells)) > 0:
                 valid_ind = False
                 break
-        if not valid_ind:
-            # Restore room info from backup and delete rooms from self
-            for source_room_name in backup:
-                source_room = source_roomset.rooms[source_room_name]
-                source_room.roomset = backup[source_room_name]['Roomset']
-                source_room.top = backup[source_room_name]['Top']
-                source_room.left = backup[source_room_name]['Left']
-                self.rooms.pop(source_room_name, None)
+        if valid_ind:
+            for (source_room_name, source_room) in source_roomset.rooms.items():
+                source_room.roomset = self
+                source_room.top += offset_top
+                source_room.left += offset_left
+                self.rooms[source_room_name] = source_room
         result = valid_ind
         return result
     
