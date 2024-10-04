@@ -113,6 +113,7 @@ class RoomSet:
         return result
 
     def get_open_nodes(self, matching_node: RoomNode=None) -> list:
+        # TODO(sestren): One node per "duplicate", see Tetromino Room
         edges = {}
         for (room_name, room) in self.rooms.items():
             for (node_name, node) in room.nodes.items():
@@ -203,7 +204,7 @@ class RoomSet:
         result = []
         for row_data in grid:
             result.append(''.join(row_data))
-        for (code, room_name) in sorted(legend):
+        for (code, room_name) in legend:
             index = logic['Rooms'][room_name]['Index']
             top = changes['Rooms'][room_name]['Top']
             left = changes['Rooms'][room_name]['Left']
@@ -319,7 +320,7 @@ def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
     while len(pool) > 1:
         possible_target_nodes = result.get_open_nodes()
         if len(possible_target_nodes) < 1:
-            print('ERROR: No open nodes left')
+            # print('ERROR: No open nodes left')
             break
         target_node = rng.choice(possible_target_nodes)
         open_nodes = []
@@ -328,7 +329,7 @@ def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
                 open_nodes.append(open_node)
         # Go through possible source nodes in random order until we get a valid source node
         if len(open_nodes) < 1:
-            print('ERROR: No matching source nodes for the chosen target node')
+            # print('ERROR: No matching source nodes for the chosen target node')
             break
         open_nodes.sort()
         rng.shuffle(open_nodes)
@@ -342,7 +343,7 @@ def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
                 roomset = pool.pop(roomset_key, None)
                 break
         else:
-            print('ERROR: All matching source nodes for the target node result in invalid room placement')
+            # print('ERROR: All matching source nodes for the target node result in invalid room placement')
             break
         steps += 1
     return result
@@ -360,18 +361,22 @@ if __name__ == '__main__':
         current_seed = random.randint(0, 2 ** 64)
         rng = random.Random(current_seed)
         castle = None
+        seed_count = 0
         while True:
             castle = get_roomset(rng, rooms, stages['Castle Entrance'])
-            print('Castle Entrance:', len(castle.rooms), current_seed)
+            seed_count += 1
             if len(castle.rooms) >= 32:
+                print('Castle Entrance:', len(castle.rooms), seed_count, current_seed)
                 break
             current_seed = rng.randint(0, 2 ** 64)
             rng = random.Random(current_seed)
         alchemy_laboratory = None
+        seed_count = 0
         while True:
             alchemy_laboratory = get_roomset(rng, rooms, stages['Alchemy Laboratory'])
-            print('Alchemy Laboratory:', len(alchemy_laboratory.rooms), current_seed)
+            seed_count += 1
             if len(alchemy_laboratory.rooms) >= 29:
+                print('Alchemy Laboratory:', len(alchemy_laboratory.rooms), seed_count, current_seed)
                 break
             current_seed = rng.randint(0, 2 ** 64)
             rng = random.Random(current_seed)
@@ -383,3 +388,7 @@ if __name__ == '__main__':
             for row_data in castle.get_spoiler(logic, changes):
                 print(row_data)
             yaml.dump(castle.get_changes(), open_file, default_flow_style=False)
+        if len(alchemy_laboratory.rooms) < 32:
+            for room_name in rooms:
+                if 'Alchemy Laboratory' in room_name and room_name not in alchemy_laboratory.rooms:
+                    print(room_name)
