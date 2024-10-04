@@ -85,9 +85,9 @@ class Room:
         return result
 
 class RoomSet:
-    def __init__(self, roomset_name: str, room_placements: list[list[Room, int, int]]):
+    def __init__(self, roomset_id, room_placements: list[list[Room, int, int]]):
         # room_placements: [ [room: Room, top: int=None, left: int=None], ... ]
-        self.roomset_name = roomset_name
+        self.roomset_id = roomset_id
         self.rooms = {}
         for (room, top, left) in room_placements:
             room.roomset = self
@@ -208,57 +208,73 @@ class RoomSet:
     def remove_room(self, room_name):
         self.rooms.pop(room_name, None)
 
-def get_roomset(rng) -> RoomSet:
-    roomset_pool = {}
-    roomset_pool['1'] = RoomSet('1', [
-        [rooms['Castle Entrance, Fake Room With Teleporter A'], 0, 0],
-        [rooms['Castle Entrance, Loading Room C'], 0, 1],
-        [rooms['Castle Entrance, Cube of Zoe Room'], 0, 2],
-        [rooms['Castle Entrance, Loading Room A'], 0, 4],
-        [rooms['Castle Entrance, Fake Room With Teleporter B'], 0, 5],
-    ])
-    roomset_pool['2'] = RoomSet('2', [
-        [rooms['Castle Entrance, Fake Room With Teleporter C'], 0, 0],
-        [rooms['Castle Entrance, Loading Room B'], 0, 1],
-        [rooms['Castle Entrance, Shortcut to Warp'], 0, 2],
-    ])
-    roomset_pool['3'] = RoomSet('3', [
-        [rooms['Castle Entrance, Shortcut to Underground Caverns'], 0, 0],
-        [rooms['Castle Entrance, Loading Room D'], 0, 1],
-        [rooms['Castle Entrance, Fake Room With Teleporter D'], 0, 2],
-    ])
-    roomset_pool['4'] = RoomSet('4', [[rooms['Castle Entrance, Attic Entrance'], 0, 0]])
-    roomset_pool['5'] = RoomSet('5', [[rooms['Castle Entrance, Attic Hallway'], 0, 0]])
-    roomset_pool['6'] = RoomSet('6', [[rooms['Castle Entrance, Attic Staircase'], 0, 0]])
-    roomset_pool['7'] = RoomSet('7', [[rooms['Castle Entrance, Drop Under Portcullis'], 0, 0]])
-    roomset_pool['8'] = RoomSet('8', [[rooms['Castle Entrance, Gargoyle Room'], 0, 0]])
-    roomset_pool['9'] = RoomSet('9', [[rooms['Castle Entrance, Heart Max-Up Room'], 0, 0]])
-    roomset_pool['10'] = RoomSet('10', [[rooms['Castle Entrance, Holy Mail Room'], 0, 0]])
-    roomset_pool['11'] = RoomSet('11', [[rooms['Castle Entrance, Jewel Sword Room'], 0, 0]])
-    roomset_pool['12'] = RoomSet('12', [[rooms['Castle Entrance, Life Max-Up Room'], 0, 0]])
-    roomset_pool['13'] = RoomSet('13', [[rooms['Castle Entrance, Meeting Room With Death'], 0, 0]])
-    roomset_pool['14'] = RoomSet('14', [[rooms['Castle Entrance, Merman Room'], 0, 0]])
-    roomset_pool['15'] = RoomSet('15', [[rooms['Castle Entrance, Save Room A'], 0, 0]])
-    roomset_pool['16'] = RoomSet('16', [[rooms['Castle Entrance, Save Room B'], 0, 0]])
-    roomset_pool['17'] = RoomSet('17', [[rooms['Castle Entrance, Save Room C'], 0, 0]])
-    roomset_pool['18'] = RoomSet('18', [[rooms['Castle Entrance, Stairwell After Death'], 0, 0]])
-    roomset_pool['19'] = RoomSet('19', [[rooms['Castle Entrance, Warg Hallway'], 0, 0]])
-    roomset_pool['20'] = RoomSet('20', [[rooms['Castle Entrance, Zombie Hallway'], 0, 0]])
-    result = RoomSet('stage', [
-        [rooms['Castle Entrance, Forest Cutscene'], None, None],
-        [rooms['Castle Entrance, Unknown 19'], None, None],
-        [rooms['Castle Entrance, Unknown 20'], None, None],
-        [rooms['Castle Entrance, After Drawbridge'], None, None],
-    ])
+stages = {
+    'Castle Entrance': [
+        {
+            'Castle Entrance, Forest Cutscene': (None, None),
+            'Castle Entrance, Unknown 19': (None, None),
+            'Castle Entrance, Unknown 20': (None, None),
+            'Castle Entrance, After Drawbridge': (None, None),
+        },
+        {
+            'Castle Entrance, Fake Room With Teleporter A': (0, 0),
+            'Castle Entrance, Loading Room C': (0, 1),
+            'Castle Entrance, Cube of Zoe Room': (0, 2),
+            'Castle Entrance, Loading Room A': (0, 4),
+            'Castle Entrance, Fake Room With Teleporter B': (0, 5),
+        },
+        {
+            'Castle Entrance, Fake Room With Teleporter C': (0, 0),
+            'Castle Entrance, Loading Room B': (0, 1),
+            'Castle Entrance, Shortcut to Warp': (0, 2),
+        },
+        {
+            'Castle Entrance, Fake Room With Teleporter C': (0, 0),
+            'Castle Entrance, Loading Room B': (0, 1),
+            'Castle Entrance, Shortcut to Warp': (0, 2),
+        },
+        {
+            'Castle Entrance, Shortcut to Underground Caverns': (0, 0),
+            'Castle Entrance, Loading Room D': (0, 1),
+            'Castle Entrance, Fake Room With Teleporter D': (0, 2),
+        },
+        { 'Castle Entrance, Attic Entrance': (0, 0) },
+        { 'Castle Entrance, Attic Hallway': (0, 0) },
+        { 'Castle Entrance, Attic Staircase': (0, 0) },
+        { 'Castle Entrance, Drop Under Portcullis': (0, 0) },
+        { 'Castle Entrance, Gargoyle Room': (0, 0) },
+        { 'Castle Entrance, Heart Max-Up Room': (0, 0) },
+        { 'Castle Entrance, Holy Mail Room': (0, 0) },
+        { 'Castle Entrance, Jewel Sword Room': (0, 0) },
+        { 'Castle Entrance, Life Max-Up Room': (0, 0) },
+        { 'Castle Entrance, Meeting Room With Death': (0, 0) },
+        { 'Castle Entrance, Merman Room': (0, 0) },
+        { 'Castle Entrance, Save Room A': (0, 0) },
+        { 'Castle Entrance, Save Room B': (0, 0) },
+        { 'Castle Entrance, Save Room C': (0, 0) },
+        { 'Castle Entrance, Stairwell After Death': (0, 0) },
+        { 'Castle Entrance, Warg Hallway': (0, 0) },
+        { 'Castle Entrance, Zombie Hallway': (0, 0) },
+    ],
+}
+
+def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
+    pool = {}
+    for roomset_id, roomset_data in enumerate(stage_data):
+        room_placements = []
+        for room_name, (top, left) in roomset_data.items():
+            room_placements.append((rooms[room_name], top, left))
+        pool[roomset_id] = RoomSet(roomset_id, room_placements)
+    result = pool.pop(0)
     steps = 0
-    while len(roomset_pool) > 0:
+    while len(pool) > 1:
         possible_target_nodes = result.get_open_nodes()
         if len(possible_target_nodes) < 1:
             print('ERROR: No open nodes left')
             break
         target_node = rng.choice(possible_target_nodes)
         open_nodes = []
-        for (roomset_name, roomset) in roomset_pool.items():
+        for (roomset_id, roomset) in pool.items():
             for open_node in roomset.get_open_nodes(matching_node=target_node):
                 open_nodes.append(open_node)
         # Go through possible source nodes in random order until we get a valid source node
@@ -268,11 +284,11 @@ def get_roomset(rng) -> RoomSet:
         open_nodes.sort()
         rng.shuffle(open_nodes)
         for source_node in open_nodes:
-            roomset_key = source_node.room.roomset.roomset_name
+            roomset_key = source_node.room.roomset.roomset_id
             valid_ind = result.add_roomset(source_node, target_node)
             if valid_ind:
                 # print('  ', roomset_key)
-                roomset = roomset_pool.pop(roomset_key, None)
+                roomset = pool.pop(roomset_key, None)
                 break
         else:
             print('ERROR: All matching source nodes for the target node result in invalid room placement')
@@ -292,16 +308,17 @@ if __name__ == '__main__':
             rooms[room_name] = Room(room_data)
         current_seed = random.randint(0, 2 ** 64)
         rng = random.Random(current_seed)
+        castle = None
         while True:
-            print(current_seed)
-            stage = get_roomset(rng)
-            if len(stage.rooms) >= 32:
+            print('Castle Entrance:', current_seed)
+            castle = get_roomset(rng, rooms, stages['Castle Entrance'])
+            if len(castle.rooms) >= 32:
                 break
             current_seed = rng.randint(0, 2 ** 64)
             rng = random.Random(current_seed)
         file_name = 'build/RoomChanges.yaml'
         with open(file_name, 'w') as open_file:
-            changes = stage.get_changes()
-            for row_data in stage.get_spoiler(logic, changes):
+            changes = castle.get_changes()
+            for row_data in castle.get_spoiler(logic, changes):
                 print(row_data)
-            yaml.dump(stage.get_changes(), open_file, default_flow_style=False)
+            yaml.dump(castle.get_changes(), open_file, default_flow_style=False)
