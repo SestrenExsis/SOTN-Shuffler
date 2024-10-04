@@ -96,6 +96,16 @@ class RoomSet:
             room_name = room.stage_name + ', ' + room.room_name
             self.rooms[room_name] = room
     
+    def get_bounds(self) -> tuple:
+        (top, left, bottom, right) = (float('inf'), float('inf'), float('-inf'), float('-inf'))
+        for (row, col) in self.get_cells():
+            top = min(top, row)
+            left = min(left, col)
+            bottom = max(bottom, row)
+            right = max(right, col)
+        result = (top, left, bottom, right)
+        return result
+    
     def get_cells(self, offset_top: int=0, offset_left: int=0) -> set[tuple[int, int]]:
         result = set()
         for (room_name, room) in self.rooms.items():
@@ -119,11 +129,8 @@ class RoomSet:
         result.sort()
         return result
 
-    def add_roomset(self, source_node: RoomNode, target_node: RoomNode) -> bool:
+    def add_roomset(self, source_roomset, offset_top: int, offset_left: int) -> bool:
         target_cells = self.get_cells()
-        source_roomset = source_node.room.roomset
-        offset_top = (target_node.room.top + target_node.top) - (source_node.room.top + source_node.top)
-        offset_left = (target_node.room.left + target_node.left) - (source_node.room.left + source_node.left)
         valid_ind = True
         # Verify each cell where the source roomset will be placed is vacant and in bounds
         for (source_room_name, source_room) in source_roomset.rooms.items():
@@ -256,6 +263,48 @@ stages = {
         { 'Castle Entrance, Warg Hallway': (0, 0) },
         { 'Castle Entrance, Zombie Hallway': (0, 0) },
     ],
+    'Alchemy Laboratory': [
+        {
+            'Alchemy Laboratory, Entryway': (32, 32), # (0, 0),
+            'Alchemy Laboratory, Loading Room C': (32, 32 + 3), # (0, 3),
+            'Alchemy Laboratory, Fake Room With Teleporter C': (32, 32 + 4), # (0, 4),
+        },
+        {
+            'Alchemy Laboratory, Exit to Marble Gallery': (0, 0),
+            'Alchemy Laboratory, Loading Room A': (1, 2),
+            'Alchemy Laboratory, Fake Room With Teleporter A': (1, 3),
+        },
+        {
+            'Alchemy Laboratory, Fake Room With Teleporter B': (0, 0),
+            'Alchemy Laboratory, Loading Room B': (0, 1),
+            'Alchemy Laboratory, Exit to Royal Chapel': (0, 2),
+        },
+        {
+            'Alchemy Laboratory, Tetromino Room': (0, 0),
+            'Alchemy Laboratory, Bat Card Room': (1, 0),
+        },
+        { 'Alchemy Laboratory, Bloody Zombie Hallway': (0, 0) },
+        { 'Alchemy Laboratory, Blue Door Hallway': (0, 0) },
+        { 'Alchemy Laboratory, Box Puzzle Room': (0, 0) },
+        { 'Alchemy Laboratory, Cannon Room': (0, 0) },
+        { 'Alchemy Laboratory, Cloth Cape Room': (0, 0) },
+        { 'Alchemy Laboratory, Corridor to Elevator': (0, 0) },
+        { 'Alchemy Laboratory, Elevator Shaft': (0, 0) },
+        { 'Alchemy Laboratory, Empty Zig Zag Room': (0, 0) },
+        { 'Alchemy Laboratory, Glass Vats': (0, 0) },
+        { 'Alchemy Laboratory, Heart Max-Up Room': (0, 0) },
+        { 'Alchemy Laboratory, Red Skeleton Lift Room': (0, 0) },
+        { 'Alchemy Laboratory, Save Room A': (0, 0) },
+        { 'Alchemy Laboratory, Save Room B': (0, 0) },
+        { 'Alchemy Laboratory, Save Room C': (0, 0) },
+        { 'Alchemy Laboratory, Secret Life Max-Up Room': (0, 0) },
+        { 'Alchemy Laboratory, Short Zig Zag Room': (0, 0) },
+        { 'Alchemy Laboratory, Skill of Wolf Room': (0, 0) },
+        { 'Alchemy Laboratory, Slogra and Gaibon Boss Room': (0, 0) },
+        { 'Alchemy Laboratory, Sunglasses Room': (0, 0) },
+        { 'Alchemy Laboratory, Tall Spittlebone Room': (0, 0) },
+        { 'Alchemy Laboratory, Tall Zig Zag Room': (0, 0) },
+    ],
 }
 
 def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
@@ -285,7 +334,9 @@ def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
         rng.shuffle(open_nodes)
         for source_node in open_nodes:
             roomset_key = source_node.room.roomset.roomset_id
-            valid_ind = result.add_roomset(source_node, target_node)
+            offset_top = (target_node.room.top + target_node.top) - (source_node.room.top + source_node.top)
+            offset_left = (target_node.room.left + target_node.left) - (source_node.room.left + source_node.left)
+            valid_ind = result.add_roomset(source_node.room.roomset, offset_top, offset_left)
             if valid_ind:
                 # print('  ', roomset_key)
                 roomset = pool.pop(roomset_key, None)
@@ -316,6 +367,16 @@ if __name__ == '__main__':
                 break
             current_seed = rng.randint(0, 2 ** 64)
             rng = random.Random(current_seed)
+        alchemy_laboratory = None
+        while True:
+            print('Alchemy Laboratory:', current_seed)
+            alchemy_laboratory = get_roomset(rng, rooms, stages['Alchemy Laboratory'])
+            if len(alchemy_laboratory.rooms) >= 24:
+                break
+            current_seed = rng.randint(0, 2 ** 64)
+            rng = random.Random(current_seed)
+        (top, left, bottom, right) = alchemy_laboratory.get_bounds()
+        castle.add_roomset(alchemy_laboratory, 48 - top, 16 - left)
         file_name = 'build/RoomChanges.yaml'
         with open(file_name, 'w') as open_file:
             changes = castle.get_changes()

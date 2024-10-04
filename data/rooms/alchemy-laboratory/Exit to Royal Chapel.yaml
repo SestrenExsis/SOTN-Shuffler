@@ -26,26 +26,26 @@ Triggers:
             Section: Primary
         Requirements:
             Default:
-                Location: Alchemy Laboratory, Exit to Holy Chapel
+                Location: Alchemy Laboratory, Exit to Royal Chapel
                 Section: Left Node
     Exit - Left Node:
         Outcomes:
             Section: Left Node
         Requirements:
             Default:
-                Location: Alchemy Laboratory, Exit to Holy Chapel
+                Location: Alchemy Laboratory, Exit to Royal Chapel
                 Section: Primary
     Entry - Right Node:
         Outcomes:
             Section: Primary
         Requirements:
             Default:
-                Location: Alchemy Laboratory, Exit to Holy Chapel
+                Location: Alchemy Laboratory, Exit to Royal Chapel
                 Section: Right Node
     Exit - Right Node:
         Outcomes:
             Section: Right Node
         Requirements:
             Default:
-                Location: Alchemy Laboratory, Exit to Holy Chapel
+                Location: Alchemy Laboratory, Exit to Royal Chapel
                 Section: Primary
