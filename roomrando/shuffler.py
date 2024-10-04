@@ -183,7 +183,7 @@ class RoomSet:
     
     def get_spoiler(self, logic: dict, changes: dict) -> list[str]:
         codes = '0123456789abcdefghijklmnopqrstuv+. '
-        legend = {}
+        legend = []
         grid = [['.' for col in range(64)] for row in range(64)]
         for room_name in changes['Rooms'].keys():
             (index, top, left, rows, cols) = (
@@ -194,7 +194,7 @@ class RoomSet:
                 logic['Rooms'][room_name]['Columns'],
             )
             code = codes[index]
-            legend[code] = room_name
+            legend.append((code, room_name))
             for row in range(max(0, top), min(64, top + rows)):
                 for col in range(max(0, left), min(64, left + cols)):
                     prev_index = codes.find(grid[row][col])
@@ -203,7 +203,7 @@ class RoomSet:
         result = []
         for row_data in grid:
             result.append(''.join(row_data))
-        for code, room_name in legend.items():
+        for (code, room_name) in sorted(legend):
             index = logic['Rooms'][room_name]['Index']
             top = changes['Rooms'][room_name]['Top']
             left = changes['Rooms'][room_name]['Left']
@@ -361,17 +361,17 @@ if __name__ == '__main__':
         rng = random.Random(current_seed)
         castle = None
         while True:
-            print('Castle Entrance:', current_seed)
             castle = get_roomset(rng, rooms, stages['Castle Entrance'])
+            print('Castle Entrance:', len(castle.rooms), current_seed)
             if len(castle.rooms) >= 32:
                 break
             current_seed = rng.randint(0, 2 ** 64)
             rng = random.Random(current_seed)
         alchemy_laboratory = None
         while True:
-            print('Alchemy Laboratory:', current_seed)
             alchemy_laboratory = get_roomset(rng, rooms, stages['Alchemy Laboratory'])
-            if len(alchemy_laboratory.rooms) >= 24:
+            print('Alchemy Laboratory:', len(alchemy_laboratory.rooms), current_seed)
+            if len(alchemy_laboratory.rooms) >= 29:
                 break
             current_seed = rng.randint(0, 2 ** 64)
             rng = random.Random(current_seed)
