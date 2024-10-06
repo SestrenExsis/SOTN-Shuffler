@@ -113,18 +113,21 @@ class RoomSet:
         return result
 
     def get_open_nodes(self, matching_node: RoomNode=None) -> list:
-        # TODO(sestren): One node per "duplicate", see Tetromino Room
         edges = {}
         for (room_name, room) in self.rooms.items():
             for (node_name, node) in room.nodes.items():
                 edge_key = (room.top + node.top, room.left + node.left, node.direction)
                 if edge_key not in edges:
-                    edges[edge_key] = []
-                edges[edge_key].append(node)
+                    edges[edge_key] = {}
+                if node.edge not in edges[edge_key]:
+                    edges[edge_key][node.edge] = []
+                edges[edge_key][node.edge].append(node)
+        # edge_key: { edge: [node, node], edge: [node, node] }
         result = []
-        for (edge_key, nodes) in edges.items():
-            if len(nodes) == 1:
-                node = nodes[0]
+        for (edge_key, sides) in edges.items():
+            if len(sides) == 1:
+                side = list(sides)[0]
+                node = sides[side][0]
                 if node.matches(matching_node):
                     result.append(node)
         result.sort()
@@ -216,20 +219,22 @@ class RoomSet:
     def remove_room(self, room_name):
         self.rooms.pop(room_name, None)
 
+(a, b) = (24, 24)
+
 stages = {
     'Castle Entrance': [
+        {
+            'Castle Entrance, Fake Room With Teleporter A': (a + 0, b - 1), # (0, 0),
+            'Castle Entrance, Loading Room C': (a, b + 0), # (0, 1),
+            'Castle Entrance, Cube of Zoe Room': (a + 0, b + 1), # (0, 2),
+            'Castle Entrance, Loading Room A': (a + 0, b + 3), # (0, 4),
+            'Castle Entrance, Fake Room With Teleporter B': (a + 0, b + 4), # (0, 5),
+        },
         {
             'Castle Entrance, Forest Cutscene': (None, None),
             'Castle Entrance, Unknown 19': (None, None),
             'Castle Entrance, Unknown 20': (None, None),
             'Castle Entrance, After Drawbridge': (None, None),
-        },
-        {
-            'Castle Entrance, Fake Room With Teleporter A': (0, 0),
-            'Castle Entrance, Loading Room C': (0, 1),
-            'Castle Entrance, Cube of Zoe Room': (0, 2),
-            'Castle Entrance, Loading Room A': (0, 4),
-            'Castle Entrance, Fake Room With Teleporter B': (0, 5),
         },
         {
             'Castle Entrance, Fake Room With Teleporter C': (0, 0),
@@ -266,9 +271,9 @@ stages = {
     ],
     'Alchemy Laboratory': [
         {
-            'Alchemy Laboratory, Entryway': (32, 32), # (0, 0),
-            'Alchemy Laboratory, Loading Room C': (32, 32 + 3), # (0, 3),
-            'Alchemy Laboratory, Fake Room With Teleporter C': (32, 32 + 4), # (0, 4),
+            'Alchemy Laboratory, Fake Room With Teleporter B': (32 + 0, 32 + 0),
+            'Alchemy Laboratory, Loading Room B': (32 + 0, 32 + 1),
+            'Alchemy Laboratory, Exit to Royal Chapel': (32 + 0, 32 + 2),
         },
         {
             'Alchemy Laboratory, Exit to Marble Gallery': (0, 0),
@@ -276,9 +281,9 @@ stages = {
             'Alchemy Laboratory, Fake Room With Teleporter A': (1, 3),
         },
         {
-            'Alchemy Laboratory, Fake Room With Teleporter B': (0, 0),
-            'Alchemy Laboratory, Loading Room B': (0, 1),
-            'Alchemy Laboratory, Exit to Royal Chapel': (0, 2),
+            'Alchemy Laboratory, Entryway': (0, 0),
+            'Alchemy Laboratory, Loading Room C': (0, 3),
+            'Alchemy Laboratory, Fake Room With Teleporter C': (0, 4),
         },
         {
             'Alchemy Laboratory, Tetromino Room': (0, 0),
@@ -352,6 +357,22 @@ if __name__ == '__main__':
     '''
     Usage
     python shuffler.py
+
+    TODO(sestren): Elevator Room (m) placed on top of Red Skeleton Lift Room (i), which shouldn't be allowed:
+    ..................
+    .ur13333hh4m......
+    ......bdhhcm......
+    .....9bd22cm......
+    ......b..77m......
+    ......b8.f.m......
+    ......b..f.m......
+    .....jjggggm......
+    ....50jggggiiio...
+    ....njje...iiillp.
+    .......ekk..aaasv.
+    .......ekkqt......
+    ........kk........
+    ..................
     '''
     with open('build/logic.json') as open_file:
         logic = json.load(open_file)
@@ -365,7 +386,7 @@ if __name__ == '__main__':
         while True:
             castle = get_roomset(rng, rooms, stages['Castle Entrance'])
             seed_count += 1
-            if len(castle.rooms) >= 32:
+            if len(castle.rooms) >= 5:
                 print('Castle Entrance:', len(castle.rooms), seed_count, current_seed)
                 break
             current_seed = rng.randint(0, 2 ** 64)
@@ -375,7 +396,7 @@ if __name__ == '__main__':
         while True:
             alchemy_laboratory = get_roomset(rng, rooms, stages['Alchemy Laboratory'])
             seed_count += 1
-            if len(alchemy_laboratory.rooms) >= 29:
+            if len(alchemy_laboratory.rooms) >= 31:
                 print('Alchemy Laboratory:', len(alchemy_laboratory.rooms), seed_count, current_seed)
                 break
             current_seed = rng.randint(0, 2 ** 64)
