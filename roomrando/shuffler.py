@@ -224,17 +224,17 @@ class RoomSet:
 stages = {
     'Castle Entrance': [
         {
-            'Castle Entrance, Fake Room With Teleporter A': (a + 0, b - 1), # (0, 0),
-            'Castle Entrance, Loading Room C': (a, b + 0), # (0, 1),
-            'Castle Entrance, Cube of Zoe Room': (a + 0, b + 1), # (0, 2),
-            'Castle Entrance, Loading Room A': (a + 0, b + 3), # (0, 4),
-            'Castle Entrance, Fake Room With Teleporter B': (a + 0, b + 4), # (0, 5),
-        },
-        {
             'Castle Entrance, Forest Cutscene': (None, None),
             'Castle Entrance, Unknown 19': (None, None),
-            'Castle Entrance, Unknown 20': (None, None),
-            'Castle Entrance, After Drawbridge': (None, None),
+            'Castle Entrance, Unknown 20': (40, 31),
+            'Castle Entrance, After Drawbridge': (38, 32),
+        },
+        {
+            'Castle Entrance, Fake Room With Teleporter A': (0, 0),
+            'Castle Entrance, Loading Room C': (0, 1),
+            'Castle Entrance, Cube of Zoe Room': (0, 2),
+            'Castle Entrance, Loading Room A': (0, 4),
+            'Castle Entrance, Fake Room With Teleporter B': (0, 5),
         },
         {
             'Castle Entrance, Fake Room With Teleporter C': (0, 0),
@@ -386,7 +386,7 @@ if __name__ == '__main__':
         while True:
             castle = get_roomset(rng, rooms, stages['Castle Entrance'])
             seed_count += 1
-            if len(castle.rooms) >= 5:
+            if len(castle.rooms) >= 32:
                 print('Castle Entrance:', len(castle.rooms), seed_count, current_seed)
                 break
             current_seed = rng.randint(0, 2 ** 64)
