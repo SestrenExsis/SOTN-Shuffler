@@ -14,7 +14,7 @@ Flags:
 Node Sections:
     Left Node:
         Type: Passage
-        Row: 1
+        Row: 0
         Column: 0
         Edge: Left
 Triggers:
