@@ -10,8 +10,8 @@ Total Cells: 2
 Empty Cells: {}
 Entities:
     - Bone Scimitar
-Scroll Mode: 1
-Type: Normal
+Flags:
+    - Scroll Type 1
 Node Sections:
     Lower-Right Node:
         Type: Passage

@@ -9,7 +9,7 @@ Rows: 1
 Total Cells: 1
 Empty Cells: {}
 Entities:
-Scroll Mode: 18
-Type: Special
+Flags:
+    - Special Type 2
 Node Sections: {}
 Triggers:

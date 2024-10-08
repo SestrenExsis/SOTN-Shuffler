@@ -9,8 +9,8 @@ Rows: 1
 Total Cells: 1
 Empty Cells: {}
 Entities:
-Scroll Mode: 1
-Type: Save
+Flags:
+    - Save With Left Opening
 Node Sections:
     Left Node:
         Type: Passage

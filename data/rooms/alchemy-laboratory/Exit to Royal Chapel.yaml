@@ -9,8 +9,8 @@ Rows: 1
 Total Cells: 1
 Empty Cells: {}
 Entities:
-Scroll Mode: 1
-Type: Normal
+Flags:
+    - Scroll Type 1
 Node Sections:
     Left Node:
         Type: Red Door

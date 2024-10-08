@@ -92,10 +92,11 @@ def get_room_rando_ppf(logic, changes):
             if 'Secret' not in node['Type']:
                 exit = (node['Row'], node['Column'], node['Edge'])
                 exits.append(exit)
+        flags = set()
+        if logic['Rooms'][room_name]['Flags'] is not None:
+            flags = set(logic['Rooms'][room_name]['Flags'])
         room = roomrando.Room(
             changes['Rooms'][room_name]['Index'],
-            logic['Rooms'][room_name]['Type'],
-            logic['Rooms'][room_name]['Scroll Mode'],
             (
                 changes['Rooms'][room_name]['Top'],
                 changes['Rooms'][room_name]['Left'],
@@ -103,12 +104,13 @@ def get_room_rando_ppf(logic, changes):
                 logic['Rooms'][room_name]['Columns'],
             ),
             exits,
+            flags,
         )
         result.patch_room_data(
             room,
             addresses[('Room Data', logic['Rooms'][room_name]['Stage'])]
         )
-        if room.room_type != 'Fake':
+        if len(room.flags) > 0:
             result.patch_packed_room_data(
                 room,
                 addresses[('Packed Room Data', room_name)]

@@ -9,8 +9,8 @@ Rows: 1
 Total Cells: 1
 Empty Cells: {}
 Entities:
-Scroll Mode: 1
-Type: Loading
+Flags:
+    - Load On Right
 Node Sections:
     Left Node:
         Type: Passage
