@@ -9,6 +9,8 @@ Rows: 3
 Total Cells: 3
 Empty Cells: {}
 Entities:
+Scroll Mode: 1
+Type: Normal
 Node Sections:
     Upper-Left Node:
         Type: Passage

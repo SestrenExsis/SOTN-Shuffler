@@ -11,6 +11,8 @@ Empty Cells:
     - Row: 0
       Column: 0
 Entities:
+Scroll Mode:
+Type: Fake
 Node Sections:
     Right Node:
         Type: Passage

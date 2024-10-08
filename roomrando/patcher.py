@@ -92,28 +92,10 @@ def get_room_rando_ppf(logic, changes):
             if 'Secret' not in node['Type']:
                 exit = (node['Row'], node['Column'], node['Edge'])
                 exits.append(exit)
-        first_packed_bytes = {
-            'Castle Entrance, Unknown 19': 0x80,
-            'Castle Entrance, Unknown 20': 0x92,
-            'Castle Entrance, Loading Room A': 0x41,
-            'Castle Entrance, Loading Room B': 0x40,
-            'Castle Entrance, Loading Room C': 0x40,
-            'Castle Entrance, Loading Room D': 0x41,
-            'Castle Entrance, Save Room A': 0x22,
-            'Castle Entrance, Save Room B': 0x20,
-            'Castle Entrance, Save Room C': 0x20,
-            'Alchemy Laboratory, Loading Room A': 0x41,
-            'Alchemy Laboratory, Loading Room B': 0x40,
-            'Alchemy Laboratory, Loading Room C': 0x41,
-            'Alchemy Laboratory, Save Room A': 0x20,
-            'Alchemy Laboratory, Save Room B': 0x22,
-            'Alchemy Laboratory, Save Room C': 0x22,
-        }
-        first_packed_byte = 0x01
-        if room_name in first_packed_bytes:
-            first_packed_byte = first_packed_bytes[room_name]
         room = roomrando.Room(
             changes['Rooms'][room_name]['Index'],
+            logic['Rooms'][room_name]['Type'],
+            logic['Rooms'][room_name]['Scroll Mode'],
             (
                 changes['Rooms'][room_name]['Top'],
                 changes['Rooms'][room_name]['Left'],
@@ -121,13 +103,12 @@ def get_room_rando_ppf(logic, changes):
                 logic['Rooms'][room_name]['Columns'],
             ),
             exits,
-            first_packed_byte,
         )
         result.patch_room_data(
             room,
             addresses[('Room Data', logic['Rooms'][room_name]['Stage'])]
         )
-        if 'Fake Room' not in room_name:
+        if room.room_type != 'Fake':
             result.patch_packed_room_data(
                 room,
                 addresses[('Packed Room Data', room_name)]

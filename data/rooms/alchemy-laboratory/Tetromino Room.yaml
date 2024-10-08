@@ -11,6 +11,8 @@ Empty Cells:
     - Row: 0
       Column: 0
 Entities:
+Scroll Mode: 1
+Type: Normal
 Node Sections:
     Lower-Left Node:
         Type: Passage
