@@ -45,14 +45,14 @@ class Address:
         return result
 
 class Room:
-    def __init__(self, room_index: int, box: tuple[int], exits: list[tuple], first_packed_byte: int=0x01):
+    def __init__(self, room_index: int, box: tuple[int], exits: list[tuple], flags: set[str]):
         self.room_index = room_index
         self.top = box[0]
         self.left = box[1]
         self.height = box[2]
         self.width = box[3]
         self.exits = exits
-        self.first_packed_byte = first_packed_byte
+        self.flags = flags
 
 class Teleporter:
     def __init__(self, teleporter_index: int, x: int, y: int, room_index: int, current_stage_id: int, next_stage_id: int):
@@ -192,8 +192,21 @@ class PPF:
         self.write_u64(address.to_disc_address())
         size = 4
         self.write_byte(size)
+        flags_byte = 0x00
+        flags = {
+            'Load On Left': 0x40,
+            'Load On Right': 0x41,
+            'Save With Left Opening': 0x20,
+            'Save With Right Opening': 0x22,
+            'Scroll Type 1': 0x01,
+            'Special Type 1': 0x80,
+            'Special Type 2': 0x92,
+        }
+        for flag_name in room.flags:
+            if flag_name in flags:
+                flags_byte |= flags[flag_name]
         data = [
-            room.first_packed_byte,
+            flags_byte,
             0x3F & (room.top + room.height - 1), # bottom
             0x3F & (room.left + room.width - 1), # right
             0x3F & (room.top),

@@ -10,6 +10,8 @@ Total Cells: 4
 Empty Cells: {}
 Entities:
     - Bloody Zombie
+Flags:
+    - Scroll Type 1
 Node Sections:
     Left Node:
         Type: Passage

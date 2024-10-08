@@ -9,6 +9,8 @@ Rows: 2
 Total Cells: 6
 Empty Cells: {}
 Entities:
+Flags:
+    - Scroll Type 1
 Sections:
     - Ground
     - Alcove

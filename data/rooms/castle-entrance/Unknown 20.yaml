@@ -9,5 +9,7 @@ Rows: 1
 Total Cells: 1
 Empty Cells: {}
 Entities:
+Flags:
+    - Special Type 2
 Node Sections: {}
 Triggers:

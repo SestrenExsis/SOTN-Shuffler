@@ -9,6 +9,8 @@ Rows: 1
 Total Cells: 1
 Empty Cells: {}
 Entities:
+Flags:
+    - Save With Right Opening
 Node Sections:
     Left Node:
         Type: Passage

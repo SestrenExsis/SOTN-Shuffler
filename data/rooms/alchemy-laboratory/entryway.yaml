@@ -11,6 +11,8 @@ Empty Cells: {}
 Entities:
     - Bone Scimitar
     - Red Skeleton
+Flags:
+    - Scroll Type 1
 Node Sections:
     Right Node:
         Type: Red Door

@@ -11,6 +11,7 @@ Empty Cells:
     - Row: 0
       Column: 0
 Entities:
+Flags:
 Node Sections:
     Left Node:
         Type: Passage

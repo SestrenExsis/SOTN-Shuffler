@@ -219,8 +219,6 @@ class RoomSet:
     def remove_room(self, room_name):
         self.rooms.pop(room_name, None)
 
-(a, b) = (24, 24)
-
 stages = {
     'Castle Entrance': [
         {
@@ -402,7 +400,7 @@ if __name__ == '__main__':
             current_seed = rng.randint(0, 2 ** 64)
             rng = random.Random(current_seed)
         (top, left, bottom, right) = alchemy_laboratory.get_bounds()
-        castle.add_roomset(alchemy_laboratory, 48 - top, 16 - left)
+        castle.add_roomset(alchemy_laboratory, 46 - top, 14 - left)
         file_name = 'build/RoomChanges.yaml'
         with open(file_name, 'w') as open_file:
             changes = castle.get_changes()

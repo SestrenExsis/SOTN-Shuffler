@@ -9,5 +9,7 @@ Rows: 1
 Total Cells: 18
 Empty Cells: {}
 Entities:
+Flags:
+    - Scroll Type 1
 Node Sections: {}
 Triggers:

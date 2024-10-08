@@ -9,6 +9,8 @@ Rows: 1
 Total Cells: 6
 Empty Cells: {}
 Entities:
+Flags:
+    - Scroll Type 1
 Node Sections:
     Left Node:
         Type: Passage
