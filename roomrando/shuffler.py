@@ -185,7 +185,7 @@ class RoomSet:
             }
         return result
     
-    def get_spoiler(self, logic: dict, changes: dict) -> list[str]:
+    def get_stage_spoiler(self, logic: dict, changes: dict) -> list[str]:
         codes = '0123456789abcdefghijklmnopqrstuv+. '
         legend = []
         grid = [['.' for col in range(64)] for row in range(64)]
@@ -204,6 +204,58 @@ class RoomSet:
                     prev_index = codes.find(grid[row][col])
                     if index < prev_index:
                         grid[row][col] = code
+        result = []
+        for row_data in grid:
+            result.append(''.join(row_data))
+        for (code, room_name) in legend:
+            index = logic['Rooms'][room_name]['Index']
+            top = changes['Rooms'][room_name]['Top']
+            left = changes['Rooms'][room_name]['Left']
+            width = logic['Rooms'][room_name]['Columns']
+            height = logic['Rooms'][room_name]['Rows']
+            result.append(str((code, room_name, ('I:', index, 'T:', top, 'L:', left, 'H:', height, 'W:', width))))
+        return result
+    
+    def get_room_spoiler(self, logic: dict) -> list[str]:
+        changes = self.get_changes()
+        codes = '0123456789abcdefghijklmnopqrstuv+. '
+        legend = []
+        (stage_top, stage_left, stage_bottom, stage_right) = self.get_bounds()
+        stage_rows = 1 + stage_bottom - stage_top
+        stage_cols = 1 + stage_right - stage_left
+        grid = [[' ' for col in range(5 * stage_cols)] for row in range(5 * stage_rows)]
+        for room_name in changes['Rooms'].keys():
+            (index, room_top, room_left, room_rows, room_cols) = (
+                changes['Rooms'][room_name]['Index'],
+                changes['Rooms'][room_name]['Top'],
+                changes['Rooms'][room_name]['Left'],
+                logic['Rooms'][room_name]['Rows'],
+                logic['Rooms'][room_name]['Columns'],
+            )
+            code = codes[index]
+            legend.append((code, room_name))
+            for cell_row in range(max(0, room_top), min(64, room_top + room_rows)):
+                for cell_col in range(max(0, room_left), min(64, room_left + room_cols)):
+                    top = cell_row - stage_top
+                    left = cell_col - stage_left
+                    for row in range(5 * top + 1, 5 * top + 4):
+                        for col in range(5 * left + 1, 5 * left + 4):
+                            prev_index = codes.find(grid[row][col])
+                            if index < prev_index:
+                                grid[row][col] = code
+            for node in logic['Rooms'][room_name]['Node Sections'].values():
+                (exit_row, exit_col, exit_edge) = (node['Row'], node['Column'], node['Edge'])
+                row = 2 + 5 * (room_top - stage_top + exit_row)
+                col = 2 + 5 * (room_left - stage_left + exit_col)
+                if exit_edge == 'Top':
+                    row -= 2
+                elif exit_edge == 'Left':
+                    col -= 2
+                elif exit_edge == 'Bottom':
+                    row += 2
+                elif exit_edge == 'Right':
+                    col += 2
+                grid[row][col] = '@'
         result = []
         for row_data in grid:
             result.append(''.join(row_data))
@@ -269,19 +321,19 @@ stages = {
     ],
     'Alchemy Laboratory': [
         {
-            'Alchemy Laboratory, Fake Room With Teleporter B': (32 + 0, 32 + 0),
-            'Alchemy Laboratory, Loading Room B': (32 + 0, 32 + 1),
-            'Alchemy Laboratory, Exit to Royal Chapel': (32 + 0, 32 + 2),
+            'Alchemy Laboratory, Entryway': (32 + 0, 32 + 0),
+            'Alchemy Laboratory, Loading Room C': (32 + 0, 32 + 3),
+            'Alchemy Laboratory, Fake Room With Teleporter C': (32 + 0, 32 + 4),
+        },
+        {
+            'Alchemy Laboratory, Fake Room With Teleporter B': (0, 0),
+            'Alchemy Laboratory, Loading Room B': (0, 1),
+            'Alchemy Laboratory, Exit to Royal Chapel': (0, 2),
         },
         {
             'Alchemy Laboratory, Exit to Marble Gallery': (0, 0),
             'Alchemy Laboratory, Loading Room A': (1, 2),
             'Alchemy Laboratory, Fake Room With Teleporter A': (1, 3),
-        },
-        {
-            'Alchemy Laboratory, Entryway': (0, 0),
-            'Alchemy Laboratory, Loading Room C': (0, 3),
-            'Alchemy Laboratory, Fake Room With Teleporter C': (0, 4),
         },
         {
             'Alchemy Laboratory, Tetromino Room': (0, 0),
@@ -320,7 +372,7 @@ def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
         pool[roomset_id] = RoomSet(roomset_id, room_placements)
     result = pool.pop(0)
     steps = 0
-    while len(pool) > 1:
+    while len(pool) > 0:
         possible_target_nodes = result.get_open_nodes()
         if len(possible_target_nodes) < 1:
             # print('ERROR: No open nodes left')
@@ -384,8 +436,10 @@ if __name__ == '__main__':
         while True:
             castle = get_roomset(rng, rooms, stages['Castle Entrance'])
             seed_count += 1
-            if len(castle.rooms) >= 32:
+            if len(castle.rooms) >= 32 and len(castle.get_open_nodes()) < 1:
                 print('Castle Entrance:', len(castle.rooms), seed_count, current_seed)
+                for row_data in castle.get_room_spoiler(logic):
+                    print(row_data)
                 break
             current_seed = rng.randint(0, 2 ** 64)
             rng = random.Random(current_seed)
@@ -394,8 +448,10 @@ if __name__ == '__main__':
         while True:
             alchemy_laboratory = get_roomset(rng, rooms, stages['Alchemy Laboratory'])
             seed_count += 1
-            if len(alchemy_laboratory.rooms) >= 31:
+            if len(alchemy_laboratory.rooms) >= 32 and len(alchemy_laboratory.get_open_nodes()) < 1:
                 print('Alchemy Laboratory:', len(alchemy_laboratory.rooms), seed_count, current_seed)
+                for row_data in alchemy_laboratory.get_room_spoiler(logic):
+                    print(row_data)
                 break
             current_seed = rng.randint(0, 2 ** 64)
             rng = random.Random(current_seed)
@@ -404,7 +460,7 @@ if __name__ == '__main__':
         file_name = 'build/RoomChanges.yaml'
         with open(file_name, 'w') as open_file:
             changes = castle.get_changes()
-            for row_data in castle.get_spoiler(logic, changes):
+            for row_data in castle.get_stage_spoiler(logic, changes):
                 print(row_data)
             yaml.dump(castle.get_changes(), open_file, default_flow_style=False)
         if len(alchemy_laboratory.rooms) < 32:

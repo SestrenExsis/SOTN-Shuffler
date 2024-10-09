@@ -79,7 +79,6 @@ def get_room_rando_ppf(logic, changes):
     }
     result = roomrando.PPF('Rooms in Alchemy Lab have been shuffled')
     canvas = roomrando.IndexedBitmapCanvas(256, 256)
-    # result.patch_string(0x04389C76, '!ROOMS!')
     for room_name in sorted(changes['Rooms'].keys()):
         if (
             changes['Rooms'][room_name]['Index'] == logic['Rooms'][room_name]['Index'] and
