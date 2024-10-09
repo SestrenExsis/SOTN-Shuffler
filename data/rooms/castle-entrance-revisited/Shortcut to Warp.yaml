@@ -9,15 +9,17 @@ Rows: 1
 Total Cells: 1
 Empty Cells: {}
 Entities:
+Flags:
+    - Scroll Type 1
 Node Sections:
     Left Node:
         Type: Red Door
-        Row: 1
+        Row: 0
         Column: 0
         Edge: Left
     Right Node:
         Type: Passage
-        Row: 1
-        Column: 1
+        Row: 0
+        Column: 0
         Edge: Right
 Triggers:

@@ -1,6 +1,6 @@
 
 Stage: Castle Entrance
-Room: Meeting Room With Death
+Room: Stairwell After Death
 Index: 12
 Left: 21
 Top: 38
@@ -9,6 +9,8 @@ Rows: 3
 Total Cells: 3
 Empty Cells: {}
 Entities:
+Flags:
+    - Scroll Type 1
 Node Sections:
     Upper-Left Node:
         Type: Passage

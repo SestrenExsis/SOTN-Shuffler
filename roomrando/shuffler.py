@@ -85,6 +85,8 @@ class Room:
         return result
 
 class RoomSet:
+    # TODO(sestren): Enforce a maximum row for all rooms of 55 (54?), as that is the visual bottom of the map
+    # TODO(sestren): After generating all stages, try N times to lay them out on the map with no overlapping rooms, take the one with the smallest overall footprint. If it is still too big, throw it all away and start over
     def __init__(self, roomset_id, room_placements: list[list[Room, int, int]]):
         # room_placements: [ [room: Room, top: int=None, left: int=None], ... ]
         self.roomset_id = roomset_id
@@ -423,6 +425,8 @@ if __name__ == '__main__':
     .......ekkqt......
     ........kk........
     ..................
+
+    TODO(sestren): Entering Skill of Wolf Room lead to the void (Alchemy Lab seed: 1095466689126170730)
     '''
     with open('build/logic.json') as open_file:
         logic = json.load(open_file)
