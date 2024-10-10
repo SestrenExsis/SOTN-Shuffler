@@ -106,3 +106,9 @@ while True:
     if logic.solve():
         break
 ```
+
+## Quality of Life Ideas
+
+- Possibilities for warning the player before entering Meeting Room with Death
+  - Room is always visible on the map
+  - Caution indicator placed on adjacent rooms
