@@ -22,4 +22,74 @@ Node Sections:
         Row: 0
         Column: 6
         Edge: Right
+    Reverse Shift Line from Left Node:
+        Type: Glitch
+        Row: 0
+        Column: 1
+        Edge: Left
+    Reverse Shift Line to Left Node:
+        Type: Glitch
+        Row: 0
+        Column: -1
+        Edge: Left
+    Reverse Shift Line from Right Node:
+        Type: Glitch
+        Row: 0
+        Column: 5
+        Edge: Right
+    Reverse Shift Line to Right Node:
+        Type: Glitch
+        Row: 0
+        Column: 7
+        Edge: Right
 Triggers:
+    Entry - Right Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Castle Entrance, Zombie Hallway
+                Section: Right Node
+    Exit - Right Node:
+        Outcomes:
+            Section: Right Node
+        Requirements:
+            Default:
+                Location: Castle Entrance, Zombie Hallway
+                Section: Primary
+    Entry - Reverse Shift Line from Left Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Castle Entrance, Zombie Hallway
+                Section: Reverse Shift Line from Left Node
+    Exit - Reverse Shift Line to Left Node using Heart Refresh:
+        Outcomes:
+            Section: Reverse Shift Line to Left Node
+            Item - Heart Refresh: -1
+        Requirements:
+            Default:
+                Location: Castle Entrance, Zombie Hallway
+                Section: Primary
+                Skill - Reverse Shift Line: true
+                Item - Heart Refresh:
+                    Minimum: 1
+    Entry - Reverse Shift Line from Right Node:
+        Outcomes:
+            Section: Primary
+        Requirements:
+            Default:
+                Location: Castle Entrance, Zombie Hallway
+                Section: Reverse Shift Line from Right Node
+    Exit - Reverse Shift Line to Right Node using Heart Refresh:
+        Outcomes:
+            Section: Reverse Shift Line to Right Node
+            Item - Heart Refresh: -1
+        Requirements:
+            Default:
+                Location: Castle Entrance, Zombie Hallway
+                Section: Primary
+                Skill - Reverse Shift Line: true
+                Item - Heart Refresh:
+                    Minimum: 1
