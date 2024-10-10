@@ -140,7 +140,7 @@ class Game:
 if __name__ == '__main__':
     with open('build/logic.json') as open_file:
         logic = json.load(open_file)
-        game = Game(logic, 'Alchemy Laboratory, Entryway', 'Primary')
+        game = Game(logic, 'Castle Entrance, After Drawbridge', 'Ground')
         game.player['Knowledge - How to Break the Floor in Tall Zig Zag Room'] = True
         game.player['Knowledge - How to Break the Wall in Tall Zig Zag Room'] = True
         # game.player['Progression - Bat Transformation'] = True
