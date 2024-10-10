@@ -63,7 +63,7 @@ class Game:
                 self.player[key] += value
 
     def process_position_update(self):
-        room_data = self.logic[self.player['Location']]
+        room_data = self.logic['Rooms'][self.player['Location']]
         if self.player['Section'] not in room_data['Node Sections']:
             return
         node = room_data['Node Sections'][self.player['Section']]
@@ -83,7 +83,7 @@ class Game:
             matching_top += 1
             matching_edge = 'Top'
         possible_locations = []
-        for (location_name, location_data) in self.logic.items():
+        for (location_name, location_data) in self.logic['Rooms'].items():
             if location_name == self.player['Location']:
                 continue
             if location_data['Node Sections'] is None:
@@ -106,9 +106,9 @@ class Game:
         print('@', self.player['Location'], '-', self.player['Section'])
         valid_command_names = set()
         # Add choices for valid commands the player can issue
-        room_data = self.logic[self.player['Location']]
+        room_data = self.logic['Rooms'][self.player['Location']]
         triggers = {}
-        if 'Triggers' in room_data:
+        if 'Triggers' in room_data and room_data['Triggers'] is not None:
             triggers = room_data['Triggers']
         for command_key, command_info in triggers.items():
             if self.validate(command_info['Requirements']):
@@ -131,7 +131,7 @@ class Game:
         else:
             print('command not valid:', command_input)
             raise Exception()
-        # Process nodes, if any
+        # Process updates in player position, if any
         self.process_position_update()
         print('')
 
@@ -143,6 +143,6 @@ if __name__ == '__main__':
         game = Game(logic, 'Alchemy Laboratory, Entryway', 'Primary')
         game.player['Knowledge - How to Break the Floor in Tall Zig Zag Room'] = True
         game.player['Knowledge - How to Break the Wall in Tall Zig Zag Room'] = True
-        # game.player['Knowledge - How to Perform Neutron Bomb Death Skip'] = True
+        # game.player['Progression - Bat Transformation'] = True
         while True:
             game.play()
