@@ -426,7 +426,7 @@ if __name__ == '__main__':
     ........kk........
     ..................
 
-    TODO(sestren): Entering Skill of Wolf Room lead to the void (Alchemy Lab seed: 1095466689126170730)
+    TODO(sestren): Entering Skill of Wolf Room leads to the void (Alchemy Lab seed: 1095466689126170730)
     '''
     with open('build/logic.json') as open_file:
         logic = json.load(open_file)
