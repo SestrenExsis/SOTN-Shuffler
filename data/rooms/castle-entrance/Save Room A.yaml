@@ -12,7 +12,7 @@ Entities:
 Flags:
     - Save With Right Opening
 Nodes:
-    Left Node:
+    Left Passage:
         Type: Passage
         Row: 0
         Column: 0

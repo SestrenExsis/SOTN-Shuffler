@@ -45,6 +45,7 @@ if __name__ == '__main__':
         # ('alchemy-laboratory', 'Alchemy Laboratory'),
     ):
         folder_path = os.path.join('data', 'rooms', stage_folder)
+        nodes = {}
         for file_name in os.listdir(folder_path):
             if file_name[-5:] != '.yaml':
                 continue
@@ -53,16 +54,15 @@ if __name__ == '__main__':
                 yaml_obj = yaml.safe_load(open_file)
                 location_name = yaml_obj['Stage'] + ', ' + yaml_obj['Room']
                 logic['Commands'][location_name] = yaml_obj['Commands']
-                for (exit_key, node) in yaml_obj['Nodes'].items():
-                    # Exit - Lower-Right Passage:
-                    outcomes = {}
-                    # TODO(sestren): Match edge based on map position inside the same stage
-                    matching_location_name = 'Castle Entrance, Zombie Hallway'
-                    matching_section = 'Main'
+                for (node_name, node) in yaml_obj['Nodes'].items():
+                    row = yaml_obj['Top'] + node['Row']
+                    column = yaml_obj['Left'] + node['Column']
+                    edge = node['Edge']
+                    nodes[(row, column, edge)] = (location_name, node_name, node['Section'])
                     exit = {
                         'Outcomes': {
-                            'Location': matching_location_name,
-                            'Section': matching_section,
+                            'Location': None,
+                            'Section': None,
                         },
                         'Requirements': {
                             'Default': {
@@ -71,7 +71,28 @@ if __name__ == '__main__':
                             },
                         },
                     }
-                    logic['Commands'][location_name]['Exit - ' + exit_key] = exit
+                    logic['Commands'][location_name]['Exit - ' + node_name] = exit
+        for (row, column, edge), (location_name, node_name, section_name) in nodes.items():
+            matching_row = row
+            matching_column = column
+            matching_edge = edge
+            if edge == 'Top':
+                matching_edge = 'Bottom'
+                matching_row -= 1
+            elif edge == 'Left':
+                matching_edge = 'Right'
+                matching_column -= 1
+            elif edge == 'Bottom':
+                matching_edge = 'Top'
+                matching_row += 1
+            elif edge == 'Right':
+                matching_edge = 'Left'
+                matching_column += 1
+            (matching_location_name, matching_node_name, matching_section) = (None, 'Unknown', None)
+            if (matching_row, matching_column, matching_edge) in nodes:
+                (matching_location_name, matching_node_name, matching_section) = nodes[(matching_row, matching_column, matching_edge)]
+            logic['Commands'][location_name]['Exit - ' + node_name]['Outcomes']['Location'] = matching_location_name
+            logic['Commands'][location_name]['Exit - ' + node_name]['Outcomes']['Section'] = matching_section
     # with open(os.path.join('data', 'Teleporters.yaml')) as open_file:
     #     yaml_obj = yaml.safe_load(open_file)
     #     logic['Teleporters'] = yaml_obj

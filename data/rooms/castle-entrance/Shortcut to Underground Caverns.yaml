@@ -12,13 +12,13 @@ Entities:
 Flags:
     - Scroll Type 1
 Nodes:
-    Left Node:
+    Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
         Section: Main
-    Right Node:
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 0

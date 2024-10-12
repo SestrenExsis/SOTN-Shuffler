@@ -10,10 +10,6 @@ class Game:
         self.logic = logic
         self.starting_location = starting_location
         self.starting_section = starting_section
-        self.player = {
-            'Location': self.starting_location,
-            'Section': self.starting_section,
-        }
         self.commands = []
     
     def validate(self, requirements):
@@ -23,7 +19,7 @@ class Game:
             valid_ind = True
             for key, value in requirement.items():
                 target_value = None
-                if key not in self.player:
+                if key not in self.logic['State']:
                     if type(value) == str:
                         target_value = 'NONE'
                     elif type(value) == bool:
@@ -31,7 +27,7 @@ class Game:
                     elif type(value) in (int, dict):
                         target_value = 0
                 else:
-                    target_value = self.player[key]
+                    target_value = self.logic['State'][key]
                 if type(value) == dict:
                     if 'Minimum' in value:
                         if target_value < value['Minimum']:
@@ -53,20 +49,20 @@ class Game:
     def process_outcomes(self, outcomes):
         for key, value in outcomes.items():
             if type(value) in (str, bool):
-                if key not in self.player or self.player[key] != value:
+                if key not in self.logic['State'] or self.logic['State'][key] != value:
                     print('  +', key, ': ', value)
-                self.player[key] = value
+                self.logic['State'][key] = value
             elif type(value) in (int, float):
-                if key not in self.player:
-                    self.player[key] = 0
+                if key not in self.logic['State']:
+                    self.logic['State'][key] = 0
                 print('  +', key, ': ', value)
-                self.player[key] += value
+                self.logic['State'][key] += value
 
     def process_position_update(self):
-        room_data = self.logic['Rooms'][self.player['Location']]
-        if self.player['Section'] not in room_data['Node Sections']:
+        room_data = self.logic['Rooms'][self.logic['State']['Location']]
+        if self.logic['State']['Section'] not in room_data['Node Sections']:
             return
-        node = room_data['Node Sections'][self.player['Section']]
+        node = room_data['Node Sections'][self.logic['State']['Section']]
         matching_left = room_data['Left'] + node['Column']
         matching_top = room_data['Top'] + node['Row']
         matching_edge = None
@@ -84,7 +80,7 @@ class Game:
             matching_edge = 'Top'
         possible_locations = []
         for (location_name, location_data) in self.logic['Rooms'].items():
-            if location_name == self.player['Location']:
+            if location_name == self.logic['State']['Location']:
                 continue
             if location_data['Node Sections'] is None:
                 continue
@@ -99,14 +95,14 @@ class Game:
                     location = (location_data['Index'], location_name, node_name)
                     heapq.heappush(possible_locations, location)
         (_, location_name, node_name) = heapq.heappop(possible_locations)
-        self.player['Location'] = location_name
-        self.player['Section'] = node_name
+        self.logic['State']['Location'] = location_name
+        self.logic['State']['Section'] = node_name
 
     def play(self):
-        print('@', self.player['Location'], '-', self.player['Section'])
+        print('@', self.logic['State']['Location'], '-', self.logic['State']['Section'])
         valid_command_names = set()
         # Add choices for valid commands the player can issue
-        room_data = self.logic['Rooms'][self.player['Location']]
+        room_data = self.logic['State']['Location']
         triggers = {}
         if 'Triggers' in room_data and room_data['Triggers'] is not None:
             triggers = room_data['Triggers']
@@ -138,11 +134,9 @@ class Game:
 # TODO(sestren): Support different categories like Any%, RBO, Pacifist, etc?
 
 if __name__ == '__main__':
-    with open('build/logic.json') as open_file:
+    with open('build/logic/vanilla-logic.json') as open_file:
         logic = json.load(open_file)
         game = Game(logic, 'Castle Entrance, After Drawbridge', 'Ground')
-        game.player['Knowledge - How to Break the Floor in Tall Zig Zag Room'] = True
-        game.player['Knowledge - How to Break the Wall in Tall Zig Zag Room'] = True
         # game.player['Progression - Bat Transformation'] = True
         while True:
             game.play()

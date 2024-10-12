@@ -13,7 +13,7 @@ Empty Cells:
 Entities: {}
 Flags:
 Nodes:
-    Right Node:
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 0
@@ -25,7 +25,7 @@ Commands:
             Change Stage:
                 Stage: Alchemy Laboratory
                 Room: Entryway
-                Node: Right Node
+                Node: Right Passage
         Requirements:
             Default:
                 Location: Castle Entrance, Fake Room With Teleporter A

@@ -12,7 +12,7 @@ Entities:
 Flags:
     - Scroll Type 1
 Nodes:
-    Right Node:
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 0
