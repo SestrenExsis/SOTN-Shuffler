@@ -9,87 +9,73 @@ Rows: 3
 Total Cells: 6
 Empty Cells: {}
 Entities:
+    Warg: 1
 Flags:
     - Scroll Type 1
-Node Sections:
-    Lower-Right Node:
+Nodes:
+    Lower-Right Passage:
         Type: Passage
         Row: 2
         Column: 1
         Edge: Right
-    Reverse Shift Line from Lower-Right Node:
-        Type: Glitch
+        Section: Ground
+    Bottom Secret Passage:
+        Type: Secret Passage
         Row: 2
         Column: 0
-        Edge: Right
-    Reverse Shift Line to Lower-Right Node:
-        Type: Glitch
-        Row: 2
-        Column: 2
-        Edge: Right
-Triggers:
-    Entry - Lower-Right Node:
+        Edge: Bottom
+        Section: Beneath Trapdoor
+Commands:
+    Move - Beneath Trapdoor:
         Outcomes:
-            Section: Ground
+            Section: Beneath Trapdoor
         Requirements:
-            Default:
-                Location: Castle Entrance, After Drawbridge
-                Section: Lower-Right Node
-    Exit - Lower-Right Node:
-        Outcomes:
-            Section: Lower-Right Node
-        Requirements:
-            Default:
+            Ground - Basic:
                 Location: Castle Entrance, After Drawbridge
                 Section: Ground
-    Entry - Reverse Shift Line from Lower-Right Node:
-        Outcomes:
-            Section: Ground
-        Requirements:
-            Default:
-                Location: Castle Entrance, After Drawbridge
-                Section: Reverse Shift Line from Lower-Right Node
-    Exit - Reverse Shift Line to Lower-Right Node using Heart Refresh:
-        Outcomes:
-            Section: Reverse Shift Line to Lower-Right Node
-            Item - Heart Refresh: -1
-        Requirements:
-            Default:
-                Location: Castle Entrance, After Drawbridge
-                Section: Ground
-                Skill - Reverse Shift Line: true
-                Item - Heart Refresh:
-                    Minimum: 1
+                Progression - Open Trapdoor After Drawbridge: true
     Move - Ground:
         Outcomes:
             Section: Ground
         Requirements:
-            Default:
+            Parapet - Basic:
+                Location: Castle Entrance, After Drawbridge
                 Section: Parapet
     Move - Parapet:
         Outcomes:
             Section: Parapet
         Requirements:
-            Bat Form:
+            Ground - Bat Form:
+                Location: Castle Entrance, After Drawbridge
                 Section: Ground
                 Progression - Bat Transformation: true
-            Powered Mist:
+            Ground - Powered Mist:
+                Location: Castle Entrance, After Drawbridge
                 Section: Ground
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-            Gravity Jump with Mist:
+            Ground - Gravity Jump with Mist:
+                Location: Castle Entrance, After Drawbridge
                 Section: Ground
                 Progression - Gravity Jump: true
                 Progression - Mist Transformation: true
-                Skill - Gravity Jump with Mist: true
-            Multiple Gravity Jumps:
+            Ground - Multiple Gravity Jumps:
+                Location: Castle Entrance, After Drawbridge
                 Section: Ground
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
-                Skill - Multiple Gravity Jumps: true
-            Wolf-Mist Rise:
+            Ground - Wolf-Mist Rise:
+                Location: Castle Entrance, After Drawbridge
                 Section: Ground
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
                 Skill - Wolf-Mist Rise: true
-                Skill - Extended Wolf-Mist Rise: true
+    Action - Collect Power of Wolf Relic:
+        Outcomes:
+            Relic - Power of Wolf: true
+            Progression - Faster Wolf Run Speed: true
+        Requirements:
+            Default:
+                Location: Castle Entrance, After Drawbridge
+                Section: Parapet
+                Relic - Power of Wolf: false

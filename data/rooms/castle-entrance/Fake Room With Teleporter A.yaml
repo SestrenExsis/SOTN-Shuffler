@@ -6,16 +6,27 @@ Left: 16
 Top: 36
 Columns: 1
 Rows: 1
-Total Cells: 1
+Total Cells: 0
 Empty Cells:
     - Row: 0
       Column: 0
-Entities:
+Entities: {}
 Flags:
-Node Sections:
+Nodes:
     Right Node:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Triggers:
+        Section: Main
+Commands:
+    Teleport - Alchemy Laboratory:
+        Outcomes:
+            Change Stage:
+                Stage: Alchemy Laboratory
+                Room: Entryway
+                Node: Right Node
+        Requirements:
+            Default:
+                Location: Castle Entrance, Fake Room With Teleporter A
+                Section: Main

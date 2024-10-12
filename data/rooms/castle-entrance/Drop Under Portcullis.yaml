@@ -11,15 +11,55 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Upper Node:
+Nodes:
+    Top Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Top
-    Lower-Right Node:
+        Section: Upper
+    Lower-Right Passage:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Right
-Triggers:
+        Section: Lower
+Commands:
+    Move - Lower:
+        Outcomes:
+            Section: Lower
+        Requirements:
+            Default:
+                Location: Castle Entrance, Drop Under Portcullis
+                Section: Upper
+    Move - Upper:
+        Outcomes:
+            Section: Upper
+        Requirements:
+            Default:
+                Location: Castle Entrance, Drop Under Portcullis
+                Section: Lower
+            Lower - Bat Form:
+                Location: Castle Entrance, Drop Under Portcullis
+                Section: Lower
+                Progression - Bat Transformation: true
+            Lower - Double Jump:
+                Location: Castle Entrance, Drop Under Portcullis
+                Section: Lower
+                Progression - Double Jump: true
+            Lower - Powered Mist:
+                Location: Castle Entrance, Drop Under Portcullis
+                Section: Lower
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Lower - Gravity Jump:
+                Location: Castle Entrance, Drop Under Portcullis
+                Section: Lower
+                Progression - Gravity Jump: true
+            Lower - Wolf-Mist Rise:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Lower
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Skill - Wolf-Mist Rise: true
+                Skill - Extended Wolf-Mist Rise: true

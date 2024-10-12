@@ -11,15 +11,17 @@ Empty Cells: {}
 Entities:
 Flags:
     - Load On Right
-Node Sections:
-    Left Node:
+Nodes:
+    Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Right Node:
+        Section: Main
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Triggers:
+        Section: Main
+Commands: {}

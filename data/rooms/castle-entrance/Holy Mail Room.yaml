@@ -11,10 +11,11 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
+Nodes:
     Right Node:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Triggers:
+        Section: Main
+Commands: {}

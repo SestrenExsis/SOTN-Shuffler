@@ -12,10 +12,11 @@ Empty Cells:
       Column: 0
 Entities:
 Flags:
-Node Sections:
+Nodes:
     Left Node:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-Triggers:
+        Section: Main
+Commands: {}

@@ -8,38 +8,131 @@ Columns: 2
 Rows: 3
 Total Cells: 6
 Empty Cells: {}
-Entities:
+Entities: {}
 Flags:
     - Scroll Type 1
-Node Sections:
-    Upper-Left Node:
+Nodes:
+    Upper-Left Red Door:
         Type: Red Door
         Row: 0
         Column: 0
         Edge: Left
-    Upper-Right Node:
+        Section: Main
+    Upper-Right Red Door:
         Type: Red Door
         Row: 0
         Column: 1
         Edge: Right
-    Left Node:
+        Section: Pressure Plate Ledge
+    Left Passage:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Left
-    Right Node:
+        Section: Main
+    Right Passage:
         Type: Passage
         Row: 1
         Column: 1
         Edge: Right
-    Lower-Left Node:
+        Section: Right Ledge
+    Lower-Left Passage:
         Type: Passage
         Row: 2
         Column: 0
         Edge: Left
-    Lower-Right Node:
+        Section: Main
+    Lower-Right Passage:
         Type: Passage
         Row: 2
         Column: 1
         Edge: Right
-Triggers:
+        Section: Main
+Commands:
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Right Ledge:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Right Ledge
+            Pressure Plate Ledge:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Pressure Plate Ledge
+    Move - Right Ledge:
+        Outcomes:
+            Section: Right Ledge
+        Requirements:
+            Main - Bat Form:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Main
+                Progression - Bat Transformation: true
+            Main - Powered Mist:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Main
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Main - Multiple Gravity Jumps:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Main
+                Progression - Mid-Air Reset: true
+                Progression - Gravity Jump: true
+                Skill - Multiple Gravity Jumps: true
+            Main - Wolf-Mist Rise:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Main
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Skill - Wolf-Mist Rise: true
+                Skill - Extended Wolf-Mist Rise: true
+            Pressure Plate Ledge - Fall Down:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Pressure Plate Ledge
+    Move - Pressure Plate Ledge:
+        Outcomes:
+            Section: Pressure Plate Ledge
+        Requirements:
+            Main - Use Shortcut:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Main
+                Progression - Shortcut in Cube of Zoe Room Activated: true
+            Right Ledge - Bat Form:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Right Ledge
+                Progression - Bat Transformation: true
+            Right Ledge - Powered Mist:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Right Ledge
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Right Ledge - Multiple Gravity Jumps:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Right Ledge
+                Progression - Mid-Air Reset: true
+                Progression - Gravity Jump: true
+                Skill - Multiple Gravity Jumps: true
+            Right Ledge - Wolf-Mist Rise:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Right Ledge
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Skill - Wolf-Mist Rise: true
+                Skill - Extended Wolf-Mist Rise: true
+    Action - Collect Cube of Zoe Relic:
+        Outcomes:
+            Object:
+                Relic - Cube of Zoe: true
+                Progression - Item Materialization: true
+        Requirements:
+            Default:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Main
+                Relic - Cube of Zoe: false
+    Action - Activate Pressure Plate:
+        Outcomes:
+            Progression - Shortcut in Cube of Zoe Room Activated: true
+        Requirements:
+            Default:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Pressure Plate Ledge
+                Progression - Shortcut in Cube of Zoe Room Activated: false
