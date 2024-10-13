@@ -19,5 +19,14 @@ Nodes:
         Column: 0
         Edge: Right
         Entry Section: Main
-        Exit Section: Main
-Commands: {}
+        Exit Section: Special
+Commands:
+    Teleport - Warp Room:
+        Outcomes:
+            Stage: Warp Room
+            Room: Default
+            Node: Main
+        Requirements:
+            Default:
+                Location: Castle Entrance, Fake Room With Teleporter C
+                Section: Main

@@ -23,17 +23,17 @@ if __name__ == '__main__':
             'Item - Heart Refresh': 1,
         },
         'Goals': {
-            'Debug - Reach Loading Room A': {
-                'Location': 'Castle Entrance, Loading Room A',
+            'Debug - Reach Fake Room With Teleporter A': {
+                'Location': 'Castle Entrance, Fake Room With Teleporter A',
             },
-            'Debug - Reach Loading Room B': {
-                'Location': 'Castle Entrance, Loading Room B',
+            'Debug - Reach Fake Room With Teleporter B': {
+                'Location': 'Castle Entrance, Fake Room With Teleporter B',
             },
-            'Debug - Reach Loading Room C': {
-                'Location': 'Castle Entrance, Loading Room C',
+            'Debug - Reach Fake Room With Teleporter C': {
+                'Location': 'Castle Entrance, Fake Room With Teleporter C',
             },
-            'Debug - Reach Loading Room D': {
-                'Location': 'Castle Entrance, Loading Room D',
+            'Debug - Reach Fake Room With Teleporter D': {
+                'Location': 'Castle Entrance, Fake Room With Teleporter D',
             },
         },
         'Commands': {},

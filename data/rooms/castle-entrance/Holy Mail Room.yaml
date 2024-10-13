@@ -17,6 +17,50 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Right
-        Entry Section: Main
-        Exit Section: Main
-Commands: {}
+        Entry Section: Ground
+        Exit Section: Ground
+Commands:
+    Move - Ledge:
+        Outcomes:
+            Section: Ledge
+        Requirements:
+            Ground - Double Jump:
+                Location: Castle Entrance, Holy Mail Room
+                Section: Ground
+                Progression - Double Jump: true
+            Ground - Bat Form:
+                Location: Castle Entrance, Holy Mail Room
+                Section: Ground
+                Progression - Bat Transformation: true
+            Ground - Powered Mist:
+                Location: Castle Entrance, Holy Mail Room
+                Section: Ground
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Ground - Precise Mist-Jump:
+                Location: Castle Entrance, Holy Mail Room
+                Section: Ground
+                Progression - Mist Transformation: true
+                Skill - Precise Mist-Jump: true
+            Ground - Wolf-Mist Rise:
+                Location: Castle Entrance, Holy Mail Room
+                Section: Ground
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Skill - Wolf-Mist Rise: true
+    Move - Ground:
+        Outcomes:
+            Section: Ground
+        Requirements:
+            Use Shortcut:
+                Location: Castle Entrance, Holy Mail Room
+                Section: Ledge
+    Action - Collect Holy Mail Item:
+        Outcomes:
+            Item - Holy Mail: 1
+            Progression - Item at Holy Mail Location Collected: true
+        Requirements:
+            Default:
+                Location: Castle Entrance, Holy Mail Room
+                Section: Ledge
+                Progression - Item at Holy Mail Location Collected: false

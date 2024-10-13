@@ -126,9 +126,8 @@ Commands:
                 Skill - Extended Wolf-Mist Rise: true
     Action - Collect Cube of Zoe Relic:
         Outcomes:
-            Object:
-                Relic - Cube of Zoe: true
-                Progression - Item Materialization: true
+            Relic - Cube of Zoe: true
+            Progression - Item Materialization: true
         Requirements:
             Default:
                 Location: Castle Entrance, Cube of Zoe Room
@@ -136,9 +135,9 @@ Commands:
                 Relic - Cube of Zoe: false
     Action - Activate Pressure Plate:
         Outcomes:
-            Progression - Shortcut in Cube of Zoe Room Activated: true
+            Progression - Pressure Plate in Cube of Zoe Room Activated: true
         Requirements:
             Default:
                 Location: Castle Entrance, Cube of Zoe Room
                 Section: Pressure Plate Ledge
-                Progression - Shortcut in Cube of Zoe Room Activated: false
+                Progression - Pressure Plate in Cube of Zoe Room Activated: false

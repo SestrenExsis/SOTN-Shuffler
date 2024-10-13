@@ -19,5 +19,14 @@ Nodes:
         Column: 0
         Edge: Left
         Entry Section: Main
-        Exit Section: Main
-Commands: {}
+        Exit Section: Special
+Commands:
+    Teleport - Underground Caverns:
+        Outcomes:
+            Stage: Underground Caverns
+            Room: Default
+            Node: Main
+        Requirements:
+            Default:
+                Location: Castle Entrance, Fake Room With Teleporter D
+                Section: Main

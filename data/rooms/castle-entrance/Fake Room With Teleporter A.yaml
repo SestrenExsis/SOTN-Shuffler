@@ -19,14 +19,13 @@ Nodes:
         Column: 0
         Edge: Right
         Entry Section: Main
-        Exit Section: Main
+        Exit Section: Special
 Commands:
     Teleport - Alchemy Laboratory:
         Outcomes:
-            Change Stage:
-                Stage: Alchemy Laboratory
-                Room: Entryway
-                Node: Right Passage
+            Stage: Alchemy Laboratory
+            Room: Entryway
+            Node: Right Passage
         Requirements:
             Default:
                 Location: Castle Entrance, Fake Room With Teleporter A

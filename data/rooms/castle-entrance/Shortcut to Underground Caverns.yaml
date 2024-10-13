@@ -17,13 +17,37 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Left
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Left Side
+        Exit Section: Left Side
     Right Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-        Entry Section: Main
-        Exit Section: Main
-Commands: {}
+        Entry Section: Right Side
+        Exit Section: Right Side
+Commands:
+    Move - Left Side:
+        Outcomes:
+            Section: Left Side
+        Requirements:
+            Use Shortcut:
+                Location: Castle Entrance, Shortcut to Underground Caverns
+                Section: Right Side
+                Progression - Lever Platform in Shortcut to Underground Caverns Activated: true
+    Move - Right Side:
+        Outcomes:
+            Section: Right Side
+        Requirements:
+            Use Shortcut:
+                Location: Castle Entrance, Shortcut to Underground Caverns
+                Section: Left Side
+                Progression - Lever Platform in Shortcut to Underground Caverns Activated: true
+    Action - Activate Lever Platform:
+        Outcomes:
+            Progression - Lever Platform in Shortcut to Underground Caverns Activated: true
+        Requirements:
+            Default:
+                Location: Castle Entrance, Shortcut to Underground Caverns
+                Section: Right Side
+                Progression - Lever Platform in Shortcut to Underground Caverns Activated: false

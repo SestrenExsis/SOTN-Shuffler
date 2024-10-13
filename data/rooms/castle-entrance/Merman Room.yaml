@@ -99,3 +99,5 @@ Commands:
                 Section: Ground
                 Progression - Bat Transformation: true
                 Progression - Wolf Transformation: true
+                Progression - Secret Wall in Merman Room Opened: false
+                Skill - Open Secret Wall in Merman Room: true

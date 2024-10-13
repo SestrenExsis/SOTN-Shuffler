@@ -19,5 +19,14 @@ Nodes:
         Column: 0
         Edge: Left
         Entry Section: Main
-        Exit Section: Main
-Commands: {}
+        Exit Section: Special
+Commands:
+    Teleport - Marble Gallery:
+        Outcomes:
+            Stage: Marble Gallery
+            Room: S-Shaped Hallway
+            Node: Lower-Left Passage
+        Requirements:
+            Default:
+                Location: Castle Entrance, Fake Room With Teleporter B
+                Section: Main
