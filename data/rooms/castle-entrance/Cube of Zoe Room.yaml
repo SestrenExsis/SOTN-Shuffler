@@ -17,37 +17,43 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Left
-        Section: Main
+        Entry Section: Main
+        Exit Section: Main
     Upper-Right Red Door:
         Type: Red Door
         Row: 0
         Column: 1
         Edge: Right
-        Section: Pressure Plate Ledge
+        Entry Section: Pressure Plate Ledge
+        Exit Section: Pressure Plate Ledge
     Left Passage:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Left
-        Section: Main
+        Entry Section: Main
+        Exit Section: Main
     Right Passage:
         Type: Passage
         Row: 1
         Column: 1
         Edge: Right
-        Section: Right Ledge
+        Entry Section: Right Ledge
+        Exit Section: Right Ledge
     Lower-Left Passage:
         Type: Passage
         Row: 2
         Column: 0
         Edge: Left
-        Section: Main
+        Entry Section: Main
+        Exit Section: Main
     Lower-Right Passage:
         Type: Passage
         Row: 2
         Column: 1
         Edge: Right
-        Section: Main
+        Entry Section: Main
+        Exit Section: Main
 Commands:
     Move - Main:
         Outcomes:

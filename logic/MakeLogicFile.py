@@ -58,7 +58,7 @@ if __name__ == '__main__':
                     row = yaml_obj['Top'] + node['Row']
                     column = yaml_obj['Left'] + node['Column']
                     edge = node['Edge']
-                    nodes[(row, column, edge)] = (location_name, node_name, node['Section'])
+                    nodes[(row, column, edge)] = (location_name, node_name, node['Entry Section'])
                     exit = {
                         'Outcomes': {
                             'Location': None,
@@ -67,7 +67,7 @@ if __name__ == '__main__':
                         'Requirements': {
                             'Default': {
                                 'Location': location_name,
-                                'Section': node['Section']
+                                'Section': node['Exit Section']
                             },
                         },
                     }

@@ -18,13 +18,15 @@ Nodes:
         Row: 2
         Column: 1
         Edge: Right
-        Section: Ground
+        Entry Section: Ground
+        Exit Section: Ground
     Bottom Secret Passage:
         Type: Secret Passage
         Row: 2
         Column: 0
         Edge: Bottom
-        Section: Beneath Trapdoor
+        Entry Section: Beneath Trapdoor
+        Exit Section: Beneath Trapdoor
 Commands:
     Move - Beneath Trapdoor:
         Outcomes:

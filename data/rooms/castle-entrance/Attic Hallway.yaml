@@ -17,13 +17,15 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Left
-        Section: Primary
+        Entry Section: Main
+        Exit Section: Main
     Right Passage:
         Type: Passage
         Row: 0
         Column: 3
         Edge: Right
-        Section: Primary
+        Entry Section: Main
+        Exit Section: Main
 Commands:
     Action - Collect Holy Water Subweapon:
         Outcomes:
@@ -32,4 +34,4 @@ Commands:
         Requirements:
             Default:
                 Location: Castle Entrance, Attic Hallway
-                Section: Primary
+                Section: Main

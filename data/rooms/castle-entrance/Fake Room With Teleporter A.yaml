@@ -18,7 +18,8 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Right
-        Section: Main
+        Entry Section: Main
+        Exit Section: Main
 Commands:
     Teleport - Alchemy Laboratory:
         Outcomes:

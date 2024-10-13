@@ -17,13 +17,15 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Top
-        Section: Upper
+        Entry Section: Upper
+        Exit Section: Upper
     Lower-Right Passage:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Right
-        Section: Lower
+        Entry Section: Lower
+        Exit Section: Lower
 Commands:
     Move - Lower:
         Outcomes:

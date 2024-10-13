@@ -17,17 +17,20 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Left
-        Section: Primary
+        Entry Section: Main
+        Exit Section: Main
     Lower-Left Passage:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Left
-        Section: Primary
+        Entry Section: Main
+        Exit Section: Main
     Lower-Right Passage:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Right
-        Section: Primary
+        Entry Section: Main
+        Exit Section: Main
 Commands: {}
