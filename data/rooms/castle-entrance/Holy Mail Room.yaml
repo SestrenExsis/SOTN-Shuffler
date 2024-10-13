@@ -37,11 +37,11 @@ Commands:
                 Section: Ground
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-            Ground - Precise Mist-Jump:
+            Ground - Precise Corner Mist:
                 Location: Castle Entrance, Holy Mail Room
                 Section: Ground
                 Progression - Mist Transformation: true
-                Skill - Precise Mist-Jump: true
+                Skill - Precise Corner Mist: true
             Ground - Wolf-Mist Rise:
                 Location: Castle Entrance, Holy Mail Room
                 Section: Ground
