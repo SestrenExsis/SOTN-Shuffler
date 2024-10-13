@@ -11,7 +11,7 @@ if __name__ == '__main__':
     logic = {
         'State': {
             'Character': 'Alucard',
-            'Location': 'Castle Entrance, Entryway',
+            'Location': 'Castle Entrance, After Drawbridge',
             'Section': 'Ground',
             'Item - Alucard Sword': 1,
             'Item - Alucard Shield': 1,

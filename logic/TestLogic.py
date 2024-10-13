@@ -17,7 +17,7 @@ class Game:
         for requirement in requirements.values():
             # All checks within a requirement list must pass
             valid_ind = True
-            for key, value in requirement.items():
+            for (key, value) in requirement.items():
                 target_value = None
                 if key not in self.logic['State']:
                     if type(value) == str:
@@ -47,7 +47,7 @@ class Game:
         return result
 
     def process_outcomes(self, outcomes):
-        for key, value in outcomes.items():
+        for (key, value) in outcomes.items():
             if type(value) in (str, bool):
                 if key not in self.logic['State'] or self.logic['State'][key] != value:
                     print('  +', key, ': ', value)
@@ -60,9 +60,9 @@ class Game:
 
     def process_position_update(self):
         room_data = self.logic['Rooms'][self.logic['State']['Location']]
-        if self.logic['State']['Section'] not in room_data['Node Sections']:
+        if self.logic['State']['Section'] not in room_data['Nodes']:
             return
-        node = room_data['Node Sections'][self.logic['State']['Section']]
+        node = room_data['Nodes'][self.logic['State']['Section']]
         matching_left = room_data['Left'] + node['Column']
         matching_top = room_data['Top'] + node['Row']
         matching_edge = None
@@ -82,9 +82,9 @@ class Game:
         for (location_name, location_data) in self.logic['Rooms'].items():
             if location_name == self.logic['State']['Location']:
                 continue
-            if location_data['Node Sections'] is None:
+            if location_data['Nodes'] is None:
                 continue
-            for (node_name, node_data) in location_data['Node Sections'].items():
+            for (node_name, node_data) in location_data['Nodes'].items():
                 node_left = location_data['Left'] + node_data['Column']
                 node_top = location_data['Top'] + node_data['Row']
                 if (
@@ -102,33 +102,33 @@ class Game:
         print('@', self.logic['State']['Location'], '-', self.logic['State']['Section'])
         valid_command_names = set()
         # Add choices for valid commands the player can issue
-        room_data = self.logic['State']['Location']
-        triggers = {}
-        if 'Triggers' in room_data and room_data['Triggers'] is not None:
-            triggers = room_data['Triggers']
-        for command_key, command_info in triggers.items():
+        location_name = self.logic['State']['Location']
+        commands = {}
+        if 'Commands' in self.logic and location_name in self.logic['Commands']:
+            commands = self.logic['Commands'][location_name]
+        for command_name, command_info in commands.items():
             if self.validate(command_info['Requirements']):
-                valid_command_names.add(command_key)
+                valid_command_names.add(command_name)
         valid_command_names = list(reversed(sorted(valid_command_names)))
         command_map = {}
         codes = '1234567890abcdefghijklmnopqrstuvwxyz'
-        for i, command_name in enumerate(valid_command_names):
-            command_key = codes[i]
-            command_map[command_key] = command_name
-            print(command_key + ':', command_name)
+        for (i, command_name) in enumerate(valid_command_names):
+            command_code = codes[i]
+            command_map[command_code] = command_name
+            print(command_code + ':', command_name)
         # Ask player for next command
         command_input = input('> ').strip()
         if command_input in command_map.keys():
-            command = command_map[command_input]
-            self.process_outcomes(triggers[command]['Outcomes'])
+            command_name = command_map[command_input]
+            self.process_outcomes(commands[command_name]['Outcomes'])
         elif command_input in command_map.values():
-            command = command_input
-            self.process_outcomes(triggers[command]['Outcomes'])
+            command_name = command_input
+            self.process_outcomes(commands[command_name]['Outcomes'])
         else:
             print('command not valid:', command_input)
             raise Exception()
         # Process updates in player position, if any
-        self.process_position_update()
+        # self.process_position_update()
         print('')
 
 # TODO(sestren): Support different categories like Any%, RBO, Pacifist, etc?
