@@ -1,6 +1,5 @@
-import collections
-import copy
 import json
+import os
 import random
 import yaml
 
@@ -70,7 +69,7 @@ class Room:
         for cell_data in room_data['Empty Cells']:
             self.empty_cells.add((cell_data['Row'], cell_data['Column']))
         self.nodes = {}
-        for (node_name, node_data) in room_data['Node Sections'].items():
+        for (node_name, node_data) in room_data['Nodes'].items():
             node = RoomNode(
                 self, node_data['Row'], node_data['Column'], node_data['Edge'], node_data['Type']
             )
@@ -245,7 +244,7 @@ class RoomSet:
                             prev_index = codes.find(grid[row][col])
                             if index < prev_index:
                                 grid[row][col] = code
-            for node in logic['Rooms'][room_name]['Node Sections'].values():
+            for node in logic['Rooms'][room_name]['Nodes'].values():
                 (exit_row, exit_col, exit_edge) = (node['Row'], node['Column'], node['Edge'])
                 row = 2 + 5 * (room_top - stage_top + exit_row)
                 col = 2 + 5 * (room_left - stage_left + exit_col)
@@ -405,6 +404,134 @@ def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
         steps += 1
     return result
 
+def randomizer__randomize(data_core):
+    rooms = {}
+    for (room_name, room_data) in data_core['Rooms'].items():
+        rooms[room_name] = Room(room_data)
+    current_seed = random.randint(0, 2 ** 64)
+    rng = random.Random(current_seed)
+    castle = None
+    seed_count = 0
+    while True:
+        castle = get_roomset(rng, rooms, stages['Castle Entrance'])
+        seed_count += 1
+        if len(castle.rooms) >= 32 and len(castle.get_open_nodes()) < 1:
+            print('Castle Entrance:', len(castle.rooms), seed_count, current_seed)
+            for row_data in castle.get_room_spoiler(data_core):
+                print(row_data)
+            break
+        current_seed = rng.randint(0, 2 ** 64)
+        rng = random.Random(current_seed)
+    # alchemy_laboratory = None
+    # seed_count = 0
+    # while True:
+    #     alchemy_laboratory = get_roomset(rng, rooms, stages['Alchemy Laboratory'])
+    #     seed_count += 1
+    #     if len(alchemy_laboratory.rooms) >= 32 and len(alchemy_laboratory.get_open_nodes()) < 1:
+    #         print('Alchemy Laboratory:', len(alchemy_laboratory.rooms), seed_count, current_seed)
+    #         for row_data in alchemy_laboratory.get_room_spoiler(data_core):
+    #             print(row_data)
+    #         break
+    #     current_seed = rng.randint(0, 2 ** 64)
+    #     rng = random.Random(current_seed)
+    # (top, left, bottom, right) = alchemy_laboratory.get_bounds()
+    # castle.add_roomset(alchemy_laboratory, 46 - top, 14 - left)
+    changes = castle.get_changes()
+    # for row_data in castle.get_stage_spoiler(data_core, changes):
+    #     print(row_data)
+    # if len(alchemy_laboratory.rooms) < 32:
+    #     for room_name in rooms:
+    #         if 'Alchemy Laboratory' in room_name and room_name not in alchemy_laboratory.rooms:
+    #             print(room_name)
+    result = changes
+    return result
+
+class LogicCore:
+    def __init__(self, data_core, changes):
+        self.state = {
+            'Character': 'Alucard',
+            'Location': 'Castle Entrance, After Drawbridge',
+            'Section': 'Ground',
+            'Item - Alucard Sword': 1,
+            'Item - Alucard Shield': 1,
+            'Item - Dragon Helm': 1,
+            'Item - Alucard Mail': 1,
+            'Item - Twilight Cloak': 1,
+            'Item - Necklace of J': 1,
+            'Item - Neutron Bomb': 1,
+            'Item - Heart Refresh': 1,
+        }
+        self.goals = {
+            'Debug - Reach Fake Room With Teleporter A': {
+                'Location': 'Castle Entrance, Fake Room With Teleporter A',
+            },
+            'Debug - Reach Fake Room With Teleporter B': {
+                'Location': 'Castle Entrance, Fake Room With Teleporter B',
+            },
+            'Debug - Reach Fake Room With Teleporter C': {
+                'Location': 'Castle Entrance, Fake Room With Teleporter C',
+            },
+            'Debug - Reach Fake Room With Teleporter D': {
+                'Location': 'Castle Entrance, Fake Room With Teleporter D',
+            },
+        }
+        self.commands = {}
+        nodes = {}
+        for (location_name, room_data) in data_core['Rooms'].items():
+            self.commands[location_name] = room_data['Commands']
+            for (node_name, node) in room_data['Nodes'].items():
+                row = room_data['Top'] + node['Row']
+                column = room_data['Left'] + node['Column']
+                edge = node['Edge']
+                nodes[(row, column, edge)] = (location_name, node_name, node['Entry Section'])
+                exit = {
+                    'Outcomes': {
+                        'Location': None,
+                        'Section': None,
+                    },
+                    'Requirements': {
+                        'Default': {
+                            'Location': location_name,
+                            'Section': node['Exit Section']
+                        },
+                    },
+                }
+                self.commands[location_name]['Exit - ' + node_name] = exit
+        for (row, column, edge), (location_name, node_name, section_name) in nodes.items():
+            matching_row = row
+            matching_column = column
+            matching_edge = edge
+            if edge == 'Top':
+                matching_edge = 'Bottom'
+                matching_row -= 1
+            elif edge == 'Left':
+                matching_edge = 'Right'
+                matching_column -= 1
+            elif edge == 'Bottom':
+                matching_edge = 'Top'
+                matching_row += 1
+            elif edge == 'Right':
+                matching_edge = 'Left'
+                matching_column += 1
+            (matching_location_name, matching_node_name, matching_section) = (None, 'Unknown', None)
+            if (matching_row, matching_column, matching_edge) in nodes:
+                (matching_location_name, matching_node_name, matching_section) = nodes[(matching_row, matching_column, matching_edge)]
+            self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Location'] = matching_location_name
+            self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Section'] = matching_section
+    
+    def get_core(self) -> dict:
+        result = {
+            'State': self.state,
+            'Goals': self.goals,
+            'Commands': self.commands,
+        }
+        return result
+
+def solver__solve(logic_core, rules, skills):
+    return {
+        'Wins': [1],
+    }
+
 if __name__ == '__main__':
     '''
     Usage
@@ -428,46 +555,33 @@ if __name__ == '__main__':
 
     TODO(sestren): Entering Skill of Wolf Room leads to the void (Alchemy Lab seed: 1095466689126170730)
     '''
-    with open('build/logic.json') as open_file:
-        logic = json.load(open_file)
-        rooms = {}
-        for (room_name, room_data) in logic['Rooms'].items():
-            rooms[room_name] = Room(room_data)
-        current_seed = random.randint(0, 2 ** 64)
-        rng = random.Random(current_seed)
-        castle = None
-        seed_count = 0
+    with (
+        open(os.path.join('build', 'sandbox', 'data-core.json')) as data_core_json,
+        open(os.path.join('build', 'sandbox', 'rules.json')) as rules_json,
+        open(os.path.join('build', 'sandbox', 'skills.json')) as skills_json,
+    ):
+        data_core = json.load(data_core_json)
+        rules = json.load(rules_json)
+        skills = json.load(skills_json)
+        # Keep randomizing until a solution is found
         while True:
-            castle = get_roomset(rng, rooms, stages['Castle Entrance'])
-            seed_count += 1
-            if len(castle.rooms) >= 32 and len(castle.get_open_nodes()) < 1:
-                print('Castle Entrance:', len(castle.rooms), seed_count, current_seed)
-                for row_data in castle.get_room_spoiler(logic):
-                    print(row_data)
+            # Randomize
+            print('Randomize')
+            changes = randomizer__randomize(data_core)
+            with open(os.path.join('build', 'sandbox', 'changes.json'), 'w') as changes_json:
+                json.dump(changes, changes_json, indent='    ', sort_keys=True)
+            # Build
+            print('Build')
+            logic_core = LogicCore(data_core, changes).get_core()
+            with open(os.path.join('build', 'sandbox', 'logic-core.json'), 'w') as logic_core_json:
+                json.dump(logic_core, logic_core_json, indent='    ', sort_keys=True)
+            # Solve
+            print('Solve')
+            solutions = solver__solve(logic_core, rules, skills)
+            with open(os.path.join('build', 'sandbox', 'solutions.json'), 'w') as solutions_json:
+                json.dump(solutions, solutions_json, indent='    ', sort_keys=True)
+            # Halt if solution found
+            print('Halt if solution found')
+            if len(solutions['Wins']) > 0:
+                # patcher.patch(changes.json, 'build/patch.ppf')
                 break
-            current_seed = rng.randint(0, 2 ** 64)
-            rng = random.Random(current_seed)
-        alchemy_laboratory = None
-        seed_count = 0
-        while True:
-            alchemy_laboratory = get_roomset(rng, rooms, stages['Alchemy Laboratory'])
-            seed_count += 1
-            if len(alchemy_laboratory.rooms) >= 32 and len(alchemy_laboratory.get_open_nodes()) < 1:
-                print('Alchemy Laboratory:', len(alchemy_laboratory.rooms), seed_count, current_seed)
-                for row_data in alchemy_laboratory.get_room_spoiler(logic):
-                    print(row_data)
-                break
-            current_seed = rng.randint(0, 2 ** 64)
-            rng = random.Random(current_seed)
-        (top, left, bottom, right) = alchemy_laboratory.get_bounds()
-        castle.add_roomset(alchemy_laboratory, 46 - top, 14 - left)
-        file_name = 'build/RoomChanges.yaml'
-        with open(file_name, 'w') as open_file:
-            changes = castle.get_changes()
-            for row_data in castle.get_stage_spoiler(logic, changes):
-                print(row_data)
-            yaml.dump(castle.get_changes(), open_file, default_flow_style=False)
-        if len(alchemy_laboratory.rooms) < 32:
-            for room_name in rooms:
-                if 'Alchemy Laboratory' in room_name and room_name not in alchemy_laboratory.rooms:
-                    print(room_name)
