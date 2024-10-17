@@ -1,7 +1,6 @@
 import json
 import os
 import random
-import yaml
 
 class RoomNode:
     def __init__(self, room, row: int, column: int, edge: str, type: str):

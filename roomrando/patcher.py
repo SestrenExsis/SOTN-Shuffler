@@ -78,7 +78,7 @@ def get_room_rando_ppf(logic, changes):
         ('Packed Room Data', 'Alchemy Laboratory, Loading Room B'): roomrando.Address(0x049BEB7C),              # + 0x200
         ('Packed Room Data', 'Alchemy Laboratory, Loading Room C'): roomrando.Address(0x049BEB8C),              # + 0x210
     }
-    result = roomrando.PPF('Rooms in Alchemy Lab have been shuffled')
+    result = roomrando.PPF('Shuffled rooms in Castle Entrance and Alchemy Lab')
     canvas = roomrando.IndexedBitmapCanvas(256, 256)
     for room_name in sorted(changes['Rooms'].keys()):
         if (
