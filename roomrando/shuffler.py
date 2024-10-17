@@ -478,10 +478,17 @@ class LogicCore:
         self.commands = {}
         nodes = {}
         for (location_name, room_data) in data_core['Rooms'].items():
+            room_top = room_data['Top']
+            room_left = room_data['Left']
+            if 'Rooms' in changes and location_name in changes['Rooms']:
+                if 'Top' in changes['Rooms'][location_name]:
+                    room_top = changes['Rooms'][location_name]['Top']
+                if 'Left' in changes['Rooms'][location_name]:
+                    room_left = changes['Rooms'][location_name]['Left']
             self.commands[location_name] = room_data['Commands']
             for (node_name, node) in room_data['Nodes'].items():
-                row = room_data['Top'] + node['Row']
-                column = room_data['Left'] + node['Column']
+                row = room_top + node['Row']
+                column = room_left + node['Column']
                 edge = node['Edge']
                 nodes[(row, column, edge)] = (location_name, node_name, node['Entry Section'])
                 exit = {
@@ -528,8 +535,15 @@ class LogicCore:
         return result
 
 def solver__solve(logic_core, rules, skills):
+    state = logic_core['State']
+    for (skill_key, skill_value) in skills.items():
+        state[skill_key] = skill_value
+    # TODO(sestren): Use BFS to find one of the goal locations, if possible to reach
     return {
-        'Wins': [1],
+        'Wins': {
+            '1': [],
+        },
+        'Deadends': {},
     }
 
 if __name__ == '__main__':

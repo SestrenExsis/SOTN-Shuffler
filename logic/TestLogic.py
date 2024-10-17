@@ -1,5 +1,5 @@
-import heapq
 import json
+import os
 
 class Game:
     def __init__(self,
@@ -58,46 +58,6 @@ class Game:
                 print('  +', key, ': ', value)
                 self.logic['State'][key] += value
 
-    def process_position_update(self):
-        room_data = self.logic['Rooms'][self.logic['State']['Location']]
-        if self.logic['State']['Section'] not in room_data['Nodes']:
-            return
-        node = room_data['Nodes'][self.logic['State']['Section']]
-        matching_left = room_data['Left'] + node['Column']
-        matching_top = room_data['Top'] + node['Row']
-        matching_edge = None
-        if node['Edge'] == 'Left':
-            matching_left -= 1
-            matching_edge = 'Right'
-        elif node['Edge'] == 'Right':
-            matching_left += 1
-            matching_edge = 'Left'
-        elif node['Edge'] == 'Top':
-            matching_top -= 1
-            matching_edge = 'Bottom'
-        elif node['Edge'] == 'Bottom':
-            matching_top += 1
-            matching_edge = 'Top'
-        possible_locations = []
-        for (location_name, location_data) in self.logic['Rooms'].items():
-            if location_name == self.logic['State']['Location']:
-                continue
-            if location_data['Nodes'] is None:
-                continue
-            for (node_name, node_data) in location_data['Nodes'].items():
-                node_left = location_data['Left'] + node_data['Column']
-                node_top = location_data['Top'] + node_data['Row']
-                if (
-                    node_left == matching_left and
-                    node_top == matching_top and
-                    node_data['Edge'] == matching_edge
-                ):
-                    location = (location_data['Index'], location_name, node_name)
-                    heapq.heappush(possible_locations, location)
-        (_, location_name, node_name) = heapq.heappop(possible_locations)
-        self.logic['State']['Location'] = location_name
-        self.logic['State']['Section'] = node_name
-
     def play(self):
         print('@', self.logic['State']['Location'], '-', self.logic['State']['Section'])
         valid_command_names = set()
@@ -127,14 +87,12 @@ class Game:
         else:
             print('command not valid:', command_input)
             raise Exception()
-        # Process updates in player position, if any
-        # self.process_position_update()
         print('')
 
 # TODO(sestren): Support different categories like Any%, RBO, Pacifist, etc?
 
 if __name__ == '__main__':
-    with open('build/logic/vanilla-logic.json') as open_file:
+    with open(os.path.join('build', 'sandbox', 'logic-core.json')) as open_file:
         logic = json.load(open_file)
         game = Game(logic, 'Castle Entrance, After Drawbridge', 'Ground')
         # game.player['Progression - Bat Transformation'] = True

@@ -66,11 +66,5 @@ class DataCore:
         return result
 
 if __name__ == '__main__':
-    data = DataCore()
-    with open(os.path.join('build', 'sandbox', 'data-core.json'), 'w') as open_file:
-        json_string = json.dumps(
-            data.get_core(),
-            indent='    ',
-            sort_keys=True,
-        )
-        open_file.write(json_string)
+    with open(os.path.join('build', 'sandbox', 'data-core.json'), 'w') as data_core_json:
+        json.dump(DataCore().get_core(), data_core_json, indent='    ', sort_keys=True)
