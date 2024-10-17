@@ -1,5 +1,6 @@
-import roomrando
 import json
+import os
+import roomrando
 import yaml
 
 '''
@@ -87,7 +88,7 @@ def get_room_rando_ppf(logic, changes):
         ):
             continue
         exits = []
-        for node in logic['Rooms'][room_name]['Node Sections'].values():
+        for node in logic['Rooms'][room_name]['Nodes'].values():
             if 'Secret' not in node['Type']:
                 exit = (node['Row'], node['Column'], node['Edge'])
                 exits.append(exit)
@@ -151,12 +152,12 @@ if __name__ == '__main__':
     Usage
     python alchemylab.py
     '''
-    changes = {}
-    file_name = 'build/RoomChanges.yaml'
-    with open(file_name) as open_file:
-        changes = yaml.safe_load(open_file)
-    with open('build/logic.json') as open_file:
-        logic = json.load(open_file)
-        patch = get_room_rando_ppf(logic, changes)
-        with open('build/RoomRando.ppf', 'wb') as file:
+    with (
+        open(os.path.join('build', 'sandbox', 'data-core.json')) as data_core_json,
+        open(os.path.join('build', 'sandbox', 'changes.json')) as changes_json,
+    ):
+        changes = json.load(changes_json)
+        data_core = json.load(data_core_json)
+        patch = get_room_rando_ppf(data_core, changes)
+        with open(os.path.join('build', 'RoomRando.ppf'), 'wb') as file:
             file.write(patch.bytes)
