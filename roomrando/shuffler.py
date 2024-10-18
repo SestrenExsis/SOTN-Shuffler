@@ -576,6 +576,7 @@ class Game:
         self.goals = goals
         self.starting_state = copy.deepcopy(starting_state)
         self.command_history = []
+        self.debug = False
     
     def clone(self):
         result = Game(self.state, self.commands, self.goals)
@@ -629,13 +630,14 @@ class Game:
         # Apply outcomes from the command
         for (key, value) in command_data[command_name]['Outcomes'].items():
             if type(value) in (str, bool):
-                if key not in self.state or self.state[key] != value:
+                if self.debug and (key not in self.state or self.state[key] != value):
                     print('  +', key, ': ', value)
                 self.state[key] = value
             elif type(value) in (int, float):
                 if key not in self.state:
                     self.state[key] = 0
-                print('  +', key, ': ', value)
+                if self.debug:
+                    print('  +', key, ': ', value)
                 self.state[key] += value
 
     def get_valid_command_names(self) -> list:
