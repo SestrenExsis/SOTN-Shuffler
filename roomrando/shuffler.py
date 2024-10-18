@@ -1,6 +1,9 @@
+import collections
+import copy
 import json
 import os
 import random
+import yaml
 
 class RoomNode:
     def __init__(self, room, row: int, column: int, edge: str, type: str):
@@ -445,6 +448,35 @@ def randomizer__randomize(data_core):
     result = changes
     return result
 
+class DataCore:
+    def __init__(self):
+        self.rooms = {}
+        self.teleporters = {}
+        for stage_folder in (
+            'castle-entrance',
+            # 'castle-entrance-revisited',
+            # 'alchemy-laboratory',
+        ):
+            folder_path = os.path.join('data', 'rooms', stage_folder)
+            for file_name in os.listdir(folder_path):
+                if file_name[-5:] != '.yaml':
+                    continue
+                file_path = os.path.join(folder_path, file_name)
+                with open(file_path) as open_file:
+                    yaml_obj = yaml.safe_load(open_file)
+                    room_name = yaml_obj['Stage'] + ', ' + yaml_obj['Room']
+                    self.rooms[room_name] = yaml_obj
+        with open(os.path.join('data', 'Teleporters.yaml')) as open_file:
+            yaml_obj = yaml.safe_load(open_file)
+            self.teleporters = yaml_obj
+    
+    def get_core(self) -> dict:
+        result = {
+            'Rooms': self.rooms,
+            'Teleporters': self.teleporters,
+        }
+        return result
+
 class LogicCore:
     def __init__(self, data_core, changes):
         self.state = {
@@ -533,16 +565,150 @@ class LogicCore:
         }
         return result
 
+class Game:
+    def __init__(self,
+        starting_state: dict,
+        commands: dict,
+        goals: dict,
+    ):
+        self.state = copy.deepcopy(starting_state)
+        self.commands = commands
+        self.goals = goals
+        self.starting_state = copy.deepcopy(starting_state)
+        self.command_history = []
+    
+    def clone(self):
+        result = Game(self.state, self.commands, self.goals)
+        result.command_history = list(self.command_history)
+        return result
+    
+    def get_key(self) -> int:
+        hashed_state = hash(json.dumps(self.state, sort_keys=True))
+        result = (self.state['Location'], self.state['Section'], hashed_state)
+        return result
+    
+    def validate(self, requirements):
+        result = False
+        for requirement in requirements.values():
+            # All checks within a requirement list must pass
+            valid_ind = True
+            for (key, value) in requirement.items():
+                target_value = None
+                if key not in self.state:
+                    if type(value) == str:
+                        target_value = 'NONE'
+                    elif type(value) == bool:
+                        target_value = False
+                    elif type(value) in (int, dict):
+                        target_value = 0
+                else:
+                    target_value = self.state[key]
+                if type(value) == dict:
+                    if 'Minimum' in value:
+                        if target_value < value['Minimum']:
+                            valid_ind = False
+                            break
+                    if 'Maximum' in value:
+                        if target_value > value['Maximum']:
+                            valid_ind = False
+                            break
+                elif target_value != value:
+                    valid_ind = False
+                    break
+            # Satisfying even one requirement list is sufficient
+            if valid_ind:
+                result = True
+                break
+        return result
+
+    def process_command(self, command_name: str):
+        self.command_history.append(command_name)
+        command_data = {}
+        if self.state['Location'] in self.commands:
+            command_data = self.commands[self.state['Location']]
+        # Apply outcomes from the command
+        for (key, value) in command_data[command_name]['Outcomes'].items():
+            if type(value) in (str, bool):
+                if key not in self.state or self.state[key] != value:
+                    print('  +', key, ': ', value)
+                self.state[key] = value
+            elif type(value) in (int, float):
+                if key not in self.state:
+                    self.state[key] = 0
+                print('  +', key, ': ', value)
+                self.state[key] += value
+
+    def get_valid_command_names(self) -> list:
+        result = set()
+        # Add choices for valid commands the player can issue
+        command_data = {}
+        if self.state['Location'] in self.commands:
+            command_data = self.commands[self.state['Location']]
+        for (command_name, command_info) in command_data.items():
+            if self.validate(command_info['Requirements']):
+                result.add(command_name)
+        result = list(reversed(sorted(result)))
+        return result
+
+    def play(self):
+        print('@', self.state['Location'], '-', self.state['Section'])
+        command_map = {}
+        codes = '1234567890abcdefghijklmnopqrstuvwxyz'
+        valid_command_names = self.get_valid_command_names()
+        for (i, command_name) in enumerate(valid_command_names):
+            command_code = codes[i]
+            command_map[command_code] = command_name
+            print(command_code + ':', command_name)
+        # Ask player for next command
+        command_input = input('> ').strip()
+        if command_input in command_map.keys():
+            command_name = command_map[command_input]
+            self.process_command(command_name)
+        elif command_input in command_map.values():
+            command_name = command_input
+            self.process_command(command_name)
+        else:
+            print('command not valid:', command_input)
+            raise Exception()
+        print('')
+
 def solver__solve(logic_core, rules, skills):
-    state = logic_core['State']
+    modified_state = logic_core['State']
     for (skill_key, skill_value) in skills.items():
-        state[skill_key] = skill_value
+        modified_state[skill_key] = skill_value
     # TODO(sestren): Use BFS to find one of the goal locations, if possible to reach
+    winning_games = []
+    losing_games = []
+    memo = {} # (location, section, hashed_state): (distance, game)
+    work = collections.deque()
+    work.appendleft((0, Game(modified_state, logic_core['Commands'], logic_core['Goals'])))
+    while len(work) > 0:
+        (distance, game) = work.pop()
+        goal_reached = False
+        for (goal_name, requirements) in game.goals.items():
+            if game.state['Location'] == requirements['Location']:
+                goal_reached = True
+                break
+        if goal_reached:
+            winning_games.append(game.command_history)
+            break
+        if distance >= 128:
+            continue
+        game_key = game.get_key()
+        if game_key in memo and memo[game_key][0] < distance:
+            continue
+        memo[game_key] = (distance, game)
+        commands = game.get_valid_command_names()
+        if len(commands) < 1:
+            losing_games.append(game.command_history)
+            continue
+        for command_name in commands:
+            next_game = game.clone()
+            next_game.process_command(command_name)
+            work.appendleft((distance + 1, next_game))
     return {
-        'Wins': {
-            '1': [],
-        },
-        'Deadends': {},
+        'Wins': winning_games,
+        'Losses': losing_games,
     }
 
 if __name__ == '__main__':
@@ -569,11 +735,13 @@ if __name__ == '__main__':
     TODO(sestren): Entering Skill of Wolf Room leads to the void (Alchemy Lab seed: 1095466689126170730)
     '''
     with (
-        open(os.path.join('build', 'sandbox', 'data-core.json')) as data_core_json,
         open(os.path.join('build', 'sandbox', 'rules.json')) as rules_json,
         open(os.path.join('build', 'sandbox', 'skills.json')) as skills_json,
     ):
-        data_core = json.load(data_core_json)
+        print('Build data core')
+        data_core = DataCore().get_core()
+        with open(os.path.join('build', 'sandbox', 'data-core.json'), 'w') as data_core_json:
+            json.dump(data_core, data_core_json, indent='    ', sort_keys=True)
         rules = json.load(rules_json)
         skills = json.load(skills_json)
         # Keep randomizing until a solution is found
@@ -584,7 +752,7 @@ if __name__ == '__main__':
             with open(os.path.join('build', 'sandbox', 'changes.json'), 'w') as changes_json:
                 json.dump(changes, changes_json, indent='    ', sort_keys=True)
             # Build
-            print('Build')
+            print('Build logic core')
             logic_core = LogicCore(data_core, changes).get_core()
             with open(os.path.join('build', 'sandbox', 'logic-core.json'), 'w') as logic_core_json:
                 json.dump(logic_core, logic_core_json, indent='    ', sort_keys=True)
