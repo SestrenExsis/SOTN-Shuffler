@@ -406,47 +406,51 @@ def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
         steps += 1
     return result
 
-def randomizer__randomize(data_core):
-    rooms = {}
-    for (room_name, room_data) in data_core['Rooms'].items():
-        rooms[room_name] = Room(room_data)
-    current_seed = random.randint(0, 2 ** 64)
-    rng = random.Random(current_seed)
-    castle = None
-    seed_count = 0
-    while True:
-        castle = get_roomset(rng, rooms, stages['Castle Entrance'])
-        seed_count += 1
-        if len(castle.rooms) >= 32 and len(castle.get_open_nodes()) < 1:
-            print('Castle Entrance:', len(castle.rooms), seed_count, current_seed)
-            for row_data in castle.get_room_spoiler(data_core):
-                print(row_data)
-            break
-        current_seed = rng.randint(0, 2 ** 64)
-        rng = random.Random(current_seed)
-    # alchemy_laboratory = None
-    # seed_count = 0
-    # while True:
-    #     alchemy_laboratory = get_roomset(rng, rooms, stages['Alchemy Laboratory'])
-    #     seed_count += 1
-    #     if len(alchemy_laboratory.rooms) >= 32 and len(alchemy_laboratory.get_open_nodes()) < 1:
-    #         print('Alchemy Laboratory:', len(alchemy_laboratory.rooms), seed_count, current_seed)
-    #         for row_data in alchemy_laboratory.get_room_spoiler(data_core):
-    #             print(row_data)
-    #         break
-    #     current_seed = rng.randint(0, 2 ** 64)
-    #     rng = random.Random(current_seed)
-    # (top, left, bottom, right) = alchemy_laboratory.get_bounds()
-    # castle.add_roomset(alchemy_laboratory, 46 - top, 14 - left)
-    changes = castle.get_changes()
-    # for row_data in castle.get_stage_spoiler(data_core, changes):
-    #     print(row_data)
-    # if len(alchemy_laboratory.rooms) < 32:
-    #     for room_name in rooms:
-    #         if 'Alchemy Laboratory' in room_name and room_name not in alchemy_laboratory.rooms:
-    #             print(room_name)
-    result = changes
-    return result
+class Randomizer:
+    def __init__(self, data_core, initial_seed):
+        print('Randomize with seed:', initial_seed)
+        self.data_core = data_core
+        self.initial_seed = initial_seed
+        self.rng = random.Random(self.initial_seed)
+        self.castle = None
+        rooms = {}
+        for (room_name, room_data) in data_core['Rooms'].items():
+            rooms[room_name] = Room(room_data)
+        seed_count = 0
+        while True:
+            self.castle = get_roomset(self.rng, rooms, stages['Castle Entrance'])
+            seed_count += 1
+            if len(self.castle.rooms) >= 32 and len(self.castle.get_open_nodes()) < 1:
+                print('Castle Entrance:', len(self.castle.rooms), seed_count, current_seed)
+                for row_data in self.castle.get_room_spoiler(data_core):
+                    print(row_data)
+                break
+            current_seed = self.rng.randint(0, 2 ** 64)
+        # alchemy_laboratory = None
+        # seed_count = 0
+        # while True:
+        #     alchemy_laboratory = get_roomset(rng, rooms, stages['Alchemy Laboratory'])
+        #     seed_count += 1
+        #     if len(alchemy_laboratory.rooms) >= 32 and len(alchemy_laboratory.get_open_nodes()) < 1:
+        #         print('Alchemy Laboratory:', len(alchemy_laboratory.rooms), seed_count, current_seed)
+        #         for row_data in alchemy_laboratory.get_room_spoiler(data_core):
+        #             print(row_data)
+        #         break
+        #     current_seed = rng.randint(0, 2 ** 64)
+        #     rng = random.Random(current_seed)
+        # (top, left, bottom, right) = alchemy_laboratory.get_bounds()
+        # castle.add_roomset(alchemy_laboratory, 46 - top, 14 - left)
+        # changes = castle.get_changes()
+        # for row_data in castle.get_stage_spoiler(data_core, changes):
+        #     print(row_data)
+        # if len(alchemy_laboratory.rooms) < 32:
+        #     for room_name in rooms:
+        #         if 'Alchemy Laboratory' in room_name and room_name not in alchemy_laboratory.rooms:
+        #             print(room_name)
+    
+    def get_changes(self):
+        result = self.castle.get_changes()
+        return result
 
 class DataCore:
     def __init__(self):
@@ -455,7 +459,7 @@ class DataCore:
         for stage_folder in (
             'castle-entrance',
             # 'castle-entrance-revisited',
-            # 'alchemy-laboratory',
+            'alchemy-laboratory',
         ):
             folder_path = os.path.join('data', 'rooms', stage_folder)
             for file_name in os.listdir(folder_path):
@@ -479,6 +483,79 @@ class DataCore:
 
 class LogicCore:
     def __init__(self, data_core, changes):
+        print('Build logic core')
+        self.commands = {}
+        for stage_name in (
+            'Castle Entrance',
+            'Alchemy Laboratory',
+        ):
+            nodes = {}
+            for (location_name, room_data) in data_core['Rooms'].items():
+                if data_core['Rooms']['Stage'] != stage_name:
+                    continue
+                room_top = room_data['Top']
+                room_left = room_data['Left']
+                if 'Rooms' in changes and location_name in changes['Rooms']:
+                    if 'Top' in changes['Rooms'][location_name]:
+                        room_top = changes['Rooms'][location_name]['Top']
+                    if 'Left' in changes['Rooms'][location_name]:
+                        room_left = changes['Rooms'][location_name]['Left']
+                self.commands[location_name] = room_data['Commands']
+                for (node_name, node) in room_data['Nodes'].items():
+                    row = room_top + node['Row']
+                    column = room_left + node['Column']
+                    edge = node['Edge']
+                    nodes[(row, column, edge)] = (location_name, node_name, node['Entry Section'])
+                    exit = {
+                        'Outcomes': {
+                            'Location': None,
+                            'Section': None,
+                        },
+                        'Requirements': {
+                            'Default': {
+                                'Location': location_name,
+                                'Section': node['Exit Section']
+                            },
+                        },
+                    }
+                    self.commands[location_name]['Exit - ' + node_name] = exit
+            for (row, column, edge), (location_name, node_name, section_name) in nodes.items():
+                matching_row = row
+                matching_column = column
+                matching_edge = edge
+                if edge == 'Top':
+                    matching_edge = 'Bottom'
+                    matching_row -= 1
+                elif edge == 'Left':
+                    matching_edge = 'Right'
+                    matching_column -= 1
+                elif edge == 'Bottom':
+                    matching_edge = 'Top'
+                    matching_row += 1
+                elif edge == 'Right':
+                    matching_edge = 'Left'
+                    matching_column += 1
+                (matching_location_name, matching_node_name, matching_section) = (None, 'Unknown', None)
+                if (matching_row, matching_column, matching_edge) in nodes:
+                    (matching_location_name, matching_node_name, matching_section) = nodes[(matching_row, matching_column, matching_edge)]
+                self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Location'] = matching_location_name
+                self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Section'] = matching_section
+        # Replace source teleporter locations with their targets
+        for (location_name, location_info) in self.commands.items():
+            for (command_name, command_info) in location_info.items():
+                if 'Outcomes' in command_info and 'Location' in command_info['Outcomes']:
+                    location_name = command_info['Outcomes']['Location']
+                    if location_name in data_core['Teleporters']['Sources']:
+                        source = data_core['Teleporters']['Sources'][location_name]
+                        target = data_core['Teleporters']['Targets'][source['Target']]
+                        target_location_name = target['Stage'] + ', ' + target['Room']
+                        self.commands[location_name][command_name]['Outcomes']['Location'] = target_location_name
+                        target_section_name = data_core['Rooms'][target_location_name]['Nodes'][target['Node']]['Entry Section']
+                        self.commands[location_name][command_name]['Outcomes']['Section'] = target_section_name
+        # Delete fake rooms mentioned as teleporter locations
+        for location_name in data_core['Teleporters']['Sources']:
+            if 'Fake' in location_name:
+                self.data_core.pop(location_name, None)
         self.state = {
             'Character': 'Alucard',
             'Location': 'Castle Entrance, After Drawbridge',
@@ -505,57 +582,16 @@ class LogicCore:
             'Debug - Reach Fake Room With Teleporter D': {
                 'Location': 'Castle Entrance, Fake Room With Teleporter D',
             },
+            'Debug - Reach Entryway in Alchemy Laboratory': {
+                'Location': 'Alchemy Laboratory, Entryway',
+            },
+            'Debug - Reach Exit to Marble Gallery in Alchemy Laboratory': {
+                'Location': 'Alchemy Laboratory, Exit to Marble Gallery',
+            },
+            'Debug - Reach Exit to Royal Chapel in Alchemy Laboratory': {
+                'Location': 'Alchemy Laboratory, Exit to Royal Chapel',
+            },
         }
-        self.commands = {}
-        nodes = {}
-        for (location_name, room_data) in data_core['Rooms'].items():
-            room_top = room_data['Top']
-            room_left = room_data['Left']
-            if 'Rooms' in changes and location_name in changes['Rooms']:
-                if 'Top' in changes['Rooms'][location_name]:
-                    room_top = changes['Rooms'][location_name]['Top']
-                if 'Left' in changes['Rooms'][location_name]:
-                    room_left = changes['Rooms'][location_name]['Left']
-            self.commands[location_name] = room_data['Commands']
-            for (node_name, node) in room_data['Nodes'].items():
-                row = room_top + node['Row']
-                column = room_left + node['Column']
-                edge = node['Edge']
-                nodes[(row, column, edge)] = (location_name, node_name, node['Entry Section'])
-                exit = {
-                    'Outcomes': {
-                        'Location': None,
-                        'Section': None,
-                    },
-                    'Requirements': {
-                        'Default': {
-                            'Location': location_name,
-                            'Section': node['Exit Section']
-                        },
-                    },
-                }
-                self.commands[location_name]['Exit - ' + node_name] = exit
-        for (row, column, edge), (location_name, node_name, section_name) in nodes.items():
-            matching_row = row
-            matching_column = column
-            matching_edge = edge
-            if edge == 'Top':
-                matching_edge = 'Bottom'
-                matching_row -= 1
-            elif edge == 'Left':
-                matching_edge = 'Right'
-                matching_column -= 1
-            elif edge == 'Bottom':
-                matching_edge = 'Top'
-                matching_row += 1
-            elif edge == 'Right':
-                matching_edge = 'Left'
-                matching_column += 1
-            (matching_location_name, matching_node_name, matching_section) = (None, 'Unknown', None)
-            if (matching_row, matching_column, matching_edge) in nodes:
-                (matching_location_name, matching_node_name, matching_section) = nodes[(matching_row, matching_column, matching_edge)]
-            self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Location'] = matching_location_name
-            self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Section'] = matching_section
     
     def get_core(self) -> dict:
         result = {
@@ -675,10 +711,10 @@ class Game:
         print('')
 
 def solver__solve(logic_core, rules, skills):
+    print('Solve')
     modified_state = logic_core['State']
     for (skill_key, skill_value) in skills.items():
         modified_state[skill_key] = skill_value
-    # TODO(sestren): Use BFS to find one of the goal locations, if possible to reach
     winning_games = []
     losing_games = []
     memo = {} # (location, section, hashed_state): (distance, game)
@@ -747,24 +783,23 @@ if __name__ == '__main__':
         rules = json.load(rules_json)
         skills = json.load(skills_json)
         # Keep randomizing until a solution is found
+        seed = random.randint(0, 2 ** 64)
         while True:
             # Randomize
-            print('Randomize')
-            changes = randomizer__randomize(data_core)
+            randomizer = Randomizer(data_core, seed)
+            changes = randomizer.get_changes()
             with open(os.path.join('build', 'sandbox', 'changes.json'), 'w') as changes_json:
                 json.dump(changes, changes_json, indent='    ', sort_keys=True)
             # Build
-            print('Build logic core')
             logic_core = LogicCore(data_core, changes).get_core()
             with open(os.path.join('build', 'sandbox', 'logic-core.json'), 'w') as logic_core_json:
                 json.dump(logic_core, logic_core_json, indent='    ', sort_keys=True)
             # Solve
-            print('Solve')
             solutions = solver__solve(logic_core, rules, skills)
             with open(os.path.join('build', 'sandbox', 'solutions.json'), 'w') as solutions_json:
                 json.dump(solutions, solutions_json, indent='    ', sort_keys=True)
             # Halt if solution found
-            print('Halt if solution found')
             if len(solutions['Wins']) > 0:
                 # patcher.patch(changes.json, 'build/patch.ppf')
                 break
+            seed = randomizer.rng.randint(0, 2 ** 64)

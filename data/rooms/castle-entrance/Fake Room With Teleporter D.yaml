@@ -7,9 +7,7 @@ Top: 41
 Columns: 1
 Rows: 1
 Total Cells: 1
-Empty Cells:
-    - Row: 0
-      Column: 0
+Empty Cells: {}
 Entities:
 Flags:
 Nodes:
@@ -18,15 +16,6 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Left
-        Entry Section: Main
-        Exit Section: Special
-Commands:
-    Teleport - Underground Caverns:
-        Outcomes:
-            Stage: Underground Caverns
-            Room: Default
-            Node: Main
-        Requirements:
-            Default:
-                Location: Castle Entrance, Fake Room With Teleporter D
-                Section: Main
+        Entry Section: Fake
+        Exit Section: Dummy
+Commands: {}

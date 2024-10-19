@@ -11,43 +11,19 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Lower-Left Node:
+Nodes:
+    Lower-Left Passage:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Left
-    Upper-Left Node:
+        Entry Section: Main
+        Exit Section: Main
+    Upper-Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-Triggers:
-    Entry - Lower-Left Node:
-        Outcomes:
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Empty Zig Zag Room
-                Section: Lower-Left Node
-    Exit - Lower-Left Node:
-        Outcomes:
-            Section: Lower-Left Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Empty Zig Zag Room
-                Section: Primary
-    Entry - Upper-Left Node:
-        Outcomes:
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Empty Zig Zag Room
-                Section: Upper-Left Node
-    Exit - Upper-Left Node:
-        Outcomes:
-            Section: Upper-Left Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Empty Zig Zag Room
-                Section: Primary
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

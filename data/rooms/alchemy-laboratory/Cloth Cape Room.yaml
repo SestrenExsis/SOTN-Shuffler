@@ -11,33 +11,21 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Right Node:
+Nodes:
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Triggers:
-    Entry - Right Node:
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Action - Collect Cloth Cape:
         Outcomes:
-            Section: Primary
+            Progression - Object in Cloth Cape Room Collected: true
+            Item - Cloth Cape: 1
         Requirements:
             Default:
                 Location: Alchemy Laboratory, Cloth Cape Room
-                Section: Right Node
-    Exit - Right Node:
-        Outcomes:
-            Section: Right Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Cloth Cape Room
-                Section: Primary
-    Action - Collect Object at Cloth Cape Location:
-        Outcomes:
-            Progression - Object at Cloth Cape Location Collected: true
-            Object:
-                Item - Cloth Cape: 1
-        Requirements:
-            Default:
-                Section: Primary
-                Progression - Object at Cloth Cape Location Collected: false
+                Section: Main
+                Progression - Object in Cloth Cape Room Collected: false

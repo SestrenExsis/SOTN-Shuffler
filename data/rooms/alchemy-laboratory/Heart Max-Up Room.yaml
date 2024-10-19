@@ -11,27 +11,15 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Right Node:
+Nodes:
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Triggers:
-    Entry - Right Node:
-        Outcomes:
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Heart Max-Up Room
-                Section: Right Node
-    Exit - Right Node:
-        Outcomes:
-            Section: Right Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Heart Max-Up Room
-                Section: Primary
+        Entry Section: Main
+        Exit Section: Main
+Commands:
     Action - Collect Object at Alchemy Lab Heart Max-Up Location:
         Outcomes:
             Progression - Object at Alchemy Lab Heart Max-Up Location Collected: true
@@ -39,5 +27,5 @@ Triggers:
                 Item - Heart Max-Up: 1
         Requirements:
             Default:
-                Section: Primary
+                Section: Main
                 Progression - Object at Alchemy Lab Heart Max-Up Location Collected: false

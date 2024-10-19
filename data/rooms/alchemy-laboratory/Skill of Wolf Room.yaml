@@ -11,33 +11,19 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Left Node:
+Nodes:
+    Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-Triggers:
-    Entry - Left Node:
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Action - Collect Skill of Wolf Relic:
         Outcomes:
-            Section: Primary
+            Relic - Skill of Wolf: true
         Requirements:
             Default:
-                Location: Alchemy Laboratory, Skill of Wolf Room
-                Section: Left Node
-    Exit - Left Node:
-        Outcomes:
-            Section: Left Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Skill of Wolf Room
-                Section: Primary
-    Action - Collect Object at Skill of Wolf Location:
-        Outcomes:
-            Progression - Object at Skill of Wolf Location Collected: true
-            Object:
-                Relic - Skill of Wolf: 1
-        Requirements:
-            Default:
-                Section: Primary
-                Progression - Object at Skill of Wolf Location Collected: false
+                Section: Main
+                Relic - Skill of Wolf: false

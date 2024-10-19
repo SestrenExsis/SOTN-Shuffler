@@ -13,7 +13,7 @@ Empty Cells:
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
+Nodes:
     Lower-Left Node:
         Type: Passage
         Row: 2
@@ -39,7 +39,7 @@ Node Sections:
         Row: 0
         Column: 1
         Edge: Right
-Triggers:
+Commands:
     Entry - Left Node:
         Outcomes:
             Section: Bat Card Room Duplicate

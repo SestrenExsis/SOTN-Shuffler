@@ -11,65 +11,29 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Lower-Right Node:
+Nodes:
+    Lower-Right Passage:
         Type: Passage
         Row: 1
         Column: 1
         Edge: Right
-    Upper-Left Node:
+        Entry Section: Ground
+        Exit Section: Ground
+    Upper-Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Upper-Right Node:
+        Entry Section: Ground
+        Exit Section: Ground
+    Upper-Right Passage:
         Type: Passage
         Row: 0
         Column: 1
         Edge: Right
-Triggers:
-    Entry - Lower-Right Node:
-        Outcomes:
-            Section: Ground
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Box Puzzle Room
-                Section: Lower-Right Node
-    Exit - Lower-Right Node:
-        Outcomes:
-            Section: Lower-Right Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Box Puzzle Room
-                Section: Ground
-    Entry - Upper-Left Node:
-        Outcomes:
-            Section: Ground
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Box Puzzle Room
-                Section: Upper-Left Node
-    Exit - Upper-Left Node:
-        Outcomes:
-            Section: Upper-Left Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Box Puzzle Room
-                Section: Ground
-    Entry - Upper-Right Node:
-        Outcomes:
-            Section: Ledge
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Box Puzzle Room
-                Section: Upper-Right Node
-    Exit - Upper-Right Node:
-        Outcomes:
-            Section: Upper-Right Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Box Puzzle Room
-                Section: Ledge
+        Entry Section: Ledge
+        Exit Section: Ledge
+Commands:
     Action - Solve Box Puzzle:
         Outcomes:
             Progression - Box Puzzle Solved: true

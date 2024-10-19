@@ -11,43 +11,19 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Left Node:
+Nodes:
+    Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Right Node:
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 1
         Edge: Right
-Triggers:
-    Entry - Left Node:
-        Outcomes:
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Corridor to Elevator
-                Section: Left Node
-    Exit - Left Node:
-        Outcomes:
-            Section: Left Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Corridor to Elevator
-                Section: Primary
-    Entry - Right Node:
-        Outcomes:
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Corridor to Elevator
-                Section: Right Node
-    Exit - Right Node:
-        Outcomes:
-            Section: Right Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Corridor to Elevator
-                Section: Primary
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

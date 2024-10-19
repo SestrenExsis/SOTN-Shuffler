@@ -12,43 +12,19 @@ Entities:
     - Bone Scimitar
 Flags:
     - Scroll Type 1
-Node Sections:
-    Lower-Right Node:
+Nodes:
+    Lower-Right Passage:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Right
-    Upper-Left Node:
+        Entry Section: Main
+        Exit Section: Main
+    Upper-Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-Triggers:
-    Entry - Lower-Right Node:
-        Outcomes:
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Short Zig Zag Room
-                Section: Lower-Right Node
-    Exit - Lower-Right Node:
-        Outcomes:
-            Section: Lower-Right Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Short Zig Zag Room
-                Section: Primary
-    Entry - Upper-Left Node:
-        Outcomes:
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Short Zig Zag Room
-                Section: Upper-Left Node
-    Exit - Upper-Left Node:
-        Outcomes:
-            Section: Upper-Left Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Short Zig Zag Room
-                Section: Primary
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

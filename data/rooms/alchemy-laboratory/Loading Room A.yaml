@@ -11,43 +11,19 @@ Empty Cells: {}
 Entities:
 Flags:
     - Load On Right
-Node Sections:
-    Left Node:
+Nodes:
+    Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Right Node:
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Triggers:
-    Entry - Left Node:
-        Outcomes:
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Loading Room A
-                Section: Left Node
-    Exit - Left Node:
-        Outcomes:
-            Section: Left Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Loading Room A
-                Section: Primary
-    Entry - Right Node:
-        Outcomes:
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Loading Room A
-                Section: Right Node
-    Exit - Right Node:
-        Outcomes:
-            Section: Right Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Loading Room A
-                Section: Primary
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}
