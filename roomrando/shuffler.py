@@ -417,7 +417,9 @@ class Randomizer:
         for (room_name, room_data) in data_core['Rooms'].items():
             rooms[room_name] = Room(room_data)
         seed_count = 0
+        current_seed = initial_seed
         while True:
+            self.rng = random.Random(current_seed)
             self.castle = get_roomset(self.rng, rooms, stages['Castle Entrance'])
             seed_count += 1
             if len(self.castle.rooms) >= 32 and len(self.castle.get_open_nodes()) < 1:
@@ -426,20 +428,20 @@ class Randomizer:
                     print(row_data)
                 break
             current_seed = self.rng.randint(0, 2 ** 64)
-        # alchemy_laboratory = None
-        # seed_count = 0
-        # while True:
-        #     alchemy_laboratory = get_roomset(rng, rooms, stages['Alchemy Laboratory'])
-        #     seed_count += 1
-        #     if len(alchemy_laboratory.rooms) >= 32 and len(alchemy_laboratory.get_open_nodes()) < 1:
-        #         print('Alchemy Laboratory:', len(alchemy_laboratory.rooms), seed_count, current_seed)
-        #         for row_data in alchemy_laboratory.get_room_spoiler(data_core):
-        #             print(row_data)
-        #         break
-        #     current_seed = rng.randint(0, 2 ** 64)
-        #     rng = random.Random(current_seed)
-        # (top, left, bottom, right) = alchemy_laboratory.get_bounds()
-        # castle.add_roomset(alchemy_laboratory, 46 - top, 14 - left)
+        alchemy_laboratory = None
+        seed_count = 0
+        while True:
+            self.rng = random.Random(current_seed)
+            alchemy_laboratory = get_roomset(self.rng, rooms, stages['Alchemy Laboratory'])
+            seed_count += 1
+            if len(alchemy_laboratory.rooms) >= 32 and len(alchemy_laboratory.get_open_nodes()) < 1:
+                print('Alchemy Laboratory:', len(alchemy_laboratory.rooms), seed_count, current_seed)
+                for row_data in alchemy_laboratory.get_room_spoiler(data_core):
+                    print(row_data)
+                break
+            current_seed = self.rng.randint(0, 2 ** 64)
+        (top, left, bottom, right) = alchemy_laboratory.get_bounds()
+        self.castle.add_roomset(alchemy_laboratory, 46 - top, 14 - left)
         # changes = castle.get_changes()
         # for row_data in castle.get_stage_spoiler(data_core, changes):
         #     print(row_data)
@@ -491,7 +493,8 @@ class LogicCore:
         ):
             nodes = {}
             for (location_name, room_data) in data_core['Rooms'].items():
-                if data_core['Rooms']['Stage'] != stage_name:
+                # print(stage_name, location_name)
+                if data_core['Rooms'][location_name]['Stage'] != stage_name:
                     continue
                 room_top = room_data['Top']
                 room_left = room_data['Left']
@@ -544,18 +547,19 @@ class LogicCore:
         for (location_name, location_info) in self.commands.items():
             for (command_name, command_info) in location_info.items():
                 if 'Outcomes' in command_info and 'Location' in command_info['Outcomes']:
-                    location_name = command_info['Outcomes']['Location']
-                    if location_name in data_core['Teleporters']['Sources']:
-                        source = data_core['Teleporters']['Sources'][location_name]
+                    old_location_name = command_info['Outcomes']['Location']
+                    if old_location_name in data_core['Teleporters']['Sources']:
+                        # Castle Entrance, Fake Room With Teleporter A Exit - Left Passage
+                        source = data_core['Teleporters']['Sources'][old_location_name]
                         target = data_core['Teleporters']['Targets'][source['Target']]
-                        target_location_name = target['Stage'] + ', ' + target['Room']
-                        self.commands[location_name][command_name]['Outcomes']['Location'] = target_location_name
-                        target_section_name = data_core['Rooms'][target_location_name]['Nodes'][target['Node']]['Entry Section']
+                        new_location_name = target['Stage'] + ', ' + target['Room']
+                        self.commands[location_name][command_name]['Outcomes']['Location'] = new_location_name
+                        target_section_name = data_core['Rooms'][new_location_name]['Nodes'][target['Node']]['Entry Section']
                         self.commands[location_name][command_name]['Outcomes']['Section'] = target_section_name
         # Delete fake rooms mentioned as teleporter locations
         for location_name in data_core['Teleporters']['Sources']:
             if 'Fake' in location_name:
-                self.data_core.pop(location_name, None)
+                self.commands.pop(location_name, None)
         self.state = {
             'Character': 'Alucard',
             'Location': 'Castle Entrance, After Drawbridge',
@@ -570,26 +574,8 @@ class LogicCore:
             'Item - Heart Refresh': 1,
         }
         self.goals = {
-            'Debug - Reach Fake Room With Teleporter A': {
-                'Location': 'Castle Entrance, Fake Room With Teleporter A',
-            },
-            'Debug - Reach Fake Room With Teleporter B': {
-                'Location': 'Castle Entrance, Fake Room With Teleporter B',
-            },
-            'Debug - Reach Fake Room With Teleporter C': {
-                'Location': 'Castle Entrance, Fake Room With Teleporter C',
-            },
-            'Debug - Reach Fake Room With Teleporter D': {
-                'Location': 'Castle Entrance, Fake Room With Teleporter D',
-            },
-            'Debug - Reach Entryway in Alchemy Laboratory': {
-                'Location': 'Alchemy Laboratory, Entryway',
-            },
             'Debug - Reach Exit to Marble Gallery in Alchemy Laboratory': {
                 'Location': 'Alchemy Laboratory, Exit to Marble Gallery',
-            },
-            'Debug - Reach Exit to Royal Chapel in Alchemy Laboratory': {
-                'Location': 'Alchemy Laboratory, Exit to Royal Chapel',
             },
         }
     
@@ -715,8 +701,10 @@ def solver__solve(logic_core, rules, skills):
     modified_state = logic_core['State']
     for (skill_key, skill_value) in skills.items():
         modified_state[skill_key] = skill_value
-    winning_games = []
-    losing_games = []
+    winning_game_count = 0
+    winning_games = collections.deque()
+    losing_game_count = 0
+    losing_games = collections.deque()
     memo = {} # (location, section, hashed_state): (distance, game)
     work = collections.deque()
     work.appendleft((0, Game(modified_state, logic_core['Commands'], logic_core['Goals'])))
@@ -729,8 +717,15 @@ def solver__solve(logic_core, rules, skills):
                 break
         if goal_reached:
             winning_games.append(game.command_history)
+            while len(winning_games) > 10:
+                winning_games.popleft()
+            winning_game_count += 1
             break
-        if distance >= 128:
+        if distance >= 32:
+            losing_games.append(game.command_history)
+            while len(losing_games) > 10:
+                losing_games.popleft()
+            losing_game_count += 1
             continue
         game_key = game.get_key()
         if game_key in memo and memo[game_key][0] < distance:
@@ -739,38 +734,28 @@ def solver__solve(logic_core, rules, skills):
         commands = game.get_valid_command_names()
         if len(commands) < 1:
             losing_games.append(game.command_history)
+            while len(losing_games) > 10:
+                losing_games.popleft()
+            losing_game_count += 1
             continue
         for command_name in commands:
             next_game = game.clone()
             next_game.process_command(command_name)
             work.appendleft((distance + 1, next_game))
+    print('Losing games, last 10')
+    for losing_game in losing_games:
+        print(losing_game)
     return {
-        'Wins': winning_games,
-        'Losses': losing_games,
+        'Win Count': winning_game_count,
+        'Wins': list(winning_games),
+        'Loss Count': losing_game_count,
+        'Losses': list(losing_games),
     }
 
 if __name__ == '__main__':
     '''
     Usage
     python shuffler.py
-
-    TODO(sestren): Elevator Room (m) placed on top of Red Skeleton Lift Room (i), which shouldn't be allowed:
-    ..................
-    .ur13333hh4m......
-    ......bdhhcm......
-    .....9bd22cm......
-    ......b..77m......
-    ......b8.f.m......
-    ......b..f.m......
-    .....jjggggm......
-    ....50jggggiiio...
-    ....njje...iiillp.
-    .......ekk..aaasv.
-    .......ekkqt......
-    ........kk........
-    ..................
-
-    TODO(sestren): Entering Skill of Wolf Room leads to the void (Alchemy Lab seed: 1095466689126170730)
     '''
     with (
         open(os.path.join('build', 'sandbox', 'rules.json')) as rules_json,
@@ -799,7 +784,7 @@ if __name__ == '__main__':
             with open(os.path.join('build', 'sandbox', 'solutions.json'), 'w') as solutions_json:
                 json.dump(solutions, solutions_json, indent='    ', sort_keys=True)
             # Halt if solution found
-            if len(solutions['Wins']) > 0:
+            if solutions['Win Count'] > 0:
                 # patcher.patch(changes.json, 'build/patch.ppf')
                 break
             seed = randomizer.rng.randint(0, 2 ** 64)

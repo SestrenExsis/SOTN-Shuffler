@@ -17,21 +17,21 @@ Nodes:
         Row: 1
         Column: 3
         Edge: Right
-        Entry Section: Special
+        Entry Section: Ground
         Exit Section: Ground
     Upper-Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-        Entry Section: Special
+        Entry Section: Ground
         Exit Section: Ground
     Upper-Right Passage:
         Type: Passage
         Row: 0
         Column: 3
         Edge: Right
-        Entry Section: Special
+        Entry Section: Alcove
         Exit Section: Alcove
 Commands:
     Action - Defeat Slogra and Gaibon:
