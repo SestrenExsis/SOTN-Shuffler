@@ -11,46 +11,22 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Left Node:
+Nodes:
+    Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Right Node:
+        Entry Section: Left Side
+        Exit Section: Left Side
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 1
         Edge: Right
-Triggers:
-    Entry - Left Node:
-        Outcomes:
-            Section: Left Side
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Blue Door Hallway
-                Section: Left Node
-    Exit - Left Node:
-        Outcomes:
-            Section: Left Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Blue Door Hallway
-                Section: Left Side
-    Entry - Right Node:
-        Outcomes:
-            Section: Right Side
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Blue Door Hallway
-                Section: Right Node
-    Exit - Right Node:
-        Outcomes:
-            Section: Right Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Blue Door Hallway
-                Section: Right Side
+        Entry Section: Right Side
+        Exit Section: Right Side
+Commands:
     Move - Left Side:
         Outcomes:
             Section: Left Side

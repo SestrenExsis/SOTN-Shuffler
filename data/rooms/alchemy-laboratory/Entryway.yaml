@@ -13,52 +13,27 @@ Entities:
     - Red Skeleton
 Flags:
     - Scroll Type 1
-Node Sections:
-    Right Node:
+Nodes:
+    Right Red Door:
         Type: Red Door
         Row: 0
         Column: 2
         Edge: Right
-    Upper Node:
+        Entry Section: Main
+        Exit Section: Main
+    Top Passage:
         Type: Passage
         Row: 0
         Column: 1
         Edge: Top
-Triggers:
-    Entry - Right Node:
-        Outcomes:
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Entryway
-                Section: Right Node
-    Exit - Right Node:
-        Outcomes:
-            Section: Right Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Entryway
-                Section: Primary
-    Entry - Upper Node:
-        Outcomes:
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Entryway
-                Section: Upper Node
-    Exit - Upper Node:
-        Outcomes:
-            Section: Upper Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Entryway
-                Section: Primary
+        Entry Section: Main
+        Exit Section: Main
+Commands:
     Action - Collect Object at Hide Cuirass Location:
         Outcomes:
             Progression - Object at Hide Cuirass Location Collected: true
-            Object:
-                Item - Hide Cuirass: 1
+            Item - Hide Cuirass: 1
         Requirements:
             Default:
-                Section: Primary
+                Section: Main
                 Progression - Object at Hide Cuirass Location Collected: false

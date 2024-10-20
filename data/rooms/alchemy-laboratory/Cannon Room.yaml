@@ -11,64 +11,40 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Left Node:
+Nodes:
+    Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Right Node:
+        Entry Section: Left Side
+        Exit Section: Left Side
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Triggers:
-    Entry - Left Node:
-        Outcomes:
-            Section: Left Side
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Cannon Room
-                Section: Left Node
-    Exit - Left Node:
-        Outcomes:
-            Section: Left Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Cannon Room
-                Section: Left Side
-    Entry - Right Node:
-        Outcomes:
-            Section: Right Side
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Cannon Room
-                Section: Right Node
-    Exit - Right Node:
-        Outcomes:
-            Section: Right Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Cannon Room
-                Section: Right Side
+        Entry Section: Right Side
+        Exit Section: Right Side
+Commands:
     Move - Left Side:
         Outcomes:
             Section: Left Side
         Requirements:
             Default:
                 Section: Right Side
-                Progression - Activate Cannon: true
+                Progression - Cannon Activated: true
     Move - Right Side:
         Outcomes:
             Section: Right Side
         Requirements:
             Default:
                 Section: Left Side
-                Progression - Activate Cannon: true
+                Progression - Cannon Activated: true
     Action - Activate Cannon:
         Outcomes:
-            Progression - Activate Cannon: true
+            Progression - Cannon Activated: true
         Requirements:
             Default:
                 Section: Right Side
-                Progression - Activate Cannon: false
+                Progression - Cannon Activated: false

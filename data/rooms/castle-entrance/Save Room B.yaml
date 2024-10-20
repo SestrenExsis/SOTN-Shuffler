@@ -11,10 +11,12 @@ Empty Cells: {}
 Entities:
 Flags:
     - Save With Left Opening
-Node Sections:
-    Right Node:
+Nodes:
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Triggers:
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

@@ -11,33 +11,20 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Right Node:
+Nodes:
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Triggers:
-    Entry - Right Node:
-        Outcomes:
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Sunglasses Room
-                Section: Right Node
-    Exit - Right Node:
-        Outcomes:
-            Section: Right Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Sunglasses Room
-                Section: Primary
+        Entry Section: Main
+        Exit Section: Main
+Commands:
     Action - Collect Object at Sunglasses Location:
         Outcomes:
             Progression - Object at Sunglasses Location Collected: true
-            Object:
-                Item - Sunglasses: 1
+            Item - Sunglasses: 1
         Requirements:
             Default:
-                Section: Primary
+                Section: Main
                 Progression - Object at Sunglasses Location Collected: false

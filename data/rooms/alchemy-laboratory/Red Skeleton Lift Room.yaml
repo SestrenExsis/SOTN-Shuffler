@@ -14,103 +14,43 @@ Flags:
 Sections:
     - Ground
     - Alcove
-Node Sections:
-    Lower Node:
+Nodes:
+    Lower Passage:
         Type: Passage
         Row: 1
         Column: 2
         Edge: Bottom
-    Lower-Right Node:
+        Entry Section: Ground
+        Exit Section: Ground
+    Lower-Right Passage:
         Type: Passage
         Row: 1
         Column: 2
         Edge: Right
-    Upper Node:
+        Entry Section: Ground
+        Exit Section: Ground
+    Upper Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Top
-    Upper-Left Node:
+        Entry Section: Ground
+        Exit Section: Ground
+    Upper-Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Upper-Right Node:
+        Entry Section: Ground
+        Exit Section: Ground
+    Upper-Right Passage:
         Type: Passage
         Row: 0
         Column: 2
         Edge: Right
-Triggers:
-    Entry - Lower Node:
-        Outcomes:
-            Section: Ground
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Red Skeleton Lift Room
-                Section: Lower Node
-    Exit - Lower Node:
-        Outcomes:
-            Section: Lower Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Red Skeleton Lift Room
-                Section: Ground
-    Entry - Lower-Right Node:
-        Outcomes:
-            Section: Ground
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Red Skeleton Lift Room
-                Section: Lower-Right Node
-    Exit - Lower-Right Node:
-        Outcomes:
-            Section: Lower-Right Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Red Skeleton Lift Room
-                Section: Ground
-    Entry - Upper Node:
-        Outcomes:
-            Section: Ground
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Red Skeleton Lift Room
-                Section: Upper Node
-    Exit - Upper Node:
-        Outcomes:
-            Section: Upper Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Red Skeleton Lift Room
-                Section: Ground
-    Entry - Upper-Left Node:
-        Outcomes:
-            Section: Ground
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Red Skeleton Lift Room
-                Section: Upper-Left Node
-    Exit - Upper-Left Node:
-        Outcomes:
-            Section: Upper-Left Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Red Skeleton Lift Room
-                Section: Ground
-    Entry - Upper-Right Node:
-        Outcomes:
-            Section: Alcove
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Red Skeleton Lift Room
-                Section: Upper-Right Node
-    Exit - Upper-Right Node:
-        Outcomes:
-            Section: Upper-Right Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Red Skeleton Lift Room
-                Section: Alcove
+        Entry Section: Alcove
+        Exit Section: Alcove
+Commands:
     Action - Solve Red Skeleton Lift Puzzle:
         Outcomes:
             Progression - Red Skeleton Lift Puzzle Solved: true

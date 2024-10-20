@@ -9,12 +9,75 @@ Rows: 3
 Total Cells: 6
 Empty Cells: {}
 Entities:
+    Warg: 1
 Flags:
     - Scroll Type 1
-Node Sections:
-    Lower-Right Node:
+Nodes:
+    Lower-Right Passage:
         Type: Passage
         Row: 2
         Column: 1
         Edge: Right
-Triggers:
+        Entry Section: Ground
+        Exit Section: Ground
+    Bottom Secret Passage:
+        Type: Secret Passage
+        Row: 2
+        Column: 0
+        Edge: Bottom
+        Entry Section: Beneath Trapdoor
+        Exit Section: Beneath Trapdoor
+Commands:
+    Move - Beneath Trapdoor:
+        Outcomes:
+            Section: Beneath Trapdoor
+        Requirements:
+            Ground - Basic:
+                Location: Castle Entrance, After Drawbridge
+                Section: Ground
+                Progression - Open Trapdoor After Drawbridge: true
+    Move - Ground:
+        Outcomes:
+            Section: Ground
+        Requirements:
+            Parapet - Basic:
+                Location: Castle Entrance, After Drawbridge
+                Section: Parapet
+    Move - Parapet:
+        Outcomes:
+            Section: Parapet
+        Requirements:
+            Ground - Bat Form:
+                Location: Castle Entrance, After Drawbridge
+                Section: Ground
+                Progression - Bat Transformation: true
+            Ground - Powered Mist:
+                Location: Castle Entrance, After Drawbridge
+                Section: Ground
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Ground - Gravity Jump with Mist:
+                Location: Castle Entrance, After Drawbridge
+                Section: Ground
+                Progression - Gravity Jump: true
+                Progression - Mist Transformation: true
+            Ground - Multiple Gravity Jumps:
+                Location: Castle Entrance, After Drawbridge
+                Section: Ground
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Ground - Wolf-Mist Rise:
+                Location: Castle Entrance, After Drawbridge
+                Section: Ground
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Skill - Wolf-Mist Rise: true
+    Action - Collect Power of Wolf Relic:
+        Outcomes:
+            Relic - Power of Wolf: true
+            Progression - Faster Wolf Run Speed: true
+        Requirements:
+            Default:
+                Location: Castle Entrance, After Drawbridge
+                Section: Parapet
+                Relic - Power of Wolf: false

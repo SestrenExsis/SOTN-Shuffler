@@ -11,15 +11,27 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Left Node:
+Nodes:
+    Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Right Node:
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 3
         Edge: Right
-Triggers:
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Action - Collect Holy Water Subweapon:
+        Outcomes:
+            Object:
+                Subweapon: Holy Water
+        Requirements:
+            Default:
+                Location: Castle Entrance, Attic Hallway
+                Section: Main

@@ -11,68 +11,29 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Lower-Right Node:
+Nodes:
+    Lower-Right Passage:
         Type: Passage
         Row: 1
         Column: 3
         Edge: Right
-    Upper-Left Node:
+        Entry Section: Ground
+        Exit Section: Ground
+    Upper-Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Upper-Right Node:
+        Entry Section: Ground
+        Exit Section: Ground
+    Upper-Right Passage:
         Type: Passage
         Row: 0
         Column: 3
         Edge: Right
-Triggers:
-    Entry - Lower-Right Node:
-        Outcomes:
-            Section: Ground
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Slogra and Gaibon Boss Room
-                Section: Lower-Right Node
-    Exit - Lower-Right Node:
-        Outcomes:
-            Section: Lower-Right Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Slogra and Gaibon Boss Room
-                Section: Ground
-                Progression - Slogra and Gaibon Defeated: true
-    Entry - Upper-Right Node:
-        Outcomes:
-            Section: Alcove
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Slogra and Gaibon Boss Room
-                Section: Upper-Right Node
-    Exit - Upper-Right Node:
-        Outcomes:
-            Section: Upper-Right Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Slogra and Gaibon Boss Room
-                Section: Alcove
-                Progression - Slogra and Gaibon Defeated: true
-    Entry - Upper-Left Node:
-        Outcomes:
-            Section: Ground
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Slogra and Gaibon Boss Room
-                Section: Upper-Left Node
-    Exit - Upper-Left Node:
-        Outcomes:
-            Section: Upper-Left Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Slogra and Gaibon Boss Room
-                Section: Ground
-                Progression - Slogra and Gaibon Defeated: true
+        Entry Section: Alcove
+        Exit Section: Alcove
+Commands:
     Action - Defeat Slogra and Gaibon:
         Outcomes:
             Progression - Slogra and Gaibon Defeated: true

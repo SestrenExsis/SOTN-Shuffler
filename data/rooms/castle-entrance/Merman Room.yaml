@@ -11,25 +11,93 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Upper-Left Node:
-        Type: Passage
-        Row: 1
-        Column: 0
-        Edge: Left
-    Upper-Right Node:
+Nodes:
+    Top Passage:
         Type: Passage
         Row: 0
-        Column: 2
-        Edge: Right
-    Lower-Left Node:
+        Column: 0
+        Edge: Top
+        Entry Section: Air
+        Exit Section: Air
+    Upper-Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Lower-Right Node:
+        Entry Section: Ground
+        Exit Section: Ground
+    Upper-Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 2
+        Edge: Right
+        Entry Section: Ground
+        Exit Section: Ground
+    Lower-Left Passage:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+        Entry Section: Secret Wall
+        Exit Section: Secret Wall
+    Lower-Right Passage:
         Type: Passage
         Row: 1
         Column: 2
         Edge: Right
-Triggers:
+        Entry Section: Ground
+        Exit Section: Ground
+Commands:
+    Move - Air:
+        Outcomes:
+            Section: Air
+        Requirements:
+            Ground - Bat Form:
+                Location: Castle Entrance, Merman Room
+                Section: Ground
+                Progression - Bat Transformation: true
+            Ground - Powered Mist:
+                Location: Castle Entrance, Merman Room
+                Section: Ground
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Ground - Gravity Jump:
+                Location: Castle Entrance, Merman Room
+                Section: Ground
+                Progression - Gravity Jump: true
+            Ground - Wolf-Mist Rise:
+                Location: Castle Entrance, Merman Room
+                Section: Ground
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Skill - Wolf-Mist Rise: true
+    Move - Ground:
+        Outcomes:
+            Section: Ground
+        Requirements:
+            Air - Default:
+                Location: Castle Entrance, Merman Room
+                Section: Air
+            Secret Wall - Default:
+                Location: Castle Entrance, Merman Room
+                Section: Secret Wall
+                Progression - Secret Wall in Merman Room Opened: true
+    Move - Secret Wall:
+        Outcomes:
+            Section: Secret Wall
+        Requirements:
+            Ground - Secret Unlocked:
+                Location: Castle Entrance, Merman Room
+                Section: Ground
+                Progression - Secret Wall in Merman Room Opened: true
+    Action - Open Secret Wall:
+        Outcomes:
+            Progression - Secret Wall in Merman Room Opened: true
+        Requirements:
+            Ground - Default:
+                Location: Castle Entrance, Merman Room
+                Section: Ground
+                Progression - Bat Transformation: true
+                Progression - Wolf Transformation: true
+                Progression - Secret Wall in Merman Room Opened: false
+                Skill - Open Secret Wall in Merman Room: true

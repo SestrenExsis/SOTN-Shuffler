@@ -36,24 +36,29 @@ The current state of the game, including player location, progression made, item
 
 ### Vanilla Alucard Glitchless, Casual Playthrough
 
+```python
 logic = Logic()
 logic.skillset('Casual')
 logic.ruleset('Alucard Glitchless')
 logic.win_condition('Defeat Lord Dracula')
 result = logic.solve()
 return result
+```
 
 ### Vanilla Alucard Any%
 
+```python
 logic = Logic()
 logic.skillset('Advanced')
 logic.ruleset('Alucard Any%')
 logic.win_condition('Defeat Lord Dracula')
 result = logic.solve()
 return result
+```
 
 ### Randomized Alucard Glitchless
 
+```python
 logic = Logic()
 logic.skillset('Standard')
 logic.ruleset('Alucard Glitchless')
@@ -66,9 +71,11 @@ while True:
     logic.randomize_relics()
     if logic.solve():
         break
+```
 
 ### Randomized Alucard Pacifist
 
+```python
 logic = Logic()
 logic.skillset('Advanced')
 logic.ruleset('Alucard Pacifist')
@@ -81,9 +88,11 @@ while True:
     logic.randomize_relics()
     if logic.solve():
         break
+```
 
 ### Randomized Richter Any%
 
+```python
 logic = Logic()
 logic.skillset('Advanced')
 logic.ruleset('Richter Any%')
@@ -96,3 +105,10 @@ while True:
     logic.randomize_relics()
     if logic.solve():
         break
+```
+
+## Quality of Life Ideas
+
+- Possibilities for warning the player before entering Meeting Room with Death
+  - Room is always visible on the map
+  - Caution indicator placed on adjacent rooms

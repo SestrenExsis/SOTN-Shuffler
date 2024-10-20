@@ -11,10 +11,21 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Right Node:
+Nodes:
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Triggers:
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Action - Collect Jewel Sword Item:
+        Outcomes:
+            Item - Jewel Sword: 1
+            Progression - Item at Jewel Sword Location Collected: true
+        Requirements:
+            Default:
+                Location: Castle Entrance, Jewel Sword Room
+                Section: Main
+                Progression - Item at Jewel Sword Location Collected: false

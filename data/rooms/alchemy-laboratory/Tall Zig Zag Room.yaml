@@ -11,110 +11,43 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Lower Node:
+Nodes:
+    Lower Passage:
         Type: Passage
         Row: 2
         Column: 0
         Edge: Bottom
-    Lower-Left Node:
+        Entry Section: Main
+        Exit Section: Broken Floor
+        Notes: Even though there is a breakable floor, entry from below without breaking the floor is still allowed
+    Lower-Left Passage:
         Type: Passage
         Row: 2
         Column: 0
         Edge: Left
-    Lower-Right Node:
+        Entry Section: Broken Wall
+        Exit Section: Broken Wall
+    Lower-Right Passage:
         Type: Passage
         Row: 2
         Column: 0
         Edge: Right
-    Upper-Left Node:
+        Entry Section: Main
+        Exit Section: Main
+    Upper-Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-Triggers:
-    Entry - Lower Node, Unblocked:
-        Outcomes:
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Tall Zig Zag Room
-                Section: Lower Node
-                Progression - Breakable Floor in Tall Zig Zag Room Broken: true
-    Entry - Lower Node, Blocked:
-        Outcomes:
-            Section: Softlocked
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Tall Zig Zag Room
-                Section: Lower Node
-                Progression - Breakable Floor in Tall Zig Zag Room Broken: false
-    Exit - Lower Node:
-        Outcomes:
-            Section: Lower Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Tall Zig Zag Room
-                Section: Primary
-                Progression - Breakable Floor in Tall Zig Zag Room Broken: true
-    Entry - Lower-Left Node, Unblocked:
-        Outcomes:
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Tall Zig Zag Room
-                Section: Lower-Left Node
-                Progression - Breakable Wall in Tall Zig Zag Room Broken: true
-    Entry - Lower-Left Node, Blocked:
-        Outcomes:
-            Section: Softlocked
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Tall Zig Zag Room
-                Section: Lower-Left Node
-                Progression - Breakable Wall in Tall Zig Zag Room Broken: false
-    Exit - Lower-Left Node:
-        Outcomes:
-            Section: Lower-Left Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Tall Zig Zag Room
-                Section: Primary
-                Progression - Breakable Wall in Tall Zig Zag Room Broken: true
-    Entry - Lower-Right Node:
-        Outcomes:
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Tall Zig Zag Room
-                Section: Lower-Right Node
-    Exit - Lower-Right Node:
-        Outcomes:
-            Section: Lower-Right Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Tall Zig Zag Room
-                Section: Primary
-    Entry - Upper-Left Node:
-        Outcomes:
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Tall Zig Zag Room
-                Section: Upper-Left Node
-    Exit - Upper-Left Node:
-        Outcomes:
-            Section: Upper-Left Node
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Tall Zig Zag Room
-                Section: Primary
+        Entry Section: Main
+        Exit Section: Main
+Commands:
     Action - Break Floor:
         Outcomes:
             Progression - Breakable Floor in Tall Zig Zag Room Broken: true
         Requirements:
             Default:
-                Section: Primary
+                Section: Main
                 Knowledge - How to Break the Floor in Tall Zig Zag Room: true
                 Progression - Ability to Strike at Floor: true
                 Progression - Breakable Floor in Tall Zig Zag Room Broken: false
@@ -123,6 +56,34 @@ Triggers:
             Progression - Breakable Wall in Tall Zig Zag Room Broken: true
         Requirements:
             Default:
-                Section: Primary
+                Section: Main
                 Knowledge - How to Break the Wall in Tall Zig Zag Room: true
                 Progression - Breakable Wall in Tall Zig Zag Room Broken: false
+    Move - Broken Floor:
+        Outcomes:
+            Section: Broken Floor
+        Requirements:
+            Main:
+                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Section: Main
+                Progression - Breakable Floor in Tall Zig Zag Room Broken: true
+    Move - Broken Wall:
+        Outcomes:
+            Section: Broken Wall
+        Requirements:
+            Main:
+                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Section: Main
+                Progression - Breakable Wall in Tall Zig Zag Room Broken: true
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Broken Floor:
+                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Section: Broken Floor
+                Progression - Breakable Floor in Tall Zig Zag Room Broken: true
+            Broken Wall:
+                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Section: Broken Wall
+                Progression - Breakable Wall in Tall Zig Zag Room Broken: true
