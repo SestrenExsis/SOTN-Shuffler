@@ -1,0 +1,29 @@
+
+Stage: Marble Gallery
+Room: S-Shaped Hallways
+Index: 0
+Left: 21
+Top: 34
+Columns: 6
+Rows: 3
+Total Cells: 18
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Nodes:
+    Lower-Left Red Door:
+        Type: Red Door
+        Row: 2
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Upper Right Passage:
+        Type: Red Door
+        Row: 0
+        Column: 5
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

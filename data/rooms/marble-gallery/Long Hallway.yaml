@@ -1,0 +1,29 @@
+
+Stage: Marble Gallery
+Room: Long Hallway
+Index: 8
+Left: 45
+Top: 25
+Columns: 15
+Rows: 1
+Total Cells: 15
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Right Red Door:
+        Type: Red Door
+        Row: 0
+        Column: 14
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

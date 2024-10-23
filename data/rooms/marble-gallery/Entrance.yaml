@@ -9,7 +9,9 @@ Rows: 1
 Total Cells: 4
 Empty Cells: {}
 Entities:
-Node Sections:
+Flags:
+    - Scroll Type 1
+Nodes:
     Left Node:
         Type: Red Door
         Row: 0

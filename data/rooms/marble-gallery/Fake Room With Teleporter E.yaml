@@ -1,9 +1,9 @@
 
 Stage: Marble Gallery
-Room: Fake Room With Teleporter A
-Index: 33
-Left: 29
-Top: 25
+Room: Fake Room With Teleporter E
+Index: 37
+Left: 32
+Top: 28
 Columns: 1
 Rows: 1
 Total Cells: 0
@@ -11,11 +11,11 @@ Empty Cells: {}
 Entities:
 Flags:
 Nodes:
-    Right Passage:
+    Top Passage:
         Type: Passage
         Row: 0
         Column: 0
-        Edge: Right
+        Edge: Top
         Entry Section: Fake
         Exit Section: Dummy
 Commands: {}

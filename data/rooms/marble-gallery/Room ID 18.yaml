@@ -1,0 +1,29 @@
+
+Stage: Marble Gallery
+Room: Room ID 18
+Index: 18
+Left: 42
+Top: 24
+Columns: 3
+Rows: 2
+Total Cells: 6
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Right-Bottom Passage:
+        Type: Passage
+        Row: 1
+        Column: 2
+        Edge: Bottom
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

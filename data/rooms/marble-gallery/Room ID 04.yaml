@@ -1,0 +1,36 @@
+
+Stage: Marble Gallery
+Room: Room ID 04
+Index: 4
+Left: 27
+Top: 27
+Columns: 2
+Rows: 1
+Total Cells: 2
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Nodes:
+    Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Top
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Bottom Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Bottom
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}
