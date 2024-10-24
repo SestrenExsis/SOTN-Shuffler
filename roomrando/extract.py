@@ -26,6 +26,7 @@ if __name__ == '__main__':
         extracted_data['Extractions']['Rooms'] = {}
         for (stage_name, room_address_start) in (
             ('Castle Entrance', roomrando.Address(0x041AB4C4, 'GAMEDATA')),
+            ('Castle Entrance Revisited', roomrando.Address(0x0491E27C, 'GAMEDATA')),
             ('Alchemy Laboratory', roomrando.Address(0x049C0F2C, 'GAMEDATA')),
             ('Marble Gallery', roomrando.Address(0x03F8D7E0, 'GAMEDATA')),
         ):
@@ -61,6 +62,12 @@ if __name__ == '__main__':
                 }
                 room['Width'] = 1 + room['Right'] - room['Left']
                 room['Height'] = 1 + room['Bottom'] - room['Top']
+                room['Packed Representation'] = _hex((
+                    ((0x3F & room['Bottom']) << 18) |
+                    ((0x3F & room['Right']) << 12) |
+                    ((0x3F & room['Top']) << 6) |
+                    ((0x3F & room['Left']) << 0)
+                ), 6)
                 rooms.append(room)
                 current_address.address += 8
                 open_file.seek(current_address.to_disc_address())
@@ -75,6 +82,7 @@ if __name__ == '__main__':
             ('Castle Entrance', roomrando.Address(0x041A79CC, 'GAMEDATA'), 48),
             ('Castle Entrance Revisited', roomrando.Address(0x0491A9D0, 'GAMEDATA'), 44),
             ('Alchemy Laboratory', roomrando.Address(0x049BE964, 'GAMEDATA'), 35),
+            ('Marble Gallery', roomrando.Address(0x03F8B150, 'GAMEDATA'), 54),
         ):
             layers_address = roomrando.Address(layers_address_start.address, 'GAMEDATA')
             extracted_data['Extractions']['Layers'][stage_name] = {
