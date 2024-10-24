@@ -21,6 +21,7 @@ if __name__ == '__main__':
         extracted_data = {
             'Rooms': {},
             'Layers': {},
+            'Room-Layers': {},
             'Extractions': {},
         }
         extracted_data['Extractions']['Rooms'] = {}
@@ -78,8 +79,9 @@ if __name__ == '__main__':
             extracted_data['Rooms'][stage_name] = rooms
         # Extract layer data
         extracted_data['Extractions']['Layers'] = {}
+        extracted_data['Extractions']['Room-Layers'] = {}
         for (stage_name, layers_address_start, layer_count) in (
-            ('Castle Entrance', roomrando.Address(0x041A79CC, 'GAMEDATA'), 48),
+            ('Castle Entrance', roomrando.Address(0x041A79C4, 'GAMEDATA'), 48),
             ('Castle Entrance Revisited', roomrando.Address(0x0491A9D0, 'GAMEDATA'), 44),
             ('Alchemy Laboratory', roomrando.Address(0x049BE964, 'GAMEDATA'), 35),
             ('Marble Gallery', roomrando.Address(0x03F8B150, 'GAMEDATA'), 54),
@@ -114,8 +116,28 @@ if __name__ == '__main__':
                 layers.append(layer)
                 current_address.address += 16
             extracted_data['Layers'][stage_name] = layers
-            # TODO(sestren): Extract room-layer assignments
-            # room_layers = {}
-            # extracted_data['Room-Layers'][stage_name] = room_layers
+            # Extract room-layer assignments, starting from the address where layouts left off
+            extracted_data['Extractions']['Room-Layers'][stage_name] = {
+                'Disc Address': current_address.to_disc_address(),
+                'Gamedata Address': current_address.address,
+            }
+            extracted_data['Room-Layers'][stage_name] = []
+            room_layers = []
+            for room_id in range(len(extracted_data['Rooms'][stage_name])):
+                if extracted_data['Rooms'][stage_name][room_id]['Tile Def ID'] == -1:
+                    continue
+                data = []
+                for i in range(8):
+                    open_file.seek(current_address.to_disc_address(8 * room_id + i))
+                    byte = open_file.read(1)
+                    data.append(int.from_bytes(byte))
+                room_layer = {
+                    'Stage': stage_name,
+                    'Room ID': room_id,
+                    'Foreground Layer Pointer': _hex(int.from_bytes(data[0:4], byteorder='little', signed=False), 8),
+                    'Background Layer Pointer': _hex(int.from_bytes(data[4:8], byteorder='little', signed=False), 8),
+                }
+                room_layers.append(room_layer)
+            extracted_data['Room-Layers'][stage_name] = room_layers
         with open(os.path.join('build', 'sandbox', 'vanilla.json'), 'w') as extracted_data_core_json:
             json.dump(extracted_data, extracted_data_core_json, indent='    ', sort_keys=True)
