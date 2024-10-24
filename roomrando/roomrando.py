@@ -13,7 +13,6 @@ class Address:
     SECTOR_DATA_SIZE = 2048
     SECTOR_ERROR_CORRECTION_DATA_SIZE = 280
     SECTOR_SIZE = SECTOR_HEADER_SIZE + SECTOR_DATA_SIZE + SECTOR_ERROR_CORRECTION_DATA_SIZE
-    addresses = {}
     def __init__(self, address: int, address_type: str='GAMEDATA'):
         if address_type == 'DISC':
             self.address = self.get_gamedata_address(address)

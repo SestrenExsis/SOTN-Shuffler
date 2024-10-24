@@ -49,7 +49,7 @@ def get_room_rando_ppf(logic, changes):
         ('Packed Room Data', 'Castle Entrance, Save Room B'): roomrando.Address(0x041A79CC + 0x2E0),
         ('Packed Room Data', 'Castle Entrance, Save Room C'): roomrando.Address(0x041A79CC + 0x2F0),
         ('Packed Room Data', 'Alchemy Laboratory, Bat Card Room'): roomrando.Address(0x049BE97C),               # + 0x000
-        ('Packed Room Data', 'Alchemy Laboratory, Exit to Royal Chapel'): roomrando.Address(0x049BE98C),         # + 0x010
+        ('Packed Room Data', 'Alchemy Laboratory, Exit to Royal Chapel'): roomrando.Address(0x049BE98C),        # + 0x010
         ('Packed Room Data', 'Alchemy Laboratory, Blue Door Hallway'): roomrando.Address(0x049BE99C),           # + 0x020
         ('Packed Room Data', 'Alchemy Laboratory, Bloody Zombie Hallway'): roomrando.Address(0x049BE9AC),       # + 0x030
         ('Packed Room Data', 'Alchemy Laboratory, Cannon Room'): roomrando.Address(0x049BE9BC),                 # + 0x040
