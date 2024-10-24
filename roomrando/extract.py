@@ -134,10 +134,17 @@ if __name__ == '__main__':
                 room_layer = {
                     'Stage': stage_name,
                     'Room ID': room_id,
-                    'Foreground Layer Pointer': _hex(int.from_bytes(data[0:4], byteorder='little', signed=False), 8),
-                    'Background Layer Pointer': _hex(int.from_bytes(data[4:8], byteorder='little', signed=False), 8),
+                    'Foreground Layer Pointer': int.from_bytes(data[0:4], byteorder='little', signed=False),
+                    'Background Layer Pointer': int.from_bytes(data[4:8], byteorder='little', signed=False),
                 }
                 room_layers.append(room_layer)
+            min_pointer = min(min(room_layer['Foreground Layer Pointer'], room_layer['Background Layer Pointer']) for room_layer in room_layers)
+            print(min_pointer)
+            for i in range(len(room_layers)):
+                room_layers[i]['Foreground Layer ID'] = (room_layers[i]['Foreground Layer Pointer'] - min_pointer) // 0x10
+                room_layers[i]['Background Layer ID'] = (room_layers[i]['Background Layer Pointer'] - min_pointer) // 0x10
+                room_layers[i].pop('Foreground Layer Pointer')
+                room_layers[i].pop('Background Layer Pointer')
             extracted_data['Room-Layers'][stage_name] = room_layers
         with open(os.path.join('build', 'sandbox', 'vanilla.json'), 'w') as extracted_data_core_json:
             json.dump(extracted_data, extracted_data_core_json, indent='    ', sort_keys=True)
