@@ -40,6 +40,9 @@ def get_room_rando_ppf(logic, changes):
         flags = set()
         if logic['Rooms'][room_name]['Flags'] is not None:
             flags = set(logic['Rooms'][room_name]['Flags'])
+        foreground_layer_id = None
+        if 'Foreground Layer ID' in logic['Rooms'][room_name]:
+            foreground_layer_id = logic['Rooms'][room_name]['Foreground Layer ID']
         room = roomrando.Room(
             changes['Rooms'][room_name]['Index'],
             (
@@ -50,12 +53,13 @@ def get_room_rando_ppf(logic, changes):
             ),
             exits,
             flags,
+            foreground_layer_id,
         )
         result.patch_room_data(
             room,
             addresses[('Room Data', logic['Rooms'][room_name]['Stage'])]
         )
-        if len(room.flags) > 0:
+        if 'Foreground Layer ID' in logic['Rooms'][room_name]:
             result.patch_packed_room_data(
                 room,
                 addresses[('Packed Room Data', logic['Rooms'][room_name]['Stage'])]

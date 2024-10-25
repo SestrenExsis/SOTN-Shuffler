@@ -44,7 +44,7 @@ class Address:
         return result
 
 class Room:
-    def __init__(self, room_index: int, box: tuple[int], exits: list[tuple], flags: set[str]):
+    def __init__(self, room_index: int, box: tuple[int], exits: list[tuple], flags: set[str], foreground_layer_id: int):
         self.room_index = room_index
         self.top = box[0]
         self.left = box[1]
@@ -52,6 +52,7 @@ class Room:
         self.width = box[3]
         self.exits = exits
         self.flags = flags
+        self.foreground_layer_id = foreground_layer_id
 
 class Teleporter:
     def __init__(self, teleporter_index: int, x: int, y: int, room_index: int, current_stage_id: int, next_stage_id: int):
@@ -188,7 +189,8 @@ class PPF:
     
 
     def patch_packed_room_data(self, room: Room, address: Address):
-        self.write_u64(address.to_disc_address(0x10 * room.room_index + 0x08))
+        write_address = address.to_disc_address(0x10 * room.foreground_layer_id + 0x08)
+        self.write_u64(write_address)
         size = 4
         self.write_byte(size)
         flags_byte = 0x00
