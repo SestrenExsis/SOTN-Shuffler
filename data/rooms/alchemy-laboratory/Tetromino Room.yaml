@@ -13,6 +13,7 @@ Empty Cells:
 Entities:
 Flags:
     - Scroll Type 1
+Foreground Layer ID: 24
 Nodes:
     Lower-Left Passage:
         Type: Passage

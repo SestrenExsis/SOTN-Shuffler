@@ -188,7 +188,7 @@ class PPF:
     
 
     def patch_packed_room_data(self, room: Room, address: Address):
-        self.write_u64(address.to_disc_address())
+        self.write_u64(address.to_disc_address(0x10 * room.room_index + 0x08))
         size = 4
         self.write_byte(size)
         flags_byte = 0x00

@@ -12,6 +12,7 @@ Entities:
     Warg: 1
 Flags:
     - Scroll Type 1
+Foreground Layer ID: 1
 Nodes:
     Lower-Right Passage:
         Type: Passage

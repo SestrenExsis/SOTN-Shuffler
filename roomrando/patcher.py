@@ -20,63 +20,8 @@ def get_room_rando_ppf(logic, changes):
         ('Teleporter Data'): roomrando.Address(0x00097C5C),
         ('Room Data', 'Alchemy Laboratory'): roomrando.Address(0x049C0F2C),
         ('Room Data', 'Castle Entrance'): roomrando.Address(0x041AB4C4),
-        ('Packed Room Data', 'Castle Entrance, After Drawbridge'): roomrando.Address(0x041A79CC + 0x010),       # 8239A001
-        ('Packed Room Data', 'Castle Entrance, Drop Under Portcullis'): roomrando.Address(0x041A79CC + 0x030),  # 422AA801
-        ('Packed Room Data', 'Castle Entrance, Zombie Hallway'): roomrando.Address(0x041A79CC + 0x050),         # 422AA801
-        ('Packed Room Data', 'Castle Entrance, Holy Mail Room'): roomrando.Address(0x041A79CC + 0x070),
-        ('Packed Room Data', 'Castle Entrance, Attic Staircase'): roomrando.Address(0x041A79CC + 0x090),
-        ('Packed Room Data', 'Castle Entrance, Attic Hallway'): roomrando.Address(0x041A79CC + 0x0B0),
-        ('Packed Room Data', 'Castle Entrance, Attic Entrance'): roomrando.Address(0x041A79CC + 0x0D0),
-        ('Packed Room Data', 'Castle Entrance, Merman Room'): roomrando.Address(0x041A79CC + 0x0F0),
-        ('Packed Room Data', 'Castle Entrance, Jewel Sword Room'): roomrando.Address(0x041A79CC + 0x110),
-        ('Packed Room Data', 'Castle Entrance, Warg Hallway'): roomrando.Address(0x041A79CC + 0x130),
-        ('Packed Room Data', 'Castle Entrance, Shortcut to Underground Caverns'): roomrando.Address(0x041A79CC + 0x150),
-        ('Packed Room Data', 'Castle Entrance, Meeting Room With Death'): roomrando.Address(0x041A79CC + 0x170),
-        ('Packed Room Data', 'Castle Entrance, Stairwell After Death'): roomrando.Address(0x041A79CC + 0x190),
-        ('Packed Room Data', 'Castle Entrance, Gargoyle Room'): roomrando.Address(0x041A79CC + 0x1B0),
-        ('Packed Room Data', 'Castle Entrance, Heart Max-Up Room'): roomrando.Address(0x041A79CC + 0x1D0),
-        ('Packed Room Data', 'Castle Entrance, Cube of Zoe Room'): roomrando.Address(0x041A79CC + 0x1F0),
-        ('Packed Room Data', 'Castle Entrance, Shortcut to Warp'): roomrando.Address(0x041A79CC + 0x210),
-        ('Packed Room Data', 'Castle Entrance, Life Max-Up Room'): roomrando.Address(0x041A79CC + 0x230),
-        ('Packed Room Data', 'Castle Entrance, Forest Cutscene'): roomrando.Address(0x041A79CC + 0x250),
-        ('Packed Room Data', 'Castle Entrance, Unknown 19'): roomrando.Address(0x041A79CC + 0x270),
-        ('Packed Room Data', 'Castle Entrance, Unknown 20'): roomrando.Address(0x041A79CC + 0x280),
-        ('Packed Room Data', 'Castle Entrance, Loading Room A'): roomrando.Address(0x041A79CC + 0x290),
-        ('Packed Room Data', 'Castle Entrance, Loading Room B'): roomrando.Address(0x041A79CC + 0x2A0),
-        ('Packed Room Data', 'Castle Entrance, Loading Room C'): roomrando.Address(0x041A79CC + 0x2B0),
-        ('Packed Room Data', 'Castle Entrance, Loading Room D'): roomrando.Address(0x041A79CC + 0x2C0), # 41A7C7C
-        ('Packed Room Data', 'Castle Entrance, Save Room A'): roomrando.Address(0x041A79CC + 0x2D0),
-        ('Packed Room Data', 'Castle Entrance, Save Room B'): roomrando.Address(0x041A79CC + 0x2E0),
-        ('Packed Room Data', 'Castle Entrance, Save Room C'): roomrando.Address(0x041A79CC + 0x2F0),
-        ('Packed Room Data', 'Alchemy Laboratory, Bat Card Room'): roomrando.Address(0x049BE97C),               # + 0x000
-        ('Packed Room Data', 'Alchemy Laboratory, Exit to Royal Chapel'): roomrando.Address(0x049BE98C),        # + 0x010
-        ('Packed Room Data', 'Alchemy Laboratory, Blue Door Hallway'): roomrando.Address(0x049BE99C),           # + 0x020
-        ('Packed Room Data', 'Alchemy Laboratory, Bloody Zombie Hallway'): roomrando.Address(0x049BE9AC),       # + 0x030
-        ('Packed Room Data', 'Alchemy Laboratory, Cannon Room'): roomrando.Address(0x049BE9BC),                 # + 0x040
-        ('Packed Room Data', 'Alchemy Laboratory, Cloth Cape Room'): roomrando.Address(0x049BE9CC),             # + 0x050
-        ('Packed Room Data', 'Alchemy Laboratory, Sunglasses Room'): roomrando.Address(0x049BE9DC),             # + 0x060
-        ('Packed Room Data', 'Alchemy Laboratory, Glass Vats'): roomrando.Address(0x049BE9EC),                  # + 0x070
-        ('Packed Room Data', 'Alchemy Laboratory, Skill of Wolf Room'): roomrando.Address(0x049BE9FC),          # + 0x080
-        ('Packed Room Data', 'Alchemy Laboratory, Heart Max-Up Room'): roomrando.Address(0x049BEA1C),           # + 0x0A0
-        ('Packed Room Data', 'Alchemy Laboratory, Entryway'): roomrando.Address(0x049BEA2C),                    # + 0x0B0
-        ('Packed Room Data', 'Alchemy Laboratory, Tall Spittlebone Room'): roomrando.Address(0x049BEA4C),       # + 0x0D0
-        ('Packed Room Data', 'Alchemy Laboratory, Empty Zig Zag Room'): roomrando.Address(0x049BEA5C),          # + 0x0E0
-        ('Packed Room Data', 'Alchemy Laboratory, Short Zig Zag Room'): roomrando.Address(0x049BEA6C),          # + 0x0F0
-        ('Packed Room Data', 'Alchemy Laboratory, Tall Zig Zag Room'): roomrando.Address(0x049BEA7C),           # + 0x100
-        ('Packed Room Data', 'Alchemy Laboratory, Secret Life Max-Up Room'): roomrando.Address(0x049BEA8C),     # + 0x110
-        ('Packed Room Data', 'Alchemy Laboratory, Slogra and Gaibon Boss Room'): roomrando.Address(0x049BEA9C), # + 0x120
-        ('Packed Room Data', 'Alchemy Laboratory, Box Puzzle Room'): roomrando.Address(0x049BEAAC),             # + 0x130
-        ('Packed Room Data', 'Alchemy Laboratory, Red Skeleton Lift Room'): roomrando.Address(0x049BEACC),      # + 0x150
-        ('Packed Room Data', 'Alchemy Laboratory, Tetromino Room'): roomrando.Address(0x049BEAEC),              # + 0x170
-        ('Packed Room Data', 'Alchemy Laboratory, Exit to Marble Gallery'): roomrando.Address(0x049BEAFC),      # + 0x180
-        ('Packed Room Data', 'Alchemy Laboratory, Corridor to Elevator'): roomrando.Address(0x049BEB0C),        # + 0x190
-        ('Packed Room Data', 'Alchemy Laboratory, Elevator Shaft'): roomrando.Address(0x049BEB1C),              # + 0x1A0
-        ('Packed Room Data', 'Alchemy Laboratory, Save Room A'): roomrando.Address(0x049BEB3C),                 # + 0x1C0
-        ('Packed Room Data', 'Alchemy Laboratory, Save Room B'): roomrando.Address(0x049BEB4C),                 # + 0x1D0
-        ('Packed Room Data', 'Alchemy Laboratory, Save Room C'): roomrando.Address(0x049BEB5C),                 # + 0x1E0
-        ('Packed Room Data', 'Alchemy Laboratory, Loading Room A'): roomrando.Address(0x049BEB6C),              # + 0x1F0
-        ('Packed Room Data', 'Alchemy Laboratory, Loading Room B'): roomrando.Address(0x049BEB7C),              # + 0x200
-        ('Packed Room Data', 'Alchemy Laboratory, Loading Room C'): roomrando.Address(0x049BEB8C),              # + 0x210
+        ('Packed Room Data', 'Castle Entrance'): roomrando.Address(0x041A79C4),
+        ('Packed Room Data', 'Alchemy Laboratory'): roomrando.Address(0x049BE964),
     }
     result = roomrando.PPF('Shuffled rooms in Castle Entrance and Alchemy Lab')
     canvas = roomrando.IndexedBitmapCanvas(256, 256)
@@ -113,7 +58,7 @@ def get_room_rando_ppf(logic, changes):
         if len(room.flags) > 0:
             result.patch_packed_room_data(
                 room,
-                addresses[('Packed Room Data', room_name)]
+                addresses[('Packed Room Data', logic['Rooms'][room_name]['Stage'])]
             )
         canvas.draw_room(room)
     result.patch_bitmap(canvas, addresses[('Castle Map')])

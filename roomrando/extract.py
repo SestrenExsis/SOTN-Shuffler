@@ -61,9 +61,15 @@ if __name__ == '__main__':
                     'Entity Gfx ID':  int.from_bytes(data[6], byteorder='little', signed=False),
                     'Entity Layout ID':  int.from_bytes(data[7], byteorder='little', signed=False),
                 }
-                room['Width'] = 1 + room['Right'] - room['Left']
-                room['Height'] = 1 + room['Bottom'] - room['Top']
-                room['Packed Representation'] = _hex((
+                room['Columns'] = 1 + room['Right'] - room['Left']
+                room['Rows'] = 1 + room['Bottom'] - room['Top']
+                room['LTRB'] = _hex((
+                    ((0x3F & room['Bottom']) << 24) |
+                    ((0x3F & room['Right']) << 16) |
+                    ((0x3F & room['Top']) << 8) |
+                    ((0x3F & room['Left']) << 0)
+                ), 8)
+                room['Packed LTRB'] = _hex((
                     ((0x3F & room['Bottom']) << 18) |
                     ((0x3F & room['Right']) << 12) |
                     ((0x3F & room['Top']) << 6) |
@@ -139,12 +145,13 @@ if __name__ == '__main__':
                 }
                 room_layers.append(room_layer)
             min_pointer = min(min(room_layer['Foreground Layer Pointer'], room_layer['Background Layer Pointer']) for room_layer in room_layers)
-            print(min_pointer)
-            for i in range(len(room_layers)):
-                room_layers[i]['Foreground Layer ID'] = (room_layers[i]['Foreground Layer Pointer'] - min_pointer) // 0x10
-                room_layers[i]['Background Layer ID'] = (room_layers[i]['Background Layer Pointer'] - min_pointer) // 0x10
-                room_layers[i].pop('Foreground Layer Pointer')
-                room_layers[i].pop('Background Layer Pointer')
+            for room_id in range(len(room_layers)):
+                foreground_layer_id = (room_layers[room_id].pop('Foreground Layer Pointer') - min_pointer) // 0x10
+                room_layers[room_id]['Foreground Layer ID'] = foreground_layer_id
+                room_layers[room_id]['Background Layer ID'] = (room_layers[room_id].pop('Background Layer Pointer') - min_pointer) // 0x10
+                room_layers[room_id]['Foreground Layer Packed Layout'] = extracted_data['Layers'][stage_name][foreground_layer_id]['Packed Layout']
+                value = extracted_data['Extractions']['Layers'][stage_name + ', Layer ID ' + str(foreground_layer_id)]['Gamedata Address']
+                extracted_data['Rooms'][stage_name][room_id]['Packed Room Gamedata Address'] = value + 8 # Offset of 8 to find the packed room data portion
             extracted_data['Room-Layers'][stage_name] = room_layers
         with open(os.path.join('build', 'sandbox', 'vanilla.json'), 'w') as extracted_data_core_json:
             json.dump(extracted_data, extracted_data_core_json, indent='    ', sort_keys=True)

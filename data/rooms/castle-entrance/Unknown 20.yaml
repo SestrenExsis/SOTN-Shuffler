@@ -11,5 +11,6 @@ Empty Cells: {}
 Entities:
 Flags:
     - Special Type 2
+Foreground Layer ID: 40
 Nodes: {}
 Commands: {}

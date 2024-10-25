@@ -784,7 +784,7 @@ if __name__ == '__main__':
             with open(os.path.join('build', 'sandbox', 'solutions.json'), 'w') as solutions_json:
                 json.dump(solutions, solutions_json, indent='    ', sort_keys=True)
             # Halt if solution found
-            if solutions['Win Count'] > 0:
+            if solutions['Win Count'] >= 0:
                 # patcher.patch(changes.json, 'build/patch.ppf')
                 break
             seed = randomizer.rng.randint(0, 2 ** 64)

@@ -12,6 +12,7 @@ Entities:
     - Bone Scimitar
 Flags:
     - Scroll Type 1
+Foreground Layer ID: 16
 Nodes:
     Lower-Right Passage:
         Type: Passage

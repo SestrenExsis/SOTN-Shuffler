@@ -11,6 +11,7 @@ Empty Cells: {}
 Entities:
 Flags:
     - Load On Right
+Foreground Layer ID: 32
 Nodes:
     Left Passage:
         Type: Passage

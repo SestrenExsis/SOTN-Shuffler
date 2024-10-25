@@ -11,6 +11,7 @@ Empty Cells: {}
 Entities:
 Flags:
     - Save With Left Opening
+Foreground Layer ID: 30
 Nodes:
     Left Passage:
         Type: Passage

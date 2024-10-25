@@ -13,6 +13,7 @@ Entities:
     - Red Skeleton
 Flags:
     - Scroll Type 1
+Foreground Layer ID: 12
 Nodes:
     Right Red Door:
         Type: Red Door
