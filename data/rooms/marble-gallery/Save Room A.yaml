@@ -11,6 +11,7 @@ Empty Cells: {}
 Entities:
 Flags:
     - Save With Right Opening
+Foreground Layer ID: 52
 Nodes:
     Right Passage:
         Type: Passage

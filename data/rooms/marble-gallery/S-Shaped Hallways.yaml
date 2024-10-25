@@ -11,6 +11,7 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
+Foreground Layer ID: 1
 Nodes:
     Lower-Left Red Door:
         Type: Red Door

@@ -16,7 +16,7 @@ Sections:
     - Ground
     - Alcove
 Nodes:
-    Lower Passage:
+    Bottom Passage:
         Type: Passage
         Row: 1
         Column: 2
@@ -30,7 +30,7 @@ Nodes:
         Edge: Right
         Entry Section: Ground
         Exit Section: Ground
-    Upper Passage:
+    Top Passage:
         Type: Passage
         Row: 0
         Column: 0

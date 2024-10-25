@@ -1,6 +1,6 @@
 
 Stage: Marble Gallery
-Room: Room ID 16
+Room: Three Passageways
 Index: 16
 Left: 32
 Top: 24
@@ -11,6 +11,7 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
+Foreground Layer ID: 31
 Nodes:
     Top Passage:
         Type: Passage

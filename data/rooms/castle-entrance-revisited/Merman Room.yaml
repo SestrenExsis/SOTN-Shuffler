@@ -12,22 +12,22 @@ Entities:
 Flags:
     - Scroll Type 1
 Node Sections:
-    Upper-Left Node:
+    Upper-Left Passage:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Left
-    Upper-Right Node:
+    Upper-Right Passage:
         Type: Passage
         Row: 0
         Column: 2
         Edge: Right
-    Lower-Left Node:
+    Lower-Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Lower-Right Node:
+    Lower-Right Passage:
         Type: Passage
         Row: 1
         Column: 2

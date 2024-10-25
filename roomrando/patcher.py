@@ -20,10 +20,12 @@ def get_room_rando_ppf(logic, changes):
         ('Teleporter Data'): roomrando.Address(0x00097C5C),
         ('Room Data', 'Alchemy Laboratory'): roomrando.Address(0x049C0F2C),
         ('Room Data', 'Castle Entrance'): roomrando.Address(0x041AB4C4),
+        ('Room Data', 'Marble Gallery'): roomrando.Address(0x03F8D7E0),
         ('Packed Room Data', 'Castle Entrance'): roomrando.Address(0x041A79C4),
         ('Packed Room Data', 'Alchemy Laboratory'): roomrando.Address(0x049BE964),
+        ('Packed Room Data', 'Marble Gallery'): roomrando.Address(0x03F8B150),
     }
-    result = roomrando.PPF('Shuffled rooms in Castle Entrance and Alchemy Lab')
+    result = roomrando.PPF('Shuffled rooms in first few stages of the game')
     canvas = roomrando.IndexedBitmapCanvas(256, 256)
     for room_name in sorted(changes['Rooms'].keys()):
         if (
