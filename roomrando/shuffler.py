@@ -371,9 +371,9 @@ stages = {
             'Marble Gallery, Fake Room With Teleporter B': (32 + 0, 32 + 16),
         },
         {
-            'Marble Gallery, Fake Room With Teleporter F': (0, 2),
+            'Marble Gallery, Fake Room With Teleporter F': (2, 0),
             'Marble Gallery, Loading Room E': (2, 1),
-            'Marble Gallery, S-Shaped Hallways': (2, 0),
+            'Marble Gallery, S-Shaped Hallways': (0, 2),
         },
         {
             'Marble Gallery, Fake Room With Teleporter C': (0, 0),
@@ -483,10 +483,10 @@ class Randomizer:
             self.rng = random.Random(current_seed)
             self.castle = get_roomset(self.rng, rooms, stages['Castle Entrance'])
             seed_count += 1
-            if len(self.castle.rooms) >= (32 - 2) and len(self.castle.get_open_nodes()) < (1 + 4):
+            if len(self.castle.rooms) >= 32 and len(self.castle.get_open_nodes()) < 1:
                 print(len(self.castle.rooms), len(self.castle.get_open_nodes()), seed_count, current_seed)
-                for row_data in self.castle.get_room_spoiler(data_core):
-                    print(row_data)
+                # for row_data in self.castle.get_room_spoiler(data_core):
+                #     print(row_data)
                 break
             current_seed = self.rng.randint(0, 2 ** 64)
         # Alchemy Laboratory
@@ -497,10 +497,10 @@ class Randomizer:
             self.rng = random.Random(current_seed)
             alchemy_laboratory = get_roomset(self.rng, rooms, stages['Alchemy Laboratory'])
             seed_count += 1
-            if len(alchemy_laboratory.rooms) >= (32 - 2) and len(alchemy_laboratory.get_open_nodes()) < (1 + 4):
+            if len(alchemy_laboratory.rooms) >= 32 and len(alchemy_laboratory.get_open_nodes()) < 1:
                 print(len(alchemy_laboratory.rooms), len(alchemy_laboratory.get_open_nodes()), seed_count, current_seed)
-                for row_data in alchemy_laboratory.get_room_spoiler(data_core):
-                    print(row_data)
+                # for row_data in alchemy_laboratory.get_room_spoiler(data_core):
+                #     print(row_data)
                 break
             current_seed = self.rng.randint(0, 2 ** 64)
         (top, left, bottom, right) = alchemy_laboratory.get_bounds()
@@ -513,21 +513,21 @@ class Randomizer:
             self.rng = random.Random(current_seed)
             marble_gallery = get_roomset(self.rng, rooms, stages['Marble Gallery'])
             seed_count += 1
-            if len(marble_gallery.rooms) >= (39 - 10) and len(marble_gallery.get_open_nodes()) < (1 + 20):
+            if len(marble_gallery.rooms) >= (39 - 3) and len(marble_gallery.get_open_nodes()) < (1 + 6):
                 print(len(marble_gallery.rooms), len(marble_gallery.get_open_nodes()), seed_count, current_seed)
                 for row_data in marble_gallery.get_room_spoiler(data_core):
                     print(row_data)
                 break
             current_seed = self.rng.randint(0, 2 ** 64)
+        if len(marble_gallery.rooms) < 39 or len(marble_gallery.get_open_nodes()) > 0:
+            for room_name in rooms:
+                if 'Marble Gallery, ' in room_name and room_name not in marble_gallery.rooms:
+                    print('Marble Gallery room missing:', room_name)
         (top, left, bottom, right) = marble_gallery.get_bounds()
         self.castle.add_roomset(marble_gallery, 2 - top, 2 - left)
         changes = self.castle.get_changes()
         for row_data in self.castle.get_stage_spoiler(data_core, changes):
             print(row_data)
-        if len(alchemy_laboratory.rooms) < 32:
-            for room_name in rooms:
-                if 'Alchemy Laboratory' in room_name and room_name not in alchemy_laboratory.rooms:
-                    print(room_name)
     
     def get_changes(self):
         result = self.castle.get_changes()
@@ -655,8 +655,11 @@ class LogicCore:
             'Item - Heart Refresh': 1,
         }
         self.goals = {
-            'Debug - Reach Exit to Marble Gallery in Alchemy Laboratory': {
-                'Location': 'Alchemy Laboratory, Exit to Marble Gallery',
+            'Debug - Reach Clock Room in Marble Gallery': {
+                'Location': 'Marble Gallery, Clock Room',
+            },
+            'Debug - Reach Long Hallway in Marble Gallery': {
+                'Location': 'Marble Gallery, Long Hallway',
             },
         }
     
@@ -797,15 +800,15 @@ def solver__solve(logic_core, rules, skills):
                 goal_reached = True
                 break
         if goal_reached:
-            winning_games.append(game.command_history)
+            winning_games.append((game.command_history, game.state))
             while len(winning_games) > 10:
                 winning_games.popleft()
             winning_game_count += 1
             break
         if distance >= 24:
-            losing_games.append(game.command_history)
-            while len(losing_games) > 10:
-                losing_games.popleft()
+            # losing_games.append((game.command_history, game.state))
+            # while len(losing_games) > 10:
+            #     losing_games.popleft()
             losing_game_count += 1
             continue
         game_key = game.get_key()
@@ -814,9 +817,10 @@ def solver__solve(logic_core, rules, skills):
         memo[game_key] = (distance, game)
         commands = game.get_valid_command_names()
         if len(commands) < 1:
-            losing_games.append(game.command_history)
-            while len(losing_games) > 10:
-                losing_games.popleft()
+            if game.state['Location'] != 'Alchemy Laboratory, Fake Room With Teleporter C':
+                losing_games.append((game.command_history, game.state))
+                while len(losing_games) > 10:
+                    losing_games.popleft()
             losing_game_count += 1
             continue
         for command_name in commands:
