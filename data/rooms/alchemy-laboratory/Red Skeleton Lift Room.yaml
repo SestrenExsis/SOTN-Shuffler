@@ -11,11 +11,12 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
+Foreground Layer ID: 22
 Sections:
     - Ground
     - Alcove
 Nodes:
-    Lower Passage:
+    Bottom Passage:
         Type: Passage
         Row: 1
         Column: 2
@@ -29,13 +30,13 @@ Nodes:
         Edge: Right
         Entry Section: Ground
         Exit Section: Ground
-    Upper Passage:
+    Top Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Top
-        Entry Section: Ground
-        Exit Section: Ground
+        Entry Section: Falling
+        Exit Section: Rising
     Upper-Left Passage:
         Type: Passage
         Row: 0
@@ -83,9 +84,30 @@ Commands:
                 Execution - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
+    Move - Rising:
+        Outcomes:
+            Section: Rising
+        Requirements:
+            Ground - Bat:
+                Section: Ground
+                Progression - Bat Transformation: true
+            Ground - Gravity Jump:
+                Section: Ground
+                Progression - Gravity Jump: true
+            Ground - Powered Mist:
+                Section: Ground
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Ground - Wolf-Mist Rise:
+                Section: Ground
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
     Move - Ground:
         Outcomes:
             Section: Ground
         Requirements:
-            Default:
+            Alcove:
                 Section: Alcove
+            Falling:
+                Section: Falling

@@ -1,0 +1,30 @@
+
+Stage: Marble Gallery
+Room: Beneath Left Trapdoor
+Index: 23
+Left: 40
+Top: 25
+Columns: 1
+Rows: 1
+Total Cells: 1
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 42
+Nodes:
+    Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Top
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

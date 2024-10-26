@@ -12,6 +12,7 @@ Entities:
     - Bloody Zombie
 Flags:
     - Scroll Type 1
+Foreground Layer ID: 4
 Nodes:
     Left Passage:
         Type: Passage

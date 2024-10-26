@@ -13,7 +13,6 @@ class Address:
     SECTOR_DATA_SIZE = 2048
     SECTOR_ERROR_CORRECTION_DATA_SIZE = 280
     SECTOR_SIZE = SECTOR_HEADER_SIZE + SECTOR_DATA_SIZE + SECTOR_ERROR_CORRECTION_DATA_SIZE
-    addresses = {}
     def __init__(self, address: int, address_type: str='GAMEDATA'):
         if address_type == 'DISC':
             self.address = self.get_gamedata_address(address)
@@ -45,7 +44,7 @@ class Address:
         return result
 
 class Room:
-    def __init__(self, room_index: int, box: tuple[int], exits: list[tuple], flags: set[str]):
+    def __init__(self, room_index: int, box: tuple[int], exits: list[tuple], flags: set[str], foreground_layer_id: int):
         self.room_index = room_index
         self.top = box[0]
         self.left = box[1]
@@ -53,6 +52,7 @@ class Room:
         self.width = box[3]
         self.exits = exits
         self.flags = flags
+        self.foreground_layer_id = foreground_layer_id
 
 class Teleporter:
     def __init__(self, teleporter_index: int, x: int, y: int, room_index: int, current_stage_id: int, next_stage_id: int):
@@ -187,9 +187,9 @@ class PPF:
         self.write_u16(teleporter.current_stage_id)
         self.write_u16(teleporter.next_stage_id)
     
-
     def patch_packed_room_data(self, room: Room, address: Address):
-        self.write_u64(address.to_disc_address())
+        write_address = address.to_disc_address(0x10 * room.foreground_layer_id + 0x08)
+        self.write_u64(write_address)
         size = 4
         self.write_byte(size)
         flags_byte = 0x00

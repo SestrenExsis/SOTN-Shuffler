@@ -1,0 +1,23 @@
+
+Stage: Marble Gallery
+Room: Alucart Room
+Index: 25
+Left: 34
+Top: 25
+Columns: 1
+Rows: 1
+Total Cells: 1
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 46
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

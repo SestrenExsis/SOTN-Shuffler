@@ -9,43 +9,22 @@ Rows: 1
 Total Cells: 4
 Empty Cells: {}
 Entities:
-Node Sections:
-    Left Node:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 13
+Nodes:
+    Left Red Door:
         Type: Red Door
         Row: 0
         Column: 0
         Edge: Left
-    Right Node:
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 3
         Edge: Right
-Triggers:
-    Entry - Left Node:
-        Outcomes:
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Marble Gallery, Entrance
-                Section: Left Node
-    Exit - Left Node:
-        Outcomes:
-            Section: Left Node
-        Requirements:
-            Default:
-                Location: Marble Gallery, Entrance
-                Section: Primary
-    Entry - Right Node:
-        Outcomes:
-            Section: Primary
-        Requirements:
-            Default:
-                Location: Marble Gallery, Entrance
-                Section: Right Node
-    Exit - Right Node:
-        Outcomes:
-            Section: Right Node
-        Requirements:
-            Default:
-                Location: Marble Gallery, Entrance
-                Section: Primary
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

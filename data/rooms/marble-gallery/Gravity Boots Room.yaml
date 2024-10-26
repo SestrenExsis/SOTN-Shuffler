@@ -1,0 +1,31 @@
+
+Stage: Marble Gallery
+Room: Gravity Boots Room
+Index: 20
+Left: 30
+Top: 23
+Columns: 5
+Rows: 1
+Total Cells: 5
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 39
+Nodes:
+    Bottom Passage:
+        Type: Passage
+        Row: 0
+        Column: 2
+        Edge: Bottom
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Action - Collect Gravity Boots Relic:
+        Outcomes:
+            Relic - Gravity Boots: true
+            Progression - Gravity Jump: true
+        Requirements:
+            Default:
+                Section: Main
+                Relic - Gravity Boots: false

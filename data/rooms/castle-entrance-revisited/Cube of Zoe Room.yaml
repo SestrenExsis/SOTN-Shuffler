@@ -12,32 +12,32 @@ Entities:
 Flags:
     - Scroll Type 1
 Node Sections:
-    Upper-Left Node:
+    Upper-Left Red Door:
         Type: Red Door
         Row: 0
         Column: 0
         Edge: Left
-    Upper-Right Node:
+    Upper-Right Red Door:
         Type: Red Door
         Row: 0
         Column: 1
         Edge: Right
-    Left Node:
+    Left Passage:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Left
-    Right Node:
+    Right Passage:
         Type: Passage
         Row: 1
         Column: 1
         Edge: Right
-    Lower-Left Node:
+    Lower-Left Passage:
         Type: Passage
         Row: 2
         Column: 0
         Edge: Left
-    Lower-Right Node:
+    Lower-Right Passage:
         Type: Passage
         Row: 2
         Column: 1

@@ -11,6 +11,7 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
+Foreground Layer ID: 29
 Nodes:
     Right Passage:
         Type: Passage

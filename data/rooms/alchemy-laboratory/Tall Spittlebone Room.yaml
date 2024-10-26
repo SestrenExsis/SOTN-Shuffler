@@ -12,29 +12,30 @@ Entities:
     - Spittlebone
 Flags:
     - Scroll Type 1
+Foreground Layer ID: 14
 Nodes:
-    Lower-Left Node:
+    Lower-Left Passage:
         Type: Passage
         Row: 3
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
-    Lower-Right Node:
+    Lower-Right Passage:
         Type: Passage
         Row: 3
         Column: 0
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-    Upper-Left Node:
+    Upper-Left Passage:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
-    Upper-Right Node:
+    Upper-Right Passage:
         Type: Passage
         Row: 0
         Column: 0

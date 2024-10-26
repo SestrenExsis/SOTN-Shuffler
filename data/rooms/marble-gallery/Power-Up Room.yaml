@@ -1,0 +1,23 @@
+
+Stage: Marble Gallery
+Room: Power-Up Room
+Index: 22
+Left: 33
+Top: 27
+Columns: 1
+Rows: 1
+Total Cells: 1
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 41
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

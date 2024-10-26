@@ -1,0 +1,126 @@
+
+Stage: Marble Gallery
+Room: Dropoff
+Index: 5
+Left: 26
+Top: 26
+Columns: 3
+Rows: 1
+Total Cells: 3
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 11
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Left Side
+        Exit Section: Left Side
+    Bottom Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Bottom
+        Entry Section: Rising
+        Exit Section: Falling
+    Right-Bottom Passage:
+        Type: Passage
+        Row: 0
+        Column: 2
+        Edge: Bottom
+        Entry Section: Right Side
+        Exit Section: Right Side
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 2
+        Edge: Right
+        Entry Section: Right Side
+        Exit Section: Right Side
+Commands:
+    Move - Left Side:
+        Outcomes:
+            Section: Left Side
+        Requirements:
+            Rising - Bat:
+                Section: Rising
+                Progression - Bat Transformation: true
+            Rising - Multiple Gravity Jumps:
+                Section: Rising
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Rising - Powered Mist:
+                Section: Rising
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Rising - Wolf-Mist Rise:
+                Section: Rising
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+            Right Side - Bat:
+                Section: Right Side
+                Progression - Bat Transformation: true
+            Right Side - Multiple Gravity Jumps:
+                Section: Right Side
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Right Side - Powered Mist:
+                Section: Right Side
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Right Side - Wolf-Mist Rise:
+                Section: Right Side
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+    Move - Right Side:
+        Outcomes:
+            Section: Right Side
+        Requirements:
+            Rising - Bat:
+                Section: Rising
+                Progression - Bat Transformation: true
+            Rising - Multiple Gravity Jumps:
+                Section: Rising
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Rising - Powered Mist:
+                Section: Rising
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Rising - Wolf-Mist Rise:
+                Section: Rising
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+            Left Side - Bat:
+                Section: Left Side
+                Progression - Bat Transformation: true
+            Left Side - Multiple Gravity Jumps:
+                Section: Left Side
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Left Side - Powered Mist:
+                Section: Left Side
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Left Side - Wolf-Mist Rise:
+                Section: Left Side
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+    Move - Falling:
+        Outcomes:
+            Section: Falling
+        Requirements:
+            Left Side:
+                Section: Left Side
+            Right Side:
+                Section: Right Side
+            Rising:
+                Section: Rising
