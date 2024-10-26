@@ -658,9 +658,6 @@ class LogicCore:
             'Debug - Reach Clock Room in Marble Gallery': {
                 'Location': 'Marble Gallery, Clock Room',
             },
-            'Debug - Reach Long Hallway in Marble Gallery': {
-                'Location': 'Marble Gallery, Long Hallway',
-            },
         }
     
     def get_core(self) -> dict:

@@ -29,14 +29,14 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-    Left Passage:
+    Middle-Left Passage:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Left
         Entry Section: Bat Card Room Duplicate
         Exit Section: Bat Card Room Duplicate
-    Right Passage:
+    Middle-Right Passage:
         Type: Passage
         Row: 1
         Column: 1
