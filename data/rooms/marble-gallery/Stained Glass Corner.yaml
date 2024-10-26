@@ -1,28 +1,28 @@
 
 Stage: Marble Gallery
-Room: Room ID 01
-Index: 1
+Room: Stained Glass Corner
+Index: 3
 Left: 27
-Top: 32
+Top: 28
 Columns: 1
-Rows: 3
-Total Cells: 3
+Rows: 1
+Total Cells: 1
 Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Foreground Layer ID: 3
+Foreground Layer ID: 7
 Nodes:
-    Upper-Left Passage:
+    Top Passage:
         Type: Passage
         Row: 0
         Column: 0
-        Edge: Left
+        Edge: Top
         Entry Section: Main
         Exit Section: Main
-    Lower-Left Passage:
+    Left Passage:
         Type: Passage
-        Row: 2
+        Row: 0
         Column: 0
         Edge: Left
         Entry Section: Main

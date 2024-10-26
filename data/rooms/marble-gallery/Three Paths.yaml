@@ -1,0 +1,86 @@
+
+Stage: Marble Gallery
+Room: Three Paths
+Index: 16
+Left: 32
+Top: 24
+Columns: 1
+Rows: 2
+Total Cells: 0
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 31
+Nodes:
+    Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Left Passage:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+        Entry Section: Left Side
+        Exit Section: Left Side
+    Right Passage:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Right
+        Entry Section: Right Side
+        Exit Section: Right Side
+    Bottom Passage:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Bottom
+        Entry Section: Rising
+        Exit Section: Falling
+Commands:
+    Move - Falling, Left Path:
+        Outcomes:
+            Section: Falling
+            Helper: Left Path
+        Requirements:
+            Left Side:
+                Section: Left Side
+    Move - Falling, Right Path:
+        Outcomes:
+            Section: Falling
+            Helper: Right Path
+        Requirements:
+            Right Side:
+                Section: Right Side
+    Move - Falling, Middle Path:
+        Outcomes:
+            Section: Falling
+            Helper: Middle Path
+        Requirements:
+            Main:
+                Section: Main
+    Move - Left Side:
+        Outcomes:
+            Section: Left Side
+        Requirements:
+            Left Path:
+                Section: Rising
+                Helper: Left Path
+    Move - Main:
+        Outcomes:
+            Section: Left Side
+        Requirements:
+            Left Path:
+                Section: Rising
+                Helper: Middle Path
+    Move - Right Side:
+        Outcomes:
+            Section: Right Side
+        Requirements:
+            Right Path:
+                Section: Rising
+                Helper: Right Path

@@ -1,0 +1,72 @@
+
+Stage: Marble Gallery
+Room: Beneath Dropoff
+Index: 4
+Left: 27
+Top: 27
+Columns: 2
+Rows: 1
+Total Cells: 2
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 9
+Nodes:
+    Left-Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Top
+        Entry Section: Falling
+        Exit Section: Rising
+    Right-Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Top
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Bottom Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Bottom
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Default:
+                Section: Falling
+    Move - Rising:
+        Outcomes:
+            Section: Rising
+        Requirements:
+            Main - Bat:
+                Section: Main
+                Progression - Bat Transformation: true
+            Main - Double Jump:
+                Section: Main
+                Progression - Double Jump: true
+            Main - Gravity Jump:
+                Section: Main
+                Progression - Gravity Jump: true
+            Main - Powered Mist:
+                Section: Main
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Main - Wolf-Mist Rise:
+                Section: Main
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true

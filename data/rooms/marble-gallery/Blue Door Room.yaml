@@ -1,0 +1,44 @@
+
+Stage: Marble Gallery
+Room: Blue Door Room
+Index: 12
+Left: 45
+Top: 24
+Columns: 2
+Rows: 1
+Total Cells: 0
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 25
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Left Side
+        Exit Section: Left Side
+Commands:
+    Move - Left Side:
+        Outcomes:
+            Section: Left Side
+        Requirements:
+            Default:
+                Section: Right Side
+                Progression - Unlock Blue Doors: true
+    Move - Right Side:
+        Outcomes:
+            Section: Right Side
+        Requirements:
+            Default:
+                Section: Left Side
+                Progression - Unlock Blue Doors: true
+    Action - Activate Pressure Plate:
+        Outcomes:
+            Progression - Pressure Plate in Marble Gallery Activated: true
+        Requirements:
+            Default:
+                Section: Right Side
+                Progression - Pressure Plate in Marble Gallery Activated: false

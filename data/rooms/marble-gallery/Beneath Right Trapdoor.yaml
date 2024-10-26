@@ -1,23 +1,23 @@
 
 Stage: Marble Gallery
-Room: Room ID 12
-Index: 12
-Left: 45
-Top: 24
-Columns: 2
+Room: Beneath Right Trapdoor
+Index: 24
+Left: 44
+Top: 26
+Columns: 1
 Rows: 1
-Total Cells: 0
+Total Cells: 1
 Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Foreground Layer ID: 25
+Foreground Layer ID: 44
 Nodes:
-    Left Passage:
+    Top Passage:
         Type: Passage
         Row: 0
         Column: 0
-        Edge: Left
+        Edge: Top
         Entry Section: Main
         Exit Section: Main
 Commands: {}

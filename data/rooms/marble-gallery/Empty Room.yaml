@@ -1,29 +1,29 @@
 
 Stage: Marble Gallery
-Room: Room ID 02
-Index: 2
-Left: 25
-Top: 28
-Columns: 2
-Rows: 5
-Total Cells: 10
+Room: Empty Room
+Index: 11
+Left: 36
+Top: 26
+Columns: 1
+Rows: 1
+Total Cells: 1
 Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Foreground Layer ID: 5
+Foreground Layer ID: 23
 Nodes:
-    Upper-Right Passage:
+    Left Passage:
         Type: Passage
         Row: 0
-        Column: 1
-        Edge: Right
+        Column: 0
+        Edge: Left
         Entry Section: Main
         Exit Section: Main
-    Lower-Right Passage:
+    Right Passage:
         Type: Passage
-        Row: 4
-        Column: 1
+        Row: 0
+        Column: 0
         Edge: Right
         Entry Section: Main
         Exit Section: Main

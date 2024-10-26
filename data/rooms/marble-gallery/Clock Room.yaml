@@ -32,13 +32,89 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Top
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Falling
+        Exit Section: Rising
     Bottom Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Bottom
-        Entry Section: Main
-        Exit Section: Main
-Commands: {}
+        Entry Section: TODO
+        Exit Section: TODO
+Commands:
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Left Path:
+                Section: Falling
+                Helper: Left Path
+            Middle Path:
+                Section: Falling
+                Helper: Middle Path
+            Right Path:
+                Section: Falling
+                Helper: Right Path
+    Move - Rising, Left Path:
+        Outcomes:
+            Section: Rising
+            Helper: Left Path
+        Requirements:
+            Left Path:
+                Section: Falling
+                Helper: Left Path
+            Main - Bat:
+                Section: Main
+                Progression - Bat Transformation: true
+            Main - Gravity Jump:
+                Section: Main
+                Progression - Gravity Jump: true
+            Main - Powered Mist:
+                Section: Main
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Main - Candle Dive Kick:
+                Section: Main
+                Progression - Wolf Transformation: true
+    Move - Rising, Middle Path:
+        Outcomes:
+            Section: Rising
+            Helper: Middle Path
+        Requirements:
+            Main - Bat:
+                Section: Main
+                Progression - Bat Transformation: true
+            Main - Multiple Gravity Jumps:
+                Section: Main
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Main - Powered Mist:
+                Section: Main
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+    Move - Rising, Right Path:
+        Outcomes:
+            Section: Rising
+            Helper: Right Path
+        Requirements:
+            Falling:
+                Section: Falling
+                Helper: Right Path
+            Main - Bat + Stopwatch:
+                Section: Main
+                Progression - Bat Transformation: true
+                Subweapon: Stopwatch
+            Main - Gravity Jump + Stopwatch:
+                Section: Main
+                Progression - Gravity Jump: true
+                Subweapon: Stopwatch
+            Main - Powered Mist + Stopwatch:
+                Section: Main
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+                Subweapon: Stopwatch
+            Main - Candle Dive Kick + Stopwatch:
+                Section: Main
+                Progression - Wolf Transformation: true
+                Subweapon: Stopwatch
+                

@@ -1,30 +1,30 @@
 
 Stage: Marble Gallery
-Room: Room ID 10
-Index: 10
-Left: 29
-Top: 26
-Columns: 3
-Rows: 1
-Total Cells: 3
+Room: Stairwell to Underground Caverns
+Index: 17
+Left: 41
+Top: 25
+Columns: 1
+Rows: 2
+Total Cells: 2
 Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Foreground Layer ID: 21
+Foreground Layer ID: 33
 Nodes:
-    Left Passage:
+    Upper-Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
-    Right Passage:
-        Type: Passage
-        Row: 0
-        Column: 2
-        Edge: Right
+    Lower-Left Red Door:
+        Type: Red Door
+        Row: 1
+        Column: 0
+        Edge: Left
         Entry Section: Main
         Exit Section: Main
 Commands: {}

@@ -39,6 +39,17 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Bottom
-        Entry Section: Main
-        Exit Section: Main
-Commands: {}
+        Entry Section: Elevator
+        Exit Section: Elevator
+Commands:
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Section: Elevator
+    Move - Elevator:
+        Outcomes:
+            Section: Elevator
+        Requirements:
+            Default:
+                Section: Main

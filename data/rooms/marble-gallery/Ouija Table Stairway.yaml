@@ -1,30 +1,30 @@
 
 Stage: Marble Gallery
-Room: Room ID 18
-Index: 18
-Left: 42
+Room: Ouija Table Stairway
+Index: 15
+Left: 37
 Top: 24
-Columns: 3
-Rows: 2
+Columns: 2
+Rows: 3
 Total Cells: 6
 Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Foreground Layer ID: 35
+Foreground Layer ID: 29
 Nodes:
     Left Passage:
         Type: Passage
-        Row: 0
+        Row: 2
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
-    Right-Bottom Passage:
+    Right Passage:
         Type: Passage
-        Row: 1
-        Column: 2
-        Edge: Bottom
+        Row: 0
+        Column: 1
+        Edge: Right
         Entry Section: Main
         Exit Section: Main
 Commands: {}

@@ -1,9 +1,9 @@
 
 Stage: Marble Gallery
-Room: Room ID 05
-Index: 5
-Left: 26
-Top: 26
+Room: Stopwatch Room
+Index: 7
+Left: 39
+Top: 24
 Columns: 3
 Rows: 1
 Total Cells: 3
@@ -11,7 +11,7 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Foreground Layer ID: 11
+Foreground Layer ID: 15
 Nodes:
     Left Passage:
         Type: Passage
@@ -27,13 +27,6 @@ Nodes:
         Edge: Bottom
         Entry Section: Main
         Exit Section: Main
-    Right-Bottom Passage:
-        Type: Passage
-        Row: 0
-        Column: 2
-        Edge: Bottom
-        Entry Section: Main
-        Exit Section: Main
     Right Passage:
         Type: Passage
         Row: 0
@@ -41,4 +34,10 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands: {}
+Commands:
+    Action - Collect Stopwatch Subweapon:
+        Outcomes:
+            Subweapon: Stopwatch
+        Requirements:
+            Default:
+                Section: Main

@@ -1,21 +1,21 @@
 
 Stage: Marble Gallery
-Room: Room ID 15
-Index: 15
-Left: 37
-Top: 24
-Columns: 2
-Rows: 3
-Total Cells: 6
+Room: Pathway After Left Statue
+Index: 13
+Left: 31
+Top: 25
+Columns: 1
+Rows: 1
+Total Cells: 1
 Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Foreground Layer ID: 29
+Foreground Layer ID: 27
 Nodes:
-    Left Passage:
-        Type: Passage
-        Row: 2
+    Left Red Door:
+        Type: Red Door
+        Row: 0
         Column: 0
         Edge: Left
         Entry Section: Main
@@ -23,7 +23,7 @@ Nodes:
     Right Passage:
         Type: Passage
         Row: 0
-        Column: 1
+        Column: 0
         Edge: Right
         Entry Section: Main
         Exit Section: Main

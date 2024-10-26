@@ -187,7 +187,6 @@ class PPF:
         self.write_u16(teleporter.current_stage_id)
         self.write_u16(teleporter.next_stage_id)
     
-
     def patch_packed_room_data(self, room: Room, address: Address):
         write_address = address.to_disc_address(0x10 * room.foreground_layer_id + 0x08)
         self.write_u64(write_address)
