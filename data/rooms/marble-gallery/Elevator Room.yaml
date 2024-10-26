@@ -46,7 +46,8 @@ Commands:
         Outcomes:
             Section: Main
         Requirements:
-            Section: Elevator
+            Default:
+                Section: Elevator
     Move - Elevator:
         Outcomes:
             Section: Elevator
