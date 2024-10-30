@@ -338,6 +338,7 @@ if __name__ == '__main__':
             random.randint(0, 2 ** 64),
             random.randint(0, 2 ** 64),
         ]
+        while True:
             # Randomize
             print('Randomize with seeds:', seeds)
             stages = {}
