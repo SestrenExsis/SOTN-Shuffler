@@ -1,4 +1,5 @@
 import datetime
+import hashlib
 import json
 import os
 import random
@@ -273,6 +274,36 @@ class RoomSet:
     def remove_room(self, room_name):
         self.rooms.pop(room_name, None)
 
+class DataCore:
+    def __init__(self):
+        self.rooms = {}
+        self.teleporters = {}
+        for stage_folder in (
+            'castle-entrance',
+            # 'castle-entrance-revisited',
+            'alchemy-laboratory',
+            'marble-gallery',
+        ):
+            folder_path = os.path.join('data', 'rooms', stage_folder)
+            for file_name in os.listdir(folder_path):
+                if file_name[-5:] != '.yaml':
+                    continue
+                file_path = os.path.join(folder_path, file_name)
+                with open(file_path) as open_file:
+                    yaml_obj = yaml.safe_load(open_file)
+                    room_name = yaml_obj['Stage'] + ', ' + yaml_obj['Room']
+                    self.rooms[room_name] = yaml_obj
+        with open(os.path.join('data', 'Teleporters.yaml')) as open_file:
+            yaml_obj = yaml.safe_load(open_file)
+            self.teleporters = yaml_obj
+    
+    def get_core(self) -> dict:
+        result = {
+            'Rooms': self.rooms,
+            'Teleporters': self.teleporters,
+        }
+        return result
+
 stages = {
     'Castle Entrance': [
         {
@@ -494,42 +525,12 @@ class Mapper:
             result = (len(self.stage.rooms) + tolerance) >= len(self.rooms) and len(self.stage.get_open_nodes()) <= 2 * tolerance
         return result
 
-class DataCore:
-    def __init__(self):
-        self.rooms = {}
-        self.teleporters = {}
-        for stage_folder in (
-            'castle-entrance',
-            # 'castle-entrance-revisited',
-            'alchemy-laboratory',
-            'marble-gallery',
-        ):
-            folder_path = os.path.join('data', 'rooms', stage_folder)
-            for file_name in os.listdir(folder_path):
-                if file_name[-5:] != '.yaml':
-                    continue
-                file_path = os.path.join(folder_path, file_name)
-                with open(file_path) as open_file:
-                    yaml_obj = yaml.safe_load(open_file)
-                    room_name = yaml_obj['Stage'] + ', ' + yaml_obj['Room']
-                    self.rooms[room_name] = yaml_obj
-        with open(os.path.join('data', 'Teleporters.yaml')) as open_file:
-            yaml_obj = yaml.safe_load(open_file)
-            self.teleporters = yaml_obj
-    
-    def get_core(self) -> dict:
-        result = {
-            'Rooms': self.rooms,
-            'Teleporters': self.teleporters,
-        }
-        return result
-
 if __name__ == '__main__':
     '''
     Usage
     python mapper.py
     '''
-    GENERATION_VERSION = '0.0.1'
+    GENERATION_VERSION = '0.0.2'
     data_core = DataCore().get_core()
     with open(os.path.join('build', 'sandbox', 'data-core.json'), 'w') as data_core_json:
         json.dump(data_core, data_core_json, indent='    ', sort_keys=True)
@@ -543,52 +544,52 @@ if __name__ == '__main__':
         }
     seed = random.randint(0, 2 ** 64)
     stage_name = 'Castle Entrance'
-    while len(generated_stages[stage_name]) < 200:
+    while len(generated_stages[stage_name]) < 20:
         if len(generated_stages[stage_name]) % 2 == 0:
             with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'w') as generated_stages_json:
                 json.dump(generated_stages, generated_stages_json, indent='    ', sort_keys=True, default=str)
-        mapper = Mapper(data_core, stage_name, seed)
-        while not mapper.validate():
-            mapper.generate()
-        test_mapper = Mapper(data_core, stage_name, mapper.current_seed)
-        test_mapper.generate()
-        assert test_mapper.validate()
-        assert hash(json.dumps(test_mapper.stage.get_changes(), sort_keys=True)) == hash(json.dumps(mapper.stage.get_changes(), sort_keys=True))
+        stage_map = Mapper(data_core, stage_name, seed)
+        while not stage_map.validate():
+            stage_map.generate()
+        test_map = Mapper(data_core, stage_name, stage_map.current_seed)
+        test_map.generate()
+        assert test_map.validate()
+        assert hash(json.dumps(test_map.stage.get_changes(), sort_keys=True)) == hash(json.dumps(stage_map.stage.get_changes(), sort_keys=True))
         generated_stages[stage_name].append(
             {
-                'Attempts': mapper.attempts,
-                'Generation Start Date': mapper.start_time.isoformat(),
-                'Generation End Date': mapper.end_time.isoformat(),
+                'Attempts': stage_map.attempts,
+                'Generation Start Date': stage_map.start_time.isoformat(),
+                'Generation End Date': stage_map.end_time.isoformat(),
                 'Generation Version': GENERATION_VERSION,
-                'Hash of Changes': hash(json.dumps(mapper.stage.get_changes(), sort_keys=True)),
-                'Seed': mapper.current_seed
+                'Hash of Changes': hashlib.sha256(json.dumps(stage_map.stage.get_changes(), sort_keys=True).encode()).hexdigest(),
+                'Seed': stage_map.current_seed
             }
         )
         print(generated_stages[stage_name][-1])
-        seed = mapper.rng.randint(0, 2 ** 64)
+        seed = stage_map.rng.randint(0, 2 ** 64)
     stage_name = 'Alchemy Laboratory'
-    while len(generated_stages[stage_name]) < 1000:
+    while len(generated_stages[stage_name]) < 100:
         if len(generated_stages[stage_name]) % 10 == 0:
             with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'w') as generated_stages_json:
                 json.dump(generated_stages, generated_stages_json, indent='    ', sort_keys=True, default=str)
-        mapper = Mapper(data_core, stage_name, seed)
-        while not mapper.validate():
-            mapper.generate()
-        test_mapper = Mapper(data_core, stage_name, mapper.current_seed)
-        test_mapper.generate()
-        assert test_mapper.validate()
-        assert hash(json.dumps(test_mapper.stage.get_changes(), sort_keys=True)) == hash(json.dumps(mapper.stage.get_changes(), sort_keys=True))
+        stage_map = Mapper(data_core, stage_name, seed)
+        while not stage_map.validate():
+            stage_map.generate()
+        test_map = Mapper(data_core, stage_name, stage_map.current_seed)
+        test_map.generate()
+        assert test_map.validate()
+        assert hash(json.dumps(test_map.stage.get_changes(), sort_keys=True)) == hash(json.dumps(stage_map.stage.get_changes(), sort_keys=True))
         generated_stages[stage_name].append(
             {
-                'Attempts': mapper.attempts,
-                'Generation Start Date': mapper.start_time.isoformat(),
-                'Generation End Date': mapper.end_time.isoformat(),
+                'Attempts': stage_map.attempts,
+                'Generation Start Date': stage_map.start_time.isoformat(),
+                'Generation End Date': stage_map.end_time.isoformat(),
                 'Generation Version': GENERATION_VERSION,
-                'Hash of Changes': hash(json.dumps(mapper.stage.get_changes(), sort_keys=True)),
-                'Seed': mapper.current_seed
+                'Hash of Changes': hashlib.sha256(json.dumps(stage_map.stage.get_changes(), sort_keys=True).encode()).hexdigest(),
+                'Seed': stage_map.current_seed
             }
         )
         print(generated_stages[stage_name][-1])
-        seed = mapper.rng.randint(0, 2 ** 64)
+        seed = stage_map.rng.randint(0, 2 ** 64)
     with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'w') as generated_stages_json:
         json.dump(generated_stages, generated_stages_json, indent='    ', sort_keys=True, default=str)
