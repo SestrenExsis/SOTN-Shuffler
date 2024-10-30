@@ -467,17 +467,17 @@ def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
     while len(pool) > 0:
         possible_target_nodes = result.get_open_nodes()
         if len(possible_target_nodes) < 1:
-            # print('ERROR: No open nodes left')
+            # ERROR: No open nodes left
             break
         target_node = rng.choice(possible_target_nodes)
         open_nodes = []
         for (roomset_id, roomset) in pool.items():
             for open_node in roomset.get_open_nodes(matching_node=target_node):
                 open_nodes.append(open_node)
-        # Go through possible source nodes in random order until we get a valid source node
         if len(open_nodes) < 1:
-            # print('ERROR: No matching source nodes for the chosen target node')
+            # ERROR: No matching source nodes for the chosen target node
             break
+        # Go through possible source nodes in random order until we get a valid source node
         open_nodes.sort()
         rng.shuffle(open_nodes)
         for source_node in open_nodes:
@@ -486,11 +486,10 @@ def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
             offset_left = (target_node.room.left + target_node.left) - (source_node.room.left + source_node.left)
             valid_ind = result.add_roomset(source_node.room.roomset, offset_top, offset_left)
             if valid_ind:
-                # print('  ', roomset_key)
                 roomset = pool.pop(roomset_key, None)
                 break
         else:
-            # print('ERROR: All matching source nodes for the target node result in invalid room placement')
+            # ERROR: All matching source nodes for the target node result in invalid room placement
             break
         steps += 1
     return result
@@ -543,53 +542,28 @@ if __name__ == '__main__':
             'Alchemy Laboratory': [],
         }
     seed = random.randint(0, 2 ** 64)
-    stage_name = 'Castle Entrance'
-    while len(generated_stages[stage_name]) < 20:
-        if len(generated_stages[stage_name]) % 2 == 0:
+    for (stage_name, target_seed_count) in (
+        ('Castle Entrance', 20),
+        ('Alchemy Laboratory', 100),
+    ):
+        while len(generated_stages[stage_name]) < target_seed_count:
+            stage_map = Mapper(data_core, stage_name, seed)
+            while not stage_map.validate():
+                stage_map.generate()
+            generated_stages[stage_name].append(
+                {
+                    'Attempts': stage_map.attempts,
+                    'Generation Start Date': stage_map.start_time.isoformat(),
+                    'Generation End Date': stage_map.end_time.isoformat(),
+                    'Generation Version': GENERATION_VERSION,
+                    'Hash of Changes': hashlib.sha256(json.dumps(stage_map.stage.get_changes(), sort_keys=True).encode()).hexdigest(),
+                    'Seed': stage_map.current_seed,
+                    'Stage': stage_name,
+                }
+            )
+            print(generated_stages[stage_name][-1])
             with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'w') as generated_stages_json:
                 json.dump(generated_stages, generated_stages_json, indent='    ', sort_keys=True, default=str)
-        stage_map = Mapper(data_core, stage_name, seed)
-        while not stage_map.validate():
-            stage_map.generate()
-        test_map = Mapper(data_core, stage_name, stage_map.current_seed)
-        test_map.generate()
-        assert test_map.validate()
-        assert hash(json.dumps(test_map.stage.get_changes(), sort_keys=True)) == hash(json.dumps(stage_map.stage.get_changes(), sort_keys=True))
-        generated_stages[stage_name].append(
-            {
-                'Attempts': stage_map.attempts,
-                'Generation Start Date': stage_map.start_time.isoformat(),
-                'Generation End Date': stage_map.end_time.isoformat(),
-                'Generation Version': GENERATION_VERSION,
-                'Hash of Changes': hashlib.sha256(json.dumps(stage_map.stage.get_changes(), sort_keys=True).encode()).hexdigest(),
-                'Seed': stage_map.current_seed
-            }
-        )
-        print(generated_stages[stage_name][-1])
-        seed = stage_map.rng.randint(0, 2 ** 64)
-    stage_name = 'Alchemy Laboratory'
-    while len(generated_stages[stage_name]) < 100:
-        if len(generated_stages[stage_name]) % 10 == 0:
-            with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'w') as generated_stages_json:
-                json.dump(generated_stages, generated_stages_json, indent='    ', sort_keys=True, default=str)
-        stage_map = Mapper(data_core, stage_name, seed)
-        while not stage_map.validate():
-            stage_map.generate()
-        test_map = Mapper(data_core, stage_name, stage_map.current_seed)
-        test_map.generate()
-        assert test_map.validate()
-        assert hash(json.dumps(test_map.stage.get_changes(), sort_keys=True)) == hash(json.dumps(stage_map.stage.get_changes(), sort_keys=True))
-        generated_stages[stage_name].append(
-            {
-                'Attempts': stage_map.attempts,
-                'Generation Start Date': stage_map.start_time.isoformat(),
-                'Generation End Date': stage_map.end_time.isoformat(),
-                'Generation Version': GENERATION_VERSION,
-                'Hash of Changes': hashlib.sha256(json.dumps(stage_map.stage.get_changes(), sort_keys=True).encode()).hexdigest(),
-                'Seed': stage_map.current_seed
-            }
-        )
-        print(generated_stages[stage_name][-1])
-        seed = stage_map.rng.randint(0, 2 ** 64)
+            seed = stage_map.rng.randint(0, 2 ** 64)
     with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'w') as generated_stages_json:
         json.dump(generated_stages, generated_stages_json, indent='    ', sort_keys=True, default=str)
