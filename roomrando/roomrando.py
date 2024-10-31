@@ -78,6 +78,7 @@ class IndexedBitmapCanvas():
         return result
     
     def set_pixel(self, top: int, left: int, fill: int):
+        # TODO(sestren): Fix the occasional IndexError: list index out of range when calling draw_room()
         self.pixels[top][left] = fill
     
     def fill_rect(self, top: int, left: int, height: int, width: int, fill: int):
