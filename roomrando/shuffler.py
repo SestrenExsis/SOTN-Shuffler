@@ -342,53 +342,49 @@ if __name__ == '__main__':
             # Randomize
             print('Randomize with seeds:', seeds)
             stages = {}
-            # Castle Entrance
-            stage_name = 'Castle Entrance'
-            print(stage_name)
-            stage_map = mapper.Mapper(data_core, stage_name, seeds[0])
-            while True:
-                stage_map.generate()
-                if stage_map.validate():
-                    break
-                if stage_map.attempts > 2000:
-                    if stage_name in generated_stages and len(generated_stages[stage_name]) > 0:
-                        prebaked_stage = stage_map.rng.choice(generated_stages[stage_name])
-                        prebaked_map = mapper.Mapper(data_core, stage_name, prebaked_stage['Seed'])
-                        prebaked_map.generate()
-                        assert prebaked_map.validate()
-                        hash_of_changes = hashlib.sha256(json.dumps(prebaked_map.stage.get_changes(), sort_keys=True).encode()).hexdigest()
-                        assert hash_of_changes == prebaked_stage['Hash of Changes']
-                        stage_map = prebaked_map
-                        if stage_map.validate():
-                            break
-            stages[stage_name] = stage_map
-            # Alchemy Laboratory
-            stage_name = 'Alchemy Laboratory'
-            print(stage_name)
-            stage_map = mapper.Mapper(data_core, stage_name, seeds[0])
-            while True:
-                stage_map.generate()
-                if stage_map.validate():
-                    break
-                if stage_map.attempts > 2000:
-                    if stage_name in generated_stages and len(generated_stages[stage_name]) > 0:
-                        prebaked_stage = stage_map.rng.choice(generated_stages[stage_name])
-                        prebaked_map = mapper.Mapper(data_core, stage_name, prebaked_stage['Seed'])
-                        prebaked_map.generate()
-                        assert prebaked_map.validate()
-                        hash_of_changes = hashlib.sha256(json.dumps(prebaked_map.stage.get_changes(), sort_keys=True).encode()).hexdigest()
-                        assert hash_of_changes == prebaked_stage['Hash of Changes']
-                        stage_map = prebaked_map
-                        if stage_map.validate():
-                            break
+            stages_to_process = (
+                ('Castle Entrance', random.randint(0, 2 ** 64)),
+                ('Alchemy Laboratory', random.randint(0, 2 ** 64)),
+            )
+            for (stage_name, stage_seed) in stages_to_process:
+                print(stage_name)
+                stage_map = mapper.Mapper(data_core, stage_name, stage_seed)
+                while True:
+                    stage_map.generate()
+                    if stage_map.validate():
+                        break
+                    if stage_map.attempts > 2000:
+                        if stage_name in generated_stages and len(generated_stages[stage_name]) > 0:
+                            prebaked_stage = stage_map.rng.choice(generated_stages[stage_name])
+                            prebaked_map = mapper.Mapper(data_core, stage_name, prebaked_stage['Seed'])
+                            prebaked_map.generate()
+                            assert prebaked_map.validate()
+                            hash_of_changes = hashlib.sha256(json.dumps(prebaked_map.stage.get_changes(), sort_keys=True).encode()).hexdigest()
+                            assert hash_of_changes == prebaked_stage['Hash of Changes']
+                            stage_map = prebaked_map
+                            if stage_map.validate():
+                                break
+                stages[stage_name] = stage_map
             # Marble Gallery
             stage_name = 'Marble Gallery'
             print(stage_name)
-            stages[stage_name] = mapper.Mapper(data_core, stage_name, seeds[2])
+            stage_map = mapper.Mapper(data_core, stage_name, seeds[2])
             while True:
-                stages[stage_name].generate()
-                if stages[stage_name].validate(3):
+                stage_map.generate()
+                rooms_found = set(stage_map.stage.rooms)
+                if len(rooms_found) > 37:
+                    print(stage_name, stage_map.current_seed)
+                    # for row_data in stage_map.stage.get_stage_spoiler(logic, changes):
+                    #     print(row_data)
+                    for row_data in stage_map.stage.get_room_spoiler(data_core):
+                        print(row_data)
+                    for room_name in sorted(data_core['Rooms']):
+                        if room_name.startswith('Marble Gallery, ') and room_name not in rooms_found:
+                            print(' ' , room_name)
+                if stage_map.validate():
                     break
+            stages[stage_name] = stage_map
+            # ...
             changes = {
                 'Rooms': {}
             }
