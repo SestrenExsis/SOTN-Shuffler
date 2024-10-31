@@ -543,8 +543,8 @@ if __name__ == '__main__':
         }
     seed = random.randint(0, 2 ** 64)
     for (stage_name, target_seed_count) in (
-        ('Castle Entrance', 20),
-        ('Alchemy Laboratory', 100),
+        ('Castle Entrance', 200),
+        ('Alchemy Laboratory', 1000),
     ):
         while len(generated_stages[stage_name]) < target_seed_count:
             stage_map = Mapper(data_core, stage_name, seed)
