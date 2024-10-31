@@ -21,7 +21,7 @@ Nodes:
         Entry Section: Main
         Exit Section: Main
     Upper Right Passage:
-        Type: Red Door
+        Type: Passage
         Row: 0
         Column: 5
         Edge: Right

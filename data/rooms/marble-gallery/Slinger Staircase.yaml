@@ -20,6 +20,20 @@ Nodes:
         Edge: Left
         Entry Section: Main
         Exit Section: Main
+    Upper-Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 2
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Right Passage:
+        Type: Passage
+        Row: 1
+        Column: 2
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
     Right-Bottom Passage:
         Type: Passage
         Row: 1

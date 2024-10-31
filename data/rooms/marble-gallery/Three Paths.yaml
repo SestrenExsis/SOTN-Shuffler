@@ -6,7 +6,7 @@ Left: 32
 Top: 24
 Columns: 1
 Rows: 2
-Total Cells: 0
+Total Cells: 2
 Empty Cells: {}
 Entities:
 Flags:
@@ -17,7 +17,7 @@ Nodes:
         Type: Passage
         Row: 0
         Column: 0
-        Edge: Left
+        Edge: Top
         Entry Section: Main
         Exit Section: Main
     Left Passage:
