@@ -345,6 +345,7 @@ if __name__ == '__main__':
             stages_to_process = (
                 ('Castle Entrance', random.randint(0, 2 ** 64)),
                 ('Alchemy Laboratory', random.randint(0, 2 ** 64)),
+                ('Marble Gallery', random.randint(0, 2 ** 64)),
             )
             for (stage_name, stage_seed) in stages_to_process:
                 print(stage_name)
@@ -366,24 +367,24 @@ if __name__ == '__main__':
                                 break
                 stages[stage_name] = stage_map
             # Marble Gallery
-            stage_name = 'Marble Gallery'
-            print(stage_name)
-            stage_map = mapper.Mapper(data_core, stage_name, seeds[2])
-            while True:
-                stage_map.generate()
-                rooms_found = set(stage_map.stage.rooms)
-                if len(rooms_found) > 37:
-                    print(stage_name, stage_map.current_seed)
-                    # for row_data in stage_map.stage.get_stage_spoiler(logic, changes):
-                    #     print(row_data)
-                    for row_data in stage_map.stage.get_room_spoiler(data_core):
-                        print(row_data)
-                    for room_name in sorted(data_core['Rooms']):
-                        if room_name.startswith('Marble Gallery, ') and room_name not in rooms_found:
-                            print(' ' , room_name)
-                if stage_map.validate():
-                    break
-            stages[stage_name] = stage_map
+            # stage_name = 'Marble Gallery'
+            # print(stage_name)
+            # stage_map = mapper.Mapper(data_core, stage_name, seeds[2])
+            # while True:
+            #     stage_map.generate()
+            #     rooms_found = set(stage_map.stage.rooms)
+            #     if len(rooms_found) >= 39:
+            #         print(stage_name, len(rooms_found), stage_map.current_seed)
+            #         # for row_data in stage_map.stage.get_stage_spoiler(data_core):
+            #         #     print(row_data)
+            #         # for row_data in stage_map.stage.get_room_spoiler(data_core):
+            #         #     print(row_data)
+            #         for room_name in sorted(data_core['Rooms']):
+            #             if room_name.startswith('Marble Gallery, ') and room_name not in rooms_found:
+            #                 print(' ' , room_name)
+            #     if stage_map.validate():
+            #         break
+            # stages[stage_name] = stage_map
             # ...
             changes = {
                 'Rooms': {}

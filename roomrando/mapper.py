@@ -188,7 +188,8 @@ class RoomSet:
             }
         return result
     
-    def get_stage_spoiler(self, logic: dict, changes: dict) -> list[str]:
+    def get_stage_spoiler(self, data_core: dict) -> list[str]:
+        changes = self.get_changes()
         codes = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+. '
         legend = []
         grid = [['.' for col in range(64)] for row in range(64)]
@@ -197,8 +198,8 @@ class RoomSet:
                 changes['Rooms'][room_name]['Index'],
                 changes['Rooms'][room_name]['Top'],
                 changes['Rooms'][room_name]['Left'],
-                logic['Rooms'][room_name]['Rows'],
-                logic['Rooms'][room_name]['Columns'],
+                data_core['Rooms'][room_name]['Rows'],
+                data_core['Rooms'][room_name]['Columns'],
             )
             code = codes[index]
             legend.append((code, room_name))
@@ -211,15 +212,15 @@ class RoomSet:
         for row_data in grid:
             result.append(''.join(row_data))
         for (code, room_name) in legend:
-            index = logic['Rooms'][room_name]['Index']
+            index = data_core['Rooms'][room_name]['Index']
             top = changes['Rooms'][room_name]['Top']
             left = changes['Rooms'][room_name]['Left']
-            width = logic['Rooms'][room_name]['Columns']
-            height = logic['Rooms'][room_name]['Rows']
+            width = data_core['Rooms'][room_name]['Columns']
+            height = data_core['Rooms'][room_name]['Rows']
             result.append(str((code, room_name, ('I:', index, 'T:', top, 'L:', left, 'H:', height, 'W:', width))))
         return result
     
-    def get_room_spoiler(self, logic: dict) -> list[str]:
+    def get_room_spoiler(self, data_core: dict) -> list[str]:
         changes = self.get_changes()
         codes = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+. '
         legend = []
@@ -232,8 +233,8 @@ class RoomSet:
                 changes['Rooms'][room_name]['Index'],
                 changes['Rooms'][room_name]['Top'],
                 changes['Rooms'][room_name]['Left'],
-                logic['Rooms'][room_name]['Rows'],
-                logic['Rooms'][room_name]['Columns'],
+                data_core['Rooms'][room_name]['Rows'],
+                data_core['Rooms'][room_name]['Columns'],
             )
             code = codes[index]
             legend.append((code, room_name))
@@ -246,7 +247,7 @@ class RoomSet:
                             prev_index = codes.find(grid[row][col])
                             if index < prev_index:
                                 grid[row][col] = code
-            for node in logic['Rooms'][room_name]['Nodes'].values():
+            for node in data_core['Rooms'][room_name]['Nodes'].values():
                 (exit_row, exit_col, exit_edge) = (node['Row'], node['Column'], node['Edge'])
                 row = 2 + 5 * (room_top - stage_top + exit_row)
                 col = 2 + 5 * (room_left - stage_left + exit_col)
@@ -258,16 +259,16 @@ class RoomSet:
                     row += 2
                 elif exit_edge == 'Right':
                     col += 2
-                grid[row][col] = '@'
+                grid[row][col] = code # '@'
         result = []
         for row_data in grid:
             result.append(''.join(row_data))
         for (code, room_name) in legend:
-            index = logic['Rooms'][room_name]['Index']
+            index = data_core['Rooms'][room_name]['Index']
             top = changes['Rooms'][room_name]['Top']
             left = changes['Rooms'][room_name]['Left']
-            width = logic['Rooms'][room_name]['Columns']
-            height = logic['Rooms'][room_name]['Rows']
+            width = data_core['Rooms'][room_name]['Columns']
+            height = data_core['Rooms'][room_name]['Rows']
             result.append(str((code, room_name, ('I:', index, 'T:', top, 'L:', left, 'H:', height, 'W:', width))))
         return result
 
@@ -444,10 +445,8 @@ stages = {
         { 'Marble Gallery, Left of Clock Room': (0, 0) },
         { 'Marble Gallery, Empty Room': (0, 0) },
         { 'Marble Gallery, Blue Door Room': (0, 0) },
-        { 'Marble Gallery, Pathway After Left Statue': (0, 0) },
         { 'Marble Gallery, Pathway After Right Statue': (0, 0) },
         { 'Marble Gallery, Ouija Table Stairway': (0, 0) },
-        { 'Marble Gallery, Stairwell to Underground Caverns': (0, 0) },
         { 'Marble Gallery, Slinger Staircase': (0, 0) },
         { 'Marble Gallery, Beneath Left Trapdoor': (0, 0) },
         { 'Marble Gallery, Save Room A': (0, 0) },
@@ -540,12 +539,16 @@ if __name__ == '__main__':
         generated_stages = {
             'Castle Entrance': [],
             'Alchemy Laboratory': [],
+            'Marble Gallery': [],
         }
     seed = random.randint(0, 2 ** 64)
     for (stage_name, target_seed_count) in (
         ('Castle Entrance', 200),
         ('Alchemy Laboratory', 1000),
+        ('Marble Gallery', 50),
     ):
+        if stage_name not in generated_stages:
+            generated_stages[stage_name] = []
         while len(generated_stages[stage_name]) < target_seed_count:
             stage_map = Mapper(data_core, stage_name, seed)
             while not stage_map.validate():
@@ -562,8 +565,8 @@ if __name__ == '__main__':
                 }
             )
             print(generated_stages[stage_name][-1])
-            with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'w') as generated_stages_json:
-                json.dump(generated_stages, generated_stages_json, indent='    ', sort_keys=True, default=str)
+            # with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'w') as generated_stages_json:
+            #     json.dump(generated_stages, generated_stages_json, indent='    ', sort_keys=True, default=str)
             seed = stage_map.rng.randint(0, 2 ** 64)
     with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'w') as generated_stages_json:
         json.dump(generated_stages, generated_stages_json, indent='    ', sort_keys=True, default=str)
