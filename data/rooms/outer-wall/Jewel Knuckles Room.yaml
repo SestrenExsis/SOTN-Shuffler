@@ -1,0 +1,23 @@
+
+Stage: Outer Wall
+Room: Jewel Knuckles Room
+Index: 5
+Left: 59
+Top: 27
+Columns: 1
+Rows: 1
+Total Cells: 1
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 6
+Nodes:
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

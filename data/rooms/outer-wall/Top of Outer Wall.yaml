@@ -1,0 +1,30 @@
+
+Stage: Outer Wall
+Room: Top of Outer Wall
+Index: 1
+Left: 61
+Top: 13
+Columns: 2
+Rows: 1
+Total Cells: 1
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 2
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Bottom Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Bottom
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

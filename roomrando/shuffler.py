@@ -333,22 +333,17 @@ if __name__ == '__main__':
         rules = json.load(rules_json)
         skills = json.load(skills_json)
         # Keep randomizing until a solution is found
-        seeds = [
-            random.randint(0, 2 ** 64),
-            random.randint(0, 2 ** 64),
-            random.randint(0, 2 ** 64),
-        ]
         while True:
             # Randomize
-            print('Randomize with seeds:', seeds)
             stages = {}
             stages_to_process = (
                 ('Castle Entrance', random.randint(0, 2 ** 64)),
                 ('Alchemy Laboratory', random.randint(0, 2 ** 64)),
                 ('Marble Gallery', random.randint(0, 2 ** 64)),
             )
+            print('Randomize with seeds')
             for (stage_name, stage_seed) in stages_to_process:
-                print(stage_name)
+                print(stage_name, stage_seed)
                 stage_map = mapper.Mapper(data_core, stage_name, stage_seed)
                 while True:
                     stage_map.generate()
@@ -411,6 +406,3 @@ if __name__ == '__main__':
             if solutions['Win Count'] > 0:
                 # patcher.patch(changes.json, 'build/patch.ppf')
                 break
-            seeds[0] = random.randint(0, 2 ** 64)
-            seeds[1] = random.randint(0, 2 ** 64)
-            seeds[2] = random.randint(0, 2 ** 64)
