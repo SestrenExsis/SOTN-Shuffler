@@ -452,6 +452,40 @@ stages = {
         { 'Marble Gallery, Save Room A': (0, 0) },
         { 'Marble Gallery, Save Room B': (0, 0) },
     ],
+    'Outer Wall': [
+        {
+            'Outer Wall, Elevator Shaft Room': (32 + 0, 32 + 2),
+            'Outer Wall, Fake Room With Teleporter B': (32 + 2, 32 + 1),
+            'Outer Wall, Loading Room A': (32 + 2, 32 + 2),
+            'Outer Wall, Fake Room With Teleporter C': (32 + 6, 32 + 0),
+            'Outer Wall, Loading Room C': (32 + 6, 32 + 1),
+        },
+        {
+            'Outer Wall, Fake Room With Teleporter A': (0, 0),
+            'Outer Wall, Loading Room B': (0, 1),
+            'Outer Wall, Exit to Clock Tower': (0, 2),
+        },
+        {
+            'Outer Wall, Fake Room With Teleporter D': (0, 0),
+            'Outer Wall, Loading Room D': (0, 1),
+            'Outer Wall, Exit to Marble Gallery': (0, 2),
+        },
+        {
+            'Outer Wall, Lower Medusa Room': (0, 1),
+            'Outer Wall, Telescope Room': (3, 0),
+        },
+        { 'Outer Wall, Blue Axe Knight Room': (0, 0) },
+        { 'Outer Wall, Doppelganger Room': (0, 0) },
+        { 'Outer Wall, Doppelganger Room': (0, 0) },
+        { 'Outer Wall, Garlic Room': (0, 0) },
+        { 'Outer Wall, Garnet Vase Room': (0, 0) },
+        { 'Outer Wall, Gladius Room': (0, 0) },
+        { 'Outer Wall, Jewel Knuckles Room': (1, 0) },
+        { 'Outer Wall, Save Room A': (0, 0) },
+        { 'Outer Wall, Save Room B': (0, 0) },
+        { 'Outer Wall, Secret Platform Room': (0, 0) },
+        { 'Outer Wall, Top of Outer Wall': (0, 0) },
+    ],
 }
 
 def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:

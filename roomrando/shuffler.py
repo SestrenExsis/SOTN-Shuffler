@@ -17,6 +17,7 @@ class DataCore:
             # 'castle-entrance-revisited',
             'alchemy-laboratory',
             'marble-gallery',
+            'outer-wall',
         ):
             folder_path = os.path.join('data', 'rooms', stage_folder)
             for file_name in os.listdir(folder_path):
@@ -46,6 +47,7 @@ class LogicCore:
             'Castle Entrance',
             'Alchemy Laboratory',
             'Marble Gallery',
+            'Outer Wall',
         ):
             nodes = {}
             for (location_name, room_data) in data_core['Rooms'].items():
@@ -321,6 +323,7 @@ if __name__ == '__main__':
         generated_stages = {
             'Castle Entrance': [],
             'Alchemy Laboratory': [],
+            'Marble Gallery': [],
         }
     with (
         open(os.path.join('build', 'sandbox', 'rules.json')) as rules_json,
@@ -361,25 +364,25 @@ if __name__ == '__main__':
                             if stage_map.validate():
                                 break
                 stages[stage_name] = stage_map
-            # Marble Gallery
-            # stage_name = 'Marble Gallery'
-            # print(stage_name)
-            # stage_map = mapper.Mapper(data_core, stage_name, seeds[2])
-            # while True:
-            #     stage_map.generate()
-            #     rooms_found = set(stage_map.stage.rooms)
-            #     if len(rooms_found) >= 39:
-            #         print(stage_name, len(rooms_found), stage_map.current_seed)
-            #         # for row_data in stage_map.stage.get_stage_spoiler(data_core):
-            #         #     print(row_data)
-            #         # for row_data in stage_map.stage.get_room_spoiler(data_core):
-            #         #     print(row_data)
-            #         for room_name in sorted(data_core['Rooms']):
-            #             if room_name.startswith('Marble Gallery, ') and room_name not in rooms_found:
-            #                 print(' ' , room_name)
-            #     if stage_map.validate():
-            #         break
-            # stages[stage_name] = stage_map
+            # Current stage
+            stage_name = 'Outer Wall'
+            print(stage_name)
+            stage_map = mapper.Mapper(data_core, stage_name, random.randint(0, 2 ** 64))
+            while True:
+                stage_map.generate()
+                rooms_found = set(stage_map.stage.rooms)
+                if len(rooms_found) >= 23:
+                    print(stage_name, len(rooms_found), stage_map.current_seed)
+                    for row_data in stage_map.stage.get_stage_spoiler(data_core):
+                        print(row_data)
+                    for row_data in stage_map.stage.get_room_spoiler(data_core):
+                        print(row_data)
+                    for room_name in sorted(data_core['Rooms']):
+                        if room_name.startswith('Outer Wall, ') and room_name not in rooms_found:
+                            print(' ' , room_name)
+                if stage_map.validate():
+                    break
+            stages[stage_name] = stage_map
             # ...
             changes = {
                 'Rooms': {}
