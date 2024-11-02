@@ -1,17 +1,17 @@
 
 Stage: Outer Wall
-Room: Loading Room A
-Index: 0
-Left: 60
-Top: 17
-Columns: 1
+Room: Doppelganger Room
+Index: 11
+Left: 57
+Top: 23
+Columns: 2
 Rows: 1
-Total Cells: 1
+Total Cells: 2
 Empty Cells: {}
 Entities:
 Flags:
-    - Load On Left
-Foreground Layer ID: 1
+    - Scroll Type 1
+Foreground Layer ID: 12
 Nodes:
     Left Passage:
         Type: Passage
@@ -23,7 +23,7 @@ Nodes:
     Right Passage:
         Type: Passage
         Row: 0
-        Column: 0
+        Column: 1
         Edge: Right
         Entry Section: Main
         Exit Section: Main

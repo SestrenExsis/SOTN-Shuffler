@@ -1,9 +1,9 @@
 
 Stage: Outer Wall
-Room: Loading Room A
-Index: 0
-Left: 60
-Top: 17
+Room: Loading Room C
+Index: 16
+Left: 59
+Top: 21
 Columns: 1
 Rows: 1
 Total Cells: 1
@@ -11,7 +11,7 @@ Empty Cells: {}
 Entities:
 Flags:
     - Load On Left
-Foreground Layer ID: 1
+Foreground Layer ID: 17
 Nodes:
     Left Passage:
         Type: Passage

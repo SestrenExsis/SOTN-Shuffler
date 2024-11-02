@@ -20,6 +20,11 @@ Sources:
         Stage: Marble Gallery
         Room: Fake Room With Teleporter A
         Target: Alchemy Laboratory, Exit to Marble Gallery (Right Red Door)
+    Marble Gallery, Fake Room With Teleporter B:
+        Index: 2
+        Stage: Marble Gallery
+        Room: Fake Room With Teleporter B
+        Target: Outer Wall, Exit to Marble Gallery (Left Red Door)
 Targets:
     Marble Gallery, Entrance (Left Red Door):
         Stage: Marble Gallery
@@ -43,5 +48,11 @@ Targets:
         Stage: Castle Entrance
         Room: Cube of Zoe Room
         Node: Upper-Left Red Door
+        Player X: 16
+        Player Y: 132
+    Outer Wall, Exit to Marble Gallery (Left Red Door):
+        Stage: Outer Wall
+        Room: Exit to Marble Gallery
+        Node: Left Red Door
         Player X: 16
         Player Y: 132

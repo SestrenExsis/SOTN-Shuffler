@@ -545,7 +545,7 @@ if __name__ == '__main__':
     for (stage_name, target_seed_count) in (
         ('Castle Entrance', 200),
         ('Alchemy Laboratory', 1000),
-        ('Marble Gallery', 200),
+        ('Marble Gallery', 1000),
     ):
         if stage_name not in generated_stages:
             generated_stages[stage_name] = []

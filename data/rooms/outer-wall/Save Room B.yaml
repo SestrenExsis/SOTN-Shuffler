@@ -1,0 +1,23 @@
+
+Stage: Outer Wall
+Room: Save Room B
+Index: 17
+Left: 55
+Top: 24
+Columns: 1
+Rows: 1
+Total Cells: 1
+Empty Cells: {}
+Entities:
+Flags:
+    - Save With Right Opening
+Foreground Layer ID: 18
+Nodes:
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}
