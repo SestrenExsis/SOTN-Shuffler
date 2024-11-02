@@ -132,8 +132,9 @@ class LogicCore:
             'Item - Heart Refresh': 1,
         }
         self.goals = {
-            'Debug - Reach Clock Room in Marble Gallery': {
+            'Debug - Reach Left Path in Clock Room': {
                 'Location': 'Marble Gallery, Clock Room',
+                'Helper': 'Left Path'
             },
         }
     
@@ -279,7 +280,7 @@ def solver__solve(logic_core, rules, skills):
                 winning_games.popleft()
             winning_game_count += 1
             break
-        if distance >= 24:
+        if distance >= 36:
             # losing_games.append((game.command_history, game.state))
             # while len(losing_games) > 10:
             #     losing_games.popleft()
@@ -373,10 +374,10 @@ if __name__ == '__main__':
                 rooms_found = set(stage_map.stage.rooms)
                 if len(rooms_found) >= 23:
                     print(stage_name, len(rooms_found), stage_map.current_seed)
-                    for row_data in stage_map.stage.get_stage_spoiler(data_core):
-                        print(row_data)
-                    for row_data in stage_map.stage.get_room_spoiler(data_core):
-                        print(row_data)
+                    # for row_data in stage_map.stage.get_stage_spoiler(data_core):
+                    #     print(row_data)
+                    # for row_data in stage_map.stage.get_room_spoiler(data_core):
+                    #     print(row_data)
                     for room_name in sorted(data_core['Rooms']):
                         if room_name.startswith('Outer Wall, ') and room_name not in rooms_found:
                             print(' ' , room_name)

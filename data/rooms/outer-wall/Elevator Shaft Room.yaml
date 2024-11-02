@@ -50,4 +50,38 @@ Nodes:
         Edge: Bottom
         Entry Section: Main
         Exit Section: Main
-Commands: {}
+Commands:
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Elevator Shaft - Default:
+                Location: Outer Wall, Elevator Shaft Room
+                Section: Elevator Shaft
+                Progression - Elevator in Outer Wall Activated: true
+    Move - Elevator Shaft:
+        Outcomes:
+            Section: Elevator Shaft
+        Requirements:
+            Main - Default:
+                Location: Outer Wall, Elevator Shaft Room
+                Section: Main
+                Progression - Elevator in Outer Wall Activated: true
+    Action - Activate Elevator in Outer Wall:
+        Outcomes:
+            Progression - Elevator in Outer Wall Activated: true
+        Requirements:
+            Default:
+                Location: Outer Wall, Elevator Shaft Room
+                Section: Main
+                Progression - Elevator in Outer Wall Activated: false
+    Action - Collect Soul of Wolf Relic:
+        Outcomes:
+            Relic - Soul of Wolf: true
+            Progression - Wolf Transformation: true
+            Progression - Mid-Air Transformation Reset: true
+        Requirements:
+            Default:
+                Location: Outer Wall, Elevator Shaft Room
+                Section: Elevator Shaft
+                Relic - Soul of Wolf: false
