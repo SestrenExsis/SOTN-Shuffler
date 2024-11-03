@@ -1,0 +1,83 @@
+
+Stage: Outer Wall
+Room: Elevator Shaft Room
+Index: 13
+Left: 60
+Top: 15
+Columns: 3
+Rows: 9
+Total Cells: 17
+Empty Cells:
+    - Row: 2
+      Column: 0
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 14
+Nodes:
+    Right-Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Top
+        Entry Section: Main
+        Exit Section: Main
+    Upper-Left Passage:
+        Type: Passage
+        Row: 2
+        Column: 1
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Middle-Left Passage:
+        Type: Passage
+        Row: 6
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Left Passage:
+        Type: Passage
+        Row: 8
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Right-Bottom Passage:
+        Type: Passage
+        Row: 8
+        Column: 1
+        Edge: Bottom
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Elevator Shaft - Default:
+                Section: Elevator Shaft
+                Progression - Elevator in Outer Wall Activated: true
+    Move - Elevator Shaft:
+        Outcomes:
+            Section: Elevator Shaft
+        Requirements:
+            Main - Default:
+                Section: Main
+                Progression - Elevator in Outer Wall Activated: true
+    Action - Activate Elevator in Outer Wall:
+        Outcomes:
+            Progression - Elevator in Outer Wall Activated: true
+        Requirements:
+            Default:
+                Section: Main
+                Progression - Elevator in Outer Wall Activated: false
+    Action - Collect Soul of Wolf Relic:
+        Outcomes:
+            Relic - Soul of Wolf: true
+            Progression - Wolf Transformation: true
+            Progression - Mid-Air Transformation Reset: true
+        Requirements:
+            Default:
+                Section: Elevator Shaft
+                Relic - Soul of Wolf: false

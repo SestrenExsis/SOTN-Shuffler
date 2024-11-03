@@ -1,0 +1,30 @@
+
+Stage: Outer Wall
+Room: Loading Room B
+Index: 15
+Left: 60
+Top: 14
+Columns: 1
+Rows: 1
+Total Cells: 1
+Empty Cells: {}
+Entities:
+Flags:
+    - Load On Left
+Foreground Layer ID: 16
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

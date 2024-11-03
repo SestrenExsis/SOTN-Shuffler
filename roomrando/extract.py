@@ -30,6 +30,7 @@ if __name__ == '__main__':
             ('Castle Entrance Revisited', roomrando.Address(0x0491E27C, 'GAMEDATA')),
             ('Alchemy Laboratory', roomrando.Address(0x049C0F2C, 'GAMEDATA')),
             ('Marble Gallery', roomrando.Address(0x03F8D7E0, 'GAMEDATA')),
+            ('Outer Wall', roomrando.Address(0x0404A488, 'GAMEDATA')),
         ):
             rooms_address = roomrando.Address(room_address_start.address, 'GAMEDATA')
             extracted_data['Extractions']['Rooms'][stage_name] = {
@@ -91,6 +92,7 @@ if __name__ == '__main__':
             ('Castle Entrance Revisited', roomrando.Address(0x0491A9D0, 'GAMEDATA'), 44),
             ('Alchemy Laboratory', roomrando.Address(0x049BE964, 'GAMEDATA'), 35),
             ('Marble Gallery', roomrando.Address(0x03F8B150, 'GAMEDATA'), 54),
+            ('Outer Wall', roomrando.Address(0x040471D4, 'GAMEDATA'), 19),
         ):
             layers_address = roomrando.Address(layers_address_start.address, 'GAMEDATA')
             extracted_data['Extractions']['Layers'][stage_name] = {
@@ -137,21 +139,33 @@ if __name__ == '__main__':
                     open_file.seek(current_address.to_disc_address(8 * room_id + i))
                     byte = open_file.read(1)
                     data.append(int.from_bytes(byte))
+                layer_ids = []
+                for (layer_id, layer) in enumerate(layers):
+                    if layer['Packed Layout'][2:] == extracted_data['Rooms'][stage_name][room_id]['Packed LTRB']:
+                        layer_ids.append(layer_id)
                 room_layer = {
                     'Stage': stage_name,
                     'Room ID': room_id,
-                    'Foreground Layer Pointer': int.from_bytes(data[0:4], byteorder='little', signed=False),
-                    'Background Layer Pointer': int.from_bytes(data[4:8], byteorder='little', signed=False),
+                    'Foreground Layer Pointer': _hex(int.from_bytes(data[0:4], byteorder='little', signed=False), 8),
+                    'Background Layer Pointer': _hex(int.from_bytes(data[4:8], byteorder='little', signed=False), 8),
+                    'Layer IDs': layer_ids,
                 }
                 room_layers.append(room_layer)
-            min_pointer = min(min(room_layer['Foreground Layer Pointer'], room_layer['Background Layer Pointer']) for room_layer in room_layers)
-            for room_id in range(len(room_layers)):
-                foreground_layer_id = (room_layers[room_id].pop('Foreground Layer Pointer') - min_pointer) // 0x10
-                room_layers[room_id]['Foreground Layer ID'] = foreground_layer_id
-                room_layers[room_id]['Background Layer ID'] = (room_layers[room_id].pop('Background Layer Pointer') - min_pointer) // 0x10
-                room_layers[room_id]['Foreground Layer Packed Layout'] = extracted_data['Layers'][stage_name][foreground_layer_id]['Packed Layout']
-                value = extracted_data['Extractions']['Layers'][stage_name + ', Layer ID ' + str(foreground_layer_id)]['Gamedata Address']
-                extracted_data['Rooms'][stage_name][room_id]['Packed Room Gamedata Address'] = value + 8 # Offset of 8 to find the packed room data portion
+            # min_pointer = min(min(room_layer['Foreground Layer Pointer'], room_layer['Background Layer Pointer']) for room_layer in room_layers)
+            # for room_id in range(len(room_layers)):
+            #     foreground_layer_pointer = room_layers[room_id]['Foreground Layer Pointer']
+            #     old_foreground_layer_id = (foreground_layer_pointer - min_pointer) // 0x10
+            #     room_layers[room_id]['Old Foreground Layer ID'] = old_foreground_layer_id
+            #     background_layer_pointer = room_layers[room_id]['Background Layer Pointer']
+            #     old_background_layer_id = (background_layer_pointer - min_pointer) // 0x10
+            #     room_layers[room_id]['Old Background Layer ID'] = old_background_layer_id
+            #     try:
+            #         room_layers[room_id]['Foreground Layer Packed Layout'] = extracted_data['Layers'][stage_name][foreground_layer_id]['Packed Layout']
+            #         value = extracted_data['Extractions']['Layers'][stage_name + ', Layer ID ' + str(foreground_layer_id)]['Gamedata Address']
+            #         extracted_data['Rooms'][stage_name][room_id]['Packed Room Gamedata Address'] = value + 8 # Offset of 8 to find the packed room data portion
+            #     except:
+            #         room_layers[room_id]['Foreground Layer Packed Layout'] = None
+            #         extracted_data['Rooms'][stage_name][room_id]['Packed Room Gamedata Address'] = None
             extracted_data['Room-Layers'][stage_name] = room_layers
         with open(os.path.join('build', 'sandbox', 'vanilla.json'), 'w') as extracted_data_core_json:
             json.dump(extracted_data, extracted_data_core_json, indent='    ', sort_keys=True)
