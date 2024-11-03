@@ -56,7 +56,6 @@ Commands:
             Section: Main
         Requirements:
             Elevator Shaft - Default:
-                Location: Outer Wall, Elevator Shaft Room
                 Section: Elevator Shaft
                 Progression - Elevator in Outer Wall Activated: true
     Move - Elevator Shaft:
@@ -64,7 +63,6 @@ Commands:
             Section: Elevator Shaft
         Requirements:
             Main - Default:
-                Location: Outer Wall, Elevator Shaft Room
                 Section: Main
                 Progression - Elevator in Outer Wall Activated: true
     Action - Activate Elevator in Outer Wall:
@@ -72,7 +70,6 @@ Commands:
             Progression - Elevator in Outer Wall Activated: true
         Requirements:
             Default:
-                Location: Outer Wall, Elevator Shaft Room
                 Section: Main
                 Progression - Elevator in Outer Wall Activated: false
     Action - Collect Soul of Wolf Relic:
@@ -82,6 +79,5 @@ Commands:
             Progression - Mid-Air Transformation Reset: true
         Requirements:
             Default:
-                Location: Outer Wall, Elevator Shaft Room
                 Section: Elevator Shaft
                 Relic - Soul of Wolf: false

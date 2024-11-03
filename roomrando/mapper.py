@@ -284,6 +284,7 @@ class DataCore:
             # 'castle-entrance-revisited',
             'alchemy-laboratory',
             'marble-gallery',
+            'outer-wall',
         ):
             folder_path = os.path.join('data', 'rooms', stage_folder)
             for file_name in os.listdir(folder_path):
@@ -574,12 +575,14 @@ if __name__ == '__main__':
             'Castle Entrance': [],
             'Alchemy Laboratory': [],
             'Marble Gallery': [],
+            'Outer Wall': [],
         }
     seed = random.randint(0, 2 ** 64)
     for (stage_name, target_seed_count) in (
         ('Castle Entrance', 200),
         ('Alchemy Laboratory', 1000),
         ('Marble Gallery', 1000),
+        ('Outer Wall', 1000),
     ):
         if stage_name not in generated_stages:
             generated_stages[stage_name] = []

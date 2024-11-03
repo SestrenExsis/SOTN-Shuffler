@@ -25,13 +25,13 @@ Sources:
         Stage: Marble Gallery
         Room: Fake Room With Teleporter B
         Target: Outer Wall, Exit to Marble Gallery (Left Red Door)
+    Outer Wall, Fake Room With Teleporter D:
+        Index: 40
+        Stage: Outer Wall
+        Room: Fake Room With Teleporter D
+        Target: Marble Gallery, Long Hallway (Right Red Door)
+    TODO: Add backtracking teleporters (e.g., Outer Wall to Marble Gallery)
 Targets:
-    Marble Gallery, Entrance (Left Red Door):
-        Stage: Marble Gallery
-        Room: Entrance
-        Node: Left Red Door
-        Player X: 16
-        Player Y: 132
     Alchemy Laboratory, Entryway (Right Red Door):
         Stage: Alchemy Laboratory
         Room: Entryway
@@ -49,6 +49,18 @@ Targets:
         Room: Cube of Zoe Room
         Node: Upper-Left Red Door
         Player X: 16
+        Player Y: 132
+    Marble Gallery, Entrance (Left Red Door):
+        Stage: Marble Gallery
+        Room: Entrance
+        Node: Left Red Door
+        Player X: 16
+        Player Y: 132
+    Marble Gallery, Long Hallway (Right Red Door):
+        Stage: Marble Gallery
+        Room: Long Hallway
+        Node: Right Red Door
+        Player X: 3824
         Player Y: 132
     Outer Wall, Exit to Marble Gallery (Left Red Door):
         Stage: Outer Wall
