@@ -20,6 +20,14 @@ class Game:
         self.stages_visited = set()
         self.debug = False
     
+    @property
+    def location(self):
+        result = [self.state['Location'], self.state['Section']]
+        if 'Helper' in self.state:
+            result.append(self.state['Helper'])
+        result = tuple(result)
+        return result
+    
     def clone(self):
         result = Game(self.state, self.commands, self.goals)
         result.history = list(self.history)
@@ -119,6 +127,53 @@ class Game:
             raise Exception()
         print('')
 
+class Solver2():
+    # A command is considered "n-reflexive" if you can return to the same state as you had before executing it in at most n additional commands
+    # Examples:
+    # - Going through a normal two-way door is a 1-reflexive command, because you can immediately go back through the door
+    # - Falling into a pit that allows you to return to your original location by first going through an intermediary doorway is a 2-reflexive command
+    # - Falling into an inescapable pit without any special abilities is NOT reflexive
+    # Two locations are considered "n-bonded" if you can move from one to another via a series of n-reflexive commands
+    def __init__(self, logic_core, skills):
+        self.logic_core = logic_core
+        for (skill_key, skill_value) in skills.items():
+            self.logic_core['State'][skill_key] = skill_value
+    
+    def solve(self):
+        # Find all locations that are 1-bonded with the current location
+        bonded_locations = set()
+        work = [(0, Game(self.logic_core['State'], self.logic_core['Commands'], self.logic_core['Goals']))]
+        while len(work) > 0:
+            (step_count, game_0) = work.pop()
+            bonded_locations.add(game_0.location)
+            (location_0, section_0, hashed_state_0) = game_0.get_key()
+            # Find 1-reflexive commands
+            reflexive_command_names = set()
+            for command_name_0 in game_0.get_valid_command_names():
+                game_1 = game_0.clone()
+                game_1.process_command(command_name_0)
+                (location_1, section_1, hashed_state_1) =  game_1.get_key()
+                if (hashed_state_1 == hashed_state_0): # Nothing changes after calling the command, so ignore it
+                    continue
+                reflexive_ind = False
+                for command_name_1 in game_1.get_valid_command_names():
+                    game_2 = game_1.clone()
+                    game_2.process_command(command_name_1)
+                    (location_2, section_2, hashed_state_2) =  game_2.get_key()
+                    if (hashed_state_2 == hashed_state_0): # There exists a command after the first command that can return to the old state
+                        reflexive_ind = True
+                        break
+                if reflexive_ind:
+                    reflexive_command_names.add(command_name_0)
+                    bonded_locations.add(game_1.location)
+            print('1-reflexive commands')
+            for command_name in reflexive_command_names:
+                print(' ', command_name)
+
+        print('1-bonded locations')
+        for location in bonded_locations:
+            print(' ', location)
+
 class Solver():
     def __init__(self, logic_core, skills):
         self.logic_core = logic_core
@@ -212,3 +267,5 @@ if __name__ == '__main__':
         with open(os.path.join('build', 'sandbox', 'solutions.json'), 'w') as solutions_json:
             json.dump(solutions, solutions_json, indent='    ', sort_keys=True)
         print('Wins:', map_solver.winning_game_count)
+        map_solver2 = Solver2(logic_core, skills)
+        map_solver2.solve()
