@@ -128,16 +128,28 @@ class Game:
         print('')
 
 class Solver2():
+    # A "required" trigger is a trigger invoked when it was the only one available
+    # An "optional" trigger is a trigger invoked when it was one of multiple triggers available
+    # A command is entirely made up of:
+    # - An initial trigger, which can be optional or required
+    # - 0 or more subsequent required triggers
     # A command is considered "n-reflexive" if you can return to the same state as you had before executing it in at most n additional commands
     # Examples:
     # - Going through a normal two-way door is a 1-reflexive command, because you can immediately go back through the door
+    # - Going through the far end of a Loading Room is a 1-reflexive command, because it involves:
+    #   - An initial trigger to 
     # - Falling into a pit that allows you to return to your original location by first going through an intermediary doorway is a 2-reflexive command
     # - Falling into an inescapable pit without any special abilities is NOT reflexive
     # Two locations are considered "n-bonded" if you can move from one to another via a series of n-reflexive commands
+    # A "command chain" usually begins with an optional command, and is followed by 0 or more required commands
+    # Going through a stage transition won't be considered 1-reflexive due to the duplication of Loading Rooms between stages
+    # - A 3-reflexive command would be enough to return you to your previous state through a stage transition
     def __init__(self, logic_core, skills):
         self.logic_core = logic_core
         for (skill_key, skill_value) in skills.items():
             self.logic_core['State'][skill_key] = skill_value
+        self.logic_core['State']['Location'] = 'Alchemy Laboratory, Entryway'
+        self.logic_core['State']['Section'] = 'Main'
     
     def solve(self):
         # Find all locations that are 1-bonded with the current location
@@ -145,28 +157,54 @@ class Solver2():
         work = [(0, Game(self.logic_core['State'], self.logic_core['Commands'], self.logic_core['Goals']))]
         while len(work) > 0:
             (step_count, game_0) = work.pop()
+            print('-', game_0.location)
+            if game_0.location in bonded_locations:
+                continue
             bonded_locations.add(game_0.location)
             (location_0, section_0, hashed_state_0) = game_0.get_key()
-            # Find 1-reflexive commands
+            # Find 3-reflexive commands
             reflexive_command_names = set()
             for command_name_0 in game_0.get_valid_command_names():
+                print('  - 0:', command_name_0, '(', game_0.location, ')')
                 game_1 = game_0.clone()
                 game_1.process_command(command_name_0)
                 (location_1, section_1, hashed_state_1) =  game_1.get_key()
-                if (hashed_state_1 == hashed_state_0): # Nothing changes after calling the command, so ignore it
-                    continue
                 reflexive_ind = False
                 for command_name_1 in game_1.get_valid_command_names():
+                    print('    - 1:', command_name_1, '(', game_1.location, ')')
                     game_2 = game_1.clone()
                     game_2.process_command(command_name_1)
                     (location_2, section_2, hashed_state_2) =  game_2.get_key()
                     if (hashed_state_2 == hashed_state_0): # There exists a command after the first command that can return to the old state
                         reflexive_ind = True
                         break
+                    else:
+                        for command_name_2 in game_2.get_valid_command_names():
+                            print('      - 2:', command_name_2, '(', game_2.location, ')')
+                            game_3 = game_2.clone()
+                            game_3.process_command(command_name_2)
+                            (location_3, section_3, hashed_state_3) =  game_3.get_key()
+                            if (hashed_state_3 == hashed_state_0): # There exists a command after the second command that can return to the old state
+                                reflexive_ind = True
+                                break
+                            else:
+                                for command_name_3 in game_3.get_valid_command_names():
+                                    print('        - 3:', command_name_3, '(', game_3.location, ')')
+                                    game_4 = game_3.clone()
+                                    game_4.process_command(command_name_3)
+                                    (location_4, section_4, hashed_state_4) =  game_4.get_key()
+                                    if (hashed_state_4 == hashed_state_0): # There exists a command after the third command that can return to the old state
+                                        reflexive_ind = True
+                                        break
+                            if reflexive_ind:
+                                break
+                        if reflexive_ind:
+                            break
                 if reflexive_ind:
                     reflexive_command_names.add(command_name_0)
-                    bonded_locations.add(game_1.location)
-            print('1-reflexive commands')
+                    if step_count <= 12:
+                        work.append((step_count + 1, game_1))
+            print('1-reflexive commands for ' + str(game_0.location))
             for command_name in reflexive_command_names:
                 print(' ', command_name)
 
@@ -244,6 +282,8 @@ if __name__ == '__main__':
         open(os.path.join('build', 'sandbox', 'skills.json')) as skills_json,
     ):
         data_core = roomrando.DataCore().get_core()
+        with open(os.path.join('build', 'sandbox', 'data-core.json'), 'w') as data_core_json:
+            json.dump(data_core, data_core_json, indent='    ', sort_keys=True)
         logic_core = roomrando.LogicCore(data_core, {}).get_core()
         logic_core['Goals'] = {
             'Debug': {
