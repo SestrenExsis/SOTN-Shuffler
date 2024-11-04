@@ -225,6 +225,7 @@ class PPF:
 
 class DataCore:
     def __init__(self):
+        print('Build data core')
         self.rooms = {}
         self.teleporters = {}
         for stage_folder in (
@@ -266,7 +267,6 @@ class LogicCore:
         ):
             nodes = {}
             for (location_name, room_data) in data_core['Rooms'].items():
-                # print(stage_name, location_name)
                 if data_core['Rooms'][location_name]['Stage'] != stage_name:
                     continue
                 room_top = room_data['Top']
@@ -322,7 +322,6 @@ class LogicCore:
                 if 'Outcomes' in command_info and 'Location' in command_info['Outcomes']:
                     old_location_name = command_info['Outcomes']['Location']
                     if old_location_name in data_core['Teleporters']['Sources']:
-                        # Castle Entrance, Fake Room With Teleporter A Exit - Left Passage
                         source = data_core['Teleporters']['Sources'][old_location_name]
                         target = data_core['Teleporters']['Targets'][source['Target']]
                         new_location_name = target['Stage'] + ', ' + target['Room']

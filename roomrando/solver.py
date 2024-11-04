@@ -147,7 +147,7 @@ class Solver2():
         # Find all locations that are N-bonded with the current location (N = reflexive_limit)
         # Two locations are considered "N-bonded" if you can move from one to another via a series of N-reflexive commands
         # A command is considered "N-reflexive" if you can return to the same state as you had before executing it in at most N additional commands
-        bonded_locations = set()
+        bonded_locations = {}
         work__bonded = collections.deque()
         work__bonded.appendleft((0, Game(self.logic_core['State'], self.logic_core['Commands'], self.logic_core['Goals'])))
         while len(work__bonded) > 0:
@@ -155,13 +155,14 @@ class Solver2():
             # print('-', game__bonded.location)
             if game__bonded.location in bonded_locations:
                 continue
-            bonded_locations.add(game__bonded.location)
+            bonded_locations[game__bonded.location] = set()
             (_, _, hashed_state__bonded) = game__bonded.get_key()
             # Find N-reflexive commands
             reflexive_command_names = set()
             work__reflexive = collections.deque()
             for command in game__bonded.get_valid_command_names():
                 work__reflexive.appendleft((0, command, command, game__bonded.clone()))
+                bonded_locations[game__bonded.location].add(command)
             while len(work__reflexive) > 0:
                 (step__reflexive, original_command__reflexive, current_command__reflexive, game__reflexive) = work__reflexive.pop()
                 # print(' ' * step__reflexive, step__reflexive, original_command__reflexive, current_command__reflexive)
@@ -177,9 +178,10 @@ class Solver2():
                 next_game__bonded = game__bonded.clone()
                 next_game__bonded.process_command(reflexive_command_name)
                 work__bonded.append((step__bonded + 1, next_game__bonded))
+            bonded_locations[game__bonded.location] -= reflexive_command_names
         print('3-bonded locations:')
-        for bonded_location in sorted(bonded_locations):
-            print('-', bonded_location)
+        for (bonded_location, valid_commands) in sorted(bonded_locations.items()):
+            print('-', bonded_location, ':', valid_commands)
 
 class Solver():
     def __init__(self, logic_core, skills):
