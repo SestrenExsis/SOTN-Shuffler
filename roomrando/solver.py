@@ -128,89 +128,58 @@ class Game:
         print('')
 
 class Solver2():
-    # A "required" trigger is a trigger invoked when it was the only one available
-    # An "optional" trigger is a trigger invoked when it was one of multiple triggers available
-    # A command is entirely made up of:
-    # - An initial trigger, which can be optional or required
-    # - 0 or more subsequent required triggers
-    # A command is considered "n-reflexive" if you can return to the same state as you had before executing it in at most n additional commands
     # Examples:
     # - Going through a normal two-way door is a 1-reflexive command, because you can immediately go back through the door
-    # - Going through the far end of a Loading Room is a 1-reflexive command, because it involves:
-    #   - An initial trigger to 
     # - Falling into a pit that allows you to return to your original location by first going through an intermediary doorway is a 2-reflexive command
     # - Falling into an inescapable pit without any special abilities is NOT reflexive
-    # Two locations are considered "n-bonded" if you can move from one to another via a series of n-reflexive commands
-    # A "command chain" usually begins with an optional command, and is followed by 0 or more required commands
-    # Going through a stage transition won't be considered 1-reflexive due to the duplication of Loading Rooms between stages
-    # - A 3-reflexive command would be enough to return you to your previous state through a stage transition
+    # - Going through the far end of a Loading Room is a 3-reflexive command, because it involves:
+    #   - Retreating to the loading room (this loading room is not the same as the one you started in, because you are in a new stage)
+    #   - Loading the original stage
+    #   - Returning to the loading room again
     def __init__(self, logic_core, skills):
         self.logic_core = logic_core
         for (skill_key, skill_value) in skills.items():
             self.logic_core['State'][skill_key] = skill_value
-        self.logic_core['State']['Location'] = 'Alchemy Laboratory, Entryway'
+        self.logic_core['State']['Location'] = 'Marble Gallery, Beneath Dropoff'
         self.logic_core['State']['Section'] = 'Main'
     
-    def solve(self):
-        # Find all locations that are 1-bonded with the current location
+    def solve(self, reflexive_limit: int=3):
+        # Find all locations that are N-bonded with the current location (N = reflexive_limit)
+        # Two locations are considered "N-bonded" if you can move from one to another via a series of N-reflexive commands
+        # A command is considered "N-reflexive" if you can return to the same state as you had before executing it in at most N additional commands
         bonded_locations = set()
-        work = [(0, Game(self.logic_core['State'], self.logic_core['Commands'], self.logic_core['Goals']))]
-        while len(work) > 0:
-            (step_count, game_0) = work.pop()
-            print('-', game_0.location)
-            if game_0.location in bonded_locations:
+        work__bonded = collections.deque()
+        work__bonded.appendleft((0, Game(self.logic_core['State'], self.logic_core['Commands'], self.logic_core['Goals'])))
+        while len(work__bonded) > 0:
+            (step__bonded, game__bonded) = work__bonded.pop()
+            # print('-', game__bonded.location)
+            if game__bonded.location in bonded_locations:
                 continue
-            bonded_locations.add(game_0.location)
-            (location_0, section_0, hashed_state_0) = game_0.get_key()
-            # Find 3-reflexive commands
+            bonded_locations.add(game__bonded.location)
+            (_, _, hashed_state__bonded) = game__bonded.get_key()
+            # Find N-reflexive commands
             reflexive_command_names = set()
-            for command_name_0 in game_0.get_valid_command_names():
-                print('  - 0:', command_name_0, '(', game_0.location, ')')
-                game_1 = game_0.clone()
-                game_1.process_command(command_name_0)
-                (location_1, section_1, hashed_state_1) =  game_1.get_key()
-                reflexive_ind = False
-                for command_name_1 in game_1.get_valid_command_names():
-                    print('    - 1:', command_name_1, '(', game_1.location, ')')
-                    game_2 = game_1.clone()
-                    game_2.process_command(command_name_1)
-                    (location_2, section_2, hashed_state_2) =  game_2.get_key()
-                    if (hashed_state_2 == hashed_state_0): # There exists a command after the first command that can return to the old state
-                        reflexive_ind = True
-                        break
-                    else:
-                        for command_name_2 in game_2.get_valid_command_names():
-                            print('      - 2:', command_name_2, '(', game_2.location, ')')
-                            game_3 = game_2.clone()
-                            game_3.process_command(command_name_2)
-                            (location_3, section_3, hashed_state_3) =  game_3.get_key()
-                            if (hashed_state_3 == hashed_state_0): # There exists a command after the second command that can return to the old state
-                                reflexive_ind = True
-                                break
-                            else:
-                                for command_name_3 in game_3.get_valid_command_names():
-                                    print('        - 3:', command_name_3, '(', game_3.location, ')')
-                                    game_4 = game_3.clone()
-                                    game_4.process_command(command_name_3)
-                                    (location_4, section_4, hashed_state_4) =  game_4.get_key()
-                                    if (hashed_state_4 == hashed_state_0): # There exists a command after the third command that can return to the old state
-                                        reflexive_ind = True
-                                        break
-                            if reflexive_ind:
-                                break
-                        if reflexive_ind:
-                            break
-                if reflexive_ind:
-                    reflexive_command_names.add(command_name_0)
-                    if step_count <= 12:
-                        work.append((step_count + 1, game_1))
-            print('1-reflexive commands for ' + str(game_0.location))
-            for command_name in reflexive_command_names:
-                print(' ', command_name)
-
-        print('1-bonded locations')
-        for location in bonded_locations:
-            print(' ', location)
+            work__reflexive = collections.deque()
+            for command in game__bonded.get_valid_command_names():
+                work__reflexive.appendleft((0, command, command, game__bonded.clone()))
+            while len(work__reflexive) > 0:
+                (step__reflexive, original_command__reflexive, current_command__reflexive, game__reflexive) = work__reflexive.pop()
+                # print(' ' * step__reflexive, step__reflexive, original_command__reflexive, current_command__reflexive)
+                game__reflexive.process_command(current_command__reflexive)
+                (_, _, hashed_state__reflexive) = game__reflexive.get_key()
+                if hashed_state__reflexive == hashed_state__bonded:
+                    reflexive_command_names.add(original_command__reflexive)
+                    continue
+                if step__reflexive < reflexive_limit:
+                    for next_command__reflexive in game__reflexive.get_valid_command_names():
+                        work__reflexive.appendleft((step__reflexive + 1, original_command__reflexive, next_command__reflexive, game__reflexive.clone()))
+            for reflexive_command_name in reflexive_command_names:
+                next_game__bonded = game__bonded.clone()
+                next_game__bonded.process_command(reflexive_command_name)
+                work__bonded.append((step__bonded + 1, next_game__bonded))
+        print('3-bonded locations:')
+        for bonded_location in sorted(bonded_locations):
+            print('-', bonded_location)
 
 class Solver():
     def __init__(self, logic_core, skills):
