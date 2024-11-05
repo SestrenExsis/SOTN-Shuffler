@@ -578,12 +578,13 @@ if __name__ == '__main__':
             'Outer Wall': [],
         }
     seed = random.randint(0, 2 ** 64)
-    TARGET = 250
+    MULTIPLIER = 100
+    WEIGHTS = [3, 13, 13, 13] # 300, 1300
     for (stage_name, target_seed_count) in (
-        ('Castle Entrance', TARGET),
-        ('Alchemy Laboratory', 5 * TARGET),
-        ('Marble Gallery', 5 * TARGET),
-        ('Outer Wall', 5 * TARGET),
+        ('Castle Entrance', MULTIPLIER * WEIGHTS[0]),
+        ('Alchemy Laboratory', MULTIPLIER * WEIGHTS[1]),
+        ('Marble Gallery', MULTIPLIER * WEIGHTS[2]),
+        ('Outer Wall', MULTIPLIER * WEIGHTS[3]),
     ):
         print(stage_name, target_seed_count, target_seed_count - len(generated_stages[stage_name]))
         if stage_name not in generated_stages:

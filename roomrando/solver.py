@@ -80,6 +80,30 @@ class Game:
                 break
         return result
 
+    def cheat_location(self, location_name: str, section_name: str, helper: str=None):
+        self.state['Location'] = location_name
+        self.state['Section'] = section_name
+        if helper is None:
+            if 'Helper' in self.state:
+                self.state.pop('Helper')
+        else:
+            self.state['Helper'] = helper
+    
+    def cheat_command(self, location_name: str, command_name: str):
+        command_data = self.commands[location_name]
+        # Apply outcomes from the command
+        for (key, value) in command_data[command_name]['Outcomes'].items():
+            if type(value) in (str, bool):
+                if self.debug and (key not in self.state or self.state[key] != value):
+                    print('  +', key, ': ', value)
+                self.state[key] = value
+            elif type(value) in (int, float):
+                if key not in self.state:
+                    self.state[key] = 0
+                if self.debug:
+                    print('  +', key, ': ', value)
+                self.state[key] += value
+
     def process_command(self, command_name: str):
         location = self.state['Location']
         self.history.append((self.layer, location, command_name))
