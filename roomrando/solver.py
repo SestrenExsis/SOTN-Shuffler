@@ -146,7 +146,7 @@ class Game:
             raise Exception()
         print('')
 
-class Solver2():
+class Solver():
     # Examples:
     # - Going through a normal two-way door is a 1-reflexive command, because you can immediately go back through the door
     # - Falling into a pit that allows you to return to your original location by first going through an intermediary doorway is a 2-reflexive command
@@ -220,66 +220,6 @@ class Solver2():
                     next_game__solver = game.clone()
                     next_game__solver.process_command(next_command__solver)
                     work__solver.appendleft((step__solver + 1, next_game__solver))
-
-class Solver():
-    def __init__(self, logic_core, skills):
-        self.logic_core = logic_core
-        for (skill_key, skill_value) in skills.items():
-            self.logic_core['State'][skill_key] = skill_value
-        # TODO(sestren): Add game rules alongside skills as a modifer
-        self.winning_game_count = 0
-        self.winning_games = collections.deque()
-        self.losing_game_count = 0
-        self.losing_games = {}
-        self.memo = {} # (location, section, hashed_state): (distance, game)
-        self.work = collections.deque()
-
-    def solve(self, max_steps=8):
-        self.winning_game_count = 0
-        self.winning_games = collections.deque()
-        self.losing_game_count = 0
-        self.losing_games = {}
-        self.memo = {} # (location, section, hashed_state): (distance, game)
-        self.work = collections.deque()
-        self.work.appendleft((0, Game(self.logic_core['State'], self.logic_core['Commands'], self.logic_core['Goals'])))
-        while len(self.work) > 0:
-            (distance, game) = self.work.pop()
-            goal_reached = False
-            for (goal_name, requirements) in game.goals.items():
-                for (key, expected_value) in requirements.items():
-                    if key not in game.state or game.state[key] != expected_value:
-                        break
-                else:
-                    goal_reached = True
-                    break
-            if goal_reached:
-                self.winning_games.append((game.state, game.history))
-                while len(self.winning_games) > 10:
-                    self.winning_games.popleft()
-                self.winning_game_count += 1
-                break
-            if distance > max_steps:
-                location = game.state['Location']
-                if location not in self.losing_games:
-                    self.losing_games[location] = 0
-                self.losing_games[location] += 1
-                continue
-            game_key = game.get_key()
-            if game_key in self.memo and self.memo[game_key][0] < distance:
-                continue
-            self.memo[game_key] = (distance, game)
-            commands = game.get_valid_command_names()
-            if len(commands) < 1:
-                location = game.state['Location']
-                if location not in self.losing_games:
-                    self.losing_games[location] = 0
-                self.losing_games[location] += 1
-                continue
-            random.shuffle(commands) # Randomize the order to prevent favoring commands based on their name
-            for command_name in commands:
-                next_game = game.clone()
-                next_game.process_command(command_name)
-                self.work.appendleft((distance + 1, next_game))
 
 if __name__ == '__main__':
     '''
