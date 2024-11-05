@@ -147,14 +147,6 @@ class Game:
         print('')
 
 class Solver():
-    # Examples:
-    # - Going through a normal two-way door is a 1-reflexive command, because you can immediately go back through the door
-    # - Falling into a pit that allows you to return to your original location by first going through an intermediary doorway is a 2-reflexive command
-    # - Falling into an inescapable pit without any special abilities is NOT reflexive
-    # - Going through the far end of a Loading Room is a 3-reflexive command, because it involves:
-    #   - Retreating to the loading room (this loading room is not the same as the one you started in, because you are in a new stage)
-    #   - Loading the original stage
-    #   - Returning to the loading room again
     def __init__(self, logic_core, skills):
         self.logic_core = logic_core
         for (skill_key, skill_value) in skills.items():
@@ -165,12 +157,14 @@ class Solver():
         }
     
     def solve(self, reflexive_limit: int=3, max_layers: int=8):
+        # TODO(sestren): Improve performance with memoization
         solution_found = False
         initial_game = Game(self.logic_core['State'], self.logic_core['Commands'], self.logic_core['Goals'])
         work__solver = collections.deque()
         work__solver.appendleft((0, initial_game))
         while len(work__solver) > 0 and not solution_found:
             (step__solver, game__solver) = work__solver.pop()
+            print(step__solver, game__solver.state['Location'])
             game__solver.layer = step__solver
             if game__solver.goal_achieved:
                 solution_found = True
@@ -181,6 +175,14 @@ class Solver():
             # Find all locations that are N-bonded with the current location (N = reflexive_limit)
             # Two locations are considered "N-bonded" if you can move from one to another via a series of N-reflexive commands
             # A command is considered "N-reflexive" if you can return to the same state as you had before executing it in at most N additional commands
+            # Examples:
+            # - Going through a normal two-way door is a 1-reflexive command, because you can immediately go back through the door
+            # - Falling into a pit that allows you to return to your original location by first going through an intermediary doorway is a 2-reflexive command
+            # - Falling into an inescapable pit without any special abilities is NOT reflexive
+            # - Going through the far end of a Loading Room is a 3-reflexive command, because it involves:
+            #   - Retreating to the loading room (this loading room is not the same as the one you started in, because you are in a new stage)
+            #   - Loading the original stage
+            #   - Returning to the loading room again
             bonded_locations = {}
             work__bonded = collections.deque()
             work__bonded.appendleft((0, game__solver))
@@ -258,12 +260,16 @@ if __name__ == '__main__':
             #     'Relic - Soul of Wolf': True,
             # },
             'Debug 7': {
-                'Location': 'Marble Gallery, Clock Room',
+                'Location': 'Marble Gallery, Long Hallway',
                 'Relic - Soul of Wolf': True,
             },
-            'Debug 8': {
-                'Location': 'Marble Gallery, Pathway After Left Statue',
-            },
+            # 'Debug 8': {
+            #     'Location': 'Marble Gallery, Clock Room',
+            #     'Relic - Soul of Wolf': True,
+            # },
+            # 'Debug 9': {
+            #     'Location': 'Marble Gallery, Loading Room D',
+            # },
             # 'Debug 99': {
             #     'Location': 'Colosseum, Entrance',
             #     'Relic - Form of Mist': True,
@@ -273,9 +279,9 @@ if __name__ == '__main__':
             json.dump(logic_core, logic_core_json, indent='    ', sort_keys=True)
         skills = json.load(skills_json)
         print('Solving')
-        map_solver = Solver2(logic_core, skills)
+        map_solver = Solver(logic_core, skills)
         # map_solver.solve(51 + 4)
-        map_solver.solve(3, 12)
+        map_solver.solve(3, 10)
         if len(map_solver.results['Wins']) > 0:
             (winning_layers, winning_game) = map_solver.results['Wins'][-1]
             print('-------------')
@@ -287,13 +293,5 @@ if __name__ == '__main__':
             for (key, value) in winning_game.state.items():
                 print('-', key, ':', value)
             print('-------------')
-        # Halt and write files if solution found
-        solutions = {
-            'Win Count': len(map_solver.results['Wins']),
-            'Loss Count': len(map_solver.results['Losses']),
-            'Solver Version': SOLVER_VERSION,
-        }
-        with open(os.path.join('build', 'sandbox', 'solutions.json'), 'w') as solutions_json:
-            json.dump(solutions, solutions_json, indent='    ', sort_keys=True)
-        # map_solver2 = Solver2(logic_core, skills)
-        # map_solver2.solve()
+            while True:
+                winning_game.play()

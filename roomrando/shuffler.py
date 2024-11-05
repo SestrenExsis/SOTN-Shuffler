@@ -100,28 +100,23 @@ if __name__ == '__main__':
             logic_core = roomrando.LogicCore(data_core, changes).get_core()
             # Solve
             logic_core['Goals'] = {
-                'Debug - Reach Alchemy Laboratory, Entryway': {
-                    'Location': 'Alchemy Laboratory, Entryway',
+                'Debug - Collect Soul of Wolf': {
+                    'Relic - Soul of Wolf': True,
+                    'Location': 'Outer Wall, Exit to Marble Gallery',
                 },
             }
             map_solver = solver.Solver(logic_core, skills)
-            map_solver.solve(8)
-            print('Losing games, last location')
-            for (location, count) in map_solver.losing_games.items():
-                print(' ', location, ':', count)
-            # Halt and write files if solution found
-            if map_solver.winning_game_count > 0:
+            map_solver.solve(3, 7)
+            if len(map_solver.results['Wins']) > 0:
                 with open(os.path.join('build', 'sandbox', 'changes.json'), 'w') as changes_json:
                     json.dump(changes, changes_json, indent='    ', sort_keys=True)
                 with open(os.path.join('build', 'sandbox', 'logic-core.json'), 'w') as logic_core_json:
                     json.dump(logic_core, logic_core_json, indent='    ', sort_keys=True)
-                solutions = {
-                    'Win Count': map_solver.winning_game_count,
-                    'Wins': list(map_solver.winning_games),
-                    'Loss Count': map_solver.losing_game_count,
-                    'Losses': map_solver.losing_games,
+                (winning_layers, winning_game) = map_solver.results['Wins'][-1]
+                solution = {
+                    'Final Layer': winning_layers,
+                    'State': winning_game.state,
+                    'History': winning_game.history,
                 }
-                with open(os.path.join('build', 'sandbox', 'solutions.json'), 'w') as solutions_json:
-                    json.dump(solutions, solutions_json, indent='    ', sort_keys=True)
-                # patcher.patch(changes.json, 'build/patch.ppf')
-                break
+                with open(os.path.join('build', 'sandbox', 'solution.json'), 'w') as solution_json:
+                    json.dump(solution, solution_json, indent='    ', sort_keys=True)
