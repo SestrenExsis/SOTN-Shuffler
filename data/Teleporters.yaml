@@ -15,22 +15,21 @@ Sources:
         Stage: Castle Entrance Revisited
         Room: Fake Room With Teleporter A
         Target: Alchemy Laboratory, Entryway (Right Red Door)
-    Marble Gallery, Fake Room With Teleporter A:
-        Index: 0
-        Stage: Marble Gallery
-        Room: Fake Room With Teleporter A
-        Target: Alchemy Laboratory, Exit to Marble Gallery (Right Red Door)
     Marble Gallery, Fake Room With Teleporter B:
         Index: 2
         Stage: Marble Gallery
         Room: Fake Room With Teleporter B
         Target: Outer Wall, Exit to Marble Gallery (Left Red Door)
+    Marble Gallery, Fake Room With Teleporter C:
+        Index: 0
+        Stage: Marble Gallery
+        Room: Fake Room With Teleporter C
+        Target: Alchemy Laboratory, Exit to Marble Gallery (Right Red Door)
     Outer Wall, Fake Room With Teleporter D:
         Index: 40
         Stage: Outer Wall
         Room: Fake Room With Teleporter D
         Target: Marble Gallery, Long Hallway (Right Red Door)
-    TODO: Add backtracking teleporters (e.g., Outer Wall to Marble Gallery)
 Targets:
     Alchemy Laboratory, Entryway (Right Red Door):
         Stage: Alchemy Laboratory

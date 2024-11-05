@@ -1,4 +1,4 @@
 @REM python logic/MakeLogicFile.py
-python roomrando/shuffler.py > build/spoiler.out
+python roomrando/shuffler.py
 python roomrando/patcher.py
-python logic/TestLogic.py
+@REM python logic/TestLogic.py

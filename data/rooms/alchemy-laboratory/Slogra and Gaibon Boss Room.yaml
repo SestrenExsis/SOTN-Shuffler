@@ -40,7 +40,6 @@ Commands:
             Progression - Slogra and Gaibon Defeated: true
         Requirements:
             Default:
-                Location: Alchemy Laboratory, Slogra and Gaibon Boss Room
                 Progression - Slogra and Gaibon Defeated: false
                 Section: Ground
     Move - Alcove:
@@ -48,26 +47,21 @@ Commands:
             Section: Alcove
         Requirements:
             Bat:
-                Location: Alchemy Laboratory, Slogra and Gaibon Boss Room
                 Section: Ground
                 Progression - Bat Transformation: true
             Repeated Dive Kicks Off Gaibon:
-                Location: Alchemy Laboratory, Slogra and Gaibon Boss Room
                 Section: Ground
                 Execution - Repeated Dive Kick Head Stomps: true
                 Progression - Double Jump: true
                 Progression - Slogra and Gaibon Defeated: false
             Gravity Jump:
-                Location: Alchemy Laboratory, Slogra and Gaibon Boss Room
                 Section: Ground
                 Progression - Gravity Jump: true
             Powered Mist:
-                Location: Alchemy Laboratory, Slogra and Gaibon Boss Room
                 Section: Ground
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
             Wolf-Mist Rise:
-                Location: Alchemy Laboratory, Slogra and Gaibon Boss Room
                 Section: Ground
                 Execution - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
@@ -77,5 +71,4 @@ Commands:
             Section: Ground
         Requirements:
             Default:
-                Location: Alchemy Laboratory, Slogra and Gaibon Boss Room
                 Section: Alcove

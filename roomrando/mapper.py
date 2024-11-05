@@ -578,12 +578,15 @@ if __name__ == '__main__':
             'Outer Wall': [],
         }
     seed = random.randint(0, 2 ** 64)
+    MULTIPLIER = 100
+    WEIGHTS = [3, 13, 13, 13] # 300, 1300
     for (stage_name, target_seed_count) in (
-        ('Castle Entrance', 200),
-        ('Alchemy Laboratory', 1000),
-        ('Marble Gallery', 1000),
-        ('Outer Wall', 1000),
+        ('Castle Entrance', MULTIPLIER * WEIGHTS[0]),
+        ('Alchemy Laboratory', MULTIPLIER * WEIGHTS[1]),
+        ('Marble Gallery', MULTIPLIER * WEIGHTS[2]),
+        ('Outer Wall', MULTIPLIER * WEIGHTS[3]),
     ):
+        print(stage_name, target_seed_count, target_seed_count - len(generated_stages[stage_name]))
         if stage_name not in generated_stages:
             generated_stages[stage_name] = []
         while len(generated_stages[stage_name]) < target_seed_count:
@@ -605,5 +608,5 @@ if __name__ == '__main__':
             # with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'w') as generated_stages_json:
             #     json.dump(generated_stages, generated_stages_json, indent='    ', sort_keys=True, default=str)
             seed = stage_map.rng.randint(0, 2 ** 64)
-    with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'w') as generated_stages_json:
-        json.dump(generated_stages, generated_stages_json, indent='    ', sort_keys=True, default=str)
+        with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'w') as generated_stages_json:
+            json.dump(generated_stages, generated_stages_json, indent='    ', sort_keys=True, default=str)
