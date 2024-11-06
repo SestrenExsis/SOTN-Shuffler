@@ -31,6 +31,7 @@ if __name__ == '__main__':
             ('Alchemy Laboratory', roomrando.Address(0x049C0F2C, 'GAMEDATA')),
             ('Marble Gallery', roomrando.Address(0x03F8D7E0, 'GAMEDATA')),
             ('Outer Wall', roomrando.Address(0x0404A488, 'GAMEDATA')),
+            ('Olrox\'s Quarters', roomrando.Address(0x040FE2A0, 'GAMEDATA')),
         ):
             rooms_address = roomrando.Address(room_address_start.address, 'GAMEDATA')
             extracted_data['Extractions']['Rooms'][stage_name] = {
@@ -93,6 +94,7 @@ if __name__ == '__main__':
             ('Alchemy Laboratory', roomrando.Address(0x049BE964, 'GAMEDATA'), 35),
             ('Marble Gallery', roomrando.Address(0x03F8B150, 'GAMEDATA'), 54),
             ('Outer Wall', roomrando.Address(0x040471D4, 'GAMEDATA'), 19),
+            ('Olrox\'s Quarters', roomrando.Address(0x040FB110, 'GAMEDATA'), 35),
         ):
             layers_address = roomrando.Address(layers_address_start.address, 'GAMEDATA')
             extracted_data['Extractions']['Layers'][stage_name] = {

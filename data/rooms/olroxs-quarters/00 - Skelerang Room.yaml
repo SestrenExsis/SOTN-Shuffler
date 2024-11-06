@@ -1,0 +1,30 @@
+
+Stage: Olrox's Quarters
+Room: Skelerang Room
+Index: 0
+Left: 29
+Top: 23
+Columns: 1
+Rows: 3
+Total Cells: 3
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 1
+Nodes:
+    Upper-Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Right Passage:
+        Type: Passage
+        Row: 2
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

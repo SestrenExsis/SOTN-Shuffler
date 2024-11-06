@@ -1,0 +1,23 @@
+
+Stage: Olrox's Quarters
+Room: Unknown Room 13
+Index: 13
+Left: 99
+Top: 99
+Columns: 99
+Rows: 99
+Total Cells: 99
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 99
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

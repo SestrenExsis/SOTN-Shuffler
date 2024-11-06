@@ -181,7 +181,6 @@ class Solver():
         }
     
     def solve(self, reflexive_limit: int=3, max_layers: int=8):
-        # TODO(sestren): Improve performance with memoization
         memo = {}
         solution_found = False
         initial_game = Game(self.logic_core['State'], self.logic_core['Commands'], self.logic_core['Goals'])
