@@ -1,23 +1,23 @@
 
 Stage: Olrox's Quarters
-Room: Save Room A
+Room: Garnet Room
 Index: 10
-Left: 60
-Top: 13
+Left: 33
+Top: 18
 Columns: 1
 Rows: 1
 Total Cells: 1
 Empty Cells: {}
 Entities:
 Flags:
-    - Save With Right Opening
-Foreground Layer ID: 15
+    - Scroll Type 1
+Foreground Layer ID: 21
 Nodes:
-    Right Passage:
+    Left Passage:
         Type: Passage
         Row: 0
         Column: 0
-        Edge: Right
+        Edge: Left
         Entry Section: Main
         Exit Section: Main
 Commands: {}

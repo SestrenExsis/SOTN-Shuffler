@@ -2,22 +2,36 @@
 Stage: Olrox's Quarters
 Room: Catwalk Crypt
 Index: 15
-Left: 99
-Top: 99
-Columns: 99
-Rows: 99
-Total Cells: 99
+Left: 18
+Top: 19
+Columns: 7
+Rows: 1
+Total Cells: 7
 Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Foreground Layer ID: 99
+Foreground Layer ID: 28
 Nodes:
-    Left Passage:
-        Type: Passage
+    Left Red Door:
+        Type: Red Door
         Row: 0
         Column: 0
         Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Left-Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Top
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 6
+        Edge: Right
         Entry Section: Main
         Exit Section: Main
 Commands: {}
