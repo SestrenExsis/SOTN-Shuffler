@@ -2,22 +2,29 @@
 Stage: Olrox's Quarters
 Room: Bottom of Stairwell
 Index: 1
-Left: 99
-Top: 99
-Columns: 99
-Rows: 99
-Total Cells: 99
+Left: 28
+Top: 23
+Columns: 1
+Rows: 1
+Total Cells: 1
 Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Foreground Layer ID: 99
+Foreground Layer ID: 3
 Nodes:
-    Left Passage:
+    Top Passage:
         Type: Passage
         Row: 0
         Column: 0
-        Edge: Left
+        Edge: Top
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
         Entry Section: Main
         Exit Section: Main
 Commands: {}
