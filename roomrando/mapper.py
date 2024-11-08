@@ -3,7 +3,8 @@ import hashlib
 import json
 import os
 import random
-import yaml
+
+import roomrando
 
 class RoomNode:
     def __init__(self, room, row: int, column: int, edge: str, type: str):
@@ -275,37 +276,6 @@ class RoomSet:
     def remove_room(self, room_name):
         self.rooms.pop(room_name, None)
 
-class DataCore:
-    def __init__(self):
-        self.rooms = {}
-        self.teleporters = {}
-        for stage_folder in (
-            'castle-entrance',
-            # 'castle-entrance-revisited',
-            'alchemy-laboratory',
-            'marble-gallery',
-            'outer-wall',
-        ):
-            folder_path = os.path.join('data', 'rooms', stage_folder)
-            for file_name in os.listdir(folder_path):
-                if file_name[-5:] != '.yaml':
-                    continue
-                file_path = os.path.join(folder_path, file_name)
-                with open(file_path) as open_file:
-                    yaml_obj = yaml.safe_load(open_file)
-                    room_name = yaml_obj['Stage'] + ', ' + yaml_obj['Room']
-                    self.rooms[room_name] = yaml_obj
-        with open(os.path.join('data', 'Teleporters.yaml')) as open_file:
-            yaml_obj = yaml.safe_load(open_file)
-            self.teleporters = yaml_obj
-    
-    def get_core(self) -> dict:
-        result = {
-            'Rooms': self.rooms,
-            'Teleporters': self.teleporters,
-        }
-        return result
-
 stages = {
     'Castle Entrance': [
         {
@@ -487,6 +457,46 @@ stages = {
         { 'Outer Wall, Secret Platform Room': (0, 0) },
         { 'Outer Wall, Top of Outer Wall': (0, 0) },
     ],
+    'Olrox\'s Quarters': [
+        {
+            'Skelerang Room': (0, 0),
+            'Loading Room A': (2, 1),
+            'Fake Room With Teleporter D': (2, 2),
+        },
+        {
+            'Fake Room With Teleporter C': (1, 0),
+            'Loading Room B': (1, 1),
+            'Grand Staircase': (0, 2),
+            'Bottom of Stairwell': (2, 1),
+        },
+        {
+            'Tall Shaft': (0, 0),
+            'Loading Room C': (5, 1),
+            'Fake Room With Teleporter B': (5, 2),
+        },
+        {
+            'Fake Room With Teleporter A': (0, 0),
+            'Loading Room D': (0, 1),
+            'Catwalk Crypt': (0, 2),
+        },
+        {
+            'Fake Room With Teleporter A': (0, 0),
+            'Loading Room D': (0, 1),
+            'Catwalk Crypt': (0, 2),
+        },
+        { 'Secret Onyx Room': (0, 0) },
+        { 'Hammer and Blade Room': (0, 0) },
+        { 'Empty Room': (0, 0) },
+        { 'Prison': (0, 0) },
+        { 'Open Courtyard': (0, 0) },
+        { 'Empty Cells': (0, 0) },
+        { 'Garnet Room': (0, 0) },
+        { 'Narrow Hallway to Olrox': (0, 0) },
+        { 'Olrox\'s Room': (0, 0) },
+        { 'Echo of Bat Room': (0, 0) },
+        { 'Sword Card Room': (0, 0) },
+        { 'Save Room A': (0, 0) },
+    ],
 }
 
 def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
@@ -564,7 +574,7 @@ if __name__ == '__main__':
     python mapper.py
     '''
     GENERATION_VERSION = '0.0.2'
-    data_core = DataCore().get_core()
+    data_core = roomrando.DataCore().get_core()
     with open(os.path.join('build', 'sandbox', 'data-core.json'), 'w') as data_core_json:
         json.dump(data_core, data_core_json, indent='    ', sort_keys=True)
     try:
@@ -576,16 +586,20 @@ if __name__ == '__main__':
             'Alchemy Laboratory': [],
             'Marble Gallery': [],
             'Outer Wall': [],
+            'Olrox\'s Quarters': [],
         }
     seed = random.randint(0, 2 ** 64)
     MULTIPLIER = 100
-    WEIGHTS = [3, 13, 13, 13] # 300, 1300
+    WEIGHTS = [3, 13, 13, 13, 1] # 300, 1300
     for (stage_name, target_seed_count) in (
         ('Castle Entrance', MULTIPLIER * WEIGHTS[0]),
         ('Alchemy Laboratory', MULTIPLIER * WEIGHTS[1]),
         ('Marble Gallery', MULTIPLIER * WEIGHTS[2]),
         ('Outer Wall', MULTIPLIER * WEIGHTS[3]),
+        ('Olrox\'s Quarters', MULTIPLIER * WEIGHTS[4]),
     ):
+        if stage_name not in generated_stages:
+            generated_stages[stage_name] = []
         print(stage_name, target_seed_count, target_seed_count - len(generated_stages[stage_name]))
         if stage_name not in generated_stages:
             generated_stages[stage_name] = []

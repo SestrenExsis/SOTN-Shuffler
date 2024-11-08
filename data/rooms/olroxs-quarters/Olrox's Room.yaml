@@ -1,0 +1,71 @@
+
+Stage: Olrox's Quarters
+Room: Olrox's Room
+Index: 12
+Left: 19
+Top: 16
+Columns: 2
+Rows: 2
+Total Cells: 4
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 24
+Nodes:
+    Upper-Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Upper-Left Ledge
+        Exit Section: Upper-Left Ledge
+    Upper-Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Right
+        Entry Section: Upper-Right Ledge
+        Exit Section: Upper-Right Ledge
+Commands:
+    Action - Defeat Olrox:
+        Outcomes:
+            Progression - Olrox Defeated: true
+        Requirements:
+            Default:
+                Progression - Olrox Defeated: false
+                Section: Ground
+    Move - Upper-Left Ledge:
+        Outcomes:
+            Section: Upper-Left Ledge
+        Requirements:
+            Ground - Bat, Boss Defeated:
+                Section: Ground
+                Progression - Bat Transformation: true
+                Progression - Olrox Defeated: true
+            Ground - Gravity Jump, Boss Defeated:
+                Section: Ground
+                Progression - Gravity Jump: true
+                Progression - Olrox Defeated: true
+            Ground - Powered Mist, Boss Defeated:
+                Section: Ground
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+                Progression - Olrox Defeated: true
+    Move - Upper-Right Ledge:
+        Outcomes:
+            Section: Upper-Right Ledge
+        Requirements:
+            Ground - Bat, Boss Defeated:
+                Section: Ground
+                Progression - Bat Transformation: true
+                Progression - Olrox Defeated: true
+            Ground - Gravity Jump, Boss Defeated:
+                Section: Ground
+                Progression - Gravity Jump: true
+                Progression - Olrox Defeated: true
+            Ground - Powered Mist, Boss Defeated:
+                Section: Ground
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+                Progression - Olrox Defeated: true

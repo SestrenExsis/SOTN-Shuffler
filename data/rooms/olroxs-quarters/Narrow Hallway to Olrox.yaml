@@ -1,0 +1,58 @@
+
+Stage: Olrox's Quarters
+Room: Narrow Hallway to Olrox
+Index: 11
+Left: 21
+Top: 16
+Columns: 4
+Rows: 1
+Total Cells: 4
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 23
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Left Side
+        Exit Section: Left Side
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 3
+        Edge: Right
+        Entry Section: Right Side
+        Exit Section: Right Side
+Commands:
+    Move - Left Side:
+        Outcomes:
+            Section: Left Side
+        Requirements:
+            Right Side - Bat:
+                Section: Right Side
+                Progression - Bat Transformation: true
+            Right Side - Wolf:
+                Section: Right Side
+                Progression - Wolf Transformation: true
+            Right Side - Powered Mist:
+                Section: Right Side
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+    Move - Right Side:
+        Outcomes:
+            Section: Right Side
+        Requirements:
+            Left Side - Bat:
+                Section: Left Side
+                Progression - Bat Transformation: true
+            Left Side - Wolf:
+                Section: Left Side
+                Progression - Wolf Transformation: true
+            Left Side - Powered Mist:
+                Section: Left Side
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true

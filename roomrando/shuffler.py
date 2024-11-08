@@ -23,6 +23,7 @@ if __name__ == '__main__':
             'Alchemy Laboratory': [],
             'Marble Gallery': [],
             'Outer Wall': [],
+            # 'Olrox\'s Quarters': [],
         }
     with (
         open(os.path.join('build', 'sandbox', 'rules.json')) as rules_json,
@@ -43,6 +44,7 @@ if __name__ == '__main__':
                 ('Alchemy Laboratory', random.randint(0, 2 ** 64)),
                 ('Marble Gallery', random.randint(0, 2 ** 64)),
                 ('Outer Wall', random.randint(0, 2 ** 64)),
+                # ('Olrox\'s Quarters', random.randint(0, 2 ** 64)),
             )
             print('Randomize with seeds')
             for (stage_name, stage_seed) in stages_to_process:
@@ -66,24 +68,24 @@ if __name__ == '__main__':
                 stages[stage_name] = stage_map
                 print(stage_map.current_seed)
             # Current stage
-            # stage_name = 'Outer Wall'
-            # print(stage_name)
-            # stage_map = mapper.Mapper(data_core, stage_name, random.randint(0, 2 ** 64))
-            # while True:
-            #     stage_map.generate()
-            #     rooms_found = set(stage_map.stage.rooms)
-            #     if len(rooms_found) >= 23:
-            #         print(stage_name, len(rooms_found), stage_map.current_seed)
-            #         # for row_data in stage_map.stage.get_stage_spoiler(data_core):
-            #         #     print(row_data)
-            #         # for row_data in stage_map.stage.get_room_spoiler(data_core):
-            #         #     print(row_data)
-            #         for room_name in sorted(data_core['Rooms']):
-            #             if room_name.startswith('Outer Wall, ') and room_name not in rooms_found:
-            #                 print(' ' , room_name)
-            #     if stage_map.validate():
-            #         break
-            # stages[stage_name] = stage_map
+            stage_name = 'Olrox\'s Quarters'
+            print(stage_name)
+            stage_map = mapper.Mapper(data_core, stage_name, random.randint(0, 2 ** 64))
+            while True:
+                stage_map.generate()
+                rooms_found = set(stage_map.stage.rooms)
+                if len(rooms_found) >= 23:
+                    print(stage_name, len(rooms_found), stage_map.current_seed)
+                    # for row_data in stage_map.stage.get_stage_spoiler(data_core):
+                    #     print(row_data)
+                    # for row_data in stage_map.stage.get_room_spoiler(data_core):
+                    #     print(row_data)
+                    for room_name in sorted(data_core['Rooms']):
+                        if room_name.startswith('Olrox\'s Quarters, ') and room_name not in rooms_found:
+                            print(' ' , room_name)
+                if stage_map.validate():
+                    break
+            stages[stage_name] = stage_map
             # ...
             changes = {
                 'Rooms': {}

@@ -1,0 +1,49 @@
+
+Stage: Olrox's Quarters
+Room: Prison
+Index: 7
+Left: 30
+Top: 15
+Columns: 6
+Rows: 1
+Total Cells: 6
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 15
+Nodes:
+    Left-Bottom Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Bottom
+        Entry Section: Ground
+        Exit Section: Ground
+    Right-Bottom Passage:
+        Type: Passage
+        Row: 0
+        Column: 5
+        Edge: Bottom
+        Entry Section: Ground
+        Exit Section: Ground
+Commands:
+    Move - Ledge:
+        Outcomes:
+            Section: Ledge
+        Requirements:
+            Ground - Double Jump:
+                Section: Ground
+                Progression - Double Jump: true
+            Ground - Bat:
+                Section: Ground
+                Progression - Bat Transformation: true
+            Ground - Corner Mist:
+                Section: Ground
+                Progression - Mist Transformation: true
+    Move - Ground:
+        Outcomes:
+            Section: Ground
+        Requirements:
+            Use Shortcut:
+                Section: Ledge

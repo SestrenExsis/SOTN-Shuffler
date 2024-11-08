@@ -1,0 +1,66 @@
+
+Stage: Olrox's Quarters
+Room: Grand Staircase
+Index: 2
+Left: 27
+Top: 21
+Columns: 3
+Rows: 2
+Total Cells: 6
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 5
+Nodes:
+    Upper-Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 2
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Left Red Door:
+        Type: Red Door
+        Row: 1
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Right Passage:
+        Type: Passage
+        Row: 1
+        Column: 2
+        Edge: Right
+        Entry Section: Broken Wall
+        Exit Section: Broken Wall
+    Middle-Bottom Passage:
+        Type: Passage
+        Row: 1
+        Column: 1
+        Edge: Bottom
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Action - Break Wall:
+        Outcomes:
+            Progression - Breakable Wall in Grand Staircase Broken: true
+        Requirements:
+            Default:
+                Section: Main
+                Knowledge - How to Break the Wall in Grand Staircase: true
+                Progression - Breakable Wall in Grand Staircase Broken: false
+    Move - Broken Wall:
+        Outcomes:
+            Section: Broken Wall
+        Requirements:
+            Main:
+                Section: Main
+                Progression - Breakable Wall in Tall Zig Zag Room Broken: true
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Broken Wall:
+                Section: Broken Wall
+                Progression - Breakable Wall in Tall Zig Zag Room Broken: true
