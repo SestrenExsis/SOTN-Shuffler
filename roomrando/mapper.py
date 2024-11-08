@@ -459,43 +459,38 @@ stages = {
     ],
     'Olrox\'s Quarters': [
         {
-            'Skelerang Room': (0, 0),
-            'Loading Room A': (2, 1),
-            'Fake Room With Teleporter D': (2, 2),
+            'Olrox\'s Quarters, Skelerang Room': (32 + 0, 32 + 0),
+            'Olrox\'s Quarters, Loading Room A': (32 + 2, 32 + 1),
+            'Olrox\'s Quarters, Fake Room With Teleporter D': (32 + 2, 32 + 2),
         },
         {
-            'Fake Room With Teleporter C': (1, 0),
-            'Loading Room B': (1, 1),
-            'Grand Staircase': (0, 2),
-            'Bottom of Stairwell': (2, 1),
+            'Olrox\'s Quarters, Fake Room With Teleporter C': (1, 0),
+            'Olrox\'s Quarters, Loading Room B': (1, 1),
+            'Olrox\'s Quarters, Grand Staircase': (0, 2),
+            'Olrox\'s Quarters, Bottom of Stairwell': (2, 3),
         },
         {
-            'Tall Shaft': (0, 0),
-            'Loading Room C': (5, 1),
-            'Fake Room With Teleporter B': (5, 2),
+            'Olrox\'s Quarters, Tall Shaft': (0, 0),
+            'Olrox\'s Quarters, Loading Room C': (5, 1),
+            'Olrox\'s Quarters, Fake Room With Teleporter B': (5, 2),
         },
         {
-            'Fake Room With Teleporter A': (0, 0),
-            'Loading Room D': (0, 1),
-            'Catwalk Crypt': (0, 2),
+            'Olrox\'s Quarters, Fake Room With Teleporter A': (0, 0),
+            'Olrox\'s Quarters, Loading Room D': (0, 1),
+            'Olrox\'s Quarters, Catwalk Crypt': (0, 2),
         },
-        {
-            'Fake Room With Teleporter A': (0, 0),
-            'Loading Room D': (0, 1),
-            'Catwalk Crypt': (0, 2),
-        },
-        { 'Secret Onyx Room': (0, 0) },
-        { 'Hammer and Blade Room': (0, 0) },
-        { 'Empty Room': (0, 0) },
-        { 'Prison': (0, 0) },
-        { 'Open Courtyard': (0, 0) },
-        { 'Empty Cells': (0, 0) },
-        { 'Garnet Room': (0, 0) },
-        { 'Narrow Hallway to Olrox': (0, 0) },
-        { 'Olrox\'s Room': (0, 0) },
-        { 'Echo of Bat Room': (0, 0) },
-        { 'Sword Card Room': (0, 0) },
-        { 'Save Room A': (0, 0) },
+        { 'Olrox\'s Quarters, Echo of Bat Room': (0, 0) },
+        { 'Olrox\'s Quarters, Empty Cells': (0, 0) },
+        { 'Olrox\'s Quarters, Empty Room': (0, 0) },
+        { 'Olrox\'s Quarters, Garnet Room': (0, 0) },
+        { 'Olrox\'s Quarters, Hammer and Blade Room': (0, 0) },
+        { 'Olrox\'s Quarters, Narrow Hallway to Olrox': (0, 0) },
+        { 'Olrox\'s Quarters, Olrox\'s Room': (0, 0) },
+        { 'Olrox\'s Quarters, Open Courtyard': (0, 0) },
+        { 'Olrox\'s Quarters, Prison': (0, 0) },
+        { 'Olrox\'s Quarters, Save Room A': (0, 0) },
+        { 'Olrox\'s Quarters, Secret Onyx Room': (0, 0) },
+        { 'Olrox\'s Quarters, Sword Card Room': (0, 0) },
     ],
 }
 
@@ -590,7 +585,7 @@ if __name__ == '__main__':
         }
     seed = random.randint(0, 2 ** 64)
     MULTIPLIER = 100
-    WEIGHTS = [3, 13, 13, 13, 1] # 300, 1300
+    WEIGHTS = [3, 13, 13, 13, 13] # 300, 1300
     for (stage_name, target_seed_count) in (
         ('Castle Entrance', MULTIPLIER * WEIGHTS[0]),
         ('Alchemy Laboratory', MULTIPLIER * WEIGHTS[1]),

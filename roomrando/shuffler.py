@@ -23,7 +23,7 @@ if __name__ == '__main__':
             'Alchemy Laboratory': [],
             'Marble Gallery': [],
             'Outer Wall': [],
-            # 'Olrox\'s Quarters': [],
+            'Olrox\'s Quarters': [],
         }
     with (
         open(os.path.join('build', 'sandbox', 'rules.json')) as rules_json,
@@ -44,7 +44,7 @@ if __name__ == '__main__':
                 ('Alchemy Laboratory', random.randint(0, 2 ** 64)),
                 ('Marble Gallery', random.randint(0, 2 ** 64)),
                 ('Outer Wall', random.randint(0, 2 ** 64)),
-                # ('Olrox\'s Quarters', random.randint(0, 2 ** 64)),
+                ('Olrox\'s Quarters', random.randint(0, 2 ** 64)),
             )
             print('Randomize with seeds')
             for (stage_name, stage_seed) in stages_to_process:
