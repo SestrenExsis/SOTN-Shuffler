@@ -1,0 +1,30 @@
+
+Stage: Olrox's Quarters
+Room: Hammer and Blade Room
+Index: 4
+Left: 30
+Top: 21
+Columns: 4
+Rows: 1
+Total Cells: 4
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 9
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 3
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

@@ -179,9 +179,9 @@ class Solver():
             'Wins': [],
             'Losses': [],
         }
+        self.debug = False
     
     def solve(self, reflexive_limit: int=3, max_layers: int=8):
-        # TODO(sestren): Improve performance with memoization
         memo = {}
         solution_found = False
         initial_game = Game(self.logic_core['State'], self.logic_core['Commands'], self.logic_core['Goals'])
@@ -196,12 +196,15 @@ class Solver():
                 break
             (_, _, hashed_state__solver) = game__solver.get_key()
             if hashed_state__solver in memo and memo[hashed_state__solver] <= step__solver:
-                print('seen', hashed_state__solver, 'with layer', memo[hashed_state__solver])
+                if self.debug:
+                    print('seen', hashed_state__solver, 'with layer', memo[hashed_state__solver])
                 continue
             memo[hashed_state__solver] = step__solver
             if step__solver >= max_layers:
                 continue
-            print(step__solver, game__solver.state['Location'])
+            if self.debug:
+                print(step__solver, game__solver.state['Location'])
+            #
             # Find all locations that are N-bonded with the current location (N = reflexive_limit)
             # Two locations are considered "N-bonded" if you can move from one to another via a series of N-reflexive commands
             # A command is considered "N-reflexive" if you can return to the same state as you had before executing it in at most N additional commands
@@ -297,8 +300,8 @@ if __name__ == '__main__':
             #     'Location': 'Marble Gallery, Clock Room',
             #     'Relic - Soul of Wolf': True,
             # },
-            'Debug 9': {
-                'Location': 'Marble Gallery, Loading Room D',
+            'Debug 10': {
+                'Location': 'Olrox\'s Quarters, Skelerang Room',
             },
             # 'Debug 99': {
             #     'Location': 'Colosseum, Entrance',

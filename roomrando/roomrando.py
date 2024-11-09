@@ -234,6 +234,7 @@ class DataCore:
             'alchemy-laboratory',
             'marble-gallery',
             'outer-wall',
+            'olroxs-quarters',
         ):
             folder_path = os.path.join('data', 'rooms', stage_folder)
             for file_name in os.listdir(folder_path):
@@ -264,6 +265,7 @@ class LogicCore:
             'Alchemy Laboratory',
             'Marble Gallery',
             'Outer Wall',
+            'Olrox\'s Quarters',
         ):
             nodes = {}
             for (location_name, room_data) in data_core['Rooms'].items():

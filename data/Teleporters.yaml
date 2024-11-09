@@ -15,6 +15,11 @@ Sources:
         Stage: Castle Entrance Revisited
         Room: Fake Room With Teleporter A
         Target: Alchemy Laboratory, Entryway (Right Red Door)
+    Marble Gallery, Fake Room With Teleporter A:
+        Index: 1
+        Stage: Marble Gallery
+        Room: Fake Room With Teleporter A
+        Target: Olrox's Quarters, Skelerang Room (Lower-Right Red Door)
     Marble Gallery, Fake Room With Teleporter B:
         Index: 2
         Stage: Marble Gallery
@@ -25,6 +30,11 @@ Sources:
         Stage: Marble Gallery
         Room: Fake Room With Teleporter C
         Target: Alchemy Laboratory, Exit to Marble Gallery (Right Red Door)
+    Olrox's Quarters, Fake Room With Teleporter D:
+        Index: 24
+        Stage: Olrox's Quarters
+        Room: Fake Room With Teleporter D
+        Target: Marble Gallery, Pathway After Left Statue (Left Red Door)
     Outer Wall, Fake Room With Teleporter D:
         Index: 40
         Stage: Outer Wall
@@ -61,6 +71,18 @@ Targets:
         Node: Right Red Door
         Player X: 3824
         Player Y: 132
+    Marble Gallery, Pathway After Left Statue (Left Red Door):
+        Stage: Marble Gallery
+        Room: Pathway After Left Statue
+        Node: Left Red Door
+        Player X: 16
+        Player Y: 132
+    Olrox's Quarters, Skelerang Room (Lower-Right Red Door):
+        Stage: Olrox's Quarters
+        Room: Skelerang Room
+        Node: Lower-Right Red Door
+        Player X: 240
+        Player Y: 648
     Outer Wall, Exit to Marble Gallery (Left Red Door):
         Stage: Outer Wall
         Room: Exit to Marble Gallery

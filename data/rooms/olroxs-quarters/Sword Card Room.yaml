@@ -1,0 +1,23 @@
+
+Stage: Olrox's Quarters
+Room: Sword Card Room
+Index: 14
+Left: 19
+Top: 18
+Columns: 2
+Rows: 1
+Total Cells: 2
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 27
+Nodes:
+    Left-Bottom Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Bottom
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

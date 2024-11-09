@@ -3,7 +3,8 @@ import hashlib
 import json
 import os
 import random
-import yaml
+
+import roomrando
 
 class RoomNode:
     def __init__(self, room, row: int, column: int, edge: str, type: str):
@@ -275,37 +276,6 @@ class RoomSet:
     def remove_room(self, room_name):
         self.rooms.pop(room_name, None)
 
-class DataCore:
-    def __init__(self):
-        self.rooms = {}
-        self.teleporters = {}
-        for stage_folder in (
-            'castle-entrance',
-            # 'castle-entrance-revisited',
-            'alchemy-laboratory',
-            'marble-gallery',
-            'outer-wall',
-        ):
-            folder_path = os.path.join('data', 'rooms', stage_folder)
-            for file_name in os.listdir(folder_path):
-                if file_name[-5:] != '.yaml':
-                    continue
-                file_path = os.path.join(folder_path, file_name)
-                with open(file_path) as open_file:
-                    yaml_obj = yaml.safe_load(open_file)
-                    room_name = yaml_obj['Stage'] + ', ' + yaml_obj['Room']
-                    self.rooms[room_name] = yaml_obj
-        with open(os.path.join('data', 'Teleporters.yaml')) as open_file:
-            yaml_obj = yaml.safe_load(open_file)
-            self.teleporters = yaml_obj
-    
-    def get_core(self) -> dict:
-        result = {
-            'Rooms': self.rooms,
-            'Teleporters': self.teleporters,
-        }
-        return result
-
 stages = {
     'Castle Entrance': [
         {
@@ -487,6 +457,41 @@ stages = {
         { 'Outer Wall, Secret Platform Room': (0, 0) },
         { 'Outer Wall, Top of Outer Wall': (0, 0) },
     ],
+    'Olrox\'s Quarters': [
+        {
+            'Olrox\'s Quarters, Skelerang Room': (32 + 0, 32 + 0),
+            'Olrox\'s Quarters, Loading Room A': (32 + 2, 32 + 1),
+            'Olrox\'s Quarters, Fake Room With Teleporter D': (32 + 2, 32 + 2),
+        },
+        {
+            'Olrox\'s Quarters, Fake Room With Teleporter C': (1, 0),
+            'Olrox\'s Quarters, Loading Room B': (1, 1),
+            'Olrox\'s Quarters, Grand Staircase': (0, 2),
+            'Olrox\'s Quarters, Bottom of Stairwell': (2, 3),
+        },
+        {
+            'Olrox\'s Quarters, Tall Shaft': (0, 0),
+            'Olrox\'s Quarters, Loading Room C': (5, 1),
+            'Olrox\'s Quarters, Fake Room With Teleporter B': (5, 2),
+        },
+        {
+            'Olrox\'s Quarters, Fake Room With Teleporter A': (0, 0),
+            'Olrox\'s Quarters, Loading Room D': (0, 1),
+            'Olrox\'s Quarters, Catwalk Crypt': (0, 2),
+        },
+        { 'Olrox\'s Quarters, Echo of Bat Room': (0, 0) },
+        { 'Olrox\'s Quarters, Empty Cells': (0, 0) },
+        { 'Olrox\'s Quarters, Empty Room': (0, 0) },
+        { 'Olrox\'s Quarters, Garnet Room': (0, 0) },
+        { 'Olrox\'s Quarters, Hammer and Blade Room': (0, 0) },
+        { 'Olrox\'s Quarters, Narrow Hallway to Olrox': (0, 0) },
+        { 'Olrox\'s Quarters, Olrox\'s Room': (0, 0) },
+        { 'Olrox\'s Quarters, Open Courtyard': (0, 0) },
+        { 'Olrox\'s Quarters, Prison': (0, 0) },
+        { 'Olrox\'s Quarters, Save Room A': (0, 0) },
+        { 'Olrox\'s Quarters, Secret Onyx Room': (0, 0) },
+        { 'Olrox\'s Quarters, Sword Card Room': (0, 0) },
+    ],
 }
 
 def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
@@ -562,9 +567,10 @@ if __name__ == '__main__':
     '''
     Usage
     python mapper.py
+    TODO(sestren): Add a requirement that Castle Entrance be able to reach one of the other stages
     '''
     GENERATION_VERSION = '0.0.2'
-    data_core = DataCore().get_core()
+    data_core = roomrando.DataCore().get_core()
     with open(os.path.join('build', 'sandbox', 'data-core.json'), 'w') as data_core_json:
         json.dump(data_core, data_core_json, indent='    ', sort_keys=True)
     try:
@@ -576,16 +582,20 @@ if __name__ == '__main__':
             'Alchemy Laboratory': [],
             'Marble Gallery': [],
             'Outer Wall': [],
+            'Olrox\'s Quarters': [],
         }
     seed = random.randint(0, 2 ** 64)
     MULTIPLIER = 100
-    WEIGHTS = [3, 13, 13, 13] # 300, 1300
+    WEIGHTS = [3, 13, 13, 13, 13] # 300, 1300
     for (stage_name, target_seed_count) in (
         ('Castle Entrance', MULTIPLIER * WEIGHTS[0]),
         ('Alchemy Laboratory', MULTIPLIER * WEIGHTS[1]),
         ('Marble Gallery', MULTIPLIER * WEIGHTS[2]),
         ('Outer Wall', MULTIPLIER * WEIGHTS[3]),
+        ('Olrox\'s Quarters', MULTIPLIER * WEIGHTS[4]),
     ):
+        if stage_name not in generated_stages:
+            generated_stages[stage_name] = []
         print(stage_name, target_seed_count, target_seed_count - len(generated_stages[stage_name]))
         if stage_name not in generated_stages:
             generated_stages[stage_name] = []

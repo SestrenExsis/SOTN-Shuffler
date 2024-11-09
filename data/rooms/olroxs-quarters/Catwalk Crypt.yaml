@@ -1,0 +1,74 @@
+
+Stage: Olrox's Quarters
+Room: Catwalk Crypt
+Index: 15
+Left: 18
+Top: 19
+Columns: 7
+Rows: 1
+Total Cells: 7
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 28
+Nodes:
+    Left Red Door:
+        Type: Red Door
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Left-Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Top
+        Entry Section: Falling
+        Exit Section: Rising
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 6
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Action - Break Ceiling:
+        Outcomes:
+            Progression - Breakable Ceiling in Catwalk Crypt Broken: true
+        Requirements:
+            Default:
+                Section: Main
+                Knowledge - How to Break the Ceiling in Catwalk Crypt: true
+                Progression - Breakable Ceiling in Catwalk Crypt Broken: false
+    Move - Rising:
+        Outcomes:
+            Section: Rising
+        Requirements:
+            Main - Bat, Broken Ceiling:
+                Section: Main
+                Progression - Bat Transformation: true
+                Progression - Breakable Ceiling in Catwalk Crypt Broken: true
+            Main - Gravity Jump, Broken Ceiling:
+                Section: Main
+                Progression - Gravity Jump: true
+                Progression - Breakable Ceiling in Catwalk Crypt Broken: true
+            Main - Powered Mist, Broken Ceiling:
+                Section: Main
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+                Progression - Breakable Ceiling in Catwalk Crypt Broken: true
+            Main - Wolf-Mist Rise, Broken Ceiling:
+                Section: Main
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Progression - Breakable Ceiling in Catwalk Crypt Broken: true
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Falling:
+                Section: Falling

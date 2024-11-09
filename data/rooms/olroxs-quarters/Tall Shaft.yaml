@@ -1,0 +1,68 @@
+
+Stage: Olrox's Quarters
+Room: Tall Shaft
+Index: 6
+Left: 35
+Top: 16
+Columns: 1
+Rows: 6
+Total Cells: 6
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 13
+Nodes:
+    Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Top
+        Entry Section: Falling
+        Exit Section: Rising
+    Lower-Left Passage:
+        Type: Passage
+        Row: 5
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Right Red Door:
+        Type: Red Door
+        Row: 5
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Move - Falling:
+        Outcomes:
+            Section: Falling
+        Requirements:
+            Main:
+                Section: Main
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Falling:
+                Section: Falling
+    Move - Rising:
+        Outcomes:
+            Section: Rising
+        Requirements:
+            Main - Bat:
+                Section: Main
+                Progression - Bat Transformation: true
+            Main - Gravity Jump:
+                Section: Main
+                Progression - Gravity Jump: true
+            Main - Powered Mist:
+                Section: Main
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Main - Wolf-Mist Rise:
+                Section: Main
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true

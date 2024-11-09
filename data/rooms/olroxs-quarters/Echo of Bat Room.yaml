@@ -1,0 +1,23 @@
+
+Stage: Olrox's Quarters
+Room: Echo of Bat Room
+Index: 13
+Left: 16
+Top: 16
+Columns: 3
+Rows: 1
+Total Cells: 3
+Empty Cells: {}
+Entities:
+Flags:
+    - Scroll Type 1
+Foreground Layer ID: 25
+Nodes:
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 2
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

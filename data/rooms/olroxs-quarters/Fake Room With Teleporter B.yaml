@@ -1,0 +1,21 @@
+
+Stage: Olrox's Quarters
+Room: Fake Room With Teleporter B
+Index: 22
+Left: 37
+Top: 21
+Columns: 1
+Rows: 1
+Total Cells: 1
+Empty Cells: {}
+Entities:
+Flags:
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Fake
+        Exit Section: Dummy
+Commands: {}

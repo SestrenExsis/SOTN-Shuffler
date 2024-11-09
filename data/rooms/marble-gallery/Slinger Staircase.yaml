@@ -32,8 +32,8 @@ Nodes:
         Row: 1
         Column: 2
         Edge: Right
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Rising
+        Exit Section: Falling
     Right-Bottom Passage:
         Type: Passage
         Row: 1
@@ -41,4 +41,20 @@ Nodes:
         Edge: Bottom
         Entry Section: Main
         Exit Section: Main
-Commands: {}
+Commands:
+    Move - Falling:
+        Outcomes:
+            Section: Falling
+        Requirements:
+            Main - Default:
+                Section: Main
+                Progression - Pressure Plate in Marble Gallery Activated: true
+            Rising - Default:
+                Section: Rising
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Rising - Default:
+                Section: Rising
+                Progression - Pressure Plate in Marble Gallery Activated: true
