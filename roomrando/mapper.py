@@ -567,6 +567,7 @@ if __name__ == '__main__':
     '''
     Usage
     python mapper.py
+    TODO(sestren): Add a requirement that Castle Entrance be able to reach one of the other stages
     '''
     GENERATION_VERSION = '0.0.2'
     data_core = roomrando.DataCore().get_core()
