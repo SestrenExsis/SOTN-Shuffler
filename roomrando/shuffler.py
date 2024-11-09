@@ -75,14 +75,15 @@ if __name__ == '__main__':
                 stage_map.generate()
                 rooms_found = set(stage_map.stage.rooms)
                 if len(rooms_found) >= 23:
-                    print(stage_name, len(rooms_found), stage_map.current_seed)
+                    # print(stage_name, len(rooms_found), stage_map.current_seed)
                     # for row_data in stage_map.stage.get_stage_spoiler(data_core):
                     #     print(row_data)
                     # for row_data in stage_map.stage.get_room_spoiler(data_core):
                     #     print(row_data)
-                    for room_name in sorted(data_core['Rooms']):
-                        if room_name.startswith('Olrox\'s Quarters, ') and room_name not in rooms_found:
-                            print(' ' , room_name)
+                    # for room_name in sorted(data_core['Rooms']):
+                    #     if room_name.startswith('Olrox\'s Quarters, ') and room_name not in rooms_found:
+                    #         print(' ' , room_name)
+                    pass
                 if stage_map.validate():
                     break
             stages[stage_name] = stage_map
@@ -102,19 +103,45 @@ if __name__ == '__main__':
             logic_core = roomrando.LogicCore(data_core, changes).get_core()
             # Solve
             logic_core['Goals'] = {
-                'Debug - Collect Soul of Wolf': {
-                    'Relic - Soul of Wolf': True,
-                    'Location': 'Outer Wall, Exit to Marble Gallery',
+                # 'Debug - Reach Anything, WTF?': {
+                #     'Location': 'Castle Entrance, Merman Room',
+                # },
+                # 'Debug - Reach Alchemy Laboratory': {
+                #     'Location': 'Alchemy Laboratory, Entryway',
+                # },
+                # 'Debug - Reach Alchemy Laboratory': {
+                #     'Location': 'Alchemy Laboratory, Exit to Marble Gallery',
+                # },
+                # 'Debug - Reach Marble Gallery': {
+                #     'Location': 'Marble Gallery, Entrance',
+                # },
+                # 'Debug - Reach Outer Wall': {
+                #     'Location': 'Outer Wall, Exit to Marble Gallery',
+                # },
+                # 'Debug - Collect Soul of Wolf': {
+                #     'Relic - Soul of Wolf': True,
+                # },
+                'Debug - Reach Skelerang Room': {
+                    'Location': 'Olrox\'s Quarters, Skelerang Room',
                 },
             }
             map_solver = solver.Solver(logic_core, skills)
-            map_solver.solve(3, 7)
+            map_solver.solve(3, 12)
             if len(map_solver.results['Wins']) > 0:
                 with open(os.path.join('build', 'sandbox', 'changes.json'), 'w') as changes_json:
                     json.dump(changes, changes_json, indent='    ', sort_keys=True)
                 with open(os.path.join('build', 'sandbox', 'logic-core.json'), 'w') as logic_core_json:
                     json.dump(logic_core, logic_core_json, indent='    ', sort_keys=True)
                 (winning_layers, winning_game) = map_solver.results['Wins'][-1]
+                print('-------------')
+                print('GOAL REACHED: Layer', winning_layers)
+                print('History')
+                for (layer, location, command_name) in winning_game.history:
+                    print('-', layer, location, ':', command_name)
+                print('State')
+                for (key, value) in winning_game.state.items():
+                    print('-', key, ':', value)
+                print('-------------')
                 solution = {
                     'Final Layer': winning_layers,
                     'State': winning_game.state,
@@ -122,3 +149,4 @@ if __name__ == '__main__':
                 }
                 with open(os.path.join('build', 'sandbox', 'solution.json'), 'w') as solution_json:
                     json.dump(solution, solution_json, indent='    ', sort_keys=True)
+                break

@@ -296,8 +296,8 @@ if __name__ == '__main__':
             #     'Location': 'Marble Gallery, Clock Room',
             #     'Relic - Soul of Wolf': True,
             # },
-            'Debug 9': {
-                'Location': 'Marble Gallery, Loading Room D',
+            'Debug 10': {
+                'Location': 'Olrox\'s Quarters, Skelerang Room',
             },
             # 'Debug 99': {
             #     'Location': 'Colosseum, Entrance',
