@@ -74,16 +74,6 @@ if __name__ == '__main__':
             while True:
                 stage_map.generate()
                 rooms_found = set(stage_map.stage.rooms)
-                if len(rooms_found) >= 23:
-                    # print(stage_name, len(rooms_found), stage_map.current_seed)
-                    # for row_data in stage_map.stage.get_stage_spoiler(data_core):
-                    #     print(row_data)
-                    # for row_data in stage_map.stage.get_room_spoiler(data_core):
-                    #     print(row_data)
-                    # for room_name in sorted(data_core['Rooms']):
-                    #     if room_name.startswith('Olrox\'s Quarters, ') and room_name not in rooms_found:
-                    #         print(' ' , room_name)
-                    pass
                 if stage_map.validate():
                     break
             stages[stage_name] = stage_map
@@ -103,24 +93,6 @@ if __name__ == '__main__':
             logic_core = roomrando.LogicCore(data_core, changes).get_core()
             # Solve
             logic_core['Goals'] = {
-                # 'Debug - Reach Anything, WTF?': {
-                #     'Location': 'Castle Entrance, Merman Room',
-                # },
-                # 'Debug - Reach Alchemy Laboratory': {
-                #     'Location': 'Alchemy Laboratory, Entryway',
-                # },
-                # 'Debug - Reach Alchemy Laboratory': {
-                #     'Location': 'Alchemy Laboratory, Exit to Marble Gallery',
-                # },
-                # 'Debug - Reach Marble Gallery': {
-                #     'Location': 'Marble Gallery, Entrance',
-                # },
-                # 'Debug - Reach Outer Wall': {
-                #     'Location': 'Outer Wall, Exit to Marble Gallery',
-                # },
-                # 'Debug - Collect Soul of Wolf': {
-                #     'Relic - Soul of Wolf': True,
-                # },
                 'Debug - Reach Skelerang Room': {
                     'Location': 'Olrox\'s Quarters, Skelerang Room',
                 },

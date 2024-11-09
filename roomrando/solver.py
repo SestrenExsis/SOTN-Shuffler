@@ -179,6 +179,7 @@ class Solver():
             'Wins': [],
             'Losses': [],
         }
+        self.debug = False
     
     def solve(self, reflexive_limit: int=3, max_layers: int=8):
         memo = {}
@@ -195,12 +196,15 @@ class Solver():
                 break
             (_, _, hashed_state__solver) = game__solver.get_key()
             if hashed_state__solver in memo and memo[hashed_state__solver] <= step__solver:
-                print('seen', hashed_state__solver, 'with layer', memo[hashed_state__solver])
+                if self.debug:
+                    print('seen', hashed_state__solver, 'with layer', memo[hashed_state__solver])
                 continue
             memo[hashed_state__solver] = step__solver
             if step__solver >= max_layers:
                 continue
-            print(step__solver, game__solver.state['Location'])
+            if self.debug:
+                print(step__solver, game__solver.state['Location'])
+            #
             # Find all locations that are N-bonded with the current location (N = reflexive_limit)
             # Two locations are considered "N-bonded" if you can move from one to another via a series of N-reflexive commands
             # A command is considered "N-reflexive" if you can return to the same state as you had before executing it in at most N additional commands
