@@ -1,4 +1,4 @@
-# SOTN-Shuffler
+# Current status of the project
 
 This project is still actively in the prototyping phase of development. It almost definitely has bugs, will cause softlocks, and may even corrupt the game BIN in its current state. Use at your own risk.
 

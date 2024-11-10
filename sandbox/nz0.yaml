@@ -1,0 +1,453 @@
+notes:
+  g_unkGraphicsStruct.unk18 --> 0x80097418
+  unkC comes from 8009740C (= $80 in spittlebone room)
+  g_Tilemap.x = 0x800730C0
+  0188C80C
+instructions:
+  lw $t0, 4($sp):
+    $t0 = [$sp + 4]
+  sw $t0, 4($sp):
+    [$sp + 4] = $t0
+functions:
+  func_800F0CD8:
+    block_25 called when transitioning rooms in Alchemy Lab
+variables:
+  playerPosX:
+    address: 0x800973F0
+    changed_by:
+      instr_800F4038:
+        $800F4028 : lh v0,-$4(s1) --> 
+        $800F402C : sll v1,$18
+        $800F4030 : addu v0,a0 --> v0 += a0
+        $800F4034 : lui at,$8009
+        $800F4038 : sw v0,$73F0(at) --> [at + $73F0] = v0 --> playerPosX = v0
+  playerPosY: 
+    address: 0x800973F4
+    changed_by:
+  g_api_o_tileLayers:
+    address: 0x8003C794
+  tile_width:
+    address: 0x800730C8
+breakpoints:
+  address: 0x800ED87C
+  address: 0x800F3D60
+structs:
+  LayoutRect:
+    size: 0x14
+    members:
+      left:
+        type: u32
+        offset: 0x00
+        size: 0x04
+      top:
+        type: u32
+        offset: 0x04
+        size: 0x04
+      right:
+        type: u32
+        offset: 0x08
+        size: 0x04
+      bottom:
+        type: u32
+        offset: 0x0C
+        size: 0x04
+      params:
+        type: u8
+        offset: 0x10
+        size: 0x04
+      unknown:
+        offset: 0x11
+        size: 0x0C
+  LayerDef:
+    size: 0x10
+    members:
+      layout:
+        type: u16*
+        offset: 0x00
+        size: 0x04
+      tileDef:
+        type: TileDefinition*
+        offset: 0x04
+        size: 0x04
+      rect:
+        type: LayoutRect
+        offset: 0x08
+        size: 0x04
+      zPriority:
+        type: u16
+        offset: 0x0C
+        size: 0x02
+      flags:
+        type: u16
+        offset: 0x0E
+        size: 0x02
+  LayoutEntity:
+    /* 0x0 */ u16 posX;
+    /* 0x2 */ u16 posY;
+    /* 0x4 */ u16 entityId;
+    /* 0x6 */ u16 entityRoomIndex;
+    /* 0x8 */ u16 params;
+  Lba:
+    size: 0x2C
+    members:
+      /* 00 */ u32 gfxOff;
+      /* 04 */ u32 ovlOff;
+      /* 08 */ u32 ovlLen;
+      /* 0C */ u32 vhOff;
+      /* 10 */ u32 vhLen;
+      /* 14 */ u32 vbLen;
+      /* 18 */ u32 unk18;
+      /* 1C */ const char* gfxName;
+      /* 20 */ const char* ovlName;
+      /* 24 */ const char* name;
+      /* 28 */ u8 unk28;
+      /* 29 */ s8 seqIdx; // index of D_800ACCF8
+      /* 2A */ u16 unk2A;
+  MyLayer:
+      u16* layout;
+      TileDefinition* tileDef;
+      u32 params;
+      u16 zPriority;
+      u8 unkE;
+      u8 unkF;
+  MyRoomDef:
+      MyLayer* fg;
+      MyLayer* bg;
+  Overlay:
+      /* 8003C774 */ void (*Update)(void);
+      /* 8003C778 */ void (*HitDetection)(void);
+      /* 8003C77C */ void (*UpdateRoomPosition)(void);
+      /* 8003C780 */ void (*InitRoomEntities)(s32 layoutId);
+      /* 8003C784 */ RoomHeader* rooms;
+      /* 8003C788 */ SpriteParts** spriteBanks;
+      /* 8003C78C */ u_long** cluts;
+      /* 8003C790 */ void* objLayoutHorizontal;
+      /* 8003C794 */ RoomDef* tileLayers;
+      /* 8003C798 */ GfxBank** gfxBanks;
+      /* 8003C79C */ void (*UpdateStageEntities)(void);
+      /* 8003C7A0 */ u8** unk2c; // sprite bank 1
+      /* 8003C7A4 */ u8** unk30; // sprite bank 2
+      /* 8003C7A8 */ s32* unk34;
+      /* 8003C7AC */ s32* unk38;
+      /* 8003C7B0 */ void (*StageEndCutScene)(void);
+  RoomDef:
+      size: 0x08
+      members:
+        fg:
+          type: LayerDef*
+          offset: 0x00
+          size: 0x04
+        bg:
+          type: LayerDef*
+          offset: 0x04
+          size: 0x04
+  RoomHeader:
+    size: 0x08
+    members:
+      /* 0x0 */ u8 left;
+      /* 0x1 */ u8 top;
+      /* 0x2 */ u8 right;
+      /* 0x3 */ u8 bottom;
+      /* 0x4 */ RoomLoadDef load;
+  RoomLoadDef:
+    size: 0x04
+    members:
+      /* 0x0 */ u8 tileLayoutId;
+      /* 0x1 */ u8 tilesetId;
+      /* 0x2 */ u8 objGfxId;
+      /* 0x3 */ u8 objLayoutId;
+  RoomLoadDefHolder:
+    note: fake struct for D_801375BC
+    members:
+      RoomLoadDef* def;
+  TileDefinition:
+    size: 0x10
+    members:
+      /* 0x00 */ u8* gfxPage;
+      /* 0x04 */ u8* gfxIndex;
+      /* 0x08 */ u8* clut;
+      /* 0x0C */ u8* collision;
+  unkGraphicsStruct:
+    /* 0x800973F8 */ s32 D_800973F8;
+    /* 0x800973FC */ s32 D_800973FC;
+    /* 0x80097400 */ s32 unk0;
+    /* 0x80097404 */ s32 unk4;
+    /* 0x80097408 */ s32 g_zEntityCenter;
+    /* 0x8009740C */ s32 unkC;
+    /* 0x80097410 */ s32 BottomCornerTextTimer;
+    /* 0x80097414 */ s32 BottomCornerTextPrims;
+    /* 0x80097418 */ s32 unk18;
+    /* 0x8009741C */ s32 unk1C;
+    /* 0x80097420 */ s32 unk20;
+    /* 0x80097424 */ s32 unk24;
+    /* 0x80097428 */ s32 D_80097428[8];
+      // size must be 8 for the loop in RunMainEngine, while
+      // PreventEntityFromRespawning suggests it has a size of 32
+
+0x0180B7CB:
+  search for CBB78001 in BIN
+  found at 0x054B0EF4
+0x0188C80C:
+  search for 0CC88801 in BIN
+  found at 0x054B0F04
+
+a1 = 0x801802C4
+// assigns t.left
+800ED85C : lw v1,$8(a1)
+         : nop
+         : andi v1,$3F
+         : lui at,$8007
+         : sw v1,$30B0(at)
+// assigns t.top
+800ED870 : lw a0,$8(a1)
+         : nop
+         : srl a0,$6
+         : andi a0,$3F
+         : lui at,$8007
+         : sw a0,$30B4(at)
+// assigns t.right
+800ED888 : lw v0,$8(a1)
+         : nop
+         : srl v0,$C
+         : andi v0,$3F
+         : lui at,$8007
+         : sw v0,$30B8(at)
+// assigns ??? and t.y and t.x and t.width
+         : subu v0,v1
+800ED8A4 : lw v1,$8(a1)
+         : addiu v0,$1
+         : lui at,$8007
+         : sw v0,$30A4(at)
+         : sll v0,$8
+         : lui at,$8007
+         : sw 0,$30C4(at)
+         : lui at,$8007
+         : sw 0,$30C0(at)
+         : lui at,$8007
+         : sw v0,$30C8(at)
+         : srl v1,$12
+
+The game packs certain data about each non-fake room into a single 32-bit number. This number is computed as in the following example:
+```
+0    1    8    0    B    7    C    B
+0000 0001 1000 0000 1011 0111 1100 1011
+                                xx xxxx : left
+                         xxxx xx        : top
+                 xx xxxx                : right 
+          xxxx xx                       : bottom
+   x xxxx                               : scrollmode // see func_800F0940 in decomp
+  x                                     : issaveroom
+ x                                      : isloadingroom
+x                                       : unusedflag // used during forest intro?
+```
+
+0x0D: [11, 31, 11, 32, 13,  0, 14, 13] # Short Zig Zag
+#0    1    A    0    7    A    0    4
+#0000 0001 1010 0000 0111 1010 0000 0100
+#                                00 0100 = 4
+#                         1010 00        = 40
+#                 00 0111                = 7
+#          1010 00                       = 40
+:0    1    8    0    B    7    C    B
+:0000 0001 1000 0000 1011 0111 1100 1011
+:                                xx xxxx : t.left = 0x0B
+:                         xxxx xx        : t.top  = 0x1F
+:                 xx xxxx                : t.right  = 0x0B
+:          xxxx xx                       : t.bottom = 0x20
+:   x xxxx                               : t.scrollmode = 0x01 // see func_800F0940
+:  x                                     : t.issaveroom = 0x00
+: x                                      : t.isloadingroom = 0x00
+:x                                       : t.unusedflag = 0x00 // used by forest intro
+
+0x0E: [12, 32, 12, 34, 14,  0,  5, 14] # Tall Zig Zag
+:0    1    8    8    C    8    0    C
+:0000 0001 1000 1000 1100 1000 0000 1100
+:                                xx xxxx : t.left = 0x0C
+:                         xxxx xx        : t.top  = 0x20
+:                 xx xxxx                : t.right  = 0x0C
+:          xxxx xx                       : t.bottom = 0x22
+
+0x0D: [12, 32, 12, 34, 14,  0,  5, 14] # Short Zig Zag, Custom
+:0    1    8    8    C    8    4    C
+:0000 0001 1000 1000 1100 1000 0100 1100
+:                                00 1100 : t.left = 0x0C
+:                         1000 01        : t.top  = 0x21
+:                 00 1100                : t.right  = 0x0C
+:          1000 10                       : t.bottom = 0x22
+
+0x0E: [12, 32, 12, 34, 14,  0,  5, 14] # Tall Zig Zag, Custom
+:0    1    8    4    B    7    C    B
+:0000 0001 1000 0100 1011 0111 1100 1011
+:                                00 1011 : t.left = 0x0B
+:                         0111 11        : t.top  = 0x1F
+:                 00 1011                : t.right  = 0x0B
+:          1000 01                       : t.bottom = 0x21
+
+# Spittlebone Room
+:0    1    8    C    F    8    8    D
+:0000 0001 1000 1100 1111 1000 1000 1101
+:                                xx xxxx : t.left = 0x0D
+:                         xxxx xx        : t.top  = 0x22
+:                 xx xxxx                : t.right  = 0x0F
+:          xxxx xx                       : t.bottom = 0x23
+
+
+0x0180B7CB = 0x01 .. 80B7CB
+0x0188C80C
+
+nz0:
+  name: Alchemy Laboratory
+  rom_overlay_offset: 0x54B0C70
+  room_data_offset: 0x272C
+  layers:
+    00: { NULL, NULL, 0, 0, 0, 0 }
+    01: { tilemap_16A5C, tiledef_26E7C, 0x016CD6CD, 0x60, 3, 0 }
+    ...
+    16: { tilemap_1A05C, tiledef_26E7C, 0x0180B7CB, 0x60, 3, 0 } # Short Zig Zag
+    17: { tilemap_1A45C, tiledef_26E7C, 0x0188C80C, 0x60, 3, 0 } # Tall Zig Zag
+    ...
+    34: { tilemap_2085C, tiledef_20E5C, 0x41911911, 0x15, 3, 2 }
+  rooms:
+    0x00: [13, 27, 13, 27, 0, 0, 20, 27]
+    ...
+    0x0D: [11, 31, 11, 32, 13,  0, 14, 13] # Short Zig Zag
+    0x0E: [12, 32, 12, 34, 14,  0,  5, 14] # Tall Zig Zag
+    ...
+    0x1F: [18, 36, 18, 36, 21, -1,  0,  0]
+    0x20: 0x40
+  rooms_layers:
+    0x00: { &layers[1], &layers[0] }
+    ...
+    0x0D: { &layers[16], &layers[0] } # Short Zig Zag
+    0x0E: { &layers[17], &layers[0] } # Tall Zig Zag
+    ...
+    0x1C: { &layers[34], &layers[0] }
+  stage:
+    index: 0x0C
+    Lba:
+      gfxOff: 0x92DD
+      ovlOff: 0x937D
+      ovlLen: 0x4B780
+      vhOff: 0x935D
+      vhLen: 0x1820
+      vbLen: 0x0DE90
+      unk18: 0x32E
+      gfxName: F_NZ0
+      ovlNam: NZ0
+      name: gold
+      unk28: 0x0D
+      seqIdx: 0xFF
+      unk2A: 0
+
+02 26 03 28 00 00 05 01
+
+0D 1B 0D 1B 00 00 14 1B
+
+0x054B3874
+0x054B339C
+
+0x04B6AAFC
+0x053F89D4
+
+8018272C rooms
+80180394 tileLayers
+80180164 base of layers
+
+  {
+    "left": 11,
+    "top": 40,
+    "right": 13,
+    "bottom": 41,
+    "layerId": 7,
+    "tileDefId": 0,
+    "entityGfxId": 3,
+    "entityLayoutId": 8
+  },
+  {
+    "bg": {
+      "data": "tilemap_1BAF4.bin",
+      "tiledef": "tiledef_2A114.json",
+      "left": 11,
+      "top": 40,
+      "right": 13,
+      "bottom": 41,
+      "scrollMode": 1,
+      "isSaveRoom": false,
+      "isLoadingRoom": false,
+      "unusedFlag": false,
+      "zPriority": 96,
+      "unkE": 3,
+      "unkF": 0
+    },
+    "fg": {
+      "data": "tilemap_1AEF4.bin",
+      "tiledef": "tiledef_2A114.json",
+      "left": 11,
+      "top": 40,
+      "right": 13,
+      "bottom": 41,
+      "scrollMode": 1,
+      "isSaveRoom": false,
+      "isLoadingRoom": false,
+      "unusedFlag": false,
+      "zPriority": 160,
+      "unkE": 3,
+      "unkF": 0
+    }
+  },
+
+addr    open    closed  closed-fixed
+
+03BE26	0001	0000
+
+19D618	06BA	02D2    ????
+19D61A  ????    02D2    0x0535
+
+19D678	06BA	02D2
+19D67A	06BB	02D2    0x0308
+19D67C	06BC	02D6
+
+19D6D8	0000	02D2
+19D6DA	0000	02D2    0x0309
+19D6DC	0000	02D4
+
+19D738	0000	02D2
+19D73A	0000	02D2    0x0308
+19D73C	0000	02D6
+
+19D798	06BD	02D2
+19D79A	06BE	02D2    0x0307
+19D79C	06BD	02D8
+
+19D7F8	06BF	02D2
+19D7FA	06C0	02D2
+19D7FC	06C1	02D7
+
+19E278	034E	0000
+19E27A	034F	0000
+
+19E2D8	0339	0000
+19E2DA	033A	0000
+19E2DC	032F	0000
+
+19E338	0350	0000
+19E33A	0351	0000
+
+19E398	032F	0000
+19E39A	0330	0000
+
+1FFD8E	801F	800E
+1FFD90	4F50	7CF3
+1FFD92	8001	8008
+1FFDC0	034B	003F
+1FFDC2	01A4	0000
+1FFDC4	0002	0001
+1FFDC6	0005	0000
+1FFDDA	801F	0000
+
+
+
+0308
+0309
+0308
+0307
