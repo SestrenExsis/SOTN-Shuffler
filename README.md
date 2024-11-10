@@ -1,114 +1,19 @@
-# SOTN-Randomizer
+# SOTN-Shuffler
 
 This project is still actively in the prototyping phase of development. It almost definitely has bugs, will cause softlocks, and may even corrupt the game BIN in its current state. Use at your own risk.
 
-## Logic
+While still in the prototyping and proof-of-concept phase, much of this project will be coded in Python. As the project matures, it may be translated to Javascript over time
 
-A representation of all of the rules of the game, including rules, goals (i.e., win conditions), skills, map layout, object locations, etc.
+# Acknowledgements
 
-Some rules assume certain skills to be solvable, so not all combinations of skills and rules will yield solvable games.
+Most of the knowledge present in this project is only possible due to the immense efforts of the SOTN and rom-hacking community:
 
-### Rules
-
-Rules include starting conditions and actions which are permitted during a playthrough. (e.g., Alucard Any%, Alucard Glitchless, Alucard Pacifist, Alucard Reverse Boss Order).
-
-### Goals
-
-What constitutes a solved playthrough (e.g., Defeat Richter, Defeat Lord Dracula, Defeat All Bosses)
-
-### Skills
-
-Skills are movement options, techniques, and/or glitches the player is expected to know how to perform when available (e.g., Casual, Standard, Advanced, Beyond).
-
-### Map Layout
-
-How rooms are connected to one another within each stage and how each stage is connected to one another in the castle (e.g., Vanilla, Randomized Rooms and Stages)
-
-### Object Locations
-
-Where Relics and other objects are placed within the castle (e.g., Vanilla, Randomized Relics, etc.)
-
-## State
-
-The current state of the game, including player location, progression made, items collected, etc.
-
-## Examples of creating solvable games
-
-### Vanilla Alucard Glitchless, Casual Playthrough
-
-```python
-logic = Logic()
-logic.skillset('Casual')
-logic.ruleset('Alucard Glitchless')
-logic.win_condition('Defeat Lord Dracula')
-result = logic.solve()
-return result
-```
-
-### Vanilla Alucard Any%
-
-```python
-logic = Logic()
-logic.skillset('Advanced')
-logic.ruleset('Alucard Any%')
-logic.win_condition('Defeat Lord Dracula')
-result = logic.solve()
-return result
-```
-
-### Randomized Alucard Glitchless
-
-```python
-logic = Logic()
-logic.skillset('Standard')
-logic.ruleset('Alucard Glitchless')
-logic.win_condition('Defeat Lord Dracula')
-while True:
-    for stage in logic.stages:
-        logic.randomize_rooms(stage)
-    logic.randomize_stages()
-    logic.assign_teleporters()
-    logic.randomize_relics()
-    if logic.solve():
-        break
-```
-
-### Randomized Alucard Pacifist
-
-```python
-logic = Logic()
-logic.skillset('Advanced')
-logic.ruleset('Alucard Pacifist')
-logic.win_condition('Defeat Lord Dracula')
-while True:
-    for stage in logic.stages:
-        logic.randomize_rooms(stage)
-    logic.randomize_stages()
-    logic.assign_teleporters()
-    logic.randomize_relics()
-    if logic.solve():
-        break
-```
-
-### Randomized Richter Any%
-
-```python
-logic = Logic()
-logic.skillset('Advanced')
-logic.ruleset('Richter Any%')
-logic.win_condition('Defeat Lord Dracula')
-while True:
-    for stage in logic.stages:
-        logic.randomize_rooms(stage)
-    logic.randomize_stages()
-    logic.assign_teleporters()
-    logic.randomize_relics()
-    if logic.solve():
-        break
-```
-
-## Quality of Life Ideas
-
-- Possibilities for warning the player before entering Meeting Room with Death
-  - Room is always visible on the map
-  - Caution indicator placed on adjacent rooms
+- Forat Negre, for their research into room layouts, which helped demystify a lot of how stages and rooms worked in this game
+- [TalicZealot](https://github.com/taliczealot), for furthering knowledge about the game and making available tons of SOTN-related resources
+- Contributors and maintainers of the [SOTN-Randomizer](https://github.com/3snowp7im/SotN-Randomizer) project:
+  - [3snowp7im](https://github.com/3snowp7im) (Wild Mouse)
+  - [Mottzilla](https://github.com/MottZilla)
+  - [eldri7ch](https://github.com/eldri7ch2)
+- [MainMemory](https://github.com/MainMemory), for their [CastleEditor](https://github.com/MainMemory/SotNCastleEditor) project, which provided key insight into a few addresses as well as extremely helpful visualizations of the castle stages
+- [Mottzilla](https://github.com/MottZilla), for their _StartAnywhere_ script, which dramatically improved turnaround time during playtesting
+- The entire SOTN community, for their generosity and kindness
