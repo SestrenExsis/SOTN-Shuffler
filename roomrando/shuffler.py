@@ -37,6 +37,7 @@ if __name__ == '__main__':
         # Keep randomizing until a solution is found
         while True:
             print('')
+            shuffler = {}
             # Randomize
             stages = {}
             stages_to_process = (
@@ -67,6 +68,15 @@ if __name__ == '__main__':
                                 break
                 stages[stage_name] = stage_map
                 print(stage_map.current_seed)
+                shuffler[stage_name] = {
+                    'Attempts': stage_map.attempts,
+                    'Generation Start Date': stage_map.start_time.isoformat(),
+                    'Generation End Date': stage_map.end_time.isoformat(),
+                    # 'Generation Version': GENERATION_VERSION,
+                    'Hash of Changes': hashlib.sha256(json.dumps(stage_map.stage.get_changes(), sort_keys=True).encode()).hexdigest(),
+                    'Seed': stage_map.current_seed,
+                    'Stage': stage_name,
+                }
             # Current stage
             stage_name = 'Olrox\'s Quarters'
             print(stage_name)
@@ -77,6 +87,15 @@ if __name__ == '__main__':
                 if stage_map.validate():
                     break
             stages[stage_name] = stage_map
+            shuffler[stage_name] = {
+                'Attempts': stage_map.attempts,
+                'Generation Start Date': stage_map.start_time.isoformat(),
+                'Generation End Date': stage_map.end_time.isoformat(),
+                # 'Generation Version': GENERATION_VERSION,
+                'Hash of Changes': hashlib.sha256(json.dumps(stage_map.stage.get_changes(), sort_keys=True).encode()).hexdigest(),
+                'Seed': stage_map.current_seed,
+                'Stage': stage_name,
+            }
             # ...
             changes = {
                 'Rooms': {}
@@ -100,10 +119,6 @@ if __name__ == '__main__':
             map_solver = solver.Solver(logic_core, skills)
             map_solver.solve(3, 12)
             if len(map_solver.results['Wins']) > 0:
-                with open(os.path.join('build', 'sandbox', 'changes.json'), 'w') as changes_json:
-                    json.dump(changes, changes_json, indent='    ', sort_keys=True)
-                with open(os.path.join('build', 'sandbox', 'logic-core.json'), 'w') as logic_core_json:
-                    json.dump(logic_core, logic_core_json, indent='    ', sort_keys=True)
                 (winning_layers, winning_game) = map_solver.results['Wins'][-1]
                 print('-------------')
                 print('GOAL REACHED: Layer', winning_layers)
@@ -115,10 +130,17 @@ if __name__ == '__main__':
                     print('-', key, ':', value)
                 print('-------------')
                 solution = {
-                    'Final Layer': winning_layers,
-                    'State': winning_game.state,
                     'History': winning_game.history,
+                    'Final Layer': winning_layers,
+                    'Final State': winning_game.state,
                 }
-                with open(os.path.join('build', 'sandbox', 'solution.json'), 'w') as solution_json:
-                    json.dump(solution, solution_json, indent='    ', sort_keys=True)
+                current_seed = {
+                    'Data Core': data_core,
+                    'Logic Core': logic_core,
+                    'Shuffler': shuffler,
+                    'Solver': solution,
+                    'Changes': changes,
+                }
+                with open(os.path.join('build', 'sandbox', 'current-seed.json'), 'w') as current_seed_json:
+                    json.dump(current_seed, current_seed_json, indent='    ', sort_keys=True)
                 break
