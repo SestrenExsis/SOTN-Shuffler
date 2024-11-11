@@ -2,7 +2,6 @@ import collections
 import copy
 import json
 import os
-import random
 
 import roomrando
 
@@ -266,54 +265,26 @@ if __name__ == '__main__':
         open(os.path.join('build', 'sandbox', 'skills.json')) as skills_json,
     ):
         data_core = roomrando.DataCore().get_core()
-        with open(os.path.join('build', 'sandbox', 'data-core.json'), 'w') as data_core_json:
-            json.dump(data_core, data_core_json, indent='    ', sort_keys=True)
         logic_core = roomrando.LogicCore(data_core, {}).get_core()
         logic_core['State']['Location'] = 'Castle Entrance, After Drawbridge'
         logic_core['State']['Section'] = 'Ground'
-        # logic_core['State']['Location'] = 'Alchemy Laboratory, Slogra and Gaibon Boss Room'
-        # logic_core['State']['Section'] = 'Ground'
         logic_core['Goals'] = {
             # 'Debug 1': {
             #     'Location': 'Castle Entrance, Cube of Zoe Room',
             # },
             # 'Debug 2': {
-            #     'Location': 'Alchemy Laboratory, Slogra and Gaibon Boss Room',
-            # },
-            # 'Debug 3': {
-            #     'Location': 'Alchemy Laboratory, Bloody Zombie Hallway',
-            # },
-            # 'Debug 4': {
-            #     'Location': 'Marble Gallery, Long Hallway',
-            # },
-            # 'Debug 5': {
-            #     'Location': 'Outer Wall, Exit to Marble Gallery',
-            # },
-            # 'Debug 6': {
             #     'Relic - Soul of Wolf': True,
             # },
-            # 'Debug 7': {
-            #     'Location': 'Marble Gallery, Long Hallway',
-            #     'Relic - Soul of Wolf': True,
-            # },
-            # 'Debug 8': {
-            #     'Location': 'Marble Gallery, Clock Room',
-            #     'Relic - Soul of Wolf': True,
-            # },
-            'Debug 10': {
+            'Debug 3': {
                 'Location': 'Olrox\'s Quarters, Skelerang Room',
             },
             # 'Debug 99': {
-            #     'Location': 'Colosseum, Entrance',
             #     'Relic - Form of Mist': True,
             # },
         }
-        with open(os.path.join('build', 'sandbox', 'logic-core.json'), 'w') as logic_core_json:
-            json.dump(logic_core, logic_core_json, indent='    ', sort_keys=True)
         skills = json.load(skills_json)
         print('Solving')
         map_solver = Solver(logic_core, skills)
-        # map_solver.solve(51 + 4)
         map_solver.solve(3, 10)
         if len(map_solver.results['Wins']) > 0:
             (winning_layers, winning_game) = map_solver.results['Wins'][-1]

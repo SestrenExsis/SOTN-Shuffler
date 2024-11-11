@@ -14,8 +14,6 @@ if __name__ == '__main__':
     '''
     parser = argparse.ArgumentParser()
     parser.add_argument('binary_filepath', help='Input a filepath to a binary file', type=str)
-    # parser.add_argument('disc_address', help='Input a disc address as a hexstring', type=str)
-    # parser.add_argument('extraction_type', help='ROOMS or LAYERS', type=str)
     args = parser.parse_args()
     with open(args.binary_filepath, 'br') as open_file:
         extracted_data = {
@@ -153,21 +151,6 @@ if __name__ == '__main__':
                     'Layer IDs': layer_ids,
                 }
                 room_layers.append(room_layer)
-            # min_pointer = min(min(room_layer['Foreground Layer Pointer'], room_layer['Background Layer Pointer']) for room_layer in room_layers)
-            # for room_id in range(len(room_layers)):
-            #     foreground_layer_pointer = room_layers[room_id]['Foreground Layer Pointer']
-            #     old_foreground_layer_id = (foreground_layer_pointer - min_pointer) // 0x10
-            #     room_layers[room_id]['Old Foreground Layer ID'] = old_foreground_layer_id
-            #     background_layer_pointer = room_layers[room_id]['Background Layer Pointer']
-            #     old_background_layer_id = (background_layer_pointer - min_pointer) // 0x10
-            #     room_layers[room_id]['Old Background Layer ID'] = old_background_layer_id
-            #     try:
-            #         room_layers[room_id]['Foreground Layer Packed Layout'] = extracted_data['Layers'][stage_name][foreground_layer_id]['Packed Layout']
-            #         value = extracted_data['Extractions']['Layers'][stage_name + ', Layer ID ' + str(foreground_layer_id)]['Gamedata Address']
-            #         extracted_data['Rooms'][stage_name][room_id]['Packed Room Gamedata Address'] = value + 8 # Offset of 8 to find the packed room data portion
-            #     except:
-            #         room_layers[room_id]['Foreground Layer Packed Layout'] = None
-            #         extracted_data['Rooms'][stage_name][room_id]['Packed Room Gamedata Address'] = None
             extracted_data['Room-Layers'][stage_name] = room_layers
         with open(os.path.join('build', 'sandbox', 'vanilla.json'), 'w') as extracted_data_core_json:
             json.dump(extracted_data, extracted_data_core_json, indent='    ', sort_keys=True)

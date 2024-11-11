@@ -30,8 +30,6 @@ if __name__ == '__main__':
         open(os.path.join('build', 'sandbox', 'skills.json')) as skills_json,
     ):
         data_core = roomrando.DataCore().get_core()
-        with open(os.path.join('build', 'sandbox', 'data-core.json'), 'w') as data_core_json:
-            json.dump(data_core, data_core_json, indent='    ', sort_keys=True)
         rules = json.load(rules_json)
         skills = json.load(skills_json)
         # Keep randomizing until a solution is found

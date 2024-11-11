@@ -571,8 +571,6 @@ if __name__ == '__main__':
     '''
     GENERATION_VERSION = '0.0.2'
     data_core = roomrando.DataCore().get_core()
-    with open(os.path.join('build', 'sandbox', 'data-core.json'), 'w') as data_core_json:
-        json.dump(data_core, data_core_json, indent='    ', sort_keys=True)
     try:
         with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'r') as generated_stages_json:
             generated_stages = json.load(generated_stages_json)
@@ -615,8 +613,6 @@ if __name__ == '__main__':
                 }
             )
             print(generated_stages[stage_name][-1])
-            # with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'w') as generated_stages_json:
-            #     json.dump(generated_stages, generated_stages_json, indent='    ', sort_keys=True, default=str)
             seed = stage_map.rng.randint(0, 2 ** 64)
         with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'w') as generated_stages_json:
             json.dump(generated_stages, generated_stages_json, indent='    ', sort_keys=True, default=str)

@@ -95,12 +95,10 @@ if __name__ == '__main__':
     Usage
     python alchemylab.py
     '''
-    with (
-        open(os.path.join('build', 'sandbox', 'data-core.json')) as data_core_json,
-        open(os.path.join('build', 'sandbox', 'changes.json')) as changes_json,
-    ):
-        changes = json.load(changes_json)
-        data_core = json.load(data_core_json)
+    with open(os.path.join('build', 'sandbox', 'current-seed.json')) as current_seed_json:
+        current_seed = json.load(current_seed_json)
+        changes = current_seed['Changes']
+        data_core = current_seed['Data Core']
         patch = get_room_rando_ppf(data_core, changes)
         with open(os.path.join('build', 'RoomRando.ppf'), 'wb') as file:
             file.write(patch.bytes)
