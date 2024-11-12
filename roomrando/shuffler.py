@@ -1,4 +1,5 @@
 # External libraries
+import datetime
 import hashlib
 import json
 import os
@@ -33,22 +34,29 @@ if __name__ == '__main__':
         rules = json.load(rules_json)
         skills = json.load(skills_json)
         # Keep randomizing until a solution is found
+        initial_seed = random.randint(0, 2 ** 64)
+        rng = random.Random(initial_seed)
         while True:
             print('')
-            shuffler = {}
+            shuffler = {
+                'Initial Seed': initial_seed,
+                'Start Time': datetime.datetime.now(datetime.timezone.utc),
+                'Stages': {},
+            }
             # Randomize
             stages = {}
             stages_to_process = (
-                ('Castle Entrance', random.randint(0, 2 ** 64)),
-                ('Alchemy Laboratory', random.randint(0, 2 ** 64)),
-                ('Marble Gallery', random.randint(0, 2 ** 64)),
-                ('Outer Wall', random.randint(0, 2 ** 64)),
-                ('Olrox\'s Quarters', random.randint(0, 2 ** 64)),
+                ('Castle Entrance', rng.randint(0, 2 ** 64)),
+                ('Alchemy Laboratory', rng.randint(0, 2 ** 64)),
+                ('Marble Gallery', rng.randint(0, 2 ** 64)),
+                ('Outer Wall', rng.randint(0, 2 ** 64)),
+                ('Olrox\'s Quarters', rng.randint(0, 2 ** 64)),
             )
             print('Randomize with seeds')
             for (stage_name, stage_seed) in stages_to_process:
                 print(stage_name, stage_seed, end=' ')
                 stage_map = mapper.Mapper(data_core, stage_name, stage_seed)
+                note = 'Random'
                 while True:
                     stage_map.generate()
                     if stage_map.validate():
@@ -63,10 +71,12 @@ if __name__ == '__main__':
                             assert hash_of_changes == prebaked_stage['Hash of Changes']
                             stage_map = prebaked_map
                             if stage_map.validate():
+                                note = 'Prebaked'
                                 break
                 stages[stage_name] = stage_map
                 print(stage_map.current_seed)
-                shuffler[stage_name] = {
+                shuffler['Stages'][stage_name] = {
+                    'Note': note,
                     'Attempts': stage_map.attempts,
                     'Generation Start Date': stage_map.start_time.isoformat(),
                     'Generation End Date': stage_map.end_time.isoformat(),
@@ -78,14 +88,15 @@ if __name__ == '__main__':
             # Current stage
             stage_name = 'Olrox\'s Quarters'
             print(stage_name)
-            stage_map = mapper.Mapper(data_core, stage_name, random.randint(0, 2 ** 64))
+            stage_map = mapper.Mapper(data_core, stage_name, rng.randint(0, 2 ** 64))
             while True:
                 stage_map.generate()
                 rooms_found = set(stage_map.stage.rooms)
                 if stage_map.validate():
                     break
             stages[stage_name] = stage_map
-            shuffler[stage_name] = {
+            shuffler['Stages'][stage_name] = {
+                'Note': 'Random',
                 'Attempts': stage_map.attempts,
                 'Generation Start Date': stage_map.start_time.isoformat(),
                 'Generation End Date': stage_map.end_time.isoformat(),
@@ -106,16 +117,35 @@ if __name__ == '__main__':
                         'Top': stage_changes['Rooms'][room_name]['Top'],
                         'Left': stage_changes['Rooms'][room_name]['Left'],
                     }
-            # Build
+            # Require that leaving Castle Entrance by layer 4 is possible
             logic_core = roomrando.LogicCore(data_core, changes).get_core()
-            # Solve
+            logic_core['Goals'] = {
+                'Debug - Reach Castle Entrance, Loading Room A': {
+                    'Location': 'Castle Entrance, Loading Room A',
+                },
+                'Debug - Reach Castle Entrance, Loading Room B': {
+                    'Location': 'Castle Entrance, Loading Room B',
+                },
+                'Debug - Reach Castle Entrance, Loading Room C': {
+                    'Location': 'Castle Entrance, Loading Room C',
+                },
+                'Debug - Reach Castle Entrance, Loading Room D': {
+                    'Location': 'Castle Entrance, Loading Room D',
+                },
+            }
+            map_solver = solver.Solver(logic_core, skills)
+            map_solver.solve(3, 4)
+            if len(map_solver.results['Wins']) > 0:
+                continue
+            # Require that reaching Olrox's Quarters by layer 9 is possible
+            logic_core = roomrando.LogicCore(data_core, changes).get_core()
             logic_core['Goals'] = {
                 'Debug - Reach Skelerang Room': {
                     'Location': 'Olrox\'s Quarters, Skelerang Room',
                 },
             }
             map_solver = solver.Solver(logic_core, skills)
-            map_solver.solve(3, 12)
+            map_solver.solve(3, 9)
             if len(map_solver.results['Wins']) > 0:
                 (winning_layers, winning_game) = map_solver.results['Wins'][-1]
                 print('-------------')
@@ -132,6 +162,7 @@ if __name__ == '__main__':
                     'Final Layer': winning_layers,
                     'Final State': winning_game.state,
                 }
+                shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)
                 current_seed = {
                     'Data Core': data_core,
                     'Logic Core': logic_core,
@@ -140,5 +171,5 @@ if __name__ == '__main__':
                     'Changes': changes,
                 }
                 with open(os.path.join('build', 'sandbox', 'current-seed.json'), 'w') as current_seed_json:
-                    json.dump(current_seed, current_seed_json, indent='    ', sort_keys=True)
+                    json.dump(current_seed, current_seed_json, indent='    ', sort_keys=True, default=str)
                 break

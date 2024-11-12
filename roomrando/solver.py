@@ -6,15 +6,15 @@ import os
 import roomrando
 
 class Game:
-    def __init__(self,
-        starting_state: dict,
-        commands: dict,
-        goals: dict,
-    ):
-        self.state = copy.deepcopy(starting_state)
-        self.commands = commands
-        self.goals = goals
-        self.starting_state = copy.deepcopy(starting_state)
+    DEFAULT_BOOLEAN = False
+    DEFAULT_STRING = 'NONE'
+    DEFAULT_NUMBER = 0
+    def __init__(self, logic_core: dict, starting_state: dict=None):
+        self.logic_core = copy.deepcopy(logic_core)
+        if starting_state is None:
+            starting_state = logic_core['State']
+        self.current_state = copy.deepcopy(starting_state)
+        self.commands = self.logic_core['Commands']
         # Must add the following to self.clone()
         self.history = []
         self.stages_visited = set()
@@ -24,14 +24,14 @@ class Game:
     
     @property
     def location(self):
-        result = [self.state['Location'], self.state['Section']]
-        if 'Helper' in self.state:
-            result.append(self.state['Helper'])
+        result = [self.current_state['Location'], self.current_state['Section']]
+        if 'Helper' in self.current_state:
+            result.append(self.current_state['Helper'])
         result = tuple(result)
         return result
     
     def clone(self):
-        result = Game(self.state, self.commands, self.goals)
+        result = Game(self.logic_core, self.current_state)
         result.layer = self.layer
         result.history = list(self.history)
         self.stages_visited = set(self.stages_visited)
@@ -41,8 +41,22 @@ class Game:
         return result
     
     def get_key(self) -> int:
-        hashed_state = hash(json.dumps(self.state, sort_keys=True))
-        result = (self.state['Location'], self.state['Section'], hashed_state)
+        # Remove default values in state before calculating hash of state
+        keys_to_remove = set()
+        for (key, value) in self.current_state.items():
+            if type(value) == str:
+                if value == self.DEFAULT_STRING:
+                    keys_to_remove.add(key)
+            elif type(value) == bool:
+                if value == self.DEFAULT_BOOLEAN:
+                    keys_to_remove.add(key)
+            elif type(value) in (int, dict):
+                if value == self.DEFAULT_NUMBER:
+                    keys_to_remove.add(key)
+        for key in keys_to_remove:
+            self.current_state.pop(key)
+        hashed_state = hash(json.dumps(self.current_state, sort_keys=True))
+        result = (self.current_state['Location'], self.current_state['Section'], hashed_state)
         return result
     
     def validate(self, requirements):
@@ -52,15 +66,15 @@ class Game:
             valid_ind = True
             for (key, value) in requirement.items():
                 target_value = None
-                if key not in self.state:
+                if key not in self.current_state:
                     if type(value) == str:
-                        target_value = 'NONE'
+                        target_value = self.DEFAULT_STRING
                     elif type(value) == bool:
-                        target_value = False
+                        target_value = self.DEFAULT_BOOLEAN
                     elif type(value) in (int, dict):
-                        target_value = 0
+                        target_value = self.DEFAULT_NUMBER
                 else:
-                    target_value = self.state[key]
+                    target_value = self.current_state[key]
                 if type(value) == dict:
                     if 'Minimum' in value:
                         if target_value < value['Minimum']:
@@ -80,54 +94,54 @@ class Game:
         return result
 
     def cheat_location(self, location_name: str, section_name: str, helper: str=None):
-        self.state['Location'] = location_name
-        self.state['Section'] = section_name
+        self.current_state['Location'] = location_name
+        self.current_state['Section'] = section_name
         if helper is None:
-            if 'Helper' in self.state:
-                self.state.pop('Helper')
+            if 'Helper' in self.current_state:
+                self.current_state.pop('Helper')
         else:
-            self.state['Helper'] = helper
+            self.current_state['Helper'] = helper
     
     def cheat_command(self, location_name: str, command_name: str):
         command_data = self.commands[location_name]
         # Apply outcomes from the command
         for (key, value) in command_data[command_name]['Outcomes'].items():
             if type(value) in (str, bool):
-                if self.debug and (key not in self.state or self.state[key] != value):
+                if self.debug and (key not in self.current_state or self.current_state[key] != value):
                     print('  +', key, ': ', value)
-                self.state[key] = value
+                self.current_state[key] = value
             elif type(value) in (int, float):
-                if key not in self.state:
-                    self.state[key] = 0
+                if key not in self.current_state:
+                    self.current_state[key] = 0
                 if self.debug:
                     print('  +', key, ': ', value)
-                self.state[key] += value
+                self.current_state[key] += value
 
     def process_command(self, command_name: str):
-        location = self.state['Location']
+        location = self.current_state['Location']
         self.history.append((self.layer, location, command_name))
         stage = location[:location.find(',')]
         self.stages_visited.add(stage)
         command_data = {}
-        if self.state['Location'] in self.commands:
-            command_data = self.commands[self.state['Location']]
+        if self.current_state['Location'] in self.commands:
+            command_data = self.commands[self.current_state['Location']]
         # Apply outcomes from the command
         for (key, value) in command_data[command_name]['Outcomes'].items():
             if type(value) in (str, bool):
-                if self.debug and (key not in self.state or self.state[key] != value):
+                if self.debug and (key not in self.current_state or self.current_state[key] != value):
                     print('  +', key, ': ', value)
-                self.state[key] = value
+                self.current_state[key] = value
             elif type(value) in (int, float):
-                if key not in self.state:
-                    self.state[key] = 0
+                if key not in self.current_state:
+                    self.current_state[key] = 0
                 if self.debug:
                     print('  +', key, ': ', value)
-                self.state[key] += value
+                self.current_state[key] += value
         if not self.goal_achieved:
             goal_achieved = False
-            for (goal_name, requirements) in self.goals.items():
+            for (goal_name, requirements) in self.logic_core['Goals'].items():
                 for (key, expected_value) in requirements.items():
-                    if key not in self.state or self.state[key] != expected_value:
+                    if key not in self.current_state or self.current_state[key] != expected_value:
                         break
                 else:
                     goal_achieved = True
@@ -139,8 +153,8 @@ class Game:
         result = set()
         # Add choices for valid commands the player can issue
         command_data = {}
-        if self.state['Location'] in self.commands:
-            command_data = self.commands[self.state['Location']]
+        if self.current_state['Location'] in self.commands:
+            command_data = self.commands[self.current_state['Location']]
         for (command_name, command_info) in command_data.items():
             if self.validate(command_info['Requirements']):
                 result.add(command_name)
@@ -148,7 +162,7 @@ class Game:
         return result
 
     def play(self):
-        print('@', self.state['Location'], '-', self.state['Section'])
+        print('@', self.current_state['Location'], '-', self.current_state['Section'])
         command_map = {}
         codes = '1234567890abcdefghijklmnopqrstuvwxyz'
         valid_command_names = self.get_valid_command_names()
@@ -183,7 +197,7 @@ class Solver():
     def solve(self, reflexive_limit: int=3, max_layers: int=8):
         memo = {}
         solution_found = False
-        initial_game = Game(self.logic_core['State'], self.logic_core['Commands'], self.logic_core['Goals'])
+        initial_game = Game(self.logic_core)
         work__solver = collections.deque()
         work__solver.appendleft((0, initial_game))
         while len(work__solver) > 0 and not solution_found:
