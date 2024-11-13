@@ -1,5 +1,8 @@
+# External libraries
 import json
 import os
+
+# Local libraries
 import solver
 
 # TODO(sestren): Support different categories like Any%, RBO, Pacifist, etc?

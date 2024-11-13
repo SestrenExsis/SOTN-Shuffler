@@ -1,6 +1,9 @@
+# External libraries
 import argparse
 import json
 import os
+
+# Local libraries
 import roomrando
 
 def _hex(val: int, size: int) -> str:

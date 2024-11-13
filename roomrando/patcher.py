@@ -1,5 +1,8 @@
+# External libraries
 import json
 import os
+
+# Local libraries
 import roomrando
 
 def get_room_rando_ppf(logic, changes):

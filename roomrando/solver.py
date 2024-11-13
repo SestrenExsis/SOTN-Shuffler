@@ -1,8 +1,10 @@
+# External libraries
 import collections
 import copy
 import json
 import os
 
+# Local libraries
 import roomrando
 
 class Game:

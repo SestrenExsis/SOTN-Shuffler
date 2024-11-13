@@ -1,9 +1,11 @@
+# External libraries
 import datetime
 import hashlib
 import json
 import os
 import random
 
+# Local libraries
 import roomrando
 
 class RoomNode:
