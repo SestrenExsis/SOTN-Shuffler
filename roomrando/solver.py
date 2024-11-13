@@ -39,8 +39,8 @@ class Game:
         self.layer = self.layer
         self.debug = self.debug
         return result
-    
-    def get_key(self) -> int:
+
+    def cleanup_state(self):
         # Remove default values in state before calculating hash of state
         keys_to_remove = set()
         for (key, value) in self.current_state.items():
@@ -55,6 +55,9 @@ class Game:
                     keys_to_remove.add(key)
         for key in keys_to_remove:
             self.current_state.pop(key)
+    
+    def get_key(self) -> int:
+        self.cleanup_state()
         hashed_state = hash(json.dumps(self.current_state, sort_keys=True))
         result = (self.current_state['Location'], self.current_state['Section'], hashed_state)
         return result
@@ -101,6 +104,7 @@ class Game:
                 self.current_state.pop('Helper')
         else:
             self.current_state['Helper'] = helper
+        self.cleanup_state()
     
     def cheat_command(self, location_name: str, command_name: str):
         command_data = self.commands[location_name]
@@ -116,6 +120,7 @@ class Game:
                 if self.debug:
                     print('  +', key, ': ', value)
                 self.current_state[key] += value
+        self.cleanup_state()
 
     def process_command(self, command_name: str):
         location = self.current_state['Location']
@@ -148,6 +153,7 @@ class Game:
                     break
             if goal_achieved:
                 self.goal_achieved = True
+        self.cleanup_state()
 
     def get_valid_command_names(self) -> list:
         result = set()
@@ -195,6 +201,7 @@ class Solver():
         self.debug = False
     
     def solve(self, reflexive_limit: int=3, max_layers: int=8):
+        highest_layer_found = -1
         memo = {}
         solution_found = False
         initial_game = Game(self.logic_core)
@@ -202,6 +209,9 @@ class Solver():
         work__solver.appendleft((0, initial_game))
         while len(work__solver) > 0 and not solution_found:
             (step__solver, game__solver) = work__solver.pop()
+            if step__solver > highest_layer_found:
+                print('Layer', step__solver)
+                highest_layer_found = step__solver
             game__solver.layer = step__solver
             if game__solver.goal_achieved:
                 solution_found = True
@@ -216,7 +226,7 @@ class Solver():
             if step__solver >= max_layers:
                 continue
             if self.debug:
-                print(step__solver, game__solver.state['Location'])
+                print(step__solver, game__solver.current_state['Location'])
             #
             # Find all locations that are N-bonded with the current location (N = reflexive_limit)
             # Two locations are considered "N-bonded" if you can move from one to another via a series of N-reflexive commands
@@ -308,7 +318,7 @@ if __name__ == '__main__':
             for (layer, location, command_name) in winning_game.history:
                 print('-', layer, location, ':', command_name)
             print('State')
-            for (key, value) in winning_game.state.items():
+            for (key, value) in winning_game.current_state.items():
                 print('-', key, ':', value)
             print('-------------')
             while True:

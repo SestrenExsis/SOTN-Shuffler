@@ -134,8 +134,22 @@ if __name__ == '__main__':
                 },
             }
             map_solver = solver.Solver(logic_core, skills)
-            map_solver.solve(3, 4)
-            if len(map_solver.results['Wins']) > 0:
+            map_solver.solve(3, 3)
+            if len(map_solver.results['Wins']) < 1:
+                continue
+            # Require that reaching Marble Gallery by layer 6 is possible
+            logic_core = roomrando.LogicCore(data_core, changes).get_core()
+            logic_core['Goals'] = {
+                'Debug - Reach Marble Gallery, Entrance': {
+                    'Location': 'Marble Gallery, Entrance',
+                },
+                'Debug - Reach Marble Gallery, S-Shaped Hallways': {
+                    'Location': 'Marble Gallery, S-Shaped Hallways',
+                },
+            }
+            map_solver = solver.Solver(logic_core, skills)
+            map_solver.solve(3, 5)
+            if len(map_solver.results['Wins']) < 1:
                 continue
             # Require that reaching Olrox's Quarters by layer 9 is possible
             logic_core = roomrando.LogicCore(data_core, changes).get_core()
@@ -145,7 +159,8 @@ if __name__ == '__main__':
                 },
             }
             map_solver = solver.Solver(logic_core, skills)
-            map_solver.solve(3, 9)
+            map_solver.debug = True
+            map_solver.solve(3, 7)
             if len(map_solver.results['Wins']) > 0:
                 (winning_layers, winning_game) = map_solver.results['Wins'][-1]
                 print('-------------')
@@ -154,13 +169,13 @@ if __name__ == '__main__':
                 for (layer, location, command_name) in winning_game.history:
                     print('-', layer, location, ':', command_name)
                 print('State')
-                for (key, value) in winning_game.state.items():
+                for (key, value) in winning_game.current_state.items():
                     print('-', key, ':', value)
                 print('-------------')
                 solution = {
                     'History': winning_game.history,
                     'Final Layer': winning_layers,
-                    'Final State': winning_game.state,
+                    'Final State': winning_game.current_state,
                 }
                 shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)
                 current_seed = {
