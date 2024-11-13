@@ -154,9 +154,7 @@ class RoomSet:
                 min_col = min(min_col, col)
                 max_row = min(max_row, row)
                 max_col = min(max_col, col)
-            if min_row >= 0 and min_col >= 0 and max_row < 64 and max_col < 64:
-                pass
-            else:
+            if not (min_row >= 0 and min_col >= 0 and max_row < 64 and max_col < 64):
                 valid_ind = False
                 break
         if valid_ind:
@@ -185,7 +183,6 @@ class RoomSet:
         }
         for (room_name, room) in self.rooms.items():
             result['Rooms'][room_name] = {
-                'Index': room.index,
                 'Top': room.top,
                 'Left': room.left,
             }
@@ -198,7 +195,7 @@ class RoomSet:
         grid = [['.' for col in range(64)] for row in range(64)]
         for room_name in changes['Rooms'].keys():
             (index, top, left, rows, cols) = (
-                changes['Rooms'][room_name]['Index'],
+                data_core['Rooms'][room_name]['Index'],
                 changes['Rooms'][room_name]['Top'],
                 changes['Rooms'][room_name]['Left'],
                 data_core['Rooms'][room_name]['Rows'],
@@ -282,8 +279,8 @@ stages = {
     'Castle Entrance': [
         {
             'Castle Entrance, Forest Cutscene': (None, None),
-            'Castle Entrance, Unknown 19': (None, None),
-            'Castle Entrance, Unknown 20': (40, 31),
+            'Castle Entrance, Unknown Room 19': (None, None),
+            'Castle Entrance, Unknown Room 20': (40, 31),
             'Castle Entrance, After Drawbridge': (38, 32),
         },
         {
@@ -518,7 +515,7 @@ def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
         if len(open_nodes) < 1:
             # ERROR: No matching source nodes for the chosen target node
             break
-        # Go through possible source nodes in random order until we get a valid source node
+        # Go through possible source nodes in random order until a valid source node is found
         open_nodes.sort()
         rng.shuffle(open_nodes)
         for source_node in open_nodes:
@@ -571,7 +568,7 @@ if __name__ == '__main__':
     python mapper.py
     TODO(sestren): Add a requirement that Castle Entrance be able to reach one of the other stages
     '''
-    GENERATION_VERSION = '0.0.2'
+    GENERATION_VERSION = '0.0.3'
     data_core = roomrando.DataCore().get_core()
     try:
         with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'r') as generated_stages_json:
@@ -585,7 +582,7 @@ if __name__ == '__main__':
             'Olrox\'s Quarters': [],
         }
     seed = random.randint(0, 2 ** 64)
-    MULTIPLIER = 100
+    MULTIPLIER = 1
     WEIGHTS = [3, 13, 13, 13, 13] # 300, 1300
     for (stage_name, target_seed_count) in (
         ('Castle Entrance', MULTIPLIER * WEIGHTS[0]),
@@ -618,3 +615,11 @@ if __name__ == '__main__':
             seed = stage_map.rng.randint(0, 2 ** 64)
         with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'w') as generated_stages_json:
             json.dump(generated_stages, generated_stages_json, indent='    ', sort_keys=True, default=str)
+    with (
+        open(os.path.join('build', 'sandbox', 'changes.json'), 'w') as changes_json,
+        open(os.path.join('build', 'sandbox', 'spoiler.txt'), 'w') as spoiler_text,
+    ):
+        stage_map = Mapper(data_core, 'Alchemy Laboratory', 13673787484619113129)
+        stage_map.generate()
+        json.dump(stage_map.stage.get_changes(), changes_json, indent='    ', sort_keys=True, default=str)
+        json.dump(stage_map.stage.get_stage_spoiler(data_core), spoiler_text, indent='    ', sort_keys=True, default=str)

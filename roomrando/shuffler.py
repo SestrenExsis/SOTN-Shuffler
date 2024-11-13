@@ -113,7 +113,6 @@ if __name__ == '__main__':
                 stage_changes = stage_map.stage.get_changes()
                 for room_name in stage_changes['Rooms']:
                     changes['Rooms'][room_name] = {
-                        'Index': stage_changes['Rooms'][room_name]['Index'],
                         'Top': stage_changes['Rooms'][room_name]['Top'],
                         'Left': stage_changes['Rooms'][room_name]['Left'],
                     }
