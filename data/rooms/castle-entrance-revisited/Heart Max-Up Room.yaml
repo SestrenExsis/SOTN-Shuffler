@@ -1,5 +1,5 @@
 
-Stage: Castle Entrance
+Stage: Castle Entrance Revisited
 Room: Heart Max-Up Room
 Index: 14
 Left: 19
@@ -11,10 +11,13 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Right Node:
+Foreground Layer ID: 29
+Nodes:
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Triggers:
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

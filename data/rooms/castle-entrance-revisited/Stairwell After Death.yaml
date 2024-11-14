@@ -1,5 +1,5 @@
 
-Stage: Castle Entrance
+Stage: Castle Entrance Revisited
 Room: Stairwell After Death
 Index: 12
 Left: 21
@@ -11,15 +11,20 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Upper-Left Node:
+Foreground Layer ID: 25
+Nodes:
+    Upper-Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Lower-Left Node:
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Left Passage:
         Type: Passage
         Row: 2
         Column: 0
         Edge: Left
-Triggers:
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

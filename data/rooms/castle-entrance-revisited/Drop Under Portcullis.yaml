@@ -1,5 +1,5 @@
 
-Stage: Castle Entrance
+Stage: Castle Entrance Revisited
 Room: Drop Under Portcullis
 Index: 1
 Left: 2
@@ -11,15 +11,51 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Upper Node:
+Foreground Layer ID: 3
+Nodes:
+    Top Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Top
-    Lower-Right Node:
+        Entry Section: Upper
+        Exit Section: Upper
+    Lower-Right Passage:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Right
-Triggers:
+        Entry Section: Lower
+        Exit Section: Lower
+Commands:
+    Move - Lower:
+        Outcomes:
+            Section: Lower
+        Requirements:
+            Default:
+                Section: Upper
+    Move - Upper:
+        Outcomes:
+            Section: Upper
+        Requirements:
+            Default:
+                Section: Lower
+            Lower - Bat Form:
+                Section: Lower
+                Progression - Bat Transformation: true
+            Lower - Double Jump:
+                Section: Lower
+                Progression - Double Jump: true
+            Lower - Powered Mist:
+                Section: Lower
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Lower - Gravity Jump:
+                Section: Lower
+                Progression - Gravity Jump: true
+            Lower - Wolf-Mist Rise:
+                Section: Lower
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Skill - Wolf-Mist Rise: true
+                Skill - Extended Wolf-Mist Rise: true

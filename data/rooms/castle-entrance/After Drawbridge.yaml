@@ -34,7 +34,6 @@ Commands:
             Section: Beneath Trapdoor
         Requirements:
             Ground - Basic:
-                Location: Castle Entrance, After Drawbridge
                 Section: Ground
                 Progression - Open Trapdoor After Drawbridge: true
     Move - Ground:
@@ -42,33 +41,27 @@ Commands:
             Section: Ground
         Requirements:
             Parapet - Basic:
-                Location: Castle Entrance, After Drawbridge
                 Section: Parapet
     Move - Parapet:
         Outcomes:
             Section: Parapet
         Requirements:
             Ground - Bat Form:
-                Location: Castle Entrance, After Drawbridge
                 Section: Ground
                 Progression - Bat Transformation: true
             Ground - Powered Mist:
-                Location: Castle Entrance, After Drawbridge
                 Section: Ground
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
             Ground - Gravity Jump with Mist:
-                Location: Castle Entrance, After Drawbridge
                 Section: Ground
                 Progression - Gravity Jump: true
                 Progression - Mist Transformation: true
             Ground - Multiple Gravity Jumps:
-                Location: Castle Entrance, After Drawbridge
                 Section: Ground
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
             Ground - Wolf-Mist Rise:
-                Location: Castle Entrance, After Drawbridge
                 Section: Ground
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
@@ -79,6 +72,5 @@ Commands:
             Progression - Faster Wolf Run Speed: true
         Requirements:
             Default:
-                Location: Castle Entrance, After Drawbridge
                 Section: Parapet
                 Relic - Power of Wolf: false

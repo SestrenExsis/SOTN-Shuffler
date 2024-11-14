@@ -11,20 +11,21 @@ def get_room_rando_ppf(logic, changes):
         ('Teleporter Data'): roomrando.Address(0x00097C5C),
         ('Room Data', 'Alchemy Laboratory'): roomrando.Address(0x049C0F2C),
         ('Room Data', 'Castle Entrance'): roomrando.Address(0x041AB4C4),
+        # ('Room Data', 'Castle Entrance Revisited'): roomrando.Address(0xFFFFFFFF),
         ('Room Data', 'Marble Gallery'): roomrando.Address(0x03F8D7E0),
-        ('Room Data', 'Outer Wall'): roomrando.Address(0x0404A488),
         ('Room Data', 'Olrox\'s Quarters'): roomrando.Address(0x040FE2A0),
-        ('Layer Data', 'Castle Entrance'): roomrando.Address(0x041A79C4),
+        ('Room Data', 'Outer Wall'): roomrando.Address(0x0404A488),
         ('Layer Data', 'Alchemy Laboratory'): roomrando.Address(0x049BE964),
+        ('Layer Data', 'Castle Entrance'): roomrando.Address(0x041A79C4),
+        # ('Layer Data', 'Castle Entrance Revisited'): roomrando.Address(0xFFFFFFFF),
         ('Layer Data', 'Marble Gallery'): roomrando.Address(0x03F8B150),
-        ('Layer Data', 'Outer Wall'): roomrando.Address(0x040471D4),
         ('Layer Data', 'Olrox\'s Quarters'): roomrando.Address(0x040FB110),
+        ('Layer Data', 'Outer Wall'): roomrando.Address(0x040471D4),
     }
     result = roomrando.PPF('Shuffled rooms in first few stages of the game')
     canvas = roomrando.IndexedBitmapCanvas(256, 256)
     for room_name in sorted(changes['Rooms'].keys()):
         if (
-            changes['Rooms'][room_name]['Index'] == logic['Rooms'][room_name]['Index'] and
             changes['Rooms'][room_name]['Top'] == logic['Rooms'][room_name]['Top'] and
             changes['Rooms'][room_name]['Left'] == logic['Rooms'][room_name]['Left']
         ):
@@ -41,7 +42,7 @@ def get_room_rando_ppf(logic, changes):
         if 'Foreground Layer ID' in logic['Rooms'][room_name]:
             foreground_layer_id = logic['Rooms'][room_name]['Foreground Layer ID']
         room = roomrando.Room(
-            changes['Rooms'][room_name]['Index'],
+            logic['Rooms'][room_name]['Index'],
             (
                 changes['Rooms'][room_name]['Top'],
                 changes['Rooms'][room_name]['Left'],

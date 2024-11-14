@@ -116,6 +116,17 @@ if __name__ == '__main__':
                         'Top': stage_changes['Rooms'][room_name]['Top'],
                         'Left': stage_changes['Rooms'][room_name]['Left'],
                     }
+                    # Apply Castle Entrance room positions to Castle Entrance Revisited
+                    if stage_name == 'Castle Entrance' and room_name not in (
+                        'Castle Entrance, Forest Cutscene',
+                        'Castle Entrance, Unknown Room 19',
+                        'Castle Entrance, Unknown Room 20',
+                    ):
+                        revisited_room_name = 'Castle Entrance Revisited, ' + room_name[17:]
+                        changes['Rooms'][revisited_room_name] = {
+                            'Top': stage_changes['Rooms'][room_name]['Top'],
+                            'Left': stage_changes['Rooms'][room_name]['Left'],
+                        }
             # Require that leaving Castle Entrance by layer 4 is possible
             logic_core = roomrando.LogicCore(data_core, changes).get_core()
             logic_core['Goals'] = {

@@ -27,6 +27,5 @@ Commands:
             Progression - Item at Jewel Sword Location Collected: true
         Requirements:
             Default:
-                Location: Castle Entrance, Jewel Sword Room
                 Section: Main
                 Progression - Item at Jewel Sword Location Collected: false

@@ -111,6 +111,5 @@ Commands:
             Item - Necklace of J: -1
         Requirements:
             Default:
-                Location: Castle Entrance, Meeting Room With Death
                 Section: Special
                 Progression - Meet Death in Castle Entrance: false

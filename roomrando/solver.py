@@ -203,6 +203,9 @@ class Solver():
         self.debug = False
     
     def solve(self, reflexive_limit: int=3, max_layers: int=8):
+        # TODO(sestren): Add ability to solve with all forms of Progression unlocked
+        # TODO(sestren): Rename "Progression" status markers to "Check" if the status marker itself is not useful in any way
+        # (e.g., "Progression - Object at Alchemy Lab Life Max-Up 1 Location Collected" should be renamed to "Check - Object at Alchemy Lab Life Max-Up 1 Location")
         highest_layer_found = -1
         memo = {}
         solution_found = False
@@ -291,19 +294,21 @@ if __name__ == '__main__':
         open(os.path.join('build', 'sandbox', 'skills.json')) as skills_json,
     ):
         data_core = roomrando.DataCore().get_core()
+        with open(os.path.join('build', 'sandbox', 'data-core.json'), 'w') as data_core_json:
+            json.dump(data_core, data_core_json, indent='    ', sort_keys=True)
         logic_core = roomrando.LogicCore(data_core, {}).get_core()
         logic_core['State']['Location'] = 'Castle Entrance, After Drawbridge'
         logic_core['State']['Section'] = 'Ground'
         logic_core['Goals'] = {
-            # 'Debug 1': {
-            #     'Location': 'Castle Entrance, Cube of Zoe Room',
-            # },
+            'Debug 1': {
+                'Location': 'Castle Entrance Revisited, After Drawbridge',
+            },
             # 'Debug 2': {
             #     'Relic - Soul of Wolf': True,
             # },
-            'Debug 3': {
-                'Location': 'Olrox\'s Quarters, Skelerang Room',
-            },
+            # 'Debug 3': {
+            #     'Location': 'Olrox\'s Quarters, Skelerang Room',
+            # },
             # 'Debug 99': {
             #     'Relic - Form of Mist': True,
             # },

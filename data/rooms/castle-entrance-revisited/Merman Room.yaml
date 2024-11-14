@@ -1,5 +1,5 @@
 
-Stage: Castle Entrance
+Stage: Castle Entrance Revisited
 Room: Merman Room
 Index: 7
 Left: 11
@@ -11,25 +11,86 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
+Foreground Layer ID: 15
+Nodes:
+    Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Top
+        Entry Section: Air
+        Exit Section: Air
     Upper-Left Passage:
         Type: Passage
-        Row: 1
+        Row: 0
         Column: 0
         Edge: Left
+        Entry Section: Ground
+        Exit Section: Ground
     Upper-Right Passage:
         Type: Passage
         Row: 0
         Column: 2
         Edge: Right
+        Entry Section: Ground
+        Exit Section: Ground
     Lower-Left Passage:
         Type: Passage
-        Row: 0
+        Row: 1
         Column: 0
         Edge: Left
+        Entry Section: Secret Wall
+        Exit Section: Secret Wall
     Lower-Right Passage:
         Type: Passage
         Row: 1
         Column: 2
         Edge: Right
-Triggers:
+        Entry Section: Ground
+        Exit Section: Ground
+Commands:
+    Move - Air:
+        Outcomes:
+            Section: Air
+        Requirements:
+            Ground - Bat Form:
+                Section: Ground
+                Progression - Bat Transformation: true
+            Ground - Powered Mist:
+                Section: Ground
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Ground - Gravity Jump:
+                Section: Ground
+                Progression - Gravity Jump: true
+            Ground - Wolf-Mist Rise:
+                Section: Ground
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Skill - Wolf-Mist Rise: true
+    Move - Ground:
+        Outcomes:
+            Section: Ground
+        Requirements:
+            Air - Default:
+                Section: Air
+            Secret Wall - Default:
+                Section: Secret Wall
+                Progression - Secret Wall in Merman Room Opened: true
+    Move - Secret Wall:
+        Outcomes:
+            Section: Secret Wall
+        Requirements:
+            Ground - Secret Unlocked:
+                Section: Ground
+                Progression - Secret Wall in Merman Room Opened: true
+    Action - Open Secret Wall:
+        Outcomes:
+            Progression - Secret Wall in Merman Room Opened: true
+        Requirements:
+            Ground - Default:
+                Section: Ground
+                Progression - Bat Transformation: true
+                Progression - Wolf Transformation: true
+                Progression - Secret Wall in Merman Room Opened: false
+                Skill - Open Secret Wall in Merman Room: true

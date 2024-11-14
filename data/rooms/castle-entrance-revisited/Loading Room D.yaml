@@ -1,6 +1,6 @@
 
-Stage: Castle Entrance
-Room: Loading Room C
+Stage: Castle Entrance Revisited
+Room: Loading Room D
 Index: 21
 Left: 15
 Top: 41
@@ -9,15 +9,22 @@ Rows: 1
 Total Cells: 1
 Empty Cells: {}
 Entities:
-Node Sections:
-    Left Node:
+Flags:
+    - Load On Right
+Foreground Layer ID: 44
+Nodes:
+    Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Right Node:
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Triggers:
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

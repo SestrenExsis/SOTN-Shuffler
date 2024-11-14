@@ -27,6 +27,5 @@ Commands:
             Progression - Item at Castle Entrance Life Max-Up Room Collected: true
         Requirements:
             Default:
-                Location: Castle Entrance, Life Max-Up Room
                 Section: Main
                 Progression - Item at Castle Entrance Life Max-Up Room Collected: false

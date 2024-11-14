@@ -1,5 +1,5 @@
 
-Stage: Castle Entrance
+Stage: Castle Entrance Revisited
 Room: Cube of Zoe Room
 Index: 15
 Left: 18
@@ -8,38 +8,123 @@ Columns: 2
 Rows: 3
 Total Cells: 6
 Empty Cells: {}
-Entities:
+Entities: {}
 Flags:
     - Scroll Type 1
-Node Sections:
+Foreground Layer ID: 31
+Nodes:
     Upper-Left Red Door:
         Type: Red Door
         Row: 0
         Column: 0
         Edge: Left
+        Entry Section: Main
+        Exit Section: Main
     Upper-Right Red Door:
         Type: Red Door
         Row: 0
         Column: 1
         Edge: Right
+        Entry Section: Pressure Plate Ledge
+        Exit Section: Pressure Plate Ledge
     Left Passage:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Left
+        Entry Section: Main
+        Exit Section: Main
     Right Passage:
         Type: Passage
         Row: 1
         Column: 1
         Edge: Right
+        Entry Section: Right Ledge
+        Exit Section: Right Ledge
     Lower-Left Passage:
         Type: Passage
         Row: 2
         Column: 0
         Edge: Left
+        Entry Section: Main
+        Exit Section: Main
     Lower-Right Passage:
         Type: Passage
         Row: 2
         Column: 1
         Edge: Right
-Triggers:
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Right Ledge:
+                Section: Right Ledge
+            Pressure Plate Ledge:
+                Section: Pressure Plate Ledge
+    Move - Right Ledge:
+        Outcomes:
+            Section: Right Ledge
+        Requirements:
+            Main - Bat Form:
+                Section: Main
+                Progression - Bat Transformation: true
+            Main - Powered Mist:
+                Section: Main
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Main - Multiple Gravity Jumps:
+                Section: Main
+                Progression - Mid-Air Reset: true
+                Progression - Gravity Jump: true
+                Skill - Multiple Gravity Jumps: true
+            Main - Wolf-Mist Rise:
+                Section: Main
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Skill - Wolf-Mist Rise: true
+                Skill - Extended Wolf-Mist Rise: true
+            Pressure Plate Ledge - Fall Down:
+                Section: Pressure Plate Ledge
+    Move - Pressure Plate Ledge:
+        Outcomes:
+            Section: Pressure Plate Ledge
+        Requirements:
+            Main - Use Shortcut:
+                Section: Main
+                Progression - Shortcut in Cube of Zoe Room Activated: true
+            Right Ledge - Bat Form:
+                Section: Right Ledge
+                Progression - Bat Transformation: true
+            Right Ledge - Powered Mist:
+                Section: Right Ledge
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Right Ledge - Multiple Gravity Jumps:
+                Section: Right Ledge
+                Progression - Mid-Air Reset: true
+                Progression - Gravity Jump: true
+                Skill - Multiple Gravity Jumps: true
+            Right Ledge - Wolf-Mist Rise:
+                Section: Right Ledge
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Skill - Wolf-Mist Rise: true
+                Skill - Extended Wolf-Mist Rise: true
+    Action - Collect Cube of Zoe Relic:
+        Outcomes:
+            Relic - Cube of Zoe: true
+            Progression - Item Materialization: true
+        Requirements:
+            Default:
+                Section: Main
+                Relic - Cube of Zoe: false
+    Action - Activate Pressure Plate:
+        Outcomes:
+            Progression - Pressure Plate in Cube of Zoe Room Activated: true
+        Requirements:
+            Default:
+                Section: Pressure Plate Ledge
+                Progression - Pressure Plate in Cube of Zoe Room Activated: false

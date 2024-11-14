@@ -1,5 +1,5 @@
 
-Stage: Castle Entrance
+Stage: Castle Entrance Revisited
 Room: Meeting Room With Death
 Index: 11
 Left: 20
@@ -11,25 +11,68 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Upper-Left Node:
+Foreground Layer ID: 23
+Nodes:
+    Upper-Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Upper Node:
+        Entry Section: Ledge
+        Exit Section: Ledge
+    Top Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Top
-    Lower-Left Node:
+        Entry Section: Air
+        Exit Section: Air
+    Lower-Left Passage:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Left
-    Lower-Right Node:
+        Entry Section: Ground
+        Exit Section: Ground
+    Lower-Right Passage:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Right
-Triggers:
+        Entry Section: Ground
+        Exit Section: Ground
+Commands:
+    Move - Air:
+        Outcomes:
+            Section: Air
+        Requirements:
+            Ground - Bat Form:
+                Section: Ground
+                Progression - Bat Transformation: true
+            Ledge - Bat Form:
+                Section: Ledge
+                Progression - Bat Transformation: true
+            Ledge - Pixel-Perfect Diagonal Gravity Jump Through Narrow Gap:
+                Section: Ledge
+                Progression - Gravity Jump: true
+                Technique - Pixel-Perfect Diagonal Gravity Jump Through Narrow Gap: true
+    Move - Ledge:
+        Outcomes:
+            Section: Ledge
+        Requirements:
+            Air:
+                Section: Air
+            Ground - Bat Form:
+                Section: Ground
+                Progression - Bat Transformation: true
+            Ground - Gravity Jump:
+                Section: Ground
+                Progression - Gravity Jump: true
+    Move - Ground:
+        Outcomes:
+            Section: Ground
+        Requirements:
+            Air:
+                Section: Air
+            Ledge:
+                Section: Ledge

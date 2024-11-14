@@ -278,10 +278,12 @@ class RoomSet:
 stages = {
     'Castle Entrance': [
         {
-            'Castle Entrance, Forest Cutscene': (None, None),
-            'Castle Entrance, Unknown Room 19': (None, None),
-            'Castle Entrance, Unknown Room 20': (40, 31),
-            'Castle Entrance, After Drawbridge': (38, 32),
+            # TODO(sestren): For now, the position of these rooms cannot be modified
+            'Castle Entrance, Forest Cutscene': (44, 0),
+            'Castle Entrance, Unknown Room 19': (44, 18),
+            # TODO(sestren): For now, the horizontal position of these rooms cannot be modified
+            'Castle Entrance, Unknown Room 20': (40, 30 + 1),
+            'Castle Entrance, After Drawbridge': (38, 30 + 2),
         },
         {
             'Castle Entrance, Fake Room With Teleporter A': (0, 0),
@@ -289,11 +291,6 @@ stages = {
             'Castle Entrance, Cube of Zoe Room': (0, 2),
             'Castle Entrance, Loading Room A': (0, 4),
             'Castle Entrance, Fake Room With Teleporter B': (0, 5),
-        },
-        {
-            'Castle Entrance, Fake Room With Teleporter C': (0, 0),
-            'Castle Entrance, Loading Room B': (0, 1),
-            'Castle Entrance, Shortcut to Warp': (0, 2),
         },
         {
             'Castle Entrance, Fake Room With Teleporter C': (0, 0),
@@ -582,7 +579,7 @@ if __name__ == '__main__':
             'Olrox\'s Quarters': [],
         }
     seed = random.randint(0, 2 ** 64)
-    MULTIPLIER = 1
+    MULTIPLIER = 100
     WEIGHTS = [3, 13, 13, 13, 13] # 300, 1300
     for (stage_name, target_seed_count) in (
         ('Castle Entrance', MULTIPLIER * WEIGHTS[0]),
