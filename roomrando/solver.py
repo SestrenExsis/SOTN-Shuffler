@@ -215,7 +215,7 @@ class Solver():
         while len(work__solver) > 0 and not solution_found:
             (step__solver, game__solver) = work__solver.pop()
             if step__solver > highest_layer_found:
-                print('Layer', step__solver)
+                print('Layer', step__solver, len(work__solver), len(memo))
                 highest_layer_found = step__solver
             game__solver.layer = step__solver
             if game__solver.goal_achieved:
@@ -225,13 +225,13 @@ class Solver():
             (_, _, hashed_state__solver) = game__solver.get_key()
             if hashed_state__solver in memo and memo[hashed_state__solver] <= step__solver:
                 if self.debug:
-                    print('seen', hashed_state__solver, 'with layer', memo[hashed_state__solver])
+                    print('seen', hashed_state__solver, 'with layer', memo[hashed_state__solver], len(work__solver), len(memo))
                 continue
             memo[hashed_state__solver] = step__solver
             if step__solver >= max_layers:
                 continue
             if self.debug:
-                print(step__solver, game__solver.current_state['Location'])
+                print(step__solver, game__solver.current_state['Location'], len(work__solver), len(memo))
             #
             # Find all locations that are N-bonded with the current location (N = reflexive_limit)
             # Two locations are considered "N-bonded" if you can move from one to another via a series of N-reflexive commands

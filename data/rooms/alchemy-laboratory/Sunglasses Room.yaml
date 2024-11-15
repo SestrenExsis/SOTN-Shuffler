@@ -23,9 +23,9 @@ Nodes:
 Commands:
     Action - Collect Object at Sunglasses Location:
         Outcomes:
-            Progression - Object at Sunglasses Location Collected: true
+            Check - Object at Sunglasses Location: true
             Item - Sunglasses: 1
         Requirements:
             Default:
                 Section: Main
-                Progression - Object at Sunglasses Location Collected: false
+                Check - Object at Sunglasses Location: false

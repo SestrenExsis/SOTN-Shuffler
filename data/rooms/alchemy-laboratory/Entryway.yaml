@@ -32,9 +32,9 @@ Nodes:
 Commands:
     Action - Collect Object at Hide Cuirass Location:
         Outcomes:
-            Progression - Object at Hide Cuirass Location Collected: true
+            Check - Object at Hide Cuirass Location: true
             Item - Hide Cuirass: 1
         Requirements:
             Default:
                 Section: Main
-                Progression - Object at Hide Cuirass Location Collected: false
+                Check - Object at Hide Cuirass Location: false

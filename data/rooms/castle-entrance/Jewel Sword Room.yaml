@@ -24,8 +24,8 @@ Commands:
     Action - Collect Jewel Sword Item:
         Outcomes:
             Item - Jewel Sword: 1
-            Progression - Item at Jewel Sword Location Collected: true
+            Check - Item at Jewel Sword Location: true
         Requirements:
             Default:
                 Section: Main
-                Progression - Item at Jewel Sword Location Collected: false
+                Check - Item at Jewel Sword Location: false

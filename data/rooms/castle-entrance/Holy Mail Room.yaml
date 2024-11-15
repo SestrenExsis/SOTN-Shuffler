@@ -53,8 +53,8 @@ Commands:
     Action - Collect Holy Mail Item:
         Outcomes:
             Item - Holy Mail: 1
-            Progression - Item at Holy Mail Location Collected: true
+            Check - Item at Holy Mail Location: true
         Requirements:
             Default:
                 Section: Ledge
-                Progression - Item at Holy Mail Location Collected: false
+                Check - Item at Holy Mail Location: false

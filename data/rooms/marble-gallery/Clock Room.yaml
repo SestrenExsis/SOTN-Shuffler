@@ -75,7 +75,7 @@ Commands:
                 Progression - Mist Transformation: true
             Main - Candle Dive Kick:
                 Section: Main
-                Progression - Mid-Air Transformation Reset: true
+                Progression - Mid-Air Reset: true
     Move - Rising, Middle Path:
         Outcomes:
             Section: Rising

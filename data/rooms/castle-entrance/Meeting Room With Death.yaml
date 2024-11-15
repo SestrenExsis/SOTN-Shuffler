@@ -48,20 +48,20 @@ Commands:
         Requirements:
             Ground - Bat Form:
                 Section: Ground
-                Progression - Meet Death in Castle Entrance: true
+                Check - Meet Death in Castle Entrance: true
                 Progression - Bat Transformation: true
             Ledge - Bat Form:
                 Section: Ledge
-                Progression - Meet Death in Castle Entrance: true
+                Check - Meet Death in Castle Entrance: true
                 Progression - Bat Transformation: true
             Ledge - Pixel-Perfect Diagonal Gravity Jump Through Narrow Gap:
                 Section: Ledge
-                Progression - Meet Death in Castle Entrance: true
+                Check - Meet Death in Castle Entrance: true
                 Progression - Gravity Jump: true
                 Technique - Pixel-Perfect Diagonal Gravity Jump Through Narrow Gap: true
             Special - Bat Form:
                 Section: Ground
-                Progression - Meet Death in Castle Entrance: true
+                Check - Meet Death in Castle Entrance: true
                 Progression - Bat Transformation: true
     Move - Ledge:
         Outcomes:
@@ -69,22 +69,22 @@ Commands:
         Requirements:
             Air:
                 Section: Air
-                Progression - Meet Death in Castle Entrance: true
+                Check - Meet Death in Castle Entrance: true
             Ground - Bat Form:
                 Section: Ground
-                Progression - Meet Death in Castle Entrance: true
+                Check - Meet Death in Castle Entrance: true
                 Progression - Bat Transformation: true
             Ground - Gravity Jump:
                 Section: Ground
-                Progression - Meet Death in Castle Entrance: true
+                Check - Meet Death in Castle Entrance: true
                 Progression - Gravity Jump: true
             Special - Bat Form:
                 Section: Special
-                Progression - Meet Death in Castle Entrance: true
+                Check - Meet Death in Castle Entrance: true
                 Progression - Bat Transformation: true
             Special - Gravity Jump:
                 Section: Special
-                Progression - Meet Death in Castle Entrance: true
+                Check - Meet Death in Castle Entrance: true
                 Progression - Gravity Jump: true
     Move - Ground:
         Outcomes:
@@ -92,17 +92,17 @@ Commands:
         Requirements:
             Air:
                 Section: Air
-                Progression - Meet Death in Castle Entrance: true
+                Check - Meet Death in Castle Entrance: true
             Ledge:
                 Section: Ledge
-                Progression - Meet Death in Castle Entrance: true
+                Check - Meet Death in Castle Entrance: true
             Special:
                 Section: Special
-                Progression - Meet Death in Castle Entrance: true
+                Check - Meet Death in Castle Entrance: true
     Trigger - Cutscene with Death:
         Outcomes:
             Section: Ground
-            Progression - Meet Death in Castle Entrance: true
+            Check - Meet Death in Castle Entrance: true
             Item - Alucard Sword: -1
             Item - Alucard Shield: -1
             Item - Dragon Helm: -1
@@ -112,4 +112,4 @@ Commands:
         Requirements:
             Default:
                 Section: Special
-                Progression - Meet Death in Castle Entrance: false
+                Check - Meet Death in Castle Entrance: false
