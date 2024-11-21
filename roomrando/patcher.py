@@ -11,13 +11,13 @@ def get_room_rando_ppf(logic, changes):
         ('Teleporter Data'): roomrando.Address(0x00097C5C),
         ('Room Data', 'Alchemy Laboratory'): roomrando.Address(0x049C0F2C),
         ('Room Data', 'Castle Entrance'): roomrando.Address(0x041AB4C4),
-        # ('Room Data', 'Castle Entrance Revisited'): roomrando.Address(0xFFFFFFFF),
+        ('Room Data', 'Castle Entrance Revisited'): roomrando.Address(0x0491E27C),
         ('Room Data', 'Marble Gallery'): roomrando.Address(0x03F8D7E0),
         ('Room Data', 'Olrox\'s Quarters'): roomrando.Address(0x040FE2A0),
         ('Room Data', 'Outer Wall'): roomrando.Address(0x0404A488),
         ('Layer Data', 'Alchemy Laboratory'): roomrando.Address(0x049BE964),
         ('Layer Data', 'Castle Entrance'): roomrando.Address(0x041A79C4),
-        # ('Layer Data', 'Castle Entrance Revisited'): roomrando.Address(0xFFFFFFFF),
+        ('Layer Data', 'Castle Entrance Revisited'): roomrando.Address(0x0491A9D0),
         ('Layer Data', 'Marble Gallery'): roomrando.Address(0x03F8B150),
         ('Layer Data', 'Olrox\'s Quarters'): roomrando.Address(0x040FB110),
         ('Layer Data', 'Outer Wall'): roomrando.Address(0x040471D4),
@@ -97,7 +97,7 @@ def get_room_rando_ppf(logic, changes):
 if __name__ == '__main__':
     '''
     Usage
-    python alchemylab.py
+    python patcher.py
     '''
     with open(os.path.join('build', 'sandbox', 'current-seed.json')) as current_seed_json:
         current_seed = json.load(current_seed_json)

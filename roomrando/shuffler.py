@@ -127,7 +127,7 @@ if __name__ == '__main__':
                             'Top': stage_changes['Rooms'][room_name]['Top'],
                             'Left': stage_changes['Rooms'][room_name]['Left'],
                         }
-            # Require that leaving Castle Entrance by layer 4 is possible
+            print('Require that leaving Castle Entrance by layer 3 is possible')
             logic_core = roomrando.LogicCore(data_core, changes).get_core()
             logic_core['Goals'] = {
                 'Debug - Reach Castle Entrance, Loading Room A': {
@@ -147,22 +147,23 @@ if __name__ == '__main__':
             map_solver.solve(3, 3)
             if len(map_solver.results['Wins']) < 1:
                 continue
-            # Require that reaching Marble Gallery by layer 6 is possible
+            print('Require that reaching Olrox\'s Quarters by layer 3 is possible with full progression')
             logic_core = roomrando.LogicCore(data_core, changes).get_core()
-            logic_core['Goals'] = {
-                'Debug - Reach Marble Gallery, Entrance': {
-                    'Location': 'Marble Gallery, Entrance',
-                },
-                'Debug - Reach Marble Gallery, S-Shaped Hallways': {
-                    'Location': 'Marble Gallery, S-Shaped Hallways',
-                },
-            }
-            map_solver = solver.Solver(logic_core, skills)
-            map_solver.solve(3, 5)
-            if len(map_solver.results['Wins']) < 1:
-                continue
-            # Require that reaching Olrox's Quarters by layer 9 is possible
-            logic_core = roomrando.LogicCore(data_core, changes).get_core()
+            for (location_name, command_info) in logic_core['Commands'].items():
+                if 'Outcomes' in command_info:
+                    for (key, value) in command_info['Outcomes'].items():
+                        if key.startswith('Progression - '):
+                            logic_core['State'][key] = value
+            for progression_name in (
+                'Progression - Ability to Strike at Floor',
+                'Progression - Bat Transformation',
+                'Progression - Double Jump',
+                'Progression - Longer Mist Duration',
+                'Progression - Mid-Air Reset',
+                'Progression - Mist Transformation',
+                'Progression - Unlock Blue Doors',
+            ):
+                logic_core['State'][progression_name] = True
             logic_core['Goals'] = {
                 'Debug - Reach Skelerang Room': {
                     'Location': 'Olrox\'s Quarters, Skelerang Room',
@@ -170,7 +171,19 @@ if __name__ == '__main__':
             }
             map_solver = solver.Solver(logic_core, skills)
             map_solver.debug = True
-            map_solver.solve(3, 7)
+            map_solver.solve(3, 3)
+            if len(map_solver.results['Wins']) < 1:
+                continue
+            print('Require that getting a major movement Relic is possible by layer 5')
+            logic_core = roomrando.LogicCore(data_core, changes).get_core()
+            logic_core['Goals'] = {
+                'Debug - Get Gravity Boots': {
+                    'Relic - Gravity Boots': True,
+                },
+            }
+            map_solver = solver.Solver(logic_core, skills)
+            map_solver.debug = True
+            map_solver.solve(3, 5)
             if len(map_solver.results['Wins']) > 0:
                 (winning_layers, winning_game) = map_solver.results['Wins'][-1]
                 print('-------------')

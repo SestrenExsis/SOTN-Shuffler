@@ -7,6 +7,7 @@ import random
 
 # Local libraries
 import roomrando
+import solver
 
 class RoomNode:
     def __init__(self, room, row: int, column: int, edge: str, type: str):
@@ -579,24 +580,58 @@ if __name__ == '__main__':
             'Olrox\'s Quarters': [],
         }
     seed = random.randint(0, 2 ** 64)
-    MULTIPLIER = 100
-    WEIGHTS = [3, 13, 13, 13, 13] # 300, 1300
+    MULTIPLIER = 1
+    WEIGHTS = [1, 1, 1, 1, 1] # 300, 1300
     for (stage_name, target_seed_count) in (
-        ('Castle Entrance', MULTIPLIER * WEIGHTS[0]),
         ('Alchemy Laboratory', MULTIPLIER * WEIGHTS[1]),
         ('Marble Gallery', MULTIPLIER * WEIGHTS[2]),
         ('Outer Wall', MULTIPLIER * WEIGHTS[3]),
         ('Olrox\'s Quarters', MULTIPLIER * WEIGHTS[4]),
+        ('Castle Entrance', MULTIPLIER * WEIGHTS[0]),
     ):
         if stage_name not in generated_stages:
             generated_stages[stage_name] = []
+        print('')
         print(stage_name, target_seed_count, target_seed_count - len(generated_stages[stage_name]))
         if stage_name not in generated_stages:
             generated_stages[stage_name] = []
         while len(generated_stages[stage_name]) < target_seed_count:
             stage_map = Mapper(data_core, stage_name, seed)
-            while not stage_map.validate():
+            while True:
                 stage_map.generate()
+                if stage_map.validate():
+                    changes = stage_map.stage.get_changes()
+                    valid_ind = True
+                    room_names = []
+                    for room_name in changes['Rooms']:
+                        if 'Loading Room' in room_name:
+                            room_names.append(room_name)
+                    if stage_map.stage_name in ('Castle Entrance', 'Castle Entrance Revisited'):
+                        room_names.append(stage_map.stage_name + ', After Drawbridge')
+                    print(room_names)
+                    logic_core = roomrando.LogicCore(data_core, changes).get_core()
+                    for starting_room_name in room_names:
+                        for ending_room_name in room_names:
+                            if ending_room_name == starting_room_name:
+                                continue
+                            print('- Traverse while skipping validation:', (starting_room_name, ending_room_name))
+                            logic_core['State']['Location'] = starting_room_name
+                            logic_core['State']['Section'] = 'Main'
+                            logic_core['Goals'] = {
+                                'Debug - Reach Ending Room': {
+                                    'Location': ending_room_name,
+                                },
+                            }
+                            map_solver = solver.Solver(logic_core, {})
+                            map_solver.debug = True
+                            map_solver.solve(1, 3, False)
+                            if len(map_solver.results['Wins']) < 1:
+                                valid_ind = False
+                                break
+                        if not valid_ind:
+                            break
+                    else:
+                        break
             generated_stages[stage_name].append(
                 {
                     'Attempts': stage_map.attempts,
