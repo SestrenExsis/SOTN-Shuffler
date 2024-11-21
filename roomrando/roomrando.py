@@ -231,7 +231,7 @@ class DataCore:
         self.teleporters = {}
         for stage_folder in (
             'castle-entrance',
-            # 'castle-entrance-revisited',
+            'castle-entrance-revisited',
             'alchemy-laboratory',
             'marble-gallery',
             'outer-wall',
@@ -263,6 +263,7 @@ class LogicCore:
         self.commands = {}
         for stage_name in (
             'Castle Entrance',
+            'Castle Entrance Revisited',
             'Alchemy Laboratory',
             'Marble Gallery',
             'Outer Wall',

@@ -1,5 +1,5 @@
 
-Stage: Castle Entrance
+Stage: Castle Entrance Revisited
 Room: Attic Staircase
 Index: 4
 Left: 6
@@ -11,20 +11,27 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Upper-Left Node:
+Foreground Layer ID: 9
+Nodes:
+    Upper-Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Lower-Left Node:
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Left Passage:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Left
-    Lower-Right Node:
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Right Passage:
         Type: Passage
         Row: 1
         Column: 0
         Edge: Right
-Triggers:
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

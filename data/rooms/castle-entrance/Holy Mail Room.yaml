@@ -26,25 +26,20 @@ Commands:
             Section: Ledge
         Requirements:
             Ground - Double Jump:
-                Location: Castle Entrance, Holy Mail Room
                 Section: Ground
                 Progression - Double Jump: true
             Ground - Bat Form:
-                Location: Castle Entrance, Holy Mail Room
                 Section: Ground
                 Progression - Bat Transformation: true
             Ground - Powered Mist:
-                Location: Castle Entrance, Holy Mail Room
                 Section: Ground
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
             Ground - Precise Corner Mist:
-                Location: Castle Entrance, Holy Mail Room
                 Section: Ground
                 Progression - Mist Transformation: true
                 Skill - Precise Corner Mist: true
             Ground - Wolf-Mist Rise:
-                Location: Castle Entrance, Holy Mail Room
                 Section: Ground
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
@@ -54,14 +49,12 @@ Commands:
             Section: Ground
         Requirements:
             Use Shortcut:
-                Location: Castle Entrance, Holy Mail Room
                 Section: Ledge
     Action - Collect Holy Mail Item:
         Outcomes:
             Item - Holy Mail: 1
-            Progression - Item at Holy Mail Location Collected: true
+            Check - Item at Holy Mail Location: true
         Requirements:
             Default:
-                Location: Castle Entrance, Holy Mail Room
                 Section: Ledge
-                Progression - Item at Holy Mail Location Collected: false
+                Check - Item at Holy Mail Location: false

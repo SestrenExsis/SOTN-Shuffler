@@ -157,14 +157,14 @@ class Game:
                 self.goal_achieved = True
         self.cleanup_state()
 
-    def get_valid_command_names(self) -> list:
+    def get_valid_command_names(self, require_validation: bool=True) -> list:
         result = set()
         # Add choices for valid commands the player can issue
         command_data = {}
         if self.current_state['Location'] in self.commands:
             command_data = self.commands[self.current_state['Location']]
         for (command_name, command_info) in command_data.items():
-            if self.validate(command_info['Requirements']):
+            if not require_validation or self.validate(command_info['Requirements']):
                 result.add(command_name)
         result = list(reversed(sorted(result)))
         return result
@@ -202,7 +202,8 @@ class Solver():
         }
         self.debug = False
     
-    def solve(self, reflexive_limit: int=3, max_layers: int=8):
+    def solve(self, reflexive_limit: int=3, max_layers: int=8, require_validation: bool=True):
+        # TODO(sestren): Add ability to solve with reduced requirements (e.g., ignore Progression)
         highest_layer_found = -1
         memo = {}
         solution_found = False
@@ -212,7 +213,7 @@ class Solver():
         while len(work__solver) > 0 and not solution_found:
             (step__solver, game__solver) = work__solver.pop()
             if step__solver > highest_layer_found:
-                print('Layer', step__solver)
+                print('Layer', step__solver, len(work__solver), len(memo))
                 highest_layer_found = step__solver
             game__solver.layer = step__solver
             if game__solver.goal_achieved:
@@ -222,13 +223,13 @@ class Solver():
             (_, _, hashed_state__solver) = game__solver.get_key()
             if hashed_state__solver in memo and memo[hashed_state__solver] <= step__solver:
                 if self.debug:
-                    print('seen', hashed_state__solver, 'with layer', memo[hashed_state__solver])
+                    print('seen', hashed_state__solver, 'with layer', memo[hashed_state__solver], len(work__solver), len(memo))
                 continue
             memo[hashed_state__solver] = step__solver
             if step__solver >= max_layers:
                 continue
             if self.debug:
-                print(step__solver, game__solver.current_state['Location'])
+                print(step__solver, game__solver.current_state['Location'], hashed_state__solver, len(work__solver), len(memo))
             #
             # Find all locations that are N-bonded with the current location (N = reflexive_limit)
             # Two locations are considered "N-bonded" if you can move from one to another via a series of N-reflexive commands
@@ -257,7 +258,7 @@ class Solver():
                 # Find all N-reflexive commands at the current location
                 reflexive_command_names = set()
                 work__reflexive = collections.deque()
-                for command in game__bonded.get_valid_command_names():
+                for command in game__bonded.get_valid_command_names(require_validation):
                     work__reflexive.appendleft((0, command, command, game__bonded.clone()))
                     bonded_locations[game__bonded.location][1].add(command)
                 while len(work__reflexive) > 0:
@@ -268,15 +269,21 @@ class Solver():
                         reflexive_command_names.add(original_command__reflexive)
                         continue
                     if step__reflexive < reflexive_limit:
-                        for next_command__reflexive in game__reflexive.get_valid_command_names():
+                        for next_command__reflexive in game__reflexive.get_valid_command_names(require_validation):
                             work__reflexive.appendleft((step__reflexive + 1, original_command__reflexive, next_command__reflexive, game__reflexive.clone()))
                 for reflexive_command_name in reflexive_command_names:
                     next_game__bonded = game__bonded.clone()
                     next_game__bonded.process_command(reflexive_command_name)
                     work__bonded.append((step__bonded + 1, next_game__bonded))
                 bonded_locations[game__bonded.location][1] -= reflexive_command_names
+            # TODO(sestren): Only iterate over non-reflexive actions
             for (bonded_location, (game, valid_commands)) in sorted(bonded_locations.items()):
+                (_, _, hashed_state__game) = game.get_key()
+                if self.debug:
+                    print('  ', bonded_location, hashed_state__game, len(valid_commands))
                 for next_command__solver in valid_commands:
+                    if self.debug:
+                        print('    ', next_command__solver)
                     next_game__solver = game.clone()
                     next_game__solver.process_command(next_command__solver)
                     work__solver.appendleft((step__solver + 1, next_game__solver))
@@ -291,19 +298,21 @@ if __name__ == '__main__':
         open(os.path.join('build', 'sandbox', 'skills.json')) as skills_json,
     ):
         data_core = roomrando.DataCore().get_core()
+        with open(os.path.join('build', 'sandbox', 'data-core.json'), 'w') as data_core_json:
+            json.dump(data_core, data_core_json, indent='    ', sort_keys=True)
         logic_core = roomrando.LogicCore(data_core, {}).get_core()
         logic_core['State']['Location'] = 'Castle Entrance, After Drawbridge'
         logic_core['State']['Section'] = 'Ground'
         logic_core['Goals'] = {
-            # 'Debug 1': {
-            #     'Location': 'Castle Entrance, Cube of Zoe Room',
-            # },
+            'Debug 1': {
+                'Location': 'Castle Entrance Revisited, After Drawbridge',
+            },
             # 'Debug 2': {
             #     'Relic - Soul of Wolf': True,
             # },
-            'Debug 3': {
-                'Location': 'Olrox\'s Quarters, Skelerang Room',
-            },
+            # 'Debug 3': {
+            #     'Location': 'Olrox\'s Quarters, Skelerang Room',
+            # },
             # 'Debug 99': {
             #     'Relic - Form of Mist': True,
             # },

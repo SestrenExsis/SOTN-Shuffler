@@ -1,5 +1,5 @@
 
-Stage: Castle Entrance
+Stage: Castle Entrance Revisited
 Room: Shortcut to Warp
 Index: 16
 Left: 17
@@ -11,15 +11,41 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Left Node:
+Foreground Layer ID: 33
+Nodes:
+    Left Red Door:
         Type: Red Door
         Row: 0
         Column: 0
         Edge: Left
-    Right Node:
+        Entry Section: Left Side
+        Exit Section: Left Side
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Triggers:
+        Entry Section: Right Side
+        Exit Section: Right Side
+Commands:
+    Move - Left Side:
+        Outcomes:
+            Section: Left Side
+        Requirements:
+            Use Shortcut:
+                Section: Right Side
+                Progression - Pressure Plate in Cube of Zoe Room Activated: true
+    Move - Right Side:
+        Outcomes:
+            Section: Right Side
+        Requirements:
+            Use Shortcut:
+                Section: Left Side
+                Progression - Pressure Plate in Cube of Zoe Room Activated: true
+    Action - Activate Pressure Plate:
+        Outcomes:
+            Progression - Pressure Plate in Cube of Zoe Room Activated: true
+        Requirements:
+            Default:
+                Section: Left Side
+                Progression - Pressure Plate in Shortcut to Warp Activated: false

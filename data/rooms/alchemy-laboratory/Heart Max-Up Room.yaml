@@ -23,10 +23,10 @@ Nodes:
 Commands:
     Action - Collect Object at Alchemy Lab Heart Max-Up Location:
         Outcomes:
-            Progression - Object at Alchemy Lab Heart Max-Up Location Collected: true
+            Check - Object at Alchemy Lab Heart Max-Up Location: true
             Object:
                 Item - Heart Max-Up: 1
         Requirements:
             Default:
                 Section: Main
-                Progression - Object at Alchemy Lab Heart Max-Up Location Collected: false
+                Check - Object at Alchemy Lab Heart Max-Up Location: false

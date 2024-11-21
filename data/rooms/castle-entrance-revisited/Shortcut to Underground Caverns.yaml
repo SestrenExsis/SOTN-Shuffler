@@ -1,5 +1,5 @@
 
-Stage: Castle Entrance
+Stage: Castle Entrance Revisited
 Room: Shortcut to Underground Caverns
 Index: 10
 Left: 14
@@ -11,15 +11,41 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Left Node:
+Foreground Layer ID: 21
+Nodes:
+    Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Right Node:
+        Entry Section: Left Side
+        Exit Section: Left Side
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Triggers:
+        Entry Section: Right Side
+        Exit Section: Right Side
+Commands:
+    Move - Left Side:
+        Outcomes:
+            Section: Left Side
+        Requirements:
+            Use Shortcut:
+                Section: Right Side
+                Progression - Lever Platform in Shortcut to Underground Caverns Activated: true
+    Move - Right Side:
+        Outcomes:
+            Section: Right Side
+        Requirements:
+            Use Shortcut:
+                Section: Left Side
+                Progression - Lever Platform in Shortcut to Underground Caverns Activated: true
+    Action - Activate Lever Platform:
+        Outcomes:
+            Progression - Lever Platform in Shortcut to Underground Caverns Activated: true
+        Requirements:
+            Default:
+                Section: Right Side
+                Progression - Lever Platform in Shortcut to Underground Caverns Activated: false

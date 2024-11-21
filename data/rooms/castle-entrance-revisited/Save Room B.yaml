@@ -1,5 +1,5 @@
 
-Stage: Castle Entrance
+Stage: Castle Entrance Revisited
 Room: Save Room B
 Index: 23
 Left: 17
@@ -9,10 +9,15 @@ Rows: 1
 Total Cells: 1
 Empty Cells: {}
 Entities:
-Node Sections:
-    Right Node:
+Flags:
+    - Save With Left Opening
+Foreground Layer ID: 46
+Nodes:
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-Triggers:
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

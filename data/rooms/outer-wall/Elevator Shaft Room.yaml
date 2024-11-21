@@ -76,7 +76,7 @@ Commands:
         Outcomes:
             Relic - Soul of Wolf: true
             Progression - Wolf Transformation: true
-            Progression - Mid-Air Transformation Reset: true
+            Progression - Mid-Air Reset: true
         Requirements:
             Default:
                 Section: Elevator Shaft

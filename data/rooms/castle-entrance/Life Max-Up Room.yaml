@@ -24,9 +24,8 @@ Commands:
     Action - Collect Life Max-Up Powerup:
         Outcomes:
             Powerup - Life Max-Up: 1
-            Progression - Item at Castle Entrance Life Max-Up Room Collected: true
+            Check - Item at Castle Entrance Life Max-Up Room: true
         Requirements:
             Default:
-                Location: Castle Entrance, Life Max-Up Room
                 Section: Main
-                Progression - Item at Castle Entrance Life Max-Up Room Collected: false
+                Check - Item at Castle Entrance Life Max-Up Room: false

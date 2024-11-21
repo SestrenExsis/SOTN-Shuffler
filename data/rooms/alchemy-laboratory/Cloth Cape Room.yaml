@@ -23,10 +23,10 @@ Nodes:
 Commands:
     Action - Collect Cloth Cape:
         Outcomes:
-            Progression - Object in Cloth Cape Room Collected: true
+            Check - Object in Cloth Cape Room: true
             Item - Cloth Cape: 1
         Requirements:
             Default:
                 Location: Alchemy Laboratory, Cloth Cape Room
                 Section: Main
-                Progression - Object in Cloth Cape Room Collected: false
+                Check - Object in Cloth Cape Room: false

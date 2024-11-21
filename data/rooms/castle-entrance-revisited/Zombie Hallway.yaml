@@ -1,5 +1,5 @@
 
-Stage: Castle Entrance
+Stage: Castle Entrance Revisited
 Room: Zombie Hallway
 Index: 2
 Left: 4
@@ -11,15 +11,20 @@ Empty Cells: {}
 Entities:
 Flags:
     - Scroll Type 1
-Node Sections:
-    Left Node:
+Foreground Layer ID: 5
+Nodes:
+    Left Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Left
-    Right Node:
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
         Type: Passage
         Row: 0
         Column: 6
         Edge: Right
-Triggers:
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}
