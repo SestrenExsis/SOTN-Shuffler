@@ -5,7 +5,7 @@ import json
 import os
 
 # Local libraries
-import roomrando
+import mapper
 
 class Game:
     DEFAULT_BOOLEAN = False
@@ -297,10 +297,10 @@ if __name__ == '__main__':
     with (
         open(os.path.join('build', 'sandbox', 'skills.json')) as skills_json,
     ):
-        data_core = roomrando.DataCore().get_core()
-        with open(os.path.join('build', 'sandbox', 'data-core.json'), 'w') as data_core_json:
-            json.dump(data_core, data_core_json, indent='    ', sort_keys=True)
-        logic_core = roomrando.LogicCore(data_core, {}).get_core()
+        mapper_data = mapper.MapperData().get_core()
+        with open(os.path.join('build', 'sandbox', 'data-core.json'), 'w') as mapper_data_json:
+            json.dump(mapper_data, mapper_data_json, indent='    ', sort_keys=True)
+        logic_core = mapper.LogicCore(mapper_data, {}).get_core()
         logic_core['State']['Location'] = 'Castle Entrance, After Drawbridge'
         logic_core['State']['Section'] = 'Ground'
         logic_core['Goals'] = {
