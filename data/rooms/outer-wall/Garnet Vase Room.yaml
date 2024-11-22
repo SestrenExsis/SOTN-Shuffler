@@ -2,16 +2,9 @@
 Stage: Outer Wall
 Room: Garnet Vase Room
 Index: 8
-Left: 60
-Top: 24
 Columns: 3
 Rows: 1
-Total Cells: 2
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 9
 Nodes:
     Right-Top Passage:
         Type: Passage

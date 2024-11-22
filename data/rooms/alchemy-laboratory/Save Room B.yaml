@@ -2,16 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Save Room B
 Index: 24
-Left: 15
-Top: 27
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
-    - Save With Left Opening
-Foreground Layer ID: 30
 Nodes:
     Left Passage:
         Type: Passage

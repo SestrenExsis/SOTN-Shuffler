@@ -2,16 +2,9 @@
 Stage: Olrox's Quarters
 Room: Olrox's Room
 Index: 12
-Left: 19
-Top: 16
 Columns: 2
 Rows: 2
-Total Cells: 4
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 24
 Nodes:
     Upper-Left Passage:
         Type: Passage

@@ -2,16 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Glass Vats
 Index: 7
-Left: 13
-Top: 33
 Columns: 2
 Rows: 1
-Total Cells: 2
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 8
 Nodes:
     Lower-Left Passage:
         Type: Passage

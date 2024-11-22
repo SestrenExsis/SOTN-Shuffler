@@ -2,14 +2,9 @@
 Stage: Castle Entrance Revisited
 Room: Fake Room With Teleporter B
 Index: 26
-Left: 21
-Top: 36
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
 Nodes:
     Left Passage:
         Type: Passage

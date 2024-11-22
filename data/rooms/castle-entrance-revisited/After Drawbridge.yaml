@@ -2,17 +2,9 @@
 Stage: Castle Entrance Revisited
 Room: After Drawbridge
 Index: 0
-Left: 2
-Top: 38
 Columns: 2
 Rows: 3
-Total Cells: 6
 Empty Cells: {}
-Entities:
-    Warg: 1
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 1
 Nodes:
     Lower-Right Passage:
         Type: Passage

@@ -2,16 +2,9 @@
 Stage: Olrox's Quarters
 Room: Grand Staircase
 Index: 2
-Left: 27
-Top: 21
 Columns: 3
 Rows: 2
-Total Cells: 6
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 5
 Nodes:
     Upper-Right Passage:
         Type: Passage

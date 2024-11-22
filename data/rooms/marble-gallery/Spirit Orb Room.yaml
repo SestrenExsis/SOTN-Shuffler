@@ -2,16 +2,9 @@
 Stage: Marble Gallery
 Room: Spirit Orb Room
 Index: 2
-Left: 25
-Top: 28
 Columns: 2
 Rows: 5
-Total Cells: 10
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 5
 Nodes:
     Upper-Right Passage:
         Type: Passage

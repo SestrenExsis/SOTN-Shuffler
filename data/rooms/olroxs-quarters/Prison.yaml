@@ -2,16 +2,9 @@
 Stage: Olrox's Quarters
 Room: Prison
 Index: 7
-Left: 30
-Top: 15
 Columns: 6
 Rows: 1
-Total Cells: 6
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 15
 Nodes:
     Left-Bottom Passage:
         Type: Passage

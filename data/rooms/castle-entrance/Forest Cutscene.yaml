@@ -2,11 +2,8 @@
 Stage: Castle Entrance
 Room: Forest Cutscene
 Index: 18
-Left: 0
-Top: 44
 Columns: 18
 Rows: 1
-Total Cells: 2
 Empty Cells:
     - Row: 0
       Column: 1
@@ -40,9 +37,5 @@ Empty Cells:
       Column: 15
     - Row: 0
       Column: 16
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 37
 Nodes: {}
 Commands: {}

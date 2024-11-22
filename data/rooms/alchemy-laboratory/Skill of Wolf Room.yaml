@@ -2,16 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Skill of Wolf Room
 Index: 8
-Left: 15
-Top: 33
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 10
 Nodes:
     Left Passage:
         Type: Passage

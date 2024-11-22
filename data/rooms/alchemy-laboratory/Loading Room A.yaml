@@ -2,16 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Loading Room A
 Index: 26
-Left: 21
-Top: 26
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
-    - Load On Right
-Foreground Layer ID: 32
 Nodes:
     Left Passage:
         Type: Passage

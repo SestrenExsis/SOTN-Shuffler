@@ -2,16 +2,9 @@
 Stage: Marble Gallery
 Room: Right of Clock Room
 Index: 19
-Left: 33
-Top: 26
 Columns: 3
 Rows: 1
-Total Cells: 3
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 37
 Nodes:
     Left Passage:
         Type: Passage

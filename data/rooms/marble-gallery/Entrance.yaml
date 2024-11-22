@@ -2,16 +2,9 @@
 Stage: Marble Gallery
 Room: Entrance
 Index: 6
-Left: 22
-Top: 26
 Columns: 4
 Rows: 1
-Total Cells: 4
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 13
 Nodes:
     Left Red Door:
         Type: Red Door

@@ -2,16 +2,9 @@
 Stage: Marble Gallery
 Room: Stairwell to Underground Caverns
 Index: 17
-Left: 41
-Top: 25
 Columns: 1
 Rows: 2
-Total Cells: 2
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 33
 Nodes:
     Upper-Left Passage:
         Type: Passage

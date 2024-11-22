@@ -2,16 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Box Puzzle Room
 Index: 17
-Left: 9
-Top: 30
 Columns: 2
 Rows: 2
-Total Cells: 4
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 20
 Nodes:
     Lower-Right Passage:
         Type: Passage

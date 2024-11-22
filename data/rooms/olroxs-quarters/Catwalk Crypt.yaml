@@ -2,16 +2,9 @@
 Stage: Olrox's Quarters
 Room: Catwalk Crypt
 Index: 15
-Left: 18
-Top: 19
 Columns: 7
 Rows: 1
-Total Cells: 7
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 28
 Nodes:
     Left Red Door:
         Type: Red Door

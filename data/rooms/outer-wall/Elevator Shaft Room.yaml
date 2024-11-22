@@ -2,18 +2,11 @@
 Stage: Outer Wall
 Room: Elevator Shaft Room
 Index: 13
-Left: 60
-Top: 15
 Columns: 3
 Rows: 9
-Total Cells: 17
 Empty Cells:
     - Row: 2
       Column: 0
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 14
 Nodes:
     Right-Top Passage:
         Type: Passage

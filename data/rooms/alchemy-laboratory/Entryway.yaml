@@ -2,18 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Entryway
 Index: 10
-Left: 14
-Top: 36
 Columns: 3
 Rows: 1
-Total Cells: 3
 Empty Cells: {}
-Entities:
-    - Bone Scimitar
-    - Red Skeleton
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 12
 Nodes:
     Right Red Door:
         Type: Red Door

@@ -2,16 +2,9 @@
 Stage: Outer Wall
 Room: Doppelganger Room
 Index: 11
-Left: 57
-Top: 23
 Columns: 2
 Rows: 1
-Total Cells: 2
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 12
 Nodes:
     Left Passage:
         Type: Passage

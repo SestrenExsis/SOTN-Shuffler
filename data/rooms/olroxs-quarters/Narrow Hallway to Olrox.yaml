@@ -2,16 +2,9 @@
 Stage: Olrox's Quarters
 Room: Narrow Hallway to Olrox
 Index: 11
-Left: 21
-Top: 16
 Columns: 4
 Rows: 1
-Total Cells: 4
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 23
 Nodes:
     Left Passage:
         Type: Passage

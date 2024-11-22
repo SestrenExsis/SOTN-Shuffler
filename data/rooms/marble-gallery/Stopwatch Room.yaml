@@ -2,16 +2,9 @@
 Stage: Marble Gallery
 Room: Stopwatch Room
 Index: 7
-Left: 39
-Top: 24
 Columns: 3
 Rows: 1
-Total Cells: 3
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 15
 Nodes:
     Left Passage:
         Type: Passage

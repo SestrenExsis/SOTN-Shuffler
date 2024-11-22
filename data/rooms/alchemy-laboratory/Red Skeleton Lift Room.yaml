@@ -2,19 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Red Skeleton Lift Room
 Index: 18
-Left: 13
-Top: 34
 Columns: 3
 Rows: 2
-Total Cells: 6
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 22
-Sections:
-    - Ground
-    - Alcove
 Nodes:
     Bottom Passage:
         Type: Passage

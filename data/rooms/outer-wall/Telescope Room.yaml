@@ -2,16 +2,9 @@
 Stage: Outer Wall
 Room: Telescope Room
 Index: 3
-Left: 61
-Top: 14
 Columns: 4
 Rows: 2
-Total Cells: 2
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 4
 Nodes:
     Left-Top Passage:
         Type: Passage

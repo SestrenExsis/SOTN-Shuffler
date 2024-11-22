@@ -2,16 +2,9 @@
 Stage: Castle Entrance Revisited
 Room: Loading Room D
 Index: 21
-Left: 15
-Top: 41
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
-    - Load On Right
-Foreground Layer ID: 44
 Nodes:
     Left Passage:
         Type: Passage

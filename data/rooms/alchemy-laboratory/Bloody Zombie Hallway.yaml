@@ -2,17 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Bloody Zombie Hallway
 Index: 3
-Left: 15
-Top: 26
 Columns: 4
 Rows: 1
-Total Cells: 4
 Empty Cells: {}
-Entities:
-    - Bloody Zombie
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 4
 Nodes:
     Left Passage:
         Type: Passage

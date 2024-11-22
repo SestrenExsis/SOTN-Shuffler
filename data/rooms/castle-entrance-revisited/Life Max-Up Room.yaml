@@ -2,16 +2,9 @@
 Stage: Castle Entrance Revisited
 Room: Life Max-Up Room
 Index: 17
-Left: 20
-Top: 37
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 35
 Nodes:
     Left Passage:
         Type: Passage

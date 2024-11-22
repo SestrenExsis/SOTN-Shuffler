@@ -2,16 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Slogra and Gaibon Boss Room
 Index: 16
-Left: 9
-Top: 27
 Columns: 4
 Rows: 2
-Total Cells: 8
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 19
 Nodes:
     Lower-Right Passage:
         Type: Passage

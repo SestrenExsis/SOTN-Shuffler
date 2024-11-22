@@ -2,14 +2,9 @@
 Stage: Marble Gallery
 Room: Fake Room With Teleporter E
 Index: 37
-Left: 32
-Top: 28
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
 Nodes:
     Top Passage:
         Type: Passage

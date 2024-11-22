@@ -2,16 +2,9 @@
 Stage: Castle Entrance Revisited
 Room: Drop Under Portcullis
 Index: 1
-Left: 2
-Top: 41
 Columns: 1
 Rows: 2
-Total Cells: 2
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 3
 Nodes:
     Top Passage:
         Type: Passage

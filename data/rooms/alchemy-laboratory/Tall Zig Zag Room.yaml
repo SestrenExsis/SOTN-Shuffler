@@ -2,16 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Tall Zig Zag Room
 Index: 14
-Left: 12
-Top: 32
 Columns: 1
 Rows: 3
-Total Cells: 3
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 17
 Nodes:
     Lower Passage:
         Type: Passage

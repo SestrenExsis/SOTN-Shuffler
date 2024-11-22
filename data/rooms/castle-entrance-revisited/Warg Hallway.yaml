@@ -2,16 +2,9 @@
 Stage: Castle Entrance Revisited
 Room: Warg Hallway
 Index: 9
-Left: 14
-Top: 40
 Columns: 6
 Rows: 1
-Total Cells: 6
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 19
 Nodes:
     Left Passage:
         Type: Passage

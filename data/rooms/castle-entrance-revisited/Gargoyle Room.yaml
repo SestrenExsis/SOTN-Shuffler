@@ -2,16 +2,9 @@
 Stage: Castle Entrance Revisited
 Room: Gargoyle Room
 Index: 13
-Left: 20
-Top: 38
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 27
 Nodes:
     Left Passage:
         Type: Passage
