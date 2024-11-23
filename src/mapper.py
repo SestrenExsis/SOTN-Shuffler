@@ -596,7 +596,7 @@ class LogicCore:
                     row = room_top + node['Row']
                     column = room_left + node['Column']
                     edge = node['Edge']
-                    nodes[(row, column, edge)] = (location_name, node_name, node['Entry Section'])
+                    nodes[(row, column, edge)] = (location_name, node_name, node['Entry Section'], room_data['Stage'])
                     exit = {
                         'Outcomes': {
                             'Location': None,
@@ -610,7 +610,7 @@ class LogicCore:
                         },
                     }
                     self.commands[location_name]['Exit - ' + node_name] = exit
-            for (row, column, edge), (location_name, node_name, section_name) in nodes.items():
+            for (row, column, edge), (location_name, node_name, section_name, stage_name) in nodes.items():
                 matching_row = row
                 matching_column = column
                 matching_edge = edge
@@ -626,11 +626,12 @@ class LogicCore:
                 elif edge == 'Right':
                     matching_edge = 'Left'
                     matching_column += 1
-                (matching_location_name, matching_node_name, matching_section) = (None, 'Unknown', None)
+                (matching_location_name, matching_node_name, matching_section, matching_stage_name) = (None, 'Unknown', None, 'Unknown')
                 if (matching_row, matching_column, matching_edge) in nodes:
-                    (matching_location_name, matching_node_name, matching_section) = nodes[(matching_row, matching_column, matching_edge)]
+                    (matching_location_name, matching_node_name, matching_section, matching_stage_name) = nodes[(matching_row, matching_column, matching_edge)]
                 self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Location'] = matching_location_name
                 self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Section'] = matching_section
+                self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Progression - ' + matching_stage_name + ' Stage Reached'] = True
         # Replace source teleporter locations with their targets
         for (location_name, location_info) in self.commands.items():
             for (command_name, command_info) in location_info.items():
