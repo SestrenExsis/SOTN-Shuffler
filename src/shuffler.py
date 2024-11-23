@@ -126,18 +126,18 @@ if __name__ == '__main__':
                             'Top': stage_changes['Rooms'][room_name]['Top'],
                             'Left': stage_changes['Rooms'][room_name]['Left'],
                         }
-            print('Require that reaching Castle Entrance Revisited in under 24 steps is possible')
-            logic_core = mapper.LogicCore(mapper_data, changes).get_core()
-            logic_core['Goals'] = {
-                'Debug - Reach Castle Entrance Revisited': {
-                    'Progression - Castle Entrance Revisited Stage Reached': True,
-                },
-            }
-            map_solver = solver.Solver(logic_core, skills)
-            # map_solver.debug = True
-            map_solver.solve_via_steps(24)
-            if len(map_solver.results['Wins']) < 1:
-                continue
+            # print('Require that reaching Castle Entrance Revisited in under 24 steps is possible')
+            # logic_core = mapper.LogicCore(mapper_data, changes).get_core()
+            # logic_core['Goals'] = {
+            #     'Debug - Reach Castle Entrance Revisited': {
+            #         'Progression - Castle Entrance Revisited Stage Reached': True,
+            #     },
+            # }
+            # map_solver = solver.Solver(logic_core, skills)
+            # # map_solver.debug = True
+            # map_solver.solve_via_steps(24)
+            # if len(map_solver.results['Wins']) < 1:
+            #     continue
             print('Require that reaching all shuffled stages in under 128 steps is possible')
             logic_core = mapper.LogicCore(mapper_data, changes).get_core()
             logic_core['Goals'] = {

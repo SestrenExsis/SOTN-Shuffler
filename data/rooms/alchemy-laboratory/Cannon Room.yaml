@@ -27,18 +27,18 @@ Commands:
         Requirements:
             Default:
                 Section: Right Side
-                Progression - Cannon Activated: true
+                Status - Cannon Activated: true
     Move - Right Side:
         Outcomes:
             Section: Right Side
         Requirements:
             Default:
                 Section: Left Side
-                Progression - Cannon Activated: true
+                Status - Cannon Activated: true
     Action - Activate Cannon:
         Outcomes:
-            Progression - Cannon Activated: true
+            Status - Cannon Activated: true
         Requirements:
             Default:
                 Section: Right Side
-                Progression - Cannon Activated: false
+                Status - Cannon Activated: false

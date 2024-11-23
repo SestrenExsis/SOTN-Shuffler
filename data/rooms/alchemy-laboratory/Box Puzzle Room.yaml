@@ -30,18 +30,18 @@ Nodes:
 Commands:
     Action - Solve Box Puzzle:
         Outcomes:
-            Progression - Box Puzzle Solved: true
+            Status - Box Puzzle Solved: true
         Requirements:
             Default:
                 Section: Ground
-                Progression - Box Puzzle Solved: false
+                Status - Box Puzzle Solved: false
     Move - Ledge:
         Outcomes:
             Section: Ledge
         Requirements:
             Box Puzzle:
                 Section: Ground
-                Progression - Box Puzzle Solved: true
+                Status - Box Puzzle Solved: true
             Bat:
                 Section: Ground
                 Progression - Bat Transformation: true

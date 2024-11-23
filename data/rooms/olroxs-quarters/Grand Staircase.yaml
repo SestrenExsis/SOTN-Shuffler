@@ -37,23 +37,23 @@ Nodes:
 Commands:
     Action - Break Wall:
         Outcomes:
-            Progression - Breakable Wall in Grand Staircase Broken: true
+            Status - Breakable Wall in Grand Staircase Broken: true
         Requirements:
             Default:
                 Section: Main
                 Knowledge - How to Break the Wall in Grand Staircase: true
-                Progression - Breakable Wall in Grand Staircase Broken: false
+                Status - Breakable Wall in Grand Staircase Broken: false
     Move - Broken Wall:
         Outcomes:
             Section: Broken Wall
         Requirements:
             Main:
                 Section: Main
-                Progression - Breakable Wall in Tall Zig Zag Room Broken: true
+                Status - Breakable Wall in Tall Zig Zag Room Broken: true
     Move - Main:
         Outcomes:
             Section: Main
         Requirements:
             Broken Wall:
                 Section: Broken Wall
-                Progression - Breakable Wall in Tall Zig Zag Room Broken: true
+                Status - Breakable Wall in Tall Zig Zag Room Broken: true

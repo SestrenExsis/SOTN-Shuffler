@@ -30,10 +30,10 @@ Nodes:
 Commands:
     Action - Defeat Slogra and Gaibon:
         Outcomes:
-            Progression - Slogra and Gaibon Defeated: true
+            Status - Slogra and Gaibon Defeated: true
         Requirements:
             Default:
-                Progression - Slogra and Gaibon Defeated: false
+                Status - Slogra and Gaibon Defeated: false
                 Section: Ground
     Move - Alcove:
         Outcomes:
@@ -46,7 +46,7 @@ Commands:
                 Section: Ground
                 Execution - Repeated Dive Kick Head Stomps: true
                 Progression - Double Jump: true
-                Progression - Slogra and Gaibon Defeated: false
+                Status - Slogra and Gaibon Defeated: false
             Gravity Jump:
                 Section: Ground
                 Progression - Gravity Jump: true

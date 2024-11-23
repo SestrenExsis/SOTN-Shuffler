@@ -227,8 +227,7 @@ class Solver():
                 self.results['Wins'].append((step__solver, game__solver))
                 break
             (_, _, hashed_state__solver) = game__solver.get_key()
-            if step__solver > (-10 * progression_count__solver):
-                print('                        -SKIP-', step__solver, progression_count__solver)
+            if step__solver > (-8 * (progression_count__solver - 2)):
                 continue
             if hashed_state__solver in memo and memo[hashed_state__solver] <= (progression_count__solver, step__solver):
                 # if self.debug:

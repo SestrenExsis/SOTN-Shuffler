@@ -30,12 +30,12 @@ Nodes:
 Commands:
     Action - Break Ceiling:
         Outcomes:
-            Progression - Breakable Ceiling in Catwalk Crypt Broken: true
+            Status - Breakable Ceiling in Catwalk Crypt Broken: true
         Requirements:
             Default:
                 Section: Main
                 Knowledge - How to Break the Ceiling in Catwalk Crypt: true
-                Progression - Breakable Ceiling in Catwalk Crypt Broken: false
+                Status - Breakable Ceiling in Catwalk Crypt Broken: false
     Move - Rising:
         Outcomes:
             Section: Rising
@@ -43,22 +43,22 @@ Commands:
             Main - Bat, Broken Ceiling:
                 Section: Main
                 Progression - Bat Transformation: true
-                Progression - Breakable Ceiling in Catwalk Crypt Broken: true
+                Status - Breakable Ceiling in Catwalk Crypt Broken: true
             Main - Gravity Jump, Broken Ceiling:
                 Section: Main
                 Progression - Gravity Jump: true
-                Progression - Breakable Ceiling in Catwalk Crypt Broken: true
+                Status - Breakable Ceiling in Catwalk Crypt Broken: true
             Main - Powered Mist, Broken Ceiling:
                 Section: Main
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
-                Progression - Breakable Ceiling in Catwalk Crypt Broken: true
+                Status - Breakable Ceiling in Catwalk Crypt Broken: true
             Main - Wolf-Mist Rise, Broken Ceiling:
                 Section: Main
                 Execution - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
-                Progression - Breakable Ceiling in Catwalk Crypt Broken: true
+                Status - Breakable Ceiling in Catwalk Crypt Broken: true
     Move - Main:
         Outcomes:
             Section: Main

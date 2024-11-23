@@ -44,18 +44,18 @@ Nodes:
 Commands:
     Action - Solve Red Skeleton Lift Puzzle:
         Outcomes:
-            Progression - Red Skeleton Lift Puzzle Solved: true
+            Status - Red Skeleton Lift Puzzle Solved: true
         Requirements:
             Default:
                 Section: Ground
-                Progression - Red Skeleton Lift Puzzle Solved: false
+                Status - Red Skeleton Lift Puzzle Solved: false
     Move - Alcove:
         Outcomes:
             Section: Alcove
         Requirements:
             Red Skeleton Lift Puzzle:
                 Section: Ground
-                Progression - Red Skeleton Lift Puzzle Solved: true
+                Status - Red Skeleton Lift Puzzle Solved: true
             Bat:
                 Section: Ground
                 Progression - Bat Transformation: true
