@@ -25,15 +25,15 @@ Nodes:
         Row: 1
         Column: 2
         Edge: Right
-        Entry Section: Rising
-        Exit Section: Falling
+        Entry Section: Main
+        Exit Section: Main
     Right-Bottom Passage:
         Type: Passage
         Row: 1
         Column: 2
         Edge: Bottom
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Rising
+        Exit Section: Falling
 Commands:
     Move - Falling:
         Outcomes:

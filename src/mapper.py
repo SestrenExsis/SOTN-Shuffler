@@ -1,13 +1,11 @@
 # External libraries
+import collections
 import datetime
 import hashlib
 import json
 import os
 import random
 import yaml
-
-# Local libraries
-import solver
 
 class RoomNode:
     def __init__(self, room, row: int, column: int, edge: str, type: str):
@@ -578,21 +576,23 @@ class LogicCore:
             print('', stage_name)
             nodes = {}
             for (location_name, room_data) in mapper_data['Rooms'].items():
-                if location_name not in changes:
+                changes_location_key = location_name
+                alternate_location_name = room_data['Stage'] + ', Room ID ' + f'{room_data['Index']:02d}'
+                if alternate_location_name in changes['Rooms']:
+                    changes_location_key = alternate_location_name
+                if changes_location_key not in changes['Rooms']:
                     continue
                 if mapper_data['Rooms'][location_name]['Stage'] != stage_name:
                     continue
-                print(' ', location_name)
                 room_top = None
                 room_left = None
-                if 'Rooms' in changes and location_name in changes['Rooms']:
-                    if 'Top' in changes['Rooms'][location_name]:
-                        room_top = changes['Rooms'][location_name]['Top']
-                    if 'Left' in changes['Rooms'][location_name]:
-                        room_left = changes['Rooms'][location_name]['Left']
+                if 'Rooms' in changes and changes_location_key in changes['Rooms']:
+                    if 'Top' in changes['Rooms'][changes_location_key]:
+                        room_top = changes['Rooms'][changes_location_key]['Top']
+                    if 'Left' in changes['Rooms'][changes_location_key]:
+                        room_left = changes['Rooms'][changes_location_key]['Left']
                 self.commands[location_name] = room_data['Commands']
                 for (node_name, node) in room_data['Nodes'].items():
-                    print('  ', node_name)
                     row = room_top + node['Row']
                     column = room_left + node['Column']
                     edge = node['Edge']
@@ -698,10 +698,41 @@ class Mapper:
         self.attempts += 1
         self.end_time = datetime.datetime.now(datetime.timezone.utc)
     
-    def validate(self, tolerance: int=0) -> bool:
+    def validate(self) -> bool:
         result = False
         if self.stage is not None:
-            result = (len(self.stage.rooms) + tolerance) >= len(self.rooms) and len(self.stage.get_open_nodes()) <= 2 * tolerance
+            excluded_room_names = {
+                'Castle Entrance, Forest Cutscene',
+                'Castle Entrance, Unknown Room 19',
+                'Castle Entrance, Unknown Room 20',
+                'Castle Entrance Revisited, Forest Cutscene',
+                'Castle Entrance Revisited, Unknown Room 19',
+                'Castle Entrance Revisited, Unknown Room 20',
+            }
+            all_rooms_used = len(self.stage.rooms) >= len(self.rooms)
+            no_nodes_unused = len(self.stage.get_open_nodes()) < 1
+            room_names_left = set(self.stage.rooms.keys()) - excluded_room_names
+            room_names_visited = set()
+            work = collections.deque()
+            work.append(next(iter(room_names_left)))
+            while len(work) > 0:
+                source_room_name = work.pop()
+                room_names_visited.add(source_room_name)
+                if source_room_name not in room_names_left:
+                    continue
+                room_names_left.remove(source_room_name)
+                source_room = self.stage.rooms[source_room_name]
+                for (source_node_name, source_node) in source_room.nodes.items():
+                    for target_room_name in room_names_left:
+                        target_room = self.stage.rooms[target_room_name]
+                        for (target_node_name, target_node) in target_room.nodes.items():
+                            if target_node.matches(source_node):
+                                work.appendleft(target_room_name)
+                                break
+            all_rooms_connected = len(room_names_visited) >= (len(set(self.rooms) - excluded_room_names))
+            result = all_rooms_used and no_nodes_unused and all_rooms_connected
+            if False:
+                print(self.stage_name, len(self.rooms), 'Y' if result else '-', 'Y' if all_rooms_used else '-', 'Y' if no_nodes_unused else '-', 'Y' if all_rooms_connected else '-', len(room_names_visited))
         return result
 
 if __name__ == '__main__':
@@ -710,7 +741,7 @@ if __name__ == '__main__':
     python mapper.py
     TODO(sestren): Add a requirement that Castle Entrance be able to reach one of the other stages
     '''
-    GENERATION_VERSION = '0.0.3'
+    GENERATION_VERSION = '0.0.4'
     mapper_data = MapperData().get_core()
     with open(os.path.join('build', 'sandbox', 'mapper-data.json'), 'w') as mapper_data_json:
         json.dump(mapper_data, mapper_data_json, indent='    ', sort_keys=True, default=str)
@@ -726,14 +757,14 @@ if __name__ == '__main__':
             'Olrox\'s Quarters': [],
         }
     seed = random.randint(0, 2 ** 64)
-    MULTIPLIER = 1
-    WEIGHTS = [1, 1, 1, 1, 1] # 300, 1300
+    MULTIPLIER = 51
+    WEIGHTS = [2, 2, 2, 2, 1] # 100, 50
     for (stage_name, target_seed_count) in (
-        ('Alchemy Laboratory', MULTIPLIER * WEIGHTS[1]),
-        ('Marble Gallery', MULTIPLIER * WEIGHTS[2]),
-        ('Outer Wall', MULTIPLIER * WEIGHTS[3]),
-        ('Olrox\'s Quarters', MULTIPLIER * WEIGHTS[4]),
-        ('Castle Entrance', MULTIPLIER * WEIGHTS[0]),
+        ('Alchemy Laboratory', MULTIPLIER * WEIGHTS[0]),
+        ('Marble Gallery', MULTIPLIER * WEIGHTS[1]),
+        ('Outer Wall', MULTIPLIER * WEIGHTS[2]),
+        ('Olrox\'s Quarters', MULTIPLIER * WEIGHTS[3]),
+        ('Castle Entrance', MULTIPLIER * WEIGHTS[4]),
     ):
         if stage_name not in generated_stages:
             generated_stages[stage_name] = []
@@ -746,38 +777,7 @@ if __name__ == '__main__':
             while True:
                 stage_map.generate()
                 if stage_map.validate():
-                    changes = stage_map.stage.get_changes()
-                    valid_ind = True
-                    room_names = []
-                    for room_name in changes['Rooms']:
-                        if 'Loading Room' in room_name:
-                            room_names.append(room_name)
-                    if stage_map.stage_name in ('Castle Entrance', 'Castle Entrance Revisited'):
-                        room_names.append(stage_map.stage_name + ', After Drawbridge')
-                    print(room_names)
-                    logic_core = LogicCore(mapper_data, changes).get_core()
-                    for starting_room_name in room_names:
-                        for ending_room_name in room_names:
-                            if ending_room_name == starting_room_name:
-                                continue
-                            print('- Traverse while skipping validation:', (starting_room_name, ending_room_name))
-                            logic_core['State']['Location'] = starting_room_name
-                            logic_core['State']['Section'] = 'Main'
-                            logic_core['Goals'] = {
-                                'Debug - Reach Ending Room': {
-                                    'Location': ending_room_name,
-                                },
-                            }
-                            map_solver = solver.Solver(logic_core, {})
-                            map_solver.debug = True
-                            map_solver.solve(1, 3, False)
-                            if len(map_solver.results['Wins']) < 1:
-                                valid_ind = False
-                                break
-                        if not valid_ind:
-                            break
-                    else:
-                        break
+                    break
             generated_stages[stage_name].append(
                 {
                     'Attempts': stage_map.attempts,
