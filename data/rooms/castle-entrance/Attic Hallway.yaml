@@ -20,11 +20,4 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands:
-    Action - Collect Holy Water Subweapon:
-        Outcomes:
-            Object:
-                Subweapon: Holy Water
-        Requirements:
-            Default:
-                Section: Main
+Commands: {}

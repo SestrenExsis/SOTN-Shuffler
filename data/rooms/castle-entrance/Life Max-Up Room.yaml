@@ -13,12 +13,4 @@ Nodes:
         Edge: Left
         Entry Section: Main
         Exit Section: Main
-Commands:
-    Action - Collect Life Max-Up Powerup:
-        Outcomes:
-            Powerup - Life Max-Up: 1
-            Check - Item at Castle Entrance Life Max-Up Room: true
-        Requirements:
-            Default:
-                Section: Main
-                Check - Item at Castle Entrance Life Max-Up Room: false
+Commands: {}

@@ -13,12 +13,4 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands:
-    Action - Collect Jewel Sword Item:
-        Outcomes:
-            Item - Jewel Sword: 1
-            Progression - Item at Jewel Sword Location Collected: true
-        Requirements:
-            Default:
-                Section: Main
-                Progression - Item at Jewel Sword Location Collected: false
+Commands: {}

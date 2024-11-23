@@ -20,12 +20,4 @@ Nodes:
         Edge: Top
         Entry Section: Main
         Exit Section: Main
-Commands:
-    Action - Collect Object at Hide Cuirass Location:
-        Outcomes:
-            Check - Object at Hide Cuirass Location: true
-            Item - Hide Cuirass: 1
-        Requirements:
-            Default:
-                Section: Main
-                Check - Object at Hide Cuirass Location: false
+Commands: {}

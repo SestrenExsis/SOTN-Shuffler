@@ -13,12 +13,4 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands:
-    Action - Collect Object at Sunglasses Location:
-        Outcomes:
-            Check - Object at Sunglasses Location: true
-            Item - Sunglasses: 1
-        Requirements:
-            Default:
-                Section: Main
-                Check - Object at Sunglasses Location: false
+Commands: {}

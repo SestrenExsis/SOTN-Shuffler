@@ -13,13 +13,4 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands:
-    Action - Collect Cloth Cape:
-        Outcomes:
-            Check - Object in Cloth Cape Room: true
-            Item - Cloth Cape: 1
-        Requirements:
-            Default:
-                Location: Alchemy Laboratory, Cloth Cape Room
-                Section: Main
-                Check - Object in Cloth Cape Room: false
+Commands: {}

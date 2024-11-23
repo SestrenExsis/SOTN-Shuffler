@@ -43,11 +43,3 @@ Commands:
         Requirements:
             Use Shortcut:
                 Section: Ledge
-    Action - Collect Holy Mail Item:
-        Outcomes:
-            Item - Holy Mail: 1
-            Progression - Item at Holy Mail Location Collected: true
-        Requirements:
-            Default:
-                Section: Ledge
-                Progression - Item at Holy Mail Location Collected: false

@@ -13,13 +13,4 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands:
-    Action - Collect Object at Alchemy Lab Heart Max-Up Location:
-        Outcomes:
-            Check - Object at Alchemy Lab Heart Max-Up Location: true
-            Object:
-                Item - Heart Max-Up: 1
-        Requirements:
-            Default:
-                Section: Main
-                Check - Object at Alchemy Lab Heart Max-Up Location: false
+Commands: {}
