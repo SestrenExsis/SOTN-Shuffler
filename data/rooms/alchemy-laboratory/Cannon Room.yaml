@@ -2,16 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Cannon Room
 Index: 4
-Left: 16
-Top: 34
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 5
 Nodes:
     Left Passage:
         Type: Passage
@@ -34,18 +27,18 @@ Commands:
         Requirements:
             Default:
                 Section: Right Side
-                Progression - Cannon Activated: true
+                Status - Cannon Activated: true
     Move - Right Side:
         Outcomes:
             Section: Right Side
         Requirements:
             Default:
                 Section: Left Side
-                Progression - Cannon Activated: true
+                Status - Cannon Activated: true
     Action - Activate Cannon:
         Outcomes:
-            Progression - Cannon Activated: true
+            Status - Cannon Activated: true
         Requirements:
             Default:
                 Section: Right Side
-                Progression - Cannon Activated: false
+                Status - Cannon Activated: false

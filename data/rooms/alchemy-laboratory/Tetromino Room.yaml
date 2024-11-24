@@ -2,18 +2,11 @@
 Stage: Alchemy Laboratory
 Room: Tetromino Room
 Index: 19
-Left: 13
-Top: 26
 Columns: 2
 Rows: 3
-Total Cells: 5
 Empty Cells:
     - Row: 0
       Column: 0
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 24
 Nodes:
     Lower-Left Passage:
         Type: Passage

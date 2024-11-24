@@ -2,16 +2,9 @@
 Stage: Castle Entrance
 Room: Zombie Hallway
 Index: 2
-Left: 4
-Top: 40
 Columns: 7
 Rows: 1
-Total Cells: 7
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 5
 Nodes:
     Left Passage:
         Type: Passage

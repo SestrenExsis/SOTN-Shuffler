@@ -2,16 +2,9 @@
 Stage: Castle Entrance
 Room: Jewel Sword Room
 Index: 8
-Left: 10
-Top: 41
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 17
 Nodes:
     Right Passage:
         Type: Passage
@@ -20,12 +13,4 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands:
-    Action - Collect Jewel Sword Item:
-        Outcomes:
-            Item - Jewel Sword: 1
-            Check - Item at Jewel Sword Location: true
-        Requirements:
-            Default:
-                Section: Main
-                Check - Item at Jewel Sword Location: false
+Commands: {}

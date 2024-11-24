@@ -2,16 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Blue Door Hallway
 Index: 2
-Left: 6
-Top: 28
 Columns: 2
 Rows: 1
-Total Cells: 2
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 3
 Nodes:
     Left Passage:
         Type: Passage

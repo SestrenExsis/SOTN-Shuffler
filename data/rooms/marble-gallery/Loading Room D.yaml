@@ -2,16 +2,9 @@
 Stage: Marble Gallery
 Room: Loading Room D
 Index: 29
-Left: 30
-Top: 25
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
-    - Load On Left
-Foreground Layer ID: 50
 Nodes:
     Left Passage:
         Type: Passage

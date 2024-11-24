@@ -2,18 +2,11 @@
 Stage: Outer Wall
 Room: Elevator Shaft Room
 Index: 13
-Left: 60
-Top: 15
 Columns: 3
 Rows: 9
-Total Cells: 17
 Empty Cells:
     - Row: 2
       Column: 0
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 14
 Nodes:
     Right-Top Passage:
         Type: Passage
@@ -57,21 +50,21 @@ Commands:
         Requirements:
             Elevator Shaft - Default:
                 Section: Elevator Shaft
-                Progression - Elevator in Outer Wall Activated: true
+                Status - Elevator in Outer Wall Activated: true
     Move - Elevator Shaft:
         Outcomes:
             Section: Elevator Shaft
         Requirements:
             Main - Default:
                 Section: Main
-                Progression - Elevator in Outer Wall Activated: true
+                Status - Elevator in Outer Wall Activated: true
     Action - Activate Elevator in Outer Wall:
         Outcomes:
-            Progression - Elevator in Outer Wall Activated: true
+            Status - Elevator in Outer Wall Activated: true
         Requirements:
             Default:
                 Section: Main
-                Progression - Elevator in Outer Wall Activated: false
+                Status - Elevator in Outer Wall Activated: false
     Action - Collect Soul of Wolf Relic:
         Outcomes:
             Relic - Soul of Wolf: true

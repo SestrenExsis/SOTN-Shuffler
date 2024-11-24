@@ -2,16 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Box Puzzle Room
 Index: 17
-Left: 9
-Top: 30
 Columns: 2
 Rows: 2
-Total Cells: 4
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 20
 Nodes:
     Lower-Right Passage:
         Type: Passage
@@ -37,18 +30,18 @@ Nodes:
 Commands:
     Action - Solve Box Puzzle:
         Outcomes:
-            Progression - Box Puzzle Solved: true
+            Status - Box Puzzle Solved: true
         Requirements:
             Default:
                 Section: Ground
-                Progression - Box Puzzle Solved: false
+                Status - Box Puzzle Solved: false
     Move - Ledge:
         Outcomes:
             Section: Ledge
         Requirements:
             Box Puzzle:
                 Section: Ground
-                Progression - Box Puzzle Solved: true
+                Status - Box Puzzle Solved: true
             Bat:
                 Section: Ground
                 Progression - Bat Transformation: true

@@ -1,13 +1,11 @@
 # External libraries
+import collections
 import datetime
 import hashlib
 import json
 import os
 import random
-
-# Local libraries
-import roomrando
-import solver
+import yaml
 
 class RoomNode:
     def __init__(self, room, row: int, column: int, edge: str, type: str):
@@ -67,8 +65,8 @@ class Room:
         self.stage_name = room_data['Stage']
         self.room_name = room_data['Room']
         self.index = room_data['Index']
-        self.top = top if top is not None else room_data['Top']
-        self.left = left if left is not None else room_data['Left']
+        self.top = top
+        self.left = left
         self.rows = room_data['Rows']
         self.columns = room_data['Columns']
         self.empty_cells = set()
@@ -98,8 +96,8 @@ class RoomSet:
         self.rooms = {}
         for (room, top, left) in room_placements:
             room.roomset = self
-            room.top = top if top is not None else room.top
-            room.left = left if left is not None else room.left
+            room.top = top
+            room.left = left
             room_name = room.stage_name + ', ' + room.room_name
             self.rooms[room_name] = room
     
@@ -189,18 +187,18 @@ class RoomSet:
             }
         return result
     
-    def get_stage_spoiler(self, data_core: dict) -> list[str]:
+    def get_stage_spoiler(self, mapper_data: dict) -> list[str]:
         changes = self.get_changes()
         codes = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+. '
         legend = []
         grid = [['.' for col in range(64)] for row in range(64)]
         for room_name in changes['Rooms'].keys():
             (index, top, left, rows, cols) = (
-                data_core['Rooms'][room_name]['Index'],
+                mapper_data['Rooms'][room_name]['Index'],
                 changes['Rooms'][room_name]['Top'],
                 changes['Rooms'][room_name]['Left'],
-                data_core['Rooms'][room_name]['Rows'],
-                data_core['Rooms'][room_name]['Columns'],
+                mapper_data['Rooms'][room_name]['Rows'],
+                mapper_data['Rooms'][room_name]['Columns'],
             )
             code = codes[index]
             legend.append((code, room_name))
@@ -213,15 +211,15 @@ class RoomSet:
         for row_data in grid:
             result.append(''.join(row_data))
         for (code, room_name) in legend:
-            index = data_core['Rooms'][room_name]['Index']
+            index = mapper_data['Rooms'][room_name]['Index']
             top = changes['Rooms'][room_name]['Top']
             left = changes['Rooms'][room_name]['Left']
-            width = data_core['Rooms'][room_name]['Columns']
-            height = data_core['Rooms'][room_name]['Rows']
+            width = mapper_data['Rooms'][room_name]['Columns']
+            height = mapper_data['Rooms'][room_name]['Rows']
             result.append(str((code, room_name, ('I:', index, 'T:', top, 'L:', left, 'H:', height, 'W:', width))))
         return result
     
-    def get_room_spoiler(self, data_core: dict) -> list[str]:
+    def get_room_spoiler(self, mapper_data: dict) -> list[str]:
         changes = self.get_changes()
         codes = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+. '
         legend = []
@@ -234,8 +232,8 @@ class RoomSet:
                 changes['Rooms'][room_name]['Index'],
                 changes['Rooms'][room_name]['Top'],
                 changes['Rooms'][room_name]['Left'],
-                data_core['Rooms'][room_name]['Rows'],
-                data_core['Rooms'][room_name]['Columns'],
+                mapper_data['Rooms'][room_name]['Rows'],
+                mapper_data['Rooms'][room_name]['Columns'],
             )
             code = codes[index]
             legend.append((code, room_name))
@@ -248,7 +246,7 @@ class RoomSet:
                             prev_index = codes.find(grid[row][col])
                             if index < prev_index:
                                 grid[row][col] = code
-            for node in data_core['Rooms'][room_name]['Nodes'].values():
+            for node in mapper_data['Rooms'][room_name]['Nodes'].values():
                 (exit_row, exit_col, exit_edge) = (node['Row'], node['Column'], node['Edge'])
                 row = 2 + 5 * (room_top - stage_top + exit_row)
                 col = 2 + 5 * (room_left - stage_left + exit_col)
@@ -265,11 +263,11 @@ class RoomSet:
         for row_data in grid:
             result.append(''.join(row_data))
         for (code, room_name) in legend:
-            index = data_core['Rooms'][room_name]['Index']
+            index = mapper_data['Rooms'][room_name]['Index']
             top = changes['Rooms'][room_name]['Top']
             left = changes['Rooms'][room_name]['Left']
-            width = data_core['Rooms'][room_name]['Columns']
-            height = data_core['Rooms'][room_name]['Rows']
+            width = mapper_data['Rooms'][room_name]['Columns']
+            height = mapper_data['Rooms'][room_name]['Rows']
             result.append(str((code, room_name, ('I:', index, 'T:', top, 'L:', left, 'H:', height, 'W:', width))))
         return result
 
@@ -530,15 +528,163 @@ def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
         steps += 1
     return result
 
+class MapperData:
+    def __init__(self):
+        print('Build data core')
+        self.rooms = {}
+        self.teleporters = {}
+        for stage_folder in (
+            'castle-entrance',
+            'castle-entrance-revisited',
+            'alchemy-laboratory',
+            'marble-gallery',
+            'outer-wall',
+            'olroxs-quarters',
+        ):
+            folder_path = os.path.join('data', 'rooms', stage_folder)
+            for file_name in os.listdir(folder_path):
+                if file_name[-5:] != '.yaml':
+                    continue
+                file_path = os.path.join(folder_path, file_name)
+                with open(file_path) as open_file:
+                    yaml_obj = yaml.safe_load(open_file)
+                    room_name = yaml_obj['Stage'] + ', ' + yaml_obj['Room']
+                    self.rooms[room_name] = yaml_obj
+        with open(os.path.join('data', 'Teleporters.yaml')) as open_file:
+            yaml_obj = yaml.safe_load(open_file)
+            self.teleporters = yaml_obj
+    
+    def get_core(self) -> dict:
+        result = {
+            'Rooms': self.rooms,
+            'Teleporters': self.teleporters,
+        }
+        return result
+
+class LogicCore:
+    def __init__(self, mapper_data, changes):
+        print('Build logic core')
+        self.commands = {}
+        for stage_name in (
+            'Castle Entrance',
+            'Castle Entrance Revisited',
+            'Alchemy Laboratory',
+            'Marble Gallery',
+            'Outer Wall',
+            'Olrox\'s Quarters',
+        ):
+            print('', stage_name)
+            nodes = {}
+            for (location_name, room_data) in mapper_data['Rooms'].items():
+                changes_location_key = location_name
+                alternate_location_name = room_data['Stage'] + ', Room ID ' + f'{room_data['Index']:02d}'
+                if alternate_location_name in changes['Rooms']:
+                    changes_location_key = alternate_location_name
+                if changes_location_key not in changes['Rooms']:
+                    continue
+                if mapper_data['Rooms'][location_name]['Stage'] != stage_name:
+                    continue
+                room_top = None
+                room_left = None
+                if 'Rooms' in changes and changes_location_key in changes['Rooms']:
+                    if 'Top' in changes['Rooms'][changes_location_key]:
+                        room_top = changes['Rooms'][changes_location_key]['Top']
+                    if 'Left' in changes['Rooms'][changes_location_key]:
+                        room_left = changes['Rooms'][changes_location_key]['Left']
+                self.commands[location_name] = room_data['Commands']
+                for (node_name, node) in room_data['Nodes'].items():
+                    row = room_top + node['Row']
+                    column = room_left + node['Column']
+                    edge = node['Edge']
+                    nodes[(row, column, edge)] = (location_name, node_name, node['Entry Section'], room_data['Stage'])
+                    exit = {
+                        'Outcomes': {
+                            'Location': None,
+                            'Section': None,
+                        },
+                        'Requirements': {
+                            'Default': {
+                                'Location': location_name,
+                                'Section': node['Exit Section']
+                            },
+                        },
+                    }
+                    self.commands[location_name]['Exit - ' + node_name] = exit
+            for (row, column, edge), (location_name, node_name, section_name, stage_name) in nodes.items():
+                matching_row = row
+                matching_column = column
+                matching_edge = edge
+                if edge == 'Top':
+                    matching_edge = 'Bottom'
+                    matching_row -= 1
+                elif edge == 'Left':
+                    matching_edge = 'Right'
+                    matching_column -= 1
+                elif edge == 'Bottom':
+                    matching_edge = 'Top'
+                    matching_row += 1
+                elif edge == 'Right':
+                    matching_edge = 'Left'
+                    matching_column += 1
+                (matching_location_name, matching_node_name, matching_section, matching_stage_name) = (None, 'Unknown', None, 'Unknown')
+                if (matching_row, matching_column, matching_edge) in nodes:
+                    (matching_location_name, matching_node_name, matching_section, matching_stage_name) = nodes[(matching_row, matching_column, matching_edge)]
+                self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Location'] = matching_location_name
+                self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Section'] = matching_section
+                # TODO(sestren): Use Milestone instead of Progression for reaching a stage
+                self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Progression - ' + matching_stage_name + ' Stage Reached'] = True
+        # Replace source teleporter locations with their targets
+        for (location_name, location_info) in self.commands.items():
+            for (command_name, command_info) in location_info.items():
+                if 'Outcomes' in command_info and 'Location' in command_info['Outcomes']:
+                    old_location_name = command_info['Outcomes']['Location']
+                    if old_location_name in mapper_data['Teleporters']['Sources']:
+                        source = mapper_data['Teleporters']['Sources'][old_location_name]
+                        target = mapper_data['Teleporters']['Targets'][source['Target']]
+                        new_location_name = target['Stage'] + ', ' + target['Room']
+                        self.commands[location_name][command_name]['Outcomes']['Location'] = new_location_name
+                        target_section_name = mapper_data['Rooms'][new_location_name]['Nodes'][target['Node']]['Entry Section']
+                        self.commands[location_name][command_name]['Outcomes']['Section'] = target_section_name
+        # Delete fake rooms mentioned as teleporter locations
+        for location_name in mapper_data['Teleporters']['Sources']:
+            if 'Fake' in location_name:
+                self.commands.pop(location_name, None)
+        self.state = {
+            'Character': 'Alucard',
+            'Location': 'Castle Entrance, After Drawbridge',
+            'Section': 'Ground',
+            'Item - Alucard Sword': 1,
+            'Item - Alucard Shield': 1,
+            'Item - Dragon Helm': 1,
+            'Item - Alucard Mail': 1,
+            'Item - Twilight Cloak': 1,
+            'Item - Necklace of J': 1,
+            'Item - Neutron Bomb': 1,
+            'Item - Heart Refresh': 1,
+        }
+        self.goals = {
+            'Debug - Get Soul of Wolf': {
+                'Relic - Soul of Wolf': True,
+            },
+        }
+    
+    def get_core(self) -> dict:
+        result = {
+            'State': self.state,
+            'Goals': self.goals,
+            'Commands': self.commands,
+        }
+        return result
+
 class Mapper:
-    def __init__(self, data_core, stage_name: str, seed: int):
+    def __init__(self, mapper_data, stage_name: str, seed: int):
         self.stage_name = stage_name
         self.attempts = 0
         self.start_time = None
         self.end_time = None
         self.stage = None
         self.rooms = {}
-        for (room_name, room_data) in data_core['Rooms'].items():
+        for (room_name, room_data) in mapper_data['Rooms'].items():
             if room_data['Stage'] == stage_name:
                 self.rooms[room_name] = Room(room_data)
         self.current_seed = self.next_seed = seed
@@ -554,10 +700,41 @@ class Mapper:
         self.attempts += 1
         self.end_time = datetime.datetime.now(datetime.timezone.utc)
     
-    def validate(self, tolerance: int=0) -> bool:
+    def validate(self) -> bool:
         result = False
         if self.stage is not None:
-            result = (len(self.stage.rooms) + tolerance) >= len(self.rooms) and len(self.stage.get_open_nodes()) <= 2 * tolerance
+            excluded_room_names = {
+                'Castle Entrance, Forest Cutscene',
+                'Castle Entrance, Unknown Room 19',
+                'Castle Entrance, Unknown Room 20',
+                'Castle Entrance Revisited, Forest Cutscene',
+                'Castle Entrance Revisited, Unknown Room 19',
+                'Castle Entrance Revisited, Unknown Room 20',
+            }
+            all_rooms_used = len(self.stage.rooms) >= len(self.rooms)
+            no_nodes_unused = len(self.stage.get_open_nodes()) < 1
+            room_names_left = set(self.stage.rooms.keys()) - excluded_room_names
+            room_names_visited = set()
+            work = collections.deque()
+            work.append(next(iter(room_names_left)))
+            while len(work) > 0:
+                source_room_name = work.pop()
+                room_names_visited.add(source_room_name)
+                if source_room_name not in room_names_left:
+                    continue
+                room_names_left.remove(source_room_name)
+                source_room = self.stage.rooms[source_room_name]
+                for (source_node_name, source_node) in source_room.nodes.items():
+                    for target_room_name in room_names_left:
+                        target_room = self.stage.rooms[target_room_name]
+                        for (target_node_name, target_node) in target_room.nodes.items():
+                            if target_node.matches(source_node):
+                                work.appendleft(target_room_name)
+                                break
+            all_rooms_connected = len(room_names_visited) >= (len(set(self.rooms) - excluded_room_names))
+            result = all_rooms_used and no_nodes_unused and all_rooms_connected
+            if False:
+                print(self.stage_name, len(self.rooms), 'Y' if result else '-', 'Y' if all_rooms_used else '-', 'Y' if no_nodes_unused else '-', 'Y' if all_rooms_connected else '-', len(room_names_visited))
         return result
 
 if __name__ == '__main__':
@@ -566,8 +743,10 @@ if __name__ == '__main__':
     python mapper.py
     TODO(sestren): Add a requirement that Castle Entrance be able to reach one of the other stages
     '''
-    GENERATION_VERSION = '0.0.3'
-    data_core = roomrando.DataCore().get_core()
+    GENERATION_VERSION = '0.0.4'
+    mapper_data = MapperData().get_core()
+    with open(os.path.join('build', 'sandbox', 'mapper-data.json'), 'w') as mapper_data_json:
+        json.dump(mapper_data, mapper_data_json, indent='    ', sort_keys=True, default=str)
     try:
         with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'r') as generated_stages_json:
             generated_stages = json.load(generated_stages_json)
@@ -580,14 +759,14 @@ if __name__ == '__main__':
             'Olrox\'s Quarters': [],
         }
     seed = random.randint(0, 2 ** 64)
-    MULTIPLIER = 1
-    WEIGHTS = [1, 1, 1, 1, 1] # 300, 1300
+    MULTIPLIER = 51
+    WEIGHTS = [2, 2, 2, 2, 1] # 100, 50
     for (stage_name, target_seed_count) in (
-        ('Alchemy Laboratory', MULTIPLIER * WEIGHTS[1]),
-        ('Marble Gallery', MULTIPLIER * WEIGHTS[2]),
-        ('Outer Wall', MULTIPLIER * WEIGHTS[3]),
-        ('Olrox\'s Quarters', MULTIPLIER * WEIGHTS[4]),
-        ('Castle Entrance', MULTIPLIER * WEIGHTS[0]),
+        ('Alchemy Laboratory', MULTIPLIER * WEIGHTS[0]),
+        ('Marble Gallery', MULTIPLIER * WEIGHTS[1]),
+        ('Outer Wall', MULTIPLIER * WEIGHTS[2]),
+        ('Olrox\'s Quarters', MULTIPLIER * WEIGHTS[3]),
+        ('Castle Entrance', MULTIPLIER * WEIGHTS[4]),
     ):
         if stage_name not in generated_stages:
             generated_stages[stage_name] = []
@@ -596,42 +775,11 @@ if __name__ == '__main__':
         if stage_name not in generated_stages:
             generated_stages[stage_name] = []
         while len(generated_stages[stage_name]) < target_seed_count:
-            stage_map = Mapper(data_core, stage_name, seed)
+            stage_map = Mapper(mapper_data, stage_name, seed)
             while True:
                 stage_map.generate()
                 if stage_map.validate():
-                    changes = stage_map.stage.get_changes()
-                    valid_ind = True
-                    room_names = []
-                    for room_name in changes['Rooms']:
-                        if 'Loading Room' in room_name:
-                            room_names.append(room_name)
-                    if stage_map.stage_name in ('Castle Entrance', 'Castle Entrance Revisited'):
-                        room_names.append(stage_map.stage_name + ', After Drawbridge')
-                    print(room_names)
-                    logic_core = roomrando.LogicCore(data_core, changes).get_core()
-                    for starting_room_name in room_names:
-                        for ending_room_name in room_names:
-                            if ending_room_name == starting_room_name:
-                                continue
-                            print('- Traverse while skipping validation:', (starting_room_name, ending_room_name))
-                            logic_core['State']['Location'] = starting_room_name
-                            logic_core['State']['Section'] = 'Main'
-                            logic_core['Goals'] = {
-                                'Debug - Reach Ending Room': {
-                                    'Location': ending_room_name,
-                                },
-                            }
-                            map_solver = solver.Solver(logic_core, {})
-                            map_solver.debug = True
-                            map_solver.solve(1, 3, False)
-                            if len(map_solver.results['Wins']) < 1:
-                                valid_ind = False
-                                break
-                        if not valid_ind:
-                            break
-                    else:
-                        break
+                    break
             generated_stages[stage_name].append(
                 {
                     'Attempts': stage_map.attempts,
@@ -647,11 +795,3 @@ if __name__ == '__main__':
             seed = stage_map.rng.randint(0, 2 ** 64)
         with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'w') as generated_stages_json:
             json.dump(generated_stages, generated_stages_json, indent='    ', sort_keys=True, default=str)
-    with (
-        open(os.path.join('build', 'sandbox', 'changes.json'), 'w') as changes_json,
-        open(os.path.join('build', 'sandbox', 'spoiler.txt'), 'w') as spoiler_text,
-    ):
-        stage_map = Mapper(data_core, 'Alchemy Laboratory', 13673787484619113129)
-        stage_map.generate()
-        json.dump(stage_map.stage.get_changes(), changes_json, indent='    ', sort_keys=True, default=str)
-        json.dump(stage_map.stage.get_stage_spoiler(data_core), spoiler_text, indent='    ', sort_keys=True, default=str)

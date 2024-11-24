@@ -1,11 +1,12 @@
 # External libraries
 import collections
 import copy
+import heapq
 import json
 import os
 
 # Local libraries
-import roomrando
+import mapper
 
 class Game:
     DEFAULT_BOOLEAN = False
@@ -23,6 +24,11 @@ class Game:
         self.goal_achieved = False
         self.layer = 0
         self.debug = False
+    
+    # TODO(sestren): Implement __eq__, __gt__, etc.
+    def __lt__(self, other) -> bool:
+        result = (self.get_key()[2]) < (other.get_key()[2])
+        return result
     
     @property
     def location(self):
@@ -202,18 +208,60 @@ class Solver():
         }
         self.debug = False
     
-    def solve(self, reflexive_limit: int=3, max_layers: int=8, require_validation: bool=True):
-        # TODO(sestren): Add ability to solve with reduced requirements (e.g., ignore Progression)
-        highest_layer_found = -1
+    def solve_via_steps(self, max_steps: int=24):
+        highest_layer_found = (0, -1)
+        initial_game = Game(self.logic_core)
         memo = {}
         solution_found = False
-        initial_game = Game(self.logic_core)
-        work__solver = collections.deque()
-        work__solver.appendleft((0, initial_game))
+        work__solver = []
+        progression = set(key for key in initial_game.current_state if 'Progression - ' in key)
+        heapq.heappush(work__solver, (-len(progression), 0, initial_game))
         while len(work__solver) > 0 and not solution_found:
-            (step__solver, game__solver) = work__solver.pop()
+            (progression_count__solver, step__solver, game__solver) = heapq.heappop(work__solver)
+            if (-progression_count__solver, step__solver) > highest_layer_found:
+                print('Layer', (-progression_count__solver, step__solver), len(work__solver), len(memo), set(key[14:] for key in game__solver.current_state if 'Progression - ' in key))
+                highest_layer_found = (-progression_count__solver, step__solver)
+            game__solver.layer = step__solver
+            if game__solver.goal_achieved:
+                solution_found = True
+                self.results['Wins'].append((step__solver, game__solver))
+                break
+            (_, _, hashed_state__solver) = game__solver.get_key()
+            if step__solver > (-8 * (progression_count__solver - 2)):
+                continue
+            if hashed_state__solver in memo and memo[hashed_state__solver] <= (progression_count__solver, step__solver):
+                # if self.debug:
+                #     print('    seen', hashed_state__solver, 'with layer', memo[hashed_state__solver], len(work__solver), len(memo))
+                continue
+            memo[hashed_state__solver] = (progression_count__solver, step__solver)
+            if step__solver >= max_steps:
+                continue
+            if self.debug:
+                print(progression_count__solver, step__solver, game__solver.current_state['Location'], hashed_state__solver, len(work__solver), len(memo))
+            for command in game__solver.get_valid_command_names():
+                next_game__solver = game__solver.clone()
+                next_game__solver.process_command(command)
+                next_step__solver = step__solver + 1
+                (_, _, next_hashed_state__solver) = next_game__solver.get_key()
+                next_progression = set(key for key in next_game__solver.current_state if 'Progression - ' in key)
+                if next_hashed_state__solver in memo and memo[next_hashed_state__solver] <= (-len(next_progression), next_step__solver):
+                    # if self.debug:
+                    #     print('    seen', next_hashed_state__solver, 'with layer', memo[next_hashed_state__solver], next_step__solver, len(memo))
+                    continue
+                heapq.heappush(work__solver, (-len(next_progression), next_step__solver, next_game__solver))
+    
+    def solve_via_layers(self, reflexive_limit: int=3, max_layers: int=8, require_validation: bool=True):
+        highest_layer_found = -1
+        initial_game = Game(self.logic_core)
+        memo = {}
+        solution_found = False
+        work__solver = []
+        progression_count = len(set(key for key in initial_game.current_state if 'Progression - ' in key))
+        heapq.heappush(work__solver, (-progression_count, 0, initial_game))
+        while len(work__solver) > 0 and not solution_found:
+            (progression_count__solver, step__solver, game__solver) = heapq.heappop(work__solver)
             if step__solver > highest_layer_found:
-                print('Layer', step__solver, len(work__solver), len(memo))
+                print('Layer', step__solver, progression_count__solver, len(work__solver), len(memo))
                 highest_layer_found = step__solver
             game__solver.layer = step__solver
             if game__solver.goal_achieved:
@@ -222,14 +270,14 @@ class Solver():
                 break
             (_, _, hashed_state__solver) = game__solver.get_key()
             if hashed_state__solver in memo and memo[hashed_state__solver] <= step__solver:
-                if self.debug:
-                    print('seen', hashed_state__solver, 'with layer', memo[hashed_state__solver], len(work__solver), len(memo))
+                # if self.debug:
+                #     print('    seen', hashed_state__solver, 'with layer', memo[hashed_state__solver], len(work__solver), len(memo))
                 continue
             memo[hashed_state__solver] = step__solver
             if step__solver >= max_layers:
                 continue
             if self.debug:
-                print(step__solver, game__solver.current_state['Location'], hashed_state__solver, len(work__solver), len(memo))
+                print(progression_count__solver, step__solver, game__solver.current_state['Location'], hashed_state__solver, len(work__solver), len(memo))
             #
             # Find all locations that are N-bonded with the current location (N = reflexive_limit)
             # Two locations are considered "N-bonded" if you can move from one to another via a series of N-reflexive commands
@@ -276,7 +324,6 @@ class Solver():
                     next_game__bonded.process_command(reflexive_command_name)
                     work__bonded.append((step__bonded + 1, next_game__bonded))
                 bonded_locations[game__bonded.location][1] -= reflexive_command_names
-            # TODO(sestren): Only iterate over non-reflexive actions
             for (bonded_location, (game, valid_commands)) in sorted(bonded_locations.items()):
                 (_, _, hashed_state__game) = game.get_key()
                 if self.debug:
@@ -286,7 +333,14 @@ class Solver():
                         print('    ', next_command__solver)
                     next_game__solver = game.clone()
                     next_game__solver.process_command(next_command__solver)
-                    work__solver.appendleft((step__solver + 1, next_game__solver))
+                    next_step__solver = step__solver + 1
+                    (_, _, next_hashed_state__solver) = next_game__solver.get_key()
+                    if next_hashed_state__solver in memo and memo[next_hashed_state__solver] <= next_step__solver:
+                        # if self.debug:
+                        #     print('    seen', next_hashed_state__solver, 'with layer', memo[next_hashed_state__solver], next_step__solver, len(memo))
+                        continue
+                    next_progression_count = len(set(key for key in next_game__solver.current_state if 'Progression - ' in key))
+                    heapq.heappush(work__solver, (-next_progression_count, next_step__solver, next_game__solver))
 
 if __name__ == '__main__':
     '''
@@ -294,33 +348,52 @@ if __name__ == '__main__':
     python solver.py
     '''
     SOLVER_VERSION = '0.0.0'
+    mapper_data = mapper.MapperData().get_core()
     with (
+        open(os.path.join('build', 'sandbox', 'data-core.json'), 'w') as mapper_data_json,
+        open(os.path.join('external', 'vanilla-changes.json')) as changes_json,
+        open(os.path.join('build', 'sandbox', 'logic-core.json'), 'w') as logic_core_json,
         open(os.path.join('build', 'sandbox', 'skills.json')) as skills_json,
     ):
-        data_core = roomrando.DataCore().get_core()
-        with open(os.path.join('build', 'sandbox', 'data-core.json'), 'w') as data_core_json:
-            json.dump(data_core, data_core_json, indent='    ', sort_keys=True)
-        logic_core = roomrando.LogicCore(data_core, {}).get_core()
+        json.dump(mapper_data, mapper_data_json, indent='    ', sort_keys=True)
+        mapper_data_json.close()
+        changes = json.load(changes_json)
+        logic_core = mapper.LogicCore(mapper_data, changes).get_core()
         logic_core['State']['Location'] = 'Castle Entrance, After Drawbridge'
         logic_core['State']['Section'] = 'Ground'
         logic_core['Goals'] = {
-            'Debug 1': {
-                'Location': 'Castle Entrance Revisited, After Drawbridge',
-            },
+            # 'Debug 1': {
+            #     'Location': 'Castle Entrance Revisited, Cube of Zoe Room',
+            # },
             # 'Debug 2': {
-            #     'Relic - Soul of Wolf': True,
+            #     'Location': 'Marble Gallery, Slinger Staircase',
             # },
             # 'Debug 3': {
-            #     'Location': 'Olrox\'s Quarters, Skelerang Room',
+            #     'Location': 'Outer Wall, Exit to Marble Gallery',
             # },
+            # 'Debug 4': {
+            #     'Relic - Soul of Wolf': True,
+            # },
+            'Debug 5': {
+                'Progression - Castle Entrance Stage Reached': True,
+                'Progression - Castle Entrance Revisited Stage Reached': True,
+                'Progression - Alchemy Laboratory Stage Reached': True,
+                'Progression - Marble Gallery Stage Reached': True,
+                'Progression - Outer Wall Stage Reached': True,
+                'Progression - Olrox\'s Quarters Stage Reached': True,
+            },
             # 'Debug 99': {
             #     'Relic - Form of Mist': True,
             # },
         }
+        json.dump(logic_core, logic_core_json, indent='    ', sort_keys=True)
+        logic_core_json.close()
         skills = json.load(skills_json)
         print('Solving')
         map_solver = Solver(logic_core, skills)
-        map_solver.solve(3, 10)
+        map_solver.debug = True
+        # map_solver.solve_via_layers(3, 10)
+        map_solver.solve_via_steps(128)
         if len(map_solver.results['Wins']) > 0:
             (winning_layers, winning_game) = map_solver.results['Wins'][-1]
             print('-------------')

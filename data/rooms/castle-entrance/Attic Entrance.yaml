@@ -2,16 +2,9 @@
 Stage: Castle Entrance
 Room: Attic Entrance
 Index: 6
-Left: 11
-Top: 39
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities: {}
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 13
 Nodes:
     Left Passage:
         Type: Passage

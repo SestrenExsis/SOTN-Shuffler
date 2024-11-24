@@ -2,16 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Corridor to Elevator
 Index: 21
-Left: 15
-Top: 28
 Columns: 2
 Rows: 1
-Total Cells: 2
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 26
 Nodes:
     Left Passage:
         Type: Passage

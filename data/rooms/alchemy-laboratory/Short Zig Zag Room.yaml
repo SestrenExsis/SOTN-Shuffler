@@ -2,17 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Short Zig Zag Room
 Index: 13
-Left: 11
-Top: 31
 Columns: 1
 Rows: 2
-Total Cells: 2
 Empty Cells: {}
-Entities:
-    - Bone Scimitar
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 16
 Nodes:
     Lower-Right Passage:
         Type: Passage

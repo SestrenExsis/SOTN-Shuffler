@@ -2,16 +2,9 @@
 Stage: Castle Entrance
 Room: Save Room C
 Index: 27
-Left: 5
-Top: 39
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
-    - Save With Left Opening
-Foreground Layer ID: 47
 Nodes:
     Right Passage:
         Type: Passage

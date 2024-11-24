@@ -2,16 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Tall Zig Zag Room
 Index: 14
-Left: 12
-Top: 32
 Columns: 1
 Rows: 3
-Total Cells: 3
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 17
 Nodes:
     Lower Passage:
         Type: Passage
@@ -45,21 +38,21 @@ Nodes:
 Commands:
     Action - Break Floor:
         Outcomes:
-            Progression - Breakable Floor in Tall Zig Zag Room Broken: true
+            Status - Breakable Floor in Tall Zig Zag Room Broken: true
         Requirements:
             Default:
                 Section: Main
                 Knowledge - How to Break the Floor in Tall Zig Zag Room: true
                 Progression - Ability to Strike at Floor: true
-                Progression - Breakable Floor in Tall Zig Zag Room Broken: false
+                Status - Breakable Floor in Tall Zig Zag Room Broken: false
     Action - Break Wall:
         Outcomes:
-            Progression - Breakable Wall in Tall Zig Zag Room Broken: true
+            Status - Breakable Wall in Tall Zig Zag Room Broken: true
         Requirements:
             Default:
                 Section: Main
                 Knowledge - How to Break the Wall in Tall Zig Zag Room: true
-                Progression - Breakable Wall in Tall Zig Zag Room Broken: false
+                Status - Breakable Wall in Tall Zig Zag Room Broken: false
     Move - Broken Floor:
         Outcomes:
             Section: Broken Floor
@@ -67,7 +60,7 @@ Commands:
             Main:
                 Location: Alchemy Laboratory, Tall Zig Zag Room
                 Section: Main
-                Progression - Breakable Floor in Tall Zig Zag Room Broken: true
+                Status - Breakable Floor in Tall Zig Zag Room Broken: true
     Move - Broken Wall:
         Outcomes:
             Section: Broken Wall
@@ -75,7 +68,7 @@ Commands:
             Main:
                 Location: Alchemy Laboratory, Tall Zig Zag Room
                 Section: Main
-                Progression - Breakable Wall in Tall Zig Zag Room Broken: true
+                Status - Breakable Wall in Tall Zig Zag Room Broken: true
     Move - Main:
         Outcomes:
             Section: Main
@@ -83,8 +76,8 @@ Commands:
             Broken Floor:
                 Location: Alchemy Laboratory, Tall Zig Zag Room
                 Section: Broken Floor
-                Progression - Breakable Floor in Tall Zig Zag Room Broken: true
+                Status - Breakable Floor in Tall Zig Zag Room Broken: true
             Broken Wall:
                 Location: Alchemy Laboratory, Tall Zig Zag Room
                 Section: Broken Wall
-                Progression - Breakable Wall in Tall Zig Zag Room Broken: true
+                Status - Breakable Wall in Tall Zig Zag Room Broken: true

@@ -2,16 +2,9 @@
 Stage: Olrox's Quarters
 Room: Open Courtyard
 Index: 8
-Left: 25
-Top: 16
 Columns: 6
 Rows: 4
-Total Cells: 24
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 17
 Nodes:
     Upper-Left Passage:
         Type: Passage

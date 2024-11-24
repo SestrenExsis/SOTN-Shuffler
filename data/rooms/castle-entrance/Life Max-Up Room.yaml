@@ -2,16 +2,9 @@
 Stage: Castle Entrance
 Room: Life Max-Up Room
 Index: 17
-Left: 20
-Top: 37
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 35
 Nodes:
     Left Passage:
         Type: Passage
@@ -20,12 +13,4 @@ Nodes:
         Edge: Left
         Entry Section: Main
         Exit Section: Main
-Commands:
-    Action - Collect Life Max-Up Powerup:
-        Outcomes:
-            Powerup - Life Max-Up: 1
-            Check - Item at Castle Entrance Life Max-Up Room: true
-        Requirements:
-            Default:
-                Section: Main
-                Check - Item at Castle Entrance Life Max-Up Room: false
+Commands: {}

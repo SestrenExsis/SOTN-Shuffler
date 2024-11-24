@@ -2,16 +2,9 @@
 Stage: Castle Entrance Revisited
 Room: Merman Room
 Index: 7
-Left: 11
-Top: 40
 Columns: 3
 Rows: 2
-Total Cells: 6
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 15
 Nodes:
     Top Passage:
         Type: Passage

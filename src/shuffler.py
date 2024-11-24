@@ -7,7 +7,6 @@ import random
 
 # Local libraries
 import mapper
-import roomrando
 import solver
 
 if __name__ == '__main__':
@@ -30,7 +29,7 @@ if __name__ == '__main__':
         open(os.path.join('build', 'sandbox', 'rules.json')) as rules_json,
         open(os.path.join('build', 'sandbox', 'skills.json')) as skills_json,
     ):
-        data_core = roomrando.DataCore().get_core()
+        mapper_data = mapper.MapperData().get_core()
         rules = json.load(rules_json)
         skills = json.load(skills_json)
         # Keep randomizing until a solution is found
@@ -55,7 +54,7 @@ if __name__ == '__main__':
             print('Randomize with seeds')
             for (stage_name, stage_seed) in stages_to_process:
                 print(stage_name, stage_seed, end=' ')
-                stage_map = mapper.Mapper(data_core, stage_name, stage_seed)
+                stage_map = mapper.Mapper(mapper_data, stage_name, stage_seed)
                 note = 'Random'
                 while True:
                     stage_map.generate()
@@ -64,7 +63,7 @@ if __name__ == '__main__':
                     if stage_map.attempts > 2000:
                         if stage_name in generated_stages and len(generated_stages[stage_name]) > 0:
                             prebaked_stage = stage_map.rng.choice(generated_stages[stage_name])
-                            prebaked_map = mapper.Mapper(data_core, stage_name, prebaked_stage['Seed'])
+                            prebaked_map = mapper.Mapper(mapper_data, stage_name, prebaked_stage['Seed'])
                             prebaked_map.generate()
                             assert prebaked_map.validate()
                             hash_of_changes = hashlib.sha256(json.dumps(prebaked_map.stage.get_changes(), sort_keys=True).encode()).hexdigest()
@@ -74,7 +73,7 @@ if __name__ == '__main__':
                                 note = 'Prebaked'
                                 break
                 stages[stage_name] = stage_map
-                print(stage_map.current_seed)
+                print(note, stage_map.current_seed)
                 shuffler['Stages'][stage_name] = {
                     'Note': note,
                     'Attempts': stage_map.attempts,
@@ -88,7 +87,7 @@ if __name__ == '__main__':
             # Current stage
             stage_name = 'Olrox\'s Quarters'
             print(stage_name)
-            stage_map = mapper.Mapper(data_core, stage_name, rng.randint(0, 2 ** 64))
+            stage_map = mapper.Mapper(mapper_data, stage_name, rng.randint(0, 2 ** 64))
             while True:
                 stage_map.generate()
                 rooms_found = set(stage_map.stage.rooms)
@@ -127,63 +126,33 @@ if __name__ == '__main__':
                             'Top': stage_changes['Rooms'][room_name]['Top'],
                             'Left': stage_changes['Rooms'][room_name]['Left'],
                         }
-            print('Require that leaving Castle Entrance by layer 3 is possible')
-            logic_core = roomrando.LogicCore(data_core, changes).get_core()
+            # print('Require that reaching Castle Entrance Revisited in under 24 steps is possible')
+            # logic_core = mapper.LogicCore(mapper_data, changes).get_core()
+            # logic_core['Goals'] = {
+            #     'Debug - Reach Castle Entrance Revisited': {
+            #         'Progression - Castle Entrance Revisited Stage Reached': True,
+            #     },
+            # }
+            # map_solver = solver.Solver(logic_core, skills)
+            # # map_solver.debug = True
+            # map_solver.solve_via_steps(24)
+            # if len(map_solver.results['Wins']) < 1:
+            #     continue
+            print('Require that reaching all shuffled stages in under 128 steps is possible')
+            logic_core = mapper.LogicCore(mapper_data, changes).get_core()
             logic_core['Goals'] = {
-                'Debug - Reach Castle Entrance, Loading Room A': {
-                    'Location': 'Castle Entrance, Loading Room A',
-                },
-                'Debug - Reach Castle Entrance, Loading Room B': {
-                    'Location': 'Castle Entrance, Loading Room B',
-                },
-                'Debug - Reach Castle Entrance, Loading Room C': {
-                    'Location': 'Castle Entrance, Loading Room C',
-                },
-                'Debug - Reach Castle Entrance, Loading Room D': {
-                    'Location': 'Castle Entrance, Loading Room D',
+                'Reach All Shuffled Stages': {
+                    'Progression - Castle Entrance Stage Reached': True,
+                    'Progression - Castle Entrance Revisited Stage Reached': True,
+                    'Progression - Alchemy Laboratory Stage Reached': True,
+                    'Progression - Marble Gallery Stage Reached': True,
+                    'Progression - Outer Wall Stage Reached': True,
+                    'Progression - Olrox\'s Quarters Stage Reached': True,
                 },
             }
             map_solver = solver.Solver(logic_core, skills)
-            map_solver.solve(3, 3)
-            if len(map_solver.results['Wins']) < 1:
-                continue
-            print('Require that reaching Olrox\'s Quarters by layer 3 is possible with full progression')
-            logic_core = roomrando.LogicCore(data_core, changes).get_core()
-            for (location_name, command_info) in logic_core['Commands'].items():
-                if 'Outcomes' in command_info:
-                    for (key, value) in command_info['Outcomes'].items():
-                        if key.startswith('Progression - '):
-                            logic_core['State'][key] = value
-            for progression_name in (
-                'Progression - Ability to Strike at Floor',
-                'Progression - Bat Transformation',
-                'Progression - Double Jump',
-                'Progression - Longer Mist Duration',
-                'Progression - Mid-Air Reset',
-                'Progression - Mist Transformation',
-                'Progression - Unlock Blue Doors',
-            ):
-                logic_core['State'][progression_name] = True
-            logic_core['Goals'] = {
-                'Debug - Reach Skelerang Room': {
-                    'Location': 'Olrox\'s Quarters, Skelerang Room',
-                },
-            }
-            map_solver = solver.Solver(logic_core, skills)
-            map_solver.debug = True
-            map_solver.solve(3, 3)
-            if len(map_solver.results['Wins']) < 1:
-                continue
-            print('Require that getting a major movement Relic is possible by layer 5')
-            logic_core = roomrando.LogicCore(data_core, changes).get_core()
-            logic_core['Goals'] = {
-                'Debug - Get Gravity Boots': {
-                    'Relic - Gravity Boots': True,
-                },
-            }
-            map_solver = solver.Solver(logic_core, skills)
-            map_solver.debug = True
-            map_solver.solve(3, 5)
+            # map_solver.debug = True
+            map_solver.solve_via_steps(128)
             if len(map_solver.results['Wins']) > 0:
                 (winning_layers, winning_game) = map_solver.results['Wins'][-1]
                 print('-------------')
@@ -202,7 +171,7 @@ if __name__ == '__main__':
                 }
                 shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)
                 current_seed = {
-                    'Data Core': data_core,
+                    'Data Core': mapper_data,
                     'Logic Core': logic_core,
                     'Shuffler': shuffler,
                     'Solver': solution,

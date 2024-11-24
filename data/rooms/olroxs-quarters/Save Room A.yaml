@@ -2,16 +2,9 @@
 Stage: Olrox's Quarters
 Room: Save Room A
 Index: 16
-Left: 31
-Top: 17
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
-    - Save With Left Opening
-Foreground Layer ID: 21
 Nodes:
     Left Passage:
         Type: Passage

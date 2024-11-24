@@ -2,16 +2,9 @@
 Stage: Marble Gallery
 Room: Three Paths
 Index: 16
-Left: 32
-Top: 24
 Columns: 1
 Rows: 2
-Total Cells: 2
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 31
 Nodes:
     Top Passage:
         Type: Passage

@@ -2,16 +2,9 @@
 Stage: Castle Entrance Revisited
 Room: Shortcut to Underground Caverns
 Index: 10
-Left: 14
-Top: 41
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 21
 Nodes:
     Left Passage:
         Type: Passage
@@ -20,8 +13,8 @@ Nodes:
         Edge: Left
         Entry Section: Left Side
         Exit Section: Left Side
-    Right Passage:
-        Type: Passage
+    Right Red Door:
+        Type: Red Door
         Row: 0
         Column: 0
         Edge: Right

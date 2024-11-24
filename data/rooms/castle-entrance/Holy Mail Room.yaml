@@ -2,16 +2,9 @@
 Stage: Castle Entrance
 Room: Holy Mail Room
 Index: 3
-Left: 5
-Top: 38
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 7
 Nodes:
     Right Passage:
         Type: Passage
@@ -50,11 +43,3 @@ Commands:
         Requirements:
             Use Shortcut:
                 Section: Ledge
-    Action - Collect Holy Mail Item:
-        Outcomes:
-            Item - Holy Mail: 1
-            Check - Item at Holy Mail Location: true
-        Requirements:
-            Default:
-                Section: Ledge
-                Check - Item at Holy Mail Location: false

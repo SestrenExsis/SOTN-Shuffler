@@ -2,16 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Exit to Royal Chapel
 Index: 1
-Left: 5
-Top: 28
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 2
 Nodes:
     Left Red Door:
         Type: Red Door

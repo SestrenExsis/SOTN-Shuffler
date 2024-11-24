@@ -2,16 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Slogra and Gaibon Boss Room
 Index: 16
-Left: 9
-Top: 27
 Columns: 4
 Rows: 2
-Total Cells: 8
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 19
 Nodes:
     Lower-Right Passage:
         Type: Passage
@@ -37,10 +30,10 @@ Nodes:
 Commands:
     Action - Defeat Slogra and Gaibon:
         Outcomes:
-            Progression - Slogra and Gaibon Defeated: true
+            Status - Slogra and Gaibon Defeated: true
         Requirements:
             Default:
-                Progression - Slogra and Gaibon Defeated: false
+                Status - Slogra and Gaibon Defeated: false
                 Section: Ground
     Move - Alcove:
         Outcomes:
@@ -53,7 +46,7 @@ Commands:
                 Section: Ground
                 Execution - Repeated Dive Kick Head Stomps: true
                 Progression - Double Jump: true
-                Progression - Slogra and Gaibon Defeated: false
+                Status - Slogra and Gaibon Defeated: false
             Gravity Jump:
                 Section: Ground
                 Progression - Gravity Jump: true

@@ -2,16 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Heart Max-Up Room
 Index: 9
-Left: 11
-Top: 34
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 11
 Nodes:
     Right Passage:
         Type: Passage
@@ -20,13 +13,4 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands:
-    Action - Collect Object at Alchemy Lab Heart Max-Up Location:
-        Outcomes:
-            Check - Object at Alchemy Lab Heart Max-Up Location: true
-            Object:
-                Item - Heart Max-Up: 1
-        Requirements:
-            Default:
-                Section: Main
-                Check - Object at Alchemy Lab Heart Max-Up Location: false
+Commands: {}

@@ -2,16 +2,9 @@
 Stage: Castle Entrance
 Room: Attic Staircase
 Index: 4
-Left: 6
-Top: 38
 Columns: 1
 Rows: 2
-Total Cells: 2
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 9
 Nodes:
     Upper-Left Passage:
         Type: Passage

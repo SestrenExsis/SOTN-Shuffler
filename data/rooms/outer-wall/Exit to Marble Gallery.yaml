@@ -2,16 +2,9 @@
 Stage: Outer Wall
 Room: Exit to Marble Gallery
 Index: 7
-Left: 61
-Top: 25
 Columns: 2
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 8
 Nodes:
     Top Passage:
         Type: Passage

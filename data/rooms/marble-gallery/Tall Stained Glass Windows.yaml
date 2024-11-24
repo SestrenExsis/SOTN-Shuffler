@@ -2,16 +2,9 @@
 Stage: Marble Gallery
 Room: Tall Stained Glass Windows
 Index: 1
-Left: 27
-Top: 32
 Columns: 1
 Rows: 3
-Total Cells: 3
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 3
 Nodes:
     Upper-Left Passage:
         Type: Passage

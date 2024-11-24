@@ -2,16 +2,9 @@
 Stage: Alchemy Laboratory
 Room: Exit to Marble Gallery
 Index: 20
-Left: 19
-Top: 25
 Columns: 2
 Rows: 3
-Total Cells: 6
 Empty Cells: {}
-Entities:
-Flags:
-    - Scroll Type 1
-Foreground Layer ID: 25
 Nodes:
     Left Passage:
         Type: Passage

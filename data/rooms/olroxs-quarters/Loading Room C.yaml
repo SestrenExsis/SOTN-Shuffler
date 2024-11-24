@@ -2,16 +2,9 @@
 Stage: Olrox's Quarters
 Room: Loading Room C
 Index: 19
-Left: 36
-Top: 21
 Columns: 1
 Rows: 1
-Total Cells: 1
 Empty Cells: {}
-Entities:
-Flags:
-    - Load On Right
-Foreground Layer ID: 1
 Nodes:
     Left Passage:
         Type: Passage
