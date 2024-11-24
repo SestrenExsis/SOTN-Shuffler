@@ -1,0 +1,16 @@
+
+Stage: Colosseum
+Room: Left-Side Armory
+Index: 12
+Columns: 2
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

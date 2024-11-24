@@ -1,0 +1,51 @@
+
+Stage: Colosseum
+Room: Bottom of Elevator Shaft
+Index: 11
+Columns: 4
+Rows: 2
+Empty Cells: {}
+Nodes:
+    Left-Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Top
+        Entry Section: Main
+        Exit Section: Main
+    Right-Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 3
+        Edge: Top
+        Entry Section: Main
+        Exit Section: Main
+    Upper-Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Left Passage:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Upper-Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 3
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Right Passage:
+        Type: Passage
+        Row: 1
+        Column: 3
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

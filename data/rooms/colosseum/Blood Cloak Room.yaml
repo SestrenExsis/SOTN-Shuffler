@@ -1,0 +1,16 @@
+
+Stage: Colosseum
+Room: Blood Cloak Room
+Index: 10
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}
