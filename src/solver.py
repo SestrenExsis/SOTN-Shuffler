@@ -381,6 +381,7 @@ if __name__ == '__main__':
                 'Progression - Marble Gallery Stage Reached': True,
                 'Progression - Outer Wall Stage Reached': True,
                 'Progression - Olrox\'s Quarters Stage Reached': True,
+                'Progression - Colosseum Stage Reached': True,
             },
             # 'Debug 99': {
             #     'Relic - Form of Mist': True,
@@ -391,9 +392,9 @@ if __name__ == '__main__':
         skills = json.load(skills_json)
         print('Solving')
         map_solver = Solver(logic_core, skills)
-        map_solver.debug = True
+        # map_solver.debug = True
         # map_solver.solve_via_layers(3, 10)
-        map_solver.solve_via_steps(128)
+        map_solver.solve_via_steps(144)
         if len(map_solver.results['Wins']) > 0:
             (winning_layers, winning_game) = map_solver.results['Wins'][-1]
             print('-------------')

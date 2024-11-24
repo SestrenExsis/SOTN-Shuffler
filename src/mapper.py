@@ -776,23 +776,23 @@ if __name__ == '__main__':
             generated_stages = json.load(generated_stages_json)
     except:
         generated_stages = {
-            'Castle Entrance': [],
             'Alchemy Laboratory': [],
             'Marble Gallery': [],
             'Outer Wall': [],
             'Olrox\'s Quarters': [],
             'Colosseum': [],
+            'Castle Entrance': [],
         }
     seed = random.randint(0, 2 ** 64)
     MULTIPLIER = 51
-    WEIGHTS = [2, 2, 2, 2, 1, 1] # 100, 50
+    WEIGHTS = [2, 2, 2, 2, 2, 1] # 100, 50
     for (stage_name, target_seed_count) in (
         ('Alchemy Laboratory', MULTIPLIER * WEIGHTS[0]),
         ('Marble Gallery', MULTIPLIER * WEIGHTS[1]),
         ('Outer Wall', MULTIPLIER * WEIGHTS[2]),
         ('Olrox\'s Quarters', MULTIPLIER * WEIGHTS[3]),
-        ('Castle Entrance', MULTIPLIER * WEIGHTS[4]),
-        ('Colosseum', MULTIPLIER * WEIGHTS[5]),
+        ('Colosseum', MULTIPLIER * WEIGHTS[4]),
+        ('Castle Entrance', MULTIPLIER * WEIGHTS[5]),
     ):
         if stage_name not in generated_stages:
             generated_stages[stage_name] = []

@@ -25,8 +25,8 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Bottom
-        Entry Section: Left Side
-        Exit Section: Left Side
+        Entry Section: Elevator
+        Exit Section: Elevator
     Right-Bottom Passage:
         Type: Passage
         Row: 0
@@ -42,6 +42,13 @@ Nodes:
         Entry Section: Right Side
         Exit Section: Right Side
 Commands:
+    Move - Elevator:
+        Outcomes:
+            Section: Elevator
+        Requirements:
+            Left Side - Elevator Unlocked:
+                Section: Left Side
+                Status - Elevator in Colosseum Unlocked: true
     Move - Left Side:
         Outcomes:
             Section: Left Side
@@ -49,6 +56,9 @@ Commands:
             Right Side - Mist:
                 Section: Right Side
                 Progression - Mist Transformation: true
+            Elevator - Default:
+                Section: Elevator
+                Status - Elevator in Colosseum Unlocked: true
     Move - Right Side:
         Outcomes:
             Section: Right Side
