@@ -209,7 +209,7 @@ class Solver():
         self.debug = False
     
     def solve_via_steps(self, max_steps: int=24):
-        highest_layer_found = -1
+        highest_layer_found = (0, -1)
         initial_game = Game(self.logic_core)
         memo = {}
         solution_found = False
@@ -218,9 +218,9 @@ class Solver():
         heapq.heappush(work__solver, (-len(progression), 0, initial_game))
         while len(work__solver) > 0 and not solution_found:
             (progression_count__solver, step__solver, game__solver) = heapq.heappop(work__solver)
-            if step__solver > highest_layer_found:
-                print('Layer', step__solver, progression_count__solver, len(work__solver), len(memo), set(key[14:] for key in game__solver.current_state if 'Progression - ' in key))
-                highest_layer_found = step__solver
+            if (-progression_count__solver, step__solver) > highest_layer_found:
+                print('Layer', (-progression_count__solver, step__solver), len(work__solver), len(memo), set(key[14:] for key in game__solver.current_state if 'Progression - ' in key))
+                highest_layer_found = (-progression_count__solver, step__solver)
             game__solver.layer = step__solver
             if game__solver.goal_achieved:
                 solution_found = True
