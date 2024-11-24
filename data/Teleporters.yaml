@@ -21,7 +21,7 @@ Sources:
         Room: Fake Room With Teleporter A
         Target: Alchemy Laboratory, Entryway (Right Red Door)
     Colosseum, Fake Room With Teleporter B:
-        Index: 13
+        Index: 53
         Stage: Colosseum
         Room: Fake Room With Teleporter B
         Target: Olrox's Quarters, Grand Staircase (Lower-Left Red Door)
@@ -40,6 +40,11 @@ Sources:
         Stage: Marble Gallery
         Room: Fake Room With Teleporter C
         Target: Alchemy Laboratory, Exit to Marble Gallery (Right Red Door)
+    Olrox's Quarters, Fake Room With Teleporter C:
+        Index: 26
+        Stage: Olrox's Quarters
+        Room: Fake Room With Teleporter C
+        Target: Colosseum, Top of Elevator Shaft (Right Red Door)
     Olrox's Quarters, Fake Room With Teleporter D:
         Index: 24
         Stage: Olrox's Quarters
@@ -68,6 +73,12 @@ Targets:
         Room: Cube of Zoe Room
         Node: Upper-Left Red Door
         Player X: 16
+        Player Y: 132
+    Colosseum, Top of Elevator Shaft (Right Red Door):
+        Stage: Colosseum
+        Room: Top of Elevator Shaft
+        Node: Right Red Door
+        Player X: 1264
         Player Y: 132
     Marble Gallery, Entrance (Left Red Door):
         Stage: Marble Gallery

@@ -599,6 +599,7 @@ class LogicCore:
             'Marble Gallery',
             'Outer Wall',
             'Olrox\'s Quarters',
+            'Colosseum',
         ):
             print('', stage_name)
             nodes = {}

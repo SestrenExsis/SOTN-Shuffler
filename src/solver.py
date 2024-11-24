@@ -394,7 +394,7 @@ if __name__ == '__main__':
         map_solver = Solver(logic_core, skills)
         # map_solver.debug = True
         # map_solver.solve_via_layers(3, 10)
-        map_solver.solve_via_steps(144)
+        map_solver.solve_via_steps(128)
         if len(map_solver.results['Wins']) > 0:
             (winning_layers, winning_game) = map_solver.results['Wins'][-1]
             print('-------------')
