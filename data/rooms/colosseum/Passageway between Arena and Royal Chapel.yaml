@@ -1,0 +1,66 @@
+
+Stage: Colosseum
+Room: Passageway Between Arena and Royal Chapel
+Index: 4
+Columns: 5
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Left Red Door:
+        Type: Red Door
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Left Side
+        Exit Section: Left Side
+    Bottom Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Bottom
+        Entry Section: Right Side
+        Exit Section: Right Side
+    Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 3
+        Edge: Top
+        Entry Section: Right Side
+        Exit Section: Right Side
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 4
+        Edge: Right
+        Entry Section: Right Side
+        Exit Section: Right Side
+Commands:
+    Move - Left Side:
+        Outcomes:
+            Section: Left Side
+        Requirements:
+            Right Side - Shortcut:
+                Section: Right Side
+                Status - Shortcut Between Holy Chapel and Colosseum Unlocked: true
+    Move - Right Side:
+        Outcomes:
+            Section: Right Side
+        Requirements:
+            Left Side - Shortcut:
+                Section: Left Side
+                Status - Shortcut Between Holy Chapel and Colosseum Unlocked: true
+    Action - Collect Library Card:
+        Outcomes:
+            Item - Library Card: 1
+            Check - Colosseum Library Card: true
+        Requirements:
+            Default:
+                Section: Right Side
+                Check - Colosseum Library Card: false
+    Action - Unlock Shortcut Between Holy Chapel and Colosseum:
+        Outcomes:
+            Status - Shortcut Between Holy Chapel and Colosseum Unlocked: true
+        Requirements:
+            Right Side - Default:
+                Section: Right Side
+                Status - Shortcut Between Holy Chapel and Colosseum Unlocked: false

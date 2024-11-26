@@ -208,7 +208,7 @@ class Solver():
         }
         self.debug = False
     
-    def solve_via_steps(self, max_steps: int=24):
+    def solve_via_steps(self, step_range: tuple[int]):
         highest_layer_found = (0, -1)
         initial_game = Game(self.logic_core)
         memo = {}
@@ -227,14 +227,15 @@ class Solver():
                 self.results['Wins'].append((step__solver, game__solver))
                 break
             (_, _, hashed_state__solver) = game__solver.get_key()
-            if step__solver > (-8 * (progression_count__solver - 2)):
-                continue
             if hashed_state__solver in memo and memo[hashed_state__solver] <= (progression_count__solver, step__solver):
                 # if self.debug:
                 #     print('    seen', hashed_state__solver, 'with layer', memo[hashed_state__solver], len(work__solver), len(memo))
                 continue
             memo[hashed_state__solver] = (progression_count__solver, step__solver)
-            if step__solver >= max_steps:
+            if (
+                (step__solver >= step_range[2]) or
+                (step__solver >= step_range[0] and step__solver > (-step_range[1] * progression_count__solver))
+            ):
                 continue
             if self.debug:
                 print(progression_count__solver, step__solver, game__solver.current_state['Location'], hashed_state__solver, len(work__solver), len(memo))
@@ -381,6 +382,7 @@ if __name__ == '__main__':
                 'Progression - Marble Gallery Stage Reached': True,
                 'Progression - Outer Wall Stage Reached': True,
                 'Progression - Olrox\'s Quarters Stage Reached': True,
+                'Progression - Colosseum Stage Reached': True,
             },
             # 'Debug 99': {
             #     'Relic - Form of Mist': True,
@@ -391,9 +393,9 @@ if __name__ == '__main__':
         skills = json.load(skills_json)
         print('Solving')
         map_solver = Solver(logic_core, skills)
-        map_solver.debug = True
+        # map_solver.debug = True
         # map_solver.solve_via_layers(3, 10)
-        map_solver.solve_via_steps(128)
+        map_solver.solve_via_steps((24, 8, 64))
         if len(map_solver.results['Wins']) > 0:
             (winning_layers, winning_game) = map_solver.results['Wins'][-1]
             print('-------------')

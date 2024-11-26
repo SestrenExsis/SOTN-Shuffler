@@ -1,0 +1,83 @@
+
+Stage: Colosseum
+Room: Top of Elevator Shaft
+Index: 6
+Columns: 5
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Left Side
+        Exit Section: Left Side
+    Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Top
+        Entry Section: Right Side
+        Exit Section: Right Side
+    Left-Bottom Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Bottom
+        Entry Section: Elevator
+        Exit Section: Elevator
+    Right-Bottom Passage:
+        Type: Passage
+        Row: 0
+        Column: 3
+        Edge: Bottom
+        Entry Section: Right Side
+        Exit Section: Right Side
+    Right Red Door:
+        Type: Red Door
+        Row: 0
+        Column: 4
+        Edge: Right
+        Entry Section: Right Side
+        Exit Section: Right Side
+Commands:
+    Move - Elevator:
+        Outcomes:
+            Section: Elevator
+        Requirements:
+            Left Side - Elevator Unlocked:
+                Section: Left Side
+                Status - Elevator in Colosseum Unlocked: true
+    Move - Left Side:
+        Outcomes:
+            Section: Left Side
+        Requirements:
+            Right Side - Mist:
+                Section: Right Side
+                Progression - Mist Transformation: true
+            Elevator - Default:
+                Section: Elevator
+                Status - Elevator in Colosseum Unlocked: true
+    Move - Right Side:
+        Outcomes:
+            Section: Right Side
+        Requirements:
+            Left Side - Mist:
+                Section: Left Side
+                Progression - Mist Transformation: true
+    Action - Collect Form of Mist Relic:
+        Outcomes:
+            Relic - Form of Mist: true
+            Progression - Mist Transformation: true
+        Requirements:
+            Default:
+                Section: Left Side
+                Relic - Form of Mist: false
+    Action - Unlock Elevator:
+        Outcomes:
+            Status - Elevator in Colosseum Unlocked: true
+        Requirements:
+            Default:
+                Section: Left Side
+                Status - Elevator in Colosseum Unlocked: false

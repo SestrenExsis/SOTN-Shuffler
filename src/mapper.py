@@ -229,7 +229,7 @@ class RoomSet:
         grid = [[' ' for col in range(5 * stage_cols)] for row in range(5 * stage_rows)]
         for room_name in changes['Rooms'].keys():
             (index, room_top, room_left, room_rows, room_cols) = (
-                changes['Rooms'][room_name]['Index'],
+                mapper_data['Rooms'][room_name]['Index'],
                 changes['Rooms'][room_name]['Top'],
                 changes['Rooms'][room_name]['Left'],
                 mapper_data['Rooms'][room_name]['Rows'],
@@ -487,13 +487,39 @@ stages = {
         { 'Olrox\'s Quarters, Secret Onyx Room': (0, 0) },
         { 'Olrox\'s Quarters, Sword Card Room': (0, 0) },
     ],
+    'Colosseum': [
+        {
+            'Colosseum, Top of Elevator Shaft': (32 + 0, 32 + 0),
+            'Colosseum, Loading Room B': (32 + 0, 32 + 5),
+            'Colosseum, Fake Room With Teleporter B': (32 + 0, 32 + 6),
+            'Colosseum, Bottom of Elevator Shaft': (32 + 1, 32 + 0),
+        },
+        {
+            'Colosseum, Fake Room With Teleporter A': (0, 0),
+            'Colosseum, Loading Room A': (0, 1),
+            'Colosseum, Passageway Between Arena and Royal Chapel': (0, 2),
+        },
+        { 'Colosseum, Arena': (0, 0) },
+        { 'Colosseum, Blade Master Room': (0, 0) },
+        { 'Colosseum, Blood Cloak Room': (0, 0) },
+        { 'Colosseum, Fountain Room': (0, 0) },
+        { 'Colosseum, Holy Sword Room': (0, 0) },
+        { 'Colosseum, Left-Side Armory': (0, 0) },
+        { 'Colosseum, Right-Side Armory': (0, 0) },
+        { 'Colosseum, Save Room A': (0, 0) },
+        { 'Colosseum, Save Room B': (0, 0) },
+        { 'Colosseum, Spiral Staircases': (0, 0) },
+        { 'Colosseum, Top of Left Spiral Staircase': (0, 0) },
+        { 'Colosseum, Top of Right Spiral Staircase': (0, 0) },
+        { 'Colosseum, Valhalla Knight Room': (0, 0) },
+    ],
 }
 
 def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
     pool = {}
-    for roomset_id, roomset_data in enumerate(stage_data):
+    for (roomset_id, roomset_data) in enumerate(stage_data):
         room_placements = []
-        for room_name, (top, left) in roomset_data.items():
+        for (room_name, (top, left)) in roomset_data.items():
             room_placements.append((rooms[room_name], top, left))
         pool[roomset_id] = RoomSet(roomset_id, room_placements)
     result = pool.pop(0)
@@ -540,6 +566,7 @@ class MapperData:
             'marble-gallery',
             'outer-wall',
             'olroxs-quarters',
+            'colosseum',
         ):
             folder_path = os.path.join('data', 'rooms', stage_folder)
             for file_name in os.listdir(folder_path):
@@ -572,6 +599,7 @@ class LogicCore:
             'Marble Gallery',
             'Outer Wall',
             'Olrox\'s Quarters',
+            'Colosseum',
         ):
             print('', stage_name)
             nodes = {}
@@ -733,15 +761,12 @@ class Mapper:
                                 break
             all_rooms_connected = len(room_names_visited) >= (len(set(self.rooms) - excluded_room_names))
             result = all_rooms_used and no_nodes_unused and all_rooms_connected
-            if False:
-                print(self.stage_name, len(self.rooms), 'Y' if result else '-', 'Y' if all_rooms_used else '-', 'Y' if no_nodes_unused else '-', 'Y' if all_rooms_connected else '-', len(room_names_visited))
         return result
 
 if __name__ == '__main__':
     '''
     Usage
     python mapper.py
-    TODO(sestren): Add a requirement that Castle Entrance be able to reach one of the other stages
     '''
     GENERATION_VERSION = '0.0.4'
     mapper_data = MapperData().get_core()
@@ -752,21 +777,23 @@ if __name__ == '__main__':
             generated_stages = json.load(generated_stages_json)
     except:
         generated_stages = {
-            'Castle Entrance': [],
             'Alchemy Laboratory': [],
             'Marble Gallery': [],
             'Outer Wall': [],
             'Olrox\'s Quarters': [],
+            'Colosseum': [],
+            'Castle Entrance': [],
         }
     seed = random.randint(0, 2 ** 64)
     MULTIPLIER = 51
-    WEIGHTS = [2, 2, 2, 2, 1] # 100, 50
+    WEIGHTS = [2, 2, 2, 2, 2, 1] # 100, 50
     for (stage_name, target_seed_count) in (
         ('Alchemy Laboratory', MULTIPLIER * WEIGHTS[0]),
         ('Marble Gallery', MULTIPLIER * WEIGHTS[1]),
         ('Outer Wall', MULTIPLIER * WEIGHTS[2]),
         ('Olrox\'s Quarters', MULTIPLIER * WEIGHTS[3]),
-        ('Castle Entrance', MULTIPLIER * WEIGHTS[4]),
+        ('Colosseum', MULTIPLIER * WEIGHTS[4]),
+        ('Castle Entrance', MULTIPLIER * WEIGHTS[5]),
     ):
         if stage_name not in generated_stages:
             generated_stages[stage_name] = []
