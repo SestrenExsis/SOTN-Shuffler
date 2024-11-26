@@ -128,7 +128,7 @@ if __name__ == '__main__':
                             'Top': stage_changes['Rooms'][room_name]['Top'],
                             'Left': stage_changes['Rooms'][room_name]['Left'],
                         }
-            print('Require that reaching all shuffled stages in under 144 steps is possible')
+            print('Require that reaching all shuffled stages in a reasonable amount of steps is possible')
             logic_core = mapper.LogicCore(mapper_data, changes).get_core()
             logic_core['Goals'] = {
                 'Reach All Shuffled Stages': {
@@ -138,12 +138,13 @@ if __name__ == '__main__':
                     'Progression - Marble Gallery Stage Reached': True,
                     'Progression - Outer Wall Stage Reached': True,
                     'Progression - Olrox\'s Quarters Stage Reached': True,
+                    # 'Location': 'Olrox\'s Quarters, Grand Staircase',
                     'Progression - Colosseum Stage Reached': True,
                 },
             }
             map_solver = solver.Solver(logic_core, skills)
             # map_solver.debug = True
-            map_solver.solve_via_steps(144)
+            map_solver.solve_via_steps((24, 7, 80))
             if len(map_solver.results['Wins']) > 0:
                 (winning_layers, winning_game) = map_solver.results['Wins'][-1]
                 print('-------------')
@@ -170,4 +171,6 @@ if __name__ == '__main__':
                 }
                 with open(os.path.join('build', 'sandbox', 'current-seed.json'), 'w') as current_seed_json:
                     json.dump(current_seed, current_seed_json, indent='    ', sort_keys=True, default=str)
+                # while True:
+                #     winning_game.play()
                 break

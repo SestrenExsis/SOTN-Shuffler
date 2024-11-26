@@ -31,8 +31,6 @@ Commands:
         Outcomes:
             Section: Upper
         Requirements:
-            Default:
-                Section: Lower
             Lower - Bat Form:
                 Section: Lower
                 Progression - Bat Transformation: true
