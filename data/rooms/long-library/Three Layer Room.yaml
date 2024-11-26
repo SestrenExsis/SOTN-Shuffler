@@ -1,0 +1,51 @@
+
+Stage: Long Library
+Room: Three Layer Room
+Index: 8
+Columns: 1
+Rows: 3
+Empty Cells: {}
+Nodes:
+    Upper-Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Upper Layer
+        Exit Section: Upper Layer
+    Upper-Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Upper Layer
+        Exit Section: Upper Layer
+    Middle-Left Passage:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+        Entry Section: Middle Layer
+        Exit Section: Middle Layer
+    Middle-Right Passage:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Right
+        Entry Section: Middle Layer
+        Exit Section: Middle Layer
+    Lower-Left Passage:
+        Type: Passage
+        Row: 2
+        Column: 0
+        Edge: Left
+        Entry Section: Lower Layer
+        Exit Section: Lower Layer
+    Lower-Right Passage:
+        Type: Passage
+        Row: 2
+        Column: 0
+        Edge: Right
+        Entry Section: Lower Layer
+        Exit Section: Lower Layer
+Commands: {}

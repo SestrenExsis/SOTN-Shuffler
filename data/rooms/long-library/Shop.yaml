@@ -1,0 +1,32 @@
+
+Stage: Long Library
+Room: Shop
+Index: 4
+Columns: 1
+Rows: 2
+Empty Cells: {}
+Nodes:
+    Upper-Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Shop
+        Exit Section: Shop
+    Lower-Right Passage:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Right
+        Entry Section: Beneath Shop
+        Exit Section: Beneath Shop
+Commands:
+    Action - Purchase Jewel of Open Relic:
+        Outcomes:
+            Relic - Jewel of Open: true
+            Progression - Unlock Blue Doors: true
+        Requirements:
+            Default:
+                Section: Shop
+                Relic - Jewel of Open: false
+
