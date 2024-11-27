@@ -187,90 +187,6 @@ class RoomSet:
             }
         return result
     
-    def get_stage_spoiler(self, mapper_data: dict) -> list[str]:
-        changes = self.get_changes()
-        codes = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+. '
-        legend = []
-        grid = [['.' for col in range(64)] for row in range(64)]
-        for room_name in changes['Rooms'].keys():
-            (index, top, left, rows, cols) = (
-                mapper_data['Rooms'][room_name]['Index'],
-                changes['Rooms'][room_name]['Top'],
-                changes['Rooms'][room_name]['Left'],
-                mapper_data['Rooms'][room_name]['Rows'],
-                mapper_data['Rooms'][room_name]['Columns'],
-            )
-            code = codes[index]
-            legend.append((code, room_name))
-            for row in range(max(0, top), min(64, top + rows)):
-                for col in range(max(0, left), min(64, left + cols)):
-                    prev_index = codes.find(grid[row][col])
-                    if index < prev_index:
-                        grid[row][col] = code
-        result = []
-        for row_data in grid:
-            result.append(''.join(row_data))
-        for (code, room_name) in legend:
-            index = mapper_data['Rooms'][room_name]['Index']
-            top = changes['Rooms'][room_name]['Top']
-            left = changes['Rooms'][room_name]['Left']
-            width = mapper_data['Rooms'][room_name]['Columns']
-            height = mapper_data['Rooms'][room_name]['Rows']
-            result.append(str((code, room_name, ('I:', index, 'T:', top, 'L:', left, 'H:', height, 'W:', width))))
-        return result
-    
-    def get_room_spoiler(self, mapper_data: dict) -> list[str]:
-        changes = self.get_changes()
-        codes = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+. '
-        legend = []
-        (stage_top, stage_left, stage_bottom, stage_right) = self.get_bounds()
-        stage_rows = 1 + stage_bottom - stage_top
-        stage_cols = 1 + stage_right - stage_left
-        grid = [[' ' for col in range(5 * stage_cols)] for row in range(5 * stage_rows)]
-        for room_name in changes['Rooms'].keys():
-            (index, room_top, room_left, room_rows, room_cols) = (
-                mapper_data['Rooms'][room_name]['Index'],
-                changes['Rooms'][room_name]['Top'],
-                changes['Rooms'][room_name]['Left'],
-                mapper_data['Rooms'][room_name]['Rows'],
-                mapper_data['Rooms'][room_name]['Columns'],
-            )
-            code = codes[index]
-            legend.append((code, room_name))
-            for cell_row in range(max(0, room_top), min(64, room_top + room_rows)):
-                for cell_col in range(max(0, room_left), min(64, room_left + room_cols)):
-                    top = cell_row - stage_top
-                    left = cell_col - stage_left
-                    for row in range(5 * top + 1, 5 * top + 4):
-                        for col in range(5 * left + 1, 5 * left + 4):
-                            prev_index = codes.find(grid[row][col])
-                            if index < prev_index:
-                                grid[row][col] = code
-            for node in mapper_data['Rooms'][room_name]['Nodes'].values():
-                (exit_row, exit_col, exit_edge) = (node['Row'], node['Column'], node['Edge'])
-                row = 2 + 5 * (room_top - stage_top + exit_row)
-                col = 2 + 5 * (room_left - stage_left + exit_col)
-                if exit_edge == 'Top':
-                    row -= 2
-                elif exit_edge == 'Left':
-                    col -= 2
-                elif exit_edge == 'Bottom':
-                    row += 2
-                elif exit_edge == 'Right':
-                    col += 2
-                grid[row][col] = code # '@'
-        result = []
-        for row_data in grid:
-            result.append(''.join(row_data))
-        for (code, room_name) in legend:
-            index = mapper_data['Rooms'][room_name]['Index']
-            top = changes['Rooms'][room_name]['Top']
-            left = changes['Rooms'][room_name]['Left']
-            width = mapper_data['Rooms'][room_name]['Columns']
-            height = mapper_data['Rooms'][room_name]['Rows']
-            result.append(str((code, room_name, ('I:', index, 'T:', top, 'L:', left, 'H:', height, 'W:', width))))
-        return result
-
     def remove_room(self, room_name):
         self.rooms.pop(room_name, None)
 
@@ -811,7 +727,7 @@ if __name__ == '__main__':
         }
     seed = random.randint(0, 2 ** 64)
     MULTIPLIER = 51
-    WEIGHTS = [2, 2, 1, 2, 2, 1, 1] # 100, 50
+    WEIGHTS = [2, 2, 1, 2, 2, 1, 2] # 100, 50
     for (stage_name, target_seed_count) in (
         ('Alchemy Laboratory', MULTIPLIER * WEIGHTS[0]),
         ('Marble Gallery', MULTIPLIER * WEIGHTS[1]),

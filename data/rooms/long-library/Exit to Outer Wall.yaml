@@ -10,7 +10,7 @@ Nodes:
         Type: Passage
         Row: 0
         Column: 0
-        Edge: Right
+        Edge: Left
         Entry Section: Main
         Exit Section: Main
     Right Red Door:
