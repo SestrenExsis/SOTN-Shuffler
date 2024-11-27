@@ -25,6 +25,7 @@ if __name__ == '__main__':
             'Outer Wall': [],
             'Olrox\'s Quarters': [],
             'Colosseum': [],
+            'Long Library': [],
         }
     with (
         open(os.path.join('build', 'sandbox', 'rules.json')) as rules_json,
@@ -51,7 +52,8 @@ if __name__ == '__main__':
                 ('Marble Gallery', rng.randint(0, 2 ** 64)),
                 ('Outer Wall', rng.randint(0, 2 ** 64)),
                 ('Olrox\'s Quarters', rng.randint(0, 2 ** 64)),
-                # ('Colosseum', rng.randint(0, 2 ** 64)),
+                ('Colosseum', rng.randint(0, 2 ** 64)),
+                # ('Long Library', rng.randint(0, 2 ** 64)),
             )
             print('Randomize with seeds')
             for (stage_name, stage_seed) in stages_to_process:
@@ -86,8 +88,8 @@ if __name__ == '__main__':
                     'Seed': stage_map.current_seed,
                     'Stage': stage_name,
                 }
-            # Current stage: Colosseum
-            stage_name = 'Colosseum'
+            # Current stage: Long Library
+            stage_name = 'Long Library'
             print(stage_name)
             stage_map = mapper.Mapper(mapper_data, stage_name, rng.randint(0, 2 ** 64))
             while True:
@@ -138,8 +140,8 @@ if __name__ == '__main__':
                     'Progression - Marble Gallery Stage Reached': True,
                     'Progression - Outer Wall Stage Reached': True,
                     'Progression - Olrox\'s Quarters Stage Reached': True,
-                    # 'Location': 'Olrox\'s Quarters, Grand Staircase',
                     'Progression - Colosseum Stage Reached': True,
+                    'Progression - Long Library Stage Reached': True,
                 },
             }
             map_solver = solver.Solver(logic_core, skills)

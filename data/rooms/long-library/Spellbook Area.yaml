@@ -1,0 +1,66 @@
+
+Stage: Long Library
+Room: Spellbook Area
+Index: 9
+Columns: 7
+Rows: 3
+Empty Cells: {}
+Nodes:
+    Upper-Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Upper Ledge
+        Exit Section: Upper Ledge
+    Middle-Left Passage:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+        Entry Section: Lower Ledge
+        Exit Section: Lower Ledge
+    Lower-Left Passage:
+        Type: Passage
+        Row: 2
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Middle-Bottom Passage:
+        Type: Passage
+        Row: 2
+        Column: 2
+        Edge: Bottom
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Move - Upper Ledge:
+        Outcomes:
+            Section: Upper Ledge
+        Requirements:
+            Main - Book Jump:
+                Section: Main
+                Progression: Mid-Air Reset
+    Move - Lower Ledge:
+        Outcomes:
+            Section: Lower Ledge
+        Requirements:
+            Main - Book Jump:
+                Section: Main
+                Progression: Mid-Air Reset
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Upper Ledge - Default:
+                Section: Upper Ledge
+            Lower Ledge - Default:
+                Section: Lower Ledge
+    Action - Collect Faerie Scroll Relic:
+        Outcomes:
+            Relic - Faerie Scroll: true
+        Requirements:
+            Default:
+                Section: Main
+                Relic - Faerie Scroll: false

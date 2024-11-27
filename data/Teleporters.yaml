@@ -25,6 +25,11 @@ Sources:
         Stage: Colosseum
         Room: Fake Room With Teleporter B
         Target: Olrox's Quarters, Grand Staircase (Lower-Left Red Door)
+    Long Library, Fake Room With Teleporter A:
+        Index: 6
+        Stage: Long Library
+        Room: Fake Room With Teleporter A
+        Target: Outer Wall, Elevator Shaft Room (Middle-Left Red Door)
     Marble Gallery, Fake Room With Teleporter A:
         Index: 1
         Stage: Marble Gallery
@@ -50,6 +55,11 @@ Sources:
         Stage: Olrox's Quarters
         Room: Fake Room With Teleporter D
         Target: Marble Gallery, Pathway After Left Statue (Left Red Door)
+    Outer Wall, Fake Room With Teleporter C:
+        Index: 41
+        Stage: Outer Wall
+        Room: Fake Room With Teleporter C
+        Target: Long Library, Exit to Outer Wall (Right Red Door)
     Outer Wall, Fake Room With Teleporter D:
         Index: 40
         Stage: Outer Wall
@@ -79,6 +89,12 @@ Targets:
         Room: Top of Elevator Shaft
         Node: Right Red Door
         Player X: 1264
+        Player Y: 132
+    Long Library, Exit to Outer Wall (Right Red Door):
+        Stage: Long Library
+        Room: Exit to Outer Wall
+        Node: Right Red Door
+        Player X: 752
         Player Y: 132
     Marble Gallery, Entrance (Left Red Door):
         Stage: Marble Gallery
@@ -110,6 +126,12 @@ Targets:
         Node: Lower-Right Red Door
         Player X: 240
         Player Y: 648
+    Outer Wall, Elevator Shaft Room (Middle-Left Red Door):
+        Stage: Outer Wall
+        Room: Elevator Shaft Room
+        Node: Middle-Left Red Door
+        Player X: 16
+        Player Y: 1672
     Outer Wall, Exit to Marble Gallery (Left Red Door):
         Stage: Outer Wall
         Room: Exit to Marble Gallery

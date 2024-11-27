@@ -1,0 +1,115 @@
+
+Stage: Long Library
+Room: Lesser Demon Area
+Index: 0
+Columns: 5
+Rows: 4
+Empty Cells:
+    - Row: 0
+      Column: 0
+    - Row: 1
+      Column: 0
+Nodes:
+    Upper-Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 4
+        Edge: Right
+        Entry Section: Layer 4
+        Exit Section: Layer 4
+    Middle-Right Passage:
+        Type: Passage
+        Row: 1
+        Column: 4
+        Edge: Right
+        Entry Section: Layer 3
+        Exit Section: Layer 3
+Commands:
+    Move - Layer 4:
+        Outcomes:
+            Section: Layer 4
+        Requirements:
+            Layer 3 - Bat Form:
+                Section: Layer 3
+                Progression - Bat Transformation: true
+            Layer 3 - Double Jump:
+                Section: Layer 3
+                Progression - Double Jump: true
+            Layer 3 - Gravity Jump:
+                Section: Layer 3
+                Progression - Gravity Jump: true
+            Layer 3 - Powered Mist:
+                Section: Layer 3
+                Progression - Mist Transformation: true
+                Progression - Extended Mist Duration: true
+            Layer 3 - Wolf-Mist Rise:
+                Section: Layer 3
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+    Move - Layer 3:
+        Outcomes:
+            Section: Layer 3
+        Requirements:
+            Layer 4 - Default:
+                Section: Layer 4
+            Layer 2 - Bat Form:
+                Section: Layer 2
+                Progression - Bat Transformation: true
+            Layer 2 - Double Jump:
+                Section: Layer 2
+                Progression - Double Jump: true
+            Layer 2 - Gravity Jump:
+                Section: Layer 2
+                Progression - Gravity Jump: true
+            Layer 2 - Powered Mist:
+                Section: Layer 2
+                Progression - Mist Transformation: true
+                Progression - Extended Mist Duration: true
+            Layer 2 - Wolf-Mist Rise:
+                Section: Layer 2
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+    Move - Layer 2:
+        Outcomes:
+            Section: Layer 2
+        Requirements:
+            Layer 3 - Default:
+                Section: Layer 3
+            Layer 1 - Bat Form:
+                Section: Layer 1
+                Progression - Bat Transformation: true
+            Layer 1 - Double Jump:
+                Section: Layer 1
+                Progression - Double Jump: true
+            Layer 1 - Gravity Jump:
+                Section: Layer 1
+                Progression - Gravity Jump: true
+            Layer 1 - Mist:
+                Section: Layer 1
+                Progression - Mist Transformation: true
+    Move - Layer 1:
+        Outcomes:
+            Section: Layer 1
+        Requirements:
+            Layer 2 - Default:
+                Section: Layer 2
+            Behind Mist Gate - Mist:
+                Section: Behind Mist Gate
+                Progression - Mist Transformation: true
+    Move - Behind Mist Gate:
+        Outcomes:
+            Section: Behind Mist Gate
+        Requirements:
+            Layer 1 - Mist:
+                Section: Layer 1
+                Progression - Mist Transformation: true
+    Action - Collect Soul of Bat Relic:
+        Outcomes:
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Requirements:
+            Default:
+                Section: Behind Mist Gate
+                Relic - Soul of Bat: false

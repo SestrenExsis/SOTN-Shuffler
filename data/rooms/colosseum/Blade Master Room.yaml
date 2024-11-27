@@ -18,8 +18,8 @@ Nodes:
         Row: 0
         Column: 2
         Edge: Top
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Falling
+        Exit Section: Rising
     Right Passage:
         Type: Passage
         Row: 0
@@ -27,4 +27,41 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands: {}
+Commands:
+    Move - Rising:
+        Outcomes:
+            Section: Rising
+        Requirements:
+            Main - Bat:
+                Section: Main
+                Progression - Bat Transformation: true
+                Status - Breakable Ceiling in Blade Master Room Broken: true
+            Main - Gravity Jump:
+                Section: Main
+                Progression - Gravity Jump: true
+                Status - Breakable Ceiling in Blade Master Room Broken: true
+            Main - Powered Mist:
+                Section: Main
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+                Status - Breakable Ceiling in Blade Master Room Broken: true
+            Main - Wolf-Mist Rise:
+                Section: Main
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Status - Breakable Ceiling in Blade Master Room Broken: true
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Falling:
+                Section: Falling
+                Status - Breakable Ceiling in Blade Master Room Broken: true
+    Action - Break Ceiling:
+        Outcomes:
+            Status - Breakable Ceiling in Blade Master Room Broken: true
+        Requirements:
+            Default:
+                Section: Main
+                Status - Breakable Ceiling in Blade Master Room Broken: false

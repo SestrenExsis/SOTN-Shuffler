@@ -40,7 +40,7 @@ Commands:
         Requirements:
             Main - Default:
                 Section: Main
-                Progression - Pressure Plate in Marble Gallery Activated: true
+                Status - Pressure Plate in Marble Gallery Activated: true
             Rising - Default:
                 Section: Rising
     Move - Main:
@@ -49,4 +49,4 @@ Commands:
         Requirements:
             Rising - Default:
                 Section: Rising
-                Progression - Pressure Plate in Marble Gallery Activated: true
+                Status - Pressure Plate in Marble Gallery Activated: true
