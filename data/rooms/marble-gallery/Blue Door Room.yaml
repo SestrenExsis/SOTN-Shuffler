@@ -30,8 +30,8 @@ Commands:
                 Progression - Unlock Blue Doors: true
     Action - Activate Pressure Plate:
         Outcomes:
-            Progression - Pressure Plate in Marble Gallery Activated: true
+            Status - Pressure Plate in Marble Gallery Activated: true
         Requirements:
             Default:
                 Section: Right Side
-                Progression - Pressure Plate in Marble Gallery Activated: false
+                Status - Pressure Plate in Marble Gallery Activated: false
