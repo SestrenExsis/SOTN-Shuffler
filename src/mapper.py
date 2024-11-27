@@ -513,6 +513,28 @@ stages = {
         { 'Colosseum, Top of Right Spiral Staircase': (0, 0) },
         { 'Colosseum, Valhalla Knight Room': (0, 0) },
     ],
+    'Long Library': [
+        {
+            'Long Library, Exit to Outer Wall': (32 + 0, 32 + 0),
+            'Long Library, Loading Room A': (32 + 0, 32 + 3),
+            'Long Library, Fake Room With Teleporter A': (32 + 0, 32 + 4),
+        },
+        {
+            'Long Library, Spellbook Area': (0, 0),
+            'Long Library, Foot of Staircase': (3, 2),
+        },
+        { 'Long Library, Lesser Demon Area': (0, 0) },
+        { 'Long Library, Secret Bookcase Room': (0, 0) },
+        { 'Long Library, Holy Rod Room': (0, 0) },
+        { 'Long Library, Dhuron and Flea Armor Room': (0, 0) },
+        { 'Long Library, Shop': (0, 0) },
+        { 'Long Library, Outside Shop': (0, 0) },
+        { 'Long Library, Flea Man Room': (0, 0) },
+        { 'Long Library, Faerie Card Room': (0, 0) },
+        { 'Long Library, Three Layer Room': (0, 0) },
+        { 'Long Library, Dhuron and Flea Man Room': (0, 0) },
+        { 'Long Library, Save Room A': (0, 0) },
+    ],
 }
 
 def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
@@ -567,6 +589,7 @@ class MapperData:
             'outer-wall',
             'olroxs-quarters',
             'colosseum',
+            'long-library',
         ):
             folder_path = os.path.join('data', 'rooms', stage_folder)
             for file_name in os.listdir(folder_path):
@@ -600,6 +623,7 @@ class LogicCore:
             'Outer Wall',
             'Olrox\'s Quarters',
             'Colosseum',
+            'Long Library',
         ):
             print('', stage_name)
             nodes = {}
@@ -783,10 +807,11 @@ if __name__ == '__main__':
             'Olrox\'s Quarters': [],
             'Colosseum': [],
             'Castle Entrance': [],
+            'Long Library': [],
         }
     seed = random.randint(0, 2 ** 64)
     MULTIPLIER = 51
-    WEIGHTS = [2, 2, 2, 2, 2, 1] # 100, 50
+    WEIGHTS = [2, 2, 1, 2, 2, 1, 1] # 100, 50
     for (stage_name, target_seed_count) in (
         ('Alchemy Laboratory', MULTIPLIER * WEIGHTS[0]),
         ('Marble Gallery', MULTIPLIER * WEIGHTS[1]),
@@ -794,6 +819,7 @@ if __name__ == '__main__':
         ('Olrox\'s Quarters', MULTIPLIER * WEIGHTS[3]),
         ('Colosseum', MULTIPLIER * WEIGHTS[4]),
         ('Castle Entrance', MULTIPLIER * WEIGHTS[5]),
+        ('Long Library', MULTIPLIER * WEIGHTS[6]),
     ):
         if stage_name not in generated_stages:
             generated_stages[stage_name] = []

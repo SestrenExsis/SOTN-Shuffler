@@ -1,4 +1,5 @@
 # External libraries
+import argparse
 import collections
 import copy
 import heapq
@@ -348,13 +349,17 @@ if __name__ == '__main__':
     Usage
     python solver.py
     '''
+    parser = argparse.ArgumentParser()
+    parser.add_argument('changes', help='Input a filepath to the changes JSON file', type=str)
+    parser.add_argument('skills', help='Input a filepath to the skills JSON file', type=str)
+    args = parser.parse_args()
     SOLVER_VERSION = '0.0.0'
     mapper_data = mapper.MapperData().get_core()
     with (
+        open(args.changes) as changes_json,
+        open(args.skills) as skills_json,
         open(os.path.join('build', 'sandbox', 'data-core.json'), 'w') as mapper_data_json,
-        open(os.path.join('external', 'vanilla-changes.json')) as changes_json,
         open(os.path.join('build', 'sandbox', 'logic-core.json'), 'w') as logic_core_json,
-        open(os.path.join('build', 'sandbox', 'skills.json')) as skills_json,
     ):
         json.dump(mapper_data, mapper_data_json, indent='    ', sort_keys=True)
         mapper_data_json.close()
@@ -381,8 +386,9 @@ if __name__ == '__main__':
                 'Progression - Alchemy Laboratory Stage Reached': True,
                 'Progression - Marble Gallery Stage Reached': True,
                 'Progression - Outer Wall Stage Reached': True,
-                'Progression - Olrox\'s Quarters Stage Reached': True,
-                'Progression - Colosseum Stage Reached': True,
+                # 'Progression - Olrox\'s Quarters Stage Reached': True,
+                # 'Progression - Colosseum Stage Reached': True,
+                'Progression - Long Library Stage Reached': True,
             },
             # 'Debug 99': {
             #     'Relic - Form of Mist': True,
@@ -395,7 +401,7 @@ if __name__ == '__main__':
         map_solver = Solver(logic_core, skills)
         # map_solver.debug = True
         # map_solver.solve_via_layers(3, 10)
-        map_solver.solve_via_steps((24, 8, 64))
+        map_solver.solve_via_steps((32, 10, 80))
         if len(map_solver.results['Wins']) > 0:
             (winning_layers, winning_game) = map_solver.results['Wins'][-1]
             print('-------------')

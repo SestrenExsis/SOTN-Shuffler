@@ -15,15 +15,15 @@ Nodes:
         Edge: Top
         Entry Section: Main
         Exit Section: Main
-    Upper-Left Passage:
-        Type: Passage
+    Upper-Left Red Door:
+        Type: Red Door
         Row: 2
         Column: 1
         Edge: Left
         Entry Section: Main
         Exit Section: Main
-    Middle-Left Passage:
-        Type: Passage
+    Middle-Left Red Door:
+        Type: Red Door
         Row: 6
         Column: 0
         Edge: Left
