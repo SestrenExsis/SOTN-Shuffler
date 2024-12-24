@@ -355,16 +355,17 @@ if __name__ == '__main__':
     args = parser.parse_args()
     SOLVER_VERSION = '0.0.0'
     mapper_data = mapper.MapperData().get_core()
+    # with open(os.path.join('build', 'debug', 'mapper-data.json'), 'w') as debug_mapper_data_json:
+    #     json.dump(mapper_data, debug_mapper_data_json, indent='    ', sort_keys=True, default=str)
     with (
         open(args.changes) as changes_json,
         open(args.skills) as skills_json,
-        open(os.path.join('build', 'sandbox', 'data-core.json'), 'w') as mapper_data_json,
-        open(os.path.join('build', 'sandbox', 'logic-core.json'), 'w') as logic_core_json,
     ):
-        json.dump(mapper_data, mapper_data_json, indent='    ', sort_keys=True)
-        mapper_data_json.close()
         changes = json.load(changes_json)
+        changes_json.close()
         logic_core = mapper.LogicCore(mapper_data, changes).get_core()
+        # with open(os.path.join('build', 'debug', 'logic-core.json'), 'w') as debug_logic_core_json:
+        #     json.dump(logic_core, debug_logic_core_json, indent='    ', sort_keys=True, default=str)
         logic_core['State']['Location'] = 'Castle Entrance, After Drawbridge'
         logic_core['State']['Section'] = 'Ground'
         logic_core['Goals'] = {
@@ -386,17 +387,16 @@ if __name__ == '__main__':
                 'Progression - Alchemy Laboratory Stage Reached': True,
                 'Progression - Marble Gallery Stage Reached': True,
                 'Progression - Outer Wall Stage Reached': True,
-                # 'Progression - Olrox\'s Quarters Stage Reached': True,
-                # 'Progression - Colosseum Stage Reached': True,
+                'Progression - Olrox\'s Quarters Stage Reached': True,
+                'Progression - Colosseum Stage Reached': True,
                 'Progression - Long Library Stage Reached': True,
             },
             # 'Debug 99': {
             #     'Relic - Form of Mist': True,
             # },
         }
-        json.dump(logic_core, logic_core_json, indent='    ', sort_keys=True)
-        logic_core_json.close()
         skills = json.load(skills_json)
+        skills_json.close()
         print('Solving')
         map_solver = Solver(logic_core, skills)
         # map_solver.debug = True

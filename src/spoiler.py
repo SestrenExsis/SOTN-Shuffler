@@ -39,17 +39,20 @@ def get_stage_spoiler(core_data: dict, changes: dict) -> list[str]:
         result.append(str((code, room_name, ('I:', index, 'T:', top, 'L:', left, 'H:', height, 'W:', width))))
     return result
 
-def get_room_spoiler(core_data: dict, changes: dict, mapper_data, stage_name: str) -> list[str]:
+def get_room_spoiler(extraction: dict, changes: dict, mapper_data, stage_name: str) -> list[str]:
     codes = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+. '
     legend = []
+    extraction_stage = extraction['Stages'][stage_name]
+    changes_stage = changes['Stages'][stage_name]
     (stage_top, stage_left, stage_bottom, stage_right) = (float('inf'), float('inf'), float('-inf'), float('-inf'))
-    for (room_name, room_info) in changes['Rooms'].items():
-        if core_data['Rooms'][room_name]['Stage'] != stage_name:
-            continue
-        top = room_info['Top']
-        left = room_info['Left']
-        bottom = top + core_data['Rooms'][room_name]['Rows'] - 1
-        right = left + core_data['Rooms'][room_name]['Columns'] - 1
+    for (room_name, changes_room) in changes_stage['Rooms'].items():
+        extraction_room = extraction_stage['Rooms'][room_name]
+        top = changes_room['Top']
+        left = changes_room['Left']
+        width = 1 + extraction_room['Left']['Value'] - extraction_room['Right']['Value']
+        height = 1 + extraction_room['Top']['Value'] - extraction_room['Bottom']['Value']
+        bottom = top + height - 1
+        right = left + width - 1
         stage_top = min(stage_top, top)
         stage_left = min(stage_left, left)
         stage_bottom = max(stage_bottom, bottom)
@@ -57,15 +60,20 @@ def get_room_spoiler(core_data: dict, changes: dict, mapper_data, stage_name: st
     stage_rows = 1 + stage_bottom - stage_top
     stage_cols = 1 + stage_right - stage_left
     grid = [[' ' for col in range(5 * stage_cols)] for row in range(5 * stage_rows)]
-    for (room_name, room_info) in changes['Rooms'].items():
-        if core_data['Rooms'][room_name]['Stage'] != stage_name:
-            continue
+    for (room_name, changes_room) in changes_stage['Rooms'].items():
+        extraction_room = extraction_stage['Rooms'][room_name]
+        top = changes_room['Top']
+        left = changes_room['Left']
+        width = 1 + extraction_room['Left']['Value'] - extraction_room['Right']['Value']
+        height = 1 + extraction_room['Top']['Value'] - extraction_room['Bottom']['Value']
+        bottom = top + height - 1
+        right = left + width - 1
         (index, room_top, room_left, room_rows, room_cols) = (
-            core_data['Rooms'][room_name]['Room ID'],
-            room_info['Top'],
-            room_info['Left'],
-            core_data['Rooms'][room_name]['Rows'],
-            core_data['Rooms'][room_name]['Columns'],
+            extraction_room['Room ID']['Value'],
+            top,
+            left,
+            height,
+            width,
         )
         code = codes[index]
         legend.append((code, room_name))
@@ -95,11 +103,11 @@ def get_room_spoiler(core_data: dict, changes: dict, mapper_data, stage_name: st
     for row_data in grid:
         result.append(''.join(row_data))
     for (code, room_name) in legend:
-        index = core_data['Rooms'][room_name]['Room ID']
-        top = changes['Rooms'][room_name]['Top']
-        left = changes['Rooms'][room_name]['Left']
-        width = core_data['Rooms'][room_name]['Columns']
-        height = core_data['Rooms'][room_name]['Rows']
+        index = extraction['Stages'][stage_name]['Rooms'][room_name]['Room ID']
+        top = changes['Stages'][stage_name]['Rooms'][room_name]['Top']
+        left = changes['Stages'][stage_name]['Rooms'][room_name]['Left']
+        width = extraction['Stages'][stage_name]['Rooms'][room_name]['Columns']
+        height = extraction['Stages'][stage_name]['Rooms'][room_name]['Rows']
         result.append(str((code, room_name, ('I:', index, 'T:', top, 'L:', left, 'H:', height, 'W:', width))))
     return result
 

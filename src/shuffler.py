@@ -64,7 +64,7 @@ if __name__ == '__main__':
                     stage_map.generate()
                     if stage_map.validate():
                         break
-                    if stage_map.attempts > 2000:
+                    if stage_map.attempts > 10_000:
                         if stage_name in generated_stages and len(generated_stages[stage_name]) > 0:
                             prebaked_stage = stage_map.rng.choice(generated_stages[stage_name])
                             prebaked_map = mapper.Mapper(mapper_data, stage_name, prebaked_stage['Seed'])
@@ -110,12 +110,20 @@ if __name__ == '__main__':
             }
             # ...
             changes = {
-                'Rooms': {}
+                'Stages': {}
             }
             for (stage_name, stage_map) in stages.items():
+                print('stage_name:', stage_name)
+                changes['Stages'][stage_name] = {
+                    'Rooms': {},
+                }
+                if stage_name == 'Castle Entrance':
+                    changes['Stages']['Castle Entrance Revisited'] = {
+                        'Rooms': {},
+                    }
                 stage_changes = stage_map.stage.get_changes()
                 for room_name in stage_changes['Rooms']:
-                    changes['Rooms'][room_name] = {
+                    changes['Stages'][stage_name]['Rooms'][room_name] = {
                         'Top': stage_changes['Rooms'][room_name]['Top'],
                         'Left': stage_changes['Rooms'][room_name]['Left'],
                     }
@@ -126,10 +134,12 @@ if __name__ == '__main__':
                         'Castle Entrance, Unknown Room 20',
                     ):
                         revisited_room_name = 'Castle Entrance Revisited, ' + room_name[17:]
-                        changes['Rooms'][revisited_room_name] = {
+                        changes['Stages']['Castle Entrance Revisited']['Rooms'][revisited_room_name] = {
                             'Top': stage_changes['Rooms'][room_name]['Top'],
                             'Left': stage_changes['Rooms'][room_name]['Left'],
                         }
+            # with open(os.path.join('build', 'sandbox', 'debug-changes.json'), 'w') as debug_changes_json:
+            #     json.dump(changes, debug_changes_json, indent='    ', sort_keys=True, default=str)
             print('Require that reaching all shuffled stages in a reasonable amount of steps is possible')
             logic_core = mapper.LogicCore(mapper_data, changes).get_core()
             logic_core['Goals'] = {
@@ -144,8 +154,10 @@ if __name__ == '__main__':
                     'Progression - Long Library Stage Reached': True,
                 },
             }
+            # with open(os.path.join('build', 'debug', 'logic-core.json'), 'w') as debug_logic_core_json:
+            #     json.dump(logic_core, debug_logic_core_json, indent='    ', sort_keys=True, default=str)
             map_solver = solver.Solver(logic_core, skills)
-            # map_solver.debug = True
+            map_solver.debug = True
             map_solver.solve_via_steps((24, 7, 80))
             if len(map_solver.results['Wins']) > 0:
                 (winning_layers, winning_game) = map_solver.results['Wins'][-1]

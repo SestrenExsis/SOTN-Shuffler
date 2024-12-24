@@ -451,6 +451,29 @@ stages = {
         { 'Long Library, Dhuron and Flea Man Room': (0, 0) },
         { 'Long Library, Save Room A': (0, 0) },
     ],
+    'Clock Tower': [
+        {
+            'Clock Tower, Fake Room With Teleporter A': (32 + 0, 32 + 0),
+            'Clock Tower, Loading Room B': (32 + 0, 32 + 1),
+            'Clock Tower, Karasuman\'s Room': (32 + 0, 32 + 2),
+        },
+        {
+            'Clock Tower, Stairwell to Outer Wall': (32 + 0, 32 + 0),
+            'Clock Tower, Loading Room A': (32 + 0, 32 + 1),
+            'Clock Tower, Fake Room With Teleporter B': (32 + 0, 32 + 2),
+        },
+        { 'Clock Tower, Path to Karasuman': (0, 0) },
+        { 'Clock Tower, Healing Mail Room': (0, 0) },
+        { 'Clock Tower, Pendulum Room': (0, 0) },
+        { 'Clock Tower, Spire': (0, 0) },
+        { 'Clock Tower, Hidden Armory': (0, 0) },
+        { 'Clock Tower, Left Gear Room': (0, 0) },
+        { 'Clock Tower, Right Gear Room': (0, 0) },
+        { 'Clock Tower, Exit to Courtyard': (0, 0) },
+        { 'Clock Tower, Belfry': (0, 0) },
+        { 'Clock Tower, Open Courtyard': (0, 0) },
+        { 'Clock Tower, Fire of Bat Room': (0, 0) },
+    ],
 }
 
 def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
@@ -544,27 +567,42 @@ class LogicCore:
             print('', stage_name)
             nodes = {}
             for (location_name, room_data) in mapper_data['Rooms'].items():
-                changes_location_key = location_name
-                alternate_location_name = room_data['Stage'] + ', Room ID ' + f'{room_data['Index']:02d}'
-                if alternate_location_name in changes['Rooms']:
-                    changes_location_key = alternate_location_name
-                if changes_location_key not in changes['Rooms']:
+                if room_data['Stage'] != stage_name:
                     continue
-                if mapper_data['Rooms'][location_name]['Stage'] != stage_name:
-                    continue
+                print(' ', location_name)
+                stage_changes = changes['Stages'][stage_name]
+                location_key = None
+                for possible_location_key in (
+                    str(room_data['Index']),
+                    room_data['Index'],
+                    location_name,
+                    stage_name + ', Room ID ' + f'{room_data['Index']:02d}',
+                ):
+                    if possible_location_key in stage_changes['Rooms']:
+                        location_key = possible_location_key
+                        break
+                else:
+                    print('Could not find key')
+                    # print(room_data)
+                    # print(stage_changes['Rooms'])
+                # if mapper_data['Rooms'][location_name]['Stage'] != stage_name:
+                #     continue
                 room_top = None
                 room_left = None
-                if 'Rooms' in changes and changes_location_key in changes['Rooms']:
-                    if 'Top' in changes['Rooms'][changes_location_key]:
-                        room_top = changes['Rooms'][changes_location_key]['Top']
-                    if 'Left' in changes['Rooms'][changes_location_key]:
-                        room_left = changes['Rooms'][changes_location_key]['Left']
+                if 'Rooms' in stage_changes and location_key in stage_changes['Rooms']:
+                    if 'Top' in stage_changes['Rooms'][location_key]:
+                        room_top = stage_changes['Rooms'][location_key]['Top']
+                    if 'Left' in stage_changes['Rooms'][location_key]:
+                        room_left = stage_changes['Rooms'][location_key]['Left']
+                assert room_top is not None
+                assert room_left is not None
+                # print(location_name, (stage_name, location_key), (room_top, room_left))
                 self.commands[location_name] = room_data['Commands']
                 for (node_name, node) in room_data['Nodes'].items():
                     row = room_top + node['Row']
                     column = room_left + node['Column']
                     edge = node['Edge']
-                    nodes[(row, column, edge)] = (location_name, node_name, node['Entry Section'], room_data['Stage'])
+                    nodes[(row, column, edge)] = (location_name, node_name, node['Entry Section'], stage_name)
                     exit = {
                         'Outcomes': {
                             'Location': None,
@@ -579,6 +617,8 @@ class LogicCore:
                     }
                     self.commands[location_name]['Exit - ' + node_name] = exit
             for (row, column, edge), (location_name, node_name, section_name, stage_name) in nodes.items():
+                if stage_name == 'Castle Entrance':
+                    print((row, column, edge), (location_name, node_name, section_name, stage_name))
                 matching_row = row
                 matching_column = column
                 matching_edge = edge
@@ -710,8 +750,6 @@ if __name__ == '__main__':
     '''
     GENERATION_VERSION = '0.0.4'
     mapper_data = MapperData().get_core()
-    with open(os.path.join('build', 'sandbox', 'mapper-data.json'), 'w') as mapper_data_json:
-        json.dump(mapper_data, mapper_data_json, indent='    ', sort_keys=True, default=str)
     try:
         with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'r') as generated_stages_json:
             generated_stages = json.load(generated_stages_json)
@@ -726,7 +764,7 @@ if __name__ == '__main__':
             'Long Library': [],
         }
     seed = random.randint(0, 2 ** 64)
-    MULTIPLIER = 51
+    MULTIPLIER = 50
     WEIGHTS = [2, 2, 1, 2, 2, 1, 2] # 100, 50
     for (stage_name, target_seed_count) in (
         ('Alchemy Laboratory', MULTIPLIER * WEIGHTS[0]),
