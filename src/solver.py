@@ -65,6 +65,81 @@ class Game:
         for key in keys_to_remove:
             self.current_state.pop(key)
     
+    def get_score(self) -> int:
+        scores = {
+            'Check - Colosseum Library Card': 5.0,
+            'Progression - Alchemy Laboratory Stage Reached': 10.0,
+            'Progression - Castle Entrance Revisited Stage Reached': 10.0,
+            'Progression - Castle Entrance Stage Reached': 10.0,
+            'Progression - Colosseum Stage Reached': 10.0,
+            'Progression - Long Library Stage Reached': 10.0,
+            'Progression - Marble Gallery Stage Reached': 10.0,
+            'Progression - Olrox\'s Quarters Stage Reached': 10.0,
+            'Progression - Outer Wall Stage Reached': 10.0,
+            'Progression - Clock Tower Stage Reached': 10.0,
+            'Relic - Cube of Zoe': 5.0,
+            'Relic - Form of Mist': 10.0,
+            'Relic - Faerie Scroll': 1.0,
+            'Relic - Gravity Boots': 15.0,
+            'Relic - Jewel of Open': 10.0,
+            'Relic - Leap Stone': 10.0,
+            'Relic - Power of Mist': 3.0,
+            'Relic - Soul of Bat': 20.0,
+            'Relic - Soul of Wolf': 10.0,
+            'Status - Box Puzzle Solved': 2.0,
+            'Status - Breakable Ceiling in Blade Master Room Broken': 2.0,
+            'Status - Breakable Ceiling in Catwalk Crypt Broken': 2.0,
+            'Status - Breakable Floor in Tall Zig Zag Room Broken': 2.0,
+            'Status - Breakable Wall in Grand Staircase Broken': 2.0,
+            'Status - Breakable Wall in Tall Zig Zag Room Broken': 2.0,
+            'Status - Cannon Activated': 2.0,
+            'Status - Elevator in Colosseum Unlocked': 2.0,
+            'Status - Elevator in Outer Wall Activated': 3.0,
+            'Status - Lower-Left Gear in Clock Tower Set': 1.25,
+            'Status - Lower-Right Gear in Clock Tower Set': 1.25,
+            'Status - Pressure Plate in Marble Gallery Activated': 5.0,
+            'Status - Red Skeleton Lift Puzzle Solved': 2.0,
+            'Status - Secret Wall in Merman Room Opened': 2.0,
+            'Status - Shortcut in Cube of Zoe Room Activated': 3.0,
+            'Status - Shortcut to Warp Activated': 3.0,
+            'Status - Trapdoor After Drawbridge Opened': 2.0,
+            'Status - Upper-Left Gear in Clock Tower Set': 1.25,
+            'Status - Upper-Right Gear in Clock Tower Set': 1.25,
+        }
+        score = 0
+        for (key, value) in self.current_state.items():
+            if type(value) == bool and value:
+                if key in scores:
+                    score += scores[key]
+        result = score
+        return result
+    
+    def get_progression(self) -> str:
+        chars = {
+            'Progression - Alchemy Laboratory Stage Reached': 'AL ',
+            'Progression - Castle Entrance Revisited Stage Reached': 'C1 ',
+            'Progression - Castle Entrance Stage Reached': 'C2 ',
+            'Progression - Clock Tower Stage Reached': 'CT ',
+            'Progression - Colosseum Stage Reached': 'CO ',
+            'Progression - Long Library Stage Reached': 'LB ',
+            'Progression - Marble Gallery Stage Reached': 'MG ',
+            'Progression - Olrox\'s Quarters Stage Reached': 'OQ ',
+            'Progression - Outer Wall Stage Reached': 'OW ',
+        }
+        progressions = []
+        for progression_name in sorted(chars):
+            if progression_name in self.current_state:
+                value = self.current_state[progression_name]
+                if type(value) == bool and value:
+                    char = chars[progression_name]
+                    progressions.append(char)
+                else:
+                    progressions.append('-- ')
+            else:
+                progressions.append('-- ')
+        result = ''.join(progressions)
+        return result
+    
     def get_key(self) -> int:
         self.cleanup_state()
         hashed_state = hash(json.dumps(self.current_state, sort_keys=True))
@@ -215,42 +290,38 @@ class Solver():
         memo = {}
         solution_found = False
         work__solver = []
-        progression = set(key for key in initial_game.current_state if 'Progression - ' in key)
-        heapq.heappush(work__solver, (-len(progression), 0, initial_game))
+        heapq.heappush(work__solver, (-initial_game.get_score(), 0, initial_game))
         while len(work__solver) > 0 and not solution_found:
-            (progression_count__solver, step__solver, game__solver) = heapq.heappop(work__solver)
-            if (-progression_count__solver, step__solver) > highest_layer_found:
-                print('Layer', (-progression_count__solver, step__solver), len(work__solver), len(memo), set(key[14:] for key in game__solver.current_state if 'Progression - ' in key))
-                highest_layer_found = (-progression_count__solver, step__solver)
+            (score__solver, step__solver, game__solver) = heapq.heappop(work__solver)
+            if (-score__solver, step__solver) > highest_layer_found:
+                print('Layer', (score__solver, step__solver), len(work__solver), game__solver.get_progression())
+                highest_layer_found = (score__solver, step__solver)
             game__solver.layer = step__solver
             if game__solver.goal_achieved:
                 solution_found = True
                 self.results['Wins'].append((step__solver, game__solver))
                 break
             (_, _, hashed_state__solver) = game__solver.get_key()
-            if hashed_state__solver in memo and memo[hashed_state__solver] <= (progression_count__solver, step__solver):
+            if hashed_state__solver in memo and memo[hashed_state__solver] <= (score__solver, step__solver):
                 # if self.debug:
                 #     print('    seen', hashed_state__solver, 'with layer', memo[hashed_state__solver], len(work__solver), len(memo))
                 continue
-            memo[hashed_state__solver] = (progression_count__solver, step__solver)
-            if (
-                (step__solver >= step_range[2]) or
-                (step__solver >= step_range[0] and step__solver > (-step_range[1] * progression_count__solver))
-            ):
+            memo[hashed_state__solver] = (score__solver, step__solver)
+            if step__solver > -score__solver:
                 continue
             if self.debug:
-                print(progression_count__solver, step__solver, game__solver.current_state['Location'], hashed_state__solver, len(work__solver), len(memo))
+                print(score__solver, step__solver, game__solver.current_state['Location'], hashed_state__solver, len(work__solver), len(memo))
             for command in game__solver.get_valid_command_names():
                 next_game__solver = game__solver.clone()
                 next_game__solver.process_command(command)
                 next_step__solver = step__solver + 1
                 (_, _, next_hashed_state__solver) = next_game__solver.get_key()
-                next_progression = set(key for key in next_game__solver.current_state if 'Progression - ' in key)
-                if next_hashed_state__solver in memo and memo[next_hashed_state__solver] <= (-len(next_progression), next_step__solver):
+                next_score = next_game__solver.get_score()
+                if next_hashed_state__solver in memo and memo[next_hashed_state__solver] <= (-next_score, next_step__solver):
                     # if self.debug:
                     #     print('    seen', next_hashed_state__solver, 'with layer', memo[next_hashed_state__solver], next_step__solver, len(memo))
                     continue
-                heapq.heappush(work__solver, (-len(next_progression), next_step__solver, next_game__solver))
+                heapq.heappush(work__solver, (-next_score, next_step__solver, next_game__solver))
     
     def solve_via_layers(self, reflexive_limit: int=3, max_layers: int=8, require_validation: bool=True):
         highest_layer_found = -1
@@ -383,13 +454,14 @@ if __name__ == '__main__':
             # },
             'Debug 5': {
                 'Progression - Castle Entrance Stage Reached': True,
-                'Progression - Castle Entrance Revisited Stage Reached': True,
+                # 'Progression - Castle Entrance Revisited Stage Reached': True,
                 'Progression - Alchemy Laboratory Stage Reached': True,
                 'Progression - Marble Gallery Stage Reached': True,
                 'Progression - Outer Wall Stage Reached': True,
                 'Progression - Olrox\'s Quarters Stage Reached': True,
                 'Progression - Colosseum Stage Reached': True,
                 'Progression - Long Library Stage Reached': True,
+                'Progression - Clock Tower Stage Reached': True,
             },
             # 'Debug 99': {
             #     'Relic - Form of Mist': True,

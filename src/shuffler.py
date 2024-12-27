@@ -26,6 +26,7 @@ if __name__ == '__main__':
             'Olrox\'s Quarters': [],
             'Colosseum': [],
             'Long Library': [],
+            'Clock Tower': [],
         }
     with (
         open(os.path.join('build', 'sandbox', 'rules.json')) as rules_json,
@@ -53,7 +54,7 @@ if __name__ == '__main__':
                 ('Outer Wall', rng.randint(0, 2 ** 64)),
                 ('Olrox\'s Quarters', rng.randint(0, 2 ** 64)),
                 ('Colosseum', rng.randint(0, 2 ** 64)),
-                # ('Long Library', rng.randint(0, 2 ** 64)),
+                ('Long Library', rng.randint(0, 2 ** 64)),
             )
             print('Randomize with seeds')
             for (stage_name, stage_seed) in stages_to_process:
@@ -88,8 +89,8 @@ if __name__ == '__main__':
                     'Seed': stage_map.current_seed,
                     'Stage': stage_name,
                 }
-            # Current stage: Long Library
-            stage_name = 'Long Library'
+            # Current stage: Clock Tower
+            stage_name = 'Clock Tower'
             print(stage_name)
             stage_map = mapper.Mapper(mapper_data, stage_name, rng.randint(0, 2 ** 64))
             while True:
@@ -152,12 +153,13 @@ if __name__ == '__main__':
                     'Progression - Olrox\'s Quarters Stage Reached': True,
                     'Progression - Colosseum Stage Reached': True,
                     'Progression - Long Library Stage Reached': True,
+                    'Progression - Clock Tower Stage Reached': True,
                 },
             }
             # with open(os.path.join('build', 'debug', 'logic-core.json'), 'w') as debug_logic_core_json:
             #     json.dump(logic_core, debug_logic_core_json, indent='    ', sort_keys=True, default=str)
             map_solver = solver.Solver(logic_core, skills)
-            map_solver.debug = True
+            # map_solver.debug = True
             map_solver.solve_via_steps((24, 7, 80))
             if len(map_solver.results['Wins']) > 0:
                 (winning_layers, winning_game) = map_solver.results['Wins'][-1]

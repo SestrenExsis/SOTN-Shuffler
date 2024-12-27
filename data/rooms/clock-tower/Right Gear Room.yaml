@@ -1,0 +1,37 @@
+
+Stage: Clock Tower
+Room: Right Gear Room
+Index: 7
+Columns: 1
+Rows: 3
+Empty Cells: {}
+Nodes:
+    Upper-Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Left Passage:
+        Type: Passage
+        Row: 2
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Action - Set Upper-Right Gear:
+        Outcomes:
+            Status - Upper-Right Gear in Clock Tower Set: true
+        Requirements:
+            Default:
+                Section: Main
+                Status - Upper-Right Gear in Clock Tower Set: false
+    Action - Set Lower-Right Gear:
+        Outcomes:
+            Status - Lower-Right Gear in Clock Tower Set: true
+        Requirements:
+            Default:
+                Section: Main
+                Status - Lower-Right Gear in Clock Tower Set: false

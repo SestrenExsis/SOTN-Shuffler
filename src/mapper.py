@@ -529,6 +529,7 @@ class MapperData:
             'olroxs-quarters',
             'colosseum',
             'long-library',
+            'clock-tower',
         ):
             folder_path = os.path.join('data', 'rooms', stage_folder)
             for file_name in os.listdir(folder_path):
@@ -563,6 +564,7 @@ class LogicCore:
             'Olrox\'s Quarters',
             'Colosseum',
             'Long Library',
+            'Clock Tower',
         ):
             print('', stage_name)
             nodes = {}
@@ -762,10 +764,11 @@ if __name__ == '__main__':
             'Colosseum': [],
             'Castle Entrance': [],
             'Long Library': [],
+            'Clock Tower': [],
         }
     seed = random.randint(0, 2 ** 64)
     MULTIPLIER = 50
-    WEIGHTS = [2, 2, 1, 2, 2, 1, 2] # 100, 50
+    WEIGHTS = [2, 2, 1, 2, 2, 1, 2, 1] # 100, 50
     for (stage_name, target_seed_count) in (
         ('Alchemy Laboratory', MULTIPLIER * WEIGHTS[0]),
         ('Marble Gallery', MULTIPLIER * WEIGHTS[1]),
@@ -774,6 +777,7 @@ if __name__ == '__main__':
         ('Colosseum', MULTIPLIER * WEIGHTS[4]),
         ('Castle Entrance', MULTIPLIER * WEIGHTS[5]),
         ('Long Library', MULTIPLIER * WEIGHTS[6]),
+        ('Clock Tower', MULTIPLIER * WEIGHTS[7]),
     ):
         if stage_name not in generated_stages:
             generated_stages[stage_name] = []

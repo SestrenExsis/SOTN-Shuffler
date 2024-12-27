@@ -1,0 +1,174 @@
+
+Stage: Clock Tower
+Room: Open Courtyard
+Index: 10
+Columns: 6
+Rows: 5
+Empty Cells: {}
+Nodes:
+    Upper-Left Passage:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+        Entry Section: Upper-Left Ledge
+        Exit Section: Upper-Left Ledge
+    Lower-Left Passage:
+        Type: Passage
+        Row: 3
+        Column: 0
+        Edge: Left
+        Entry Section: Lower-Left Ledge
+        Exit Section: Lower-Left Ledge
+    Upper-Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 5
+        Edge: Right
+        Entry Section: Upper-Right Ledge
+        Exit Section: Upper-Right Ledge
+    Middle-Right Passage:
+        Type: Passage
+        Row: 3
+        Column: 5
+        Edge: Right
+        Entry Section: Middle-Right Ledge
+        Exit Section: Middle-Right Ledge
+    Lower-Right Passage:
+        Type: Passage
+        Row: 4
+        Column: 5
+        Edge: Right
+        Entry Section: Ground
+        Exit Section: Ground
+Commands:
+    Move - Center Area:
+        Outcomes:
+            Section: Center Area
+        Requirements:
+            Ground - Bat:
+                Section: Ground
+                Progression - Bat Transformation: true
+            Ground - Gravity Jump:
+                Section: Ground
+                Progression - Gravity Jump: true
+            Ground - Powered Mist:
+                Section: Ground
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Lower-Left Ledge - Bat:
+                Section: Lower-Left Ledge
+                Progression - Bat Transformation: true
+            Lower-Left Ledge - Double Jump:
+                Section: Lower-Left Ledge
+                Progression - Double Jump: true
+            Lower-Left Ledge - Gravity Jump:
+                Section: Lower-Left Ledge
+                Progression - Gravity Jump: true
+            Lower-Left Ledge - Powered Mist:
+                Section: Lower-Left Ledge
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Lower-Left Ledge - Wolf:
+                Section: Lower-Left Ledge
+                Progression - Wolf Transformation: true
+            Middle-Right Ledge - Bat:
+                Section: Middle-Right Ledge
+                Progression - Bat Transformation: true
+            Middle-Right Ledge - Double Jump:
+                Section: Middle-Right Ledge
+                Progression - Double Jump: true
+            Middle-Right Ledge - Gravity Jump:
+                Section: Middle-Right Ledge
+                Progression - Gravity Jump: true
+            Middle-Right Ledge - Powered Mist:
+                Section: Middle-Right Ledge
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Middle-Right Ledge - Wolf:
+                Section: Middle-Right Ledge
+                Progression - Wolf Transformation: true
+            Upper-Left Ledge - Default:
+                Section: Upper-Left Ledge
+            Upper-Right Ledge - Default:
+                Section: Upper-Right Ledge
+    Move - Ground:
+        Outcomes:
+            Section: Ground
+        Requirements:
+            Center Area - Default:
+                Section: Center Area
+            Lower-Left Ledge - Default:
+                Section: Lower-Left Ledge
+    Move - Lower-Left Ledge:
+        Outcomes:
+            Section: Lower-Left Ledge
+        Requirements:
+            Center Area - Bat:
+                Section: Center Area
+                Progression - Bat Transformation: true
+            Center Area - Double Jump:
+                Section: Center Area
+                Progression - Double Jump: true
+            Center Area - Gravity Jump:
+                Section: Center Area
+                Progression - Gravity Jump: true
+            Center Area - Powered Mist:
+                Section: Center Area
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Center Area - Wolf:
+                Section: Center Area
+                Progression - Wolf Transformation: true
+            Ground - Default:
+                Section: Ground
+    Move - Middle-Right Ledge:
+        Outcomes:
+            Section: Middle-Right Ledge
+        Requirements:
+            Center Area - Bat:
+                Section: Center Area
+                Progression - Bat Transformation: true
+            Center Area - Double Jump:
+                Section: Center Area
+                Progression - Double Jump: true
+            Center Area - Gravity Jump:
+                Section: Center Area
+                Progression - Gravity Jump: true
+            Center Area - Powered Mist:
+                Section: Center Area
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Center Area - Wolf:
+                Section: Center Area
+                Progression - Wolf Transformation: true
+    Move - Upper-Left Ledge:
+        Outcomes:
+            Section: Upper-Left Ledge
+        Requirements:
+            Center Area - Bat:
+                Section: Center Area
+                Progression - Bat Transformation: true
+            Center Area - Multiple Gravity Jumps:
+                Section: Center Area
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Center Area - Powered Mist:
+                Section: Center Area
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+    Move - Upper-Right Ledge:
+        Outcomes:
+            Section: Upper-Right Ledge
+        Requirements:
+            Center Area - Bat:
+                Section: Center Area
+                Progression - Bat Transformation: true
+            Center Area - Multiple Gravity Jumps:
+                Section: Center Area
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Center Area - Powered Mist:
+                Section: Center Area
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true

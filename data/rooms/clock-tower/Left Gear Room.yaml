@@ -1,0 +1,89 @@
+
+Stage: Clock Tower
+Room: Left Gear Room
+Index: 6
+Columns: 1
+Rows: 4
+Empty Cells: {}
+Nodes:
+    Upper-Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Upper-Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Broken Wall
+        Exit Section: Broken Wall
+    Lower-Left Passage:
+        Type: Passage
+        Row: 3
+        Column: 0
+        Edge: Left
+        Entry Section: Opened Gate
+        Exit Section: Opened Gate
+    Lower-Right Passage:
+        Type: Passage
+        Row: 3
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Move - Broken Wall:
+        Outcomes:
+            Section: Broken Wall
+        Requirements:
+            Main:
+                Section: Main
+                Status - Breakable Wall in Left Gear Room Broken: true
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Broken Wall:
+                Section: Broken Wall
+                Status - Breakable Wall in Left Gear Room Broken: true
+            Opened Gate:
+                Section: Opened Gate
+                Status - Upper-Left Gear in Clock Tower Set: true
+                Status - Upper-Right Gear in Clock Tower Set: true
+                Status - Lower-Left Gear in Clock Tower Set: true
+                Status - Lower-Right Gear in Clock Tower Set: true
+    Move - Opened Gate:
+        Outcomes:
+            Section: Opened Gate
+        Requirements:
+            Main:
+                Section: Main
+                Status - Upper-Left Gear in Clock Tower Set: true
+                Status - Upper-Right Gear in Clock Tower Set: true
+                Status - Lower-Left Gear in Clock Tower Set: true
+                Status - Lower-Right Gear in Clock Tower Set: true
+    Action - Break Wall:
+        Outcomes:
+            Status - Breakable Wall in Left Gear Room Broken: true
+        Requirements:
+            Default:
+                Section: Main
+                Knowledge - How to Break the Wall in Left Gear Room: true
+                Status - Breakable Wall in Left Gear Room Broken: false
+    Action - Set Upper-Left Gear:
+        Outcomes:
+            Status - Upper-Left Gear in Clock Tower Set: true
+        Requirements:
+            Default:
+                Section: Main
+                Status - Upper-Left Gear in Clock Tower Set: false
+    Action - Set Lower-Left Gear:
+        Outcomes:
+            Status - Lower-Left Gear in Clock Tower Set: true
+        Requirements:
+            Default:
+                Section: Main
+                Status - Lower-Left Gear in Clock Tower Set: false

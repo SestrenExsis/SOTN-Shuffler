@@ -1,0 +1,20 @@
+
+Stage: Clock Tower
+Room: Spire
+Index: 4
+Columns: 3
+Rows: 2
+Empty Cells:
+    - Row: 0
+      Column: 0
+    - Row: 0
+      Column: 2
+Nodes:
+    Bottom Passage:
+        Type: Passage
+        Row: 1
+        Column: 1
+        Edge: Bottom
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

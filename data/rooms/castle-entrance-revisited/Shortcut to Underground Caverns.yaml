@@ -27,18 +27,18 @@ Commands:
         Requirements:
             Use Shortcut:
                 Section: Right Side
-                Progression - Lever Platform in Shortcut to Underground Caverns Activated: true
+                Status - Shortcut to Underground Caverns Activated: true
     Move - Right Side:
         Outcomes:
             Section: Right Side
         Requirements:
             Use Shortcut:
                 Section: Left Side
-                Progression - Lever Platform in Shortcut to Underground Caverns Activated: true
+                Status - Shortcut to Underground Caverns Activated: true
     Action - Activate Lever Platform:
         Outcomes:
-            Progression - Lever Platform in Shortcut to Underground Caverns Activated: true
+            Status - Shortcut to Underground Caverns Activated: true
         Requirements:
             Default:
                 Section: Right Side
-                Progression - Lever Platform in Shortcut to Underground Caverns Activated: false
+                Status - Shortcut to Underground Caverns Activated: false

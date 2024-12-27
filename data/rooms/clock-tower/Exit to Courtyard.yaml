@@ -1,0 +1,30 @@
+
+Stage: Clock Tower
+Room: Exit to Courtyard
+Index: 8
+Columns: 1
+Rows: 3
+Empty Cells: {}
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Upper-Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Right Passage:
+        Type: Passage
+        Row: 2
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}
