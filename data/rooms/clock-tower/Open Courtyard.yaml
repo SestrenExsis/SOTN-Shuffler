@@ -120,8 +120,16 @@ Commands:
             Center Area - Wolf:
                 Section: Center Area
                 Progression - Wolf Transformation: true
-            Ground - Default:
+            Ground - Bat:
                 Section: Ground
+                Progression - Bat Transformation: true
+            Ground - Gravity Jump:
+                Section: Ground
+                Progression - Gravity Jump: true
+            Ground - Powered Mist:
+                Section: Ground
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
     Move - Middle-Right Ledge:
         Outcomes:
             Section: Middle-Right Ledge

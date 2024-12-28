@@ -20,6 +20,5 @@ Commands:
             Progression - Summon Bat Familiar: true
         Requirements:
             Default:
-                Location: Alchemy Laboratory, Bat Card Room
                 Section: Main
                 Relic - Bat Card: false

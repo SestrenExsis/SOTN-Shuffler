@@ -65,7 +65,7 @@ if __name__ == '__main__':
                     stage_map.generate()
                     if stage_map.validate():
                         break
-                    if stage_map.attempts > 10_000:
+                    if stage_map.attempts > 5_000:
                         if stage_name in generated_stages and len(generated_stages[stage_name]) > 0:
                             prebaked_stage = stage_map.rng.choice(generated_stages[stage_name])
                             prebaked_map = mapper.Mapper(mapper_data, stage_name, prebaked_stage['Seed'])
