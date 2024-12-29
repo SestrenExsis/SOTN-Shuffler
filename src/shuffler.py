@@ -15,10 +15,10 @@ if __name__ == '__main__':
     python shuffler.py
     '''
     try:
-        with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'r') as generated_stages_json:
-            generated_stages = json.load(generated_stages_json)
+        with open(os.path.join('build', 'mapper', 'mapper-metadata.json'), 'r') as mapper_metadata_json:
+            mapper_metadata = json.load(mapper_metadata_json)
     except:
-        generated_stages = {
+        mapper_metadata = {
             'Castle Entrance': [],
             'Alchemy Laboratory': [],
             'Marble Gallery': [],
@@ -37,84 +37,60 @@ if __name__ == '__main__':
         skills = json.load(skills_json)
         # Keep randomizing until a solution is found
         initial_seed = random.randint(0, 2 ** 64)
-        rng = random.Random(initial_seed)
+        global_rng = random.Random(initial_seed)
+        shuffler = {
+            'Initial Seed': initial_seed,
+            'Start Time': datetime.datetime.now(datetime.timezone.utc),
+            'Stages': {},
+        }
         while True:
             print('')
-            shuffler = {
-                'Initial Seed': initial_seed,
-                'Start Time': datetime.datetime.now(datetime.timezone.utc),
-                'Stages': {},
-            }
+            shuffler['Stages'] = {}
             # Randomize
             stages = {}
             stages_to_process = (
-                ('Castle Entrance', rng.randint(0, 2 ** 64)),
-                ('Alchemy Laboratory', rng.randint(0, 2 ** 64)),
-                ('Marble Gallery', rng.randint(0, 2 ** 64)),
-                ('Outer Wall', rng.randint(0, 2 ** 64)),
-                ('Olrox\'s Quarters', rng.randint(0, 2 ** 64)),
-                ('Colosseum', rng.randint(0, 2 ** 64)),
-                ('Long Library', rng.randint(0, 2 ** 64)),
+                ('Castle Entrance', global_rng.randint(0, 2 ** 64)),
+                ('Alchemy Laboratory', global_rng.randint(0, 2 ** 64)),
+                ('Marble Gallery', global_rng.randint(0, 2 ** 64)),
+                ('Outer Wall', global_rng.randint(0, 2 ** 64)),
+                ('Olrox\'s Quarters', global_rng.randint(0, 2 ** 64)),
+                ('Colosseum', global_rng.randint(0, 2 ** 64)),
+                ('Long Library', global_rng.randint(0, 2 ** 64)),
+                ('Clock Tower', global_rng.randint(0, 2 ** 64)),
             )
             print('Randomize with seeds')
             for (stage_name, stage_seed) in stages_to_process:
+                stage_rng = random.Random(stage_seed)
                 print(stage_name, stage_seed, end=' ')
-                stage_map = mapper.Mapper(mapper_data, stage_name, stage_seed)
-                note = 'Random'
-                while True:
+                if stage_name in mapper_metadata and len(mapper_metadata[stage_name]) > 0:
+                    prebaked_stage = stage_rng.choice(mapper_metadata[stage_name])
+                    stage_map = mapper.Mapper(mapper_data, stage_name, prebaked_stage['Seed'])
                     stage_map.generate()
-                    if stage_map.validate():
-                        break
-                    if stage_map.attempts > 5_000:
-                        if stage_name in generated_stages and len(generated_stages[stage_name]) > 0:
-                            prebaked_stage = stage_map.rng.choice(generated_stages[stage_name])
-                            prebaked_map = mapper.Mapper(mapper_data, stage_name, prebaked_stage['Seed'])
-                            prebaked_map.generate()
-                            assert prebaked_map.validate()
-                            hash_of_changes = hashlib.sha256(json.dumps(prebaked_map.stage.get_changes(), sort_keys=True).encode()).hexdigest()
-                            assert hash_of_changes == prebaked_stage['Hash of Changes']
-                            stage_map = prebaked_map
-                            if stage_map.validate():
-                                note = 'Prebaked'
-                                break
-                stages[stage_name] = stage_map
-                print(note, stage_map.current_seed)
-                shuffler['Stages'][stage_name] = {
-                    'Note': note,
-                    'Attempts': stage_map.attempts,
-                    'Generation Start Date': stage_map.start_time.isoformat(),
-                    'Generation End Date': stage_map.end_time.isoformat(),
-                    # 'Generation Version': GENERATION_VERSION,
-                    'Hash of Changes': hashlib.sha256(json.dumps(stage_map.stage.get_changes(), sort_keys=True).encode()).hexdigest(),
-                    'Seed': stage_map.current_seed,
-                    'Stage': stage_name,
-                }
-            # Current stage: Clock Tower
-            stage_name = 'Clock Tower'
-            print(stage_name)
-            stage_map = mapper.Mapper(mapper_data, stage_name, rng.randint(0, 2 ** 64))
-            while True:
-                stage_map.generate()
-                rooms_found = set(stage_map.stage.rooms)
-                if stage_map.validate():
-                    break
-            stages[stage_name] = stage_map
-            shuffler['Stages'][stage_name] = {
-                'Note': 'Random',
-                'Attempts': stage_map.attempts,
-                'Generation Start Date': stage_map.start_time.isoformat(),
-                'Generation End Date': stage_map.end_time.isoformat(),
-                # 'Generation Version': GENERATION_VERSION,
-                'Hash of Changes': hashlib.sha256(json.dumps(stage_map.stage.get_changes(), sort_keys=True).encode()).hexdigest(),
-                'Seed': stage_map.current_seed,
-                'Stage': stage_name,
-            }
+                    changes = stage_map.stage.get_changes()
+                    assert stage_map.validate()
+                    hash_of_rooms = hashlib.sha256(json.dumps(changes['Rooms'], sort_keys=True).encode()).hexdigest()
+                    assert hash_of_rooms == prebaked_stage['Hash of Rooms']
+                    assert stage_map.validate()
+                    stages[stage_name] = stage_map
+                    print('Prebaked', stage_map.current_seed)
+                    shuffler['Stages'][stage_name] = {
+                        'Note': 'Prebaked',
+                        'Attempts': stage_map.attempts,
+                        'Generation Start Date': stage_map.start_time.isoformat(),
+                        'Generation End Date': stage_map.end_time.isoformat(),
+                        # 'Generation Version': GENERATION_VERSION,
+                        'Hash of Rooms': hashlib.sha256(json.dumps(changes['Rooms'], sort_keys=True).encode()).hexdigest(),
+                        'Seed': stage_map.current_seed,
+                        'Stage': stage_name,
+                    }
+                else:
+                    raise Exception('No prebaked stages found for ' + stage_name)
             # ...
             changes = {
                 'Stages': {}
             }
             for (stage_name, stage_map) in stages.items():
-                print('stage_name:', stage_name)
+                # print('stage_name:', stage_name)
                 changes['Stages'][stage_name] = {
                     'Rooms': {},
                 }

@@ -234,7 +234,7 @@ class Game:
                     print('  +', key, ': ', value)
                 self.current_state[key] += value
         if not self.goal_achieved:
-            if self.validate(logic_core['Goals']):
+            if self.validate(self.logic_core['Goals']):
                 self.goal_achieved = True
         self.cleanup_state()
 
@@ -296,7 +296,7 @@ class Solver():
             if limit < 0:
                 break
             (score__solver, step__solver, game__solver) = heapq.heappop(work__solver)
-            if (-score__solver, step__solver) > highest_layer_found:
+            if (-score__solver, step__solver) > highest_layer_found and self.debug:
                 print('Layer', (score__solver, step__solver), len(work__solver), game__solver.get_progression(), limit)
                 highest_layer_found = (score__solver, step__solver)
             game__solver.layer = step__solver
@@ -339,7 +339,7 @@ class Solver():
             if limit < 0:
                 break
             (score__solver, step__solver, game__solver) = heapq.heappop(work__solver)
-            if (-score__solver, step__solver) > highest_layer_found:
+            if (-score__solver, step__solver) > highest_layer_found and self.debug:
                 print('Layer', (score__solver, step__solver), len(work__solver), game__solver.get_progression(), limit)
                 highest_layer_found = (score__solver, step__solver)
             game__solver.layer = step__solver

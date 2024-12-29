@@ -2,18 +2,26 @@
 Stage: Clock Tower
 Room: Spire
 Index: 4
-Columns: 3
+Columns: 5
 Rows: 2
 Empty Cells:
     - Row: 0
       Column: 0
     - Row: 0
-      Column: 2
+      Column: 1
+    - Row: 0
+      Column: 3
+    - Row: 0
+      Column: 4
+    - Row: 1
+      Column: 0
+    - Row: 1
+      Column: 4
 Nodes:
     Bottom Passage:
         Type: Passage
         Row: 1
-        Column: 1
+        Column: 2
         Edge: Bottom
         Entry Section: Main
         Exit Section: Main
