@@ -1,4 +1,5 @@
 # External libraries
+import argparse
 import collections
 import datetime
 import hashlib
@@ -451,6 +452,29 @@ stages = {
         { 'Long Library, Dhuron and Flea Man Room': (0, 0) },
         { 'Long Library, Save Room A': (0, 0) },
     ],
+    'Clock Tower': [
+        {
+            'Clock Tower, Fake Room With Teleporter A': (32 + 0, 32 + 0),
+            'Clock Tower, Loading Room B': (32 + 0, 32 + 1),
+            'Clock Tower, Karasuman\'s Room': (32 + 0, 32 + 2),
+        },
+        {
+            'Clock Tower, Stairwell to Outer Wall': (32 + 0, 32 + 0),
+            'Clock Tower, Loading Room A': (32 + 0, 32 + 1),
+            'Clock Tower, Fake Room With Teleporter B': (32 + 0, 32 + 2),
+        },
+        { 'Clock Tower, Path to Karasuman': (0, 0) },
+        { 'Clock Tower, Healing Mail Room': (0, 0) },
+        { 'Clock Tower, Pendulum Room': (0, 0) },
+        { 'Clock Tower, Spire': (0, 0) },
+        { 'Clock Tower, Hidden Armory': (0, 0) },
+        { 'Clock Tower, Left Gear Room': (0, 0) },
+        { 'Clock Tower, Right Gear Room': (0, 0) },
+        { 'Clock Tower, Exit to Courtyard': (0, 0) },
+        { 'Clock Tower, Belfry': (0, 0) },
+        { 'Clock Tower, Open Courtyard': (0, 0) },
+        { 'Clock Tower, Fire of Bat Room': (0, 0) },
+    ],
 }
 
 def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
@@ -506,6 +530,7 @@ class MapperData:
             'olroxs-quarters',
             'colosseum',
             'long-library',
+            'clock-tower',
         ):
             folder_path = os.path.join('data', 'rooms', stage_folder)
             for file_name in os.listdir(folder_path):
@@ -540,31 +565,47 @@ class LogicCore:
             'Olrox\'s Quarters',
             'Colosseum',
             'Long Library',
+            'Clock Tower',
         ):
-            print('', stage_name)
+            # print('', stage_name)
             nodes = {}
             for (location_name, room_data) in mapper_data['Rooms'].items():
-                changes_location_key = location_name
-                alternate_location_name = room_data['Stage'] + ', Room ID ' + f'{room_data['Index']:02d}'
-                if alternate_location_name in changes['Rooms']:
-                    changes_location_key = alternate_location_name
-                if changes_location_key not in changes['Rooms']:
+                if room_data['Stage'] != stage_name:
                     continue
-                if mapper_data['Rooms'][location_name]['Stage'] != stage_name:
-                    continue
+                # print(' ', location_name)
+                stage_changes = changes['Stages'][stage_name]
+                location_key = None
+                for possible_location_key in (
+                    str(room_data['Index']),
+                    room_data['Index'],
+                    location_name,
+                    stage_name + ', Room ID ' + f'{room_data['Index']:02d}',
+                ):
+                    if possible_location_key in stage_changes['Rooms']:
+                        location_key = possible_location_key
+                        break
+                else:
+                    print('Could not find key')
+                    # print(room_data)
+                    # print(stage_changes['Rooms'])
+                # if mapper_data['Rooms'][location_name]['Stage'] != stage_name:
+                #     continue
                 room_top = None
                 room_left = None
-                if 'Rooms' in changes and changes_location_key in changes['Rooms']:
-                    if 'Top' in changes['Rooms'][changes_location_key]:
-                        room_top = changes['Rooms'][changes_location_key]['Top']
-                    if 'Left' in changes['Rooms'][changes_location_key]:
-                        room_left = changes['Rooms'][changes_location_key]['Left']
+                if 'Rooms' in stage_changes and location_key in stage_changes['Rooms']:
+                    if 'Top' in stage_changes['Rooms'][location_key]:
+                        room_top = stage_changes['Rooms'][location_key]['Top']
+                    if 'Left' in stage_changes['Rooms'][location_key]:
+                        room_left = stage_changes['Rooms'][location_key]['Left']
+                assert room_top is not None
+                assert room_left is not None
+                # print(location_name, (stage_name, location_key), (room_top, room_left))
                 self.commands[location_name] = room_data['Commands']
                 for (node_name, node) in room_data['Nodes'].items():
                     row = room_top + node['Row']
                     column = room_left + node['Column']
                     edge = node['Edge']
-                    nodes[(row, column, edge)] = (location_name, node_name, node['Entry Section'], room_data['Stage'])
+                    nodes[(row, column, edge)] = (location_name, node_name, node['Entry Section'], stage_name)
                     exit = {
                         'Outcomes': {
                             'Location': None,
@@ -579,6 +620,8 @@ class LogicCore:
                     }
                     self.commands[location_name]['Exit - ' + node_name] = exit
             for (row, column, edge), (location_name, node_name, section_name, stage_name) in nodes.items():
+                # if stage_name == 'Castle Entrance':
+                #     print((row, column, edge), (location_name, node_name, section_name, stage_name))
                 matching_row = row
                 matching_column = column
                 matching_edge = edge
@@ -703,6 +746,59 @@ class Mapper:
             result = all_rooms_used and no_nodes_unused and all_rooms_connected
         return result
 
+    def get_spoiler(self, stage_name: str) -> list[str]:
+        codes = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+. '
+        legend = []
+        (stage_top, stage_left, stage_bottom, stage_right) = (float('inf'), float('inf'), float('-inf'), float('-inf'))
+        for (room_name, room) in self.rooms.items():
+            if room.stage_name != stage_name:
+                continue
+            room_bottom = room.top + room.rows - 1
+            room_right = room.left + room.columns - 1
+            stage_top = min(stage_top, room.top)
+            stage_left = min(stage_left, room.left)
+            stage_bottom = max(stage_bottom, room_bottom)
+            stage_right = max(stage_right, room_right)
+        stage_rows = 1 + stage_bottom - stage_top
+        stage_cols = 1 + stage_right - stage_left
+        grid = [[' ' for col in range(5 * stage_cols)] for row in range(5 * stage_rows)]
+        for (room_name, room) in self.rooms.items():
+            if room.stage_name != stage_name:
+                continue
+            code = codes[room.index]
+            legend.append((code, room_name))
+            for cell_row in range(max(0, room.top), min(64, room.top + room.rows)):
+                for cell_col in range(max(0, room.left), min(64, room.left + room.columns)):
+                    if (cell_row - stage_top, cell_col - stage_left) in room.empty_cells:
+                        continue
+                    top = cell_row - stage_top
+                    left = cell_col - stage_left
+                    for row in range(5 * top + 1, 5 * top + 4):
+                        for col in range(5 * left + 1, 5 * left + 4):
+                            prev_index = codes.find(grid[row][col])
+                            if room.index < prev_index:
+                                grid[row][col] = code
+            for node in room.nodes.values():
+                (exit_row, exit_col, exit_edge) = (node.row, node.column, node.edge)
+                row = 2 + 5 * (room.top - stage_top + exit_row)
+                col = 2 + 5 * (room.left - stage_left + exit_col)
+                if exit_edge == 'Top':
+                    row -= 2
+                elif exit_edge == 'Left':
+                    col -= 2
+                elif exit_edge == 'Bottom':
+                    row += 2
+                elif exit_edge == 'Right':
+                    col += 2
+                grid[row][col] = code # '@'
+        result = []
+        for row_data in grid:
+            result.append(''.join(row_data))
+        for (code, room_name) in legend:
+            room = self.rooms[room_name]
+            result.append(str((code, room_name, ('I:', room.index, 'T:', room.top, 'L:', room.left, 'R:', room.rows, 'C:', room.columns))))
+        return result
+
 if __name__ == '__main__':
     '''
     Usage
@@ -710,13 +806,11 @@ if __name__ == '__main__':
     '''
     GENERATION_VERSION = '0.0.4'
     mapper_data = MapperData().get_core()
-    with open(os.path.join('build', 'sandbox', 'mapper-data.json'), 'w') as mapper_data_json:
-        json.dump(mapper_data, mapper_data_json, indent='    ', sort_keys=True, default=str)
     try:
-        with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'r') as generated_stages_json:
-            generated_stages = json.load(generated_stages_json)
+        with open(os.path.join('build', 'mapper', 'mapper-metadata.json'), 'r') as mapper_metadata_json:
+            mapper_metadata = json.load(mapper_metadata_json)
     except:
-        generated_stages = {
+        mapper_metadata = {
             'Alchemy Laboratory': [],
             'Marble Gallery': [],
             'Outer Wall': [],
@@ -724,43 +818,44 @@ if __name__ == '__main__':
             'Colosseum': [],
             'Castle Entrance': [],
             'Long Library': [],
+            'Clock Tower': [],
         }
+    parser = argparse.ArgumentParser()
+    parser.add_argument('stage_name', help='Input a valid stage name', type=str)
+    parser.add_argument('stage_count', help='Input the number of stage instances to generate', type=int)
+    args = parser.parse_args()
+    if args.stage_name not in mapper_metadata:
+        mapper_metadata[args.stage_name] = []
+    print('')
+    print(args.stage_name, args.stage_count)
     seed = random.randint(0, 2 ** 64)
-    MULTIPLIER = 51
-    WEIGHTS = [2, 2, 1, 2, 2, 1, 2] # 100, 50
-    for (stage_name, target_seed_count) in (
-        ('Alchemy Laboratory', MULTIPLIER * WEIGHTS[0]),
-        ('Marble Gallery', MULTIPLIER * WEIGHTS[1]),
-        ('Outer Wall', MULTIPLIER * WEIGHTS[2]),
-        ('Olrox\'s Quarters', MULTIPLIER * WEIGHTS[3]),
-        ('Colosseum', MULTIPLIER * WEIGHTS[4]),
-        ('Castle Entrance', MULTIPLIER * WEIGHTS[5]),
-        ('Long Library', MULTIPLIER * WEIGHTS[6]),
-    ):
-        if stage_name not in generated_stages:
-            generated_stages[stage_name] = []
-        print('')
-        print(stage_name, target_seed_count, target_seed_count - len(generated_stages[stage_name]))
-        if stage_name not in generated_stages:
-            generated_stages[stage_name] = []
-        while len(generated_stages[stage_name]) < target_seed_count:
-            stage_map = Mapper(mapper_data, stage_name, seed)
-            while True:
-                stage_map.generate()
-                if stage_map.validate():
-                    break
-            generated_stages[stage_name].append(
-                {
-                    'Attempts': stage_map.attempts,
-                    'Generation Start Date': stage_map.start_time.isoformat(),
-                    'Generation End Date': stage_map.end_time.isoformat(),
-                    'Generation Version': GENERATION_VERSION,
-                    'Hash of Changes': hashlib.sha256(json.dumps(stage_map.stage.get_changes(), sort_keys=True).encode()).hexdigest(),
-                    'Seed': stage_map.current_seed,
-                    'Stage': stage_name,
-                }
-            )
-            print(generated_stages[stage_name][-1])
-            seed = stage_map.rng.randint(0, 2 ** 64)
-        with open(os.path.join('build', 'sandbox', 'generated-stages.json'), 'w') as generated_stages_json:
-            json.dump(generated_stages, generated_stages_json, indent='    ', sort_keys=True, default=str)
+    for _ in range(args.stage_count):
+        stage_map = Mapper(mapper_data, args.stage_name, seed)
+        while True:
+            stage_map.generate()
+            if stage_map.validate():
+                break
+        changes = stage_map.stage.get_changes()
+        mapper_metadata[args.stage_name].append(
+            {
+                'Attempts': stage_map.attempts,
+                'Generation Start Date': stage_map.start_time.isoformat(),
+                'Generation End Date': stage_map.end_time.isoformat(),
+                'Generation Version': GENERATION_VERSION,
+                'Hash of Rooms': hashlib.sha256(json.dumps(changes['Rooms'], sort_keys=True).encode()).hexdigest(),
+                'Seed': stage_map.current_seed,
+                'Stage': args.stage_name,
+            }
+        )
+        print(mapper_metadata[args.stage_name][-1])
+        spoiler = stage_map.get_spoiler(args.stage_name)
+        for line in spoiler:
+            print(line)
+        changes['Spoiler'] = spoiler
+        with (
+            open(os.path.join('build', 'mapper', 'mapper-metadata.json'), 'w') as mapper_metadata_json,
+            open(os.path.join('build', 'mapper', args.stage_name, str(stage_map.current_seed) + '.json'), 'w') as changes_json,
+        ):
+            json.dump(mapper_metadata, mapper_metadata_json, indent='    ', sort_keys=True, default=str)
+            json.dump(changes, changes_json, indent='    ', sort_keys=True, default=str)
+        seed = stage_map.rng.randint(0, 2 ** 64)

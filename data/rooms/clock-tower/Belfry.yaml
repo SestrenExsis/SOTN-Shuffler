@@ -1,0 +1,25 @@
+
+Stage: Clock Tower
+Room: Belfry
+Index: 9
+Columns: 3
+Rows: 2
+Empty Cells:
+    - Row: 1
+      Column: 0
+Nodes:
+    Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Top
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Left Passage:
+        Type: Passage
+        Row: 1
+        Column: 1
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

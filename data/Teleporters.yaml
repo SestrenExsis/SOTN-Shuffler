@@ -20,6 +20,11 @@ Sources:
         Stage: Castle Entrance Revisited
         Room: Fake Room With Teleporter A
         Target: Alchemy Laboratory, Entryway (Right Red Door)
+    Clock Tower, Fake Room With Teleporter B:
+        Index: 10
+        Stage: Clock Tower
+        Room: Fake Room With Teleporter B
+        Target: Outer Wall, Exit to Clock Tower (Left Red Door)
     Colosseum, Fake Room With Teleporter B:
         Index: 53
         Stage: Colosseum
@@ -55,6 +60,11 @@ Sources:
         Stage: Olrox's Quarters
         Room: Fake Room With Teleporter D
         Target: Marble Gallery, Pathway After Left Statue (Left Red Door)
+    Outer Wall, Fake Room With Teleporter A:
+        Index: 43
+        Stage: Outer Wall
+        Room: Fake Room With Teleporter A
+        Target: Clock Tower, Stairwell to Outer Wall (Right Red Door)
     Outer Wall, Fake Room With Teleporter C:
         Index: 41
         Stage: Outer Wall
@@ -83,6 +93,12 @@ Targets:
         Room: Cube of Zoe Room
         Node: Upper-Left Red Door
         Player X: 16
+        Player Y: 132
+    Clock Tower, Stairwell to Outer Wall (Right Red Door):
+        Stage: Clock Tower
+        Room: Stairwell to Outer Wall
+        Node: Right Red Door
+        Player X: 240
         Player Y: 132
     Colosseum, Top of Elevator Shaft (Right Red Door):
         Stage: Colosseum
@@ -132,6 +148,12 @@ Targets:
         Node: Middle-Left Red Door
         Player X: 16
         Player Y: 1672
+    Outer Wall, Exit to Clock Tower (Left Red Door):
+        Stage: Outer Wall
+        Room: Exit to Clock Tower
+        Node: Left Red Door
+        Player X: 16
+        Player Y: 132
     Outer Wall, Exit to Marble Gallery (Left Red Door):
         Stage: Outer Wall
         Room: Exit to Marble Gallery

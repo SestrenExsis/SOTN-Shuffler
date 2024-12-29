@@ -87,7 +87,7 @@ Commands:
         Requirements:
             Main - Use Shortcut:
                 Section: Main
-                Progression - Shortcut in Cube of Zoe Room Activated: true
+                Status - Shortcut in Cube of Zoe Room Activated: true
             Right Ledge - Bat Form:
                 Section: Right Ledge
                 Progression - Bat Transformation: true
@@ -116,8 +116,8 @@ Commands:
                 Relic - Cube of Zoe: false
     Action - Activate Pressure Plate:
         Outcomes:
-            Progression - Pressure Plate in Cube of Zoe Room Activated: true
+            Status - Shortcut in Cube of Zoe Room Activated: true
         Requirements:
             Default:
                 Section: Pressure Plate Ledge
-                Progression - Pressure Plate in Cube of Zoe Room Activated: false
+                Status - Shortcut in Cube of Zoe Room Activated: false

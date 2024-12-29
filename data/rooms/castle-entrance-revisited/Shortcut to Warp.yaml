@@ -27,18 +27,18 @@ Commands:
         Requirements:
             Use Shortcut:
                 Section: Right Side
-                Progression - Pressure Plate in Cube of Zoe Room Activated: true
+                Status - Shortcut to Warp Activated: true
     Move - Right Side:
         Outcomes:
             Section: Right Side
         Requirements:
             Use Shortcut:
                 Section: Left Side
-                Progression - Pressure Plate in Cube of Zoe Room Activated: true
+                Status - Shortcut to Warp Activated: true
     Action - Activate Pressure Plate:
         Outcomes:
-            Progression - Pressure Plate in Cube of Zoe Room Activated: true
+            Status - Shortcut to Warp Activated: true
         Requirements:
             Default:
                 Section: Left Side
-                Progression - Pressure Plate in Shortcut to Warp Activated: false
+                Status - Shortcut to Warp Activated: false

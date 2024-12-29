@@ -27,7 +27,7 @@ Commands:
         Requirements:
             Ground - Basic:
                 Section: Ground
-                Progression - Open Trapdoor After Drawbridge: true
+                Status - Trapdoor After Drawbridge Opened: true
     Move - Ground:
         Outcomes:
             Section: Ground

@@ -69,21 +69,21 @@ Commands:
                 Section: Air
             Secret Wall - Default:
                 Section: Secret Wall
-                Progression - Secret Wall in Merman Room Opened: true
+                Status - Secret Wall in Merman Room Opened: true
     Move - Secret Wall:
         Outcomes:
             Section: Secret Wall
         Requirements:
             Ground - Secret Unlocked:
                 Section: Ground
-                Progression - Secret Wall in Merman Room Opened: true
+                Status - Secret Wall in Merman Room Opened: true
     Action - Open Secret Wall:
         Outcomes:
-            Progression - Secret Wall in Merman Room Opened: true
+            Status - Secret Wall in Merman Room Opened: true
         Requirements:
             Ground - Default:
                 Section: Ground
+                Status - Secret Wall in Merman Room Opened: false
+                Knowledge - How to Open the Secret Wall in Merman Room: true
                 Progression - Bat Transformation: true
                 Progression - Wolf Transformation: true
-                Progression - Secret Wall in Merman Room Opened: false
-                Skill - Open Secret Wall in Merman Room: true
