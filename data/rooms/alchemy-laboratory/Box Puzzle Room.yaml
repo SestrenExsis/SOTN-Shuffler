@@ -39,23 +39,23 @@ Commands:
         Outcomes:
             Section: Ledge
         Requirements:
-            Box Puzzle:
+            Ground - Box Puzzle:
                 Section: Ground
-                Status - Box Puzzle Solved: true
-            Bat:
+                Knowledge - How to Solve the Box Puzzle: true
+            Ground - Bat:
                 Section: Ground
                 Progression - Bat Transformation: true
-            Double Jump:
+            Ground - Double Jump:
                 Section: Ground
                 Progression - Double Jump: true
-            Gravity Jump:
+            Ground - Gravity Jump:
                 Section: Ground
                 Progression - Gravity Jump: true
-            Powered Mist:
+            Ground - Powered Mist:
                 Section: Ground
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
-            Wolf-Mist Rise:
+            Ground - Wolf-Mist Rise:
                 Section: Ground
                 Execution - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
