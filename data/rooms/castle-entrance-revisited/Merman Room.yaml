@@ -83,7 +83,7 @@ Commands:
         Requirements:
             Ground - Default:
                 Section: Ground
+                Status - Secret Wall in Merman Room Opened: false
+                Knowledge - How to Open the Secret Wall in Merman Room: true
                 Progression - Bat Transformation: true
                 Progression - Wolf Transformation: true
-                Status - Secret Wall in Merman Room Opened: false
-                Skill - Open Secret Wall in Merman Room: true
