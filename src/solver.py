@@ -77,6 +77,7 @@ class Game:
             'Progression - Olrox\'s Quarters Stage Reached': 12.0,
             'Progression - Outer Wall Stage Reached': 11.0,
             'Progression - Clock Tower Stage Reached': 8.0,
+            'Progression - Warp Rooms Stage Reached': 7.0,
             'Relic - Cube of Zoe': 3.0,
             'Relic - Form of Mist': 5.0,
             'Relic - Faerie Scroll': 1.0,
@@ -123,6 +124,7 @@ class Game:
             'Progression - Marble Gallery Stage Reached': 'MG',
             'Progression - Olrox\'s Quarters Stage Reached': 'OQ',
             'Progression - Outer Wall Stage Reached': 'OW',
+            'Progression - Warp Rooms Stage Reached': 'WR',
             'Relic - Form of Mist': 'M',
             'Relic - Gravity Boots': 'g',
             'Relic - Jewel of Open': 'o',
@@ -429,8 +431,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
     SOLVER_VERSION = '0.0.0'
     mapper_data = mapper.MapperData().get_core()
-    # with open(os.path.join('build', 'debug', 'mapper-data.json'), 'w') as debug_mapper_data_json:
-    #     json.dump(mapper_data, debug_mapper_data_json, indent='    ', sort_keys=True, default=str)
+    with open(os.path.join('build', 'debug', 'mapper-data.json'), 'w') as debug_mapper_data_json:
+        json.dump(mapper_data, debug_mapper_data_json, indent='    ', sort_keys=True, default=str)
     with (
         open(args.changes) as changes_json,
         open(args.skills) as skills_json,
@@ -440,8 +442,8 @@ if __name__ == '__main__':
         if 'Changes' in changes:
             changes = changes['Changes']
         logic_core = mapper.LogicCore(mapper_data, changes).get_core()
-        # with open(os.path.join('build', 'debug', 'logic-core.json'), 'w') as debug_logic_core_json:
-        #     json.dump(logic_core, debug_logic_core_json, indent='    ', sort_keys=True, default=str)
+        with open(os.path.join('build', 'debug', 'logic-core.json'), 'w') as debug_logic_core_json:
+            json.dump(logic_core, debug_logic_core_json, indent='    ', sort_keys=True, default=str)
         logic_core['State']['Location'] = 'Castle Entrance, After Drawbridge'
         logic_core['State']['Section'] = 'Ground'
         logic_core['Goals'] = {
@@ -472,6 +474,7 @@ if __name__ == '__main__':
                 'Progression - Colosseum Stage Reached': True,
                 'Progression - Long Library Stage Reached': True,
                 'Progression - Clock Tower Stage Reached': True,
+                'Progression - Warp Rooms Stage Reached': True,
             },
             # 'Debug 99': {
             #     'Relic - Soul of Bat': True,
@@ -484,7 +487,7 @@ if __name__ == '__main__':
         skills_json.close()
         print('Solving')
         map_solver = Solver(logic_core, skills)
-        # map_solver.debug = True
+        map_solver.debug = True
         # map_solver.solve_via_layers(3, 10)
         map_solver.solve_via_steps((32, 10, 80))
         if len(map_solver.results['Wins']) > 0:

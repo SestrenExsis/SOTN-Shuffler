@@ -475,6 +475,33 @@ stages = {
         { 'Clock Tower, Open Courtyard': (0, 0) },
         { 'Clock Tower, Fire of Bat Room': (0, 0) },
     ],
+    'Warp Rooms': [
+        {
+            'Warp Rooms, Warp Room D': (38 + 0, 15 + 0),
+            'Warp Rooms, Loading Room B': (38 + 0, 15 + 1),
+            'Warp Rooms, Fake Room With Teleporter D': (38 + 0, 15 + 2),
+        },
+        {
+            'Warp Rooms, Fake Room With Teleporter A': (12 + 0, 38 + 0),
+            'Warp Rooms, Loading Room E': (12 + 0, 38 + 1),
+            'Warp Rooms, Warp Room A': (12 + 0, 38 + 2),
+        },
+        {
+            'Warp Rooms, Fake Room With Teleporter C': (21 + 0, 35 + 0),
+            'Warp Rooms, Loading Room C': (21 + 0, 35 + 1),
+            'Warp Rooms, Warp Room B': (21 + 0, 35 + 2),
+        },
+        {
+            'Warp Rooms, Warp Room C': (17 + 0, 59 + 0),
+            'Warp Rooms, Loading Room D': (17 + 0, 59 + 1),
+            'Warp Rooms, Fake Room With Teleporter B': (17 + 0, 59 + 2),
+        },
+        {
+            'Warp Rooms, Fake Room With Teleporter E': (44 + 0, 33 + 0),
+            'Warp Rooms, Loading Room A': (44 + 0, 33 + 1),
+            'Warp Rooms, Warp Room E': (44 + 0, 33 + 2),
+        },
+    ],
 }
 
 def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
@@ -485,6 +512,11 @@ def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
             room_placements.append((rooms[room_name], top, left))
         pool[roomset_id] = RoomSet(roomset_id, room_placements)
     result = pool.pop(0)
+    for roomset_id in range(1, len(stage_data)):
+        if len(result.get_open_nodes()) < 1:
+            result.add_roomset(pool.pop(roomset_id), 0, 0)
+        else:
+            break
     steps = 0
     while len(pool) > 0:
         possible_target_nodes = result.get_open_nodes()
@@ -531,6 +563,7 @@ class MapperData:
             'colosseum',
             'long-library',
             'clock-tower',
+            'warp-rooms',
         ):
             folder_path = os.path.join('data', 'rooms', stage_folder)
             for file_name in os.listdir(folder_path):
@@ -566,6 +599,7 @@ class LogicCore:
             'Colosseum',
             'Long Library',
             'Clock Tower',
+            'Warp Rooms',
         ):
             # print('', stage_name)
             nodes = {}
@@ -743,7 +777,11 @@ class Mapper:
                                 work.appendleft(target_room_name)
                                 break
             all_rooms_connected = len(room_names_visited) >= (len(set(self.rooms) - excluded_room_names))
-            result = all_rooms_used and no_nodes_unused and all_rooms_connected
+            result = (
+                all_rooms_used and
+                no_nodes_unused and
+                (all_rooms_connected or self.stage_name == 'Warp Rooms')
+            )
         return result
 
     def get_spoiler(self, stage_name: str) -> list[str]:
@@ -819,6 +857,7 @@ if __name__ == '__main__':
             'Castle Entrance': [],
             'Long Library': [],
             'Clock Tower': [],
+            'Warp Rooms': [],
         }
     parser = argparse.ArgumentParser()
     parser.add_argument('stage_name', help='Input a valid stage name', type=str)

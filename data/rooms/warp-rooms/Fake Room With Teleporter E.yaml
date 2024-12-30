@@ -1,0 +1,16 @@
+
+Stage: Warp Rooms
+Room: Fake Room With Teleporter E
+Index: 14
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Fake
+        Exit Section: Dummy
+Commands: {}

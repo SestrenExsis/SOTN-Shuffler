@@ -1,5 +1,10 @@
 
 Sources:
+    Abandoned Mine, Fake Room With Teleporter B:
+        Index: 20
+        Stage: Abandoned Mine
+        Room: Fake Room With Teleporter B
+        Target: Warp Rooms, Warp Room E (Left Red Door)
     Alchemy Laboratory, Fake Room With Teleporter A:
         Index: 22
         Stage: Alchemy Laboratory
@@ -15,11 +20,26 @@ Sources:
         Stage: Castle Entrance
         Room: Fake Room With Teleporter A
         Target: Alchemy Laboratory, Entryway (Right Red Door)
+    Castle Entrance, Fake Room With Teleporter C:
+        Index: 14
+        Stage: Castle Entrance
+        Room: Fake Room With Teleporter C
+        Target: Warp Rooms, Warp Room D (Right Red Door)
     Castle Entrance Revisited, Fake Room With Teleporter A:
         Index: 58
         Stage: Castle Entrance Revisited
         Room: Fake Room With Teleporter A
         Target: Alchemy Laboratory, Entryway (Right Red Door)
+    Castle Entrance Revisited, Fake Room With Teleporter C:
+        Index: 59
+        Stage: Castle Entrance Revisited
+        Room: Fake Room With Teleporter C
+        Target: Warp Rooms, Warp Room D (Right Red Door)
+    Castle Keep, Fake Room With Teleporter C:
+        Index: 46
+        Stage: Castle Keep
+        Room: Fake Room With Teleporter C
+        Target: Warp Rooms, Warp Room A (Left Red Door)
     Clock Tower, Fake Room With Teleporter B:
         Index: 10
         Stage: Clock Tower
@@ -50,6 +70,11 @@ Sources:
         Stage: Marble Gallery
         Room: Fake Room With Teleporter C
         Target: Alchemy Laboratory, Exit to Marble Gallery (Right Red Door)
+    Olrox's Quarters, Fake Room With Teleporter B:
+        Index: 27
+        Stage: Olrox's Quarters
+        Room: Fake Room With Teleporter B
+        Target: Warp Rooms, Warp Room B (Left Red Door)
     Olrox's Quarters, Fake Room With Teleporter C:
         Index: 26
         Stage: Olrox's Quarters
@@ -65,6 +90,11 @@ Sources:
         Stage: Outer Wall
         Room: Fake Room With Teleporter A
         Target: Clock Tower, Stairwell to Outer Wall (Right Red Door)
+    Outer Wall, Fake Room With Teleporter B:
+        Index: 42
+        Stage: Outer Wall
+        Room: Fake Room With Teleporter B
+        Target: Warp Rooms, Warp Room C (Right Red Door)
     Outer Wall, Fake Room With Teleporter C:
         Index: 41
         Stage: Outer Wall
@@ -75,6 +105,21 @@ Sources:
         Stage: Outer Wall
         Room: Fake Room With Teleporter D
         Target: Marble Gallery, Long Hallway (Right Red Door)
+    Warp Rooms, Fake Room With Teleporter B:
+        Index: 29
+        Stage: Warp Rooms
+        Room: Fake Room With Teleporter B
+        Target: Outer Wall, Elevator Shaft Room (Middle-Left Red Door)
+    Warp Rooms, Fake Room With Teleporter C:
+        Index: 30
+        Stage: Warp Rooms
+        Room: Fake Room With Teleporter C
+        Target: Olrox's Quarters, Tall Shaft (Lower-Right Red Door)
+    Warp Rooms, Fake Room With Teleporter D:
+        Index: 31
+        Stage: Warp Rooms
+        Room: Fake Room With Teleporter D
+        Target: Castle Entrance Revisited, Shortcut to Warp (Left Red Door)
 Targets:
     Alchemy Laboratory, Entryway (Right Red Door):
         Stage: Alchemy Laboratory
@@ -92,6 +137,12 @@ Targets:
         Stage: Castle Entrance Revisited
         Room: Cube of Zoe Room
         Node: Upper-Left Red Door
+        Player X: 16
+        Player Y: 132
+    Castle Entrance Revisited, Shortcut to Warp (Left Red Door):
+        Stage: Castle Entrance Revisited
+        Room: Shortcut to Warp
+        Node: Left Red Door
         Player X: 16
         Player Y: 132
     Clock Tower, Stairwell to Outer Wall (Right Red Door):
@@ -142,6 +193,12 @@ Targets:
         Node: Lower-Right Red Door
         Player X: 240
         Player Y: 648
+    Olrox's Quarters, Tall Shaft (Lower-Right Red Door):
+        Stage: Olrox's Quarters
+        Room: Tall Shaft
+        Node: Lower-Right Red Door
+        Player X: 240
+        Player Y: 1412
     Outer Wall, Elevator Shaft Room (Middle-Left Red Door):
         Stage: Outer Wall
         Room: Elevator Shaft Room
@@ -154,9 +211,69 @@ Targets:
         Node: Left Red Door
         Player X: 16
         Player Y: 132
+    Outer Wall, Elevator Shaft Room (Middle-Left Red Door):
+        Stage: Outer Wall
+        Room: Elevator Shaft Room
+        Node: Middle-Left Red Door
+        Player X: 272
+        Player Y: 644
     Outer Wall, Exit to Marble Gallery (Left Red Door):
         Stage: Outer Wall
         Room: Exit to Marble Gallery
         Node: Left Red Door
         Player X: 16
         Player Y: 132
+    Warp Rooms, Warp Room A (Left Red Door):
+        Stage: Warp Rooms
+        Room: Warp Room A
+        Node: Left Red Door
+        Player X: 16
+        Player Y: 132
+    Warp Rooms, Warp Room B (Left Red Door):
+        Stage: Warp Rooms
+        Room: Warp Room B
+        Node: Left Red Door
+        Player X: 16
+        Player Y: 132
+    Warp Rooms, Warp Room C (Right Red Door):
+        Stage: Warp Rooms
+        Room: Warp Room C
+        Node: Right Red Door
+        Player X: 240
+        Player Y: 132
+    Warp Rooms, Warp Room D (Right Red Door):
+        Stage: Warp Rooms
+        Room: Warp Room D
+        Node: Right Red Door
+        Player X: 240
+        Player Y: 132
+    Warp Rooms, Warp Room E (Left Red Door):
+        Stage: Warp Rooms
+        Room: Warp Room E
+        Node: Left Red Door
+        Player X: 16
+        Player Y: 132
+Future Sources:
+    Warp Rooms, Fake Room With Teleporter A:
+        Index: 28
+        Stage: Warp Rooms
+        Room: Fake Room With Teleporter A
+        Target: Castle Keep, Room ID 07 (Right Red Door)
+    Warp Rooms, Fake Room With Teleporter E:
+        Index: 32
+        Stage: Warp Rooms
+        Room: Fake Room With Teleporter E
+        Target: Abandoned Mine, Room ID 07 (Right Red Door)
+Future Targets:
+    Abandoned Mine, Room ID 07 (Right Red Door):
+        Stage: Abandoned Mine
+        Room: Room ID 07
+        Node: Right Red Door
+        Player X: 752
+        Player Y: 132
+    Castle Keep, Room ID 07 (Right Red Door):
+        Stage: Castle Keep
+        Room: Room ID 07
+        Node: Right Red Door
+        Player X: 240
+        Player Y: 388
