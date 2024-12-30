@@ -27,6 +27,7 @@ if __name__ == '__main__':
             'Colosseum': [],
             'Long Library': [],
             'Clock Tower': [],
+            'Warp Rooms': [],
         }
     with (
         open(os.path.join('build', 'sandbox', 'rules.json')) as rules_json,
@@ -57,6 +58,7 @@ if __name__ == '__main__':
                 ('Colosseum', global_rng.randint(0, 2 ** 64)),
                 ('Long Library', global_rng.randint(0, 2 ** 64)),
                 ('Clock Tower', global_rng.randint(0, 2 ** 64)),
+                ('Warp Rooms', global_rng.randint(0, 2 ** 64)),
             )
             print('Randomize with seeds')
             for (stage_name, stage_seed) in stages_to_process:
@@ -118,6 +120,7 @@ if __name__ == '__main__':
             # with open(os.path.join('build', 'sandbox', 'debug-changes.json'), 'w') as debug_changes_json:
             #     json.dump(changes, debug_changes_json, indent='    ', sort_keys=True, default=str)
             print('Require that reaching all shuffled stages in a reasonable amount of steps is possible')
+            # TODO(sestren): Add all vanilla stages to logic
             logic_core = mapper.LogicCore(mapper_data, changes).get_core()
             logic_core['Goals'] = {
                 'Reach All Shuffled Stages': {
@@ -130,6 +133,7 @@ if __name__ == '__main__':
                     'Progression - Colosseum Stage Reached': True,
                     'Progression - Long Library Stage Reached': True,
                     'Progression - Clock Tower Stage Reached': True,
+                    'Progression - Warp Rooms Stage Reached': True,
                 },
             }
             # with open(os.path.join('build', 'debug', 'logic-core.json'), 'w') as debug_logic_core_json:

@@ -1,0 +1,49 @@
+
+Stage: Warp Rooms
+Room: Warp Room C
+Index: 2
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Right Red Door:
+        Type: Red Door
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Special
+        Exit Section: Main
+Commands:
+    Move - Main:
+        Outcomes:
+            Section: Main
+            Status - Warp Room C Unlocked: true
+        Requirements:
+            Default:
+                Section: Special
+    Teleport - Warp Room A:
+        Outcomes:
+            Location: Warp Rooms, Warp Room A
+            Section: Special
+        Requirements:
+            Default:
+                Section: Main
+                Status - Warp Room A Unlocked: true
+    Teleport - Warp Room B:
+        Outcomes:
+            Location: Warp Rooms, Warp Room B
+            Section: Special
+        Requirements:
+            Default:
+                Section: Main
+                Status - Warp Room A Unlocked: false
+                Status - Warp Room B Unlocked: true
+    Teleport - Warp Room D:
+        Outcomes:
+            Location: Warp Rooms, Warp Room D
+            Section: Special
+        Requirements:
+            Default:
+                Section: Main
+                Status - Warp Room A Unlocked: false
+                Status - Warp Room B Unlocked: false
