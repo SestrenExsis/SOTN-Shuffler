@@ -1,0 +1,225 @@
+
+Stage: Castle Keep
+Room: Keep Area
+Index: 2
+Columns: 8
+Rows: 8
+Empty Cells: {}
+Nodes:
+    Top Secret Passage:
+        Type: Secret Passage
+        Row: 3
+        Column: 5
+        Edge: Top
+        Entry Section: Falling
+        Exit Section: Rising
+    Upper-Right Passage:
+        Type: Passage
+        Row: 1
+        Column: 7
+        Edge: Right
+        Entry Section: Upper-Right Ledge
+        Exit Section: Upper-Right Ledge
+    Middle-Right Passage:
+        Type: Passage
+        Row: 4
+        Column: 7
+        Edge: Right
+        Entry Section: Bottom of Stairwell
+        Exit Section: Bottom of Stairwell
+    Lower-Right Passage A:
+        Type: Passage
+        Row: 6
+        Column: 7
+        Edge: Right
+        Entry Section: Ground
+        Exit Section: Ground
+    Lower-Right Passage B:
+        Type: Passage
+        Row: 7
+        Column: 7
+        Edge: Right
+        Entry Section: Hallway
+        Exit Section: Hallway
+    Lower-Left Red Door:
+        Type: Red Door
+        Row: 7
+        Column: 0
+        Edge: Left
+        Entry Section: Hallway
+        Exit Section: Hallway
+Commands:
+    Move - Anteroom:
+        Outcomes:
+            Section: Anteroom
+        Requirements:
+            Bottom of Stairwell - Bat Form:
+                Section: Bottom of Stairwell
+                Progression - Bat Transformation: true
+            Bottom of Stairwell - Multiple Gravity Jumps:
+                Section: Bottom of Stairwell
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Bottom of Stairwell - Diagonal Gravity Jump:
+                Section: Bottom of Stairwell
+                Progression - Gravity Jump: true
+            Bottom of Stairwell - Powered Mist:
+                Section: Bottom of Stairwell
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Falling - Default:
+                Section: Falling
+            Ground - Bat Form:
+                Section: Ground
+                Progression - Bat Transformation: true
+            Ground - Multiple Gravity Jumps:
+                Section: Ground
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Ground - Powered Mist:
+                Section: Ground
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Throne Room - Richter Saved:
+                Section: Throne Room
+                Progression - Richter Saved: true
+            Upper-Right Ledge - Bat Form:
+                Section: Upper-Right Ledge
+                Progression - Bat Transformation: true
+            Upper-Right Ledge - Multiple Gravity Jumps:
+                Section: Upper-Right Ledge
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Upper-Right Ledge - Powered Mist:
+                Section: Upper-Right Ledge
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+    Move - Bottom of Stairwell:
+        Outcomes:
+            Section: Bottom of Stairwell
+        Requirements:
+            Anteroom - Default:
+                Section: Anteroom
+            Ground - Bat Form:
+                Section: Ground
+                Progression - Bat Transformation: true
+            Ground - Multiple Gravity Jumps:
+                Section: Ground
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Ground - Powered Mist:
+                Section: Ground
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Middle-Left Ledge - Bat Form:
+                Section: Middle-Left Ledge
+                Progression - Bat Transformation: true
+            Middle-Left Ledge - Multiple Gravity Jumps:
+                Section: Middle-Left Ledge
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Middle-Left Ledge - Powered Mist:
+                Section: Middle-Left Ledge
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Upper-Right Ledge - Default:
+                Section: Upper-Right Ledge
+    Move - Ground:
+        Outcomes:
+            Section: Ground
+        Requirements:
+            Anteroom - Default:
+                Section: Anteroom
+            Bottom of Stairwell - Default:
+                Section: Bottom of Stairwell
+            Middle-Left Ledge - Default:
+                Section: Middle-Left Ledge
+    Move - Middle-Left Ledge:
+        Outcomes:
+            Section: Middle-Left Ledge
+        Requirements:
+            Bottom of Stairwell - Bat Form:
+                Section: Bottom of Stairwell
+                Progression - Bat Transformation: true
+            Bottom of Stairwell - Multiple Gravity Jumps:
+                Section: Bottom of Stairwell
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Bottom of Stairwell - Powered Mist:
+                Section: Bottom of Stairwell
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Ground - Bat Form:
+                Section: Ground
+                Progression - Bat Transformation: true
+            Ground - Multiple Gravity Jumps:
+                Section: Ground
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Ground - Powered Mist:
+                Section: Ground
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+    Move - Rising:
+        Outcomes:
+            Section: Rising
+        Requirements:
+            Anteroom - Hidden Staircase:
+                Section: Anteroom
+    Move - Teleporter:
+        Outcomes:
+            Section: Teleporter
+        Requirements:
+            Throne Room - Richter Saved:
+                Section: Anteroom
+                Progression - Richter Saved: true
+    Move - Throne Room:
+        Outcomes:
+            Section: Throne Room
+        Requirements:
+            Anteroom - Default:
+                Section: Anteroom
+            Teleporter - Default:
+                Section: Teleporter
+    Move - Upper-Right Ledge:
+        Outcomes:
+            Section: Upper-Right Ledge
+        Requirements:
+            Anteroom - Bat Form:
+                Section: Anteroom
+                Progression - Bat Transformation: true
+            Anteroom - Multiple Gravity Jumps:
+                Section: Anteroom
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Anteroom - Powered Mist:
+                Section: Anteroom
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Bottom of Stairwell - Bat Form:
+                Section: Bottom of Stairwell
+                Progression - Bat Transformation: true
+            Bottom of Stairwell - Multiple Gravity Jumps:
+                Section: Bottom of Stairwell
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Bottom of Stairwell - Powered Mist:
+                Section: Bottom of Stairwell
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+    Action - Collect Leap Stone Relic:
+        Outcomes:
+            Relic - Leap Stone: true
+            Progression - Double Jump: true
+        Requirements:
+            Default:
+                Section: Ground
+                Relic - Leap Stone: false
+    Action - Collect Power of Mist Relic:
+        Outcomes:
+            Relic - Power of Mist: true
+            Progression - Longer Mist Duration: true
+        Requirements:
+            Default:
+                Section: Middle-Left
+                Relic - Power of Mist: false

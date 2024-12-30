@@ -1,0 +1,16 @@
+
+Stage: Castle Keep
+Room: Upper Attic
+Index: 0
+Columns: 3
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Bottom Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Bottom
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

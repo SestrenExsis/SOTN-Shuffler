@@ -1,0 +1,44 @@
+
+Stage: Castle Keep
+Room: Ghost Card Room
+Index: 3
+Columns: 2
+Rows: 3
+Empty Cells: {}
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+        Entry Section: Platforms
+        Exit Section: Platforms
+Commands:
+    Move - Ground:
+        Outcomes:
+            Section: Ground
+        Requirements:
+            Platforms - Default:
+                Section: Platforms
+    Move - Platforms:
+        Outcomes:
+            Section: Platforms
+        Requirements:
+            Ground - Bat Form:
+                Section: Ground
+                Progression - Bat Transformation: true
+            Ground - Double Jump:
+                Section: Ground
+                Progression - Double Jump: true
+            Ground - Gravity Jump:
+                Section: Ground
+                Progression - Gravity Jump: true
+            Ground - Powered Mist:
+                Section: Ground
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Ground - Wolf-Mist Rise:
+                Section: Ground
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
