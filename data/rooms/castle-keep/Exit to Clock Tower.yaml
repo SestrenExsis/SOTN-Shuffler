@@ -1,0 +1,64 @@
+
+Stage: Castle Keep
+Room: Exit to Clock Tower
+Index: 7
+Columns: 1
+Rows: 2
+Empty Cells: {}
+Nodes:
+    Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Top
+        Entry Section: Falling
+        Exit Section: Rising
+    Upper-Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Upper-Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Right Red Door:
+        Type: Red Door
+        Row: 1
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Left Passage:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Falling - Default:
+                Section: Falling
+    Move - Rising:
+        Outcomes:
+            Section: Rising
+        Requirements:
+            Main - Bat Form:
+                Section: Main
+                Progression - Bat Transformation: true
+            Main - Gravity Jump:
+                Section: Main
+                Progression - Gravity Jump: true
+            Main - Powered Mist:
+                Section: Main
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true

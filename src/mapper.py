@@ -502,6 +502,30 @@ stages = {
             'Warp Rooms, Warp Room E': (44 + 0, 33 + 2),
         },
     ],
+    'Castle Keep': [
+        {
+            'Castle Keep, Keep Area': (32 + 0, 32 + 2),
+            'Castle Keep, Upper Attic': (32 + 1, 32 + 5),
+            'Castle Keep, Lower Attic': (32 + 2, 32 + 6),
+            'Castle Keep, Loading Room C': (32 + 7, 32 + 1),
+            'Castle Keep, Fake Room With Teleporter B': (32 + 7, 32 + 0),
+        },
+        {
+            'Castle Keep, Lion Torch Platform': (0 + 0, 0 + 0),
+            'Castle Keep, Loading Room A': (0 + 1, 0 + 1),
+            'Castle Keep, Fake Room With Teleporter A': (0 + 1, 0 + 2),
+        },
+        {
+            'Castle Keep, Exit to Clock Tower': (0 + 0, 0 + 0),
+            'Castle Keep, Loading Room B': (0 + 1, 0 + 1),
+            'Castle Keep, Fake Room With Teleporter C': (0 + 1, 0 + 2),
+        },
+        { 'Castle Keep, Bend': (0, 0) },
+        { 'Castle Keep, Falchion Room': (0, 0) },
+        { 'Castle Keep, Ghost Card Room': (0, 0) },
+        { 'Castle Keep, Save Room A': (0, 0) },
+        { 'Castle Keep, Tyrfing Room': (0, 0) },
+    ],
 }
 
 def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
@@ -564,6 +588,7 @@ class MapperData:
             'long-library',
             'clock-tower',
             'warp-rooms',
+            'castle-keep',
         ):
             folder_path = os.path.join('data', 'rooms', stage_folder)
             for file_name in os.listdir(folder_path):
@@ -600,6 +625,7 @@ class LogicCore:
             'Long Library',
             'Clock Tower',
             'Warp Rooms',
+            'Castle Keep',
         ):
             # print('', stage_name)
             nodes = {}
@@ -782,6 +808,7 @@ class Mapper:
                 no_nodes_unused and
                 (all_rooms_connected or self.stage_name == 'Warp Rooms')
             )
+            # print(all_rooms_used, no_nodes_unused, all_rooms_connected, len(self.stage.rooms), len(self.rooms))
         return result
 
     def get_spoiler(self, stage_name: str) -> list[str]:
@@ -858,6 +885,7 @@ if __name__ == '__main__':
             'Long Library': [],
             'Clock Tower': [],
             'Warp Rooms': [],
+            'Castle Keep': [],
         }
     parser = argparse.ArgumentParser()
     parser.add_argument('stage_name', help='Input a valid stage name', type=str)

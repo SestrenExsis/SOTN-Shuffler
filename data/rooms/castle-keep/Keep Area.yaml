@@ -4,7 +4,53 @@ Room: Keep Area
 Index: 2
 Columns: 8
 Rows: 8
-Empty Cells: {}
+Empty Cells:
+    - Row: 0
+      Column: 0
+    - Row: 0
+      Column: 1
+    - Row: 0
+      Column: 2
+    - Row: 0
+      Column: 3
+    - Row: 0
+      Column: 4
+    - Row: 0
+      Column: 5
+    - Row: 0
+      Column: 6
+    - Row: 0
+      Column: 7
+    - Row: 1
+      Column: 0
+    - Row: 1
+      Column: 1
+    - Row: 1
+      Column: 2
+    - Row: 1
+      Column: 3
+    - Row: 1
+      Column: 4
+    - Row: 1
+      Column: 5
+    - Row: 2
+      Column: 0
+    - Row: 2
+      Column: 2
+    - Row: 2
+      Column: 3
+    - Row: 2
+      Column: 4
+    - Row: 2
+      Column: 5
+    - Row: 3
+      Column: 0
+    - Row: 4
+      Column: 0
+    - Row: 5
+      Column: 0
+    - Row: 6
+      Column: 0
 Nodes:
     Top Secret Passage:
         Type: Secret Passage
