@@ -516,7 +516,7 @@ stages = {
             'Castle Keep, Fake Room With Teleporter A': (0 + 1, 0 + 2),
         },
         {
-            'Castle Keep, Exit to Clock Tower': (0 + 0, 0 + 0),
+            'Castle Keep, Dual Platforms': (0 + 0, 0 + 0),
             'Castle Keep, Loading Room B': (0 + 1, 0 + 1),
             'Castle Keep, Fake Room With Teleporter C': (0 + 1, 0 + 2),
         },
@@ -916,8 +916,8 @@ if __name__ == '__main__':
         )
         print(mapper_metadata[args.stage_name][-1])
         spoiler = stage_map.get_spoiler(args.stage_name)
-        for line in spoiler:
-            print(line)
+        # for line in spoiler:
+        #     print(line)
         changes['Spoiler'] = spoiler
         with (
             open(os.path.join('build', 'mapper', 'mapper-metadata.json'), 'w') as mapper_metadata_json,
