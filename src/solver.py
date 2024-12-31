@@ -477,6 +477,7 @@ if __name__ == '__main__':
                 'Progression - Long Library Stage Reached': True,
                 'Progression - Clock Tower Stage Reached': True,
                 'Progression - Warp Rooms Stage Reached': True,
+                'Progression - Castle Keep Stage Reached': True,
             },
             # 'Debug 99': {
             #     'Relic - Soul of Bat': True,
