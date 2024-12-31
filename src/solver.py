@@ -78,6 +78,7 @@ class Game:
             'Progression - Outer Wall Stage Reached': 11.0,
             'Progression - Clock Tower Stage Reached': 8.0,
             'Progression - Warp Rooms Stage Reached': 7.0,
+            'Progression - Castle Keep Stage Reached': 8.0,
             'Relic - Cube of Zoe': 3.0,
             'Relic - Form of Mist': 5.0,
             'Relic - Faerie Scroll': 1.0,
@@ -118,6 +119,7 @@ class Game:
             'Progression - Alchemy Laboratory Stage Reached': 'AL',
             'Progression - Castle Entrance Revisited Stage Reached': 'C1',
             'Progression - Castle Entrance Stage Reached': 'C2',
+            'Progression - Castle Keep Stage Reached': 'CK',
             'Progression - Clock Tower Stage Reached': 'CT',
             'Progression - Colosseum Stage Reached': 'CO',
             'Progression - Long Library Stage Reached': 'LB',
@@ -125,11 +127,11 @@ class Game:
             'Progression - Olrox\'s Quarters Stage Reached': 'OQ',
             'Progression - Outer Wall Stage Reached': 'OW',
             'Progression - Warp Rooms Stage Reached': 'WR',
-            'Relic - Form of Mist': 'M',
+            'Relic - Form of Mist': 'm',
             'Relic - Gravity Boots': 'g',
             'Relic - Jewel of Open': 'o',
             'Relic - Leap Stone': 'l',
-            'Relic - Power of Mist': 'm',
+            'Relic - Power of Mist': 'M',
             'Relic - Soul of Bat': 'b',
             'Relic - Soul of Wolf': 'w',
         }
@@ -312,8 +314,8 @@ class Solver():
             memo[hashed_state__solver] = step__solver
             if step__solver > -score__solver:
                 continue
-            if self.debug:
-                print(score__solver, step__solver, game__solver.current_state['Location'], hashed_state__solver, len(work__solver), len(memo))
+            # if self.debug:
+            #     print(score__solver, step__solver, game__solver.current_state['Location'], hashed_state__solver, len(work__solver), len(memo))
             for command in game__solver.get_valid_command_names():
                 next_game__solver = game__solver.clone()
                 next_game__solver.process_command(command)

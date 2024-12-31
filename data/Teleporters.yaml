@@ -166,6 +166,12 @@ Targets:
         Node: Lower-Right Red Door
         Player X: 240
         Player Y: 388
+    Castle Keep, Lion Torch Platform (Lower-Right Red Door):
+        Stage: Castle Keep
+        Room: Lion Torch Platform
+        Node: Lower-Right Red Door
+        Player X: 240
+        Player Y: 388
     Clock Tower, Karasuman's Room (Left Red Door):
         Stage: Clock Tower
         Room: Karasuman's Room

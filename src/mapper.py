@@ -870,59 +870,38 @@ if __name__ == '__main__':
     python mapper.py
     '''
     GENERATION_VERSION = '0.0.4'
-    mapper_data = MapperData().get_core()
-    try:
-        with open(os.path.join('build', 'mapper', 'mapper-metadata.json'), 'r') as mapper_metadata_json:
-            mapper_metadata = json.load(mapper_metadata_json)
-    except:
-        mapper_metadata = {
-            'Alchemy Laboratory': [],
-            'Marble Gallery': [],
-            'Outer Wall': [],
-            'Olrox\'s Quarters': [],
-            'Colosseum': [],
-            'Castle Entrance': [],
-            'Long Library': [],
-            'Clock Tower': [],
-            'Warp Rooms': [],
-            'Castle Keep': [],
-        }
+    mapper_core = MapperData().get_core()
     parser = argparse.ArgumentParser()
     parser.add_argument('stage_name', help='Input a valid stage name', type=str)
     parser.add_argument('stage_count', help='Input the number of stage instances to generate', type=int)
     args = parser.parse_args()
-    if args.stage_name not in mapper_metadata:
-        mapper_metadata[args.stage_name] = []
     print('')
     print(args.stage_name, args.stage_count)
     seed = random.randint(0, 2 ** 64)
     for _ in range(args.stage_count):
-        stage_map = Mapper(mapper_data, args.stage_name, seed)
+        stage_map = Mapper(mapper_core, args.stage_name, seed)
         while True:
             stage_map.generate()
             if stage_map.validate():
                 break
         changes = stage_map.stage.get_changes()
-        mapper_metadata[args.stage_name].append(
-            {
-                'Attempts': stage_map.attempts,
-                'Generation Start Date': stage_map.start_time.isoformat(),
-                'Generation End Date': stage_map.end_time.isoformat(),
-                'Generation Version': GENERATION_VERSION,
-                'Hash of Rooms': hashlib.sha256(json.dumps(changes['Rooms'], sort_keys=True).encode()).hexdigest(),
-                'Seed': stage_map.current_seed,
-                'Stage': args.stage_name,
-            }
-        )
-        print(mapper_metadata[args.stage_name][-1])
-        spoiler = stage_map.get_spoiler(args.stage_name)
+        mapper_data = {
+            'Attempts': stage_map.attempts,
+            'Generation Start Date': stage_map.start_time.isoformat(),
+            'Generation End Date': stage_map.end_time.isoformat(),
+            'Generation Version': GENERATION_VERSION,
+            'Hash of Rooms': hashlib.sha256(json.dumps(changes['Rooms'], sort_keys=True).encode()).hexdigest(),
+            'Seed': stage_map.current_seed,
+            'Stage': args.stage_name,
+        }
+        print(mapper_data)
+        mapper_data['Rooms'] = changes['Rooms']
+        mapper_data['Spoiler'] = stage_map.get_spoiler(args.stage_name)
+        # spoiler = stage_map.get_spoiler(args.stage_name)
         # for line in spoiler:
         #     print(line)
-        changes['Spoiler'] = spoiler
         with (
-            open(os.path.join('build', 'mapper', 'mapper-metadata.json'), 'w') as mapper_metadata_json,
-            open(os.path.join('build', 'mapper', args.stage_name, str(stage_map.current_seed) + '.json'), 'w') as changes_json,
+            open(os.path.join('build', 'mapper', args.stage_name, str(stage_map.current_seed) + '.json'), 'w') as mapper_data_json,
         ):
-            json.dump(mapper_metadata, mapper_metadata_json, indent='    ', sort_keys=True, default=str)
-            json.dump(changes, changes_json, indent='    ', sort_keys=True, default=str)
+            json.dump(mapper_data, mapper_data_json, indent='    ', sort_keys=True, default=str)
         seed = stage_map.rng.randint(0, 2 ** 64)
