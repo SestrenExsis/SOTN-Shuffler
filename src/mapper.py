@@ -529,9 +529,18 @@ stages = {
     ],
     'Royal Chapel': [
         {
-            'Royal Chapel, Right Tower': (32 + 0, 32 + 0),
-            'Royal Chapel, Loading Room A': (32 + 2, 32 + 3),
-            'Royal Chapel, Fake Room With Teleporter A': (32 + 2, 32 + 4),
+            # NOTE(sestren): For now, these hallways and towers must be combined until the special behavior that controls transitions between them is better understood
+            'Royal Chapel, Spike Hallway': (32 + 4, 32 + 0),
+            'Royal Chapel, Left Tower': (32 + 1, 32 + 3),
+            'Royal Chapel, Walkway Between Towers': (32 + 3, 32 + 5),
+            'Royal Chapel, Middle Tower': (32 + 0, 32 + 8),
+            'Royal Chapel, Walkway Left of Hippogryph': (32 + 2, 32 + 10),
+        },
+        {
+            'Royal Chapel, Walkway Right of Hippogryph': (0 + 3, 0 + 0),
+            'Royal Chapel, Right Tower': (0 + 0, 0 + 1),
+            'Royal Chapel, Loading Room A': (0 + 2, 0 + 4),
+            'Royal Chapel, Fake Room With Teleporter A': (0 + 2, 0 + 5),
         },
         {
             'Royal Chapel, Pushing Statue Shortcut': (0 + 0, 0 + 0),
@@ -553,15 +562,9 @@ stages = {
         { 'Royal Chapel, Empty Room': (0, 0) },
         { 'Royal Chapel, Goggles Room': (0, 0) },
         { 'Royal Chapel, Hippogryph Room': (0, 0) },
-        { 'Royal Chapel, Left Tower': (0, 0) },
-        { 'Royal Chapel, Middle Tower': (0, 0) },
         { 'Royal Chapel, Save Room A': (0, 0) },
         { 'Royal Chapel, Save Room B': (0, 0) },
         { 'Royal Chapel, Silver Ring Room': (0, 0) },
-        { 'Royal Chapel, Spike Hallway': (0, 0) },
-        { 'Royal Chapel, Walkway Between Towers': (0, 0) },
-        { 'Royal Chapel, Walkway Left of Hippogryph': (0, 0) },
-        { 'Royal Chapel, Walkway Right of Hippogryph': (0, 0) },
     ],
 }
 
