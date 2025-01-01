@@ -13,4 +13,11 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands: {}
+Commands:
+    Action - Collect Silver Ring Item:
+        Outcomes:
+            Item - Silver Ring: true
+        Requirements:
+            Default:
+                Section: Main
+                Item - Silver Ring: false

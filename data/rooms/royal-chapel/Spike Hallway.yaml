@@ -13,13 +13,61 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Left
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Left Side
+        Exit Section: Left Side
     Right Passage:
         Type: Passage
         Row: 0
         Column: 3
         Edge: Right
-        Entry Section: Main
-        Exit Section: Main
-Commands: {}
+        Entry Section: Right Side
+        Exit Section: Right Side
+Commands:
+    Move - Left Side:
+        Outcomes:
+            Section: Left Side
+        Requirements:
+            Middle - Blue Door with Bat:
+                Section: Middle
+                Progression - Unlock Blue Doors: true
+                Progression - Bat Transformation: true
+            Middle - Blue Door with Spike Breaker:
+                Section: Middle
+                Progression - Unlock Blue Doors: true
+                Item - Spike Breaker:
+                    Minimum: 1
+    Move - Middle:
+        Outcomes:
+            Section: Middle
+        Requirements:
+            Left Side - Blue Door with Bat:
+                Section: Left Side
+                Progression - Unlock Blue Doors: true
+                Progression - Bat Transformation: true
+            Left Side - Blue Door with Spike Breaker:
+                Section: Left Side
+                Progression - Unlock Blue Doors: true
+                Item - Spike Breaker:
+                    Minimum: 1
+            Right Side - Mist with Bat:
+                Section: Right Side
+                Progression - Mist Transformation: true
+                Progression - Bat Transformation: true
+            Right Side - Mist with Spike Breaker:
+                Section: Right Side
+                Progression - Mist Transformation: true
+                Item - Spike Breaker:
+                    Minimum: 1
+    Move - Right Side:
+        Outcomes:
+            Section: Right Side
+        Requirements:
+            Middle - Mist with Bat:
+                Section: Middle
+                Progression - Mist Transformation: true
+                Progression - Bat Transformation: true
+            Middle - Mist with Spike Breaker:
+                Section: Middle
+                Progression - Mist Transformation: true
+                Item - Spike Breaker:
+                    Minimum: 1

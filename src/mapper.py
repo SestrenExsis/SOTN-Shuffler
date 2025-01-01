@@ -5,6 +5,7 @@ import datetime
 import hashlib
 import json
 import os
+import pathlib
 import random
 import yaml
 
@@ -846,7 +847,7 @@ class Mapper:
                 no_nodes_unused and
                 (all_rooms_connected or self.stage_name == 'Warp Rooms')
             )
-            print(all_rooms_used, no_nodes_unused, all_rooms_connected, len(self.stage.rooms), len(self.rooms))
+            # print(all_rooms_used, no_nodes_unused, all_rooms_connected, len(self.stage.rooms), len(self.rooms))
         return result
 
     def get_spoiler(self, stage_name: str) -> list[str]:
@@ -907,6 +908,10 @@ if __name__ == '__main__':
     Usage
     python mapper.py
     '''
+    for stage_name in stages:
+        pathlib.Path(
+            os.path.join('build', 'mapper', stage_name)
+        ).mkdir(parents=True, exist_ok=True)
     GENERATION_VERSION = '0.0.4'
     mapper_core = MapperData().get_core()
     with (
@@ -927,12 +932,13 @@ if __name__ == '__main__':
             if stage_map.validate():
                 break
         changes = stage_map.stage.get_changes()
+        hash_of_rooms = hashlib.sha256(json.dumps(changes['Rooms'], sort_keys=True).encode()).hexdigest()
         mapper_data = {
             'Attempts': stage_map.attempts,
             'Generation Start Date': stage_map.start_time.isoformat(),
             'Generation End Date': stage_map.end_time.isoformat(),
             'Generation Version': GENERATION_VERSION,
-            'Hash of Rooms': hashlib.sha256(json.dumps(changes['Rooms'], sort_keys=True).encode()).hexdigest(),
+            'Hash of Rooms': hash_of_rooms,
             'Seed': stage_map.current_seed,
             'Stage': args.stage_name,
         }
@@ -942,8 +948,12 @@ if __name__ == '__main__':
         # spoiler = stage_map.get_spoiler(args.stage_name)
         # for line in spoiler:
         #     print(line)
-        with (
-            open(os.path.join('build', 'mapper', args.stage_name, str(stage_map.current_seed) + '.json'), 'w') as mapper_data_json,
-        ):
-            json.dump(mapper_data, mapper_data_json, indent='    ', sort_keys=True, default=str)
+        filepath = os.path.join('build', 'mapper', args.stage_name, hash_of_rooms + '.json')
+        if not os.path.exists(filepath):
+            with (
+                open(os.path.join('build', 'mapper', args.stage_name, hash_of_rooms + '.json'), 'w') as mapper_data_json,
+            ):
+                json.dump(mapper_data, mapper_data_json, indent='    ', sort_keys=True, default=str)
+        else:
+            print('Stage with that hash already exists:', (args.stage_name, hash_of_rooms))
         seed = stage_map.rng.randint(0, 2 ** 64)
