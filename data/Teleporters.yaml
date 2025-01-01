@@ -10,6 +10,11 @@ Sources:
         Stage: Alchemy Laboratory
         Room: Fake Room With Teleporter A
         Target: Marble Gallery, Entrance (Left Red Door)
+    Alchemy Laboratory, Fake Room With Teleporter B:
+        Index: 23
+        Stage: Alchemy Laboratory
+        Room: Fake Room With Teleporter B
+        Target: Royal Chapel, Statue Ledge (Right Red Door)
     Alchemy Laboratory, Fake Room With Teleporter C:
         Index: 21
         Stage: Alchemy Laboratory
@@ -40,6 +45,11 @@ Sources:
         Stage: Castle Keep
         Room: Fake Room With Teleporter A
         Target: Clock Tower, Karasuman's Room (Left Red Door)
+    Castle Keep, Fake Room With Teleporter B:
+        Index: 47
+        Stage: Castle Keep
+        Room: Fake Room With Teleporter B
+        Target: Royal Chapel, Right Tower (Middle-Right Red Door)
     Castle Keep, Fake Room With Teleporter C:
         Index: 46
         Stage: Castle Keep
@@ -55,6 +65,11 @@ Sources:
         Stage: Clock Tower
         Room: Fake Room With Teleporter B
         Target: Outer Wall, Exit to Clock Tower (Left Red Door)
+    Colosseum, Fake Room With Teleporter A:
+        Index: 52
+        Stage: Colosseum
+        Room: Fake Room With Teleporter A
+        Target: Royal Chapel, Nave (Lower-Right Red Door)
     Colosseum, Fake Room With Teleporter B:
         Index: 53
         Stage: Colosseum
@@ -80,6 +95,11 @@ Sources:
         Stage: Marble Gallery
         Room: Fake Room With Teleporter C
         Target: Alchemy Laboratory, Exit to Marble Gallery (Right Red Door)
+    Olrox's Quarters, Fake Room With Teleporter A:
+        Index: 25
+        Stage: Olrox's Quarters
+        Room: Fake Room With Teleporter A
+        Target: Royal Chapel, Pushing Statue Shortcut (Right Red Door)
     Olrox's Quarters, Fake Room With Teleporter B:
         Index: 27
         Stage: Olrox's Quarters
@@ -115,6 +135,26 @@ Sources:
         Stage: Outer Wall
         Room: Fake Room With Teleporter D
         Target: Marble Gallery, Long Hallway (Right Red Door)
+    Royal Chapel, Fake Room With Teleporter A:
+        Index: 36
+        Stage: Royal Chapel
+        Room: Fake Room With Teleporter A
+        Target: Castle Keep, Keep Area (Lower-Left Red Door)
+    Royal Chapel, Fake Room With Teleporter B:
+        Index: 33
+        Stage: Royal Chapel
+        Room: Fake Room With Teleporter B
+        Target: Olrox's Quarters, Catwalk Crypt (Left Red Door)
+    Royal Chapel, Fake Room With Teleporter C:
+        Index: 34
+        Stage: Royal Chapel
+        Room: Fake Room With Teleporter C
+        Target: Colosseum, Passageway Between Arena and Royal Chapel (Left Red Door)
+    Royal Chapel, Fake Room With Teleporter D:
+        Index: 35
+        Stage: Royal Chapel
+        Room: Fake Room With Teleporter D
+        Target: Alchemy Laboratory, Exit to Royal Chapel (Left Red Door)
     Warp Rooms, Fake Room With Teleporter A:
         Index: 28
         Stage: Warp Rooms
@@ -142,6 +182,12 @@ Targets:
         Node: Right Red Door
         Player X: 752
         Player Y: 132
+    Alchemy Laboratory, Exit to Royal Chapel (Left Red Door):
+        Stage: Alchemy Laboratory
+        Room: Exit to Royal Chapel
+        Node: Left Red Door
+        Player X: 16
+        Player Y: 132
     Alchemy Laboratory, Exit to Marble Gallery (Right Red Door):
         Stage: Alchemy Laboratory
         Room: Exit to Marble Gallery
@@ -166,6 +212,12 @@ Targets:
         Node: Lower-Right Red Door
         Player X: 240
         Player Y: 388
+    Castle Keep, Keep Area (Lower-Left Red Door):
+        Stage: Castle Keep
+        Room: Keep Area
+        Node: Lower-Left Red Door
+        Player X: 16
+        Player Y: 1924
     Castle Keep, Lion Torch Platform (Lower-Right Red Door):
         Stage: Castle Keep
         Room: Lion Torch Platform
@@ -183,6 +235,12 @@ Targets:
         Room: Stairwell to Outer Wall
         Node: Right Red Door
         Player X: 240
+        Player Y: 132
+    Colosseum, Passageway Between Arena and Royal Chapel (Left Red Door):
+        Stage: Colosseum
+        Room: Passageway Between Arena and Royal Chapel
+        Node: Left Red Door
+        Player X: 16
         Player Y: 132
     Colosseum, Top of Elevator Shaft (Right Red Door):
         Stage: Colosseum
@@ -211,6 +269,12 @@ Targets:
     Marble Gallery, Pathway After Left Statue (Left Red Door):
         Stage: Marble Gallery
         Room: Pathway After Left Statue
+        Node: Left Red Door
+        Player X: 16
+        Player Y: 132
+    Olrox's Quarters, Catwalk Crypt (Left Red Door):
+        Stage: Olrox's Quarters
+        Room: Catwalk Crypt
         Node: Left Red Door
         Player X: 16
         Player Y: 132
@@ -256,6 +320,30 @@ Targets:
         Node: Left Red Door
         Player X: 16
         Player Y: 132
+    Royal Chapel, Statue Ledge (Right Red Door):
+        Stage: Royal Chapel
+        Room: Statue Ledge
+        Node: Right Red Door
+        Player X: 240
+        Player Y: 132
+    Royal Chapel, Pushing Statue Shortcut (Right Red Door):
+        Stage: Royal Chapel
+        Room: Pushing Statue Shortcut
+        Node: Right Red Door
+        Player X: 240
+        Player Y: 132
+    Royal Chapel, Right Tower (Middle-Right Red Door):
+        Stage: Royal Chapel
+        Room: Right Tower
+        Node: Middle-Right Red Door
+        Player X: 752
+        Player Y: 648
+    Royal Chapel, Nave (Lower-Right Red Door):
+        Stage: Royal Chapel
+        Room: Nave
+        Node: Lower-Right Red Door
+        Player X: 496
+        Player Y: 388
     Warp Rooms, Warp Room A (Left Red Door):
         Stage: Warp Rooms
         Room: Warp Room A
@@ -287,23 +375,12 @@ Targets:
         Player X: 16
         Player Y: 132
 Future Sources:
-    Castle Keep, Fake Room With Teleporter B:
-        Index: 47
-        Stage: Castle Keep
-        Room: Fake Room With Teleporter B
-        Target: Royal Chapel, XXX (XXX Red Door)
     Warp Rooms, Fake Room With Teleporter E:
         Index: 32
         Stage: Warp Rooms
         Room: Fake Room With Teleporter E
         Target: Abandoned Mine, Room ID 07 (Right Red Door)
 Future Targets:
-    Royal Chapel, XXX (XXX Red Door):
-        Stage: Royal Chapel
-        Room: XXX
-        Node: XXX Red Door
-        Player X: 752
-        Player Y: 648
     Abandoned Mine, Room ID 07 (Right Red Door):
         Stage: Abandoned Mine
         Room: Room ID 07

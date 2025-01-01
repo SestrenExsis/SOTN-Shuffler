@@ -1,0 +1,25 @@
+
+Stage: Royal Chapel
+Room: Spike Hallway
+Index: 1
+Columns: 5
+Rows: 1
+Empty Cells:
+    - Row: 0
+      Column: 4
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 3
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

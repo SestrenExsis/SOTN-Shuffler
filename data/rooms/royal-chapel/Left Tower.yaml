@@ -1,0 +1,84 @@
+
+Stage: Royal Chapel
+Room: Left Tower
+Index: 13
+Columns: 4
+Rows: 10
+Empty Cells:
+    - Row: 0
+      Column: 0
+    - Row: 1
+      Column: 0
+    - Row: 2
+      Column: 0
+    - Row: 3
+      Column: 0
+    - Row: 4
+      Column: 0
+    - Row: 5
+      Column: 0
+    - Row: 6
+      Column: 0
+    - Row: 7
+      Column: 0
+    - Row: 8
+      Column: 0
+    - Row: 9
+      Column: 0
+    - Row: 0
+      Column: 3
+    - Row: 1
+      Column: 3
+    - Row: 2
+      Column: 3
+    - Row: 3
+      Column: 3
+    - Row: 4
+      Column: 3
+    - Row: 5
+      Column: 3
+    - Row: 6
+      Column: 3
+    - Row: 7
+      Column: 3
+    - Row: 8
+      Column: 3
+    - Row: 9
+      Column: 3
+Nodes:
+    Upper-Right Passage:
+        Type: Passage
+        Row: 2
+        Column: 2
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Upper-Left Passage:
+        Type: Passage
+        Row: 3
+        Column: 1
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Middle-Right Passage:
+        Type: Passage
+        Row: 7
+        Column: 2
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Left Passage:
+        Type: Passage
+        Row: 9
+        Column: 1
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Right Passage:
+        Type: Passage
+        Row: 9
+        Column: 2
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

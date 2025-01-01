@@ -1,0 +1,23 @@
+
+Stage: Royal Chapel
+Room: Chapel Staircase
+Index: 11
+Columns: 8
+Rows: 7
+Empty Cells: {}
+Nodes:
+    Right Passage:
+        Type: Passage
+        Row: 1
+        Column: 7
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Bottom Passage:
+        Type: Passage
+        Row: 6
+        Column: 1
+        Edge: Bottom
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

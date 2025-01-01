@@ -1,0 +1,25 @@
+
+Stage: Royal Chapel
+Room: Walkway Left of Hippogryph
+Index: 3
+Columns: 3
+Rows: 1
+Empty Cells:
+    - Row: 0
+      Column: 0
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 2
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

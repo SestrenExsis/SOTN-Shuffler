@@ -526,6 +526,41 @@ stages = {
         { 'Castle Keep, Save Room A': (0, 0) },
         { 'Castle Keep, Tyrfing Room': (0, 0) },
     ],
+    'Royal Chapel': [
+        {
+            'Royal Chapel, Right Tower': (32 + 0, 32 + 0),
+            'Royal Chapel, Loading Room A': (32 + 2, 32 + 3),
+            'Royal Chapel, Fake Room With Teleporter A': (32 + 2, 32 + 4),
+        },
+        {
+            'Royal Chapel, Pushing Statue Shortcut': (0 + 0, 0 + 0),
+            'Royal Chapel, Loading Room D': (0 + 0, 0 + 1),
+            'Royal Chapel, Fake Room With Teleporter B': (0 + 0, 0 + 2),
+        },
+        {
+            'Royal Chapel, Nave': (0 + 0, 0 + 0),
+            'Royal Chapel, Loading Room C': (0 + 1, 0 + 2),
+            'Royal Chapel, Fake Room With Teleporter C': (0 + 1, 0 + 3),
+        },
+        {
+            'Royal Chapel, Statue Ledge': (0 + 0, 0 + 0),
+            'Royal Chapel, Loading Room B': (0 + 0, 0 + 1),
+            'Royal Chapel, Fake Room With Teleporter D': (0 + 0, 0 + 2),
+        },
+        { 'Royal Chapel, Chapel Staircase': (0, 0) },
+        { 'Royal Chapel, Confessional Booth': (0, 0) },
+        { 'Royal Chapel, Empty Room': (0, 0) },
+        { 'Royal Chapel, Goggles Room': (0, 0) },
+        { 'Royal Chapel, Hippogryph Room': (0, 0) },
+        { 'Royal Chapel, Left Tower': (0, 0) },
+        { 'Royal Chapel, Middle Tower': (0, 0) },
+        { 'Royal Chapel, Save Room A': (0, 0) },
+        { 'Royal Chapel, Silver Ring Room': (0, 0) },
+        { 'Royal Chapel, Spike Hallway': (0, 0) },
+        { 'Royal Chapel, Walkway Between Towers': (0, 0) },
+        { 'Royal Chapel, Walkway Left of Hippogryph': (0, 0) },
+        { 'Royal Chapel, Walkway Right of Hippogryph': (0, 0) },
+    ],
 }
 
 def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
@@ -589,6 +624,7 @@ class MapperData:
             'clock-tower',
             'warp-rooms',
             'castle-keep',
+            'royal-chapel',
         ):
             folder_path = os.path.join('data', 'rooms', stage_folder)
             for file_name in os.listdir(folder_path):
@@ -626,6 +662,7 @@ class LogicCore:
             'Clock Tower',
             'Warp Rooms',
             'Castle Keep',
+            'Royal Chapel',
         ):
             # print('', stage_name)
             nodes = {}
@@ -808,7 +845,7 @@ class Mapper:
                 no_nodes_unused and
                 (all_rooms_connected or self.stage_name == 'Warp Rooms')
             )
-            # print(all_rooms_used, no_nodes_unused, all_rooms_connected, len(self.stage.rooms), len(self.rooms))
+            print(all_rooms_used, no_nodes_unused, all_rooms_connected, len(self.stage.rooms), len(self.rooms))
         return result
 
     def get_spoiler(self, stage_name: str) -> list[str]:
