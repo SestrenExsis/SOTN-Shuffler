@@ -654,7 +654,24 @@ class MapperData:
 class LogicCore:
     def __init__(self, mapper_data, changes):
         print('Build logic core')
-        self.commands = {}
+        self.commands = {
+            'Global': {
+                'Use Library Card': {
+                    'Outcomes': {
+                        'Location': 'Long Library, Outside Shop',
+                        'Section': 'Main',
+                        'Item - Library Card': -1,
+                    },
+                    'Requirements': {
+                        'Default': {
+                            'Item - Library Card': {
+                                'Minimum': 1,
+                            },
+                        },
+                    },
+                },
+            },
+        }
         for stage_name in (
             'Castle Entrance',
             'Castle Entrance Revisited',

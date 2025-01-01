@@ -130,7 +130,7 @@ if __name__ == '__main__':
             #     json.dump(logic_core, debug_logic_core_json, indent='    ', sort_keys=True, default=str)
             map_solver = solver.Solver(logic_core, skills)
             map_solver.debug = True
-            map_solver.solve_via_steps((24, 7, 80))
+            map_solver.solve_via_steps()
             if len(map_solver.results['Wins']) > 0:
                 (winning_layers, winning_game) = map_solver.results['Wins'][-1]
                 print('-------------')
@@ -146,6 +146,7 @@ if __name__ == '__main__':
                     'History': winning_game.history,
                     'Final Layer': winning_layers,
                     'Final State': winning_game.current_state,
+                    'Cycles': map_solver.cycle_count,
                 }
                 shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)
                 current_seed = {
