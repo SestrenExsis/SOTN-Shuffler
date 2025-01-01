@@ -79,6 +79,7 @@ class Game:
             'Progression - Clock Tower Stage Reached': 8.0,
             'Progression - Warp Rooms Stage Reached': 7.0,
             'Progression - Castle Keep Stage Reached': 8.0,
+            'Progression - Royal Chapel Stage Reached': 12.0,
             'Relic - Cube of Zoe': 3.0,
             'Relic - Form of Mist': 5.0,
             'Relic - Faerie Scroll': 1.0,
@@ -126,6 +127,7 @@ class Game:
             'Progression - Marble Gallery Stage Reached': 'MG',
             'Progression - Olrox\'s Quarters Stage Reached': 'OQ',
             'Progression - Outer Wall Stage Reached': 'OW',
+            'Progression - Royal Chapel Stage Reached': 'RC',
             'Progression - Warp Rooms Stage Reached': 'WR',
             'Relic - Form of Mist': 'm',
             'Relic - Gravity Boots': 'g',
@@ -478,6 +480,7 @@ if __name__ == '__main__':
                 'Progression - Clock Tower Stage Reached': True,
                 'Progression - Warp Rooms Stage Reached': True,
                 'Progression - Castle Keep Stage Reached': True,
+                'Progression - Royal Chapel Stage Reached': True,
             },
             # 'Debug 99': {
             #     'Relic - Soul of Bat': True,

@@ -45,6 +45,7 @@ if __name__ == '__main__':
                 ('Clock Tower', global_rng.randint(0, 2 ** 64)),
                 ('Warp Rooms', global_rng.randint(0, 2 ** 64)),
                 ('Castle Keep', global_rng.randint(0, 2 ** 64)),
+                ('Royal Chapel', global_rng.randint(0, 2 ** 64)),
             )
             print('Randomize with seeds')
             for (stage_name, stage_seed) in stages_to_process:
@@ -122,6 +123,7 @@ if __name__ == '__main__':
                     'Progression - Clock Tower Stage Reached': True,
                     'Progression - Warp Rooms Stage Reached': True,
                     'Progression - Castle Keep Stage Reached': True,
+                    'Progression - Royal Chapel Stage Reached': True,
                 },
             }
             # with open(os.path.join('build', 'debug', 'logic-core.json'), 'w') as debug_logic_core_json:

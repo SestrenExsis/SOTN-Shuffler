@@ -16,8 +16,9 @@ Nodes:
 Commands:
     Action - Collect Silver Ring Item:
         Outcomes:
-            Item - Silver Ring: true
+            Item - Silver Ring: 1
+            Check - Silver Ring Location: true
         Requirements:
             Default:
                 Section: Main
-                Item - Silver Ring: false
+                Check - Silver Ring Location: false
