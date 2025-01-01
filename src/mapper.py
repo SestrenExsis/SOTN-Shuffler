@@ -82,10 +82,10 @@ class Room:
     
     def get_cells(self, offset_top: int=0, offset_left: int=0) -> set[tuple[int, int]]:
         result = set()
-        for row in range(self.top, self.top + self.rows):
-            for col in range(self.left, self.left + self.columns):
+        for row in range(self.rows):
+            for col in range(self.columns):
                 if (row, col) not in self.empty_cells:
-                    result.add((row + offset_top, col + offset_left))
+                    result.add((self.top + row + offset_top, self.left + col + offset_left))
         return result
 
 class RoomSet:
@@ -433,8 +433,8 @@ stages = {
     'Long Library': [
         {
             'Long Library, Exit to Outer Wall': (32 + 0, 32 + 0),
-            'Long Library, Loading Room A': (32 + 0, 32 + 3),
-            'Long Library, Fake Room With Teleporter A': (32 + 0, 32 + 4),
+            'Long Library, Loading Room A': (32 + 2, 32 + 3),
+            'Long Library, Fake Room With Teleporter A': (32 + 2, 32 + 4),
         },
         {
             'Long Library, Spellbook Area': (0, 0),
@@ -555,6 +555,7 @@ stages = {
         { 'Royal Chapel, Left Tower': (0, 0) },
         { 'Royal Chapel, Middle Tower': (0, 0) },
         { 'Royal Chapel, Save Room A': (0, 0) },
+        { 'Royal Chapel, Save Room B': (0, 0) },
         { 'Royal Chapel, Silver Ring Room': (0, 0) },
         { 'Royal Chapel, Spike Hallway': (0, 0) },
         { 'Royal Chapel, Walkway Between Towers': (0, 0) },
@@ -580,7 +581,7 @@ def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
     while len(pool) > 0:
         possible_target_nodes = result.get_open_nodes()
         if len(possible_target_nodes) < 1:
-            # ERROR: No open nodes left
+            # print('ERROR: No open nodes left')
             break
         target_node = rng.choice(possible_target_nodes)
         open_nodes = []
@@ -588,7 +589,7 @@ def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
             for open_node in roomset.get_open_nodes(matching_node=target_node):
                 open_nodes.append(open_node)
         if len(open_nodes) < 1:
-            # ERROR: No matching source nodes for the chosen target node
+            # print('ERROR: No matching source nodes for the chosen target node')
             break
         # Go through possible source nodes in random order until a valid source node is found
         open_nodes.sort()
@@ -602,7 +603,7 @@ def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
                 roomset = pool.pop(roomset_key, None)
                 break
         else:
-            # ERROR: All matching source nodes for the target node result in invalid room placement
+            # print('ERROR: All matching source nodes for the target node result in invalid room placement')
             break
         steps += 1
     return result
@@ -871,7 +872,7 @@ class Mapper:
             legend.append((code, room_name))
             for cell_row in range(max(0, room.top), min(64, room.top + room.rows)):
                 for cell_col in range(max(0, room.left), min(64, room.left + room.columns)):
-                    if (cell_row - stage_top, cell_col - stage_left) in room.empty_cells:
+                    if (cell_row - room.top, cell_col - room.left) in room.empty_cells:
                         continue
                     top = cell_row - stage_top
                     left = cell_col - stage_left
@@ -908,6 +909,10 @@ if __name__ == '__main__':
     '''
     GENERATION_VERSION = '0.0.4'
     mapper_core = MapperData().get_core()
+    with (
+        open(os.path.join('build', 'mapper', 'mapper-core.json'), 'w') as mapper_core_json,
+    ):
+        json.dump(mapper_core, mapper_core_json, indent='    ', sort_keys=True, default=str)
     parser = argparse.ArgumentParser()
     parser.add_argument('stage_name', help='Input a valid stage name', type=str)
     parser.add_argument('stage_count', help='Input the number of stage instances to generate', type=int)
