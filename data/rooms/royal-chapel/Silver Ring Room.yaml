@@ -1,0 +1,24 @@
+
+Stage: Royal Chapel
+Room: Silver Ring Room
+Index: 0
+Columns: 2
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Action - Collect Silver Ring Item:
+        Outcomes:
+            Item - Silver Ring: 1
+            Check - Silver Ring Location: true
+        Requirements:
+            Default:
+                Section: Main
+                Check - Silver Ring Location: false

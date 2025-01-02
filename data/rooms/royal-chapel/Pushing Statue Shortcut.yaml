@@ -1,0 +1,23 @@
+
+Stage: Royal Chapel
+Room: Pushing Statue Shortcut
+Index: 6
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Right Red Door:
+        Type: Red Door
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

@@ -1,0 +1,39 @@
+
+Stage: Royal Chapel
+Room: Middle Tower
+Index: 14
+Columns: 4
+Rows: 4
+Empty Cells:
+    - Row: 0
+      Column: 0
+    - Row: 1
+      Column: 0
+    - Row: 2
+      Column: 0
+    - Row: 3
+      Column: 0
+    - Row: 0
+      Column: 3
+    - Row: 1
+      Column: 3
+    - Row: 2
+      Column: 3
+    - Row: 3
+      Column: 3
+Nodes:
+    Right Passage:
+        Type: Passage
+        Row: 2
+        Column: 2
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Left Passage:
+        Type: Passage
+        Row: 3
+        Column: 1
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

@@ -45,6 +45,7 @@ if __name__ == '__main__':
                 ('Clock Tower', global_rng.randint(0, 2 ** 64)),
                 ('Warp Rooms', global_rng.randint(0, 2 ** 64)),
                 ('Castle Keep', global_rng.randint(0, 2 ** 64)),
+                ('Royal Chapel', global_rng.randint(0, 2 ** 64)),
             )
             print('Randomize with seeds')
             for (stage_name, stage_seed) in stages_to_process:
@@ -122,13 +123,14 @@ if __name__ == '__main__':
                     'Progression - Clock Tower Stage Reached': True,
                     'Progression - Warp Rooms Stage Reached': True,
                     'Progression - Castle Keep Stage Reached': True,
+                    'Progression - Royal Chapel Stage Reached': True,
                 },
             }
             # with open(os.path.join('build', 'debug', 'logic-core.json'), 'w') as debug_logic_core_json:
             #     json.dump(logic_core, debug_logic_core_json, indent='    ', sort_keys=True, default=str)
             map_solver = solver.Solver(logic_core, skills)
             map_solver.debug = True
-            map_solver.solve_via_steps((24, 7, 80))
+            map_solver.solve_via_steps()
             if len(map_solver.results['Wins']) > 0:
                 (winning_layers, winning_game) = map_solver.results['Wins'][-1]
                 print('-------------')
@@ -144,6 +146,7 @@ if __name__ == '__main__':
                     'History': winning_game.history,
                     'Final Layer': winning_layers,
                     'Final State': winning_game.current_state,
+                    'Cycles': map_solver.cycle_count,
                 }
                 shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)
                 current_seed = {

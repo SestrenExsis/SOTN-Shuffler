@@ -5,6 +5,7 @@ import copy
 import heapq
 import json
 import os
+import random
 
 # Local libraries
 import mapper
@@ -79,6 +80,7 @@ class Game:
             'Progression - Clock Tower Stage Reached': 8.0,
             'Progression - Warp Rooms Stage Reached': 7.0,
             'Progression - Castle Keep Stage Reached': 8.0,
+            'Progression - Royal Chapel Stage Reached': 12.0,
             'Relic - Cube of Zoe': 3.0,
             'Relic - Form of Mist': 5.0,
             'Relic - Faerie Scroll': 1.0,
@@ -116,6 +118,7 @@ class Game:
     
     def get_progression(self) -> str:
         chars = {
+            'Check - Colosseum Library Card': 'c',
             'Progression - Alchemy Laboratory Stage Reached': 'AL',
             'Progression - Castle Entrance Revisited Stage Reached': 'C1',
             'Progression - Castle Entrance Stage Reached': 'C2',
@@ -126,6 +129,7 @@ class Game:
             'Progression - Marble Gallery Stage Reached': 'MG',
             'Progression - Olrox\'s Quarters Stage Reached': 'OQ',
             'Progression - Outer Wall Stage Reached': 'OW',
+            'Progression - Royal Chapel Stage Reached': 'RC',
             'Progression - Warp Rooms Stage Reached': 'WR',
             'Relic - Form of Mist': 'm',
             'Relic - Gravity Boots': 'g',
@@ -246,6 +250,8 @@ class Game:
         command_data = {}
         if self.current_state['Location'] in self.commands:
             command_data = self.commands[self.current_state['Location']]
+        for (command_name, command_info) in self.commands['Global'].items():
+            command_data[command_name] = command_info
         for (command_name, command_info) in command_data.items():
             if not require_validation or self.validate(command_info['Requirements']):
                 result.add(command_name)
@@ -282,25 +288,34 @@ class Solver():
         self.results = {
             'Wins': [],
             'Losses': [],
+            'Cycles': 0,
         }
         self.debug = False
     
-    def solve_via_steps(self, step_range: tuple[int]):
-        highest_layer_found = (0, -1)
+    def solve_via_steps(self, decay_start: int=500, cycle_limit: int=2_500):
+        assert cycle_limit > decay_start
         initial_game = Game(self.logic_core)
         memo = {}
         solution_found = False
         work__solver = []
-        limit = 10_000
+        self.cycle_count = 0
         heapq.heappush(work__solver, (-initial_game.get_score(), 0, initial_game))
         while len(work__solver) > 0 and not solution_found:
-            limit -= 1
-            if limit < 0:
-                break
             (score__solver, step__solver, game__solver) = heapq.heappop(work__solver)
-            if (-score__solver, step__solver) > highest_layer_found and self.debug:
-                print('Layer', (score__solver, step__solver), len(work__solver), game__solver.get_progression(), limit)
-                highest_layer_found = (score__solver, step__solver)
+            self.cycle_count += 1
+            chance_of_decay = 0.0
+            decay_ind = False
+            # Start pruning solvers if they are taking too long
+            if self.cycle_count > decay_start:
+                span = cycle_limit - decay_start
+                chance_of_decay = (self.cycle_count - decay_start) / span
+                roll = random.random()
+                if roll < chance_of_decay:
+                    decay_ind = True
+            decay_code = 'Y' if decay_ind else '-'
+            if decay_ind:
+                print('Layer', (score__solver, step__solver), len(work__solver), game__solver.get_progression(), self.cycle_count, decay_code, f'{chance_of_decay:.4f}')
+                continue
             game__solver.layer = step__solver
             if game__solver.goal_achieved:
                 solution_found = True
@@ -458,26 +473,26 @@ if __name__ == '__main__':
             # 'Debug 3': {
             #     'Location': 'Outer Wall, Exit to Marble Gallery',
             # },
-            # 'Debug 4': {
-            #     'Relic - Soul of Wolf': True,
-            #     'Item - Library Card': {
-            #         'Minimum': 1,
-            #     },
-            #     'Relic - Form of Mist': True,
-            #     'Location': 'Clock Tower, Stairwell to Outer Wall',
-            # },
-            'Debug 5': {
-                'Progression - Castle Entrance Stage Reached': True,
-                'Progression - Castle Entrance Revisited Stage Reached': True,
-                'Progression - Alchemy Laboratory Stage Reached': True,
-                'Progression - Marble Gallery Stage Reached': True,
-                'Progression - Outer Wall Stage Reached': True,
-                'Progression - Olrox\'s Quarters Stage Reached': True,
-                'Progression - Colosseum Stage Reached': True,
-                'Progression - Long Library Stage Reached': True,
-                'Progression - Clock Tower Stage Reached': True,
-                'Progression - Warp Rooms Stage Reached': True,
+            'Debug 4': {
+                'Relic - Soul of Wolf': True,
+                'Check - Colosseum Library Card': True,
+                'Relic - Form of Mist': True,
+                'Location': 'Clock Tower, Stairwell to Outer Wall',
             },
+            # 'Debug 5': {
+            #     'Progression - Castle Entrance Stage Reached': True,
+            #     'Progression - Castle Entrance Revisited Stage Reached': True,
+            #     'Progression - Alchemy Laboratory Stage Reached': True,
+            #     'Progression - Marble Gallery Stage Reached': True,
+            #     'Progression - Outer Wall Stage Reached': True,
+            #     'Progression - Olrox\'s Quarters Stage Reached': True,
+            #     'Progression - Colosseum Stage Reached': True,
+            #     'Progression - Long Library Stage Reached': True,
+            #     'Progression - Clock Tower Stage Reached': True,
+            #     'Progression - Warp Rooms Stage Reached': True,
+            #     'Progression - Castle Keep Stage Reached': True,
+            #     'Progression - Royal Chapel Stage Reached': True,
+            # },
             # 'Debug 99': {
             #     'Relic - Soul of Bat': True,
             # },
@@ -491,7 +506,7 @@ if __name__ == '__main__':
         map_solver = Solver(logic_core, skills)
         map_solver.debug = True
         # map_solver.solve_via_layers(3, 10)
-        map_solver.solve_via_steps((32, 10, 80))
+        map_solver.solve_via_steps(999, 9999)
         if len(map_solver.results['Wins']) > 0:
             (winning_layers, winning_game) = map_solver.results['Wins'][-1]
             print('-------------')
