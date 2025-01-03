@@ -17,7 +17,7 @@ Nodes:
         Type: Passage
         Row: 0
         Column: 0
-        Edge: Left
+        Edge: Right
         Entry Section: Main
         Exit Section: Main
 Commands: {}

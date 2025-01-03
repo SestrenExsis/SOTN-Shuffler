@@ -12,7 +12,7 @@ Nodes:
         Type: Passage
         Row: 0
         Column: 8
-        Edge: Left
+        Edge: Top
         Entry Section: Main
         Exit Section: Main
     Left Passage:

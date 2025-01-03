@@ -20,6 +20,13 @@ Empty Cells:
     - Row: 1
       Column: 12
 Nodes:
+    Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 8
+        Edge: Top
+        Entry Section: Main
+        Exit Section: Main
     Left Passage:
         Type: Passage
         Row: 0
