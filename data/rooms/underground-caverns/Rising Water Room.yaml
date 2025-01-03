@@ -1,0 +1,23 @@
+
+Stage: Underground Caverns
+Room: Rising Water Room
+Index: 29
+Columns: 5
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 3
+        Edge: Top
+        Entry Section: Main
+        Exit Section: Main
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

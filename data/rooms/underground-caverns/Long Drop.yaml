@@ -1,0 +1,44 @@
+
+Stage: Underground Caverns
+Room: Long Drop
+Index: 0
+Columns: 1
+Rows: 11
+Empty Cells: {}
+Nodes:
+    Upper-Right Red Door:
+        Type: Red Door
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Middle-Left Passage:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Middle-Right Passage:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Right Passage:
+        Type: Passage
+        Row: 3
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Bottom Passage:
+        Type: Passage
+        Row: 10
+        Column: 0
+        Edge: Bottom
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

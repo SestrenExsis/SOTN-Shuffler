@@ -566,6 +566,59 @@ stages = {
         { 'Royal Chapel, Save Room B': (0, 0) },
         { 'Royal Chapel, Silver Ring Room': (0, 0) },
     ],
+    'Underground Caverns': [
+        {
+            'Underground Caverns, Fake Room With Teleporter D': (32 + 0, 32 + 0),
+            'Underground Caverns, Loading Room A': (32 + 0, 32 + 1),
+            'Underground Caverns, Exit to Castle Entrance': (32 + 0, 32 + 2),
+        },
+        {
+            'Underground Caverns, Long Drop': (0 + 0, 0 + 0),
+            'Underground Caverns, Loading Room B': (0 + 0, 0 + 1),
+            'Underground Caverns, Fake Room With Teleporter A': (0 + 0, 0 + 2),
+        },
+        {
+            'Underground Caverns, Fake Room With Teleporter C': (0 + 0, 0 + 0),
+            'Underground Caverns, Loading Room C': (0 + 0, 0 + 1),
+            'Underground Caverns, Exit to Abandoned Mine': (0 + 0, 0 + 2),
+        },
+        {
+            'Underground Caverns, False Save Room': (0 + 0, 0 + 0),
+            'Underground Caverns, Fake Room With Teleporter B': (0 + 0, 0 + 1),
+        },
+        { 'Underground Caverns, Save Room A': (0, 0) },
+        { 'Underground Caverns, Save Room B': (0, 0) },
+        { 'Underground Caverns, Save Room C': (0, 0) },
+        { 'Underground Caverns, Long Drop': (0, 0) },
+        { 'Underground Caverns, Hidden Crystal Entrance': (0, 0) },
+        { 'Underground Caverns, Crystal Bend': (0, 0) },
+        { 'Underground Caverns, Tall Stairwell': (0, 0) },
+        { 'Underground Caverns, Plaque Room With Life Max-Up': (0, 0) },
+        { 'Underground Caverns, Small Stairwell': (0, 0) },
+        { 'Underground Caverns, Claymore Stairwell': (0, 0) },
+        { 'Underground Caverns, Meal Tickets and Moonstone Room': (0, 0) },
+        { 'Underground Caverns, Plaque Room With Breakable Wall': (0, 0) },
+        { 'Underground Caverns, Room ID 09': (0, 0) },
+        { 'Underground Caverns, Room ID 10': (0, 0) },
+        { 'Underground Caverns, Room ID 11': (0, 0) },
+        { 'Underground Caverns, Room ID 12': (0, 0) },
+        { 'Underground Caverns, Holy Symbol Room': (0, 0) },
+        { 'Underground Caverns, Pentagram Room': (0, 0) },
+        { 'Underground Caverns, DK Bridge': (0, 0) },
+        { 'Underground Caverns, DK Button': (0, 0) },
+        { 'Underground Caverns, Room ID 18': (0, 0) },
+        { 'Underground Caverns, Room ID 19': (0, 0) },
+        { 'Underground Caverns, Merman Statue Room': (0, 0) },
+        { 'Underground Caverns, Ice Floe Room': (0, 0) },
+        { 'Underground Caverns, Right Ferryman Route': (0, 0) },
+        { 'Underground Caverns, Crystal Cloak Room': (0, 0) },
+        { 'Underground Caverns, Left Ferryman Route': (0, 0) },
+        { 'Underground Caverns, Waterfall': (0, 0) },
+        { 'Underground Caverns, Scylla Room': (0, 0) },
+        { 'Underground Caverns, Scylla Wyrm Room': (0, 0) },
+        { 'Underground Caverns, Rising Water Room': (0, 0) },
+        { 'Underground Caverns, Bandanna Room': (0, 0) },
+    ],
 }
 
 def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
@@ -630,6 +683,7 @@ class MapperData:
             'warp-rooms',
             'castle-keep',
             'royal-chapel',
+            'underground-caverns',
         ):
             folder_path = os.path.join('data', 'rooms', stage_folder)
             for file_name in os.listdir(folder_path):
@@ -685,6 +739,7 @@ class LogicCore:
             'Warp Rooms',
             'Castle Keep',
             'Royal Chapel',
+            'Underground Caverns',
         ):
             # print('', stage_name)
             nodes = {}

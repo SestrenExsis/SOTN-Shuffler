@@ -1,0 +1,23 @@
+
+Stage: Underground Caverns
+Room: Exit to Abandoned Mine
+Index: 16
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Top
+        Entry Section: Main
+        Exit Section: Main
+    Left Red Door:
+        Type: Red Door
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

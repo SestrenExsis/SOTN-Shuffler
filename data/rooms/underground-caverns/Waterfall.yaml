@@ -1,0 +1,37 @@
+
+Stage: Underground Caverns
+Room: Waterfall
+Index: 26
+Columns: 2
+Rows: 6
+Empty Cells: {}
+Nodes:
+    Upper-Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Upper-Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Left Passage:
+        Type: Passage
+        Row: 5
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Right Passage:
+        Type: Passage
+        Row: 5
+        Column: 1
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}
