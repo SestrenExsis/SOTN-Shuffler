@@ -11,27 +11,105 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Left
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Upper-Left Ledge
+        Exit Section: Upper-Left Ledge
     Upper-Right Passage:
         Type: Passage
         Row: 0
         Column: 1
         Edge: Right
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Upper-Right Ledge
+        Exit Section: Upper-Right Ledge
     Lower-Left Passage:
         Type: Passage
         Row: 5
         Column: 0
         Edge: Left
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Ground
+        Exit Section: Ground
     Lower-Right Passage:
         Type: Passage
         Row: 5
         Column: 1
         Edge: Right
-        Entry Section: Main
-        Exit Section: Main
-Commands: {}
+        Entry Section: Behind Waterfall
+        Exit Section: Behind Waterfall
+Commands:
+    Move - Behind Waterfall:
+        Outcomes:
+            Section: Behind Waterfall
+        Requirements:
+            Default:
+                Section: Ground
+                Progression - Protection From Water: true
+    Move - Ground:
+        Outcomes:
+            Section: Ground
+        Requirements:
+            Default:
+                Section: Behind Waterfall
+                Progression - Protection From Water: true
+            Upper-Left Ledge - Default:
+                Section: Upper-Left Ledge
+            Upper-Right Ledge - Default:
+                Section: Upper-Right Ledge
+    Move - Upper-Left Ledge:
+        Outcomes:
+            Section: Upper-Left Ledge
+        Requirements:
+            Ground - Bat Form:
+                Section: Ground
+                Progression - Bat Transformation: true
+            Ground - Multiple Gravity Jumps:
+                Section: Ground
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Ground - Powered Mist:
+                Section: Ground
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Upper-Right Ledge - Bat Form:
+                Section: Upper-Right Ledge
+                Progression - Bat Transformation: true
+            Upper-Right Ledge - Double Jump Without Taking Water Damage:
+                Section: Upper-Right Ledge
+                Progression - Protection From Water: true
+                Progression - Double Jump: true
+            Upper-Right Ledge - Multiple Gravity Jumps:
+                Section: Upper-Right Ledge
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Upper-Right Ledge - Powered Mist:
+                Section: Upper-Right Ledge
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+    Move - Upper-Right Ledge:
+        Outcomes:
+            Section: Upper-Right Ledge
+        Requirements:
+            Ground - Bat Form:
+                Section: Ground
+                Progression - Bat Transformation: true
+            Ground - Multiple Gravity Jumps:
+                Section: Ground
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Ground - Powered Mist:
+                Section: Ground
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Upper-Left Ledge - Bat Form:
+                Section: Upper-Left Ledge
+                Progression - Bat Transformation: true
+            Upper-Left Ledge - Double Jump Without Taking Water Damage:
+                Section: Upper-Left Ledge
+                Progression - Protection From Water: true
+                Progression - Double Jump: true
+            Upper-Left Ledge - Multiple Gravity Jumps:
+                Section: Upper-Left Ledge
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Upper-Left Ledge - Powered Mist:
+                Section: Upper-Left Ledge
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true

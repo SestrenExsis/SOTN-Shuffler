@@ -13,4 +13,11 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands: {}
+Commands:
+    Action - Press the Button:
+        Outcomes:
+            Status - DK Button Pressed: true
+        Requirements:
+            Default:
+                Section: Main
+                Status - DK Button Pressed: false
