@@ -81,15 +81,16 @@ class Game:
             'Progression - Warp Rooms Stage Reached': 7.0,
             'Progression - Castle Keep Stage Reached': 8.0,
             'Progression - Royal Chapel Stage Reached': 12.0,
+            'Progression - Underground Caverns Stage Reached': 21.0,
             'Relic - Cube of Zoe': 3.0,
-            'Relic - Form of Mist': 5.0,
+            'Relic - Form of Mist': 15.0,
             'Relic - Faerie Scroll': 1.0,
             'Relic - Gravity Boots': 10.0,
             'Relic - Jewel of Open': 5.0,
-            'Relic - Leap Stone': 8.0,
+            'Relic - Leap Stone': 10.0,
             'Relic - Power of Mist': 3.0,
-            'Relic - Soul of Bat': 15.0,
-            'Relic - Soul of Wolf': 10.0,
+            'Relic - Soul of Bat': 25.0,
+            'Relic - Soul of Wolf': 8.0,
             'Status - Breakable Ceiling in Blade Master Room Broken': 2.0,
             'Status - Breakable Ceiling in Catwalk Crypt Broken': 2.0,
             'Status - Breakable Floor in Tall Zig Zag Room Broken': 2.0,
@@ -130,6 +131,7 @@ class Game:
             'Progression - Olrox\'s Quarters Stage Reached': 'OQ',
             'Progression - Outer Wall Stage Reached': 'OW',
             'Progression - Royal Chapel Stage Reached': 'RC',
+            'Progression - Underground Caverns Stage Reached': 'UC',
             'Progression - Warp Rooms Stage Reached': 'WR',
             'Relic - Form of Mist': 'm',
             'Relic - Gravity Boots': 'g',
@@ -292,7 +294,7 @@ class Solver():
         }
         self.debug = False
     
-    def solve_via_steps(self, decay_start: int=500, cycle_limit: int=2_500):
+    def solve_via_steps(self, decay_start: int=4_999, cycle_limit: int=9_999):
         assert cycle_limit > decay_start
         initial_game = Game(self.logic_core)
         memo = {}
@@ -473,12 +475,12 @@ if __name__ == '__main__':
             # 'Debug 3': {
             #     'Location': 'Outer Wall, Exit to Marble Gallery',
             # },
-            'Debug 4': {
-                'Relic - Soul of Wolf': True,
-                'Check - Colosseum Library Card': True,
-                'Relic - Form of Mist': True,
-                'Location': 'Clock Tower, Stairwell to Outer Wall',
-            },
+            # 'Debug 4': {
+            #     'Relic - Soul of Wolf': True,
+            #     'Check - Colosseum Library Card': True,
+            #     'Relic - Form of Mist': True,
+            #     'Location': 'Clock Tower, Stairwell to Outer Wall',
+            # },
             # 'Debug 5': {
             #     'Progression - Castle Entrance Stage Reached': True,
             #     'Progression - Castle Entrance Revisited Stage Reached': True,
@@ -493,6 +495,21 @@ if __name__ == '__main__':
             #     'Progression - Castle Keep Stage Reached': True,
             #     'Progression - Royal Chapel Stage Reached': True,
             # },
+            # 'Test - Bat Transformation': {
+            #     'Location': 'Long Library, Foot of Staircase',
+            #     'Progression - Mist Transformation': True,
+            #     'Progression - Mid-Air Reset': True,
+            # },
+            # 'Test - Can Get Gold Ring': {
+            #     'Relic - Jewel of Open': True,
+            #     'Relic - Soul of Bat': True,
+            #     'Location': 'Underground Caverns, Long Drop',
+            # },
+            'Test - Got Gold Ring': {
+                'Item - Gold Ring': {
+                    'Minimum': 1,
+                },
+            },
             # 'Debug 99': {
             #     'Relic - Soul of Bat': True,
             # },
@@ -506,7 +523,7 @@ if __name__ == '__main__':
         map_solver = Solver(logic_core, skills)
         map_solver.debug = True
         # map_solver.solve_via_layers(3, 10)
-        map_solver.solve_via_steps(999, 9999)
+        map_solver.solve_via_steps(4999, 9999)
         if len(map_solver.results['Wins']) > 0:
             (winning_layers, winning_game) = map_solver.results['Wins'][-1]
             print('-------------')

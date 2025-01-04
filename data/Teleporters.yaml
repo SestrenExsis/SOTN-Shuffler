@@ -184,7 +184,7 @@ Sources:
         Index: 51
         Stage: Underground Caverns
         Room: Fake Room With Teleporter B
-        Target: Special, Succubus Encountered (Spawn)
+        Target: Special, Succubus Encounter (Spawn)
     Underground Caverns, Fake Room With Teleporter D:
         Index: 48
         Stage: Underground Caverns
@@ -391,9 +391,9 @@ Targets:
         Node: Lower-Right Red Door
         Player X: 496
         Player Y: 388
-    Special, Succubus Encountered (Spawn):
+    Special, Succubus Encounter (Spawn):
         Stage: Special
-        Room: Succubus Encountered
+        Room: Succubus Encounter
         Node: Spawn
         Player X: 16
         Player Y: 180

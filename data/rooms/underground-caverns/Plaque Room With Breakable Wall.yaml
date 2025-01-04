@@ -11,8 +11,8 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Left
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Broken Wall
+        Exit Section: Broken Wall
     Right Passage:
         Type: Passage
         Row: 0
@@ -20,4 +20,25 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands: {}
+Commands:
+    Action - Break Wall:
+        Outcomes:
+            Status - Breakable Wall in Plaque Room Broken: true
+        Requirements:
+            Default:
+                Section: Main
+                Status - Breakable Wall in Plaque Room Broken: false
+    Move - Broken Wall:
+        Outcomes:
+            Section: Broken Wall
+        Requirements:
+            Default:
+                Section: Main
+                Status - Breakable Wall in Plaque Room Broken: true
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Default:
+                Section: Broken Wall
+                Status - Breakable Wall in Plaque Room Broken: true

@@ -621,52 +621,6 @@ stages = {
     ],
 }
 
-def get_roomset(rng, rooms: dict, stage_data: dict) -> RoomSet:
-    pool = {}
-    for (roomset_id, roomset_data) in enumerate(stage_data):
-        room_placements = []
-        for (room_name, (top, left)) in roomset_data.items():
-            room_placements.append((rooms[room_name], top, left))
-        pool[roomset_id] = RoomSet(roomset_id, room_placements)
-    result = pool.pop(0)
-    for roomset_id in range(1, len(stage_data)):
-        if len(result.get_open_nodes()) < 1:
-            # print('place extra room', roomset_id)
-            result.add_roomset(pool.pop(roomset_id), 0, 0)
-        else:
-            break
-    steps = 0
-    while len(pool) > 0:
-        possible_target_nodes = result.get_open_nodes()
-        if len(possible_target_nodes) < 1:
-            # print('ERROR: No open nodes left')
-            break
-        target_node = rng.choice(possible_target_nodes)
-        open_nodes = []
-        for (roomset_id, roomset) in pool.items():
-            for open_node in roomset.get_open_nodes(matching_node=target_node):
-                open_nodes.append(open_node)
-        if len(open_nodes) < 1:
-            # print('ERROR: No matching source nodes for the chosen target node')
-            break
-        # Go through possible source nodes in random order until a valid source node is found
-        open_nodes.sort()
-        rng.shuffle(open_nodes)
-        for source_node in open_nodes:
-            roomset_key = source_node.room.roomset.roomset_id
-            offset_top = (target_node.room.top + target_node.top) - (source_node.room.top + source_node.top)
-            offset_left = (target_node.room.left + target_node.left) - (source_node.room.left + source_node.left)
-            valid_ind = result.add_roomset(source_node.room.roomset, offset_top, offset_left)
-            if valid_ind:
-                roomset = pool.pop(roomset_key, None)
-                break
-        else:
-            # if (target_node.room.stage_name, target_node.room.index) != ('Underground Caverns', 39):
-            #     print('ERROR: All matching source nodes for the target node result in invalid room placement:', target_node)
-            break
-        steps += 1
-    return result
-
 class MapperData:
     def __init__(self):
         print('Build data core')
@@ -893,7 +847,7 @@ class Mapper:
         self.stage = pool.pop(0)
         for roomset_id in range(1, len(stages[self.stage_name])):
             if len(self.stage.get_open_nodes()) < 1:
-                print('place extra room', roomset_id)
+                # print('place extra room', roomset_id)
                 self.stage.add_roomset(pool.pop(roomset_id), 0, 0)
             else:
                 break
