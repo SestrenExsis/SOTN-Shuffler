@@ -1,0 +1,30 @@
+
+Stage: Abandoned Mine
+Room: Wolf's Head Column
+Index: 0
+Columns: 1
+Rows: 4
+Empty Cells: {}
+Nodes:
+    Upper-Right Red Door:
+        Type: Red Door
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Middle-Right Passage:
+        Type: Passage
+        Row: 2
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Right Passage:
+        Type: Passage
+        Row: 3
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

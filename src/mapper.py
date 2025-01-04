@@ -619,6 +619,33 @@ stages = {
         { 'Underground Caverns, Rising Water Room': (0, 0) },
         { 'Underground Caverns, Bandanna Room': (0, 0) },
     ],
+    'Abandoned Mine': [
+        {
+            'Abandoned Mine, Wolf\'s Head Column': (32 + 0, 32 + 0),
+            'Abandoned Mine, Loading Room C': (32 + 0, 32 + 1),
+            'Abandoned Mine, Fake Room With Teleporter A': (32 + 0, 32 + 2),
+        },
+        {
+            'Abandoned Mine, Four-Way Intersection': (0, 0),
+            'Abandoned Mine, Loading Room B': (0 + 0, 0 + 3),
+            'Abandoned Mine, Fake Room With Teleporter B': (0 + 0, 0 + 4),
+        },
+        {
+            'Abandoned Mine, Fake Room With Teleporter C': (1 + 0, 0 + 0),
+            'Abandoned Mine, Loading Room A': (1 + 0, 0 + 1),
+            'Abandoned Mine, Bend': (0, 2),
+        },
+        { 'Abandoned Mine, Well-Lit Skull Room': (0, 0) },
+        { 'Abandoned Mine, Cerberus Room': (0, 0) },
+        { 'Abandoned Mine, Crumbling Stairwells With Demon Switch': (0, 0) },
+        { 'Abandoned Mine, Venus Weed Room': (0, 0) },
+        { 'Abandoned Mine, Snake Column': (0, 0) },
+        { 'Abandoned Mine, Peanuts Room': (0, 0) },
+        { 'Abandoned Mine, Crumbling Stairwells With Mushrooms': (0, 0) },
+        { 'Abandoned Mine, Karma Coin Room': (0, 0) },
+        { 'Abandoned Mine, Demon Card Room': (0, 0) },
+        { 'Abandoned Mine, Save Room A': (0, 0) },
+    ],
 }
 
 class MapperData:
@@ -640,6 +667,7 @@ class MapperData:
             'castle-keep',
             'royal-chapel',
             'underground-caverns',
+            'abandoned-mine',
         ):
             folder_path = os.path.join('data', 'rooms', stage_folder)
             for file_name in os.listdir(folder_path):
@@ -696,6 +724,7 @@ class LogicCore:
             'Castle Keep',
             'Royal Chapel',
             'Underground Caverns',
+            'Abandoned Mine',
         ):
             # print('', stage_name)
             nodes = {}
@@ -923,9 +952,9 @@ class Mapper:
                 no_nodes_unused and
                 (all_rooms_connected or self.stage_name in ('Warp Rooms', 'Underground Caverns'))
             )
-            # if len(self.stage.rooms) > 41:
+            # if len(self.stage.rooms) > 17:
             #     print(all_rooms_used, no_nodes_unused, all_rooms_connected, len(self.stage.rooms), len(self.rooms))
-            #     for line in self.get_spoiler('Underground Caverns'):
+            #     for line in self.get_spoiler('Abandoned Mine'):
             #         print(line)
             #     print(len(self.steps))
             #     for step in self.steps:

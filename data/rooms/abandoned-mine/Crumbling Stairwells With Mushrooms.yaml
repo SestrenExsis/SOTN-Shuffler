@@ -1,0 +1,30 @@
+
+Stage: Abandoned Mine
+Room: Crumbling Stairwells With Mushrooms
+Index: 8
+Columns: 1
+Rows: 4
+Empty Cells: {}
+Nodes:
+    Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Top
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Left Passage:
+        Type: Passage
+        Row: 3
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Right Passage:
+        Type: Passage
+        Row: 3
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

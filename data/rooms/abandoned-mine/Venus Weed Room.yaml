@@ -1,0 +1,23 @@
+
+Stage: Abandoned Mine
+Room: Venus Weed Room
+Index: 4
+Columns: 4
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 3
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

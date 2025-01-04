@@ -1,0 +1,16 @@
+
+Stage: Special
+Room: Succubus Encounter
+Index: 0
+Columns: 2
+Rows: 1
+Empty Cells: {}
+Nodes: {}
+Commands:
+    Action - Defeat Succubus:
+        Outcomes:
+            Location: Special, Succubus Defeated
+        Requirements:
+            Default:
+                Section: Main
+                Status - Succubus Defeated: false
