@@ -1,0 +1,52 @@
+
+Stage: Underground Caverns
+Room: DK Bridge
+Index: 15
+Columns: 4
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Bottom Passage:
+        Type: Passage
+        Row: 0
+        Column: 3
+        Edge: Bottom
+        Entry Section: Broken Bridge
+        Exit Section: Broken Bridge
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 3
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Action - Break the Bridge:
+        Outcomes:
+            Status - DK Bridge Broken: true
+        Requirements:
+            Default:
+                Section: Main
+                Status - DK Bridge Broken: false
+                Status - DK Button Pressed: true
+    Move - Broken Bridge:
+        Outcomes:
+            Section: Broken Bridge
+        Requirements:
+            Default:
+                Section: Main
+                Status - DK Bridge Broken: true
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Default:
+                Section: Broken Bridge
+                Status - DK Bridge Broken: true

@@ -41,14 +41,14 @@ Commands:
         Requirements:
             Main - Book Jump:
                 Section: Main
-                Progression: Mid-Air Reset
+                Progression - Mid-Air Reset: true
     Move - Lower Ledge:
         Outcomes:
             Section: Lower Ledge
         Requirements:
             Main - Book Jump:
                 Section: Main
-                Progression: Mid-Air Reset
+                Progression - Mid-Air Reset: true
     Move - Main:
         Outcomes:
             Section: Main

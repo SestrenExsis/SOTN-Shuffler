@@ -1,0 +1,32 @@
+
+Stage: Underground Caverns
+Room: Ice Floe Room
+Index: 22
+Columns: 9
+Rows: 2
+Empty Cells:
+    - Row: 1
+      Column: 2
+Nodes:
+    Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 8
+        Edge: Top
+        Entry Section: Main
+        Exit Section: Main
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 8
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

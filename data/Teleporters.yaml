@@ -30,6 +30,11 @@ Sources:
         Stage: Castle Entrance
         Room: Fake Room With Teleporter C
         Target: Warp Rooms, Warp Room D (Right Red Door)
+    Castle Entrance, Fake Room With Teleporter D:
+        Index: 12
+        Stage: Castle Entrance
+        Room: Fake Room With Teleporter D
+        Target: Underground Caverns, Exit to Castle Entrance (Left Red Door)
     Castle Entrance Revisited, Fake Room With Teleporter A:
         Index: 58
         Stage: Castle Entrance Revisited
@@ -40,6 +45,11 @@ Sources:
         Stage: Castle Entrance Revisited
         Room: Fake Room With Teleporter C
         Target: Warp Rooms, Warp Room D (Right Red Door)
+    Castle Entrance Revisited, Fake Room With Teleporter D:
+        Index: 57
+        Stage: Castle Entrance
+        Room: Fake Room With Teleporter D
+        Target: Underground Caverns, Exit to Castle Entrance (Left Red Door)
     Castle Keep, Fake Room With Teleporter A:
         Index: 45
         Stage: Castle Keep
@@ -95,6 +105,11 @@ Sources:
         Stage: Marble Gallery
         Room: Fake Room With Teleporter C
         Target: Alchemy Laboratory, Exit to Marble Gallery (Right Red Door)
+    Marble Gallery, Fake Room With Teleporter D:
+        Index: 4
+        Stage: Marble Gallery
+        Room: Fake Room With Teleporter D
+        Target: Underground Caverns, Long Drop (Upper-Right Red Door)
     Olrox's Quarters, Fake Room With Teleporter A:
         Index: 25
         Stage: Olrox's Quarters
@@ -155,6 +170,26 @@ Sources:
         Stage: Royal Chapel
         Room: Fake Room With Teleporter D
         Target: Alchemy Laboratory, Exit to Royal Chapel (Left Red Door)
+    Special, Succubus Defeated:
+        Index: 60
+        Stage: Special
+        Room: Succubus Defeated
+        Target: Underground Caverns, False Save Room (Spawn)
+    Underground Caverns, Fake Room With Teleporter A:
+        Index: 49
+        Stage: Underground Caverns
+        Room: Fake Room With Teleporter A
+        Target: Marble Gallery, Stairwell to Underground Caverns (Lower-Left Red Door)
+    Underground Caverns, Fake Room With Teleporter B:
+        Index: 51
+        Stage: Underground Caverns
+        Room: Fake Room With Teleporter B
+        Target: Special, Succubus Encounter (Spawn)
+    Underground Caverns, Fake Room With Teleporter D:
+        Index: 48
+        Stage: Underground Caverns
+        Room: Fake Room With Teleporter D
+        Target: Castle Entrance Revisited, Shortcut to Underground Caverns (Right Red Door)
     Warp Rooms, Fake Room With Teleporter A:
         Index: 28
         Stage: Warp Rooms
@@ -205,6 +240,12 @@ Targets:
         Room: Shortcut to Warp
         Node: Left Red Door
         Player X: 16
+        Player Y: 132
+    Castle Entrance Revisited, Shortcut to Underground Caverns (Right Red Door):
+        Stage: Castle Entrance Revisited
+        Room: Shortcut to Underground Caverns
+        Node: Right Red Door
+        Player X: 240
         Player Y: 132
     Castle Keep, Dual Platforms (Lower-Right Red Door):
         Stage: Castle Keep
@@ -272,6 +313,12 @@ Targets:
         Node: Left Red Door
         Player X: 16
         Player Y: 132
+    Marble Gallery, Stairwell to Underground Caverns (Lower-Left Red Door):
+        Stage: Marble Gallery
+        Room: Stairwell to Underground Caverns
+        Node: Lower-Left Red Door
+        Player X: 16
+        Player Y: 388
     Olrox's Quarters, Catwalk Crypt (Left Red Door):
         Stage: Olrox's Quarters
         Room: Catwalk Crypt
@@ -344,6 +391,30 @@ Targets:
         Node: Lower-Right Red Door
         Player X: 496
         Player Y: 388
+    Special, Succubus Encounter (Spawn):
+        Stage: Special
+        Room: Succubus Encounter
+        Node: Spawn
+        Player X: 16
+        Player Y: 180
+    Underground Caverns, Exit to Castle Entrance (Left Red Door):
+        Stage: Underground Caverns
+        Room: Exit to Castle Entrance
+        Node: Left Red Door
+        Player X: 16
+        Player Y: 132
+    Underground Caverns, False Save Room (Spawn):
+        Stage: Underground Caverns
+        Room: False Save Room
+        Node: Upper-Right Red Door
+        Player X: 128
+        Player Y: 164
+    Underground Caverns, Long Drop (Upper-Right Red Door):
+        Stage: Underground Caverns
+        Room: Long Drop
+        Node: Upper-Right Red Door
+        Player X: 240
+        Player Y: 132
     Warp Rooms, Warp Room A (Left Red Door):
         Stage: Warp Rooms
         Room: Warp Room A
@@ -375,15 +446,37 @@ Targets:
         Player X: 16
         Player Y: 132
 Future Sources:
+    Abandoned Mine, Fake Room With Teleporter X:
+        Index: 19
+        Stage: Castle Entrance
+        Room: Fake Room With Teleporter X
+        Target: Underground Caverns, Exit to Abandoned Mine (Left Red Door)
+    Underground Caverns, Fake Room With Teleporter C:
+        Index: 50
+        Stage: Underground Caverns
+        Room: Fake Room With Teleporter C
+        Target: Abandoned Mine, Room ID 00 (Upper-Right Red Door)
     Warp Rooms, Fake Room With Teleporter E:
         Index: 32
         Stage: Warp Rooms
         Room: Fake Room With Teleporter E
         Target: Abandoned Mine, Room ID 07 (Right Red Door)
 Future Targets:
+    Abandoned Mine, Room ID 00 (Upper-Right Red Door):
+        Stage: Abandoned Mine
+        Room: Room ID 00
+        Node: Upper-Right Red Door
+        Player X: 240
+        Player Y: 132
     Abandoned Mine, Room ID 07 (Right Red Door):
         Stage: Abandoned Mine
         Room: Room ID 07
         Node: Right Red Door
         Player X: 752
+        Player Y: 132
+    Underground Caverns, Exit to Abandoned Mine (Left Red Door):
+        Stage: Underground Caverns
+        Room: Exit to Abandoned Mine
+        Node: Left Red Door
+        Player X: 16
         Player Y: 132

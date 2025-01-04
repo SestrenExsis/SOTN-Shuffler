@@ -1,0 +1,23 @@
+
+Stage: Underground Caverns
+Room: Exit to Castle Entrance
+Index: 20
+Columns: 2
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Left Red Door:
+        Type: Red Door
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Bottom Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Bottom
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

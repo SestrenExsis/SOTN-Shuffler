@@ -1,0 +1,44 @@
+
+Stage: Underground Caverns
+Room: Left Ferryman Route
+Index: 25
+Columns: 13
+Rows: 2
+Empty Cells:
+    - Row: 1
+      Column: 6
+    - Row: 1
+      Column: 7
+    - Row: 1
+      Column: 8
+    - Row: 1
+      Column: 9
+    - Row: 1
+      Column: 10
+    - Row: 1
+      Column: 11
+    - Row: 1
+      Column: 12
+Nodes:
+    Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 8
+        Edge: Top
+        Entry Section: Main
+        Exit Section: Main
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 12
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

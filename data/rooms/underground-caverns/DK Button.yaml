@@ -1,0 +1,23 @@
+
+Stage: Underground Caverns
+Room: DK Button
+Index: 17
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Action - Press the Button:
+        Outcomes:
+            Status - DK Button Pressed: true
+        Requirements:
+            Default:
+                Section: Main
+                Status - DK Button Pressed: false

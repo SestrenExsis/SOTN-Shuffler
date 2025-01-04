@@ -1,0 +1,24 @@
+
+Stage: Underground Caverns
+Room: Merman Statue Room
+Index: 21
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Action - Collect Merman Statue Relic:
+        Outcomes:
+            Relic - Merman Statue: true
+            Progression - Summon Ferryman: true
+        Requirements:
+            Default:
+                Section: Main
+                Relic - Merman Statue: false

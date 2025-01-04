@@ -1,0 +1,40 @@
+
+Stage: Underground Caverns
+Room: False Save Room
+Index: 37
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Action - Sleep:
+        Outcomes:
+            Section: Succubus Encounter
+        Requirements:
+            Default:
+                Section: Main
+                Status - Succubus Defeated: false
+    Action - Defeat Succubus:
+        Outcomes:
+            Section: Main
+            Status - Succubus Defeated: true
+        Requirements:
+            Default:
+                Section: Succubus Encounter
+                Status - Succubus Defeated: false
+    Action - Collect Gold Ring:
+        Outcomes:
+            Item - Gold Ring: 1
+            Check - Gold Ring: true
+        Requirements:
+            Default:
+                Section: Main
+                Status - Succubus Defeated: true
+                Check - Gold Ring: false
