@@ -311,8 +311,11 @@ stages = {
             'Marble Gallery, Stairwell to Underground Caverns': (0, 2),
         },
         {
-            'Marble Gallery, Three Paths': (0, 0),
-            'Marble Gallery, Clock Room': (2, 0),
+            # These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
+            'Marble Gallery, Three Paths': (0, 3),
+            'Marble Gallery, Left of Clock Room': (2, 0),
+            'Marble Gallery, Clock Room': (2, 3),
+            'Marble Gallery, Right of Clock Room': (2, 4),
         },
         {
             'Marble Gallery, Dropoff': (0, 0),
@@ -323,11 +326,9 @@ stages = {
         { 'Marble Gallery, Gravity Boots Room': (0, 0) },
         { 'Marble Gallery, Beneath Right Trapdoor': (0, 0) },
         { 'Marble Gallery, Power-Up Room': (0, 0) },
-        { 'Marble Gallery, Right of Clock Room': (0, 0) },
         { 'Marble Gallery, Tall Stained Glass Windows': (0, 0) },
         { 'Marble Gallery, Spirit Orb Room': (0, 0) },
         { 'Marble Gallery, Stopwatch Room': (0, 0) },
-        { 'Marble Gallery, Left of Clock Room': (0, 0) },
         { 'Marble Gallery, Empty Room': (0, 0) },
         { 'Marble Gallery, Blue Door Room': (0, 0) },
         { 'Marble Gallery, Pathway After Right Statue': (0, 0) },
@@ -393,13 +394,16 @@ stages = {
             'Olrox\'s Quarters, Loading Room D': (0, 1),
             'Olrox\'s Quarters, Catwalk Crypt': (0, 2),
         },
-        { 'Olrox\'s Quarters, Echo of Bat Room': (0, 0) },
+        {
+            # These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
+            'Olrox\'s Quarters, Echo of Bat Room': (0, 0),
+            'Olrox\'s Quarters, Olrox\'s Room': (0, 3),
+            'Olrox\'s Quarters, Narrow Hallway to Olrox': (0, 5),
+        },
         { 'Olrox\'s Quarters, Empty Cells': (0, 0) },
         { 'Olrox\'s Quarters, Empty Room': (0, 0) },
         { 'Olrox\'s Quarters, Garnet Room': (0, 0) },
         { 'Olrox\'s Quarters, Hammer and Blade Room': (0, 0) },
-        { 'Olrox\'s Quarters, Narrow Hallway to Olrox': (0, 0) },
-        { 'Olrox\'s Quarters, Olrox\'s Room': (0, 0) },
         { 'Olrox\'s Quarters, Open Courtyard': (0, 0) },
         { 'Olrox\'s Quarters, Prison': (0, 0) },
         { 'Olrox\'s Quarters, Save Room A': (0, 0) },
@@ -408,17 +412,17 @@ stages = {
     ],
     'Colosseum': [
         {
-            'Colosseum, Top of Elevator Shaft': (32 + 0, 32 + 0),
-            'Colosseum, Loading Room B': (32 + 0, 32 + 5),
-            'Colosseum, Fake Room With Teleporter B': (32 + 0, 32 + 6),
-            'Colosseum, Bottom of Elevator Shaft': (32 + 1, 32 + 0),
+            # These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
+            'Colosseum, Fake Room With Teleporter A': (32 + 0, 32 + 0),
+            'Colosseum, Loading Room A': (32 + 0, 32 + 1),
+            'Colosseum, Passageway Between Arena and Royal Chapel': (32 + 0, 32 + 2),
+            'Colosseum, Arena': (32 + 0, 32 + 7),
+            'Colosseum, Top of Elevator Shaft': (32 + 0, 32 + 9),
+            'Colosseum, Loading Room B': (32 + 0, 32 + 14),
+            'Colosseum, Fake Room With Teleporter B': (32 + 0, 32 + 15),
+            # This room must be connected for now due to the two-room elevator
+            'Colosseum, Bottom of Elevator Shaft': (32 + 1, 32 + 9),
         },
-        {
-            'Colosseum, Fake Room With Teleporter A': (0, 0),
-            'Colosseum, Loading Room A': (0, 1),
-            'Colosseum, Passageway Between Arena and Royal Chapel': (0, 2),
-        },
-        { 'Colosseum, Arena': (0, 0) },
         { 'Colosseum, Blade Master Room': (0, 0) },
         { 'Colosseum, Blood Cloak Room': (0, 0) },
         { 'Colosseum, Fountain Room': (0, 0) },
@@ -646,6 +650,7 @@ stages = {
         { 'Abandoned Mine, Demon Card Room': (0, 0) },
         { 'Abandoned Mine, Save Room A': (0, 0) },
     ],
+    # TODO(sestren): Catacombs, with Granfaloon boss teleport
 }
 
 class MapperData:
@@ -952,9 +957,9 @@ class Mapper:
                 no_nodes_unused and
                 (all_rooms_connected or self.stage_name in ('Warp Rooms', 'Underground Caverns'))
             )
-            # if len(self.stage.rooms) > 17:
+            # if len(self.stage.rooms) > 18:
             #     print(all_rooms_used, no_nodes_unused, all_rooms_connected, len(self.stage.rooms), len(self.rooms))
-            #     for line in self.get_spoiler('Abandoned Mine'):
+            #     for line in self.get_spoiler('Colosseum'):
             #         print(line)
             #     print(len(self.steps))
             #     for step in self.steps:

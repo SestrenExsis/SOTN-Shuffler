@@ -47,6 +47,7 @@ if __name__ == '__main__':
                 ('Castle Keep', global_rng.randint(0, 2 ** 64)),
                 ('Royal Chapel', global_rng.randint(0, 2 ** 64)),
                 ('Underground Caverns', global_rng.randint(0, 2 ** 64)),
+                ('Abandoned Mine', global_rng.randint(0, 2 ** 64)),
             )
             print('Randomize with seeds')
             for (stage_name, stage_seed) in stages_to_process:
@@ -57,25 +58,27 @@ if __name__ == '__main__':
                 chosen_file_name = stage_rng.choice(file_listing)
                 with open(os.path.join('build', 'mapper', stage_name, chosen_file_name)) as mapper_data_json:
                     mapper_data = json.load(mapper_data_json)
-                    stage_map = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
-                    stage_map.generate()
-                    changes = stage_map.stage.get_changes()
-                    assert stage_map.validate()
-                    hash_of_rooms = hashlib.sha256(json.dumps(changes['Rooms'], sort_keys=True).encode()).hexdigest()
-                    assert hash_of_rooms == mapper_data['Hash of Rooms']
-                    assert stage_map.validate()
-                    stages[stage_name] = stage_map
-                    print('Prebaked', stage_map.current_seed)
-                    shuffler['Stages'][stage_name] = {
-                        'Note': 'Prebaked',
-                        'Attempts': stage_map.attempts,
-                        'Generation Start Date': stage_map.start_time.isoformat(),
-                        'Generation End Date': stage_map.end_time.isoformat(),
-                        # 'Generation Version': GENERATION_VERSION,
-                        'Hash of Rooms': hashlib.sha256(json.dumps(changes['Rooms'], sort_keys=True).encode()).hexdigest(),
-                        'Seed': stage_map.current_seed,
-                        'Stage': stage_name,
-                    }
+                    mapper_data_json.close()
+                stage_map = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
+                stage_map.generate()
+                changes = stage_map.stage.get_changes()
+                # print(stage_name, stage_seed)
+                assert stage_map.validate()
+                hash_of_rooms = hashlib.sha256(json.dumps(changes['Rooms'], sort_keys=True).encode()).hexdigest()
+                assert hash_of_rooms == mapper_data['Hash of Rooms']
+                assert stage_map.validate()
+                stages[stage_name] = stage_map
+                print('Prebaked', stage_map.current_seed)
+                shuffler['Stages'][stage_name] = {
+                    'Note': 'Prebaked',
+                    'Attempts': stage_map.attempts,
+                    'Generation Start Date': stage_map.start_time.isoformat(),
+                    'Generation End Date': stage_map.end_time.isoformat(),
+                    # 'Generation Version': GENERATION_VERSION,
+                    'Hash of Rooms': hashlib.sha256(json.dumps(changes['Rooms'], sort_keys=True).encode()).hexdigest(),
+                    'Seed': stage_map.current_seed,
+                    'Stage': stage_name,
+                }
             # ...
             changes = {
                 'Stages': {}
@@ -106,6 +109,32 @@ if __name__ == '__main__':
                             'Top': stage_changes['Rooms'][room_name]['Top'],
                             'Left': stage_changes['Rooms'][room_name]['Left'],
                         }
+                    if room_name == 'Colosseum, Arena':
+                        changes['Stages']['Boss - Minotaur and Werewolf'] = {
+                            'Rooms': {},
+                        }
+                        changes['Stages']['Boss - Minotaur and Werewolf']['Rooms']['Boss - Minotaur and Werewolf, Arena'] = {
+                            'Top': stage_changes['Rooms'][room_name]['Top'],
+                            'Left': stage_changes['Rooms'][room_name]['Left'],
+                        }
+                        changes['Stages']['Boss - Minotaur and Werewolf']['Rooms']['Boss - Minotaur and Werewolf, Fake Room With Teleporter A'] = {
+                            'Top': stage_changes['Rooms'][room_name]['Top'],
+                            'Left': stage_changes['Rooms'][room_name]['Left'] - 1,
+                        }
+                        changes['Stages']['Boss - Minotaur and Werewolf']['Rooms']['Boss - Minotaur and Werewolf, Fake Room With Teleporter B'] = {
+                            'Top': stage_changes['Rooms'][room_name]['Top'],
+                            'Left': stage_changes['Rooms'][room_name]['Left'] + 2,
+                        }
+                        changes['Boss Teleporters'] = {
+                            '5': {
+                                'Room X': stage_changes['Rooms'][room_name]['Left'],
+                                'Room Y': stage_changes['Rooms'][room_name]['Top'],
+                            },
+                            '6': {
+                                'Room X': stage_changes['Rooms'][room_name]['Left'] + 1,
+                                'Room Y': stage_changes['Rooms'][room_name]['Top'],
+                            },
+                        }
             # with open(os.path.join('build', 'sandbox', 'debug-changes.json'), 'w') as debug_changes_json:
             #     json.dump(changes, debug_changes_json, indent='    ', sort_keys=True, default=str)
             print('Require that reaching all shuffled stages in a reasonable amount of steps is possible')
@@ -113,19 +142,21 @@ if __name__ == '__main__':
             logic_core = mapper.LogicCore(mapper_core, changes).get_core()
             logic_core['Goals'] = {
                 'Reach All Shuffled Stages': {
-                    'Progression - Castle Entrance Stage Reached': True,
-                    'Progression - Castle Entrance Revisited Stage Reached': True,
-                    'Progression - Alchemy Laboratory Stage Reached': True,
-                    'Progression - Marble Gallery Stage Reached': True,
-                    'Progression - Outer Wall Stage Reached': True,
-                    'Progression - Olrox\'s Quarters Stage Reached': True,
+                    # 'Progression - Abandoned Mine Stage Reached': True,
+                    # 'Progression - Alchemy Laboratory Stage Reached': True,
+                    # 'Progression - Castle Entrance Stage Reached': True,
+                    # 'Progression - Castle Entrance Revisited Stage Reached': True,
+                    # 'Progression - Castle Keep Stage Reached': True,
+                    # 'Progression - Clock Tower Stage Reached': True,
                     'Progression - Colosseum Stage Reached': True,
-                    'Progression - Long Library Stage Reached': True,
-                    'Progression - Clock Tower Stage Reached': True,
-                    'Progression - Warp Rooms Stage Reached': True,
-                    'Progression - Castle Keep Stage Reached': True,
-                    'Progression - Royal Chapel Stage Reached': True,
-                    'Progression - Underground Caverns Stage Reached': True,
+                    # 'Progression - Long Library Stage Reached': True,
+                    # 'Progression - Marble Gallery Stage Reached': True,
+                    # 'Progression - Outer Wall Stage Reached': True,
+                    # 'Progression - Olrox\'s Quarters Stage Reached': True,
+                    # 'Progression - Royal Chapel Stage Reached': True,
+                    # 'Progression - Underground Caverns Stage Reached': True,
+                    # 'Progression - Warp Rooms Stage Reached': True,
+                    'Location': 'Colosseum, Arena',
                 },
             }
             # with open(os.path.join('build', 'debug', 'logic-core.json'), 'w') as debug_logic_core_json:

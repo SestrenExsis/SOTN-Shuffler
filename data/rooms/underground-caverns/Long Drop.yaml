@@ -68,6 +68,8 @@ Commands:
                 Section: Rising
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+            Upper Stairwell - Default:
+                Section: Upper Stairwell
     Move - Middle-Right Ledge:
         Outcomes:
             Section: Middle-Right Ledge

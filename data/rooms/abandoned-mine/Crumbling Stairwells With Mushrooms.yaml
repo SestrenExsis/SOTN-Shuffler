@@ -11,20 +11,50 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Top
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Top, Falling
+        Exit Section: Top, Rising
     Lower-Left Passage:
         Type: Passage
         Row: 3
         Column: 0
         Edge: Left
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Lower Area
+        Exit Section: Lower Area
     Lower-Right Passage:
         Type: Passage
         Row: 3
         Column: 0
         Edge: Right
-        Entry Section: Main
-        Exit Section: Main
-Commands: {}
+        Entry Section: Lower Area
+        Exit Section: Lower Area
+Commands:
+    Move - Lower Area:
+        Outcomes:
+            Section: Lower Area
+        Requirements:
+            Upper Area - Default:
+                Section: Upper Area
+    Move - Top, Rising:
+        Outcomes:
+            Section: Top, Rising
+        Requirements:
+            Upper Area - Default:
+                Section: Upper Area
+    Move - Upper Area:
+        Outcomes:
+            Section: Upper Area
+        Requirements:
+            Top, Falling - Default:
+                Section: Top, Falling
+            Lower Area - Bat Form:
+                Section: Lower Area
+                Progression - Bat Transformation: true
+            Lower Area - Double Jump:
+                Section: Lower Area
+                Progression - Double Jump: true
+            Lower Area - Gravity Jump:
+                Section: Lower Area
+                Progression - Gravity Jump: true
+            Lower Area - Mist:
+                Section: Lower Area
+                Progression - Mist Transformation: true

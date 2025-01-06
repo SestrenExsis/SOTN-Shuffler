@@ -11,20 +11,61 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Right
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Upper-Right Ledge
+        Exit Section: Upper-Right Ledge
     Middle-Right Passage:
         Type: Passage
         Row: 2
         Column: 0
         Edge: Right
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Middle-Right Ledge
+        Exit Section: Middle-Right Ledge
     Lower-Right Passage:
         Type: Passage
         Row: 3
         Column: 0
         Edge: Right
-        Entry Section: Main
-        Exit Section: Main
-Commands: {}
+        Entry Section: Ground
+        Exit Section: Ground
+Commands:
+    Move - Ground:
+        Outcomes:
+            Section: Ground
+        Requirements:
+            Middle-Right Ledge - Default:
+                Section: Middle-Right Ledge
+    Move - Middle-Right Ledge:
+        Outcomes:
+            Section: Middle-Right Ledge
+        Requirements:
+            Ground - Bat Form:
+                Section: Ground
+                Progression - Bat Transformation: true
+            Ground - Double Jump:
+                Section: Ground
+                Progression - Double Jump: true
+            Ground - Gravity Jump:
+                Section: Ground
+                Progression - Gravity Jump: true
+            Ground - Mist:
+                Section: Ground
+                Progression - Mist Transformation: true
+            Upper-Right Ledge - Default:
+                Section: Upper-Right Ledge
+    Move - Upper-Right Ledge:
+        Outcomes:
+            Section: Upper-Right Ledge
+        Requirements:
+            Middle-Right Ledge - Bat Form:
+                Section: Middle-Right Ledge
+                Progression - Bat Transformation: true
+            Middle-Right Ledge - Double Jump:
+                Section: Middle-Right Ledge
+                Progression - Double Jump: true
+            Middle-Right Ledge - Gravity Jump:
+                Section: Middle-Right Ledge
+                Progression - Gravity Jump: true
+            Middle-Right Ledge - Powered Mist:
+                Section: Middle-Right Ledge
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true

@@ -11,20 +11,70 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Left
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Upper-Left Ledge
+        Exit Section: Upper-Left Ledge
     Upper-Right Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Right
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Moved Block
+        Exit Section: Moved Block
     Bottom Passage:
         Type: Passage
         Row: 3
         Column: 0
         Edge: Bottom
-        Entry Section: Main
-        Exit Section: Main
-Commands: {}
+        Entry Section: Bottom, Rising
+        Exit Section: Bottom, Falling
+Commands:
+    Action - Allow Demon Familiar to Press Switch:
+        Outcomes:
+            Status - Switch in Abandoned Mine Pressed: true
+        Requirements:
+            Upper-Left Ledge - Demon Card:
+                Section: Upper-Left Ledge
+                Progression - Summon Demon Familiar: true
+                Status - Switch in Abandoned Mine Pressed: false
+    Move - Moved Block:
+        Outcomes:
+            Section: Moved Block
+        Requirements:
+            Upper-Left Ledge - Switch Pressed:
+                Section: Upper-Left Ledge
+                Status - Switch in Abandoned Mine Pressed: true
+    Move - Bottom, Falling:
+        Outcomes:
+            Section: Bottom, Falling
+        Requirements:
+            Lower Ledges - Default:
+                Section: Lower Ledges
+    Move - Lower Ledges:
+        Outcomes:
+            Section: Lower Ledges
+        Requirements:
+            Bottom, Rising - Default:
+                Section: Bottom, Rising
+            Moved Block - Default:
+                Section: Moved Block
+            Upper-Left Ledge - Default:
+                Section: Upper-Left Ledge
+    Move - Upper-Left Ledge:
+        Outcomes:
+            Section: Upper Area
+        Requirements:
+            Lower Ledges - Bat Form:
+                Section: Lower Area
+                Progression - Bat Transformation: true
+            Lower Ledges - Double Jump:
+                Section: Lower Area
+                Progression - Double Jump: true
+            Lower Ledges - Gravity Jump:
+                Section: Lower Area
+                Progression - Gravity Jump: true
+            Lower Ledges - Powered Mist:
+                Section: Lower Area
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Moved Block - Default:
+                Section: Moved Block

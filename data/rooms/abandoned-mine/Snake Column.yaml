@@ -18,6 +18,27 @@ Nodes:
         Row: 1
         Column: 0
         Edge: Left
-        Entry Section: Main
-        Exit Section: Main
-Commands: {}
+        Entry Section: Broken Wall
+        Exit Section: Broken Wall
+Commands:
+    Action - Break Wall:
+        Outcomes:
+            Status - Snake Column Wall Broken: true
+        Requirements:
+            Main - Default:
+                Section: Main
+                Status - Snake Column Wall Broken: false
+    Move - Broken Wall:
+        Outcomes:
+            Section: Broken Wall
+        Requirements:
+            Main - Wall Broken:
+                Section: Main
+                Status - Snake Column Wall Broken: true
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Main - Wall Broken:
+                Section: Broken Wall
+                Status - Snake Column Wall Broken: true

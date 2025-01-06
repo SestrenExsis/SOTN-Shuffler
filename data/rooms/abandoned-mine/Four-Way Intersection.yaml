@@ -20,8 +20,8 @@ Nodes:
         Edge: Left
         Entry Section: Main
         Exit Section: Main
-    Right Passage:
-        Type: Passage
+    Right Red Door:
+        Type: Red Door
         Row: 0
         Column: 2
         Edge: Right

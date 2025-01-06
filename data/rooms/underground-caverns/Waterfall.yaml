@@ -71,9 +71,8 @@ Commands:
             Upper-Right Ledge - Bat Form:
                 Section: Upper-Right Ledge
                 Progression - Bat Transformation: true
-            Upper-Right Ledge - Double Jump Without Taking Water Damage:
+            Upper-Right Ledge - Double Jump:
                 Section: Upper-Right Ledge
-                Progression - Protection From Water: true
                 Progression - Double Jump: true
             Upper-Right Ledge - Multiple Gravity Jumps:
                 Section: Upper-Right Ledge
@@ -101,9 +100,8 @@ Commands:
             Upper-Left Ledge - Bat Form:
                 Section: Upper-Left Ledge
                 Progression - Bat Transformation: true
-            Upper-Left Ledge - Double Jump Without Taking Water Damage:
+            Upper-Left Ledge - Double Jump:
                 Section: Upper-Left Ledge
-                Progression - Protection From Water: true
                 Progression - Double Jump: true
             Upper-Left Ledge - Multiple Gravity Jumps:
                 Section: Upper-Left Ledge
