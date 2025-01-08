@@ -282,6 +282,14 @@ stages = {
     ],
     'Marble Gallery': [
         {
+            # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
+            # NOTE(sestren): Clock Room must be hard-coded to its vanilla location until the MAR stage is found
+            'Marble Gallery, Three Paths': (26 - 2, 32 + 0),
+            'Marble Gallery, Left of Clock Room': (26 + 0, 32 - 3),
+            'Marble Gallery, Clock Room': (26 + 0, 32 + 0),
+            'Marble Gallery, Right of Clock Room': (26 + 0, 32 + 1),
+        },
+        {
             'Marble Gallery, Long Hallway': (32 + 0, 32 + 0),
             'Marble Gallery, Loading Room A': (32 + 0, 32 + 15),
             'Marble Gallery, Fake Room With Teleporter B': (32 + 0, 32 + 16),
@@ -309,13 +317,6 @@ stages = {
             'Marble Gallery, Fake Room With Teleporter D': (1, 0),
             'Marble Gallery, Loading Room B': (1, 1),
             'Marble Gallery, Stairwell to Underground Caverns': (0, 2),
-        },
-        {
-            # These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
-            'Marble Gallery, Three Paths': (0, 3),
-            'Marble Gallery, Left of Clock Room': (2, 0),
-            'Marble Gallery, Clock Room': (2, 3),
-            'Marble Gallery, Right of Clock Room': (2, 4),
         },
         {
             'Marble Gallery, Dropoff': (0, 0),
@@ -360,12 +361,14 @@ stages = {
             'Outer Wall, Lower Medusa Room': (0, 1),
             'Outer Wall, Telescope Room': (3, 0),
         },
+        {
+            # These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
+            'Outer Wall, Garlic Room': (0, 0),
+            'Outer Wall, Doppelganger Room': (0, 1),
+            'Outer Wall, Gladius Room': (0, 3),
+        },
         { 'Outer Wall, Blue Axe Knight Room': (0, 0) },
-        { 'Outer Wall, Doppelganger Room': (0, 0) },
-        { 'Outer Wall, Doppelganger Room': (0, 0) },
-        { 'Outer Wall, Garlic Room': (0, 0) },
         { 'Outer Wall, Garnet Vase Room': (0, 0) },
-        { 'Outer Wall, Gladius Room': (0, 0) },
         { 'Outer Wall, Jewel Knuckles Room': (1, 0) },
         { 'Outer Wall, Save Room A': (0, 0) },
         { 'Outer Wall, Save Room B': (0, 0) },
@@ -535,17 +538,17 @@ stages = {
     'Royal Chapel': [
         {
             # NOTE(sestren): For now, these hallways and towers must be combined until the special behavior that controls transitions between them is better understood
-            'Royal Chapel, Spike Hallway': (32 + 4, 32 + 0),
-            'Royal Chapel, Left Tower': (32 + 1, 32 + 3),
-            'Royal Chapel, Walkway Between Towers': (32 + 3, 32 + 5),
-            'Royal Chapel, Middle Tower': (32 + 0, 32 + 8),
-            'Royal Chapel, Walkway Left of Hippogryph': (32 + 2, 32 + 10),
-        },
-        {
-            'Royal Chapel, Walkway Right of Hippogryph': (0 + 3, 0 + 0),
-            'Royal Chapel, Right Tower': (0 + 0, 0 + 1),
-            'Royal Chapel, Loading Room A': (0 + 2, 0 + 4),
-            'Royal Chapel, Fake Room With Teleporter A': (0 + 2, 0 + 5),
+            # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
+            'Royal Chapel, Spike Hallway': (32 + 5, 32 + 0),
+            'Royal Chapel, Left Tower': (32 + 2, 32 + 3),
+            'Royal Chapel, Walkway Between Towers': (32 + 4, 32 + 5),
+            'Royal Chapel, Middle Tower': (32 + 1, 32 + 8),
+            'Royal Chapel, Walkway Left of Hippogryph': (32 + 3, 32 + 10),
+            'Royal Chapel, Hippogryph Room': (32 + 3, 32 + 13),
+            'Royal Chapel, Walkway Right of Hippogryph': (32 + 3, 32 + 15),
+            'Royal Chapel, Right Tower': (32 + 0, 32 + 16),
+            'Royal Chapel, Loading Room A': (32 + 2, 32 + 19),
+            'Royal Chapel, Fake Room With Teleporter A': (32 + 2, 32 + 20),
         },
         {
             'Royal Chapel, Pushing Statue Shortcut': (0 + 0, 0 + 0),
@@ -566,7 +569,6 @@ stages = {
         { 'Royal Chapel, Confessional Booth': (0, 0) },
         { 'Royal Chapel, Empty Room': (0, 0) },
         { 'Royal Chapel, Goggles Room': (0, 0) },
-        { 'Royal Chapel, Hippogryph Room': (0, 0) },
         { 'Royal Chapel, Save Room A': (0, 0) },
         { 'Royal Chapel, Save Room B': (0, 0) },
         { 'Royal Chapel, Silver Ring Room': (0, 0) },
@@ -591,10 +593,17 @@ stages = {
             'Underground Caverns, Loading Room C': (0 + 0, 0 + 1),
             'Underground Caverns, Exit to Abandoned Mine': (0 + 0, 0 + 2),
         },
+        {
+            # These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
+            'Underground Caverns, Hidden Crystal Entrance': (0, 0),
+            'Underground Caverns, Crystal Cloak Room': (1, 1),
+            'Underground Caverns, Scylla Room': (1, 2),
+            'Underground Caverns, Scylla Wyrm Room': (2, 1),
+            'Underground Caverns, Rising Water Room': (2, 2),
+        },
         { 'Underground Caverns, Save Room A': (0, 0) },
         { 'Underground Caverns, Save Room B': (0, 0) },
         { 'Underground Caverns, Save Room C': (0, 0) },
-        { 'Underground Caverns, Hidden Crystal Entrance': (0, 0) },
         { 'Underground Caverns, Crystal Bend': (0, 0) },
         { 'Underground Caverns, Tall Stairwell': (0, 0) },
         { 'Underground Caverns, Plaque Room With Life Max-Up': (0, 0) },
@@ -615,12 +624,8 @@ stages = {
         { 'Underground Caverns, Merman Statue Room': (0, 0) },
         { 'Underground Caverns, Ice Floe Room': (0, 0) },
         { 'Underground Caverns, Right Ferryman Route': (0, 0) },
-        { 'Underground Caverns, Crystal Cloak Room': (0, 0) },
         { 'Underground Caverns, Left Ferryman Route': (0, 0) },
         { 'Underground Caverns, Waterfall': (0, 0) },
-        { 'Underground Caverns, Scylla Room': (0, 0) },
-        { 'Underground Caverns, Scylla Wyrm Room': (0, 0) },
-        { 'Underground Caverns, Rising Water Room': (0, 0) },
         { 'Underground Caverns, Bandanna Room': (0, 0) },
     ],
     'Abandoned Mine': [
@@ -639,9 +644,12 @@ stages = {
             'Abandoned Mine, Loading Room A': (1 + 0, 0 + 1),
             'Abandoned Mine, Bend': (0, 2),
         },
-        { 'Abandoned Mine, Well-Lit Skull Room': (0, 0) },
-        { 'Abandoned Mine, Cerberus Room': (0, 0) },
-        { 'Abandoned Mine, Crumbling Stairwells With Demon Switch': (0, 0) },
+        {
+            # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
+            'Abandoned Mine, Well-Lit Skull Room': (0, 0),
+            'Abandoned Mine, Cerberus Room': (0, 2),
+            'Abandoned Mine, Crumbling Stairwells With Demon Switch': (0, 4),
+        },
         { 'Abandoned Mine, Venus Weed Room': (0, 0) },
         { 'Abandoned Mine, Snake Column': (0, 0) },
         { 'Abandoned Mine, Peanuts Room': (0, 0) },
@@ -651,6 +659,7 @@ stages = {
         { 'Abandoned Mine, Save Room A': (0, 0) },
     ],
     # TODO(sestren): Catacombs, with Granfaloon boss teleport
+    # TODO(sestren): Reverse Colosseum, with Trio boss teleporth
 }
 
 class MapperData:
