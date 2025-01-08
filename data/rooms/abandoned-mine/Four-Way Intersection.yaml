@@ -1,0 +1,37 @@
+
+Stage: Abandoned Mine
+Room: Four-Way Intersection
+Index: 7
+Columns: 3
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Top
+        Entry Section: Main
+        Exit Section: Main
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Right Red Door:
+        Type: Red Door
+        Row: 0
+        Column: 2
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+    Bottom Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Bottom
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

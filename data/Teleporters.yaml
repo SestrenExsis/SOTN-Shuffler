@@ -1,5 +1,10 @@
 
 Sources:
+    Abandoned Mine, Fake Room With Teleporter A:
+        Index: 19
+        Stage: Abandoned Mine
+        Room: Fake Room With Teleporter X
+        Target: Underground Caverns, Exit to Abandoned Mine (Left Red Door)
     Abandoned Mine, Fake Room With Teleporter B:
         Index: 20
         Stage: Abandoned Mine
@@ -185,6 +190,11 @@ Sources:
         Stage: Underground Caverns
         Room: Fake Room With Teleporter B
         Target: Special, Succubus Encounter (Spawn)
+    Underground Caverns, Fake Room With Teleporter C:
+        Index: 50
+        Stage: Underground Caverns
+        Room: Fake Room With Teleporter C
+        Target: Abandoned Mine, Wolf's Head Column (Upper-Right Red Door)
     Underground Caverns, Fake Room With Teleporter D:
         Index: 48
         Stage: Underground Caverns
@@ -210,7 +220,24 @@ Sources:
         Stage: Warp Rooms
         Room: Fake Room With Teleporter D
         Target: Castle Entrance Revisited, Shortcut to Warp (Left Red Door)
+    Warp Rooms, Fake Room With Teleporter E:
+        Index: 32
+        Stage: Warp Rooms
+        Room: Fake Room With Teleporter E
+        Target: Abandoned Mine, Four-Way Intersection (Right Red Door)
 Targets:
+    Abandoned Mine, Four-Way Intersection (Right Red Door):
+        Stage: Abandoned Mine
+        Room: Four-Way Intersection
+        Node: Right Red Door
+        Player X: 752
+        Player Y: 132
+    Abandoned Mine, Wolf's Head Column (Upper-Right Red Door):
+        Stage: Abandoned Mine
+        Room: Wolf's Head Column
+        Node: Upper-Right Red Door
+        Player X: 240
+        Player Y: 132
     Alchemy Laboratory, Entryway (Right Red Door):
         Stage: Alchemy Laboratory
         Room: Entryway
@@ -397,6 +424,12 @@ Targets:
         Node: Spawn
         Player X: 16
         Player Y: 180
+    Underground Caverns, Exit to Abandoned Mine (Left Red Door):
+        Stage: Underground Caverns
+        Room: Exit to Abandoned Mine
+        Node: Left Red Door
+        Player X: 16
+        Player Y: 132
     Underground Caverns, Exit to Castle Entrance (Left Red Door):
         Stage: Underground Caverns
         Room: Exit to Castle Entrance
@@ -446,37 +479,9 @@ Targets:
         Player X: 16
         Player Y: 132
 Future Sources:
-    Abandoned Mine, Fake Room With Teleporter X:
-        Index: 19
-        Stage: Castle Entrance
-        Room: Fake Room With Teleporter X
-        Target: Underground Caverns, Exit to Abandoned Mine (Left Red Door)
-    Underground Caverns, Fake Room With Teleporter C:
-        Index: 50
-        Stage: Underground Caverns
+    Abandoned Mine, Fake Room With Teleporter C:
+        Index: 18
+        Stage: Abandoned Mine
         Room: Fake Room With Teleporter C
-        Target: Abandoned Mine, Room ID 00 (Upper-Right Red Door)
-    Warp Rooms, Fake Room With Teleporter E:
-        Index: 32
-        Stage: Warp Rooms
-        Room: Fake Room With Teleporter E
-        Target: Abandoned Mine, Room ID 07 (Right Red Door)
-Future Targets:
-    Abandoned Mine, Room ID 00 (Upper-Right Red Door):
-        Stage: Abandoned Mine
-        Room: Room ID 00
-        Node: Upper-Right Red Door
-        Player X: 240
-        Player Y: 132
-    Abandoned Mine, Room ID 07 (Right Red Door):
-        Stage: Abandoned Mine
-        Room: Room ID 07
-        Node: Right Red Door
-        Player X: 752
-        Player Y: 132
-    Underground Caverns, Exit to Abandoned Mine (Left Red Door):
-        Stage: Underground Caverns
-        Room: Exit to Abandoned Mine
-        Node: Left Red Door
-        Player X: 16
-        Player Y: 132
+        Target: Catacombs, XXX (XXX Red Door)
+Future Targets: {}

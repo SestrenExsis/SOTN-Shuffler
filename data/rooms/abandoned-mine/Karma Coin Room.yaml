@@ -1,0 +1,16 @@
+
+Stage: Abandoned Mine
+Room: Karma Coin Room
+Index: 9
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

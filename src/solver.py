@@ -69,6 +69,7 @@ class Game:
     def get_score(self) -> int:
         scores = {
             'Check - Colosseum Library Card': 5.0,
+            'Progression - Abandoned Mine Stage Reached': 9.0,
             'Progression - Alchemy Laboratory Stage Reached': 16.0,
             'Progression - Castle Entrance Revisited Stage Reached': 4.0,
             'Progression - Castle Entrance Stage Reached': 16.0,
@@ -97,6 +98,8 @@ class Game:
             'Status - Breakable Wall in Grand Staircase Broken': 2.0,
             'Status - Breakable Wall in Tall Zig Zag Room Broken': 2.0,
             'Status - Cannon Activated': 2.0,
+            'Status - DK Bridge Broken': 3.0,
+            'Status - DK Button Pressed': 3.0,
             'Status - Elevator in Colosseum Unlocked': 2.0,
             'Status - Elevator in Outer Wall Activated': 3.0,
             'Status - Lower-Left Gear in Clock Tower Set': 1.25,
@@ -120,6 +123,7 @@ class Game:
     def get_progression(self) -> str:
         chars = {
             'Check - Colosseum Library Card': 'c',
+            'Progression - Abaonded Mine Stage Reached': 'AM',
             'Progression - Alchemy Laboratory Stage Reached': 'AL',
             'Progression - Castle Entrance Revisited Stage Reached': 'C1',
             'Progression - Castle Entrance Stage Reached': 'C2',
@@ -481,20 +485,22 @@ if __name__ == '__main__':
             #     'Relic - Form of Mist': True,
             #     'Location': 'Clock Tower, Stairwell to Outer Wall',
             # },
-            # 'Debug 5': {
-            #     'Progression - Castle Entrance Stage Reached': True,
-            #     'Progression - Castle Entrance Revisited Stage Reached': True,
-            #     'Progression - Alchemy Laboratory Stage Reached': True,
-            #     'Progression - Marble Gallery Stage Reached': True,
-            #     'Progression - Outer Wall Stage Reached': True,
-            #     'Progression - Olrox\'s Quarters Stage Reached': True,
-            #     'Progression - Colosseum Stage Reached': True,
-            #     'Progression - Long Library Stage Reached': True,
-            #     'Progression - Clock Tower Stage Reached': True,
-            #     'Progression - Warp Rooms Stage Reached': True,
-            #     'Progression - Castle Keep Stage Reached': True,
-            #     'Progression - Royal Chapel Stage Reached': True,
-            # },
+            'Debug 5': {
+                'Progression - Abandoned Mine Stage Reached': True,
+                'Progression - Castle Entrance Stage Reached': True,
+                'Progression - Castle Entrance Revisited Stage Reached': True,
+                'Progression - Alchemy Laboratory Stage Reached': True,
+                'Progression - Marble Gallery Stage Reached': True,
+                'Progression - Outer Wall Stage Reached': True,
+                'Progression - Olrox\'s Quarters Stage Reached': True,
+                'Progression - Colosseum Stage Reached': True,
+                'Progression - Long Library Stage Reached': True,
+                'Progression - Clock Tower Stage Reached': True,
+                'Progression - Warp Rooms Stage Reached': True,
+                'Progression - Castle Keep Stage Reached': True,
+                'Progression - Royal Chapel Stage Reached': True,
+                'Progression - Underground Caverns Stage Reached': True,
+            },
             # 'Test - Bat Transformation': {
             #     'Location': 'Long Library, Foot of Staircase',
             #     'Progression - Mist Transformation': True,
@@ -505,11 +511,11 @@ if __name__ == '__main__':
             #     'Relic - Soul of Bat': True,
             #     'Location': 'Underground Caverns, Long Drop',
             # },
-            'Test - Got Gold Ring': {
-                'Item - Gold Ring': {
-                    'Minimum': 1,
-                },
-            },
+            # 'Test - Got Gold Ring': {
+            #     'Item - Gold Ring': {
+            #         'Minimum': 1,
+            #     },
+            # },
             # 'Debug 99': {
             #     'Relic - Soul of Bat': True,
             # },
