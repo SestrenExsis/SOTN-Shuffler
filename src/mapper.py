@@ -362,17 +362,20 @@ stages = {
             'Outer Wall, Telescope Room': (3, 0),
         },
         {
-            # These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
+            # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
             'Outer Wall, Garlic Room': (0, 0),
             'Outer Wall, Doppelganger Room': (0, 1),
             'Outer Wall, Gladius Room': (0, 3),
         },
+        {
+            # NOTE(sestren): These rooms must be connected for now due to the secret platform moving between them
+            'Outer Wall, Secret Platform Room': (0, 0),
+            'Outer Wall, Jewel Knuckles Room': (1, 0),
+        },
         { 'Outer Wall, Blue Axe Knight Room': (0, 0) },
         { 'Outer Wall, Garnet Vase Room': (0, 0) },
-        { 'Outer Wall, Jewel Knuckles Room': (1, 0) },
         { 'Outer Wall, Save Room A': (0, 0) },
         { 'Outer Wall, Save Room B': (0, 0) },
-        { 'Outer Wall, Secret Platform Room': (0, 0) },
         { 'Outer Wall, Top of Outer Wall': (0, 0) },
     ],
     'Olrox\'s Quarters': [
@@ -398,7 +401,7 @@ stages = {
             'Olrox\'s Quarters, Catwalk Crypt': (0, 2),
         },
         {
-            # These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
+            # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
             'Olrox\'s Quarters, Echo of Bat Room': (0, 0),
             'Olrox\'s Quarters, Olrox\'s Room': (0, 3),
             'Olrox\'s Quarters, Narrow Hallway to Olrox': (0, 5),
@@ -415,7 +418,7 @@ stages = {
     ],
     'Colosseum': [
         {
-            # These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
+            # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
             'Colosseum, Fake Room With Teleporter A': (32 + 0, 32 + 0),
             'Colosseum, Loading Room A': (32 + 0, 32 + 1),
             'Colosseum, Passageway Between Arena and Royal Chapel': (32 + 0, 32 + 2),
@@ -423,7 +426,7 @@ stages = {
             'Colosseum, Top of Elevator Shaft': (32 + 0, 32 + 9),
             'Colosseum, Loading Room B': (32 + 0, 32 + 14),
             'Colosseum, Fake Room With Teleporter B': (32 + 0, 32 + 15),
-            # This room must be connected for now due to the two-room elevator
+            # NOTE(sestren): This room must be connected for now due to the two-room elevator
             'Colosseum, Bottom of Elevator Shaft': (32 + 1, 32 + 9),
         },
         { 'Colosseum, Blade Master Room': (0, 0) },
@@ -594,7 +597,7 @@ stages = {
             'Underground Caverns, Exit to Abandoned Mine': (0 + 0, 0 + 2),
         },
         {
-            # These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
+            # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
             'Underground Caverns, Hidden Crystal Entrance': (0, 0),
             'Underground Caverns, Crystal Cloak Room': (1, 1),
             'Underground Caverns, Scylla Room': (1, 2),
