@@ -671,6 +671,41 @@ stages = {
         },
     ],
     # TODO(sestren): Catacombs, with Granfaloon boss teleport
+    'Catacombs': [
+        {
+            'Catacombs, Exit to Abandoned Mine': (32 + 0, 32 + 0),
+            'Catacombs, Loading Room A': (32 + 0, 32 + 1),
+            'Catacombs, Fake Room With Teleporter A': (32 + 0, 32 + 2),
+        },
+        { 'Catacombs, Room ID 00': (0, 0) },
+        { 'Catacombs, Mormegil Room': (0, 0) },
+        { 'Catacombs, Room ID 02': (0, 0) },
+        { 'Catacombs, Granfaloon\'s Lair': (0, 0) },
+        { 'Catacombs, Room ID 04': (0, 0) },
+        { 'Catacombs, Room ID 05': (0, 0) },
+        { 'Catacombs, Room ID 06': (0, 0) },
+        { 'Catacombs, Save Room A': (0, 0) },
+        { 'Catacombs, Walk Armor Room': (0, 0) },
+        { 'Catacombs, Icebrand Room': (0, 0) },
+        { 'Catacombs, Left Lava Path': (0, 0) },
+        { 'Catacombs, Ballroom Mask Room': (0, 0) },
+        { 'Catacombs, Right Lava Path': (0, 0) },
+        { 'Catacombs, Cat-Eye Circlet Room': (0, 0) },
+        { 'Catacombs, Room ID 14': (0, 0) },
+        { 'Catacombs, Save Room B': (0, 0) },
+        { 'Catacombs, Room ID 16': (0, 0) },
+        { 'Catacombs, Room ID 18': (0, 0) },
+        { 'Catacombs, Room ID 19': (0, 0) },
+        { 'Catacombs, Room ID 20': (0, 0) },
+        { 'Catacombs, Room ID 21': (0, 0) },
+        { 'Catacombs, Room ID 22': (0, 0) },
+        { 'Catacombs, Room ID 23': (0, 0) },
+        { 'Catacombs, Spike Room': (0, 0) },
+        { 'Catacombs, Room ID 25': (0, 0) },
+        { 'Catacombs, Room ID 26': (0, 0) },
+        { 'Catacombs, Spike Breaker Room': (0, 0) },
+    ]
+    
     # TODO(sestren): Reverse Colosseum, with Trio boss teleporth
 }
 
@@ -686,6 +721,7 @@ class MapperData:
             'castle-entrance',
             'castle-entrance-revisited',
             'castle-keep',
+            'catacombs',
             'clock-tower',
             'colosseum',
             'long-library',
@@ -744,6 +780,7 @@ class LogicCore:
             'Castle Entrance',
             'Castle Entrance Revisited',
             'Castle Keep',
+            'Catacombs',
             'Clock Tower',
             'Colosseum',
             'Long Library',
@@ -980,9 +1017,9 @@ class Mapper:
                 no_nodes_unused and
                 (all_rooms_connected or self.stage_name in ('Warp Rooms', 'Castle Center', 'Underground Caverns'))
             )
-            # if len(self.stage.rooms) > 18:
+            # if len(self.stage.rooms) > 27:
             #     print(all_rooms_used, no_nodes_unused, all_rooms_connected, len(self.stage.rooms), len(self.rooms))
-            #     for line in self.get_spoiler('Colosseum'):
+            #     for line in self.get_spoiler('Catacombs'):
             #         print(line)
             #     print(len(self.steps))
             #     for step in self.steps:

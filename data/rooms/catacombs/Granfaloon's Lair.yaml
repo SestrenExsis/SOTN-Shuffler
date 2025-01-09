@@ -1,0 +1,23 @@
+
+Stage: Catacombs
+Room: Granfaloon's Lair
+Index: 3
+Columns: 2
+Rows: 2
+Empty Cells: {}
+Nodes:
+    Lower-Left Passage:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Upper-Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

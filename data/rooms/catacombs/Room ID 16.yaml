@@ -1,0 +1,23 @@
+
+Stage: Catacombs
+Room: Room ID 16
+Index: 16
+Columns: 2
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

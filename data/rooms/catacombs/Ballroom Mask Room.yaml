@@ -1,0 +1,30 @@
+
+Stage: Catacombs
+Room: Ballroom Mask Room
+Index: 11
+Columns: 2
+Rows: 2
+Empty Cells: {}
+Nodes:
+    Upper-Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Left Passage:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Lower-Right Passage:
+        Type: Passage
+        Row: 1
+        Column: 1
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}
