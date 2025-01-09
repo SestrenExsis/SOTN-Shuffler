@@ -48,6 +48,7 @@ if __name__ == '__main__':
                 ('Royal Chapel', global_rng.randint(0, 2 ** 64)),
                 ('Underground Caverns', global_rng.randint(0, 2 ** 64)),
                 ('Abandoned Mine', global_rng.randint(0, 2 ** 64)),
+                ('Castle Center', global_rng.randint(0, 2 ** 64)),
             )
             print('Randomize with seeds')
             for (stage_name, stage_seed) in stages_to_process:
@@ -287,20 +288,21 @@ if __name__ == '__main__':
             logic_core = mapper.LogicCore(mapper_core, changes).get_core()
             logic_core['Goals'] = {
                 'Reach All Shuffled Stages': {
-                    'Progression - Abandoned Mine Stage Reached': True,
-                    'Progression - Alchemy Laboratory Stage Reached': True,
-                    'Progression - Castle Entrance Stage Reached': True,
-                    'Progression - Castle Entrance Revisited Stage Reached': True,
-                    'Progression - Castle Keep Stage Reached': True,
-                    'Progression - Clock Tower Stage Reached': True,
-                    'Progression - Colosseum Stage Reached': True,
-                    'Progression - Long Library Stage Reached': True,
-                    'Progression - Marble Gallery Stage Reached': True,
-                    'Progression - Outer Wall Stage Reached': True,
-                    'Progression - Olrox\'s Quarters Stage Reached': True,
-                    'Progression - Royal Chapel Stage Reached': True,
-                    'Progression - Underground Caverns Stage Reached': True,
-                    'Progression - Warp Rooms Stage Reached': True,
+                    # 'Progression - Abandoned Mine Stage Reached': True,
+                    # 'Progression - Alchemy Laboratory Stage Reached': True,
+                    # 'Progression - Castle Entrance Stage Reached': True,
+                    # 'Progression - Castle Entrance Revisited Stage Reached': True,
+                    # 'Progression - Castle Keep Stage Reached': True,
+                    # 'Progression - Clock Tower Stage Reached': True,
+                    # 'Progression - Colosseum Stage Reached': True,
+                    # 'Progression - Long Library Stage Reached': True,
+                    # 'Progression - Marble Gallery Stage Reached': True,
+                    # 'Progression - Outer Wall Stage Reached': True,
+                    # 'Progression - Olrox\'s Quarters Stage Reached': True,
+                    # 'Progression - Royal Chapel Stage Reached': True,
+                    # 'Progression - Underground Caverns Stage Reached': True,
+                    # 'Progression - Warp Rooms Stage Reached': True,
+                    'Progression - Castle Center Stage Reached': True,
                 },
             }
             # with open(os.path.join('build', 'debug', 'logic-core.json'), 'w') as debug_logic_core_json:

@@ -25,36 +25,47 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Top
-        Entry Section: Falling
-        Exit Section: Rising
+        Entry Section: Top, Falling
+        Exit Section: Top, Rising
     Bottom Passage:
         Type: Passage
         Row: 0
         Column: 0
         Edge: Bottom
-        Entry Section: TODO
-        Exit Section: TODO
+        Entry Section: Bottom, Rising
+        Exit Section: Bottom, Falling
 Commands:
+    Move - Bottom, Falling:
+        Outcomes:
+            Section: Bottom, Falling
+        Requirements:
+            Bottom, Rising - Default:
+                Section: Bottom, Rising
+            Main - Floor Opened:
+                Section: Main
+                Status - Floor in Clock Room Opened Up: true
     Move - Main:
         Outcomes:
             Section: Main
         Requirements:
             Left Path:
-                Section: Falling
+                Section: Top, Falling
                 Helper: Left Path
             Middle Path:
-                Section: Falling
+                Section: Top, Falling
                 Helper: Middle Path
             Right Path:
-                Section: Falling
+                Section: Top, Falling
                 Helper: Right Path
-    Move - Rising, Left Path:
+            Bottom, Rising:
+                Section: Bottom, Rising
+    Move - Top, Rising, Left Path:
         Outcomes:
-            Section: Rising
+            Section: Top, Rising
             Helper: Left Path
         Requirements:
             Left Path:
-                Section: Falling
+                Section: Top, Falling
                 Helper: Left Path
             Main - Bat:
                 Section: Main
@@ -69,9 +80,9 @@ Commands:
             Main - Candle Dive Kick:
                 Section: Main
                 Progression - Mid-Air Reset: true
-    Move - Rising, Middle Path:
+    Move - Top, Rising, Middle Path:
         Outcomes:
-            Section: Rising
+            Section: Top, Rising
             Helper: Middle Path
         Requirements:
             Main - Bat:
@@ -85,13 +96,13 @@ Commands:
                 Section: Main
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
-    Move - Rising, Right Path:
+    Move - Top, Rising, Right Path:
         Outcomes:
-            Section: Rising
+            Section: Top, Rising
             Helper: Right Path
         Requirements:
-            Falling:
-                Section: Falling
+            Top, Falling:
+                Section: Top, Falling
                 Helper: Right Path
             Main - Bat + Stopwatch:
                 Section: Main
@@ -110,4 +121,14 @@ Commands:
                 Section: Main
                 Progression - Wolf Transformation: true
                 Subweapon: Stopwatch
-                
+    Action - Equip Both Rings:
+        Outcomes:
+            Status - Floor in Clock Room Opened Up: true
+        Requirements:
+            Main, Default:
+                Section: Main
+                Item - Silver Ring:
+                    Minimum: 1
+                Item - Gold Ring:
+                    Minimum: 1
+                Status - Floor in Clock Room Opened Up: false

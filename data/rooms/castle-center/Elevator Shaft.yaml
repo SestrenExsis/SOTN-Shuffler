@@ -1,0 +1,23 @@
+
+Stage: Castle Center
+Room: Elevator Shaft
+Index: 0
+Columns: 1
+Rows: 2
+Empty Cells: {}
+Nodes:
+    Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Top
+        Entry Section: Main
+        Exit Section: Main
+    Bottom Passage:
+        Type: Passage
+        Row: 1
+        Column: 0
+        Edge: Bottom
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

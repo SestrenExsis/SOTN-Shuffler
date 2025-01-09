@@ -661,6 +661,15 @@ stages = {
         { 'Abandoned Mine, Demon Card Room': (0, 0) },
         { 'Abandoned Mine, Save Room A': (0, 0) },
     ],
+    'Castle Center': [
+        {
+            'Castle Center, Fake Room With Teleporter A': (27 + 0, 32 + 0),
+            'Castle Center, Elevator Shaft': (27 + 1, 32 + 0),
+            'Castle Center, Center Cube': (27 + 3, 32 - 1),
+            'Castle Center, Unknown Room ID 04': (27 + 4, 32 + 2),
+            'Castle Center, Unknown Room ID 02': (27 + 6, 32 + 0),
+        },
+    ],
     # TODO(sestren): Catacombs, with Granfaloon boss teleport
     # TODO(sestren): Reverse Colosseum, with Trio boss teleporth
 }
@@ -671,20 +680,21 @@ class MapperData:
         self.rooms = {}
         self.teleporters = {}
         for stage_folder in (
+            'abandoned-mine',
+            'alchemy-laboratory',
+            'castle-center',
             'castle-entrance',
             'castle-entrance-revisited',
-            'alchemy-laboratory',
+            'castle-keep',
+            'clock-tower',
+            'colosseum',
+            'long-library',
             'marble-gallery',
             'outer-wall',
             'olroxs-quarters',
-            'colosseum',
-            'long-library',
-            'clock-tower',
-            'warp-rooms',
-            'castle-keep',
             'royal-chapel',
             'underground-caverns',
-            'abandoned-mine',
+            'warp-rooms',
         ):
             folder_path = os.path.join('data', 'rooms', stage_folder)
             for file_name in os.listdir(folder_path):
@@ -728,20 +738,21 @@ class LogicCore:
             },
         }
         for stage_name in (
+            'Abandoned Mine',
+            'Alchemy Laboratory',
+            'Castle Center',
             'Castle Entrance',
             'Castle Entrance Revisited',
-            'Alchemy Laboratory',
-            'Marble Gallery',
-            'Outer Wall',
-            'Olrox\'s Quarters',
+            'Castle Keep',
+            'Clock Tower',
             'Colosseum',
             'Long Library',
-            'Clock Tower',
-            'Warp Rooms',
-            'Castle Keep',
+            'Marble Gallery',
+            'Olrox\'s Quarters',
+            'Outer Wall',
             'Royal Chapel',
             'Underground Caverns',
-            'Abandoned Mine',
+            'Warp Rooms',
         ):
             # print('', stage_name)
             nodes = {}
@@ -967,7 +978,7 @@ class Mapper:
             result = (
                 all_rooms_used and
                 no_nodes_unused and
-                (all_rooms_connected or self.stage_name in ('Warp Rooms', 'Underground Caverns'))
+                (all_rooms_connected or self.stage_name in ('Warp Rooms', 'Castle Center', 'Underground Caverns'))
             )
             # if len(self.stage.rooms) > 18:
             #     print(all_rooms_used, no_nodes_unused, all_rooms_connected, len(self.stage.rooms), len(self.rooms))

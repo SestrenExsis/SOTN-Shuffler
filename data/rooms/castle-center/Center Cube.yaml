@@ -1,0 +1,28 @@
+
+Stage: Castle Center
+Room: Center Cube
+Index: 1
+Columns: 3
+Rows: 3
+Empty Cells: {}
+Nodes:
+    Top Passage:
+        Type: Passage
+        Row: 0
+        Column: 1
+        Edge: Top
+        Entry Section: Main
+        Exit Section: Main
+Commands:
+    Action - Collect Holy Glasses:
+        Outcomes:
+            Check - Holy Glasses Location: true
+            Item - Holy Glasses: 1
+        Requirements:
+            Main, Default:
+                Section: Main
+                Item - Silver Ring:
+                    Minimum: 1
+                Item - Gold Ring:
+                    Minimum: 1
+                Check - Holy Glasses Location: false

@@ -71,18 +71,19 @@ class Game:
             'Check - Colosseum Library Card': 5.0,
             'Progression - Abandoned Mine Stage Reached': 9.0,
             'Progression - Alchemy Laboratory Stage Reached': 16.0,
+            'Progression - Castle Center Stage Reached': 2.0,
             'Progression - Castle Entrance Revisited Stage Reached': 4.0,
             'Progression - Castle Entrance Stage Reached': 16.0,
+            'Progression - Castle Keep Stage Reached': 8.0,
+            'Progression - Clock Tower Stage Reached': 8.0,
             'Progression - Colosseum Stage Reached': 9.0,
             'Progression - Long Library Stage Reached': 8.0,
             'Progression - Marble Gallery Stage Reached': 19.0,
             'Progression - Olrox\'s Quarters Stage Reached': 12.0,
             'Progression - Outer Wall Stage Reached': 11.0,
-            'Progression - Clock Tower Stage Reached': 8.0,
-            'Progression - Warp Rooms Stage Reached': 7.0,
-            'Progression - Castle Keep Stage Reached': 8.0,
             'Progression - Royal Chapel Stage Reached': 12.0,
             'Progression - Underground Caverns Stage Reached': 21.0,
+            'Progression - Warp Rooms Stage Reached': 7.0,
             'Relic - Cube of Zoe': 3.0,
             'Relic - Form of Mist': 15.0,
             'Relic - Faerie Scroll': 1.0,
@@ -125,6 +126,7 @@ class Game:
             'Check - Colosseum Library Card': 'c',
             'Progression - Abaonded Mine Stage Reached': 'AM',
             'Progression - Alchemy Laboratory Stage Reached': 'AL',
+            'Progression - Castle Center Stage Reached': 'CC',
             'Progression - Castle Entrance Revisited Stage Reached': 'C1',
             'Progression - Castle Entrance Stage Reached': 'C2',
             'Progression - Castle Keep Stage Reached': 'CK',
@@ -486,20 +488,21 @@ if __name__ == '__main__':
             #     'Location': 'Clock Tower, Stairwell to Outer Wall',
             # },
             'Debug 5': {
-                'Progression - Abandoned Mine Stage Reached': True,
-                'Progression - Castle Entrance Stage Reached': True,
-                'Progression - Castle Entrance Revisited Stage Reached': True,
-                'Progression - Alchemy Laboratory Stage Reached': True,
-                'Progression - Marble Gallery Stage Reached': True,
-                'Progression - Outer Wall Stage Reached': True,
-                'Progression - Olrox\'s Quarters Stage Reached': True,
-                'Progression - Colosseum Stage Reached': True,
-                'Progression - Long Library Stage Reached': True,
-                'Progression - Clock Tower Stage Reached': True,
-                'Progression - Warp Rooms Stage Reached': True,
-                'Progression - Castle Keep Stage Reached': True,
-                'Progression - Royal Chapel Stage Reached': True,
-                'Progression - Underground Caverns Stage Reached': True,
+                # 'Progression - Abandoned Mine Stage Reached': True,
+                # 'Progression - Alchemy Laboratory Stage Reached': True,
+                'Progression - Castle Center Stage Reached': True,
+                # 'Progression - Castle Entrance Stage Reached': True,
+                # 'Progression - Castle Entrance Revisited Stage Reached': True,
+                # 'Progression - Castle Keep Stage Reached': True,
+                # 'Progression - Clock Tower Stage Reached': True,
+                # 'Progression - Colosseum Stage Reached': True,
+                # 'Progression - Long Library Stage Reached': True,
+                # 'Progression - Marble Gallery Stage Reached': True,
+                # 'Progression - Olrox\'s Quarters Stage Reached': True,
+                # 'Progression - Outer Wall Stage Reached': True,
+                # 'Progression - Royal Chapel Stage Reached': True,
+                # 'Progression - Underground Caverns Stage Reached': True,
+                # 'Progression - Warp Rooms Stage Reached': True,
             },
             # 'Test - Bat Transformation': {
             #     'Location': 'Long Library, Foot of Staircase',
@@ -511,16 +514,93 @@ if __name__ == '__main__':
             #     'Relic - Soul of Bat': True,
             #     'Location': 'Underground Caverns, Long Drop',
             # },
-            # 'Test - Got Gold Ring': {
-            #     'Item - Gold Ring': {
-            #         'Minimum': 1,
-            #     },
-            # },
+            'Test - Got Both Rings': {
+                'Item - Silver Ring': {
+                    'Minimum': 1
+                },
+                'Item - Gold Ring': {
+                    'Minimum': 1
+                },
+            },
             # 'Debug 99': {
             #     'Relic - Soul of Bat': True,
             # },
             # 'Debug 99': {
             #     'Relic - Form of Mist': True,
+            # },
+            # 'Intended Progression?': [
+            #     {
+            #         'Relic - Jewel of Open': True,
+            #     },
+            #     {
+            #         'Relic - Leap Stone': True,
+            #     },
+            #     {
+            #         'Relic - Form of Mist': True,
+            #     },
+            #     {
+            #         'Relic - Soul of Bat': True,
+            #     },
+            #     {
+            #         'Relic - Echo of Bat': True,
+            #     },
+            #     {
+            #         'Item - Spike Breaker': {
+            #             'Minimum': 1,
+            #         },
+            #     },
+            #     {
+            #         'Item - Silver Ring': {
+            #             'Minimum': 1,
+            #         },
+            #         'Item - Gold Ring': {
+            #             'Minimum': 1,
+            #         },
+            #     },
+            #     {
+            #         'Item - Holy Glasses': {
+            #             'Minimum': 1,
+            #         },
+            #     },
+            #     {
+            #         'Status - Richter Saved': True,
+            #     },
+            #     {
+            #         'Relic - Ring of Vlad': True,
+            #         'Relic - Heart of Vlad': True,
+            #         'Relic - Tooth of Vlad': True,
+            #         'Relic - Rib of Vlad': True,
+            #         'Relic - Eye of Vlad': True,
+            #     },
+            #     {
+            #         'Status - Dracula Defeated': True,
+            #     },
+            # ],
+            # 'Intended Goal': {
+            #     'Relic - Jewel of Open': True,
+            #     'Relic - Leap Stone': True,
+            #     'Relic - Form of Mist': True,
+            #     'Relic - Soul of Bat': True,
+            #     # 'Relic - Echo of Bat': True,
+            #     # 'Item - Spike Breaker': {
+            #     #     'Minimum': 1,
+            #     # },
+            #     'Item - Silver Ring': {
+            #         'Minimum': 1,
+            #     },
+            #     'Item - Gold Ring': {
+            #         'Minimum': 1,
+            #     },
+            #     # 'Item - Holy Glasses': {
+            #     #     'Minimum': 1,
+            #     # },
+            #     # 'Status - Richter Saved': True,
+            #     # 'Relic - Ring of Vlad': True,
+            #     # 'Relic - Heart of Vlad': True,
+            #     # 'Relic - Tooth of Vlad': True,
+            #     # 'Relic - Rib of Vlad': True,
+            #     # 'Relic - Eye of Vlad': True,
+            #     # 'Status - Dracula Defeated': True,
             # },
         }
         skills = json.load(skills_json)
