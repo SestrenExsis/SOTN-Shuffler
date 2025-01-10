@@ -228,6 +228,27 @@ if __name__ == '__main__':
                             'Room Y': stage_changes['Rooms'][room_name]['Top'],
                             'Room X': stage_changes['Rooms'][room_name]['Left'] + 1,
                         }
+                    elif room_name == 'Catacombs, Granfaloon\'s Lair':
+                        changes['Stages']['Boss - Granfaloon'] = {
+                            'Rooms': {},
+                        }
+                        changes['Stages']['Boss - Granfaloon']['Rooms']['Boss - Granfaloon, Granfaloon\'s Lair'] = {
+                            'Top': stage_changes['Rooms'][room_name]['Top'],
+                            'Left': stage_changes['Rooms'][room_name]['Left'],
+                        }
+                        changes['Stages']['Boss - Granfaloon']['Rooms']['Boss - Granfaloon, Fake Room With Teleporter A'] = {
+                            'Top': stage_changes['Rooms'][room_name]['Top'],
+                            'Left': stage_changes['Rooms'][room_name]['Left'] - 1,
+                        }
+                        changes['Stages']['Boss - Granfaloon']['Rooms']['Boss - Granfaloon, Fake Room With Teleporter B'] = {
+                            'Top': stage_changes['Rooms'][room_name]['Top'],
+                            'Left': stage_changes['Rooms'][room_name]['Left'] + 2,
+                        }
+                        # NOTE(sestren): There is only one boss teleporter in the game data for Olrox, despite there being two entrances, so one of the entrances will not be covered
+                        changes['Boss Teleporters']['4'] = {
+                            'Room Y': stage_changes['Rooms'][room_name]['Top'],
+                            'Room X': stage_changes['Rooms'][room_name]['Left'] + 1,
+                        }
                     elif room_name == 'Underground Caverns, Scylla Wyrm Room':
                         changes['Stages']['Boss - Scylla'] = {
                             'Rooms': {},
@@ -288,20 +309,21 @@ if __name__ == '__main__':
             logic_core = mapper.LogicCore(mapper_core, changes).get_core()
             logic_core['Goals'] = {
                 'Reach All Shuffled Stages': {
-                    # 'Progression - Abandoned Mine Stage Reached': True,
-                    # 'Progression - Alchemy Laboratory Stage Reached': True,
-                    # 'Progression - Castle Entrance Stage Reached': True,
-                    # 'Progression - Castle Entrance Revisited Stage Reached': True,
-                    # 'Progression - Castle Keep Stage Reached': True,
-                    # 'Progression - Clock Tower Stage Reached': True,
-                    # 'Progression - Colosseum Stage Reached': True,
-                    # 'Progression - Long Library Stage Reached': True,
-                    # 'Progression - Marble Gallery Stage Reached': True,
-                    # 'Progression - Outer Wall Stage Reached': True,
-                    # 'Progression - Olrox\'s Quarters Stage Reached': True,
-                    # 'Progression - Royal Chapel Stage Reached': True,
-                    # 'Progression - Underground Caverns Stage Reached': True,
-                    # 'Progression - Warp Rooms Stage Reached': True,
+                    'Progression - Abandoned Mine Stage Reached': True,
+                    'Progression - Alchemy Laboratory Stage Reached': True,
+                    'Progression - Castle Entrance Stage Reached': True,
+                    'Progression - Castle Entrance Revisited Stage Reached': True,
+                    'Progression - Castle Keep Stage Reached': True,
+                    'Progression - Catacombs Stage Reached': True,
+                    'Progression - Clock Tower Stage Reached': True,
+                    'Progression - Colosseum Stage Reached': True,
+                    'Progression - Long Library Stage Reached': True,
+                    'Progression - Marble Gallery Stage Reached': True,
+                    'Progression - Outer Wall Stage Reached': True,
+                    'Progression - Olrox\'s Quarters Stage Reached': True,
+                    'Progression - Royal Chapel Stage Reached': True,
+                    'Progression - Underground Caverns Stage Reached': True,
+                    'Progression - Warp Rooms Stage Reached': True,
                     'Progression - Castle Center Stage Reached': True,
                 },
             }

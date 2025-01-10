@@ -13,4 +13,20 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands: {}
+Commands:
+    Action - Collect Spike Breaker:
+        Outcomes:
+            Item - Spike Breaker: 1
+            Check - Spike Breaker Location: true
+        Requirements:
+            Default:
+                Section: Main
+                Check - Spike Breaker Location: false
+    Action - Collect Library Card:
+        Outcomes:
+            Item - Library Card: 1
+            Check - Library Card Location in Catacombs: true
+        Requirements:
+            Default:
+                Section: Main
+                Check - Library Card Location in Catacombs: false

@@ -18,6 +18,26 @@ Nodes:
         Row: 0
         Column: 4
         Edge: Top
-        Entry Section: Main
-        Exit Section: Main
-Commands: {}
+        Entry Section: Top, Falling
+        Exit Section: Top, Rising
+Commands:
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Top, Falling - Default:
+                Section: Top, Falling
+    Move - Top, Rising:
+        Outcomes:
+            Section: Top, Rising
+        Requirements:
+            Main - Bat:
+                Section: Main
+                Progression - Bat Transformation: true
+            Main - Gravity Jump:
+                Section: Main
+                Progression - Gravity Jump: true
+            Main - Powered Mist:
+                Section: Main
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true

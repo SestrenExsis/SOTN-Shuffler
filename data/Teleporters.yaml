@@ -10,6 +10,11 @@ Sources:
         Stage: Abandoned Mine
         Room: Fake Room With Teleporter B
         Target: Warp Rooms, Warp Room E (Left Red Door)
+    Abandoned Mine, Fake Room With Teleporter C:
+        Index: 18
+        Stage: Abandoned Mine
+        Room: Fake Room With Teleporter C
+        Target: Catacombs, Exit to Abandoned Mine (Upper-Right Red Door)
     Alchemy Laboratory, Fake Room With Teleporter A:
         Index: 22
         Stage: Alchemy Laboratory
@@ -75,6 +80,11 @@ Sources:
         Stage: Castle Keep
         Room: Fake Room With Teleporter C
         Target: Warp Rooms, Warp Room A (Left Red Door)
+    Catacombs, Fake Room With Teleporter A:
+        Index: 16
+        Stage: Catacombs
+        Room: Fake Room With Teleporter A
+        Target: Abandoned Mine, Bend (Lower-Left Red Door)
     Clock Tower, Fake Room With Teleporter A:
         Index: 9
         Stage: Clock Tower
@@ -236,6 +246,12 @@ Sources:
         Room: Fake Room With Teleporter E
         Target: Abandoned Mine, Four-Way Intersection (Right Red Door)
 Targets:
+    Abandoned Mine, Bend (Lower-Left Red Door):
+        Stage: Abandoned Mine
+        Room: Bend
+        Node: Lower-Left Red Door
+        Player X: 16
+        Player Y: 388
     Abandoned Mine, Four-Way Intersection (Right Red Door):
         Stage: Abandoned Mine
         Room: Four-Way Intersection
@@ -308,6 +324,12 @@ Targets:
         Node: Lower-Right Red Door
         Player X: 240
         Player Y: 388
+    Catacombs, Exit to Abandoned Mine (Upper-Right Red Door):
+        Stage: Catacombs
+        Room: Exit to Abandoned Mine
+        Node: Lower-Right Red Door
+        Player X: 240
+        Player Y: 132
     Clock Tower, Karasuman's Room (Left Red Door):
         Stage: Clock Tower
         Room: Karasuman's Room
@@ -500,10 +522,4 @@ Targets:
         Node: Left Red Door
         Player X: 16
         Player Y: 132
-Future Sources:
-    Abandoned Mine, Fake Room With Teleporter C:
-        Index: 18
-        Stage: Abandoned Mine
-        Room: Fake Room With Teleporter C
-        Target: Catacombs, XXX (XXX Red Door)
 Future Targets: {}

@@ -11,8 +11,8 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Left
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Upper-Left Ledge
+        Exit Section: Upper-Left Ledge
     Lower-Left Passage:
         Type: Passage
         Row: 1
@@ -27,4 +27,24 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands: {}
+Commands:
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Upper-Left Ledge - Default:
+                Section: Upper-Left Ledge
+    Move - Upper-Left Ledge:
+        Outcomes:
+            Section: Upper-Left Ledge
+        Requirements:
+            Main - Bat:
+                Section: Main
+                Progression - Bat Transformation: true
+            Main - Gravity Jump:
+                Section: Main
+                Progression - Gravity Jump: true
+            Main - Powered Mist:
+                Section: Main
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true

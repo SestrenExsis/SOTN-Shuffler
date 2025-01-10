@@ -1,8 +1,8 @@
 
 Stage: Catacombs
-Room: Room ID 18
-Index: 18
-Columns: 3
+Room: Hellfire Beast Room
+Index: 16
+Columns: 2
 Rows: 1
 Empty Cells: {}
 Nodes:
@@ -16,7 +16,7 @@ Nodes:
     Right Passage:
         Type: Passage
         Row: 0
-        Column: 2
+        Column: 1
         Edge: Right
         Entry Section: Main
         Exit Section: Main
