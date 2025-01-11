@@ -42,7 +42,6 @@ Commands:
         Requirements:
             Default:
                 Section: Main
-                Knowledge - How to Break the Floor in Tall Zig Zag Room: true
                 Progression - Ability to Strike at Floor: true
                 Status - Breakable Floor in Tall Zig Zag Room Broken: false
     Action - Break Wall:
@@ -51,7 +50,6 @@ Commands:
         Requirements:
             Default:
                 Section: Main
-                Knowledge - How to Break the Wall in Tall Zig Zag Room: true
                 Status - Breakable Wall in Tall Zig Zag Room Broken: false
     Move - Broken Floor:
         Outcomes:

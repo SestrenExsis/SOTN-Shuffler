@@ -869,7 +869,6 @@ class LogicCore:
                 self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Location'] = matching_location_name
                 self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Section'] = matching_section
                 # TODO(sestren): Use Milestone instead of Progression for reaching a stage
-                self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Progression - ' + matching_stage_name + ' Stage Reached'] = True
         # Replace source teleporter locations with their targets
         for (location_name, location_info) in self.commands.items():
             for (command_name, command_info) in location_info.items():

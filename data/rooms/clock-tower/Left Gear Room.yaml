@@ -71,7 +71,6 @@ Commands:
         Requirements:
             Default:
                 Section: Main
-                Knowledge - How to Break the Wall in Left Gear Room: true
                 Status - Breakable Wall in Left Gear Room Broken: false
     Action - Set Upper-Left Gear:
         Outcomes:

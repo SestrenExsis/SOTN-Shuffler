@@ -34,7 +34,6 @@ Commands:
         Requirements:
             Default:
                 Section: Main
-                Knowledge - How to Break the Ceiling in Catwalk Crypt: true
                 Status - Breakable Ceiling in Catwalk Crypt Broken: false
     Move - Rising:
         Outcomes:

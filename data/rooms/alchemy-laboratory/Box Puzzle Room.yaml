@@ -41,7 +41,6 @@ Commands:
         Requirements:
             Ground - Box Puzzle:
                 Section: Ground
-                Knowledge - How to Solve the Box Puzzle: true
             Ground - Bat:
                 Section: Ground
                 Progression - Bat Transformation: true
