@@ -35,21 +35,21 @@ if __name__ == '__main__':
             # Randomize
             stages = {}
             stages_to_process = (
-                ('Castle Entrance', global_rng.randint(0, 2 ** 64)),
+                ('Abandoned Mine', global_rng.randint(0, 2 ** 64)),
                 ('Alchemy Laboratory', global_rng.randint(0, 2 ** 64)),
-                ('Marble Gallery', global_rng.randint(0, 2 ** 64)),
-                ('Outer Wall', global_rng.randint(0, 2 ** 64)),
-                ('Olrox\'s Quarters', global_rng.randint(0, 2 ** 64)),
+                ('Castle Center', global_rng.randint(0, 2 ** 64)),
+                ('Castle Keep', global_rng.randint(0, 2 ** 64)),
+                ('Castle Entrance', global_rng.randint(0, 2 ** 64)),
+                ('Catacombs', global_rng.randint(0, 2 ** 64)),
+                ('Clock Tower', global_rng.randint(0, 2 ** 64)),
                 ('Colosseum', global_rng.randint(0, 2 ** 64)),
                 ('Long Library', global_rng.randint(0, 2 ** 64)),
-                ('Clock Tower', global_rng.randint(0, 2 ** 64)),
-                ('Warp Rooms', global_rng.randint(0, 2 ** 64)),
-                ('Castle Keep', global_rng.randint(0, 2 ** 64)),
+                ('Marble Gallery', global_rng.randint(0, 2 ** 64)),
+                ('Olrox\'s Quarters', global_rng.randint(0, 2 ** 64)),
+                ('Outer Wall', global_rng.randint(0, 2 ** 64)),
                 ('Royal Chapel', global_rng.randint(0, 2 ** 64)),
                 ('Underground Caverns', global_rng.randint(0, 2 ** 64)),
-                ('Abandoned Mine', global_rng.randint(0, 2 ** 64)),
-                ('Castle Center', global_rng.randint(0, 2 ** 64)),
-                ('Catacombs', global_rng.randint(0, 2 ** 64)),
+                ('Warp Rooms', global_rng.randint(0, 2 ** 64)),
             )
             print('Randomize with seeds')
             for (stage_name, stage_seed) in stages_to_process:
@@ -312,6 +312,7 @@ if __name__ == '__main__':
                 'Reach All Shuffled Stages': {
                     'Progression - Abandoned Mine Stage Reached': True,
                     'Progression - Alchemy Laboratory Stage Reached': True,
+                    'Progression - Castle Center Stage Reached': True,
                     'Progression - Castle Entrance Stage Reached': True,
                     'Progression - Castle Entrance Revisited Stage Reached': True,
                     'Progression - Castle Keep Stage Reached': True,
@@ -325,7 +326,6 @@ if __name__ == '__main__':
                     'Progression - Royal Chapel Stage Reached': True,
                     'Progression - Underground Caverns Stage Reached': True,
                     'Progression - Warp Rooms Stage Reached': True,
-                    'Progression - Castle Center Stage Reached': True,
                 },
             }
             # with open(os.path.join('build', 'debug', 'logic-core.json'), 'w') as debug_logic_core_json:
