@@ -55,6 +55,11 @@ Sources:
         Stage: Castle Entrance Revisited
         Room: Fake Room With Teleporter A
         Target: Alchemy Laboratory, Entryway (Right Red Door)
+    Castle Entrance Revisited, Fake Room With Teleporter B:
+        Index: 56
+        Stage: Castle Entrance
+        Room: Fake Room With Teleporter B
+        Target: Marble Gallery, S-Shaped Hallways (Lower-Left Red Door)
     Castle Entrance Revisited, Fake Room With Teleporter C:
         Index: 59
         Stage: Castle Entrance Revisited
@@ -135,6 +140,11 @@ Sources:
         Stage: Marble Gallery
         Room: Fake Room With Teleporter E
         Target: Castle Center, Elevator Shaft (Top Passage)
+    Marble Gallery, Fake Room With Teleporter F:
+        Index: 3
+        Stage: Marble Gallery
+        Room: Fake Room With Teleporter F
+        Target: Castle Entrance Revisited, Cube of Zoe Room (Upper-Right Red Door)
     Olrox's Quarters, Fake Room With Teleporter A:
         Index: 25
         Stage: Olrox's Quarters
@@ -294,6 +304,12 @@ Targets:
         Node: Upper-Left Red Door
         Player X: 16
         Player Y: 132
+    Castle Entrance Revisited, Cube of Zoe Room (Upper-Right Red Door):
+        Stage: Castle Entrance Revisited
+        Room: Cube of Zoe Room
+        Node: Upper-Right Red Door
+        Player X: 496
+        Player Y: 132
     Castle Entrance Revisited, Shortcut to Warp (Left Red Door):
         Stage: Castle Entrance Revisited
         Room: Shortcut to Warp
@@ -384,6 +400,12 @@ Targets:
         Node: Left Red Door
         Player X: 16
         Player Y: 132
+    Marble Gallery, S-Shaped Hallways (Lower-Left Red Door):
+        Stage: Marble Gallery
+        Room: S-Shaped Hallways
+        Node: Lower-Left Red Door
+        Player X: 16
+        Player Y: 644
     Marble Gallery, Stairwell to Underground Caverns (Lower-Left Red Door):
         Stage: Marble Gallery
         Room: Stairwell to Underground Caverns
