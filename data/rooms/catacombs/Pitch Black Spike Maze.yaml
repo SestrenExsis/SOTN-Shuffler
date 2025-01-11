@@ -95,3 +95,10 @@ Commands:
                 Section: Right Side
                 Item - Spike Breaker:
                     Minimum: 1
+    Action - Activate Pressure Plate:
+        Outcomes:
+            Status - Light in Spike Maze Turned On: true
+        Requirements:
+            Right Side - Default:
+                Section: Right Side
+                Status - Light in Spike Maze Turned On: false

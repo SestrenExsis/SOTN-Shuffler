@@ -327,7 +327,7 @@ Targets:
     Catacombs, Exit to Abandoned Mine (Upper-Right Red Door):
         Stage: Catacombs
         Room: Exit to Abandoned Mine
-        Node: Lower-Right Red Door
+        Node: Upper-Right Red Door
         Player X: 240
         Player Y: 132
     Clock Tower, Karasuman's Room (Left Red Door):

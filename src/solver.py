@@ -68,50 +68,52 @@ class Game:
     
     def get_score(self) -> int:
         scores = {
-            'Check - Colosseum Library Card': 5.0,
-            'Progression - Abandoned Mine Stage Reached': 9.0,
+            # 'Check - Colosseum Library Card': 10.0,
+            # 'Progression - Abandoned Mine Stage Reached': 9.0,
             'Progression - Alchemy Laboratory Stage Reached': 16.0,
-            'Progression - Castle Center Stage Reached': 2.0,
-            'Progression - Castle Entrance Revisited Stage Reached': 4.0,
+            # 'Progression - Castle Center Stage Reached': 2.0,
+            # 'Progression - Castle Entrance Revisited Stage Reached': 4.0,
             'Progression - Castle Entrance Stage Reached': 16.0,
             'Progression - Castle Keep Stage Reached': 8.0,
-            'Progression - Clock Tower Stage Reached': 8.0,
+            # 'Progression - Catacombs Stage Reached': 15.0,
+            # 'Progression - Clock Tower Stage Reached': 8.0,
             'Progression - Colosseum Stage Reached': 9.0,
             'Progression - Long Library Stage Reached': 8.0,
             'Progression - Marble Gallery Stage Reached': 19.0,
             'Progression - Olrox\'s Quarters Stage Reached': 12.0,
-            'Progression - Outer Wall Stage Reached': 11.0,
-            'Progression - Royal Chapel Stage Reached': 12.0,
-            'Progression - Underground Caverns Stage Reached': 21.0,
-            'Progression - Warp Rooms Stage Reached': 7.0,
-            'Relic - Cube of Zoe': 3.0,
-            'Relic - Form of Mist': 15.0,
-            'Relic - Faerie Scroll': 1.0,
-            'Relic - Gravity Boots': 10.0,
-            'Relic - Jewel of Open': 5.0,
-            'Relic - Leap Stone': 10.0,
-            'Relic - Power of Mist': 3.0,
-            'Relic - Soul of Bat': 25.0,
-            'Relic - Soul of Wolf': 8.0,
-            'Status - Breakable Ceiling in Blade Master Room Broken': 2.0,
-            'Status - Breakable Ceiling in Catwalk Crypt Broken': 2.0,
-            'Status - Breakable Floor in Tall Zig Zag Room Broken': 2.0,
-            'Status - Breakable Wall in Grand Staircase Broken': 2.0,
-            'Status - Breakable Wall in Tall Zig Zag Room Broken': 2.0,
-            'Status - Cannon Activated': 2.0,
-            'Status - DK Bridge Broken': 3.0,
-            'Status - DK Button Pressed': 3.0,
-            'Status - Elevator in Colosseum Unlocked': 2.0,
-            'Status - Elevator in Outer Wall Activated': 3.0,
-            'Status - Lower-Left Gear in Clock Tower Set': 1.25,
-            'Status - Lower-Right Gear in Clock Tower Set': 1.25,
-            'Status - Pressure Plate in Marble Gallery Activated': 5.0,
-            'Status - Secret Wall in Merman Room Opened': 2.0,
-            'Status - Shortcut in Cube of Zoe Room Activated': 3.0,
-            'Status - Shortcut to Warp Activated': 3.0,
-            'Status - Trapdoor After Drawbridge Opened': 2.0,
-            'Status - Upper-Left Gear in Clock Tower Set': 1.25,
-            'Status - Upper-Right Gear in Clock Tower Set': 1.25,
+            # 'Progression - Outer Wall Stage Reached': 11.0,
+            # 'Progression - Royal Chapel Stage Reached': 12.0,
+            # 'Progression - Underground Caverns Stage Reached': 21.0,
+            # 'Progression - Warp Rooms Stage Reached': 7.0,
+            # 'Relic - Cube of Zoe': 3.0,
+            'Relic - Echo of Bat': 30.0,
+            'Relic - Form of Mist': 30.0,
+            # 'Relic - Faerie Scroll': 1.0,
+            # 'Relic - Gravity Boots': 10.0,
+            'Relic - Jewel of Open': 15.0,
+            'Relic - Leap Stone': 15.0,
+            # 'Relic - Power of Mist': 3.0,
+            'Relic - Soul of Bat': 35.0,
+            # 'Relic - Soul of Wolf': 8.0,
+            # 'Status - Breakable Ceiling in Blade Master Room Broken': 2.0,
+            # 'Status - Breakable Ceiling in Catwalk Crypt Broken': 2.0,
+            # 'Status - Breakable Floor in Tall Zig Zag Room Broken': 2.0,
+            # 'Status - Breakable Wall in Grand Staircase Broken': 2.0,
+            # 'Status - Breakable Wall in Tall Zig Zag Room Broken': 2.0,
+            # 'Status - Cannon Activated': 2.0,
+            # 'Status - DK Bridge Broken': 3.0,
+            # 'Status - DK Button Pressed': 3.0,
+            # 'Status - Elevator in Colosseum Unlocked': 2.0,
+            # 'Status - Elevator in Outer Wall Activated': 3.0,
+            # 'Status - Lower-Left Gear in Clock Tower Set': 1.25,
+            # 'Status - Lower-Right Gear in Clock Tower Set': 1.25,
+            'Status - Pressure Plate in Marble Gallery Activated': 15.0,
+            # 'Status - Secret Wall in Merman Room Opened': 2.0,
+            # 'Status - Shortcut in Cube of Zoe Room Activated': 3.0,
+            # 'Status - Shortcut to Warp Activated': 3.0,
+            # 'Status - Trapdoor After Drawbridge Opened': 2.0,
+            # 'Status - Upper-Left Gear in Clock Tower Set': 1.25,
+            # 'Status - Upper-Right Gear in Clock Tower Set': 1.25,
         }
         score = 0
         for (key, value) in self.current_state.items():
@@ -130,22 +132,25 @@ class Game:
             'Progression - Castle Entrance Revisited Stage Reached': 'C1',
             'Progression - Castle Entrance Stage Reached': 'C2',
             'Progression - Castle Keep Stage Reached': 'CK',
+            'Progression - Catacombs Stage Reached': 'CA',
             'Progression - Clock Tower Stage Reached': 'CT',
             'Progression - Colosseum Stage Reached': 'CO',
-            'Progression - Long Library Stage Reached': 'LB',
+            'Progression - Long Library Stage Reached': 'LL',
             'Progression - Marble Gallery Stage Reached': 'MG',
             'Progression - Olrox\'s Quarters Stage Reached': 'OQ',
             'Progression - Outer Wall Stage Reached': 'OW',
             'Progression - Royal Chapel Stage Reached': 'RC',
             'Progression - Underground Caverns Stage Reached': 'UC',
             'Progression - Warp Rooms Stage Reached': 'WR',
+            'Relic - Echo of Bat': 'e',
             'Relic - Form of Mist': 'm',
             'Relic - Gravity Boots': 'g',
-            'Relic - Jewel of Open': 'o',
+            'Relic - Jewel of Open': 'j',
             'Relic - Leap Stone': 'l',
             'Relic - Power of Mist': 'M',
             'Relic - Soul of Bat': 'b',
             'Relic - Soul of Wolf': 'w',
+            'Item - Spike Breaker': 's',
         }
         progressions = []
         for progression_name in sorted(chars):
@@ -154,11 +159,13 @@ class Game:
                 value = self.current_state[progression_name]
                 if type(value) == bool and value:
                     progressions.append(symbol + ' ')
+                elif type(value) == int and value > 0:
+                    progressions.append(symbol + ' ')
                 else:
                     progressions.append('-' * len(symbol) + ' ')
             else:
                 progressions.append('-' * len(symbol) + ' ')
-        result = ''.join(progressions)
+        result = ''.join(progressions) + ' > ' + self.current_state['Location']
         return result
     
     def get_key(self) -> int:
@@ -487,46 +494,31 @@ if __name__ == '__main__':
             #     'Relic - Form of Mist': True,
             #     'Location': 'Clock Tower, Stairwell to Outer Wall',
             # },
-            'Debug 5': {
-                # 'Progression - Abandoned Mine Stage Reached': True,
-                # 'Progression - Alchemy Laboratory Stage Reached': True,
-                'Progression - Castle Center Stage Reached': True,
-                # 'Progression - Castle Entrance Stage Reached': True,
-                # 'Progression - Castle Entrance Revisited Stage Reached': True,
-                # 'Progression - Castle Keep Stage Reached': True,
-                # 'Progression - Clock Tower Stage Reached': True,
-                # 'Progression - Colosseum Stage Reached': True,
-                # 'Progression - Long Library Stage Reached': True,
-                # 'Progression - Marble Gallery Stage Reached': True,
-                # 'Progression - Olrox\'s Quarters Stage Reached': True,
-                # 'Progression - Outer Wall Stage Reached': True,
-                # 'Progression - Royal Chapel Stage Reached': True,
-                # 'Progression - Underground Caverns Stage Reached': True,
-                # 'Progression - Warp Rooms Stage Reached': True,
-            },
-            # 'Test - Bat Transformation': {
-            #     'Location': 'Long Library, Foot of Staircase',
-            #     'Progression - Mist Transformation': True,
-            #     'Progression - Mid-Air Reset': True,
+            # 'Debug 5': {
+            #     'Progression - Abandoned Mine Stage Reached': True,
+            #     'Progression - Alchemy Laboratory Stage Reached': True,
+            #     'Progression - Castle Center Stage Reached': True,
+            #     'Progression - Castle Entrance Stage Reached': True,
+            #     'Progression - Castle Entrance Revisited Stage Reached': True,
+            #     'Progression - Castle Keep Stage Reached': True,
+            #     'Progression - Catacombs Stage Reached': True,
+            #     'Progression - Clock Tower Stage Reached': True,
+            #     'Progression - Colosseum Stage Reached': True,
+            #     'Progression - Long Library Stage Reached': True,
+            #     'Progression - Marble Gallery Stage Reached': True,
+            #     'Progression - Olrox\'s Quarters Stage Reached': True,
+            #     'Progression - Outer Wall Stage Reached': True,
+            #     'Progression - Royal Chapel Stage Reached': True,
+            #     'Progression - Underground Caverns Stage Reached': True,
+            #     'Progression - Warp Rooms Stage Reached': True,
             # },
-            # 'Test - Can Get Gold Ring': {
-            #     'Relic - Jewel of Open': True,
-            #     'Relic - Soul of Bat': True,
-            #     'Location': 'Underground Caverns, Long Drop',
-            # },
-            'Test - Got Both Rings': {
-                'Item - Silver Ring': {
-                    'Minimum': 1
-                },
-                'Item - Gold Ring': {
-                    'Minimum': 1
-                },
-            },
-            # 'Debug 99': {
-            #     'Relic - Soul of Bat': True,
-            # },
-            # 'Debug 99': {
-            #     'Relic - Form of Mist': True,
+            # 'Test - Got Both Rings': {
+            #     'Item - Silver Ring': {
+            #         'Minimum': 1
+            #     },
+            #     'Item - Gold Ring': {
+            #         'Minimum': 1
+            #     },
             # },
             # 'Intended Progression?': [
             #     {
@@ -576,32 +568,33 @@ if __name__ == '__main__':
             #         'Status - Dracula Defeated': True,
             #     },
             # ],
-            # 'Intended Goal': {
-            #     'Relic - Jewel of Open': True,
-            #     'Relic - Leap Stone': True,
-            #     'Relic - Form of Mist': True,
-            #     'Relic - Soul of Bat': True,
-            #     # 'Relic - Echo of Bat': True,
-            #     # 'Item - Spike Breaker': {
-            #     #     'Minimum': 1,
-            #     # },
-            #     'Item - Silver Ring': {
-            #         'Minimum': 1,
-            #     },
-            #     'Item - Gold Ring': {
-            #         'Minimum': 1,
-            #     },
-            #     # 'Item - Holy Glasses': {
-            #     #     'Minimum': 1,
-            #     # },
-            #     # 'Status - Richter Saved': True,
-            #     # 'Relic - Ring of Vlad': True,
-            #     # 'Relic - Heart of Vlad': True,
-            #     # 'Relic - Tooth of Vlad': True,
-            #     # 'Relic - Rib of Vlad': True,
-            #     # 'Relic - Eye of Vlad': True,
-            #     # 'Status - Dracula Defeated': True,
-            # },
+            'Intended Goal': {
+                'Relic - Jewel of Open': True,
+                'Relic - Leap Stone': True,
+                'Relic - Form of Mist': True,
+                'Relic - Soul of Bat': True,
+                'Relic - Echo of Bat': True,
+                'Location': 'Catacombs, Pitch Black Spike Maze',
+                # 'Item - Spike Breaker': {
+                #     'Minimum': 1,
+                # },
+                # 'Item - Silver Ring': {
+                #     'Minimum': 1,
+                # },
+                # 'Item - Gold Ring': {
+                #     'Minimum': 1,
+                # },
+                # 'Item - Holy Glasses': {
+                #     'Minimum': 1,
+                # },
+                # 'Status - Richter Saved': True,
+                # 'Relic - Ring of Vlad': True,
+                # 'Relic - Heart of Vlad': True,
+                # 'Relic - Tooth of Vlad': True,
+                # 'Relic - Rib of Vlad': True,
+                # 'Relic - Eye of Vlad': True,
+                # 'Status - Dracula Defeated': True,
+            },
         }
         skills = json.load(skills_json)
         skills_json.close()
@@ -609,7 +602,7 @@ if __name__ == '__main__':
         map_solver = Solver(logic_core, skills)
         map_solver.debug = True
         # map_solver.solve_via_layers(3, 10)
-        map_solver.solve_via_steps(4999, 9999)
+        map_solver.solve_via_steps(4999, 19999)
         if len(map_solver.results['Wins']) > 0:
             (winning_layers, winning_game) = map_solver.results['Wins'][-1]
             print('-------------')

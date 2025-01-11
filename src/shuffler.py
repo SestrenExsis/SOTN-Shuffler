@@ -49,6 +49,7 @@ if __name__ == '__main__':
                 ('Underground Caverns', global_rng.randint(0, 2 ** 64)),
                 ('Abandoned Mine', global_rng.randint(0, 2 ** 64)),
                 ('Castle Center', global_rng.randint(0, 2 ** 64)),
+                ('Catacombs', global_rng.randint(0, 2 ** 64)),
             )
             print('Randomize with seeds')
             for (stage_name, stage_seed) in stages_to_process:

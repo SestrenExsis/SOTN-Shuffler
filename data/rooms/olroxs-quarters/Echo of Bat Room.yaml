@@ -13,4 +13,12 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands: {}
+Commands:
+    Action - Collect Echo of Bat Relic:
+        Outcomes:
+            Relic - Echo of Bat: true
+            Progression - Echolocation: true
+        Requirements:
+            Default:
+                Section: Main
+                Relic - Echo of Bat: false
