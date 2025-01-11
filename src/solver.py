@@ -19,10 +19,15 @@ class Game:
         if starting_state is None:
             starting_state = logic_core['State']
         self.current_state = copy.deepcopy(starting_state)
+        if 'Stages Visited' not in self.current_state:
+            self.current_state['Stages Visited'] = {}
+        if 'Rooms Visited' not in self.current_state:
+            self.current_state['Rooms Visited'] = {}
+        if 'Locations Visited' not in self.current_state:
+            self.current_state['Locations Visited'] = {}
         self.commands = self.logic_core['Commands']
-        # Must add the following to self.clone()
+        # NOTE(sestren): Anything that must also be added to self.clone() is below this line
         self.history = []
-        self.stages_visited = set()
         self.goal_achieved = False
         self.layer = 0
         self.debug = False
@@ -33,21 +38,36 @@ class Game:
         return result
     
     @property
+    def stage(self):
+        stage_name = self.DEFAULT_STRING
+        if 'Location' in self.current_state:
+            location_name = self.current_state['Location']
+            stage_name = location_name[:location_name.find(',')]
+        result = stage_name
+        return result
+    
+    @property
+    def room(self):
+        room_name = self.DEFAULT_STRING
+        if 'Location' in self.current_state:
+            room_name = self.current_state['Location']
+        result = room_name
+        return result
+    
+    @property
     def location(self):
-        result = [self.current_state['Location'], self.current_state['Section']]
-        if 'Helper' in self.current_state:
-            result.append(self.current_state['Helper'])
-        result = tuple(result)
+        section_name = self.DEFAULT_STRING
+        if 'Section' in self.current_state:
+            section_name = self.current_state['Section']
+        result = self.room + ' (' + section_name + ')'
         return result
     
     def clone(self):
         result = Game(self.logic_core, self.current_state)
-        result.layer = self.layer
         result.history = list(self.history)
-        self.stages_visited = set(self.stages_visited)
-        self.goal_achieved = self.goal_achieved
-        self.layer = self.layer
-        self.debug = self.debug
+        result.goal_achieved = self.goal_achieved
+        result.layer = self.layer
+        result.debug = self.debug
         return result
 
     def cleanup_state(self):
@@ -67,24 +87,12 @@ class Game:
             self.current_state.pop(key)
     
     def get_score(self) -> int:
-        scores = {
+        score = 0
+        score += len(self.current_state['Stages Visited'])
+        score += len(self.current_state['Rooms Visited'])
+        score += len(self.current_state['Locations Visited'])
+        other_scores = {
             # 'Check - Colosseum Library Card': 10.0,
-            # 'Progression - Abandoned Mine Stage Reached': 9.0,
-            'Progression - Alchemy Laboratory Stage Reached': 16.0,
-            # 'Progression - Castle Center Stage Reached': 2.0,
-            # 'Progression - Castle Entrance Revisited Stage Reached': 4.0,
-            'Progression - Castle Entrance Stage Reached': 16.0,
-            'Progression - Castle Keep Stage Reached': 8.0,
-            # 'Progression - Catacombs Stage Reached': 15.0,
-            # 'Progression - Clock Tower Stage Reached': 8.0,
-            'Progression - Colosseum Stage Reached': 9.0,
-            'Progression - Long Library Stage Reached': 8.0,
-            'Progression - Marble Gallery Stage Reached': 19.0,
-            'Progression - Olrox\'s Quarters Stage Reached': 12.0,
-            # 'Progression - Outer Wall Stage Reached': 11.0,
-            # 'Progression - Royal Chapel Stage Reached': 12.0,
-            # 'Progression - Underground Caverns Stage Reached': 21.0,
-            # 'Progression - Warp Rooms Stage Reached': 7.0,
             # 'Relic - Cube of Zoe': 3.0,
             'Relic - Echo of Bat': 30.0,
             'Relic - Form of Mist': 30.0,
@@ -115,94 +123,88 @@ class Game:
             # 'Status - Upper-Left Gear in Clock Tower Set': 1.25,
             # 'Status - Upper-Right Gear in Clock Tower Set': 1.25,
         }
-        score = 0
         for (key, value) in self.current_state.items():
             if type(value) == bool and value:
-                if key in scores:
-                    score += scores[key]
+                if key in other_scores:
+                    score += other_scores[key]
         result = score
         return result
     
     def get_progression(self) -> str:
         chars = {
-            'Check - Colosseum Library Card': 'c',
-            'Progression - Abaonded Mine Stage Reached': 'AM',
-            'Progression - Alchemy Laboratory Stage Reached': 'AL',
-            'Progression - Castle Center Stage Reached': 'CC',
-            'Progression - Castle Entrance Revisited Stage Reached': 'C1',
-            'Progression - Castle Entrance Stage Reached': 'C2',
-            'Progression - Castle Keep Stage Reached': 'CK',
-            'Progression - Catacombs Stage Reached': 'CA',
-            'Progression - Clock Tower Stage Reached': 'CT',
-            'Progression - Colosseum Stage Reached': 'CO',
-            'Progression - Long Library Stage Reached': 'LL',
-            'Progression - Marble Gallery Stage Reached': 'MG',
-            'Progression - Olrox\'s Quarters Stage Reached': 'OQ',
-            'Progression - Outer Wall Stage Reached': 'OW',
-            'Progression - Royal Chapel Stage Reached': 'RC',
-            'Progression - Underground Caverns Stage Reached': 'UC',
-            'Progression - Warp Rooms Stage Reached': 'WR',
-            'Relic - Echo of Bat': 'e',
-            'Relic - Form of Mist': 'm',
-            'Relic - Gravity Boots': 'g',
-            'Relic - Jewel of Open': 'j',
-            'Relic - Leap Stone': 'l',
-            'Relic - Power of Mist': 'M',
-            'Relic - Soul of Bat': 'b',
-            'Relic - Soul of Wolf': 'w',
-            'Item - Spike Breaker': 's',
+            'B': 'Relic - Soul of Bat',
+            'Be': 'Relic - Echo of Bat',
+            'cl': 'Check - Colosseum Library Card',
+            'gb': 'Relic - Gravity Boots',
+            'jo': 'Relic - Jewel of Open',
+            'ls': 'Relic - Leap Stone',
+            'M': 'Relic - Form of Mist',
+            'Mp': 'Relic - Power of Mist',
+            'sb': 'Item - Spike Breaker',
+            'W': 'Relic - Soul of Wolf',
         }
         progressions = []
-        for progression_name in sorted(chars):
-            symbol = chars[progression_name]
+        for progression_code in sorted(chars):
+            progression_name = chars[progression_code]
             if progression_name in self.current_state:
                 value = self.current_state[progression_name]
                 if type(value) == bool and value:
-                    progressions.append(symbol + ' ')
+                    progressions.append(progression_code + ' ')
                 elif type(value) == int and value > 0:
-                    progressions.append(symbol + ' ')
+                    progressions.append(progression_code + ' ')
                 else:
-                    progressions.append('-' * len(symbol) + ' ')
+                    progressions.append('-' * len(progression_code) + ' ')
             else:
-                progressions.append('-' * len(symbol) + ' ')
-        result = ''.join(progressions) + ' > ' + self.current_state['Location']
+                progressions.append('-' * len(progression_code) + ' ')
+        result = ''.join(progressions) + ' > ' + self.location
         return result
     
     def get_key(self) -> int:
         self.cleanup_state()
-        hashed_state = hash(json.dumps(self.current_state, sort_keys=True))
+        hashed_state = hash(json.dumps(self.current_state, sort_keys=True, default=str))
         result = hashed_state
         return result
     
-    def validate(self, requirements):
+    def validate(self, requirements, state_scope_key: str=None):
+        scoped_state = self.current_state
+        if state_scope_key is not None:
+            scoped_state = self.current_state[state_scope_key]
         result = False
         for requirement in requirements.values():
-            # All checks within a requirement list must pass
+            # All checks within a given requirement set must pass
             valid_ind = True
-            for (key, value) in requirement.items():
+            for (requirement_key, requirement_value) in requirement.items():
                 target_value = None
-                if key not in self.current_state:
-                    if type(value) == str:
+                if requirement_key not in scoped_state:
+                    if type(requirement_value) == str:
                         target_value = self.DEFAULT_STRING
-                    elif type(value) == bool:
+                    elif type(requirement_value) == bool:
                         target_value = self.DEFAULT_BOOLEAN
-                    elif type(value) in (int, dict):
+                    elif type(requirement_value) in (int, dict):
                         target_value = self.DEFAULT_NUMBER
                 else:
-                    target_value = self.current_state[key]
-                if type(value) == dict:
-                    if 'Minimum' in value:
-                        if target_value < value['Minimum']:
+                    target_value = scoped_state[requirement_key]
+                if type(requirement_value) == dict:
+                    # Requirements for a numerical value
+                    if 'Minimum' in requirement_value:
+                        if target_value < requirement_value['Minimum']:
                             valid_ind = False
                             break
-                    if 'Maximum' in value:
-                        if target_value > value['Maximum']:
+                    if 'Maximum' in requirement_value:
+                        if target_value > requirement_value['Maximum']:
                             valid_ind = False
                             break
-                elif target_value != value:
+                    # Requirements for a dictionary value
+                    if 'All' in requirement_value:
+                        if not self.validate(requirement_value, requirement_key):
+                            valid_ind = False
+                            break
+                    # TODO(sestren): Consider adding 'None' dictionary requirement
+                    # TODO(sestren): Consider adding 'Any' dictionary requirement
+                elif target_value != requirement_value:
                     valid_ind = False
                     break
-            # Satisfying even one requirement list is sufficient
+            # Satisfying even one of the requirement sets is sufficient
             if valid_ind:
                 result = True
                 break
@@ -235,13 +237,13 @@ class Game:
         self.cleanup_state()
 
     def process_command(self, command_name: str):
-        location = self.current_state['Location']
-        self.history.append((self.layer, location, command_name))
-        stage = location[:location.find(',')]
-        self.stages_visited.add(stage)
+        self.current_state['Stages Visited'][self.stage] = True
+        self.current_state['Rooms Visited'][self.room] = True
+        self.current_state['Locations Visited'][self.location] = True
+        self.history.append((self.layer, self.location, command_name))
         command_data = {}
-        if self.current_state['Location'] in self.commands:
-            command_data = self.commands[self.current_state['Location']]
+        if self.room in self.commands:
+            command_data = self.commands[self.room]
         # Apply outcomes from the command
         for (key, value) in command_data[command_name]['Outcomes'].items():
             if type(value) in (str, bool):
@@ -263,8 +265,8 @@ class Game:
         result = set()
         # Add choices for valid commands the player can issue
         command_data = {}
-        if self.current_state['Location'] in self.commands:
-            command_data = self.commands[self.current_state['Location']]
+        if self.room in self.commands:
+            command_data = self.commands[self.room]
         for (command_name, command_info) in self.commands['Global'].items():
             command_data[command_name] = command_info
         for (command_name, command_info) in command_data.items():
@@ -274,7 +276,7 @@ class Game:
         return result
 
     def play(self):
-        print('@', self.current_state['Location'], '-', self.current_state['Section'])
+        print('@', self.location)
         command_map = {}
         codes = '1234567890abcdefghijklmnopqrstuvwxyz'
         valid_command_names = self.get_valid_command_names()
@@ -308,6 +310,7 @@ class Solver():
         self.debug = False
     
     def solve_via_steps(self, decay_start: int=4_999, cycle_limit: int=9_999):
+        print('solve_via_steps')
         assert cycle_limit > decay_start
         initial_game = Game(self.logic_core)
         memo = {}
@@ -317,6 +320,8 @@ class Solver():
         heapq.heappush(work__solver, (-initial_game.get_score(), 0, initial_game))
         while len(work__solver) > 0 and not solution_found:
             (score__solver, step__solver, game__solver) = heapq.heappop(work__solver)
+            # print('', score__solver, step__solver, game__solver.location)
+            # print(game__solver.current_state)
             self.cycle_count += 1
             chance_of_decay = 0.0
             decay_ind = False
@@ -329,7 +334,15 @@ class Solver():
                     decay_ind = True
             decay_code = 'Y' if decay_ind else '-'
             if decay_ind:
-                print('Layer', (score__solver, step__solver), len(work__solver), game__solver.get_progression(), self.cycle_count, decay_code, f'{chance_of_decay:.4f}')
+                print(
+                    'Cycles:', (self.cycle_count, decay_code, f'{chance_of_decay:.4f}', len(work__solver)),
+                    'Layer:', (score__solver, step__solver, game__solver.get_progression()),
+                    'Exploration:', (
+                        len(game__solver.current_state['Stages Visited']),
+                        len(game__solver.current_state['Rooms Visited']),
+                        len(game__solver.current_state['Locations Visited']),
+                    )
+                )
                 continue
             game__solver.layer = step__solver
             if game__solver.goal_achieved:
@@ -343,10 +356,12 @@ class Solver():
                 continue
             memo[hashed_state__solver] = step__solver
             if step__solver > -score__solver:
+                # print('Too many steps')
                 continue
             # if self.debug:
-            #     print(score__solver, step__solver, game__solver.current_state['Location'], hashed_state__solver, len(work__solver), len(memo))
+            #     print(score__solver, step__solver, game__solver.location, hashed_state__solver, len(work__solver), len(memo))
             for command in game__solver.get_valid_command_names():
+                # print(' ', command)
                 next_game__solver = game__solver.clone()
                 next_game__solver.process_command(command)
                 next_step__solver = step__solver + 1
@@ -372,7 +387,7 @@ class Solver():
                 break
             (score__solver, step__solver, game__solver) = heapq.heappop(work__solver)
             if (-score__solver, step__solver) > highest_layer_found and self.debug:
-                print('Layer', (score__solver, step__solver), len(work__solver), game__solver.get_progression(), limit)
+                # print('Layer', (score__solver, step__solver), len(work__solver), game__solver.get_progression(), limit)
                 highest_layer_found = (score__solver, step__solver)
             game__solver.layer = step__solver
             if game__solver.goal_achieved:
@@ -387,8 +402,8 @@ class Solver():
             memo[hashed_state__solver] = step__solver
             if step__solver > -score__solver:
                 continue
-            if self.debug:
-                print(score__solver, step__solver, game__solver.current_state['Location'], hashed_state__solver, len(work__solver), len(memo))
+            # if self.debug:
+            #     print(score__solver, step__solver, game__solver.location, hashed_state__solver, len(work__solver), len(memo))
             #
             # Find all locations that are N-bonded with the current location (N = reflexive_limit)
             # Two locations are considered "N-bonded" if you can move from one to another via a series of N-reflexive commands
@@ -479,39 +494,31 @@ if __name__ == '__main__':
         logic_core['State']['Location'] = 'Castle Entrance, After Drawbridge'
         logic_core['State']['Section'] = 'Ground'
         logic_core['Goals'] = {
-            # 'Debug 1': {
-            #     'Location': 'Castle Entrance Revisited, Cube of Zoe Room',
+            # 'Debug Start': {
+            #     'Location': 'Castle Entrance, After Drawbridge',
             # },
-            # 'Debug 2': {
-            #     'Location': 'Marble Gallery, Slinger Staircase',
-            # },
-            # 'Debug 3': {
-            #     'Location': 'Outer Wall, Exit to Marble Gallery',
-            # },
-            # 'Debug 4': {
-            #     'Relic - Soul of Wolf': True,
-            #     'Check - Colosseum Library Card': True,
-            #     'Relic - Form of Mist': True,
-            #     'Location': 'Clock Tower, Stairwell to Outer Wall',
-            # },
-            # 'Debug 5': {
-            #     'Progression - Abandoned Mine Stage Reached': True,
-            #     'Progression - Alchemy Laboratory Stage Reached': True,
-            #     'Progression - Castle Center Stage Reached': True,
-            #     'Progression - Castle Entrance Stage Reached': True,
-            #     'Progression - Castle Entrance Revisited Stage Reached': True,
-            #     'Progression - Castle Keep Stage Reached': True,
-            #     'Progression - Catacombs Stage Reached': True,
-            #     'Progression - Clock Tower Stage Reached': True,
-            #     'Progression - Colosseum Stage Reached': True,
-            #     'Progression - Long Library Stage Reached': True,
-            #     'Progression - Marble Gallery Stage Reached': True,
-            #     'Progression - Olrox\'s Quarters Stage Reached': True,
-            #     'Progression - Outer Wall Stage Reached': True,
-            #     'Progression - Royal Chapel Stage Reached': True,
-            #     'Progression - Underground Caverns Stage Reached': True,
-            #     'Progression - Warp Rooms Stage Reached': True,
-            # },
+            'Debug 5': {
+                'Stages Visited': {
+                    'All': {
+                        # 'Abandoned Mine': True,
+                        'Alchemy Laboratory': True,
+                        # 'Castle Center': True,
+                        'Castle Entrance': True,
+                        # 'Castle Entrance Revisited': True,
+                        # 'Castle Keep': True,
+                        # 'Catacombs': True,
+                        'Clock Tower': True,
+                        # 'Colosseum': True,
+                        'Long Library': True,
+                        'Marble Gallery': True,
+                        # 'Olrox\'s Quarters': True,
+                        'Outer Wall': True,
+                        # 'Royal Chapel': True,
+                        # 'Underground Caverns': True,
+                        # 'Warp Rooms': True,
+                    }
+                },
+            },
             # 'Test - Got Both Rings': {
             #     'Item - Silver Ring': {
             #         'Minimum': 1
@@ -568,33 +575,33 @@ if __name__ == '__main__':
             #         'Status - Dracula Defeated': True,
             #     },
             # ],
-            'Intended Goal': {
-                'Relic - Jewel of Open': True,
-                'Relic - Leap Stone': True,
-                'Relic - Form of Mist': True,
-                'Relic - Soul of Bat': True,
-                'Relic - Echo of Bat': True,
-                'Location': 'Catacombs, Pitch Black Spike Maze',
-                # 'Item - Spike Breaker': {
-                #     'Minimum': 1,
-                # },
-                # 'Item - Silver Ring': {
-                #     'Minimum': 1,
-                # },
-                # 'Item - Gold Ring': {
-                #     'Minimum': 1,
-                # },
-                # 'Item - Holy Glasses': {
-                #     'Minimum': 1,
-                # },
-                # 'Status - Richter Saved': True,
-                # 'Relic - Ring of Vlad': True,
-                # 'Relic - Heart of Vlad': True,
-                # 'Relic - Tooth of Vlad': True,
-                # 'Relic - Rib of Vlad': True,
-                # 'Relic - Eye of Vlad': True,
-                # 'Status - Dracula Defeated': True,
-            },
+            # 'Intended Goal': {
+            #     'Relic - Jewel of Open': True,
+            #     'Relic - Leap Stone': True,
+            #     'Relic - Form of Mist': True,
+            #     'Relic - Soul of Bat': True,
+            #     'Relic - Echo of Bat': True,
+            #     # 'Location': 'Catacombs, Pitch Black Spike Maze',
+            #     # 'Item - Spike Breaker': {
+            #     #     'Minimum': 1,
+            #     # },
+            #     # 'Item - Silver Ring': {
+            #     #     'Minimum': 1,
+            #     # },
+            #     # 'Item - Gold Ring': {
+            #     #     'Minimum': 1,
+            #     # },
+            #     # 'Item - Holy Glasses': {
+            #     #     'Minimum': 1,
+            #     # },
+            #     # 'Status - Richter Saved': True,
+            #     # 'Relic - Ring of Vlad': True,
+            #     # 'Relic - Heart of Vlad': True,
+            #     # 'Relic - Tooth of Vlad': True,
+            #     # 'Relic - Rib of Vlad': True,
+            #     # 'Relic - Eye of Vlad': True,
+            #     # 'Status - Dracula Defeated': True,
+            # },
         }
         skills = json.load(skills_json)
         skills_json.close()
@@ -602,7 +609,7 @@ if __name__ == '__main__':
         map_solver = Solver(logic_core, skills)
         map_solver.debug = True
         # map_solver.solve_via_layers(3, 10)
-        map_solver.solve_via_steps(4999, 19999)
+        map_solver.solve_via_steps(999, 19999)
         if len(map_solver.results['Wins']) > 0:
             (winning_layers, winning_game) = map_solver.results['Wins'][-1]
             print('-------------')
