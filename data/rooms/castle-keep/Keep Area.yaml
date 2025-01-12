@@ -128,7 +128,7 @@ Commands:
                 Progression - Longer Mist Duration: true
             Throne Room - Richter Saved:
                 Section: Throne Room
-                Progression - Richter Saved: true
+                Status - Richter Saved: true
             Upper-Right Ledge - Bat Form:
                 Section: Upper-Right Ledge
                 Progression - Bat Transformation: true
@@ -218,7 +218,7 @@ Commands:
         Requirements:
             Throne Room - Richter Saved:
                 Section: Anteroom
-                Progression - Richter Saved: true
+                Status - Richter Saved: true
     Move - Throne Room:
         Outcomes:
             Section: Throne Room
@@ -253,6 +253,20 @@ Commands:
                 Section: Bottom of Stairwell
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+    Action - Defeat Richter:
+        Outcomes:
+            Status - Richter Defeated: true
+        Requirements:
+            Default:
+                Section: Throne Room
+    Action - Save Richter:
+        Outcomes:
+            Status - Richter Saved: true
+        Requirements:
+            Default:
+                Section: Throne Room
+                Item - Holy Glasses:
+                    Minimum: 1
     Action - Collect Leap Stone Relic:
         Outcomes:
             Relic - Leap Stone: true

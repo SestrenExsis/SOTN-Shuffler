@@ -39,16 +39,41 @@ Commands:
         Outcomes:
             Section: Upper Ledge
         Requirements:
+            Main - Bat:
+                Section: Main
+                Progression - Bat Transformation: true
             Main - Book Jump:
                 Section: Main
                 Progression - Mid-Air Reset: true
+                Execution - Book Jump: true
+            Main - Gravity Jump:
+                Section: Main
+                Progression - Gravity Jump: true
+            Main - Powered Mist:
+                Section: Main
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
     Move - Lower Ledge:
         Outcomes:
             Section: Lower Ledge
         Requirements:
+            Main - Bat:
+                Section: Main
+                Progression - Bat Transformation: true
             Main - Book Jump:
                 Section: Main
                 Progression - Mid-Air Reset: true
+                Execution - Book Jump: true
+            Main - Double Jump:
+                Section: Main
+                Progression - Double Jump: true
+            Main - Gravity Jump:
+                Section: Main
+                Progression - Gravity Jump: true
+            Main - Powered Mist:
+                Section: Main
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
     Move - Main:
         Outcomes:
             Section: Main

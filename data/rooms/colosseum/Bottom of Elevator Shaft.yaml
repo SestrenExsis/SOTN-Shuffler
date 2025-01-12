@@ -25,8 +25,8 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Left
-        Entry Section: Rising
-        Exit Section: Falling
+        Entry Section: Falling
+        Exit Section: Rising
     Lower-Left Passage:
         Type: Passage
         Row: 1
