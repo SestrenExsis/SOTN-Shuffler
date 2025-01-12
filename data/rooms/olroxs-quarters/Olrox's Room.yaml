@@ -28,6 +28,14 @@ Commands:
             Default:
                 Progression - Olrox Defeated: false
                 Section: Ground
+    Move - Ground:
+        Outcomes:
+            Section: Ground
+        Requirements:
+            Upper-Left Ledge - Default:
+                Section: Upper-Left Ledge
+            Upper-Right Ledge - Default:
+                Section: Upper-Right Ledge
     Move - Upper-Left Ledge:
         Outcomes:
             Section: Upper-Left Ledge

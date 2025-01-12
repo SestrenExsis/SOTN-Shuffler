@@ -61,19 +61,19 @@ Commands:
                 Section: Upper-Left Ledge
     Move - Upper-Left Ledge:
         Outcomes:
-            Section: Upper Area
+            Section: Upper-Left Ledge
         Requirements:
             Lower Ledges - Bat Form:
-                Section: Lower Area
+                Section: Lower Ledges
                 Progression - Bat Transformation: true
             Lower Ledges - Double Jump:
-                Section: Lower Area
+                Section: Lower Ledges
                 Progression - Double Jump: true
             Lower Ledges - Gravity Jump:
-                Section: Lower Area
+                Section: Lower Ledges
                 Progression - Gravity Jump: true
             Lower Ledges - Powered Mist:
-                Section: Lower Area
+                Section: Lower Ledges
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
             Moved Block - Default:

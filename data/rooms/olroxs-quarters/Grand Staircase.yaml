@@ -41,7 +41,6 @@ Commands:
         Requirements:
             Default:
                 Section: Main
-                Knowledge - How to Break the Wall in Grand Staircase: true
                 Status - Breakable Wall in Grand Staircase Broken: false
     Move - Broken Wall:
         Outcomes:

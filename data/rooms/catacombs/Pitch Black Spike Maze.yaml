@@ -1,0 +1,104 @@
+
+Stage: Catacombs
+Room: Pitch Black Spike Maze
+Index: 24
+Columns: 3
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Left Side
+        Exit Section: Left Side
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 2
+        Edge: Right
+        Entry Section: Right Side
+        Exit Section: Right Side
+Commands:
+    Move - Left Side:
+        Outcomes:
+            Section: Left Side
+        Requirements:
+            Middle - Bat and Echolocation:
+                Section: Middle
+                Progression - Bat Transformation: true
+                Progression - Echolocation: true
+            Middle - Bat and Light:
+                Section: Middle
+                Progression - Bat Transformation: true
+                Status - Light in Spike Maze Turned On: true
+            Middle - Mist and Spike Breaker:
+                Section: Middle
+                Progression - Mist Transformation: true
+                Item - Spike Breaker:
+                    Minimum: 1
+    Move - Right Side:
+        Outcomes:
+            Section: Right Side
+        Requirements:
+            Middle - Bat and Echolocation:
+                Section: Middle
+                Progression - Bat Transformation: true
+                Progression - Echolocation: true
+            Middle - Bat and Light:
+                Section: Middle
+                Progression - Bat Transformation: true
+                Status - Light in Spike Maze Turned On: true
+            Middle - Mist and Spike Breaker:
+                Section: Middle
+                Progression - Mist Transformation: true
+                Item - Spike Breaker:
+                    Minimum: 1
+    Move - Middle:
+        Outcomes:
+            Section: Middle
+        Requirements:
+            Left Side - Bat and Echolocation:
+                Section: Left Side
+                Progression - Bat Transformation: true
+                Progression - Echolocation: true
+            Left Side - Bat and Light:
+                Section: Left Side
+                Progression - Bat Transformation: true
+                Status - Light in Spike Maze Turned On: true
+            Left Side - Double Jump and Spike Breaker:
+                Section: Left Side
+                Progression - Double Jump: true
+                Item - Spike Breaker:
+                    Minimum: 1
+            Left Side - Gravity Jump and Spike Breaker:
+                Section: Left Side
+                Progression - Gravity Jump: true
+                Item - Spike Breaker:
+                    Minimum: 1
+            Left Side - Powered Mist and Spike Breaker:
+                Section: Left Side
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Item - Spike Breaker:
+                    Minimum: 1
+            Right Side - Bat and Echolocation:
+                Section: Right Side
+                Progression - Bat Transformation: true
+                Progression - Echolocation: true
+            Right Side - Bat and Light:
+                Section: Right Side
+                Progression - Bat Transformation: true
+                Status - Light in Spike Maze Turned On: true
+            Right Side - Spike Breaker:
+                Section: Right Side
+                Item - Spike Breaker:
+                    Minimum: 1
+    Action - Activate Pressure Plate:
+        Outcomes:
+            Status - Light in Spike Maze Turned On: true
+        Requirements:
+            Right Side - Default:
+                Section: Right Side
+                Status - Light in Spike Maze Turned On: false

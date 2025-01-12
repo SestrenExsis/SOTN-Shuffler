@@ -10,6 +10,11 @@ Sources:
         Stage: Abandoned Mine
         Room: Fake Room With Teleporter B
         Target: Warp Rooms, Warp Room E (Left Red Door)
+    Abandoned Mine, Fake Room With Teleporter C:
+        Index: 18
+        Stage: Abandoned Mine
+        Room: Fake Room With Teleporter C
+        Target: Catacombs, Exit to Abandoned Mine (Upper-Right Red Door)
     Alchemy Laboratory, Fake Room With Teleporter A:
         Index: 22
         Stage: Alchemy Laboratory
@@ -25,6 +30,11 @@ Sources:
         Stage: Alchemy Laboratory
         Room: Fake Room With Teleporter C
         Target: Castle Entrance Revisited, Cube of Zoe Room (Upper-Left Red Door)
+    Castle Center, Fake Room With Teleporter A:
+        Index: 7
+        Stage: Castle Center
+        Room: Fake Room With Teleporter A
+        Target: Marble Gallery, Clock Room (Bottom Passage)
     Castle Entrance, Fake Room With Teleporter A:
         Index: 13
         Stage: Castle Entrance
@@ -45,6 +55,11 @@ Sources:
         Stage: Castle Entrance Revisited
         Room: Fake Room With Teleporter A
         Target: Alchemy Laboratory, Entryway (Right Red Door)
+    Castle Entrance Revisited, Fake Room With Teleporter B:
+        Index: 56
+        Stage: Castle Entrance
+        Room: Fake Room With Teleporter B
+        Target: Marble Gallery, S-Shaped Hallways (Lower-Left Red Door)
     Castle Entrance Revisited, Fake Room With Teleporter C:
         Index: 59
         Stage: Castle Entrance Revisited
@@ -70,6 +85,11 @@ Sources:
         Stage: Castle Keep
         Room: Fake Room With Teleporter C
         Target: Warp Rooms, Warp Room A (Left Red Door)
+    Catacombs, Fake Room With Teleporter A:
+        Index: 16
+        Stage: Catacombs
+        Room: Fake Room With Teleporter A
+        Target: Abandoned Mine, Bend (Lower-Left Red Door)
     Clock Tower, Fake Room With Teleporter A:
         Index: 9
         Stage: Clock Tower
@@ -115,6 +135,16 @@ Sources:
         Stage: Marble Gallery
         Room: Fake Room With Teleporter D
         Target: Underground Caverns, Long Drop (Upper-Right Red Door)
+    Marble Gallery, Fake Room With Teleporter E:
+        Index: 5
+        Stage: Marble Gallery
+        Room: Fake Room With Teleporter E
+        Target: Castle Center, Elevator Shaft (Top Passage)
+    Marble Gallery, Fake Room With Teleporter F:
+        Index: 3
+        Stage: Marble Gallery
+        Room: Fake Room With Teleporter F
+        Target: Castle Entrance Revisited, Cube of Zoe Room (Upper-Right Red Door)
     Olrox's Quarters, Fake Room With Teleporter A:
         Index: 25
         Stage: Olrox's Quarters
@@ -226,6 +256,12 @@ Sources:
         Room: Fake Room With Teleporter E
         Target: Abandoned Mine, Four-Way Intersection (Right Red Door)
 Targets:
+    Abandoned Mine, Bend (Lower-Left Red Door):
+        Stage: Abandoned Mine
+        Room: Bend
+        Node: Lower-Left Red Door
+        Player X: 16
+        Player Y: 388
     Abandoned Mine, Four-Way Intersection (Right Red Door):
         Stage: Abandoned Mine
         Room: Four-Way Intersection
@@ -256,11 +292,23 @@ Targets:
         Node: Right Red Door
         Player X: 496
         Player Y: 392
+    Castle Center, Elevator Shaft (Top Passage):
+        Stage: Castle Center
+        Room: Elevator Shaft
+        Node: Top Passage
+        Player X: 128
+        Player Y: 36
     Castle Entrance Revisited, Cube of Zoe Room (Upper-Left Red Door):
         Stage: Castle Entrance Revisited
         Room: Cube of Zoe Room
         Node: Upper-Left Red Door
         Player X: 16
+        Player Y: 132
+    Castle Entrance Revisited, Cube of Zoe Room (Upper-Right Red Door):
+        Stage: Castle Entrance Revisited
+        Room: Cube of Zoe Room
+        Node: Upper-Right Red Door
+        Player X: 496
         Player Y: 132
     Castle Entrance Revisited, Shortcut to Warp (Left Red Door):
         Stage: Castle Entrance Revisited
@@ -292,6 +340,12 @@ Targets:
         Node: Lower-Right Red Door
         Player X: 240
         Player Y: 388
+    Catacombs, Exit to Abandoned Mine (Upper-Right Red Door):
+        Stage: Catacombs
+        Room: Exit to Abandoned Mine
+        Node: Upper-Right Red Door
+        Player X: 240
+        Player Y: 132
     Clock Tower, Karasuman's Room (Left Red Door):
         Stage: Clock Tower
         Room: Karasuman's Room
@@ -322,6 +376,12 @@ Targets:
         Node: Right Red Door
         Player X: 752
         Player Y: 132
+    Marble Gallery, Clock Room (Bottom Passage):
+        Stage: Marble Gallery
+        Room: Clock Room
+        Node: Bottom Passage
+        Player X: 128
+        Player Y: 212
     Marble Gallery, Entrance (Left Red Door):
         Stage: Marble Gallery
         Room: Entrance
@@ -340,6 +400,12 @@ Targets:
         Node: Left Red Door
         Player X: 16
         Player Y: 132
+    Marble Gallery, S-Shaped Hallways (Lower-Left Red Door):
+        Stage: Marble Gallery
+        Room: S-Shaped Hallways
+        Node: Lower-Left Red Door
+        Player X: 16
+        Player Y: 644
     Marble Gallery, Stairwell to Underground Caverns (Lower-Left Red Door):
         Stage: Marble Gallery
         Room: Stairwell to Underground Caverns
@@ -478,10 +544,4 @@ Targets:
         Node: Left Red Door
         Player X: 16
         Player Y: 132
-Future Sources:
-    Abandoned Mine, Fake Room With Teleporter C:
-        Index: 18
-        Stage: Abandoned Mine
-        Room: Fake Room With Teleporter C
-        Target: Catacombs, XXX (XXX Red Door)
 Future Targets: {}

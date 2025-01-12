@@ -445,8 +445,8 @@ stages = {
     'Long Library': [
         {
             'Long Library, Exit to Outer Wall': (32 + 0, 32 + 0),
-            'Long Library, Loading Room A': (32 + 2, 32 + 3),
-            'Long Library, Fake Room With Teleporter A': (32 + 2, 32 + 4),
+            'Long Library, Loading Room A': (32 + 0, 32 + 3),
+            'Long Library, Fake Room With Teleporter A': (32 + 0, 32 + 4),
         },
         {
             'Long Library, Spellbook Area': (0, 0),
@@ -661,7 +661,53 @@ stages = {
         { 'Abandoned Mine, Demon Card Room': (0, 0) },
         { 'Abandoned Mine, Save Room A': (0, 0) },
     ],
-    # TODO(sestren): Catacombs, with Granfaloon boss teleport
+    'Castle Center': [
+        {
+            'Castle Center, Fake Room With Teleporter A': (27 + 0, 32 + 0),
+            'Castle Center, Elevator Shaft': (27 + 1, 32 + 0),
+            'Castle Center, Center Cube': (27 + 3, 32 - 1),
+            'Castle Center, Unknown Room ID 04': (27 + 4, 32 + 2),
+            'Castle Center, Unknown Room ID 02': (27 + 6, 32 + 0),
+        },
+    ],
+    'Catacombs': [
+        {
+            'Catacombs, Exit to Abandoned Mine': (32 + 0, 32 + 0),
+            'Catacombs, Loading Room A': (32 + 0, 32 + 1),
+            'Catacombs, Fake Room With Teleporter A': (32 + 0, 32 + 2),
+        },
+        {
+            # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
+            'Catacombs, Room ID 02': (1, 0),
+            'Catacombs, Granfaloon\'s Lair': (0, 1),
+            'Catacombs, Room ID 04': (0, 3),
+        },
+        { 'Catacombs, Room ID 00': (0, 0) },
+        { 'Catacombs, Mormegil Room': (0, 0) },
+        { 'Catacombs, Room ID 05': (0, 0) },
+        { 'Catacombs, Small Gremlin Room': (0, 0) },
+        { 'Catacombs, Save Room A': (0, 0) },
+        { 'Catacombs, Walk Armor Room': (0, 0) },
+        { 'Catacombs, Icebrand Room': (0, 0) },
+        { 'Catacombs, Left Lava Path': (0, 0) },
+        { 'Catacombs, Ballroom Mask Room': (0, 0) },
+        { 'Catacombs, Right Lava Path': (0, 0) },
+        { 'Catacombs, Cat-Eye Circlet Room': (0, 0) },
+        { 'Catacombs, Room ID 14': (0, 0) },
+        { 'Catacombs, Save Room B': (0, 0) },
+        { 'Catacombs, Hellfire Beast Room': (0, 0) },
+        { 'Catacombs, Bone Ark Room': (0, 0) },
+        { 'Catacombs, Room ID 19': (0, 0) },
+        { 'Catacombs, Room ID 20': (0, 0) },
+        { 'Catacombs, Room ID 21': (0, 0) },
+        { 'Catacombs, Room ID 22': (0, 0) },
+        { 'Catacombs, Room ID 23': (0, 0) },
+        { 'Catacombs, Pitch Black Spike Maze': (0, 0) },
+        { 'Catacombs, Room ID 25': (0, 0) },
+        { 'Catacombs, Room ID 26': (0, 0) },
+        { 'Catacombs, Spike Breaker Room': (0, 0) },
+    ]
+    
     # TODO(sestren): Reverse Colosseum, with Trio boss teleporth
 }
 
@@ -671,20 +717,22 @@ class MapperData:
         self.rooms = {}
         self.teleporters = {}
         for stage_folder in (
+            'abandoned-mine',
+            'alchemy-laboratory',
+            'castle-center',
             'castle-entrance',
             'castle-entrance-revisited',
-            'alchemy-laboratory',
+            'castle-keep',
+            'catacombs',
+            'clock-tower',
+            'colosseum',
+            'long-library',
             'marble-gallery',
             'outer-wall',
             'olroxs-quarters',
-            'colosseum',
-            'long-library',
-            'clock-tower',
-            'warp-rooms',
-            'castle-keep',
             'royal-chapel',
             'underground-caverns',
-            'abandoned-mine',
+            'warp-rooms',
         ):
             folder_path = os.path.join('data', 'rooms', stage_folder)
             for file_name in os.listdir(folder_path):
@@ -728,20 +776,22 @@ class LogicCore:
             },
         }
         for stage_name in (
+            'Abandoned Mine',
+            'Alchemy Laboratory',
+            'Castle Center',
             'Castle Entrance',
             'Castle Entrance Revisited',
-            'Alchemy Laboratory',
-            'Marble Gallery',
-            'Outer Wall',
-            'Olrox\'s Quarters',
+            'Castle Keep',
+            'Catacombs',
+            'Clock Tower',
             'Colosseum',
             'Long Library',
-            'Clock Tower',
-            'Warp Rooms',
-            'Castle Keep',
+            'Marble Gallery',
+            'Olrox\'s Quarters',
+            'Outer Wall',
             'Royal Chapel',
             'Underground Caverns',
-            'Abandoned Mine',
+            'Warp Rooms',
         ):
             # print('', stage_name)
             nodes = {}
@@ -819,7 +869,6 @@ class LogicCore:
                 self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Location'] = matching_location_name
                 self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Section'] = matching_section
                 # TODO(sestren): Use Milestone instead of Progression for reaching a stage
-                self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Progression - ' + matching_stage_name + ' Stage Reached'] = True
         # Replace source teleporter locations with their targets
         for (location_name, location_info) in self.commands.items():
             for (command_name, command_info) in location_info.items():
@@ -967,11 +1016,11 @@ class Mapper:
             result = (
                 all_rooms_used and
                 no_nodes_unused and
-                (all_rooms_connected or self.stage_name in ('Warp Rooms', 'Underground Caverns'))
+                (all_rooms_connected or self.stage_name in ('Warp Rooms', 'Castle Center', 'Underground Caverns'))
             )
-            # if len(self.stage.rooms) > 18:
+            # if len(self.stage.rooms) > 27:
             #     print(all_rooms_used, no_nodes_unused, all_rooms_connected, len(self.stage.rooms), len(self.rooms))
-            #     for line in self.get_spoiler('Colosseum'):
+            #     for line in self.get_spoiler('Catacombs'):
             #         print(line)
             #     print(len(self.steps))
             #     for step in self.steps:

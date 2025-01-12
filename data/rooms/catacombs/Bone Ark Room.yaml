@@ -1,0 +1,23 @@
+
+Stage: Catacombs
+Room: Bone Ark Room
+Index: 18
+Columns: 3
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 2
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}
