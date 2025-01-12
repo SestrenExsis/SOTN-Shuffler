@@ -445,8 +445,8 @@ stages = {
     'Long Library': [
         {
             'Long Library, Exit to Outer Wall': (32 + 0, 32 + 0),
-            'Long Library, Loading Room A': (32 + 2, 32 + 3),
-            'Long Library, Fake Room With Teleporter A': (32 + 2, 32 + 4),
+            'Long Library, Loading Room A': (32 + 0, 32 + 3),
+            'Long Library, Fake Room With Teleporter A': (32 + 0, 32 + 4),
         },
         {
             'Long Library, Spellbook Area': (0, 0),

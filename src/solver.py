@@ -562,7 +562,7 @@ if __name__ == '__main__':
             # 'Debug': {
             #     'Location': 'Castle Entrance, After Drawbridge',
             # },
-            # 'Every Stage Visited': {
+            # 'Exploration': {
             #     'Stages Visited': {
             #         'All': {
             #             # 'Abandoned Mine': True,
@@ -593,7 +593,6 @@ if __name__ == '__main__':
                 'Relic - Form of Mist': True,
                 'Relic - Soul of Bat': True,
                 'Relic - Echo of Bat': True,
-                # 'Location': 'Catacombs, Pitch Black Spike Maze',
                 'Item - Spike Breaker': {
                     'Minimum': 1,
                 },
@@ -606,7 +605,7 @@ if __name__ == '__main__':
                 'Item - Holy Glasses': {
                     'Minimum': 1,
                 },
-                # 'Status - Richter Saved': True,
+                'Status - Richter Saved': True,
                 # 'Relic - Ring of Vlad': True,
                 # 'Relic - Heart of Vlad': True,
                 # 'Relic - Tooth of Vlad': True,
@@ -624,7 +623,7 @@ if __name__ == '__main__':
         map_solver.debug = True
         # map_solver.solve_via_layers(3, 10)
         # map_solver.solve_via_steps()
-        map_solver.solve_via_random_exploration(99, 29999)
+        map_solver.solve_via_random_exploration(99, 29_999)
         if len(map_solver.results['Wins']) > 0:
             best_index = 0
             for (index, (_, game)) in enumerate(map_solver.results['Wins']):

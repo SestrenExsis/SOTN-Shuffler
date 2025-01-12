@@ -113,6 +113,7 @@ if __name__ == '__main__':
                             'Left': stage_changes['Rooms'][room_name]['Left'],
                         }
                     if room_name == 'Colosseum, Arena':
+                        # TODO(sestren): Find out why Boss Teleporter to Minotaur and Werewolf does not work
                         changes['Stages']['Boss - Minotaur and Werewolf'] = {
                             'Rooms': {},
                         }
@@ -161,6 +162,7 @@ if __name__ == '__main__':
                             'Room X': stage_changes['Rooms'][room_name]['Left'] + 1,
                         }
                     elif room_name == 'Outer Wall, Doppelganger Room':
+                        # TODO(sestren): Find out why Boss Teleporter to Doppelganger 10 does not work
                         changes['Stages']['Boss - Doppelganger 10'] = {
                             'Rooms': {},
                         }
@@ -309,7 +311,7 @@ if __name__ == '__main__':
             # TODO(sestren): Add all vanilla stages to logic
             logic_core = mapper.LogicCore(mapper_core, changes).get_core()
             logic_core['Goals'] = {
-                'Reach All Shuffled Stages': {
+                'Exploration': {
                     'Progression - Abandoned Mine Stage Reached': True,
                     'Progression - Alchemy Laboratory Stage Reached': True,
                     'Progression - Castle Center Stage Reached': True,
@@ -327,12 +329,42 @@ if __name__ == '__main__':
                     'Progression - Underground Caverns Stage Reached': True,
                     'Progression - Warp Rooms Stage Reached': True,
                 },
+                'Bad Ending': {
+                    'Status - Richter Defeated': True,
+                },
+                'WIP: Good Ending': {
+                    'Relic - Jewel of Open': True,
+                    'Relic - Leap Stone': True,
+                    'Relic - Form of Mist': True,
+                    'Relic - Soul of Bat': True,
+                    'Relic - Echo of Bat': True,
+                    'Item - Spike Breaker': {
+                        'Minimum': 1,
+                    },
+                    'Item - Silver Ring': {
+                        'Minimum': 1,
+                    },
+                    'Item - Gold Ring': {
+                        'Minimum': 1,
+                    },
+                    'Item - Holy Glasses': {
+                        'Minimum': 1,
+                    },
+                    'Status - Richter Saved': True,
+                    # 'Relic - Ring of Vlad': True,
+                    # 'Relic - Heart of Vlad': True,
+                    # 'Relic - Tooth of Vlad': True,
+                    # 'Relic - Rib of Vlad': True,
+                    # 'Relic - Eye of Vlad': True,
+                    # 'Status - Dracula Defeated': True,
+                },
             }
             # with open(os.path.join('build', 'debug', 'logic-core.json'), 'w') as debug_logic_core_json:
             #     json.dump(logic_core, debug_logic_core_json, indent='    ', sort_keys=True, default=str)
             map_solver = solver.Solver(logic_core, skills)
             map_solver.debug = True
-            map_solver.solve_via_steps(4999, 9999)
+            # map_solver.solve_via_steps(4999, 9999)
+            map_solver.solve_via_random_exploration(1, 29_999)
             if len(map_solver.results['Wins']) > 0:
                 (winning_layers, winning_game) = map_solver.results['Wins'][-1]
                 print('-------------')
