@@ -9,6 +9,16 @@ import random
 import mapper
 import solver
 
+def get_room_drawing(mapper_core, stage_name, room_id) -> list[str]:
+    result = [
+        '00000',
+        '01110',
+        '01110',
+        '01110',
+        '00000',
+    ]
+    return result
+
 if __name__ == '__main__':
     '''
     Usage
@@ -149,7 +159,10 @@ if __name__ == '__main__':
             changes = {
                 'Stages': {},
                 'Boss Teleporters': {},
+                'Castle Map': [],
             }
+            # Initialize the castle map drawing grid
+            castle_map = [['0' for col in range(256)] for row in range(256)]
             # Process each stage
             for (stage_name, stage_map) in stages.items():
                 (stage_top, stage_left) = stage_offsets[stage_name]
@@ -173,10 +186,21 @@ if __name__ == '__main__':
                         'Rooms': {},
                     }
                 for room_name in stage_changes['Rooms']:
+                    room_top = stage_top + stage_changes['Rooms'][room_name]['Top']
+                    room_left = stage_left + stage_changes['Rooms'][room_name]['Left']
                     changes['Stages'][stage_name]['Rooms'][room_name] = {
-                        'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                        'Left': stage_left + stage_changes['Rooms'][room_name]['Left'],
+                        'Top': room_top,
+                        'Left': room_left,
                     }
+                    # Draw room on castle map drawing grid
+                    room_drawing = get_room_drawing(mapper_core, stage_name, room_name)
+                    for (room_row, row_data) in enumerate(room_drawing):
+                        row = 4 * room_top + room_row
+                        for (room_col, char) in enumerate(row_data):
+                            col = 4 * room_left + room_col
+                            if row >= 256 or col >= 256:
+                                print((room_top, room_left), (row, col))
+                            castle_map[row][col] = char
                     # Apply Castle Entrance room positions to Castle Entrance Revisited
                     if stage_name == 'Castle Entrance' and room_name not in (
                         'Castle Entrance, Forest Cutscene',
@@ -381,6 +405,11 @@ if __name__ == '__main__':
                     #         'Room Y': stage_top + stage_changes['Rooms'][room_name]['Top'],
                     #         'Room X': stage_left + stage_changes['Rooms'][room_name]['Left'],
                     #     }
+            # Apply castle map drawing grid to changes
+            changes['Castle Map'] = []
+            for row in range(len(castle_map)):
+                row_data = ''.join(castle_map[row])
+                changes['Castle Map'].append(row_data)
             # with open(os.path.join('build', 'sandbox', 'debug-changes.json'), 'w') as debug_changes_json:
             #     json.dump(changes, debug_changes_json, indent='    ', sort_keys=True, default=str)
             print('Require that reaching all shuffled stages in a reasonable amount of steps is possible')
