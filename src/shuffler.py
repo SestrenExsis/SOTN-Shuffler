@@ -82,23 +82,83 @@ if __name__ == '__main__':
                     'Stage': stage_name,
                 }
             # ...
+            # NOTE(sestren): Place Castle Entrance
+            current_stage = stages['Castle Entrance'].stage
+            # NOTE(sestren): For now, the position of the Castle Entrance stage is restricted by where 'Unknown Room 20' and 'After Drawbridge' can be
+            stage_top = 38 - current_stage.rooms['Castle Entrance, After Drawbridge'].top
+            stage_left = max(0, 1 - current_stage.rooms['Castle Entrance, Unknown Room 20'].left)
+            stage_offsets = {}
+            stage_offsets['Castle Entrance'] = (stage_top, stage_left)
+            print('Castle Entrance', (stage_top, stage_left))
+            # TODO(sestren): Then randomly place down other stages one at a time
+            for stage_name in (
+                'Alchemy Laboratory',
+                'Abandoned Mine',
+                'Castle Center',
+                'Castle Keep',
+                'Catacombs',
+                'Clock Tower',
+                'Colosseum',
+                'Long Library',
+                'Marble Gallery',
+                'Olrox\'s Quarters',
+                'Outer Wall',
+                'Royal Chapel',
+                'Underground Caverns',
+                'Warp Rooms',
+            ):
+                current_stage = stages[stage_name].stage
+                prev_cells = set()
+                for (prev_stage_name, (stage_top, stage_left)) in stage_offsets.items():
+                    cells = stages[prev_stage_name].stage.get_cells(stage_top, stage_left)
+                    prev_cells.union(cells)
+                (top, left, bottom, right) = current_stage.get_bounds()
+                best_offset = (0, 0, float('inf'))
+                for _ in range(1_000):
+                    # NOTE(sestren): Randomly pick a stage_top and stage_left that won't put the stage out-of-bounds
+                    stage_top = global_rng.randint(0, 58 - bottom)
+                    stage_left = global_rng.randint(0, 63 - right)
+                    # NOTE(sestren): Reject if it overlaps another stage
+                    current_cells = current_stage.get_cells(stage_top, stage_left)
+                    if len(current_cells.intersection(prev_cells)) > 0:
+                        continue
+                    # NOTE(sestren): Keep track of whichever offset minimizes the overall boundary
+                    all_cells = current_cells.union(prev_cells)
+                    min_row = min((row for (row, col) in all_cells))
+                    max_row = max((row for (row, col) in all_cells))
+                    min_col = min((col for (row, col) in all_cells))
+                    max_col = max((col for (row, col) in all_cells))
+                    area = (1 + max_row - min_row) * (1 + max_col - min_col)
+                    if area < best_offset[2]:
+                        best_offset = (stage_top, stage_left, area)
+                stage_top = best_offset[0]
+                stage_left = best_offset[1]
+                if best_offset[2] >= float('inf'):
+                    # NOTE(sestren): All choices above overlapped, so default to assigning randomly instead
+                    print(f'{stage_name} stage could not be placed successfully, defaulting to upper-left corner')
+                    stage_top = global_rng.randint(0, 58 - bottom)
+                    stage_left = global_rng.randint(0, 63 - right)
+                cells = current_stage.get_cells(stage_top, stage_left)
+                prev_cells.union(cells)
+                stage_offsets[stage_name] = (stage_top, stage_left)
+                print(stage_name, (stage_top, stage_left))
+            min_row = min((row for (row, col) in all_cells))
+            max_row = max((row for (row, col) in all_cells))
+            min_col = min((col for (row, col) in all_cells))
+            max_col = max((col for (row, col) in all_cells))
             changes = {
                 'Stages': {},
                 'Boss Teleporters': {},
             }
+            # Process each stage
             for (stage_name, stage_map) in stages.items():
-                (stage_top, stage_left) = (5, 0)
+                (stage_top, stage_left) = stage_offsets[stage_name]
                 # print('stage_name:', stage_name)
                 changes['Stages'][stage_name] = {
                     'Rooms': {},
                 }
                 stage_changes = stage_map.stage.get_changes()
                 if stage_name == 'Castle Entrance':
-                    # TODO(sestren): For now, the position of the Castle Entrance stage is restricted by where 'Unknown Room 20' and 'After Drawbridge' can be
-                    if stage_changes['Rooms']['Castle Entrance, Unknown Room 20']['Left'] < 1:
-                        stage_left = 1 - stage_changes['Rooms']['Castle Entrance, Unknown Room 20']['Left']
-                    if stage_changes['Rooms']['Castle Entrance, After Drawbridge']['Top'] != 38:
-                        stage_top = 38 - stage_changes['Rooms']['Castle Entrance, After Drawbridge']['Top']
                     # NOTE(sestren): These rooms are being placed out of the way to provide more room on the map
                     changes['Stages'][stage_name]['Rooms']['Castle Entrance, Forest Cutscene'] = {
                         'Top': 63,
@@ -327,23 +387,30 @@ if __name__ == '__main__':
             # TODO(sestren): Add all vanilla stages to logic
             logic_core = mapper.LogicCore(mapper_core, changes).get_core()
             logic_core['Goals'] = {
+                # 'Debug': {
+                #     'Location': 'Castle Entrance, After Drawbridge',
+                # },
                 'Exploration': {
-                    # 'Progression - Abandoned Mine Stage Reached': True,
-                    'Progression - Alchemy Laboratory Stage Reached': True,
-                    # 'Progression - Castle Center Stage Reached': True,
-                    'Progression - Castle Entrance Stage Reached': True,
-                    'Progression - Castle Entrance Revisited Stage Reached': True,
-                    # 'Progression - Castle Keep Stage Reached': True,
-                    # 'Progression - Catacombs Stage Reached': True,
-                    'Progression - Clock Tower Stage Reached': True,
-                    # 'Progression - Colosseum Stage Reached': True,
-                    'Progression - Long Library Stage Reached': True,
-                    'Progression - Marble Gallery Stage Reached': True,
-                    'Progression - Outer Wall Stage Reached': True,
-                    # 'Progression - Olrox\'s Quarters Stage Reached': True,
-                    # 'Progression - Royal Chapel Stage Reached': True,
-                    # 'Progression - Underground Caverns Stage Reached': True,
-                    'Progression - Warp Rooms Stage Reached': True,
+                    'Stages Visited': {
+                        'All': {
+                            'Abandoned Mine': True,
+                            'Alchemy Laboratory': True,
+                            'Castle Center': True,
+                            'Castle Entrance': True,
+                            'Castle Entrance Revisited': True,
+                            'Castle Keep': True,
+                            'Catacombs': True,
+                            'Clock Tower': True,
+                            'Colosseum': True,
+                            'Long Library': True,
+                            'Marble Gallery': True,
+                            'Olrox\'s Quarters': True,
+                            'Outer Wall': True,
+                            'Royal Chapel': True,
+                            'Underground Caverns': True,
+                            'Warp Rooms': True,
+                        }
+                    },
                 },
                 'Bad Ending': {
                     'Status - Richter Defeated': True,
@@ -385,18 +452,19 @@ if __name__ == '__main__':
                 (winning_layers, winning_game) = map_solver.results['Wins'][-1]
                 print('-------------')
                 print('GOAL REACHED: Layer', winning_layers)
-                print('History')
-                for (layer, location, command_name) in winning_game.history:
-                    print('-', layer, location, ':', command_name)
-                print('State')
-                for (key, value) in winning_game.current_state.items():
-                    print('-', key, ':', value)
+                # print('History')
+                # for (layer, location, command_name) in winning_game.history:
+                #     print('-', layer, location, ':', command_name)
+                # print('State')
+                # for (key, value) in winning_game.current_state.items():
+                #     print('-', key, ':', value)
                 print('-------------')
                 solution = {
                     'History': winning_game.history,
                     'Final Layer': winning_layers,
                     'Final State': winning_game.current_state,
                     'Cycles': map_solver.cycle_count,
+                    'Goals Achieved': winning_game.goals_achieved,
                 }
                 shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)
                 current_seed = {
