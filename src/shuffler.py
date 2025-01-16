@@ -15,9 +15,9 @@ def get_room_drawing(mapper_core, room_name) -> list[str]:
     cols = room['Columns']
     char = '1'
     if room_name.startswith('Warp Room '):
-        char = '4'
-    elif 'Save Room' in room_name:
         char = '5'
+    elif 'Save Room' in room_name:
+        char = '4'
     elif 'Loading Room' in room_name:
         char = 'c'
     elif 'Fake Room With Teleporter' in room_name:
@@ -26,6 +26,8 @@ def get_room_drawing(mapper_core, room_name) -> list[str]:
     for row in range(rows):
         row_span = 4 if row < (rows - 1) else 3
         for col in range(cols):
+            if (row, col) in room['Empty Cells']:
+                continue
             col_span = 4 if col < (cols - 1) else 3
             for r in range(row_span):
                 for c in range(col_span):
@@ -154,7 +156,7 @@ if __name__ == '__main__':
                 best_offset = (0, 0, float('inf'))
                 for _ in range(1_000):
                     # NOTE(sestren): Randomly pick a stage_top and stage_left that won't put the stage out-of-bounds
-                    stage_top = global_rng.randint(0, 58 - bottom)
+                    stage_top = global_rng.randint(0, 57 - bottom)
                     stage_left = global_rng.randint(0, 63 - right)
                     # NOTE(sestren): Reject if it overlaps another stage
                     current_cells = current_stage.get_cells(stage_top, stage_left)
@@ -173,8 +175,8 @@ if __name__ == '__main__':
                 stage_left = best_offset[1]
                 if best_offset[2] >= float('inf'):
                     # NOTE(sestren): All choices above overlapped, so default to assigning randomly instead
-                    print(f'{stage_name} stage could not be placed successfully, defaulting to upper-left corner')
-                    stage_top = global_rng.randint(0, 58 - bottom)
+                    print(f'{stage_name} stage could not be placed successfully, defaulting to random location')
+                    stage_top = global_rng.randint(0, 57 - bottom)
                     stage_left = global_rng.randint(0, 63 - right)
                 cells = current_stage.get_cells(stage_top, stage_left)
                 prev_cells.union(cells)
@@ -194,6 +196,7 @@ if __name__ == '__main__':
             # Process each stage
             for (stage_name, stage_map) in stages.items():
                 (stage_top, stage_left) = stage_offsets[stage_name]
+                # print()
                 # print('stage_name:', stage_name)
                 changes['Stages'][stage_name] = {
                     'Rooms': {},
@@ -228,6 +231,8 @@ if __name__ == '__main__':
                             col = 4 * room_left + room_col
                             if row >= 256 or col >= 256:
                                 print(room_name, (room_top, room_left), (row, col))
+                            # if char == '0' and castle_map[row][col] != '0':
+                            #     print((row, col), castle_map[row][col])
                             castle_map[row][col] = char
                     # Apply Castle Entrance room positions to Castle Entrance Revisited
                     if stage_name == 'Castle Entrance' and room_name not in (
