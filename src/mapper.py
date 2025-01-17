@@ -714,7 +714,7 @@ stages = {
         { 'Catacombs, Spike Breaker Room': (0, 0) },
     ]
     
-    # TODO(sestren): Reverse Colosseum, with Trio boss teleporth
+    # TODO(sestren): Reverse Colosseum, with Trio boss teleport
 }
 
 class MapperData:

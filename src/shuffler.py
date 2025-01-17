@@ -175,26 +175,26 @@ if __name__ == '__main__':
                 (top, left, bottom, right) = current_stage.get_bounds()
                 best_area = float('inf')
                 best_stage_offsets = []
-                for stage_top in range(5, 57 - bottom):
+                for stage_top in range(5, 56 - bottom):
                     for stage_left in range(0, 63 - right):
                         # NOTE(sestren): Reject if it overlaps another stage
                         current_cells = current_stage.get_cells(stage_top, stage_left)
                         if len(current_cells.intersection(prev_cells)) > 0:
                             continue
-                        # NOTE(sestren): Keep track of whichever offset minimizes the overall boundary
                         all_cells = current_cells.union(prev_cells) - stages['Warp Rooms'].stage.get_cells(stage_offsets['Warp Rooms'][0], stage_offsets['Warp Rooms'][1])
                         min_row = min((row for (row, col) in all_cells))
                         max_row = max((row for (row, col) in all_cells))
                         min_col = min((col for (row, col) in all_cells))
                         max_col = max((col for (row, col) in all_cells))
                         area = (1 + max_row - min_row) * (1 + max_col - min_col)
+                        # NOTE(sestren): Keep track of whichever offset minimizes the overall area
                         if area < best_area:
                             best_stage_offsets = []
                             best_area = area
                         if area == best_area:
                             best_stage_offsets.append((stage_top, stage_left))
                 if best_area >= float('inf'):
-                    print(f'{stage_name} stage could not be placed successfully, defaulting to random location')
+                    print(f'ERROR: {stage_name} stage could not be placed successfully')
                     break
                 (stage_top, stage_left) = global_rng.choice(best_stage_offsets)
                 cells = current_stage.get_cells(stage_top, stage_left)
@@ -216,6 +216,32 @@ if __name__ == '__main__':
                     row_data.append(cell)
                 print(''.join(row_data))
             print('')
+            reversible_stages = {
+                # TODO(sestren): Handle rotating boss stages for Inverted Castle
+                # TODO(sestren): Add Boss - Doppelganger 40 to Inverted Castle (Scylla Worm Room)
+                # TODO(sestren): Add Boss - Beelzebub to Inverted Castle (Slogra and Gaibon Room)
+                'Abandoned Mine': 'Cave',
+                'Alchemy Laboratory': 'Necromancy Laboratory',
+                # 'Boss - Cerberus': 'Boss - Death',
+                # 'Boss - Doppelganger 10': 'Boss - Creature',
+                # 'Boss - Granfaloon': 'Boss - Galamoth',
+                # 'Boss - Hippogryph': 'Boss - Medusa',
+                # 'Boss - Minotaur and Werewolf': 'Boss - Trio',
+                # 'Boss - Olrox': 'Boss - Akmodon II',
+                'Castle Center': 'Reverse Castle Center',
+                'Castle Entrance': 'Reverse Entrance',
+                'Castle Keep': 'Reverse Keep',
+                'Catacombs': 'Floating Catacombs',
+                'Clock Tower': 'Reverse Clock Tower',
+                'Colosseum': 'Reverse Colosseum',
+                'Long Library': 'Forbidden Library',
+                'Marble Gallery': 'Black Marble Gallery',
+                'Olrox\'s Quarters': 'Death Wing\'s Lair',
+                'Outer Wall': 'Reverse Outer Wall',
+                'Royal Chapel': 'Anti-Chapel',
+                'Underground Caverns': 'Reverse Caverns',
+                'Warp Rooms': 'Reverse Warp Rooms',
+            }
             changes = {
                 'Stages': {},
                 'Boss Teleporters': {},
@@ -259,11 +285,10 @@ if __name__ == '__main__':
                         row = 4 * room_top + room_row
                         for (room_col, char) in enumerate(row_data):
                             col = 4 * room_left + room_col
-                            if row >= 256 or col >= 256:
-                                print(room_name, (room_top, room_left), (row, col))
-                            # if char == '0' and castle_map[row][col] != '0':
-                            #     print((row, col), castle_map[row][col])
-                            castle_map[row][col] = char
+                            if (0 <= row < 256) and (0 <= col < 256):
+                                castle_map[row][col] = char
+                            else:
+                                print('Tried to draw pixel out of bounds of map:', room_name, (room_top, room_left), (row, col))
                     # Apply Castle Entrance room positions to Castle Entrance Revisited
                     if stage_name == 'Castle Entrance' and room_name not in (
                         'Castle Entrance, Forest Cutscene',
@@ -272,8 +297,19 @@ if __name__ == '__main__':
                     ):
                         revisited_room_name = 'Castle Entrance Revisited, ' + room_name[17:]
                         changes['Stages']['Castle Entrance Revisited']['Rooms'][revisited_room_name] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'],
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
+                        }
+                    if stage_name in reversible_stages:
+                        reversed_stage_name = reversible_stages[stage_name]
+                        if reversed_stage_name not in changes['Stages']:
+                            changes['Stages'][reversed_stage_name] = {
+                                'Rooms': {},
+                            }
+                        reversed_room_name = reversed_stage_name + ', ' + room_name[(len(stage_name) + 2):]
+                        changes['Stages'][reversed_stage_name]['Rooms'][reversed_room_name] = {
+                            'Top': 63 - changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': 63 - changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
                         }
                     if room_name == 'Colosseum, Arena':
                         # TODO(sestren): Find out why Boss Teleporter to Minotaur and Werewolf does not work
@@ -281,48 +317,48 @@ if __name__ == '__main__':
                             'Rooms': {},
                         }
                         changes['Stages']['Boss - Minotaur and Werewolf']['Rooms']['Boss - Minotaur and Werewolf, Arena'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'],
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
                         }
                         changes['Stages']['Boss - Minotaur and Werewolf']['Rooms']['Boss - Minotaur and Werewolf, Fake Room With Teleporter A'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'] - 1,
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] - 1,
                         }
                         changes['Stages']['Boss - Minotaur and Werewolf']['Rooms']['Boss - Minotaur and Werewolf, Fake Room With Teleporter B'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'] + 2,
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 2,
                         }
                         changes['Boss Teleporters']['5'] = {
-                            'Room Y': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Room X': stage_left + stage_changes['Rooms'][room_name]['Left'],
+                            'Room Y': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Room X': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
                         }
                         changes['Boss Teleporters']['6'] = {
-                            'Room Y': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Room X': stage_left + stage_changes['Rooms'][room_name]['Left'] + 1,
+                            'Room Y': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Room X': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 1,
                         }
                     elif room_name == 'Abandoned Mine, Cerberus Room':
                         changes['Stages']['Boss - Cerberus'] = {
                             'Rooms': {},
                         }
                         changes['Stages']['Boss - Cerberus']['Rooms']['Boss - Cerberus, Cerberus Room'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'],
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
                         }
                         changes['Stages']['Boss - Cerberus']['Rooms']['Boss - Cerberus, Fake Room With Teleporter A'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'] - 1,
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] - 1,
                         }
                         changes['Stages']['Boss - Cerberus']['Rooms']['Boss - Cerberus, Fake Room With Teleporter B'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'] + 2,
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 2,
                         }
                         changes['Boss Teleporters']['13'] = {
-                            'Room Y': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Room X': stage_left + stage_changes['Rooms'][room_name]['Left'],
+                            'Room Y': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Room X': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
                         }
                         changes['Boss Teleporters']['14'] = {
-                            'Room Y': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Room X': stage_left + stage_changes['Rooms'][room_name]['Left'] + 1,
+                            'Room Y': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Room X': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 1,
                         }
                     elif room_name == 'Outer Wall, Doppelganger Room':
                         # TODO(sestren): Find out why Boss Teleporter to Doppelganger 10 does not work
@@ -330,143 +366,144 @@ if __name__ == '__main__':
                             'Rooms': {},
                         }
                         changes['Stages']['Boss - Doppelganger 10']['Rooms']['Boss - Doppelganger 10, Doppelganger Room'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'],
+                            'Top': stage_changes['Rooms'][room_name]['Top'],
+                            'Left': stage_changes['Rooms'][room_name]['Left'],
                         }
                         changes['Stages']['Boss - Doppelganger 10']['Rooms']['Boss - Doppelganger 10, Fake Room With Teleporter A'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'] - 1,
+                            'Top': stage_changes['Rooms'][room_name]['Top'],
+                            'Left': stage_changes['Rooms'][room_name]['Left'] - 1,
                         }
                         changes['Stages']['Boss - Doppelganger 10']['Rooms']['Boss - Doppelganger 10, Fake Room With Teleporter B'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'] + 2,
+                            'Top': stage_changes['Rooms'][room_name]['Top'],
+                            'Left': stage_changes['Rooms'][room_name]['Left'] + 2,
                         }
                         changes['Boss Teleporters']['8'] = {
-                            'Room Y': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Room X': stage_left + stage_changes['Rooms'][room_name]['Left'],
+                            'Room Y': stage_changes['Rooms'][room_name]['Top'],
+                            'Room X': stage_changes['Rooms'][room_name]['Left'],
                         }
                         changes['Boss Teleporters']['9'] = {
-                            'Room Y': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Room X': stage_left + stage_changes['Rooms'][room_name]['Left'] + 1,
+                            'Room Y': stage_changes['Rooms'][room_name]['Top'],
+                            'Room X': stage_changes['Rooms'][room_name]['Left'] + 1,
                         }
                     elif room_name == 'Royal Chapel, Hippogryph Room':
                         changes['Stages']['Boss - Hippogryph'] = {
                             'Rooms': {},
                         }
                         changes['Stages']['Boss - Hippogryph']['Rooms']['Boss - Hippogryph, Hippogryph Room'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'],
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
                         }
                         changes['Stages']['Boss - Hippogryph']['Rooms']['Boss - Hippogryph, Fake Room With Teleporter A'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'] - 1,
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] - 1,
                         }
                         changes['Stages']['Boss - Hippogryph']['Rooms']['Boss - Hippogryph, Fake Room With Teleporter B'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'] + 2,
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 2,
                         }
                         changes['Boss Teleporters']['10'] = {
-                            'Room Y': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Room X': stage_left + stage_changes['Rooms'][room_name]['Left'],
+                            'Room Y': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Room X': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
                         }
                         changes['Boss Teleporters']['11'] = {
-                            'Room Y': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Room X': stage_left + stage_changes['Rooms'][room_name]['Left'] + 1,
+                            'Room Y': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Room X': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 1,
                         }
                     elif room_name == 'Olrox\'s Quarters, Olrox\'s Room':
                         changes['Stages']['Boss - Olrox'] = {
                             'Rooms': {},
                         }
                         changes['Stages']['Boss - Olrox']['Rooms']['Boss - Olrox, Olrox\'s Room'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'],
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
                         }
                         changes['Stages']['Boss - Olrox']['Rooms']['Boss - Olrox, Fake Room With Teleporter A'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'] - 1,
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] - 1,
                         }
                         changes['Stages']['Boss - Olrox']['Rooms']['Boss - Olrox, Fake Room With Teleporter B'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'] + 2,
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 2,
                         }
                         # NOTE(sestren): There is only one boss teleporter in the game data for Olrox, despite there being two entrances, so one of the entrances will not be covered
                         changes['Boss Teleporters']['3'] = {
-                            'Room Y': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Room X': stage_left + stage_changes['Rooms'][room_name]['Left'] + 1,
+                            'Room Y': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Room X': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 1,
                         }
                     elif room_name == 'Catacombs, Granfaloon\'s Lair':
                         changes['Stages']['Boss - Granfaloon'] = {
                             'Rooms': {},
                         }
                         changes['Stages']['Boss - Granfaloon']['Rooms']['Boss - Granfaloon, Granfaloon\'s Lair'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'],
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
                         }
                         changes['Stages']['Boss - Granfaloon']['Rooms']['Boss - Granfaloon, Fake Room With Teleporter A'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'] - 1,
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 2,
                         }
                         changes['Stages']['Boss - Granfaloon']['Rooms']['Boss - Granfaloon, Fake Room With Teleporter B'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'] + 2,
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'] + 1,
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] - 1,
                         }
-                        # NOTE(sestren): There is only one boss teleporter in the game data for Olrox, despite there being two entrances, so one of the entrances will not be covered
+                        # NOTE(sestren): There is only one boss teleporter in the game data for Granfaloon, despite there being two entrances, so one of the entrances will not be covered
                         changes['Boss Teleporters']['4'] = {
-                            'Room Y': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Room X': stage_left + stage_changes['Rooms'][room_name]['Left'] + 1,
+                            'Room Y': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Room X': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 2,
                         }
                     elif room_name == 'Underground Caverns, Scylla Wyrm Room':
                         changes['Stages']['Boss - Scylla'] = {
                             'Rooms': {},
                         }
                         changes['Stages']['Boss - Scylla']['Rooms']['Boss - Scylla, Scylla Wyrm Room'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'],
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
                         }
                         changes['Stages']['Boss - Scylla']['Rooms']['Boss - Scylla, Fake Room With Teleporter A'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'] - 1,
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] - 1,
                         }
                         changes['Stages']['Boss - Scylla']['Rooms']['Boss - Scylla, Rising Water Room'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'] + 1,
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 1,
                         }
                         changes['Stages']['Boss - Scylla']['Rooms']['Boss - Scylla, Scylla Room'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'] - 1,
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'] + 1,
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'] - 1,
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 1,
                         }
                         changes['Stages']['Boss - Scylla']['Rooms']['Boss - Scylla, Crystal Cloak Room'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'] - 1,
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'],
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'] - 1,
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
                         }
                         changes['Boss Teleporters']['7'] = {
-                            'Room Y': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                            'Room X': stage_left + stage_changes['Rooms'][room_name]['Left'],
+                            'Room Y': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Room X': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
                         }
                     elif room_name == 'Castle Keep, Keep Area':
                         changes['Stages']['Boss - Richter'] = {
                             'Rooms': {},
                         }
                         changes['Stages']['Boss - Richter']['Rooms']['Boss - Richter, Throne Room'] = {
-                            'Top': stage_top + stage_changes['Rooms'][room_name]['Top'] + 3,
-                            'Left': stage_left + stage_changes['Rooms'][room_name]['Left'] + 3,
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'] + 3,
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 3,
                         }
                         changes['Boss Teleporters']['12'] = {
-                            'Room Y': stage_top + stage_changes['Rooms'][room_name]['Top'] + 3,
-                            'Room X': stage_left + stage_changes['Rooms'][room_name]['Left'] + 3,
+                            'Room Y': changes['Stages'][stage_name]['Rooms'][room_name]['Top'] + 3,
+                            'Room X': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 3,
                         }
                     # TODO(sestren): Find where the MAR overlay is and patch the Maria Cutscene
+                    # TODO(sestren): Alucard doesn't use the Teleporter in the cutscene to go to Inverted Castle
                     # elif room_name == 'Marble Gallery, Clock Room':
                     #     changes['Stages']['Cutscene - Maria'] = {
                     #         'Rooms': {},
                     #     }
                     #     changes['Stages']['Cutscene - Maria']['Rooms']['Cutscene - Maria, Clock Room'] = {
-                    #         'Top': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                    #         'Left': stage_left + stage_changes['Rooms'][room_name]['Left'],
+                    #         'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                    #         'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
                     #     }
                     #     changes['Boss Teleporters']['0'] = {
-                    #         'Room Y': stage_top + stage_changes['Rooms'][room_name]['Top'],
-                    #         'Room X': stage_left + stage_changes['Rooms'][room_name]['Left'],
+                    #         'Room Y': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                    #         'Room X': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
                     #     }
             # Apply castle map drawing grid to changes
             changes['Castle Map'] = []
