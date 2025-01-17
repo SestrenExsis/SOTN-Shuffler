@@ -113,6 +113,12 @@ class RoomSet:
         result = (top, left, bottom, right)
         return result
     
+    def normalize(self):
+        (stage_top, stage_left, _, _) = self.get_bounds()
+        for room_name in self.rooms:
+            self.rooms[room_name].top -= stage_top
+            self.rooms[room_name].left -= stage_left
+    
     def get_cells(self, offset_top: int=0, offset_left: int=0) -> set[tuple[int, int]]:
         result = set()
         for (room_name, room) in self.rooms.items():
@@ -195,11 +201,11 @@ class RoomSet:
 
 stages = {
     'Castle Entrance': [
+        # NOTE(sestren): For now, these rooms are not being added to the mapper
+        # { 'Castle Entrance, Forest Cutscene': (44, 0) },
+        # { 'Castle Entrance, Unknown Room 19': (44, 18) },
         {
-            # TODO(sestren): For now, the position of these rooms cannot be modified
-            'Castle Entrance, Forest Cutscene': (44, 0),
-            'Castle Entrance, Unknown Room 19': (44, 18),
-            # TODO(sestren): For now, the horizontal position of these rooms cannot be modified
+            # TODO(sestren): Add validation check to ensure Castle Entrance can be shifted to respect these rooms
             'Castle Entrance, Unknown Room 20': (40, 30 + 1),
             'Castle Entrance, After Drawbridge': (38, 30 + 2),
         },
@@ -742,6 +748,11 @@ class MapperData:
                 with open(file_path) as open_file:
                     yaml_obj = yaml.safe_load(open_file)
                     room_name = yaml_obj['Stage'] + ', ' + yaml_obj['Room']
+                    if room_name in (
+                        'Castle Entrance, Forest Cutscene',
+                        'Castle Entrance, Unknown Room 19',
+                    ):
+                        continue
                     self.rooms[room_name] = yaml_obj
         with open(os.path.join('data', 'Teleporters.yaml')) as open_file:
             yaml_obj = yaml.safe_load(open_file)
@@ -1018,9 +1029,9 @@ class Mapper:
                 no_nodes_unused and
                 (all_rooms_connected or self.stage_name in ('Warp Rooms', 'Castle Center', 'Underground Caverns'))
             )
-            # if len(self.stage.rooms) > 27:
+            # if len(self.stage.rooms) > 28:
             #     print(all_rooms_used, no_nodes_unused, all_rooms_connected, len(self.stage.rooms), len(self.rooms))
-            #     for line in self.get_spoiler('Catacombs'):
+            #     for line in self.get_spoiler('Castle Entrance'):
             #         print(line)
             #     print(len(self.steps))
             #     for step in self.steps:
@@ -1108,6 +1119,7 @@ if __name__ == '__main__':
         while True:
             stage_map.generate()
             if stage_map.validate():
+                stage_map.stage.normalize()
                 break
         changes = stage_map.stage.get_changes()
         hash_of_rooms = hashlib.sha256(json.dumps(changes['Rooms'], sort_keys=True).encode()).hexdigest()
