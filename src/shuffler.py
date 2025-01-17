@@ -122,18 +122,25 @@ if __name__ == '__main__':
                     'Stage': stage_name,
                 }
             # ...
+            stage_offsets = {}
             # NOTE(sestren): Place Castle Entrance
             current_stage = stages['Castle Entrance'].stage
             # NOTE(sestren): For now, the position of the Castle Entrance stage is restricted by where 'Unknown Room 20' and 'After Drawbridge' can be
             stage_top = 38 - current_stage.rooms['Castle Entrance, After Drawbridge'].top
             stage_left = max(0, 1 - current_stage.rooms['Castle Entrance, Unknown Room 20'].left)
-            stage_offsets = {}
             stage_offsets['Castle Entrance'] = (stage_top, stage_left)
             print('Castle Entrance', (stage_top, stage_left))
+            # NOTE(sestren): Place Warp Rooms
+            current_stage = stages['Warp Rooms'].stage
+            # NOTE(sestren): For now, the position of the Warp Rooms stage must be in its vanilla location
+            stage_top = 12 - current_stage.rooms['Warp Rooms, Warp Room A'].top
+            stage_left = max(0, 40 - current_stage.rooms['Warp Rooms, Warp Room A'].left)
+            stage_offsets['Warp Rooms'] = (stage_top, stage_left)
+            print('Warp Rooms', (stage_top, stage_left))
             # TODO(sestren): Then randomly place down other stages one at a time
-            for stage_name in (
-                'Alchemy Laboratory',
+            stage_names = [
                 'Abandoned Mine',
+                'Alchemy Laboratory',
                 'Castle Center',
                 'Castle Keep',
                 'Catacombs',
@@ -145,47 +152,70 @@ if __name__ == '__main__':
                 'Outer Wall',
                 'Royal Chapel',
                 'Underground Caverns',
-                'Warp Rooms',
-            ):
+            ]
+            valid_ind = False
+            global_rng.shuffle(stage_names)
+            for (i, stage_name) in enumerate(stage_names):
                 current_stage = stages[stage_name].stage
                 prev_cells = set()
                 for (prev_stage_name, (stage_top, stage_left)) in stage_offsets.items():
                     cells = stages[prev_stage_name].stage.get_cells(stage_top, stage_left)
-                    prev_cells.union(cells)
+                    prev_cells = prev_cells.union(cells)
+                print('')
+                print(i, len(prev_cells))
+                for row in range(64):
+                    row_data = []
+                    for col in range(64):
+                        cell = '.'
+                        if (row, col) in prev_cells:
+                            cell = '#'
+                        row_data.append(cell)
+                    print(''.join(row_data))
+                print('')
                 (top, left, bottom, right) = current_stage.get_bounds()
-                best_offset = (0, 0, float('inf'))
-                for _ in range(1_000):
-                    # NOTE(sestren): Randomly pick a stage_top and stage_left that won't put the stage out-of-bounds
-                    stage_top = global_rng.randint(0, 57 - bottom)
-                    stage_left = global_rng.randint(0, 63 - right)
-                    # NOTE(sestren): Reject if it overlaps another stage
-                    current_cells = current_stage.get_cells(stage_top, stage_left)
-                    if len(current_cells.intersection(prev_cells)) > 0:
-                        continue
-                    # NOTE(sestren): Keep track of whichever offset minimizes the overall boundary
-                    all_cells = current_cells.union(prev_cells)
-                    min_row = min((row for (row, col) in all_cells))
-                    max_row = max((row for (row, col) in all_cells))
-                    min_col = min((col for (row, col) in all_cells))
-                    max_col = max((col for (row, col) in all_cells))
-                    area = (1 + max_row - min_row) * (1 + max_col - min_col)
-                    if area < best_offset[2]:
-                        best_offset = (stage_top, stage_left, area)
-                stage_top = best_offset[0]
-                stage_left = best_offset[1]
-                if best_offset[2] >= float('inf'):
-                    # NOTE(sestren): All choices above overlapped, so default to assigning randomly instead
+                best_area = float('inf')
+                best_stage_offsets = []
+                for stage_top in range(5, 57 - bottom):
+                    for stage_left in range(0, 63 - right):
+                        # NOTE(sestren): Reject if it overlaps another stage
+                        current_cells = current_stage.get_cells(stage_top, stage_left)
+                        if len(current_cells.intersection(prev_cells)) > 0:
+                            continue
+                        # NOTE(sestren): Keep track of whichever offset minimizes the overall boundary
+                        all_cells = current_cells.union(prev_cells) - stages['Warp Rooms'].stage.get_cells(stage_offsets['Warp Rooms'][0], stage_offsets['Warp Rooms'][1])
+                        min_row = min((row for (row, col) in all_cells))
+                        max_row = max((row for (row, col) in all_cells))
+                        min_col = min((col for (row, col) in all_cells))
+                        max_col = max((col for (row, col) in all_cells))
+                        area = (1 + max_row - min_row) * (1 + max_col - min_col)
+                        if area < best_area:
+                            best_stage_offsets = []
+                            best_area = area
+                        if area == best_area:
+                            best_stage_offsets.append((stage_top, stage_left))
+                if best_area >= float('inf'):
                     print(f'{stage_name} stage could not be placed successfully, defaulting to random location')
-                    stage_top = global_rng.randint(0, 57 - bottom)
-                    stage_left = global_rng.randint(0, 63 - right)
+                    break
+                (stage_top, stage_left) = global_rng.choice(best_stage_offsets)
                 cells = current_stage.get_cells(stage_top, stage_left)
                 prev_cells.union(cells)
                 stage_offsets[stage_name] = (stage_top, stage_left)
                 print(stage_name, (stage_top, stage_left))
-            min_row = min((row for (row, col) in all_cells))
-            max_row = max((row for (row, col) in all_cells))
-            min_col = min((col for (row, col) in all_cells))
-            max_col = max((col for (row, col) in all_cells))
+            else:
+                valid_ind = True
+            if not valid_ind:
+                continue
+            print('')
+            print(len(prev_cells))
+            for row in range(64):
+                row_data = []
+                for col in range(64):
+                    cell = '.'
+                    if (row, col) in prev_cells:
+                        cell = '#'
+                    row_data.append(cell)
+                print(''.join(row_data))
+            print('')
             changes = {
                 'Stages': {},
                 'Boss Teleporters': {},
