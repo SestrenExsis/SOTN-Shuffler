@@ -366,24 +366,24 @@ if __name__ == '__main__':
                             'Rooms': {},
                         }
                         changes['Stages']['Boss - Doppelganger 10']['Rooms']['Boss - Doppelganger 10, Doppelganger Room'] = {
-                            'Top': stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_changes['Rooms'][room_name]['Left'],
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
                         }
                         changes['Stages']['Boss - Doppelganger 10']['Rooms']['Boss - Doppelganger 10, Fake Room With Teleporter A'] = {
-                            'Top': stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_changes['Rooms'][room_name]['Left'] - 1,
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] - 1,
                         }
                         changes['Stages']['Boss - Doppelganger 10']['Rooms']['Boss - Doppelganger 10, Fake Room With Teleporter B'] = {
-                            'Top': stage_changes['Rooms'][room_name]['Top'],
-                            'Left': stage_changes['Rooms'][room_name]['Left'] + 2,
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 2,
                         }
                         changes['Boss Teleporters']['8'] = {
-                            'Room Y': stage_changes['Rooms'][room_name]['Top'],
-                            'Room X': stage_changes['Rooms'][room_name]['Left'],
+                            'Room Y': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Room X': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
                         }
                         changes['Boss Teleporters']['9'] = {
-                            'Room Y': stage_changes['Rooms'][room_name]['Top'],
-                            'Room X': stage_changes['Rooms'][room_name]['Left'] + 1,
+                            'Room Y': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Room X': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 1,
                         }
                     elif room_name == 'Royal Chapel, Hippogryph Room':
                         changes['Stages']['Boss - Hippogryph'] = {
@@ -401,6 +401,7 @@ if __name__ == '__main__':
                             'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
                             'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 2,
                         }
+                        # Somehow, I changed the X Position, but not the Y Position?
                         changes['Boss Teleporters']['10'] = {
                             'Room Y': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
                             'Room X': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
@@ -491,20 +492,27 @@ if __name__ == '__main__':
                             'Room Y': changes['Stages'][stage_name]['Rooms'][room_name]['Top'] + 3,
                             'Room X': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 3,
                         }
-                    # TODO(sestren): Find where the MAR overlay is and patch the Maria Cutscene
                     # TODO(sestren): Alucard doesn't use the Teleporter in the cutscene to go to Inverted Castle
-                    # elif room_name == 'Marble Gallery, Clock Room':
-                    #     changes['Stages']['Cutscene - Maria'] = {
-                    #         'Rooms': {},
-                    #     }
-                    #     changes['Stages']['Cutscene - Maria']['Rooms']['Cutscene - Maria, Clock Room'] = {
-                    #         'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
-                    #         'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
-                    #     }
-                    #     changes['Boss Teleporters']['0'] = {
-                    #         'Room Y': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
-                    #         'Room X': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
-                    #     }
+                    elif room_name == 'Marble Gallery, Clock Room':
+                        changes['Stages']['Cutscene - Meeting Maria in Clock Room'] = {
+                            'Rooms': {},
+                        }
+                        changes['Stages']['Cutscene - Meeting Maria in Clock Room']['Rooms']['Cutscene - Meeting Maria in Clock Room, Clock Room'] = {
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
+                        }
+                        changes['Stages']['Cutscene - Meeting Maria in Clock Room']['Rooms']['Cutscene - Meeting Maria in Clock Room, Fake Room With Teleporter A'] = {
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] - 1,
+                        }
+                        changes['Stages']['Cutscene - Meeting Maria in Clock Room']['Rooms']['Cutscene - Meeting Maria in Clock Room, Fake Room With Teleporter B'] = {
+                            'Top': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Left': changes['Stages'][stage_name]['Rooms'][room_name]['Left'] + 1,
+                        }
+                        changes['Boss Teleporters']['0'] = {
+                            'Room Y': changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
+                            'Room X': changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
+                        }
             # Apply castle map drawing grid to changes
             changes['Castle Map'] = []
             for row in range(len(castle_map)):

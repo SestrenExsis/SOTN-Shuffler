@@ -1,12 +1,8 @@
 
 # External libraries
+import base64
 import argparse
 import json
-import os
-import yaml
-
-# Local libraries
-import mapper
 
 def get_stage_spoiler(core_data: dict, changes: dict) -> list[str]:
     codes = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+. '
@@ -119,19 +115,52 @@ if __name__ == '__main__':
     python src/sotn_spoiler.py INPUT_JSON
     '''
     parser = argparse.ArgumentParser()
-    parser.add_argument('core_data_filepath', help='Input a filepath for creating the output JSON file', type=str)
-    parser.add_argument('changes_filepath', help='Input a filepath ...', type=str)
-    parser.add_argument('mapper_data_filepath', help='Input a filepath ...', type=str)
+    parser.add_argument('extraction_filepath', help='Input a filepath ...', type=str)
     args = parser.parse_args()
     with (
-        open(args.core_data_filepath) as core_data_file,
-        open(args.changes_filepath) as changes_file,
-        open(args.mapper_data_filepath) as mapper_data_file,
+        open(args.extraction_filepath) as extraction_file,
     ):
-        core_data = json.load(core_data_file)
-        changes = json.load(changes_file)
-        if 'Changes' in changes:
-            changes = changes['Changes']
-        mapper_data = mapper.MapperData().get_core()
-        for row_data in get_room_spoiler(core_data, changes, mapper_data, 'Long Library'):
-            print(row_data)
+        extraction = json.load(extraction_file)
+        chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        grid = [[' ' for col in range(64)] for row in range(64)]
+        command = 'Castle Entrance'
+        while True:
+            for row in range(64):
+                for col in range(64):
+                    grid[row][col] = '.'
+            for stage_name in extraction['Stages']:
+                rooms = extraction['Stages'][stage_name]['Rooms']
+                for (room_id, room) in rooms.items():
+                    top = room['Top']['Value']
+                    left = room['Left']['Value']
+                    bottom = room['Bottom']['Value']
+                    right = room['Right']['Value']
+                    for row in range(top, bottom + 1):
+                        for col in range(left, right + 1):
+                            if (0 <= row < 64) and (0 <= col < 64):
+                                grid[row][col] = '#'
+                            else:
+                                print((stage_name, room_id, row, col), 'out of range')
+            if command == 'Boss Teleporters':
+                teleporters = extraction['Boss Teleporters']['Data']
+                for (teleporter_id, teleporter) in enumerate(teleporters):
+                    x = teleporter['Room X']
+                    y = teleporter['Room Y']
+                    grid[y][x] = chars[int(teleporter_id)]
+            else:
+                rooms = extraction['Stages'][command]['Rooms']
+                for (room_id, room) in rooms.items():
+                    top = room['Top']['Value']
+                    left = room['Left']['Value']
+                    bottom = room['Bottom']['Value']
+                    right = room['Right']['Value']
+                    for row in range(top, bottom + 1):
+                        for col in range(left, right + 1):
+                            grid[row][col] = chars[int(room_id)]
+            marker = '0123456789012345678901234567890123456789012345678901234567890123'
+            print(' ', marker)
+            print('')
+            for row in range(64):
+                row_data = ''.join(grid[row])
+                print(marker[row], row_data)
+            command = input()
