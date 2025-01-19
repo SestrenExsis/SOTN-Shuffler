@@ -5,6 +5,12 @@ Index: 21
 Columns: 1
 Rows: 1
 Empty Cells: {}
+Map:
+    - "00000"
+    - "0ccc0"
+    - "1ccc1"
+    - "0ccc0"
+    - "00000"
 Nodes:
     Left Passage:
         Type: Passage

@@ -5,6 +5,12 @@ Index: 2
 Columns: 2
 Rows: 1
 Empty Cells: {}
+Map:
+    - "000000000"
+    - "011111110"
+    - "111111111"
+    - "011111110"
+    - "000000000"
 Nodes:
     Left Passage:
         Type: Passage

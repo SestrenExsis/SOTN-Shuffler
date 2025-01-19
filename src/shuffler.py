@@ -280,11 +280,17 @@ if __name__ == '__main__':
                         'Left': room_left,
                     }
                     # Draw room on castle map drawing grid
-                    room_drawing = get_room_drawing(mapper_core, room_name)
+                    room_drawing = None
+                    if 'Map' in mapper_core['Rooms'][room_name]:
+                        room_drawing = mapper_core['Rooms'][room_name]['Map']
+                    else:
+                        room_drawing = get_room_drawing(mapper_core, room_name)
                     for (room_row, row_data) in enumerate(room_drawing):
                         row = 4 * room_top + room_row
                         for (room_col, char) in enumerate(row_data):
                             col = 4 * room_left + room_col
+                            if char == ' ':
+                                continue
                             if (0 <= row < 256) and (0 <= col < 256):
                                 castle_map[row][col] = char
                             else:
