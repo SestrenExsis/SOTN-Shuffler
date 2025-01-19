@@ -9,6 +9,12 @@ Empty Cells:
       Column: 0
     - Row: 0
       Column: 4
+Map:
+    - "    0000000000000    "
+    - "    0111111111110    "
+    - "    1111111111111    "
+    - "    0111111111110    "
+    - "    0000000000000    "
 Nodes:
     Left Passage:
         Type: Passage

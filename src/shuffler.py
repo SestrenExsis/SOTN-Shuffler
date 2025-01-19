@@ -256,7 +256,9 @@ if __name__ == '__main__':
                     }
                     # Draw room on castle map drawing grid
                     room_drawing = None
-                    if 'Map' in mapper_core['Rooms'][room_name]:
+                    if 'Alternate Map' in mapper_core['Rooms'][room_name]:
+                        room_drawing = mapper_core['Rooms'][room_name]['Alternate Map']
+                    elif 'Map' in mapper_core['Rooms'][room_name]:
                         room_drawing = mapper_core['Rooms'][room_name]['Map']
                     else:
                         room_drawing = get_room_drawing(mapper_core, room_name)

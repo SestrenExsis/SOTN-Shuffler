@@ -5,6 +5,16 @@ Index: 3
 Columns: 4
 Rows: 2
 Empty Cells: {}
+Map:
+    - "    001000100    "
+    - "    011111110    "
+    - "    011111110    "
+    - "    011111110    "
+    - "    000000000    "
+    - "                 "
+    - "                 "
+    - "                 "
+    - "                 "
 Nodes:
     Left-Top Passage:
         Type: Passage
