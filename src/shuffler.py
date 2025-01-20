@@ -95,10 +95,10 @@ if __name__ == '__main__':
             for (stage_name, stage_seed) in stages_to_process:
                 stage_rng = random.Random(stage_seed)
                 print(stage_name, stage_seed, end=' ')
-                directory_listing = os.listdir(os.path.join('build', 'mapper', stage_name))
+                directory_listing = os.listdir(os.path.join('build', 'mapper-vetted', stage_name))
                 file_listing = list(name for name in directory_listing if name.endswith('.json'))
                 chosen_file_name = stage_rng.choice(file_listing)
-                with open(os.path.join('build', 'mapper', stage_name, chosen_file_name)) as mapper_data_json:
+                with open(os.path.join('build', 'mapper-vetted', stage_name, chosen_file_name)) as mapper_data_json:
                     mapper_data = json.load(mapper_data_json)
                     mapper_data_json.close()
                 stage_map = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
@@ -318,16 +318,25 @@ if __name__ == '__main__':
                 'Warp Rooms': 'Reverse Warp Rooms',
             }
             for (stage_name, reversed_stage_name) in reversible_stages.items():
-                break
+                # break
                 # TODO(sestren): Figure out how to get room transitions in Inverted Castle to work
                 changes['Stages'][reversed_stage_name] = {
                     'Rooms': {},
                 }
                 for room_name in changes['Stages'][stage_name]['Rooms']:
                     reversed_room_name = reversed_stage_name + ', ' + room_name[(len(stage_name) + 2):]
+                    source_top = changes['Stages'][stage_name]['Rooms'][room_name]['Top']
+                    source_left = changes['Stages'][stage_name]['Rooms'][room_name]['Left']
+                    source_rows = 1
+                    source_cols = 1
+                    if room_name in mapper_core['Rooms']:
+                        source_rows = mapper_core['Rooms'][room_name]['Rows']
+                        source_cols = mapper_core['Rooms'][room_name]['Columns']
+                    else:
+                        print('room_name not found:', room_name)
                     changes['Stages'][reversed_stage_name]['Rooms'][reversed_room_name] = {
-                        'Top': 63 - changes['Stages'][stage_name]['Rooms'][room_name]['Top'],
-                        'Left': 63 - changes['Stages'][stage_name]['Rooms'][room_name]['Left'],
+                        'Top': 63 - source_top - (source_rows - 1),
+                        'Left': 63 - source_left - (source_cols - 1),
                     }
             # Move the Minotaur and Werewolf Boss stage to match Colosseum, Arena
             source_top = changes['Stages']['Colosseum']['Rooms']['Colosseum, Arena']['Top']
