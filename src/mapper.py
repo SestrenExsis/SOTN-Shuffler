@@ -90,8 +90,6 @@ class Room:
         return result
 
 class RoomSet:
-    # TODO(sestren): Enforce a maximum row for all rooms of 55 (54?), as that is the visual bottom of the map
-    # TODO(sestren): After generating all stages, try N times to lay them out on the map with no overlapping rooms, take the one with the smallest overall footprint. If it is still too big, throw it all away and start over
     def __init__(self, roomset_id, room_placements: list[list[Room, int, int]]):
         # room_placements: [ [room: Room, top: int=None, left: int=None], ... ]
         self.roomset_id = roomset_id
@@ -1072,6 +1070,13 @@ class Mapper:
                             if room.index < prev_index:
                                 grid[row][col] = code
             for node in room.nodes.values():
+                code = '?'
+                if node.type == 'Passage':
+                    code = 'P'
+                elif node.type == 'Secret Passage':
+                    code = 'S'
+                elif node.type == 'Red Door':
+                    code = 'R'
                 (exit_row, exit_col, exit_edge) = (node.row, node.column, node.edge)
                 row = 2 + 5 * (room.top - stage_top + exit_row)
                 col = 2 + 5 * (room.left - stage_left + exit_col)

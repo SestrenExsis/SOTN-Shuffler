@@ -12,8 +12,8 @@ Map:
     - "011111110"
     - "001000000"
 Nodes:
-    Lower-Left Passage:
-        Type: Passage
+    Left-Bottom Passage:
+        Type: 5-2-9 Passage
         Row: 0
         Column: 0
         Edge: Bottom
