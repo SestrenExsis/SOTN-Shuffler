@@ -86,8 +86,8 @@ Map:
     - "011111111111111111111111111111110"
     - "000000000000000000000000000000000"
 Nodes:
-    Top Secret Passage:
-        Type: Secret Passage
+    Top Passage:
+        Type: Passage
         Row: 3
         Column: 5
         Edge: Top

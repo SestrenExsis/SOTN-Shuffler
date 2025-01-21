@@ -31,7 +31,7 @@ Nodes:
         Entry Section: Ground
         Exit Section: Ground
     Top Passage:
-        Type: 5-2-9 Passage
+        Type: 5-2 Passage
         Row: 0
         Column: 0
         Edge: Top

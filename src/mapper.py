@@ -38,6 +38,10 @@ class RoomNode:
         return result
     
     def matches(self, node=None) -> bool:
+        # 0-16 Passage
+        # 4-8 Passage
+        # 5-2 Passage
+        # 7-2 Passage
         result = True
         if node is not None:
             result = (
@@ -1073,8 +1077,6 @@ class Mapper:
                 code = '?'
                 if node.type == 'Passage':
                     code = 'P'
-                elif node.type == 'Secret Passage':
-                    code = 'S'
                 elif node.type == 'Red Door':
                     code = 'R'
                 (exit_row, exit_col, exit_edge) = (node.row, node.column, node.edge)

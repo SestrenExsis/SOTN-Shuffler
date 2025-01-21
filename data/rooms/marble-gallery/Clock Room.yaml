@@ -28,7 +28,7 @@ Nodes:
         Entry Section: Top, Falling
         Exit Section: Top, Rising
     Bottom Passage:
-        Type: Passage
+        Type: 4-8 Passage
         Row: 0
         Column: 0
         Edge: Bottom
