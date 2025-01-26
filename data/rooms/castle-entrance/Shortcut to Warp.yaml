@@ -13,14 +13,14 @@ Map:
     - "00000"
 Nodes:
     Left Red Door:
-        Type: Red Door
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left
         Entry Section: Left Side
         Exit Section: Left Side
     Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Right

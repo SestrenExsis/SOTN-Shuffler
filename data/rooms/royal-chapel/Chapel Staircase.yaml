@@ -37,14 +37,14 @@ Map:
     - "0000001000000                    "
 Nodes:
     Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 1
         Column: 7
         Edge: Right
         Entry Section: Main
         Exit Section: Main
     Bottom Passage:
-        Type: Passage
+        Type: "#####......#####"
         Row: 6
         Column: 1
         Edge: Bottom

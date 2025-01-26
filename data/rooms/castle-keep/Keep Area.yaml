@@ -87,42 +87,42 @@ Map:
     - "000000000000000000000000000000000"
 Nodes:
     Top Passage:
-        Type: Passage
+        Type: "#######....#####"
         Row: 3
         Column: 5
         Edge: Top
         Entry Section: Falling
         Exit Section: Rising
     Upper-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 1
         Column: 7
         Edge: Right
         Entry Section: Upper-Right Ledge
         Exit Section: Upper-Right Ledge
     Middle-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 4
         Column: 7
         Edge: Right
         Entry Section: Bottom of Stairwell
         Exit Section: Bottom of Stairwell
     Lower-Right Passage A:
-        Type: Passage
+        Type: "######....######"
         Row: 6
         Column: 7
         Edge: Right
         Entry Section: Ground
         Exit Section: Ground
     Lower-Right Passage B:
-        Type: Passage
+        Type: "######....######"
         Row: 7
         Column: 7
         Edge: Right
         Entry Section: Hallway
         Exit Section: Hallway
     Lower-Left Red Door:
-        Type: Red Door
+        Type: "######....######"
         Row: 7
         Column: 0
         Edge: Left

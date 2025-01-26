@@ -25,21 +25,21 @@ Map:
     - "00000"
 Nodes:
     Top Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Top
         Entry Section: Top, Falling
         Exit Section: Top, Rising
     Lower-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 3
         Column: 0
         Edge: Left
         Entry Section: Lower Area
         Exit Section: Lower Area
     Lower-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 3
         Column: 0
         Edge: Right

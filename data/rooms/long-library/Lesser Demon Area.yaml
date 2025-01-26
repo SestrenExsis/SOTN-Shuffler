@@ -29,14 +29,14 @@ Map:
     - "000000000000000000000"
 Nodes:
     Upper-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 4
         Edge: Right
         Entry Section: Layer 4
         Exit Section: Layer 4
     Middle-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 1
         Column: 4
         Edge: Right

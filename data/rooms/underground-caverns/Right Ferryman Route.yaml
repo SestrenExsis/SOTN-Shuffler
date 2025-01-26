@@ -25,14 +25,14 @@ Map:
     - "0000000000000           000000000   00000000000000000"
 Nodes:
     Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left
         Entry Section: Left Side
         Exit Section: Left Side
     Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 12
         Edge: Right

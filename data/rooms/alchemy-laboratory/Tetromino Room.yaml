@@ -23,35 +23,35 @@ Map:
     - "000000000"
 Nodes:
     Lower-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 2
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Lower-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 2
         Column: 1
         Edge: Right
         Entry Section: Main
         Exit Section: Main
     Middle-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 1
         Column: 0
         Edge: Left
         Entry Section: Bat Card Room Duplicate
         Exit Section: Bat Card Room Duplicate
     Middle-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 1
         Column: 1
         Edge: Right
         Entry Section: Main
         Exit Section: Main
     Upper-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 1
         Edge: Right

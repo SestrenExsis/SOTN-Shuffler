@@ -35,28 +35,28 @@ Alternate Map:
     - "00000000011100000000000000000"
 Nodes:
     Upper-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left
         Entry Section: Upper Ledge
         Exit Section: Upper Ledge
     Middle-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 1
         Column: 0
         Edge: Left
         Entry Section: Lower Ledge
         Exit Section: Lower Ledge
     Lower-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 2
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Middle-Bottom Passage:
-        Type: Passage
+        Type: "###........../##"
         Row: 2
         Column: 2
         Edge: Bottom

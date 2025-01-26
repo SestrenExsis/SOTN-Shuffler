@@ -13,14 +13,14 @@ Map:
     - "001000000"
 Nodes:
     Left-Bottom Passage:
-        Type: 5-2 Passage
+        Type: "#####..#########"
         Row: 0
         Column: 0
         Edge: Bottom
         Entry Section: Main
         Exit Section: Main
     Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 1
         Edge: Right

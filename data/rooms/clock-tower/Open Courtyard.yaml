@@ -7,35 +7,35 @@ Rows: 5
 Empty Cells: {}
 Nodes:
     Upper-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 1
         Column: 0
         Edge: Left
         Entry Section: Upper-Left Ledge
         Exit Section: Upper-Left Ledge
     Lower-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 3
         Column: 0
         Edge: Left
         Entry Section: Lower-Left Ledge
         Exit Section: Lower-Left Ledge
     Upper-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 5
         Edge: Right
         Entry Section: Upper-Right Ledge
         Exit Section: Upper-Right Ledge
     Middle-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 3
         Column: 5
         Edge: Right
         Entry Section: Middle-Right Ledge
         Exit Section: Middle-Right Ledge
     Lower-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 4
         Column: 5
         Edge: Right

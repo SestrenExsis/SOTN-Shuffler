@@ -13,21 +13,21 @@ Map:
     - "000000100    "
 Nodes:
     Right-Top Passage:
-        Type: Passage
+        Type: "##...###########"
         Row: 0
         Column: 1
         Edge: Top
         Entry Section: Falling
         Exit Section: Rising
     Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Right-Bottom Passage:
-        Type: Passage
+        Type: "######\\........."
         Row: 0
         Column: 1
         Edge: Bottom

@@ -25,21 +25,21 @@ Map:
     - "00000"
 Nodes:
     Upper-Right Red Door:
-        Type: Red Door
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Right
         Entry Section: Upper-Right Ledge
         Exit Section: Upper-Right Ledge
     Middle-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 2
         Column: 0
         Edge: Right
         Entry Section: Middle-Right Ledge
         Exit Section: Middle-Right Ledge
     Lower-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 3
         Column: 0
         Edge: Right

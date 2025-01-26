@@ -29,7 +29,7 @@ Map:
     - "    0000001000000    "
 Nodes:
     Bottom Passage:
-        Type: Passage
+        Type: "#######..#######"
         Row: 1
         Column: 2
         Edge: Bottom

@@ -41,21 +41,21 @@ Map:
     - "    000000000    "
 Nodes:
     Middle-Right Red Door:
-        Type: Red Door
+        Type: "######....######"
         Row: 2
         Column: 2
         Edge: Right
         Entry Section: Main
         Exit Section: Main
     Lower-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 3
         Column: 1
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Lower-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 3
         Column: 2
         Edge: Right

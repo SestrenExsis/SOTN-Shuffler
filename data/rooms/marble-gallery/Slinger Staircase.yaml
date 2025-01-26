@@ -28,7 +28,7 @@ Nodes:
         Entry Section: Main
         Exit Section: Main
     Right-Bottom Passage:
-        Type: Passage
+        Type: 4-4 Passage
         Row: 1
         Column: 2
         Edge: Bottom

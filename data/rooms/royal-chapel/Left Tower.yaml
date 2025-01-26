@@ -89,35 +89,35 @@ Map:
     - "    000000000    "
 Nodes:
     Upper-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 2
         Column: 2
         Edge: Right
         Entry Section: Main
         Exit Section: Main
     Upper-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 3
         Column: 1
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Middle-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 7
         Column: 2
         Edge: Right
         Entry Section: Main
         Exit Section: Main
     Lower-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 9
         Column: 1
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Lower-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 9
         Column: 2
         Edge: Right

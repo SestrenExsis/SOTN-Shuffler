@@ -21,14 +21,14 @@ Map:
     - "0000000000000000000000000"
 Nodes:
     Lower-Left Red Door:
-        Type: Red Door
+        Type: "######....######"
         Row: 2
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Upper Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 5
         Edge: Right
