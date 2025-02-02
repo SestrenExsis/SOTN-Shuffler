@@ -95,22 +95,21 @@ if __name__ == '__main__':
             for (stage_name, stage_seed) in stages_to_process:
                 stage_rng = random.Random(stage_seed)
                 print(stage_name, stage_seed, end=' ')
-                directory_listing = os.listdir(os.path.join('build', 'mapper-vetted', stage_name))
+                directory_listing = os.listdir(os.path.join('build', 'mapper', stage_name))
                 file_listing = list(name for name in directory_listing if name.endswith('.json'))
                 chosen_file_name = stage_rng.choice(file_listing)
-                with open(os.path.join('build', 'mapper-vetted', stage_name, chosen_file_name)) as mapper_data_json:
+                with open(os.path.join('build', 'mapper', stage_name, chosen_file_name)) as mapper_data_json:
                     mapper_data = json.load(mapper_data_json)
                     mapper_data_json.close()
                 stage_map = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
                 stage_map.generate()
                 stage_map.stage.normalize()
                 changes = stage_map.stage.get_changes()
-                # print(stage_name, stage_seed)
-                assert stage_map.validate()
                 hash_of_rooms = hashlib.sha256(json.dumps(changes['Rooms'], sort_keys=True).encode()).hexdigest()
+                print('Prebaked', hash_of_rooms, stage_map.current_seed)
+                assert stage_map.validate()
                 assert hash_of_rooms == mapper_data['Hash of Rooms']
                 stages[stage_name] = stage_map
-                print('Prebaked', hash_of_rooms, stage_map.current_seed)
                 shuffler['Stages'][stage_name] = {
                     'Note': 'Prebaked',
                     'Attempts': stage_map.attempts,
@@ -297,12 +296,12 @@ if __name__ == '__main__':
                 # TODO(sestren): Add Boss - Beelzebub to Inverted Castle (Slogra and Gaibon Room)
                 'Abandoned Mine': 'Cave',
                 'Alchemy Laboratory': 'Necromancy Laboratory',
-                # 'Boss - Cerberus': 'Boss - Death',
-                # 'Boss - Doppelganger 10': 'Boss - Creature',
-                # 'Boss - Granfaloon': 'Boss - Galamoth',
-                # 'Boss - Hippogryph': 'Boss - Medusa',
-                # 'Boss - Minotaur and Werewolf': 'Boss - Trio',
-                # 'Boss - Olrox': 'Boss - Akmodon II',
+                # TODO(sestren): 'Boss - Cerberus': 'Boss - Death',
+                # TODO(sestren): 'Boss - Doppelganger 10': 'Boss - Creature',
+                # TODO(sestren): 'Boss - Granfaloon': 'Boss - Galamoth',
+                # TODO(sestren): 'Boss - Hippogryph': 'Boss - Medusa',
+                # TODO(sestren): 'Boss - Minotaur and Werewolf': 'Boss - Trio',
+                # TODO(sestren): 'Boss - Olrox': 'Boss - Akmodon II',
                 'Castle Center': 'Reverse Castle Center',
                 'Castle Entrance': 'Reverse Entrance',
                 'Castle Keep': 'Reverse Keep',
@@ -590,21 +589,21 @@ if __name__ == '__main__':
                 'Exploration': {
                     'Stages Visited': {
                         'All': {
-                            'Abandoned Mine': True,
+                            # 'Abandoned Mine': True,
                             'Alchemy Laboratory': True,
-                            'Castle Center': True,
+                            # 'Castle Center': True,
                             'Castle Entrance': True,
-                            'Castle Entrance Revisited': True,
+                            # 'Castle Entrance Revisited': True,
                             'Castle Keep': True,
-                            'Catacombs': True,
+                            # 'Catacombs': True,
                             'Clock Tower': True,
-                            'Colosseum': True,
+                            # 'Colosseum': True,
                             'Long Library': True,
                             'Marble Gallery': True,
                             'Olrox\'s Quarters': True,
                             'Outer Wall': True,
                             'Royal Chapel': True,
-                            'Underground Caverns': True,
+                            # 'Underground Caverns': True,
                             'Warp Rooms': True,
                         }
                     },

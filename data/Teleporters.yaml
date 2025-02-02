@@ -1,259 +1,259 @@
 
 Sources:
-    Abandoned Mine, Fake Room With Teleporter A:
+    Abandoned Mine, Fake Room With Teleporter ID 019:
         Index: 19
         Stage: Abandoned Mine
-        Room: Fake Room With Teleporter X
+        Room: Fake Room With Teleporter ID 019
         Target: Underground Caverns, Exit to Abandoned Mine (Left Red Door)
-    Abandoned Mine, Fake Room With Teleporter B:
+    Abandoned Mine, Fake Room With Teleporter ID 020:
         Index: 20
         Stage: Abandoned Mine
-        Room: Fake Room With Teleporter B
+        Room: Fake Room With Teleporter ID 020
         Target: Warp Rooms, Warp Room E (Left Red Door)
-    Abandoned Mine, Fake Room With Teleporter C:
+    Abandoned Mine, Fake Room With Teleporter ID 018:
         Index: 18
         Stage: Abandoned Mine
-        Room: Fake Room With Teleporter C
+        Room: Fake Room With Teleporter ID 018
         Target: Catacombs, Exit to Abandoned Mine (Upper-Right Red Door)
-    Alchemy Laboratory, Fake Room With Teleporter A:
+    Alchemy Laboratory, Fake Room With Teleporter ID 022:
         Index: 22
         Stage: Alchemy Laboratory
-        Room: Fake Room With Teleporter A
+        Room: Fake Room With Teleporter ID 022
         Target: Marble Gallery, Entrance (Left Red Door)
-    Alchemy Laboratory, Fake Room With Teleporter B:
+    Alchemy Laboratory, Fake Room With Teleporter ID 023:
         Index: 23
         Stage: Alchemy Laboratory
-        Room: Fake Room With Teleporter B
+        Room: Fake Room With Teleporter ID 023
         Target: Royal Chapel, Statue Ledge (Right Red Door)
-    Alchemy Laboratory, Fake Room With Teleporter C:
+    Alchemy Laboratory, Fake Room With Teleporter ID 021:
         Index: 21
         Stage: Alchemy Laboratory
-        Room: Fake Room With Teleporter C
+        Room: Fake Room With Teleporter ID 021
         Target: Castle Entrance Revisited, Cube of Zoe Room (Upper-Left Red Door)
-    Castle Center, Fake Room With Teleporter A:
+    Castle Center, Fake Room With Teleporter ID 007:
         Index: 7
         Stage: Castle Center
-        Room: Fake Room With Teleporter A
+        Room: Fake Room With Teleporter ID 007
         Target: Marble Gallery, Clock Room (Bottom Passage)
-    Castle Entrance, Fake Room With Teleporter A:
+    Castle Entrance, Fake Room With Teleporter ID 013:
         Index: 13
         Stage: Castle Entrance
-        Room: Fake Room With Teleporter A
+        Room: Fake Room With Teleporter ID 013
         Target: Alchemy Laboratory, Entryway (Right Red Door)
-    Castle Entrance, Fake Room With Teleporter C:
+    Castle Entrance, Fake Room With Teleporter ID 014:
         Index: 14
         Stage: Castle Entrance
-        Room: Fake Room With Teleporter C
+        Room: Fake Room With Teleporter ID 014
         Target: Warp Rooms, Warp Room D (Right Red Door)
-    Castle Entrance, Fake Room With Teleporter D:
+    Castle Entrance, Fake Room With Teleporter ID 012:
         Index: 12
         Stage: Castle Entrance
-        Room: Fake Room With Teleporter D
+        Room: Fake Room With Teleporter ID 012
         Target: Underground Caverns, Exit to Castle Entrance (Left Red Door)
-    Castle Entrance Revisited, Fake Room With Teleporter A:
+    Castle Entrance Revisited, Fake Room With Teleporter ID 058:
         Index: 58
         Stage: Castle Entrance Revisited
-        Room: Fake Room With Teleporter A
+        Room: Fake Room With Teleporter ID 058
         Target: Alchemy Laboratory, Entryway (Right Red Door)
-    Castle Entrance Revisited, Fake Room With Teleporter B:
+    Castle Entrance Revisited, Fake Room With Teleporter ID 056:
         Index: 56
         Stage: Castle Entrance
-        Room: Fake Room With Teleporter B
+        Room: Fake Room With Teleporter ID 056
         Target: Marble Gallery, S-Shaped Hallways (Lower-Left Red Door)
-    Castle Entrance Revisited, Fake Room With Teleporter C:
+    Castle Entrance Revisited, Fake Room With Teleporter ID 059:
         Index: 59
         Stage: Castle Entrance Revisited
-        Room: Fake Room With Teleporter C
+        Room: Fake Room With Teleporter ID 059
         Target: Warp Rooms, Warp Room D (Right Red Door)
-    Castle Entrance Revisited, Fake Room With Teleporter D:
+    Castle Entrance Revisited, Fake Room With Teleporter ID 057:
         Index: 57
         Stage: Castle Entrance
-        Room: Fake Room With Teleporter D
+        Room: Fake Room With Teleporter ID 057
         Target: Underground Caverns, Exit to Castle Entrance (Left Red Door)
-    Castle Keep, Fake Room With Teleporter A:
+    Castle Keep, Fake Room With Teleporter ID 045:
         Index: 45
         Stage: Castle Keep
-        Room: Fake Room With Teleporter A
+        Room: Fake Room With Teleporter ID 045
         Target: Clock Tower, Karasuman's Room (Left Red Door)
-    Castle Keep, Fake Room With Teleporter B:
+    Castle Keep, Fake Room With Teleporter ID 047:
         Index: 47
         Stage: Castle Keep
-        Room: Fake Room With Teleporter B
+        Room: Fake Room With Teleporter ID 047
         Target: Royal Chapel, Right Tower (Middle-Right Red Door)
-    Castle Keep, Fake Room With Teleporter C:
+    Castle Keep, Fake Room With Teleporter ID 046:
         Index: 46
         Stage: Castle Keep
-        Room: Fake Room With Teleporter C
+        Room: Fake Room With Teleporter ID 046
         Target: Warp Rooms, Warp Room A (Left Red Door)
-    Catacombs, Fake Room With Teleporter A:
+    Catacombs, Fake Room With Teleporter ID 016:
         Index: 16
         Stage: Catacombs
-        Room: Fake Room With Teleporter A
+        Room: Fake Room With Teleporter ID 016
         Target: Abandoned Mine, Bend (Lower-Left Red Door)
-    Clock Tower, Fake Room With Teleporter A:
+    Clock Tower, Fake Room With Teleporter ID 009:
         Index: 9
         Stage: Clock Tower
-        Room: Fake Room With Teleporter A
+        Room: Fake Room With Teleporter ID 009
         Target: Castle Keep, Lion Torch Platform (Lower-Right Red Door)
-    Clock Tower, Fake Room With Teleporter B:
+    Clock Tower, Fake Room With Teleporter ID 010:
         Index: 10
         Stage: Clock Tower
-        Room: Fake Room With Teleporter B
+        Room: Fake Room With Teleporter ID 010
         Target: Outer Wall, Exit to Clock Tower (Left Red Door)
-    Colosseum, Fake Room With Teleporter A:
+    Colosseum, Fake Room With Teleporter ID 052:
         Index: 52
         Stage: Colosseum
-        Room: Fake Room With Teleporter A
+        Room: Fake Room With Teleporter ID 052
         Target: Royal Chapel, Nave (Lower-Right Red Door)
-    Colosseum, Fake Room With Teleporter B:
+    Colosseum, Fake Room With Teleporter ID 053:
         Index: 53
         Stage: Colosseum
-        Room: Fake Room With Teleporter B
+        Room: Fake Room With Teleporter ID 053
         Target: Olrox's Quarters, Grand Staircase (Lower-Left Red Door)
-    Long Library, Fake Room With Teleporter A:
+    Long Library, Fake Room With Teleporter ID 006:
         Index: 6
         Stage: Long Library
-        Room: Fake Room With Teleporter A
+        Room: Fake Room With Teleporter ID 006
         Target: Outer Wall, Elevator Shaft Room (Middle-Left Red Door)
-    Marble Gallery, Fake Room With Teleporter A:
+    Marble Gallery, Fake Room With Teleporter ID 001:
         Index: 1
         Stage: Marble Gallery
-        Room: Fake Room With Teleporter A
+        Room: Fake Room With Teleporter ID 001
         Target: Olrox's Quarters, Skelerang Room (Lower-Right Red Door)
-    Marble Gallery, Fake Room With Teleporter B:
+    Marble Gallery, Fake Room With Teleporter ID 002:
         Index: 2
         Stage: Marble Gallery
-        Room: Fake Room With Teleporter B
+        Room: Fake Room With Teleporter ID 002
         Target: Outer Wall, Exit to Marble Gallery (Left Red Door)
-    Marble Gallery, Fake Room With Teleporter C:
+    Marble Gallery, Fake Room With Teleporter ID 000:
         Index: 0
         Stage: Marble Gallery
-        Room: Fake Room With Teleporter C
+        Room: Fake Room With Teleporter ID 000
         Target: Alchemy Laboratory, Exit to Marble Gallery (Right Red Door)
-    Marble Gallery, Fake Room With Teleporter D:
+    Marble Gallery, Fake Room With Teleporter ID 004:
         Index: 4
         Stage: Marble Gallery
-        Room: Fake Room With Teleporter D
+        Room: Fake Room With Teleporter ID 004
         Target: Underground Caverns, Long Drop (Upper-Right Red Door)
-    Marble Gallery, Fake Room With Teleporter E:
+    Marble Gallery, Fake Room With Teleporter ID 005:
         Index: 5
         Stage: Marble Gallery
-        Room: Fake Room With Teleporter E
+        Room: Fake Room With Teleporter ID 005
         Target: Castle Center, Elevator Shaft (Top Passage)
-    Marble Gallery, Fake Room With Teleporter F:
+    Marble Gallery, Fake Room With Teleporter ID 003:
         Index: 3
         Stage: Marble Gallery
-        Room: Fake Room With Teleporter F
+        Room: Fake Room With Teleporter ID 003
         Target: Castle Entrance Revisited, Cube of Zoe Room (Upper-Right Red Door)
-    Olrox's Quarters, Fake Room With Teleporter A:
+    Olrox's Quarters, Fake Room With Teleporter ID 025:
         Index: 25
         Stage: Olrox's Quarters
-        Room: Fake Room With Teleporter A
+        Room: Fake Room With Teleporter ID 025
         Target: Royal Chapel, Pushing Statue Shortcut (Right Red Door)
-    Olrox's Quarters, Fake Room With Teleporter B:
+    Olrox's Quarters, Fake Room With Teleporter ID 027:
         Index: 27
         Stage: Olrox's Quarters
-        Room: Fake Room With Teleporter B
+        Room: Fake Room With Teleporter ID 027
         Target: Warp Rooms, Warp Room B (Left Red Door)
-    Olrox's Quarters, Fake Room With Teleporter C:
+    Olrox's Quarters, Fake Room With Teleporter ID 026:
         Index: 26
         Stage: Olrox's Quarters
-        Room: Fake Room With Teleporter C
+        Room: Fake Room With Teleporter ID 026
         Target: Colosseum, Top of Elevator Shaft (Right Red Door)
-    Olrox's Quarters, Fake Room With Teleporter D:
+    Olrox's Quarters, Fake Room With Teleporter ID 024:
         Index: 24
         Stage: Olrox's Quarters
-        Room: Fake Room With Teleporter D
+        Room: Fake Room With Teleporter ID 024
         Target: Marble Gallery, Pathway After Left Statue (Left Red Door)
-    Outer Wall, Fake Room With Teleporter A:
+    Outer Wall, Fake Room With Teleporter ID 043:
         Index: 43
         Stage: Outer Wall
-        Room: Fake Room With Teleporter A
+        Room: Fake Room With Teleporter ID 043
         Target: Clock Tower, Stairwell to Outer Wall (Right Red Door)
-    Outer Wall, Fake Room With Teleporter B:
+    Outer Wall, Fake Room With Teleporter ID 042:
         Index: 42
         Stage: Outer Wall
-        Room: Fake Room With Teleporter B
+        Room: Fake Room With Teleporter ID 042
         Target: Warp Rooms, Warp Room C (Right Red Door)
-    Outer Wall, Fake Room With Teleporter C:
+    Outer Wall, Fake Room With Teleporter ID 041:
         Index: 41
         Stage: Outer Wall
-        Room: Fake Room With Teleporter C
+        Room: Fake Room With Teleporter ID 041
         Target: Long Library, Exit to Outer Wall (Right Red Door)
-    Outer Wall, Fake Room With Teleporter D:
+    Outer Wall, Fake Room With Teleporter ID 040:
         Index: 40
         Stage: Outer Wall
-        Room: Fake Room With Teleporter D
+        Room: Fake Room With Teleporter ID 040
         Target: Marble Gallery, Long Hallway (Right Red Door)
-    Royal Chapel, Fake Room With Teleporter A:
+    Royal Chapel, Fake Room With Teleporter ID 036:
         Index: 36
         Stage: Royal Chapel
-        Room: Fake Room With Teleporter A
+        Room: Fake Room With Teleporter ID 036
         Target: Castle Keep, Keep Area (Lower-Left Red Door)
-    Royal Chapel, Fake Room With Teleporter B:
+    Royal Chapel, Fake Room With Teleporter ID 033:
         Index: 33
         Stage: Royal Chapel
-        Room: Fake Room With Teleporter B
+        Room: Fake Room With Teleporter ID 033
         Target: Olrox's Quarters, Catwalk Crypt (Left Red Door)
-    Royal Chapel, Fake Room With Teleporter C:
+    Royal Chapel, Fake Room With Teleporter ID 034:
         Index: 34
         Stage: Royal Chapel
-        Room: Fake Room With Teleporter C
+        Room: Fake Room With Teleporter ID 034
         Target: Colosseum, Passageway Between Arena and Royal Chapel (Left Red Door)
-    Royal Chapel, Fake Room With Teleporter D:
+    Royal Chapel, Fake Room With Teleporter ID 035:
         Index: 35
         Stage: Royal Chapel
-        Room: Fake Room With Teleporter D
+        Room: Fake Room With Teleporter ID 035
         Target: Alchemy Laboratory, Exit to Royal Chapel (Left Red Door)
     Special, Succubus Defeated:
         Index: 60
         Stage: Special
         Room: Succubus Defeated
         Target: Underground Caverns, False Save Room (Spawn)
-    Underground Caverns, Fake Room With Teleporter A:
+    Underground Caverns, Fake Room With Teleporter ID 049:
         Index: 49
         Stage: Underground Caverns
-        Room: Fake Room With Teleporter A
+        Room: Fake Room With Teleporter ID 049
         Target: Marble Gallery, Stairwell to Underground Caverns (Lower-Left Red Door)
-    Underground Caverns, Fake Room With Teleporter B:
+    Underground Caverns, Fake Room With Teleporter ID 051:
         Index: 51
         Stage: Underground Caverns
-        Room: Fake Room With Teleporter B
+        Room: Fake Room With Teleporter ID 051
         Target: Special, Succubus Encounter (Spawn)
-    Underground Caverns, Fake Room With Teleporter C:
+    Underground Caverns, Fake Room With Teleporter ID 050:
         Index: 50
         Stage: Underground Caverns
-        Room: Fake Room With Teleporter C
+        Room: Fake Room With Teleporter ID 050
         Target: Abandoned Mine, Wolf's Head Column (Upper-Right Red Door)
-    Underground Caverns, Fake Room With Teleporter D:
+    Underground Caverns, Fake Room With Teleporter ID 048:
         Index: 48
         Stage: Underground Caverns
-        Room: Fake Room With Teleporter D
+        Room: Fake Room With Teleporter ID 048
         Target: Castle Entrance Revisited, Shortcut to Underground Caverns (Right Red Door)
-    Warp Rooms, Fake Room With Teleporter A:
+    Warp Rooms, Fake Room With Teleporter ID 028:
         Index: 28
         Stage: Warp Rooms
-        Room: Fake Room With Teleporter A
+        Room: Fake Room With Teleporter ID 028
         Target: Castle Keep, Dual Platforms (Lower-Right Red Door)
-    Warp Rooms, Fake Room With Teleporter B:
+    Warp Rooms, Fake Room With Teleporter ID 029:
         Index: 29
         Stage: Warp Rooms
-        Room: Fake Room With Teleporter B
+        Room: Fake Room With Teleporter ID 029
         Target: Outer Wall, Elevator Shaft Room (Middle-Left Red Door)
-    Warp Rooms, Fake Room With Teleporter C:
+    Warp Rooms, Fake Room With Teleporter ID 030:
         Index: 30
         Stage: Warp Rooms
-        Room: Fake Room With Teleporter C
+        Room: Fake Room With Teleporter ID 030
         Target: Olrox's Quarters, Tall Shaft (Lower-Right Red Door)
-    Warp Rooms, Fake Room With Teleporter D:
+    Warp Rooms, Fake Room With Teleporter ID 031:
         Index: 31
         Stage: Warp Rooms
-        Room: Fake Room With Teleporter D
+        Room: Fake Room With Teleporter ID 031
         Target: Castle Entrance Revisited, Shortcut to Warp (Left Red Door)
-    Warp Rooms, Fake Room With Teleporter E:
+    Warp Rooms, Fake Room With Teleporter ID 032:
         Index: 32
         Stage: Warp Rooms
-        Room: Fake Room With Teleporter E
+        Room: Fake Room With Teleporter ID 032
         Target: Abandoned Mine, Four-Way Intersection (Right Red Door)
 Targets:
     Abandoned Mine, Bend (Lower-Left Red Door):
