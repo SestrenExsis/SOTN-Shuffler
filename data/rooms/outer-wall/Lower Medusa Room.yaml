@@ -21,7 +21,7 @@ Map:
     - "001000100    "
 Nodes:
     Left-Top Passage:
-        Type: "######\\........."
+        Type: "#######\\........"
         Row: 0
         Column: 1
         Edge: Top

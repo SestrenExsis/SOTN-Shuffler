@@ -27,7 +27,7 @@ Nodes:
         Entry Section: Main
         Exit Section: Main
     Right-Bottom Passage:
-        Type: "######\\........."
+        Type: "#####\\.........."
         Row: 0
         Column: 1
         Edge: Bottom
