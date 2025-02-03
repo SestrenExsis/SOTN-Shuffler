@@ -35,20 +35,20 @@ Sources:
         Stage: Castle Center
         Room: Fake Room With Teleporter ID 007
         Target: Marble Gallery, Clock Room (Bottom Passage)
-    Castle Entrance, Fake Room With Teleporter ID 013:
+    Castle Entrance, Fake Room With Teleporter C:
         Index: 13
         Stage: Castle Entrance
-        Room: Fake Room With Teleporter ID 013
+        Room: Fake Room With Teleporter C
         Target: Alchemy Laboratory, Entryway (Right Red Door)
-    Castle Entrance, Fake Room With Teleporter ID 014:
+    Castle Entrance, Fake Room With Teleporter D:
         Index: 14
         Stage: Castle Entrance
-        Room: Fake Room With Teleporter ID 014
+        Room: Fake Room With Teleporter D
         Target: Warp Rooms, Warp Room D (Right Red Door)
-    Castle Entrance, Fake Room With Teleporter ID 012:
+    Castle Entrance, Fake Room With Teleporter B:
         Index: 12
         Stage: Castle Entrance
-        Room: Fake Room With Teleporter ID 012
+        Room: Fake Room With Teleporter B
         Target: Underground Caverns, Exit to Castle Entrance (Left Red Door)
     Castle Entrance Revisited, Fake Room With Teleporter ID 058:
         Index: 58

@@ -562,28 +562,28 @@ if __name__ == '__main__':
             # 'Debug': {
             #     'Location': 'Castle Entrance, After Drawbridge',
             # },
-            # 'Exploration': {
-            #     'Stages Visited': {
-            #         'All': {
-            #             # 'Abandoned Mine': True,
-            #             'Alchemy Laboratory': True,
-            #             # 'Castle Center': True,
-            #             'Castle Entrance': True,
-            #             'Castle Entrance Revisited': True,
-            #             # 'Castle Keep': True,
-            #             # 'Catacombs': True,
-            #             'Clock Tower': True,
-            #             # 'Colosseum': True,
-            #             'Long Library': True,
-            #             'Marble Gallery': True,
-            #             # 'Olrox\'s Quarters': True,
-            #             'Outer Wall': True,
-            #             # 'Royal Chapel': True,
-            #             # 'Underground Caverns': True,
-            #             # 'Warp Rooms': True,
-            #         }
-            #     },
-            # },
+            'Exploration': {
+                'Stages Visited': {
+                    'All': {
+                        # 'Abandoned Mine': True,
+                        # 'Alchemy Laboratory': True,
+                        # 'Castle Center': True,
+                        'Castle Entrance': True,
+                        # 'Castle Entrance Revisited': True,
+                        # 'Castle Keep': True,
+                        # 'Catacombs': True,
+                        # 'Clock Tower': True,
+                        # 'Colosseum': True,
+                        # 'Long Library': True,
+                        # 'Marble Gallery': True,
+                        # 'Olrox\'s Quarters': True,
+                        # 'Outer Wall': True,
+                        # 'Royal Chapel': True,
+                        # 'Underground Caverns': True,
+                        # 'Warp Rooms': True,
+                    }
+                },
+            },
             'Bad Ending': {
                 'Status - Richter Defeated': True,
             },

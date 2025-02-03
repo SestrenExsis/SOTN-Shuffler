@@ -160,17 +160,17 @@ if __name__ == '__main__':
                 for (prev_stage_name, (stage_top, stage_left)) in stage_offsets.items():
                     cells = stages[prev_stage_name].stage.get_cells(stage_top, stage_left)
                     prev_cells = prev_cells.union(cells)
-                print('')
-                print(i, len(prev_cells))
-                for row in range(64):
-                    row_data = []
-                    for col in range(64):
-                        cell = '.'
-                        if (row, col) in prev_cells:
-                            cell = '#'
-                        row_data.append(cell)
-                    print(''.join(row_data))
-                print('')
+                # print('')
+                # print(i, len(prev_cells))
+                # for row in range(64):
+                #     row_data = []
+                #     for col in range(64):
+                #         cell = '.'
+                #         if (row, col) in prev_cells:
+                #             cell = '#'
+                #         row_data.append(cell)
+                #     print(''.join(row_data))
+                # print('')
                 (top, left, bottom, right) = current_stage.get_bounds()
                 best_area = float('inf')
                 best_stage_offsets = []
@@ -193,7 +193,7 @@ if __name__ == '__main__':
                         if area == best_area:
                             best_stage_offsets.append((stage_top, stage_left))
                 if best_area >= float('inf'):
-                    print(f'ERROR: {stage_name} stage could not be placed successfully')
+                    # print(f'ERROR: {stage_name} stage could not be placed successfully')
                     break
                 (stage_top, stage_left) = global_rng.choice(best_stage_offsets)
                 cells = current_stage.get_cells(stage_top, stage_left)
@@ -204,17 +204,17 @@ if __name__ == '__main__':
                 valid_ind = True
             if not valid_ind:
                 continue
-            print('')
-            print(len(prev_cells))
-            for row in range(64):
-                row_data = []
-                for col in range(64):
-                    cell = '.'
-                    if (row, col) in prev_cells:
-                        cell = '#'
-                    row_data.append(cell)
-                print(''.join(row_data))
-            print('')
+            # print('')
+            # print(len(prev_cells))
+            # for row in range(64):
+            #     row_data = []
+            #     for col in range(64):
+            #         cell = '.'
+            #         if (row, col) in prev_cells:
+            #             cell = '#'
+            #         row_data.append(cell)
+            #     print(''.join(row_data))
+            # print('')
             changes = {
                 'Boss Teleporters': {},
                 'Castle Map': [],
@@ -601,18 +601,18 @@ if __name__ == '__main__':
                             'Alchemy Laboratory': True,
                             # 'Castle Center': True,
                             'Castle Entrance': True,
-                            # 'Castle Entrance Revisited': True,
-                            'Castle Keep': True,
+                            'Castle Entrance Revisited': True,
+                            # 'Castle Keep': True,
                             # 'Catacombs': True,
-                            'Clock Tower': True,
+                            # 'Clock Tower': True,
                             # 'Colosseum': True,
-                            'Long Library': True,
-                            'Marble Gallery': True,
-                            'Olrox\'s Quarters': True,
-                            'Outer Wall': True,
-                            'Royal Chapel': True,
+                            # 'Long Library': True,
+                            # 'Marble Gallery': True,
+                            # 'Olrox\'s Quarters': True,
+                            # 'Outer Wall': True,
+                            # 'Royal Chapel': True,
                             # 'Underground Caverns': True,
-                            'Warp Rooms': True,
+                            # 'Warp Rooms': True,
                         }
                     },
                 },
