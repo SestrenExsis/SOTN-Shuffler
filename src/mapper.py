@@ -260,21 +260,21 @@ stages = {
             'Castle Entrance, After Drawbridge': (38, 30 + 2),
         },
         {
-            'Castle Entrance, Fake Room With Teleporter ID 013': (0, 0),
+            'Castle Entrance, Fake Room With Teleporter C': (0, 0),
             'Castle Entrance, Loading Room C': (0, 1),
             'Castle Entrance, Cube of Zoe Room': (0, 2),
             'Castle Entrance, Loading Room A': (0, 4),
-            'Castle Entrance, Fake Room With Teleporter ID 011': (0, 5),
+            'Castle Entrance, Fake Room With Teleporter A': (0, 5),
         },
         {
-            'Castle Entrance, Fake Room With Teleporter ID 014': (0, 0),
+            'Castle Entrance, Fake Room With Teleporter D': (0, 0),
             'Castle Entrance, Loading Room B': (0, 1),
             'Castle Entrance, Shortcut to Warp': (0, 2),
         },
         {
             'Castle Entrance, Shortcut to Underground Caverns': (0, 0),
             'Castle Entrance, Loading Room D': (0, 1),
-            'Castle Entrance, Fake Room With Teleporter ID 012': (0, 2),
+            'Castle Entrance, Fake Room With Teleporter B': (0, 2),
         },
         { 'Castle Entrance, Attic Entrance': (0, 0) },
         { 'Castle Entrance, Attic Hallway': (0, 0) },
@@ -475,13 +475,13 @@ stages = {
     'Colosseum': [
         {
             # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
-            'Colosseum, Fake Room With Teleporter ID 053': (32 + 0, 32 + 0),
+            'Colosseum, Fake Room With Teleporter ID 052': (32 + 0, 32 + 0),
             'Colosseum, Loading Room A': (32 + 0, 32 + 1),
             'Colosseum, Passageway Between Arena and Royal Chapel': (32 + 0, 32 + 2),
             'Colosseum, Arena': (32 + 0, 32 + 7),
             'Colosseum, Top of Elevator Shaft': (32 + 0, 32 + 9),
             'Colosseum, Loading Room B': (32 + 0, 32 + 14),
-            'Colosseum, Fake Room With Teleporter ID 052': (32 + 0, 32 + 15),
+            'Colosseum, Fake Room With Teleporter ID 053': (32 + 0, 32 + 15),
             # NOTE(sestren): This room must be connected for now due to the two-room elevator
             'Colosseum, Bottom of Elevator Shaft': (32 + 1, 32 + 9),
         },
@@ -522,14 +522,18 @@ stages = {
     ],
     'Clock Tower': [
         {
-            'Clock Tower, Fake Room With Teleporter ID 010': (32 + 0, 32 + 0),
+            'Clock Tower, Fake Room With Teleporter ID 009': (32 + 0, 32 + 0),
             'Clock Tower, Loading Room B': (32 + 0, 32 + 1),
             'Clock Tower, Karasuman\'s Room': (32 + 0, 32 + 2),
         },
         {
-            'Clock Tower, Stairwell to Outer Wall': (32 + 0, 32 + 0),
-            'Clock Tower, Loading Room A': (32 + 0, 32 + 1),
-            'Clock Tower, Fake Room With Teleporter ID 009': (32 + 0, 32 + 2),
+            'Clock Tower, Stairwell to Outer Wall': (0, 0),
+            'Clock Tower, Loading Room A': (0, 1),
+            'Clock Tower, Fake Room With Teleporter ID 010': (0, 2),
+        },
+        {
+            'Clock Tower, Spire': (0, 0),
+            'Clock Tower, Belfry': (2, 1),
         },
         { 'Clock Tower, Path to Karasuman': (0, 0) },
         { 'Clock Tower, Healing Mail Room': (0, 0) },
@@ -539,7 +543,6 @@ stages = {
         { 'Clock Tower, Left Gear Room': (0, 0) },
         { 'Clock Tower, Right Gear Room': (0, 0) },
         { 'Clock Tower, Exit to Courtyard': (0, 0) },
-        { 'Clock Tower, Belfry': (0, 0) },
         { 'Clock Tower, Open Courtyard': (0, 0) },
         { 'Clock Tower, Fire of Bat Room': (0, 0) },
     ],
@@ -722,7 +725,7 @@ stages = {
             'Castle Center, Fake Room With Teleporter ID 007': (27 + 0, 32 + 0),
             'Castle Center, Elevator Shaft': (27 + 1, 32 + 0),
             'Castle Center, Center Cube': (27 + 3, 32 - 1),
-            'Castle Center, Unknown Room ID 04': (27 + 4, 32 + 2),
+            'Castle Center, Fake Room With Teleporter ID 008': (27 + 4, 32 + 2),
             'Castle Center, Unknown Room ID 02': (27 + 6, 32 + 0),
         },
     ],
@@ -873,8 +876,8 @@ class LogicCore:
                         break
                 else:
                     print('Could not find key')
-                    # print(room_data)
-                    # print(stage_changes['Rooms'])
+                    print(room_data)
+                    print(stage_changes['Rooms'])
                 # if mapper_data['Rooms'][location_name]['Stage'] != stage_name:
                 #     continue
                 room_top = None
@@ -884,6 +887,8 @@ class LogicCore:
                         room_top = stage_changes['Rooms'][location_key]['Top']
                     if 'Left' in stage_changes['Rooms'][location_key]:
                         room_left = stage_changes['Rooms'][location_key]['Left']
+                if room_top is None or room_left is None:
+                    print('stage_name:', stage_name, 'has invalid dimensions')
                 assert room_top is not None
                 assert room_left is not None
                 # print(location_name, (stage_name, location_key), (room_top, room_left))
@@ -1079,9 +1084,9 @@ class Mapper:
                 no_nodes_unused and
                 (all_rooms_connected or self.stage_name in ('Warp Rooms', 'Castle Center', 'Underground Caverns'))
             )
-            # if len(self.stage.rooms) > 28:
+            # if len(self.stage.rooms) > 18:
             #     print(all_rooms_used, no_nodes_unused, all_rooms_connected, len(self.stage.rooms), len(self.rooms))
-            #     for line in self.get_spoiler('Castle Entrance'):
+            #     for line in self.get_spoiler('Colosseum'):
             #         print(line)
             #     print(len(self.steps))
             #     for step in self.steps:
@@ -1102,6 +1107,11 @@ class Mapper:
             stage_left = min(stage_left, room.left)
             stage_bottom = max(stage_bottom, room_bottom)
             stage_right = max(stage_right, room_right)
+        if (
+            float('inf') in (stage_top, stage_left, stage_bottom, stage_right) or
+            float('-inf') in (stage_top, stage_left, stage_bottom, stage_right)
+        ):
+            return(['Dimensions of stage not valid'])
         stage_rows = 1 + stage_bottom - stage_top
         stage_cols = 1 + stage_right - stage_left
         grid = [[' ' for col in range(5 * stage_cols)] for row in range(5 * stage_rows)]

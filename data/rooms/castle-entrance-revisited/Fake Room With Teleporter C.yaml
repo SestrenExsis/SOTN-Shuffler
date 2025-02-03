@@ -1,7 +1,7 @@
 
-Stage: Castle Entrance
-Room: Fake Room With Teleporter ID 014
-Index: 30
+Stage: Castle Entrance Revisited
+Room: Fake Room With Teleporter C
+Index: 25
 Columns: 1
 Rows: 1
 Empty Cells: {}
@@ -13,7 +13,7 @@ Map:
     - "00000"
 Nodes:
     Right Passage:
-        Type: "................"
+        Type: Passage
         Row: 0
         Column: 0
         Edge: Right
