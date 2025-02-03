@@ -49,6 +49,14 @@ Commands:
         Outcomes:
             Section: Air
         Requirements:
+            Ground - Chained Rising Uppercuts:
+                Section: Ground
+                Progression - Rising Uppercut: true
+                Check - Meet Death in Castle Entrance: true
+            Ledge - Rising Uppercut:
+                Section: Ground
+                Progression - Rising Uppercut: true
+                Check - Meet Death in Castle Entrance: true
             Ground - Bat Form:
                 Section: Ground
                 Check - Meet Death in Castle Entrance: true
@@ -70,6 +78,10 @@ Commands:
         Outcomes:
             Section: Ledge
         Requirements:
+            Ground - Rising Uppercut:
+                Section: Ground
+                Progression - Rising Uppercut: true
+                Check - Meet Death in Castle Entrance: true
             Air:
                 Section: Air
                 Check - Meet Death in Castle Entrance: true

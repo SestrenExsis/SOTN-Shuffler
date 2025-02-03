@@ -49,6 +49,12 @@ Commands:
         Outcomes:
             Section: Air
         Requirements:
+            Ground - Chained Rising Uppercuts:
+                Section: Ground
+                Progression - Rising Uppercut: true
+            Ledge - Rising Uppercut:
+                Section: Ground
+                Progression - Rising Uppercut: true
             Ground - Bat Form:
                 Section: Ground
                 Progression - Bat Transformation: true
@@ -63,6 +69,9 @@ Commands:
         Outcomes:
             Section: Ledge
         Requirements:
+            Ground - Rising Uppercut:
+                Section: Ground
+                Progression - Rising Uppercut: true
             Air:
                 Section: Air
             Ground - Bat Form:

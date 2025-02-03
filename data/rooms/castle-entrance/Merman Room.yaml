@@ -56,6 +56,9 @@ Commands:
         Outcomes:
             Section: Air
         Requirements:
+            Ground - Rising Uppercut:
+                Section: Ground
+                Progression - Rising Uppercut: true
             Ground - Bat Form:
                 Section: Ground
                 Progression - Bat Transformation: true

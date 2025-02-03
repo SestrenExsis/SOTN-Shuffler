@@ -24,6 +24,12 @@ Commands:
         Outcomes:
             Section: Ledge
         Requirements:
+            Ground - Blade Dash:
+                Section: Ground
+                Progression - Blade Dash: true
+            Ground - Rising Uppercut:
+                Section: Ground
+                Progression - Rising Uppercut: true
             Ground - Double Jump:
                 Section: Ground
                 Progression - Double Jump: true

@@ -56,6 +56,9 @@ Commands:
         Outcomes:
             Section: Middle-Right Ledge
         Requirements:
+            Ground - Rising Uppercut:
+                Section: Ground
+                Progression - Rising Uppercut: true
             Ground - Bat Form:
                 Section: Ground
                 Progression - Bat Transformation: true
@@ -74,6 +77,9 @@ Commands:
         Outcomes:
             Section: Upper-Right Ledge
         Requirements:
+            Middle-Right Ledge - Rising Uppercut:
+                Section: Middle-Right Ledge
+                Progression - Rising Uppercut: true
             Middle-Right Ledge - Bat Form:
                 Section: Middle-Right Ledge
                 Progression - Bat Transformation: true

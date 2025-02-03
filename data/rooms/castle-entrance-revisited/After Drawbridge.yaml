@@ -46,12 +46,28 @@ Commands:
         Outcomes:
             Section: Ground
         Requirements:
+            Beneath Trapdoor - Rising Uppercut:
+                Section: Beneath Trapdoor
+                Progression - Rising Uppercut: true
+            Beneath Trapdoor - Powered Mist:
+                Section: Beneath Trapdoor
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Beneath Trapdoor - Bat Form:
+                Section: Beneath Trapdoor
+                Progression - Bat Transformation: true
+            Beneath Trapdoor - Gravity Jump:
+                Section: Beneath Trapdoor
+                Progression - Gravity Jump: true
             Parapet - Basic:
                 Section: Parapet
     Move - Parapet:
         Outcomes:
             Section: Parapet
         Requirements:
+            Ground - Chained Rising Uppercuts:
+                Section: Ground
+                Progression - Rising Uppercut: true
             Ground - Bat Form:
                 Section: Ground
                 Progression - Bat Transformation: true
