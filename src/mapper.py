@@ -73,8 +73,12 @@ class RoomNode:
                 '#######..#######',
             ),
             (
-                '#####\\..........'
+                '#####\\..........',
                 '#######\\........',
+            ),
+            (
+                '####...--...####',
+                '#######..#######',
             ),
             # (
             #     "#####......#####"
@@ -550,10 +554,10 @@ stages = {
         {
             'Warp Rooms, Warp Room D': (38 + 0, 15 + 0),
             'Warp Rooms, Loading Room B': (38 + 0, 15 + 1),
-            'Warp Rooms, Fake Room With Teleporter ID 029': (38 + 0, 15 + 2),
+            'Warp Rooms, Fake Room With Teleporter ID 031': (38 + 0, 15 + 2),
         },
         {
-            'Warp Rooms, Fake Room With Teleporter ID 032': (12 + 0, 38 + 0),
+            'Warp Rooms, Fake Room With Teleporter ID 028': (12 + 0, 38 + 0),
             'Warp Rooms, Loading Room E': (12 + 0, 38 + 1),
             'Warp Rooms, Warp Room A': (12 + 0, 38 + 2),
         },
@@ -565,10 +569,10 @@ stages = {
         {
             'Warp Rooms, Warp Room C': (17 + 0, 59 + 0),
             'Warp Rooms, Loading Room D': (17 + 0, 59 + 1),
-            'Warp Rooms, Fake Room With Teleporter ID 031': (17 + 0, 59 + 2),
+            'Warp Rooms, Fake Room With Teleporter ID 029': (17 + 0, 59 + 2),
         },
         {
-            'Warp Rooms, Fake Room With Teleporter ID 028': (44 + 0, 33 + 0),
+            'Warp Rooms, Fake Room With Teleporter ID 032': (44 + 0, 33 + 0),
             'Warp Rooms, Loading Room A': (44 + 0, 33 + 1),
             'Warp Rooms, Warp Room E': (44 + 0, 33 + 2),
         },

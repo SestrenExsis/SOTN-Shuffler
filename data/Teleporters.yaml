@@ -35,6 +35,11 @@ Sources:
         Stage: Castle Center
         Room: Fake Room With Teleporter ID 007
         Target: Marble Gallery, Clock Room (Bottom Passage)
+    Castle Entrance, Fake Room With Teleporter A:
+        Index: 11
+        Stage: Castle Entrance
+        Room: Fake Room With Teleporter A
+        Target: Marble Gallery, S-Shaped Hallways (Lower-Left Red Door)
     Castle Entrance, Fake Room With Teleporter C:
         Index: 13
         Stage: Castle Entrance
@@ -50,25 +55,25 @@ Sources:
         Stage: Castle Entrance
         Room: Fake Room With Teleporter B
         Target: Underground Caverns, Exit to Castle Entrance (Left Red Door)
-    Castle Entrance Revisited, Fake Room With Teleporter ID 058:
+    Castle Entrance Revisited, Fake Room With Teleporter C:
         Index: 58
         Stage: Castle Entrance Revisited
-        Room: Fake Room With Teleporter ID 058
+        Room: Fake Room With Teleporter C
         Target: Alchemy Laboratory, Entryway (Right Red Door)
-    Castle Entrance Revisited, Fake Room With Teleporter ID 056:
+    Castle Entrance Revisited, Fake Room With Teleporter A:
         Index: 56
-        Stage: Castle Entrance
-        Room: Fake Room With Teleporter ID 056
+        Stage: Castle Entrance Revisited
+        Room: Fake Room With Teleporter A
         Target: Marble Gallery, S-Shaped Hallways (Lower-Left Red Door)
-    Castle Entrance Revisited, Fake Room With Teleporter ID 059:
+    Castle Entrance Revisited, Fake Room With Teleporter D:
         Index: 59
         Stage: Castle Entrance Revisited
-        Room: Fake Room With Teleporter ID 059
+        Room: Fake Room With Teleporter D
         Target: Warp Rooms, Warp Room D (Right Red Door)
-    Castle Entrance Revisited, Fake Room With Teleporter ID 057:
+    Castle Entrance Revisited, Fake Room With Teleporter B:
         Index: 57
-        Stage: Castle Entrance
-        Room: Fake Room With Teleporter ID 057
+        Stage: Castle Entrance Revisited
+        Room: Fake Room With Teleporter B
         Target: Underground Caverns, Exit to Castle Entrance (Left Red Door)
     Castle Keep, Fake Room With Teleporter ID 045:
         Index: 45
