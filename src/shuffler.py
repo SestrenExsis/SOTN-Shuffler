@@ -302,16 +302,13 @@ if __name__ == '__main__':
             # Flip normal castle changes and apply them to inverted castle
             reversible_stages = {
                 # TODO(sestren): Handle rotating boss stages for Inverted Castle
+                # TODO(sestren): Add Boss - Darkwing Bat to Inverted Castle (Karasuman Room)
                 # TODO(sestren): Add Boss - Doppelganger 40 to Inverted Castle (Scylla Worm Room)
                 # TODO(sestren): Add Boss - Beelzebub to Inverted Castle (Slogra and Gaibon Room)
                 'Abandoned Mine': 'Cave',
                 'Alchemy Laboratory': 'Necromancy Laboratory',
-                # TODO(sestren): 'Boss - Cerberus': 'Boss - Death',
-                # TODO(sestren): 'Boss - Doppelganger 10': 'Boss - Creature',
                 # TODO(sestren): 'Boss - Granfaloon': 'Boss - Galamoth',
-                # TODO(sestren): 'Boss - Hippogryph': 'Boss - Medusa',
                 # TODO(sestren): 'Boss - Minotaur and Werewolf': 'Boss - Trio',
-                # TODO(sestren): 'Boss - Olrox': 'Boss - Akmodon II',
                 'Castle Center': 'Reverse Castle Center',
                 'Castle Entrance': 'Reverse Entrance',
                 'Castle Keep': 'Reverse Keep',
@@ -399,6 +396,34 @@ if __name__ == '__main__':
                 'Room Y': source_top,
                 'Room X': source_left + 1,
             }
+            # Move the Death Boss stage to match Abandoned Mine, Cerberus Room
+            source_width = 2
+            source_top = 63 - source_top
+            source_left = 63 - source_left - (source_width - 1)
+            changes['Stages']['Boss - Death'] = {
+                'Rooms': {
+                    'Boss - Death, Cerberus Room': {
+                        'Top': source_top,
+                        'Left': source_left,
+                    },
+                    'Boss - Death, Fake Room With Teleporter A': {
+                        'Top': source_top,
+                        'Left': source_left - 1,
+                    },
+                    'Boss - Death, Fake Room With Teleporter B': {
+                        'Top': source_top,
+                        'Left': source_left + source_width,
+                    },
+                },
+            }
+            changes['Boss Teleporters']['20'] = {
+                'Room Y': source_top,
+                'Room X': source_left,
+            }
+            changes['Boss Teleporters']['19'] = {
+                'Room Y': source_top,
+                'Room X': source_left + (source_width - 1),
+            }
             # Move the Doppelganger 10 Boss stage to match Outer Wall, Doppelganger Room
             source_top = changes['Stages']['Outer Wall']['Rooms']['Outer Wall, Doppelganger Room']['Top']
             source_left = changes['Stages']['Outer Wall']['Rooms']['Outer Wall, Doppelganger Room']['Left']
@@ -426,6 +451,34 @@ if __name__ == '__main__':
                 'Room Y': source_top,
                 'Room X': source_left + 1,
             }
+            # Move the Creature Boss stage to match Outer Wall, Doppelganger Room
+            source_width = 2
+            source_top = 63 - source_top
+            source_left = 63 - source_left - (source_width - 1)
+            changes['Stages']['Boss - Creature'] = {
+                'Rooms': {
+                    'Boss - Creature, Doppelganger Room': {
+                        'Top': source_top,
+                        'Left': source_left,
+                    },
+                    'Boss - Creature, Fake Room With Teleporter A': {
+                        'Top': source_top,
+                        'Left': source_left - 1,
+                    },
+                    'Boss - Creature, Fake Room With Teleporter B': {
+                        'Top': source_top,
+                        'Left': source_left + source_width,
+                    },
+                },
+            }
+            changes['Boss Teleporters']['24'] = {
+                'Room Y': source_top,
+                'Room X': source_left,
+            }
+            changes['Boss Teleporters']['23'] = {
+                'Room Y': source_top,
+                'Room X': source_left + (source_width - 1),
+            }
             # Move the Hippogryph Boss stage to match Royal Chapel, Hippogryph Room
             source_top = changes['Stages']['Royal Chapel']['Rooms']['Royal Chapel, Hippogryph Room']['Top']
             source_left = changes['Stages']['Royal Chapel']['Rooms']['Royal Chapel, Hippogryph Room']['Left']
@@ -452,6 +505,34 @@ if __name__ == '__main__':
             changes['Boss Teleporters']['11'] = {
                 'Room Y': source_top,
                 'Room X': source_left + 1,
+            }
+            # Move the Medusa Boss stage to match Anti-Chapel, Hippogryph Room
+            source_width = 2
+            source_top = 63 - source_top
+            source_left = 63 - source_left - (source_width - 1)
+            changes['Stages']['Boss - Medusa'] = {
+                'Rooms': {
+                    'Boss - Medusa, Hippogryph Room': {
+                        'Top': source_top,
+                        'Left': source_left,
+                    },
+                    'Boss - Medusa, Fake Room With Teleporter A': {
+                        'Top': source_top,
+                        'Left': source_left - 1,
+                    },
+                    'Boss - Medusa, Fake Room With Teleporter B': {
+                        'Top': source_top,
+                        'Left': source_left + source_width,
+                    },
+                },
+            }
+            changes['Boss Teleporters']['22'] = {
+                'Room Y': source_top,
+                'Room X': source_left,
+            }
+            changes['Boss Teleporters']['21'] = {
+                'Room Y': source_top,
+                'Room X': source_left + (source_width - 1),
             }
             # Move the Olrox Boss stage to match Olrox's Quarters, Olrox's Room
             source_top = changes['Stages']['Olrox\'s Quarters']['Rooms']['Olrox\'s Quarters, Olrox\'s Room']['Top']
@@ -481,6 +562,36 @@ if __name__ == '__main__':
                 'Room Y': source_top,
                 'Room X': source_left + 1,
             }
+            # Move the Akmodan II Boss stage to match Olrox's Quarters, Olrox's Room
+            source_height = 2
+            source_width = 2
+            source_top = 63 - source_top - (source_height - 1)
+            source_left = 63 - source_left - (source_width - 1)
+            changes['Stages']['Boss - Akmodan II'] = {
+                'Rooms': {
+                    'Boss - Akmodan II, Olrox\'s Room': {
+                        'Top': source_top,
+                        'Left': source_left,
+                    },
+                    'Boss - Akmodan II, Fake Room With Teleporter A': {
+                        'Top': source_top,
+                        'Left': source_left - 1,
+                    },
+                    'Boss - Akmodan II, Fake Room With Teleporter B': {
+                        'Top': source_top,
+                        'Left': source_left + source_width,
+                    },
+                },
+            }
+            changes['Boss Teleporters']['26'] = {
+                'Room Y': source_top + (source_height - 1),
+                'Room X': source_left + (source_width - 1),
+            }
+            # NOTE(sestren): There is only one boss teleporter in the game data for Akmodan II, despite there being two entrances, so one of the entrances will not be covered
+            # changes['Boss Teleporters']['XXX'] = {
+            #     'Room Y': source_top,
+            #     'Room X': source_left,
+            # }
             # Move the Granfaloon Boss stage to match Catacombs, Granfaloon's Lair
             source_top = changes['Stages']['Catacombs']['Rooms']['Catacombs, Granfaloon\'s Lair']['Top']
             source_left = changes['Stages']['Catacombs']['Rooms']['Catacombs, Granfaloon\'s Lair']['Left']
@@ -597,22 +708,22 @@ if __name__ == '__main__':
                 'Exploration': {
                     'Stages Visited': {
                         'All': {
-                            # 'Abandoned Mine': True,
+                            'Abandoned Mine': True,
                             'Alchemy Laboratory': True,
-                            # 'Castle Center': True,
+                            'Castle Center': True,
                             'Castle Entrance': True,
                             'Castle Entrance Revisited': True,
-                            # 'Castle Keep': True,
-                            # 'Catacombs': True,
-                            # 'Clock Tower': True,
-                            # 'Colosseum': True,
-                            # 'Long Library': True,
-                            # 'Marble Gallery': True,
-                            # 'Olrox\'s Quarters': True,
-                            # 'Outer Wall': True,
-                            # 'Royal Chapel': True,
-                            # 'Underground Caverns': True,
-                            # 'Warp Rooms': True,
+                            'Castle Keep': True,
+                            'Catacombs': True,
+                            'Clock Tower': True,
+                            'Colosseum': True,
+                            'Long Library': True,
+                            'Marble Gallery': True,
+                            'Olrox\'s Quarters': True,
+                            'Outer Wall': True,
+                            'Royal Chapel': True,
+                            'Underground Caverns': True,
+                            'Warp Rooms': True,
                         }
                     },
                 },
