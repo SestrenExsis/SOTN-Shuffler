@@ -335,7 +335,7 @@ stages = {
         { 'Alchemy Laboratory, Secret Life Max-Up Room': (0, 0) },
         { 'Alchemy Laboratory, Short Zig Zag Room': (0, 0) },
         { 'Alchemy Laboratory, Skill of Wolf Room': (0, 0) },
-        { 'Alchemy Laboratory, Slogra and Gaibon Boss Room': (0, 0) },
+        { 'Alchemy Laboratory, Slogra and Gaibon Room': (0, 0) },
         { 'Alchemy Laboratory, Sunglasses Room': (0, 0) },
         { 'Alchemy Laboratory, Tall Spittlebone Room': (0, 0) },
         { 'Alchemy Laboratory, Tall Zig Zag Room': (0, 0) },
