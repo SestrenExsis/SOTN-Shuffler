@@ -17,9 +17,19 @@ Empty Cells:
       Column: 0
     - Row: 1
       Column: 4
+Map:
+    - "        00000        "
+    - "        01110        "
+    - "        01110        "
+    - "        01110        "
+    - "    0000011100000    "
+    - "    0111111111110    "
+    - "    0111111111110    "
+    - "    0111111111110    "
+    - "    0000001000000    "
 Nodes:
     Bottom Passage:
-        Type: Passage
+        Type: "#######..#######"
         Row: 1
         Column: 2
         Edge: Bottom

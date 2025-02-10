@@ -5,9 +5,23 @@ Index: 1
 Columns: 3
 Rows: 3
 Empty Cells: {}
+Map:
+    - "0000001000000"
+    - "0111111111110"
+    - "0111111111110"
+    - "0111111111110"
+    - "0111111111110"
+    - "0111111111110"
+    - "0111111111110"
+    - "0111111111110"
+    - "0111111111110"
+    - "0111111111110"
+    - "0111111111110"
+    - "0111111111110"
+    - "0000000000000"
 Nodes:
     Top Passage:
-        Type: Passage
+        Type: "#####......#####"
         Row: 0
         Column: 1
         Edge: Top
@@ -21,8 +35,4 @@ Commands:
         Requirements:
             Main, Default:
                 Section: Main
-                Item - Silver Ring:
-                    Minimum: 1
-                Item - Gold Ring:
-                    Minimum: 1
                 Check - Holy Glasses Location: false

@@ -5,23 +5,41 @@ Index: 0
 Columns: 1
 Rows: 4
 Empty Cells: {}
+Map:
+    - "00000"
+    - "01110"
+    - "01111"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01111"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01111"
+    - "01110"
+    - "00000"
 Nodes:
     Upper-Right Red Door:
-        Type: Red Door
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Right
         Entry Section: Upper-Right Ledge
         Exit Section: Upper-Right Ledge
     Middle-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 2
         Column: 0
         Edge: Right
         Entry Section: Middle-Right Ledge
         Exit Section: Middle-Right Ledge
     Lower-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 3
         Column: 0
         Edge: Right
@@ -38,6 +56,9 @@ Commands:
         Outcomes:
             Section: Middle-Right Ledge
         Requirements:
+            Ground - Rising Uppercut:
+                Section: Ground
+                Progression - Rising Uppercut: true
             Ground - Bat Form:
                 Section: Ground
                 Progression - Bat Transformation: true
@@ -56,6 +77,9 @@ Commands:
         Outcomes:
             Section: Upper-Right Ledge
         Requirements:
+            Middle-Right Ledge - Rising Uppercut:
+                Section: Middle-Right Ledge
+                Progression - Rising Uppercut: true
             Middle-Right Ledge - Bat Form:
                 Section: Middle-Right Ledge
                 Progression - Bat Transformation: true

@@ -5,30 +5,40 @@ Index: 11
 Columns: 1
 Rows: 2
 Empty Cells: {}
+Map:
+    - "00100"
+    - "01110"
+    - "11110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "11111"
+    - "01110"
+    - "00000"
 Nodes:
     Upper-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left
         Entry Section: Ledge
         Exit Section: Ledge
     Top Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Top
         Entry Section: Air
         Exit Section: Air
     Lower-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 1
         Column: 0
         Edge: Left
         Entry Section: Special
         Exit Section: Ground
     Lower-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 1
         Column: 0
         Edge: Right
@@ -39,6 +49,14 @@ Commands:
         Outcomes:
             Section: Air
         Requirements:
+            Ground - Chained Rising Uppercuts:
+                Section: Ground
+                Progression - Rising Uppercut: true
+                Check - Meet Death in Castle Entrance: true
+            Ledge - Rising Uppercut:
+                Section: Ground
+                Progression - Rising Uppercut: true
+                Check - Meet Death in Castle Entrance: true
             Ground - Bat Form:
                 Section: Ground
                 Check - Meet Death in Castle Entrance: true
@@ -60,6 +78,10 @@ Commands:
         Outcomes:
             Section: Ledge
         Requirements:
+            Ground - Rising Uppercut:
+                Section: Ground
+                Progression - Rising Uppercut: true
+                Check - Meet Death in Castle Entrance: true
             Air:
                 Section: Air
                 Check - Meet Death in Castle Entrance: true

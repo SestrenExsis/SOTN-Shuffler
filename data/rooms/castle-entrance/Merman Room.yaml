@@ -5,37 +5,47 @@ Index: 7
 Columns: 3
 Rows: 2
 Empty Cells: {}
+Map:
+    - "0010000000000"
+    - "0111111111110"
+    - "1111111111111"
+    - "0111111111110"
+    - "0111111111110"
+    - "0111111111110"
+    - "1111111111111"
+    - "0111111111110"
+    - "0000000000000"
 Nodes:
     Top Passage:
-        Type: Passage
+        Type: "######..########"
         Row: 0
         Column: 0
         Edge: Top
         Entry Section: Air
         Exit Section: Air
     Upper-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left
         Entry Section: Ground
         Exit Section: Ground
     Upper-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 2
         Edge: Right
         Entry Section: Ground
         Exit Section: Ground
     Lower-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 1
         Column: 0
         Edge: Left
         Entry Section: Secret Wall
         Exit Section: Secret Wall
     Lower-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 1
         Column: 2
         Edge: Right
@@ -46,6 +56,9 @@ Commands:
         Outcomes:
             Section: Air
         Requirements:
+            Ground - Rising Uppercut:
+                Section: Ground
+                Progression - Rising Uppercut: true
             Ground - Bat Form:
                 Section: Ground
                 Progression - Bat Transformation: true

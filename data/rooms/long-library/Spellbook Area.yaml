@@ -5,30 +5,58 @@ Index: 9
 Columns: 7
 Rows: 3
 Empty Cells: {}
+Map:
+    - "00000000000000000000000000000"
+    - "01111111111111111111111101110"
+    - "11111111111111111111111111110"
+    - "01111111111111111111111101110"
+    - "01111111111111111111111100000"
+    - "01111111111111111111111111110"
+    - "11111111111111111111111111110"
+    - "01111111111111111111111111110"
+    - "01111111111111111111111111110"
+    - "01111111111111111111111111110"
+    - "11111111111111111111111111110"
+    - "01111111111111111111111111110"
+    - "00000000001000000000000000000"
+Alternate Map:
+    - "00000000000000000000000000000"
+    - "0111111fffffffffff11111101110"
+    - "11111111fffffffff111111111110"
+    - "011111111ffffffff111111101110"
+    - "0ffff111111111111111ffff00000"
+    - "01111111111111111111111111110"
+    - "11111111111111111111111111110"
+    - "011111111fffffffff11111111110"
+    - "0fff1111fffffffffffffffff1110"
+    - "0111111fff1111111111111111110"
+    - "111111ffff1111111111111111110"
+    - "01111ffff111111111111111111c0"
+    - "00000000011100000000000000000"
 Nodes:
     Upper-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left
         Entry Section: Upper Ledge
         Exit Section: Upper Ledge
     Middle-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 1
         Column: 0
         Edge: Left
         Entry Section: Lower Ledge
         Exit Section: Lower Ledge
     Lower-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 2
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Middle-Bottom Passage:
-        Type: Passage
+        Type: "###........../##"
         Row: 2
         Column: 2
         Edge: Bottom

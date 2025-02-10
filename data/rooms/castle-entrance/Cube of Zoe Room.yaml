@@ -5,44 +5,58 @@ Index: 15
 Columns: 2
 Rows: 3
 Empty Cells: {}
+Map:
+    - "000000000"
+    - "011111110"
+    - "111111111"
+    - "011111110"
+    - "011111110"
+    - "011111110"
+    - "111111111"
+    - "011111110"
+    - "011111110"
+    - "011111110"
+    - "111111111"
+    - "011111110"
+    - "000000000"
 Nodes:
     Upper-Left Red Door:
-        Type: Red Door
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Upper-Right Red Door:
-        Type: Red Door
+        Type: "######....######"
         Row: 0
         Column: 1
         Edge: Right
         Entry Section: Pressure Plate Ledge
         Exit Section: Pressure Plate Ledge
     Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 1
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 1
         Column: 1
         Edge: Right
         Entry Section: Right Ledge
         Exit Section: Right Ledge
     Lower-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 2
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Lower-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 2
         Column: 1
         Edge: Right
@@ -61,6 +75,9 @@ Commands:
         Outcomes:
             Section: Right Ledge
         Requirements:
+            Main - Rising Uppercut:
+                Section: Main
+                Progression - Rising Uppercut: true
             Main - Bat Form:
                 Section: Main
                 Progression - Bat Transformation: true
@@ -85,6 +102,9 @@ Commands:
         Outcomes:
             Section: Pressure Plate Ledge
         Requirements:
+            Main - Chained Rising Uppercuts:
+                Section: Main
+                Progression - Rising Uppercut: true
             Main - Use Shortcut:
                 Section: Main
                 Status - Shortcut in Cube of Zoe Room Activated: true

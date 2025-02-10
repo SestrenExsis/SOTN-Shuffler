@@ -1,0 +1,16 @@
+
+Stage: Underground Caverns
+Room: Fake Room With Teleporter ID 050
+Index: 40
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Right Passage:
+        Type: "................"
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Fake
+        Exit Section: Dummy
+Commands: {}

@@ -5,16 +5,26 @@ Index: 10
 Columns: 1
 Rows: 2
 Empty Cells: {}
+Map:
+    - "00000"
+    - "01110"
+    - "11110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "11110"
+    - "01110"
+    - "00000"
 Nodes:
     Upper-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Lower-Left Red Door:
-        Type: Red Door
+        Type: "######....######"
         Row: 1
         Column: 0
         Edge: Left

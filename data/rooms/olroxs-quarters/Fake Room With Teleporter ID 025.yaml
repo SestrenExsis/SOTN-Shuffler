@@ -1,0 +1,16 @@
+
+Stage: Olrox's Quarters
+Room: Fake Room With Teleporter ID 025
+Index: 21
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Right Passage:
+        Type: "................"
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Fake
+        Exit Section: Dummy
+Commands: {}

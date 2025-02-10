@@ -7,37 +7,75 @@ Rows: 9
 Empty Cells:
     - Row: 2
       Column: 0
+Map:
+    - "000000100    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "000001110    "
+    - "    01110    "
+    - "    11110    "
+    - "    01110    "
+    - "000001110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "111111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "011111110    "
+    - "111111110    "
+    - "011111110    "
+    - "000000100    "
 Nodes:
     Right-Top Passage:
-        Type: Passage
+        Type: "###........./###"
         Row: 0
         Column: 1
         Edge: Top
         Entry Section: Main
         Exit Section: Main
     Upper-Left Red Door:
-        Type: Red Door
+        Type: "######....######"
         Row: 2
         Column: 1
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Middle-Left Red Door:
-        Type: Red Door
+        Type: "######....######"
         Row: 6
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Lower-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 8
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Right-Bottom Passage:
-        Type: Passage
+        Type: "##...###########"
         Row: 8
         Column: 1
         Edge: Bottom

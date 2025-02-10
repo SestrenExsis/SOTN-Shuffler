@@ -7,7 +7,7 @@ Rows: 1
 Empty Cells: {}
 Nodes:
     Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 1
         Edge: Right

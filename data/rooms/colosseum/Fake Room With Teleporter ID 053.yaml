@@ -1,0 +1,16 @@
+
+Stage: Colosseum
+Room: Fake Room With Teleporter ID 053
+Index: 19
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Left Passage:
+        Type: "................"
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Fake
+        Exit Section: Dummy
+Commands: {}

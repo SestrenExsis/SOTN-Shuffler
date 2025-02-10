@@ -19,23 +19,33 @@ Empty Cells:
       Column: 11
     - Row: 1
       Column: 12
+Map:
+    - "00000000000000000000000000000000001000000000000000000"
+    - "01111111111111111111111111111111111111111111111111110"
+    - "11111111111111111111111111111111111111111111111111111"
+    - "01111111111111111111111111111111111111111111111111110"
+    - "01111111111111111111111100000000000000000000000000000"
+    - "0111111111111111111111110                            "
+    - "0111111111111111111111110                            "
+    - "0111111111111111111111110                            "
+    - "0000000000000000000000000                            "
 Nodes:
     Top Passage:
-        Type: Passage
+        Type: "####....########"
         Row: 0
         Column: 8
         Edge: Top
         Entry Section: Main
         Exit Section: Main
     Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 12
         Edge: Right

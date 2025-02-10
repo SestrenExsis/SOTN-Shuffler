@@ -5,6 +5,20 @@ Index: 0
 Columns: 2
 Rows: 3
 Empty Cells: {}
+Map:
+    - "000000000"
+    - "011111110"
+    - "011111110"
+    - "011111110"
+    - "011111110"
+    - "011111110"
+    - "011111110"
+    - "011111110"
+    - "011111110"
+    - "011111110"
+    - "011111111"
+    - "011111110"
+    - "001000000"
 Nodes:
     Lower-Right Passage:
         Type: Passage
@@ -13,8 +27,8 @@ Nodes:
         Edge: Right
         Entry Section: Ground
         Exit Section: Ground
-    Bottom Secret Passage:
-        Type: Secret Passage
+    Bottom Passage:
+        Type: Passage
         Row: 2
         Column: 0
         Edge: Bottom
@@ -32,12 +46,28 @@ Commands:
         Outcomes:
             Section: Ground
         Requirements:
+            Beneath Trapdoor - Rising Uppercut:
+                Section: Beneath Trapdoor
+                Progression - Rising Uppercut: true
+            Beneath Trapdoor - Powered Mist:
+                Section: Beneath Trapdoor
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Beneath Trapdoor - Bat Form:
+                Section: Beneath Trapdoor
+                Progression - Bat Transformation: true
+            Beneath Trapdoor - Gravity Jump:
+                Section: Beneath Trapdoor
+                Progression - Gravity Jump: true
             Parapet - Basic:
                 Section: Parapet
     Move - Parapet:
         Outcomes:
             Section: Parapet
         Requirements:
+            Ground - Chained Rising Uppercuts:
+                Section: Ground
+                Progression - Rising Uppercut: true
             Ground - Bat Form:
                 Section: Ground
                 Progression - Bat Transformation: true

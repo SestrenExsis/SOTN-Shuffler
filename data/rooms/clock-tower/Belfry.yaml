@@ -7,16 +7,26 @@ Rows: 2
 Empty Cells:
     - Row: 1
       Column: 0
+Map:
+    - "0000001000000"
+    - "0111111111110"
+    - "0111111111110"
+    - "0111111111110"
+    - "0000011111110"
+    - "    011111110"
+    - "    111111110"
+    - "    011111110"
+    - "    000000000"
 Nodes:
     Top Passage:
-        Type: Passage
+        Type: "#######..#######"
         Row: 0
         Column: 1
         Edge: Top
         Entry Section: Main
         Exit Section: Main
     Lower-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 1
         Column: 1
         Edge: Left

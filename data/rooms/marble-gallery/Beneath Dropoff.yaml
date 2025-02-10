@@ -7,28 +7,28 @@ Rows: 1
 Empty Cells: {}
 Nodes:
     Left-Top Passage:
-        Type: Passage
+        Type: "##.............."
         Row: 0
         Column: 0
         Edge: Top
         Entry Section: Falling
         Exit Section: Rising
     Right-Top Passage:
-        Type: Passage
+        Type: ".../############"
         Row: 0
         Column: 1
         Edge: Top
         Entry Section: Main
         Exit Section: Main
     Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 1
         Edge: Right
         Entry Section: Main
         Exit Section: Main
     Bottom Passage:
-        Type: Passage
+        Type: "##......./######"
         Row: 0
         Column: 0
         Edge: Bottom

@@ -7,14 +7,14 @@ Rows: 4
 Empty Cells: {}
 Nodes:
     Upper-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Lower-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 3
         Column: 0
         Edge: Right

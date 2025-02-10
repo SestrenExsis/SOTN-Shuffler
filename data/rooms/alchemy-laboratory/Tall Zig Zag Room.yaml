@@ -5,9 +5,23 @@ Index: 14
 Columns: 1
 Rows: 3
 Empty Cells: {}
+Map:
+    - "00000"
+    - "01110"
+    - "11110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "11111"
+    - "01110"
+    - "00100"
 Nodes:
     Lower Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 2
         Column: 0
         Edge: Bottom
@@ -15,21 +29,21 @@ Nodes:
         Exit Section: Broken Floor
         Notes: Even though there is a breakable floor, entry from below without breaking the floor is still allowed
     Lower-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 2
         Column: 0
         Edge: Left
         Entry Section: Broken Wall
         Exit Section: Broken Wall
     Lower-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 2
         Column: 0
         Edge: Right
         Entry Section: Main
         Exit Section: Main
     Upper-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left

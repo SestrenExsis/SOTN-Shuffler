@@ -5,16 +5,22 @@ Index: 9
 Columns: 6
 Rows: 1
 Empty Cells: {}
+Map:
+    - "0000000000000000000000000"
+    - "0111111111111111111111110"
+    - "1111111111111111111111111"
+    - "0111111111111111111111110"
+    - "0000000000000000000000000"
 Nodes:
     Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 5
         Edge: Right

@@ -5,9 +5,15 @@ Index: 3
 Columns: 1
 Rows: 1
 Empty Cells: {}
+Map:
+    - "00000"
+    - "01110"
+    - "01111"
+    - "01110"
+    - "00000"
 Nodes:
     Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Right
@@ -18,6 +24,12 @@ Commands:
         Outcomes:
             Section: Ledge
         Requirements:
+            Ground - Blade Dash:
+                Section: Ground
+                Progression - Blade Dash: true
+            Ground - Rising Uppercut:
+                Section: Ground
+                Progression - Rising Uppercut: true
             Ground - Double Jump:
                 Section: Ground
                 Progression - Double Jump: true

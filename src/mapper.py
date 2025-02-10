@@ -38,12 +38,76 @@ class RoomNode:
         return result
     
     def matches(self, node=None) -> bool:
+        # ./############## 0-1 Right Floor Ramp
+        # .../############ 0-3 Right Floor Ramp
+        # ......########## 0-6 Passage
+        # ................ 0-16 Passage
+        # #/....../####### 2-6 Left Ceiling Ramp, Right Floor Ramp
+        # #...###..###...# 1-3 7-2 12-3 Passage (e.g., Marble Gallery, Clock Room (Top))
+        # ##..############ 2-2 Passage
+        # ##......./###### 2-7 Right Floor Ramp
+        # ##............## 2-12 Passage (e.g., Castle Entrance, Gargoyle Room (Bottom))
+        # ##.............. 2-14 Passage
+        # ###........##### 3-8 Passage
+        # ###............/ 3-12 Right Floor Ramp
+        # ###........../## 3-10 Right Floor Ramp
+        # ####....######## 4-4 Passage
+        # ###/....../##### 4-6 Left Ceiling Ramp, Right Floor Ramp
+        # ####........#### 4-8 Passage
+        # ###/..........## 4-10 Left Ceiling Ramp
+        # #####..######### 5-2 Passage
+        # #####......##### 5-6 Passage
+        # #####........### 5-8 Passage
+        # ######..######## 6-2 Passage
+        # ######....###### 6-4 Passage (very common type, aka 'Passage')
+        # ######.....##### 6-5 Passage
+        # #######..####### 7-2 Passage
+        # #######.....#### 7-5 Passage
+        # ######/.......## 7-7 Left Ceiling Ramp
+        # #########..##### 9-2 Passage
+        # #########....### 9-4 Passage
+        # ###########/.... 12-4 Left Ceiling Ramp
+        incompatible_types = {
+            (
+                '#####..#########',
+                '#######..#######',
+            ),
+            (
+                '#####\\..........',
+                '#######\\........',
+            ),
+            (
+                '####...--...####',
+                '#######..#######',
+            ),
+            (
+                '#######..#######',
+                '#########....###',
+            ),
+            (
+                '#####..#########',
+                '#########..#####',
+            ),
+            # (
+            #     "#####......#####"
+            #     "######....######"
+            # ),
+            # (
+            #     '#######..#######',
+            #     '#########....###',
+            # ),
+            # (
+            #     '#####..#########',
+            #     '#########....###',
+            # ),
+        }
         result = True
         if node is not None:
             result = (
-                self.type == node.type and
                 self.direction == node.direction and
-                self.edge != node.edge
+                self.edge != node.edge and
+                (self.type, node.type) not in incompatible_types and
+                (node.type, self.type) not in incompatible_types
             )
         return result
     
@@ -90,8 +154,6 @@ class Room:
         return result
 
 class RoomSet:
-    # TODO(sestren): Enforce a maximum row for all rooms of 55 (54?), as that is the visual bottom of the map
-    # TODO(sestren): After generating all stages, try N times to lay them out on the map with no overlapping rooms, take the one with the smallest overall footprint. If it is still too big, throw it all away and start over
     def __init__(self, roomset_id, room_placements: list[list[Room, int, int]]):
         # room_placements: [ [room: Room, top: int=None, left: int=None], ... ]
         self.roomset_id = roomset_id
@@ -210,21 +272,21 @@ stages = {
             'Castle Entrance, After Drawbridge': (38, 30 + 2),
         },
         {
-            'Castle Entrance, Fake Room With Teleporter A': (0, 0),
+            'Castle Entrance, Fake Room With Teleporter C': (0, 0),
             'Castle Entrance, Loading Room C': (0, 1),
             'Castle Entrance, Cube of Zoe Room': (0, 2),
             'Castle Entrance, Loading Room A': (0, 4),
-            'Castle Entrance, Fake Room With Teleporter B': (0, 5),
+            'Castle Entrance, Fake Room With Teleporter A': (0, 5),
         },
         {
-            'Castle Entrance, Fake Room With Teleporter C': (0, 0),
+            'Castle Entrance, Fake Room With Teleporter D': (0, 0),
             'Castle Entrance, Loading Room B': (0, 1),
             'Castle Entrance, Shortcut to Warp': (0, 2),
         },
         {
             'Castle Entrance, Shortcut to Underground Caverns': (0, 0),
             'Castle Entrance, Loading Room D': (0, 1),
-            'Castle Entrance, Fake Room With Teleporter D': (0, 2),
+            'Castle Entrance, Fake Room With Teleporter B': (0, 2),
         },
         { 'Castle Entrance, Attic Entrance': (0, 0) },
         { 'Castle Entrance, Attic Hallway': (0, 0) },
@@ -248,21 +310,23 @@ stages = {
         {
             'Alchemy Laboratory, Entryway': (32 + 0, 32 + 0),
             'Alchemy Laboratory, Loading Room C': (32 + 0, 32 + 3),
-            'Alchemy Laboratory, Fake Room With Teleporter C': (32 + 0, 32 + 4),
+            'Alchemy Laboratory, Fake Room With Teleporter ID 021': (32 + 0, 32 + 4),
         },
         {
-            'Alchemy Laboratory, Fake Room With Teleporter B': (0, 0),
+            'Alchemy Laboratory, Fake Room With Teleporter ID 023': (0, 0),
             'Alchemy Laboratory, Loading Room B': (0, 1),
             'Alchemy Laboratory, Exit to Royal Chapel': (0, 2),
         },
         {
             'Alchemy Laboratory, Exit to Marble Gallery': (0, 0),
             'Alchemy Laboratory, Loading Room A': (1, 2),
-            'Alchemy Laboratory, Fake Room With Teleporter A': (1, 3),
+            'Alchemy Laboratory, Fake Room With Teleporter ID 022': (1, 3),
         },
         {
-            'Alchemy Laboratory, Tetromino Room': (0, 0),
-            'Alchemy Laboratory, Bat Card Room': (1, 0),
+            'Alchemy Laboratory, Tall Spittlebone Room': (1, 0),
+            'Alchemy Laboratory, Slogra and Gaibon Room': (1, 1),
+            'Alchemy Laboratory, Tetromino Room': (0, 5),
+            'Alchemy Laboratory, Bat Card Room': (1, 5),
         },
         { 'Alchemy Laboratory, Bloody Zombie Hallway': (0, 0) },
         { 'Alchemy Laboratory, Blue Door Hallway': (0, 0) },
@@ -281,9 +345,7 @@ stages = {
         { 'Alchemy Laboratory, Secret Life Max-Up Room': (0, 0) },
         { 'Alchemy Laboratory, Short Zig Zag Room': (0, 0) },
         { 'Alchemy Laboratory, Skill of Wolf Room': (0, 0) },
-        { 'Alchemy Laboratory, Slogra and Gaibon Boss Room': (0, 0) },
         { 'Alchemy Laboratory, Sunglasses Room': (0, 0) },
-        { 'Alchemy Laboratory, Tall Spittlebone Room': (0, 0) },
         { 'Alchemy Laboratory, Tall Zig Zag Room': (0, 0) },
     ],
     'Marble Gallery': [
@@ -298,29 +360,29 @@ stages = {
         {
             'Marble Gallery, Long Hallway': (32 + 0, 32 + 0),
             'Marble Gallery, Loading Room A': (32 + 0, 32 + 15),
-            'Marble Gallery, Fake Room With Teleporter B': (32 + 0, 32 + 16),
+            'Marble Gallery, Fake Room With Teleporter ID 002': (32 + 0, 32 + 16),
         },
         {
-            'Marble Gallery, Fake Room With Teleporter F': (2, 0),
+            'Marble Gallery, Fake Room With Teleporter ID 003': (2, 0),
             'Marble Gallery, Loading Room E': (2, 1),
             'Marble Gallery, S-Shaped Hallways': (0, 2),
         },
         {
-            'Marble Gallery, Fake Room With Teleporter C': (0, 0),
+            'Marble Gallery, Fake Room With Teleporter ID 000': (0, 0),
             'Marble Gallery, Loading Room C': (0, 1),
             'Marble Gallery, Entrance': (0, 2),
         },
         {
-            'Marble Gallery, Fake Room With Teleporter A': (0, 0),
+            'Marble Gallery, Fake Room With Teleporter ID 001': (0, 0),
             'Marble Gallery, Loading Room D': (0, 1),
             'Marble Gallery, Pathway After Left Statue': (0, 2),
         },
         {
             'Marble Gallery, Elevator Room': (0, 0),
-            'Marble Gallery, Fake Room With Teleporter E': (1, 0),
+            'Marble Gallery, Fake Room With Teleporter ID 005': (1, 0),
         },
         {
-            'Marble Gallery, Fake Room With Teleporter D': (1, 0),
+            'Marble Gallery, Fake Room With Teleporter ID 004': (1, 0),
             'Marble Gallery, Loading Room B': (1, 1),
             'Marble Gallery, Stairwell to Underground Caverns': (0, 2),
         },
@@ -348,18 +410,18 @@ stages = {
     'Outer Wall': [
         {
             'Outer Wall, Elevator Shaft Room': (32 + 0, 32 + 2),
-            'Outer Wall, Fake Room With Teleporter B': (32 + 2, 32 + 1),
+            'Outer Wall, Fake Room With Teleporter ID 042': (32 + 2, 32 + 1),
             'Outer Wall, Loading Room A': (32 + 2, 32 + 2),
-            'Outer Wall, Fake Room With Teleporter C': (32 + 6, 32 + 0),
+            'Outer Wall, Fake Room With Teleporter ID 041': (32 + 6, 32 + 0),
             'Outer Wall, Loading Room C': (32 + 6, 32 + 1),
         },
         {
-            'Outer Wall, Fake Room With Teleporter A': (0, 0),
+            'Outer Wall, Fake Room With Teleporter ID 043': (0, 0),
             'Outer Wall, Loading Room B': (0, 1),
             'Outer Wall, Exit to Clock Tower': (0, 2),
         },
         {
-            'Outer Wall, Fake Room With Teleporter D': (0, 0),
+            'Outer Wall, Fake Room With Teleporter ID 040': (0, 0),
             'Outer Wall, Loading Room D': (0, 1),
             'Outer Wall, Exit to Marble Gallery': (0, 2),
         },
@@ -388,10 +450,10 @@ stages = {
         {
             'Olrox\'s Quarters, Skelerang Room': (32 + 0, 32 + 0),
             'Olrox\'s Quarters, Loading Room A': (32 + 2, 32 + 1),
-            'Olrox\'s Quarters, Fake Room With Teleporter D': (32 + 2, 32 + 2),
+            'Olrox\'s Quarters, Fake Room With Teleporter ID 024': (32 + 2, 32 + 2),
         },
         {
-            'Olrox\'s Quarters, Fake Room With Teleporter C': (1, 0),
+            'Olrox\'s Quarters, Fake Room With Teleporter ID 026': (1, 0),
             'Olrox\'s Quarters, Loading Room B': (1, 1),
             'Olrox\'s Quarters, Grand Staircase': (0, 2),
             'Olrox\'s Quarters, Bottom of Stairwell': (2, 3),
@@ -399,10 +461,10 @@ stages = {
         {
             'Olrox\'s Quarters, Tall Shaft': (0, 0),
             'Olrox\'s Quarters, Loading Room C': (5, 1),
-            'Olrox\'s Quarters, Fake Room With Teleporter B': (5, 2),
+            'Olrox\'s Quarters, Fake Room With Teleporter ID 027': (5, 2),
         },
         {
-            'Olrox\'s Quarters, Fake Room With Teleporter A': (0, 0),
+            'Olrox\'s Quarters, Fake Room With Teleporter ID 025': (0, 0),
             'Olrox\'s Quarters, Loading Room D': (0, 1),
             'Olrox\'s Quarters, Catwalk Crypt': (0, 2),
         },
@@ -425,13 +487,13 @@ stages = {
     'Colosseum': [
         {
             # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
-            'Colosseum, Fake Room With Teleporter A': (32 + 0, 32 + 0),
+            'Colosseum, Fake Room With Teleporter ID 052': (32 + 0, 32 + 0),
             'Colosseum, Loading Room A': (32 + 0, 32 + 1),
             'Colosseum, Passageway Between Arena and Royal Chapel': (32 + 0, 32 + 2),
             'Colosseum, Arena': (32 + 0, 32 + 7),
             'Colosseum, Top of Elevator Shaft': (32 + 0, 32 + 9),
             'Colosseum, Loading Room B': (32 + 0, 32 + 14),
-            'Colosseum, Fake Room With Teleporter B': (32 + 0, 32 + 15),
+            'Colosseum, Fake Room With Teleporter ID 053': (32 + 0, 32 + 15),
             # NOTE(sestren): This room must be connected for now due to the two-room elevator
             'Colosseum, Bottom of Elevator Shaft': (32 + 1, 32 + 9),
         },
@@ -452,7 +514,7 @@ stages = {
         {
             'Long Library, Exit to Outer Wall': (32 + 0, 32 + 0),
             'Long Library, Loading Room A': (32 + 0, 32 + 3),
-            'Long Library, Fake Room With Teleporter A': (32 + 0, 32 + 4),
+            'Long Library, Fake Room With Teleporter ID 006': (32 + 0, 32 + 4),
         },
         {
             'Long Library, Spellbook Area': (0, 0),
@@ -472,14 +534,18 @@ stages = {
     ],
     'Clock Tower': [
         {
-            'Clock Tower, Fake Room With Teleporter A': (32 + 0, 32 + 0),
+            'Clock Tower, Fake Room With Teleporter ID 009': (32 + 0, 32 + 0),
             'Clock Tower, Loading Room B': (32 + 0, 32 + 1),
             'Clock Tower, Karasuman\'s Room': (32 + 0, 32 + 2),
         },
         {
-            'Clock Tower, Stairwell to Outer Wall': (32 + 0, 32 + 0),
-            'Clock Tower, Loading Room A': (32 + 0, 32 + 1),
-            'Clock Tower, Fake Room With Teleporter B': (32 + 0, 32 + 2),
+            'Clock Tower, Stairwell to Outer Wall': (0, 0),
+            'Clock Tower, Loading Room A': (0, 1),
+            'Clock Tower, Fake Room With Teleporter ID 010': (0, 2),
+        },
+        {
+            'Clock Tower, Spire': (0, 0),
+            'Clock Tower, Belfry': (2, 1),
         },
         { 'Clock Tower, Path to Karasuman': (0, 0) },
         { 'Clock Tower, Healing Mail Room': (0, 0) },
@@ -489,7 +555,6 @@ stages = {
         { 'Clock Tower, Left Gear Room': (0, 0) },
         { 'Clock Tower, Right Gear Room': (0, 0) },
         { 'Clock Tower, Exit to Courtyard': (0, 0) },
-        { 'Clock Tower, Belfry': (0, 0) },
         { 'Clock Tower, Open Courtyard': (0, 0) },
         { 'Clock Tower, Fire of Bat Room': (0, 0) },
     ],
@@ -497,25 +562,25 @@ stages = {
         {
             'Warp Rooms, Warp Room D': (38 + 0, 15 + 0),
             'Warp Rooms, Loading Room B': (38 + 0, 15 + 1),
-            'Warp Rooms, Fake Room With Teleporter D': (38 + 0, 15 + 2),
+            'Warp Rooms, Fake Room With Teleporter ID 031': (38 + 0, 15 + 2),
         },
         {
-            'Warp Rooms, Fake Room With Teleporter A': (12 + 0, 38 + 0),
+            'Warp Rooms, Fake Room With Teleporter ID 028': (12 + 0, 38 + 0),
             'Warp Rooms, Loading Room E': (12 + 0, 38 + 1),
             'Warp Rooms, Warp Room A': (12 + 0, 38 + 2),
         },
         {
-            'Warp Rooms, Fake Room With Teleporter C': (21 + 0, 35 + 0),
+            'Warp Rooms, Fake Room With Teleporter ID 030': (21 + 0, 35 + 0),
             'Warp Rooms, Loading Room C': (21 + 0, 35 + 1),
             'Warp Rooms, Warp Room B': (21 + 0, 35 + 2),
         },
         {
             'Warp Rooms, Warp Room C': (17 + 0, 59 + 0),
             'Warp Rooms, Loading Room D': (17 + 0, 59 + 1),
-            'Warp Rooms, Fake Room With Teleporter B': (17 + 0, 59 + 2),
+            'Warp Rooms, Fake Room With Teleporter ID 029': (17 + 0, 59 + 2),
         },
         {
-            'Warp Rooms, Fake Room With Teleporter E': (44 + 0, 33 + 0),
+            'Warp Rooms, Fake Room With Teleporter ID 032': (44 + 0, 33 + 0),
             'Warp Rooms, Loading Room A': (44 + 0, 33 + 1),
             'Warp Rooms, Warp Room E': (44 + 0, 33 + 2),
         },
@@ -526,17 +591,17 @@ stages = {
             'Castle Keep, Upper Attic': (32 + 1, 32 + 5),
             'Castle Keep, Lower Attic': (32 + 2, 32 + 6),
             'Castle Keep, Loading Room C': (32 + 7, 32 + 1),
-            'Castle Keep, Fake Room With Teleporter B': (32 + 7, 32 + 0),
+            'Castle Keep, Fake Room With Teleporter ID 047': (32 + 7, 32 + 0),
         },
         {
             'Castle Keep, Lion Torch Platform': (0 + 0, 0 + 0),
             'Castle Keep, Loading Room A': (0 + 1, 0 + 1),
-            'Castle Keep, Fake Room With Teleporter A': (0 + 1, 0 + 2),
+            'Castle Keep, Fake Room With Teleporter ID 045': (0 + 1, 0 + 2),
         },
         {
             'Castle Keep, Dual Platforms': (0 + 0, 0 + 0),
             'Castle Keep, Loading Room B': (0 + 1, 0 + 1),
-            'Castle Keep, Fake Room With Teleporter C': (0 + 1, 0 + 2),
+            'Castle Keep, Fake Room With Teleporter ID 046': (0 + 1, 0 + 2),
         },
         { 'Castle Keep, Bend': (0, 0) },
         { 'Castle Keep, Falchion Room': (0, 0) },
@@ -557,22 +622,22 @@ stages = {
             'Royal Chapel, Walkway Right of Hippogryph': (32 + 3, 32 + 15),
             'Royal Chapel, Right Tower': (32 + 0, 32 + 16),
             'Royal Chapel, Loading Room A': (32 + 2, 32 + 19),
-            'Royal Chapel, Fake Room With Teleporter A': (32 + 2, 32 + 20),
+            'Royal Chapel, Fake Room With Teleporter ID 036': (32 + 2, 32 + 20),
         },
         {
             'Royal Chapel, Pushing Statue Shortcut': (0 + 0, 0 + 0),
             'Royal Chapel, Loading Room D': (0 + 0, 0 + 1),
-            'Royal Chapel, Fake Room With Teleporter B': (0 + 0, 0 + 2),
+            'Royal Chapel, Fake Room With Teleporter ID 033': (0 + 0, 0 + 2),
         },
         {
             'Royal Chapel, Nave': (0 + 0, 0 + 0),
             'Royal Chapel, Loading Room C': (0 + 1, 0 + 2),
-            'Royal Chapel, Fake Room With Teleporter C': (0 + 1, 0 + 3),
+            'Royal Chapel, Fake Room With Teleporter ID 034': (0 + 1, 0 + 3),
         },
         {
             'Royal Chapel, Statue Ledge': (0 + 0, 0 + 0),
             'Royal Chapel, Loading Room B': (0 + 0, 0 + 1),
-            'Royal Chapel, Fake Room With Teleporter D': (0 + 0, 0 + 2),
+            'Royal Chapel, Fake Room With Teleporter ID 035': (0 + 0, 0 + 2),
         },
         { 'Royal Chapel, Chapel Staircase': (0, 0) },
         { 'Royal Chapel, Confessional Booth': (0, 0) },
@@ -585,20 +650,20 @@ stages = {
     'Underground Caverns': [
         {
             'Underground Caverns, False Save Room': (32 + 0, 32 + 0),
-            'Underground Caverns, Fake Room With Teleporter B': (32 + 0, 32 + 1),
+            'Underground Caverns, Fake Room With Teleporter ID 051': (32 + 0, 32 + 1),
         },
         {
-            'Underground Caverns, Fake Room With Teleporter D': (0 + 0, 0 + 0),
+            'Underground Caverns, Fake Room With Teleporter ID 048': (0 + 0, 0 + 0),
             'Underground Caverns, Loading Room A': (0 + 0, 0 + 1),
             'Underground Caverns, Exit to Castle Entrance': (0 + 0, 0 + 2),
         },
         {
             'Underground Caverns, Long Drop': (0 + 0, 0 + 0),
             'Underground Caverns, Loading Room B': (0 + 0, 0 + 1),
-            'Underground Caverns, Fake Room With Teleporter A': (0 + 0, 0 + 2),
+            'Underground Caverns, Fake Room With Teleporter ID 049': (0 + 0, 0 + 2),
         },
         {
-            'Underground Caverns, Fake Room With Teleporter C': (0 + 0, 0 + 0),
+            'Underground Caverns, Fake Room With Teleporter ID 050': (0 + 0, 0 + 0),
             'Underground Caverns, Loading Room C': (0 + 0, 0 + 1),
             'Underground Caverns, Exit to Abandoned Mine': (0 + 0, 0 + 2),
         },
@@ -641,15 +706,15 @@ stages = {
         {
             'Abandoned Mine, Wolf\'s Head Column': (32 + 0, 32 + 0),
             'Abandoned Mine, Loading Room C': (32 + 0, 32 + 1),
-            'Abandoned Mine, Fake Room With Teleporter A': (32 + 0, 32 + 2),
+            'Abandoned Mine, Fake Room With Teleporter ID 019': (32 + 0, 32 + 2),
         },
         {
             'Abandoned Mine, Four-Way Intersection': (0, 0),
             'Abandoned Mine, Loading Room B': (0 + 0, 0 + 3),
-            'Abandoned Mine, Fake Room With Teleporter B': (0 + 0, 0 + 4),
+            'Abandoned Mine, Fake Room With Teleporter ID 020': (0 + 0, 0 + 4),
         },
         {
-            'Abandoned Mine, Fake Room With Teleporter C': (1 + 0, 0 + 0),
+            'Abandoned Mine, Fake Room With Teleporter ID 018': (1 + 0, 0 + 0),
             'Abandoned Mine, Loading Room A': (1 + 0, 0 + 1),
             'Abandoned Mine, Bend': (0, 2),
         },
@@ -669,10 +734,10 @@ stages = {
     ],
     'Castle Center': [
         {
-            'Castle Center, Fake Room With Teleporter A': (27 + 0, 32 + 0),
+            'Castle Center, Fake Room With Teleporter ID 007': (27 + 0, 32 + 0),
             'Castle Center, Elevator Shaft': (27 + 1, 32 + 0),
             'Castle Center, Center Cube': (27 + 3, 32 - 1),
-            'Castle Center, Unknown Room ID 04': (27 + 4, 32 + 2),
+            'Castle Center, Fake Room With Teleporter ID 008': (27 + 4, 32 + 2),
             'Castle Center, Unknown Room ID 02': (27 + 6, 32 + 0),
         },
     ],
@@ -680,7 +745,7 @@ stages = {
         {
             'Catacombs, Exit to Abandoned Mine': (32 + 0, 32 + 0),
             'Catacombs, Loading Room A': (32 + 0, 32 + 1),
-            'Catacombs, Fake Room With Teleporter A': (32 + 0, 32 + 2),
+            'Catacombs, Fake Room With Teleporter ID 016': (32 + 0, 32 + 2),
         },
         {
             # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
@@ -713,8 +778,6 @@ stages = {
         { 'Catacombs, Room ID 26': (0, 0) },
         { 'Catacombs, Spike Breaker Room': (0, 0) },
     ]
-    
-    # TODO(sestren): Reverse Colosseum, with Trio boss teleporth
 }
 
 class MapperData:
@@ -767,7 +830,6 @@ class MapperData:
 
 class LogicCore:
     def __init__(self, mapper_data, changes):
-        print('Build logic core')
         self.commands = {
             'Global': {
                 'Use Library Card': {
@@ -823,8 +885,8 @@ class LogicCore:
                         break
                 else:
                     print('Could not find key')
-                    # print(room_data)
-                    # print(stage_changes['Rooms'])
+                    print(room_data)
+                    print(stage_changes['Rooms'])
                 # if mapper_data['Rooms'][location_name]['Stage'] != stage_name:
                 #     continue
                 room_top = None
@@ -834,6 +896,8 @@ class LogicCore:
                         room_top = stage_changes['Rooms'][location_key]['Top']
                     if 'Left' in stage_changes['Rooms'][location_key]:
                         room_left = stage_changes['Rooms'][location_key]['Left']
+                if room_top is None or room_left is None:
+                    print('stage_name:', stage_name, 'has invalid dimensions')
                 assert room_top is not None
                 assert room_left is not None
                 # print(location_name, (stage_name, location_key), (room_top, room_left))
@@ -1029,9 +1093,9 @@ class Mapper:
                 no_nodes_unused and
                 (all_rooms_connected or self.stage_name in ('Warp Rooms', 'Castle Center', 'Underground Caverns'))
             )
-            # if len(self.stage.rooms) > 28:
+            # if len(self.stage.rooms) > 18:
             #     print(all_rooms_used, no_nodes_unused, all_rooms_connected, len(self.stage.rooms), len(self.rooms))
-            #     for line in self.get_spoiler('Castle Entrance'):
+            #     for line in self.get_spoiler('Colosseum'):
             #         print(line)
             #     print(len(self.steps))
             #     for step in self.steps:
@@ -1052,6 +1116,11 @@ class Mapper:
             stage_left = min(stage_left, room.left)
             stage_bottom = max(stage_bottom, room_bottom)
             stage_right = max(stage_right, room_right)
+        if (
+            float('inf') in (stage_top, stage_left, stage_bottom, stage_right) or
+            float('-inf') in (stage_top, stage_left, stage_bottom, stage_right)
+        ):
+            return(['Dimensions of stage not valid'])
         stage_rows = 1 + stage_bottom - stage_top
         stage_cols = 1 + stage_right - stage_left
         grid = [[' ' for col in range(5 * stage_cols)] for row in range(5 * stage_rows)]
@@ -1072,6 +1141,9 @@ class Mapper:
                             if room.index < prev_index:
                                 grid[row][col] = code
             for node in room.nodes.values():
+                code = '?'
+                if node.type == '######....######':
+                    code = '*'
                 (exit_row, exit_col, exit_edge) = (node.row, node.column, node.edge)
                 row = 2 + 5 * (room.top - stage_top + exit_row)
                 col = 2 + 5 * (room.left - stage_left + exit_col)

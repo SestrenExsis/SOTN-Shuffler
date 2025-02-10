@@ -5,23 +5,41 @@ Index: 3
 Columns: 1
 Rows: 4
 Empty Cells: {}
+Map:
+    - "00000"
+    - "01110"
+    - "11111"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "00100"
 Nodes:
     Upper-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left
         Entry Section: Upper-Left Ledge
         Exit Section: Upper-Left Ledge
     Upper-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Right
         Entry Section: Moved Block
         Exit Section: Moved Block
     Bottom Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 3
         Column: 0
         Edge: Bottom

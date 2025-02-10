@@ -5,16 +5,26 @@ Index: 0
 Columns: 1
 Rows: 2
 Empty Cells: {}
+Map:
+    - "00100"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "01110"
+    - "00100"
 Nodes:
     Top Passage:
-        Type: Passage
+        Type: "#######..#######"
         Row: 0
         Column: 0
         Edge: Top
         Entry Section: Main
         Exit Section: Main
     Bottom Passage:
-        Type: Passage
+        Type: "#####......#####"
         Row: 1
         Column: 0
         Edge: Bottom

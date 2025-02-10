@@ -5,9 +5,15 @@ Index: 24
 Columns: 1
 Rows: 1
 Empty Cells: {}
+Map:
+    - "00000"
+    - "04440"
+    - "14440"
+    - "04440"
+    - "00000"
 Nodes:
     Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left

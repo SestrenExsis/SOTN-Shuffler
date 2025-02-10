@@ -1,13 +1,19 @@
 
 Stage: Castle Entrance
 Room: Fake Room With Teleporter B
-Index: 29
+Index: 31
 Columns: 1
 Rows: 1
 Empty Cells: {}
+Map:
+    - "00000"
+    - "0aaa0"
+    - "1aaa0"
+    - "0aaa0"
+    - "00000"
 Nodes:
     Left Passage:
-        Type: Passage
+        Type: "................"
         Row: 0
         Column: 0
         Edge: Left

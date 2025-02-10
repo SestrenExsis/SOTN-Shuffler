@@ -7,21 +7,21 @@ Rows: 1
 Empty Cells: {}
 Nodes:
     Left Red Door:
-        Type: Red Door
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Left-Top Passage:
-        Type: Passage
+        Type: "#######..#######"
         Row: 0
         Column: 1
         Edge: Top
         Entry Section: Falling
         Exit Section: Rising
     Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 6
         Edge: Right

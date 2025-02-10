@@ -7,28 +7,28 @@ Rows: 1
 Empty Cells: {}
 Nodes:
     Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Right
         Entry Section: Main
         Exit Section: Main
     Top Passage:
-        Type: Passage
+        Type: "#...###..###...#"
         Row: 0
         Column: 0
         Edge: Top
         Entry Section: Top, Falling
         Exit Section: Top, Rising
     Bottom Passage:
-        Type: Passage
+        Type: "####........####"
         Row: 0
         Column: 0
         Edge: Bottom
@@ -70,6 +70,9 @@ Commands:
             Main - Bat:
                 Section: Main
                 Progression - Bat Transformation: true
+            Main - Double Jump:
+                Section: Main
+                Progression - Double Jump: true
             Main - Gravity Jump:
                 Section: Main
                 Progression - Gravity Jump: true
@@ -107,6 +110,10 @@ Commands:
             Main - Bat + Stopwatch:
                 Section: Main
                 Progression - Bat Transformation: true
+                Subweapon: Stopwatch
+            Main - Double Jump + Stopwatch:
+                Section: Main
+                Progression - Double Jump: true
                 Subweapon: Stopwatch
             Main - Gravity Jump + Stopwatch:
                 Section: Main

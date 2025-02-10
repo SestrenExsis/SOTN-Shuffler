@@ -1,0 +1,16 @@
+
+Stage: Marble Gallery
+Room: Fake Room With Teleporter ID 005
+Index: 37
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Nodes:
+    Top Passage:
+        Type: "................"
+        Row: 0
+        Column: 0
+        Edge: Top
+        Entry Section: Fake
+        Exit Section: Dummy
+Commands: {}
