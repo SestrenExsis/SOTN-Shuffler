@@ -122,20 +122,31 @@ if __name__ == '__main__':
                 }
             # ...
             stage_offsets = {}
+
             # NOTE(sestren): Place Castle Entrance
-            current_stage = stages['Castle Entrance'].stage
             # NOTE(sestren): For now, the position of the Castle Entrance stage is restricted by where 'Unknown Room 20' and 'After Drawbridge' can be
+            current_stage = stages['Castle Entrance'].stage
             stage_top = 38 - current_stage.rooms['Castle Entrance, After Drawbridge'].top
             stage_left = max(0, 1 - current_stage.rooms['Castle Entrance, Unknown Room 20'].left)
             stage_offsets['Castle Entrance'] = (stage_top, stage_left)
-            print('Castle Entrance', (stage_top, stage_left))
+            # print('Castle Entrance', (stage_top, stage_left))
+
+            # NOTE(sestren): Place Underground Caverns
+            # NOTE(sestren): For now, the position of the Underground Caverns stage is restricted by where 'False Save Room' can be?
+            current_stage = stages['Underground Caverns'].stage
+            stage_top = 33 - current_stage.rooms['Underground Caverns, False Save Room'].top
+            stage_left = 45 - current_stage.rooms['Underground Caverns, False Save Room'].left
+            stage_offsets['Underground Caverns'] = (stage_top, stage_left)
+            # print('Underground Caverns', (stage_top, stage_left))
+
             # NOTE(sestren): Place Warp Rooms
-            current_stage = stages['Warp Rooms'].stage
             # NOTE(sestren): For now, the position of the Warp Rooms stage must be in its vanilla location
+            current_stage = stages['Warp Rooms'].stage
             stage_top = 12 - current_stage.rooms['Warp Rooms, Warp Room A'].top
             stage_left = max(0, 40 - current_stage.rooms['Warp Rooms, Warp Room A'].left)
             stage_offsets['Warp Rooms'] = (stage_top, stage_left)
-            print('Warp Rooms', (stage_top, stage_left))
+            # print('Warp Rooms', (stage_top, stage_left))
+            
             # TODO(sestren): Then randomly place down other stages one at a time
             stage_names = [
                 'Abandoned Mine',
@@ -150,7 +161,7 @@ if __name__ == '__main__':
                 'Olrox\'s Quarters',
                 'Outer Wall',
                 'Royal Chapel',
-                'Underground Caverns',
+                # 'Underground Caverns',
             ]
             valid_ind = False
             global_rng.shuffle(stage_names)
@@ -199,7 +210,7 @@ if __name__ == '__main__':
                 cells = current_stage.get_cells(stage_top, stage_left)
                 prev_cells.union(cells)
                 stage_offsets[stage_name] = (stage_top, stage_left)
-                print(stage_name, (stage_top, stage_left))
+                # print(stage_name, (stage_top, stage_left))
             else:
                 valid_ind = True
             if not valid_ind:
@@ -761,78 +772,591 @@ if __name__ == '__main__':
             for row in range(len(castle_map)):
                 row_data = ''.join(castle_map[row])
                 changes['Castle Map'].append(row_data)
-            # with open(os.path.join('build', 'sandbox', 'debug-changes.json'), 'w') as debug_changes_json:
-            #     json.dump(changes, debug_changes_json, indent='    ', sort_keys=True, default=str)
-            print('Require that reaching all shuffled stages in a reasonable amount of steps is possible')
-            # TODO(sestren): Add all vanilla stages to logic
+            print('Require that all goals are met')
             logic_core = mapper.LogicCore(mapper_core, changes).get_core()
-            logic_core['Goals'] = {
-                # 'Debug': {
-                #     'Location': 'Castle Entrance, After Drawbridge',
-                # },
-                # 'Exploration': {
-                #     'Stages Visited': {
-                #         'All': {
-                #             'Abandoned Mine': True,
-                #             'Alchemy Laboratory': True,
-                #             'Castle Center': True,
-                #             'Castle Entrance': True,
-                #             'Castle Entrance Revisited': True,
-                #             'Castle Keep': True,
-                #             'Catacombs': True,
-                #             'Clock Tower': True,
-                #             'Colosseum': True,
-                #             'Long Library': True,
-                #             'Marble Gallery': True,
-                #             'Olrox\'s Quarters': True,
-                #             'Outer Wall': True,
-                #             'Royal Chapel': True,
-                #             'Underground Caverns': True,
-                #             'Warp Rooms': True,
-                #         }
-                #     },
-                # },
-                # 'Bad Ending': {
-                #     'Status - Richter Defeated': True,
-                # },
-                'WIP: Good Ending': {
-                    'Relic - Jewel of Open': True,
-                    'Relic - Leap Stone': True,
-                    'Relic - Form of Mist': True,
-                    'Relic - Soul of Bat': True,
-                    'Relic - Echo of Bat': True,
-                    'Item - Spike Breaker': {
-                        'Minimum': 1,
+            stage_validations = {
+                'Abandoned Mine': {
+                    'Loading Room C with Soul of Bat -> Loading Room A': {
+                        'State': {
+                            'Location': 'Abandoned Mine, Loading Room C',
+                            'Section': 'Main',
+                            'Relic - Soul of Bat': True,
+                            'Progression - Bat Transformation': True,
+                        },
+                        'Goals': {
+                            'Reach Catacombs': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Abandoned Mine, Loading Room A (Main)': True,
+                                    },
+                                },
+                            },
+                        },
                     },
-                    'Item - Silver Ring': {
-                        'Minimum': 1,
+                    'Loading Room C with Soul of Bat -> Cerberus Room': {
+                        'State': {
+                            'Location': 'Abandoned Mine, Loading Room C',
+                            'Section': 'Main',
+                            'Relic - Soul of Bat': True,
+                            'Progression - Bat Transformation': True,
+                        },
+                        'Goals': {
+                            'Reach Catacombs': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Abandoned Mine, Cerberus Room (Main)': True,
+                                    },
+                                },
+                            },
+                        },
                     },
-                    'Item - Gold Ring': {
-                        'Minimum': 1,
-                    },
-                    'Item - Holy Glasses': {
-                        'Minimum': 1,
-                    },
-                    'Status - Richter Saved': True,
-                    "Abandoned Mine, Cerberus Room": True,
-                    "Outer Wall, Doppelganger Room": True,
-                    "Royal Chapel, Hippogryph Room": True,
-                    "Olrox's Quarters, Olrox's Room": True,
-                    "Clock Tower, Karasuman's Room": True,
-                    # 'Relic - Ring of Vlad': True,
-                    # 'Relic - Heart of Vlad': True,
-                    # 'Relic - Tooth of Vlad': True,
-                    # 'Relic - Rib of Vlad': True,
-                    # 'Relic - Eye of Vlad': True,
-                    # 'Status - Dracula Defeated': True,
                 },
+                'Alchemy Laboratory': {
+                    'Loading Room A with Jewel of Open -> Loading Room B': {
+                        'State': {
+                            'Location': 'Alchemy Laboratory, Loading Room A',
+                            'Section': 'Main',
+                            'Relic - Jewel of Open': True,
+                            'Progression - Unlock Blue Doors': True,
+                        },
+                        'Goals': {
+                            'Reach Royal Chapel': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Alchemy Laboratory, Loading Room B (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    'Loading Room C with Soul of Bat and Jewel of Open -> Slogra and Gaibon Room': {
+                        'State': {
+                            'Location': 'Alchemy Laboratory, Loading Room C',
+                            'Section': 'Main',
+                            'Relic - Soul of Bat': True,
+                            'Progression - Bat Transformation': True,
+                            'Relic - Jewel of Open': True,
+                            'Progression - Unlock Blue Doors': True,
+                        },
+                        'Goals': {
+                            'Reach Slogra and Gaibon': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Alchemy Laboratory, Slogra and Gaibon Room (Ground)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    'Loading Room C -> Loading Room A': {
+                        'State': {
+                            'Location': 'Alchemy Laboratory, Loading Room C',
+                            'Section': 'Main',
+                        },
+                        'Goals': {
+                            'Reach Marble Gallery': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Alchemy Laboratory, Loading Room A (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+                'Castle Center': {
+                    'Elevator Shaft -> Holy Glasses': {
+                        'State': {
+                            'Location': 'Castle Center, Elevator Shaft',
+                            'Section': 'Main',
+                        },
+                        'Goals': {
+                            'Get Holy Glasses': {
+                                'Item - Holy Glasses': {
+                                    'Minimum': 1,
+                                },
+                            },
+                        },
+                    },
+                },
+                'Castle Entrance': {
+                    'Start -> Loading Room C': {
+                        'State': {
+                            'Location': 'Castle Entrance, After Drawbridge',
+                            'Section': 'Ground',
+                        },
+                        'Goals': {
+                            'Reach Alchemy Laboratory': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Castle Entrance, Loading Room C (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+                'Castle Keep': {
+                    'Loading Room A with Soul of Bat and Holy Glasses -> Save Richter': {
+                        'State': {
+                            'Location': 'Castle Keep, Loading Room A',
+                            'Section': 'Main',
+                            'Relic - Soul of Bat': True,
+                            'Progression - Bat Transformation': True,
+                            'Item - Holy Glasses': 1,
+                        },
+                        'Goals': {
+                            'Save Richter': {
+                                'Status - Richter Saved': True,
+                            },
+                        },
+                    },
+                    'Loading Room C -> Leap Stone -> Loading Room C': {
+                        'State': {
+                            'Location': 'Castle Keep, Loading Room C',
+                            'Section': 'Main',
+                        },
+                        'Goals': {
+                            'Get Leap Stone and Return to Royal Chapel': {
+                                'Relic - Leap Stone': True,
+                                'Progression - Double Jump': True,
+                                'Locations Visited': {
+                                    'All': {
+                                        'Castle Keep, Loading Room C (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+                'Catacombs': {
+                    'Loading Room A with Soul of Bat and Echo of Bat -> Spike Breaker': {
+                        'State': {
+                            'Location': 'Catacombs, Loading Room A',
+                            'Section': 'Main',
+                            'Relic - Soul of Bat': True,
+                            'Progression - Bat Transformation': True,
+                            'Relic - Echo of Bat': True,
+                            'Progression - Echolocation': True,
+                        },
+                        'Goals': {
+                            'Get Spike Breaker': {
+                                'Item - Spike Breaker': {
+                                    'Minimum': 1,
+                                },
+                            },
+                        },
+                    },
+                },
+                'Clock Tower': {
+                    'Loading Room A with Double Jump -> Loading Room B': {
+                        'State': {
+                            'Location': 'Clock Tower, Loading Room A',
+                            'Section': 'Main',
+                            'Relic - Leap Stone': True,
+                            'Progression - Double Jump': True,
+                        },
+                        'Goals': {
+                            'Reach Castle Keep': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Clock Tower, Loading Room B (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    'Loading Room A with Soul of Bat -> Karasuman\'s Room': {
+                        'State': {
+                            'Location': 'Clock Tower, Loading Room A',
+                            'Section': 'Main',
+                            'Relic - Soul of Bat': True,
+                            'Progression - Bat Transformation': True,
+                        },
+                        'Goals': {
+                            'Reach Karasuman\'s Room': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Clock Tower, Karasuman\'s Room (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+                'Colosseum': {
+                    'Loading Room B -> Loading Room A': {
+                        'State': {
+                            'Location': 'Colosseum, Loading Room B',
+                            'Section': 'Main',
+                        },
+                        'Goals': {
+                            'Reach Castle Keep': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Colosseum, Loading Room A (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    'Loading Room A with Shortcut Unlocked -> Loading Room B': {
+                        'State': {
+                            'Location': 'Colosseum, Loading Room A',
+                            'Section': 'Main',
+                            'Status - Shortcut Between Holy Chapel and Colosseum Unlocked': True,
+                        },
+                        'Goals': {
+                            'Reach Castle Keep': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Colosseum, Loading Room B (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    'Loading Room B -> Library Card -> Form of Mist': {
+                        'State': {
+                            'Location': 'Colosseum, Loading Room B',
+                            'Section': 'Main',
+                        },
+                        'Goals': {
+                            'Get Library Card and Form of Mist': {
+                                'Item - Library Card': 1,
+                                'Relic - Form of Mist': True,
+                                'Progression - Mist Transformation': True,
+                            },
+                        },
+                    },
+                },
+                'Long Library': {
+                    'Loading Room A with Soul of Wolf -> Jewel of Open -> Loading Room A': {
+                        'State': {
+                            'Location': 'Long Library, Loading Room A',
+                            'Section': 'Main',
+                            'Relic - Soul of Wolf': True,
+                            'Progression - Wolf Transformation': True,
+                        },
+                        'Goals': {
+                            'Get Jewel of Open and Reach Outer Wall': {
+                                'Relic - Jewel of Open': True,
+                                'Progression - Unlock Blue Doors': True,
+                                'Locations Visited': {
+                                    'All': {
+                                        'Long Library, Loading Room A (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    'Loading Room A with Double Jump, Soul of Wolf, and Form of Mist -> Soul of Bat -> Loading Room A': {
+                        'State': {
+                            'Location': 'Long Library, Loading Room A',
+                            'Section': 'Main',
+                            'Relic - Leap Stone': True,
+                            'Progression - Double Jump': True,
+                            'Relic - Soul of Wolf': True,
+                            'Progression - Wolf Transformation': True,
+                            'Relic - Form of Mist': True,
+                            'Progression - Mist Transformation': True,
+                        },
+                        'Goals': {
+                            'Get Soul of Bat and Reach Outer Wall': {
+                                'Relic - Soul of Bat': True,
+                                'Progression - Bat Transformation': True,
+                                'Locations Visited': {
+                                    'All': {
+                                        'Long Library, Loading Room A (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+                'Marble Gallery': {
+                    'Loading Room A with Leap Stone -> Loading Room D': {
+                        'State': {
+                            'Location': 'Marble Gallery, Loading Room A',
+                            'Section': 'Main',
+                            'Relic - Leap Stone': True,
+                            'Progression - Double Jump': True,
+                        },
+                        'Goals': {
+                            'Reach Olrox\'s Quarters': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Marble Gallery, Loading Room D (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    'Loading Room A with Soul of Bat, Jewel of Open, Gold Ring, and Silver Ring -> Elevator Room': {
+                        'State': {
+                            'Location': 'Marble Gallery, Loading Room A',
+                            'Section': 'Main',
+                            'Relic - Soul of Bat': True,
+                            'Progression - Bat Transformation': True,
+                            'Relic - Jewel of Open': True,
+                            'Progression - Unlock Blue Doors': True,
+                            'Item - Silver Ring': 1,
+                            'Item - Gold Ring': 1,
+                        },
+                        'Goals': {
+                            'Reach Castle Center': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Marble Gallery, Elevator Room (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    'Loading Room A with Jewel of Open -> Loading Room B': {
+                        'State': {
+                            'Location': 'Marble Gallery, Loading Room A',
+                            'Section': 'Main',
+                            'Relic - Jewel of Open': True,
+                            'Progression - Unlock Blue Doors': True,
+                        },
+                        'Goals': {
+                            'Reach Underground Caverns': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Marble Gallery, Loading Room B (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    'Loading Room C -> Loading Room A': {
+                        'State': {
+                            'Location': 'Marble Gallery, Loading Room C',
+                            'Section': 'Main',
+                        },
+                        'Goals': {
+                            'Reach Outer Wall': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Marble Gallery, Loading Room A (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+                'Olrox\'s Quarters': {
+                    'Loading Room A -> Loading Room B': {
+                        'State': {
+                            'Location': 'Olrox\'s Quarters, Loading Room A',
+                            'Section': 'Main',
+                        },
+                        'Goals': {
+                            'Reach Colosseum': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Olrox\'s Quarters, Loading Room B (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    'Loading Room A with Soul of Bat-> Echo of Bat': {
+                        'State': {
+                            'Location': 'Olrox\'s Quarters, Loading Room A',
+                            'Section': 'Main',
+                            'Relic - Soul of Bat': True,
+                            'Progression - Bat Transformation': True,
+                        },
+                        'Goals': {
+                            'Get Echo of Bat': {
+                                'Relic - Echo of Bat': True,
+                                'Progression - Echolocation': True,
+                            },
+                        },
+                    },
+                    'Loading Room A with Soul of Bat -> Olrox\'s Room (Ground)': {
+                        'State': {
+                            'Location': 'Olrox\'s Quarters, Loading Room A',
+                            'Section': 'Main',
+                            'Relic - Soul of Bat': True,
+                            'Progression - Bat Transformation': True,
+                        },
+                        'Goals': {
+                            'Reach Catacombs': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Olrox\'s Quarters, Olrox\'s Room (Ground)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+                'Outer Wall': {
+                    'Loading Room D -> Soul of Wolf -> Loading Room A': {
+                        'State': {
+                            'Location': 'Outer Wall, Loading Room A',
+                            'Section': 'Main',
+                        },
+                        'Goals': {
+                            'Reach Warp Rooms': {
+                                'Relic - Soul of Wolf': True,
+                                'Locations Visited': {
+                                    'All': {
+                                        'Outer Wall, Loading Room A (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    'Loading Room D -> Soul of Wolf -> Loading Room B': {
+                        'State': {
+                            'Location': 'Outer Wall, Loading Room A',
+                            'Section': 'Main',
+                        },
+                        'Goals': {
+                            'Get Soul of Wolf and Reach Clock Tower': {
+                                'Relic - Soul of Wolf': True,
+                                'Locations Visited': {
+                                    'All': {
+                                        'Outer Wall, Loading Room B (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    'Loading Room D -> Soul of Wolf -> Loading Room C': {
+                        'State': {
+                            'Location': 'Outer Wall, Loading Room A',
+                            'Section': 'Main',
+                        },
+                        'Goals': {
+                            'Get Soul of Wolf and Reach Long Library': {
+                                'Relic - Soul of Wolf': True,
+                                'Locations Visited': {
+                                    'All': {
+                                        'Outer Wall, Loading Room C (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    'Loading Room B with Soul of Bat -> Doppelganger Room': {
+                        'State': {
+                            'Location': 'Outer Wall, Loading Room B',
+                            'Section': 'Main',
+                            'Relic - Soul of Bat': True,
+                            'Progression - Bat Transformation': True,
+                        },
+                        'Goals': {
+                            'Reach Catacombs': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Outer Wall, Doppelganger Room (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+                'Royal Chapel': {
+                    'Loading Room B with Jewel of Open -> Loading Room C': {
+                        'State': {
+                            'Location': 'Royal Chapel, Loading Room B',
+                            'Section': 'Main',
+                            'Relic - Jewel of Open': True,
+                            'Progression - Unlock Blue Doors': True,
+                        },
+                        'Goals': {
+                            'Reach Castle Keep': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Royal Chapel, Loading Room C (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    'Loading Room B with Jewel of Open and Spike Breaker -> Silver Ring': {
+                        'State': {
+                            'Location': 'Royal Chapel, Loading Room B',
+                            'Section': 'Main',
+                            'Relic - Jewel of Open': True,
+                            'Progression - Unlock Blue Doors': True,
+                            'Item - Spike Breaker': 1,
+                        },
+                        'Goals': {
+                            'Reach Castle Keep': {
+                                'Item - Silver Ring': {
+                                    'Minimum': 1,
+                                },
+                            },
+                        },
+                    },
+                    'Loading Room B with Soul of Bat -> Hippogryph Room': {
+                        'State': {
+                            'Location': 'Royal Chapel, Loading Room B',
+                            'Section': 'Main',
+                            'Relic - Soul of Bat': True,
+                            'Progression - Bat Transformation': True,
+                        },
+                        'Goals': {
+                            'Reach Catacombs': {
+                                'Locations Visited': {
+                                    'All': {
+                                        'Royal Chapel, Hippogryph Room (Main)': True,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+                'Underground Caverns': {
+                    'Loading Room B with Soul of Bat -> Gold Ring': {
+                        'State': {
+                            'Location': 'Underground Caverns, Loading Room B',
+                            'Section': 'Main',
+                            'Relic - Soul of Bat': True,
+                            'Progression - Bat Transformation': True,
+                        },
+                        'Goals': {
+                            'Get Gold Ring and Reach Abandoned Mine': {
+                                'Item - Gold Ring': 1,
+                            },
+                        },
+                    },
+                },
+                # 'Warp Rooms': {
+                # },
             }
-            # with open(os.path.join('build', 'debug', 'logic-core.json'), 'w') as debug_logic_core_json:
-            #     json.dump(logic_core, debug_logic_core_json, indent='    ', sort_keys=True, default=str)
-            map_solver = solver.Solver(logic_core, skills)
-            map_solver.debug = True
-            # map_solver.solve_via_steps(4999, 9999)
-            map_solver.solve_via_random_exploration(1, 49_999)
+            all_valid_ind = True
+            for (stage_name, validations) in stage_validations.items():
+                print(stage_name, 'with hash:', shuffler['Stages'][stage_name]['Hash of Rooms'])
+                for (validation_name, validation) in validations.items():
+                    logic_core = mapper.LogicCore(mapper_core, changes).get_core()
+                    for (state_key, state_value) in validation['State'].items():
+                        logic_core['State'][state_key] = state_value
+                    logic_core['Goals'] = validation['Goals']
+                    # if validation_name == 'Loading Room A with Soul of Bat -> Olrox\'s Room (Ground)':
+                    #     game__tester = solver.Game(logic_core)
+                    #     while True:
+                    #         game__tester.play()
+                    # Validate
+                    map_solver = solver.Solver(logic_core, skills)
+                    map_solver.debug = False
+                    map_solver.solve_via_random_exploration(19, 3_999, stage_name)
+                    # map_solver.decay_start = 2_999
+                    # map_solver.cycle_limit = 19_999
+                    # map_solver.solve_via_steps(stage_name)
+                    if len(map_solver.results['Wins']) < 1:
+                        print(' ', validation_name, '*** FAILED')
+                        all_valid_ind = False
+                    else:
+                        print(' ', validation_name, '*** PASSED')
+            if not all_valid_ind:
+                continue
             if len(map_solver.results['Wins']) > 0:
                 (winning_layers, winning_game) = map_solver.results['Wins'][-1]
                 print('-------------')
@@ -864,3 +1388,30 @@ if __name__ == '__main__':
                 # while True:
                 #     winning_game.play()
                 break
+            else:
+                nonwinning_game = None
+                game_type = 'Unknown'
+                if 'Withdrawals' in map_solver.results and len(map_solver.results['Withdrawals']) > 0:
+                    game_type = 'Withdrawal'
+                    (_, nonwinning_game) = map_solver.results['Withdrawals'][-1]
+                elif 'Losses' in map_solver.results and len(map_solver.results['Losses']) > 0:
+                    game_type = 'Loss'
+                    (_, nonwinning_game) = map_solver.results['Losses'][-1]
+                else:
+                    continue
+                print('-------------')
+                print(game_type)
+                print('-------------')
+                for (key, value) in sorted(nonwinning_game.current_state.items()):
+                    if key in logic_core['Goals']['WIP: Good Ending']:
+                        if key == 'Locations Visited':
+                            for (room_key, room_value) in sorted(value.items()):
+                                if room_key in logic_core['Goals']['WIP: Good Ending']['Locations Visited']['All']:
+                                    print('-', 'Room Visit - ' + room_key, ':', room_value)
+                        elif key == 'Stages Visited':
+                            for (stage_key, stage_value) in sorted(value.items()):
+                                if stage_key in logic_core['Goals']['WIP: Good Ending']['Stages Visited']['All']:
+                                    print('-', 'Stage Visit - ' + stage_key, ':', stage_value)
+                        else:
+                            print('-', key, ':', value)
+                print('-------------')

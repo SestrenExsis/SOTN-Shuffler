@@ -70,6 +70,9 @@ Commands:
             Main - Bat:
                 Section: Main
                 Progression - Bat Transformation: true
+            Main - Double Jump:
+                Section: Main
+                Progression - Double Jump: true
             Main - Gravity Jump:
                 Section: Main
                 Progression - Gravity Jump: true
@@ -107,6 +110,10 @@ Commands:
             Main - Bat + Stopwatch:
                 Section: Main
                 Progression - Bat Transformation: true
+                Subweapon: Stopwatch
+            Main - Double Jump + Stopwatch:
+                Section: Main
+                Progression - Double Jump: true
                 Subweapon: Stopwatch
             Main - Gravity Jump + Stopwatch:
                 Section: Main

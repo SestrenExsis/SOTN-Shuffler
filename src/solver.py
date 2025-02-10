@@ -317,6 +317,7 @@ class Solver():
             self.logic_core['State'][skill_key] = skill_value
         self.results = {
             'Wins': [],
+            'Withdrawals': [],
             'Losses': [],
             'Cycles': 0,
         }
@@ -335,7 +336,7 @@ class Solver():
                 result = True
         return result
     
-    def solve_via_random_exploration(self, explorer_count: int=999, cycle_limit: int=1999):
+    def solve_via_random_exploration(self, explorer_count: int=999, cycle_limit: int=1999, restrict_to_stage: str=None):
         for explorer_id in range(explorer_count):
             # print('')
             game__solver = Game(self.logic_core)
@@ -356,6 +357,9 @@ class Solver():
                 for command_name in game__solver.get_valid_command_names():
                     next_game__solver = game__solver.clone()
                     next_game__solver.process_command(command_name)
+                    if restrict_to_stage is not None:
+                        if not next_game__solver.current_state['Location'].startswith(restrict_to_stage):
+                            continue
                     next_hashed_state__solver = next_game__solver.get_key()
                     visit_count = 0
                     if next_hashed_state__solver in memo:
@@ -373,14 +377,15 @@ class Solver():
                     self.results['Losses'].append((self.cycle_count, game__solver))
                     break
                 self.cycle_count += 1
-            print(
-                'Explorer ID:', explorer_id,
-                (self.cycle_count, len(game__solver.current_state['Locations Visited']), game__solver.goals_achieved),
-                game__solver.location
-            )
+            self.results['Withdrawals'].append((self.cycle_count, game__solver))
+            if self.debug:
+                print(
+                    'Explorer ID:', explorer_id,
+                    (self.cycle_count, len(game__solver.current_state['Locations Visited']), game__solver.goals_achieved),
+                    game__solver.location
+                )
 
-    def solve_via_steps(self):
-        print('solve_via_steps')
+    def solve_via_steps(self, restrict_to_stage: str=None):
         initial_game = Game(self.logic_core)
         memo = {}
         solution_found = False
@@ -393,17 +398,17 @@ class Solver():
             # print(game__solver.current_state)
             self.cycle_count += 1
             should_prune = self.get_should_prune()
-            decay_code = 'Y' if should_prune else '-'
             if should_prune:
-                print(
-                    'Cycles:', (self.cycle_count, decay_code, len(work__solver)),
-                    'Layer:', (score__solver, step__solver, game__solver.get_progression()),
-                    'Exploration:', (
-                        len(game__solver.current_state['Stages Visited']),
-                        len(game__solver.current_state['Rooms Visited']),
-                        len(game__solver.current_state['Locations Visited']),
-                    )
-                )
+                # decay_code = 'Y' if should_prune else '-'
+                # print(
+                #     'Cycles:', (self.cycle_count, decay_code, len(work__solver)),
+                #     'Layer:', (score__solver, step__solver, game__solver.get_progression()),
+                #     'Exploration:', (
+                #         len(game__solver.current_state['Stages Visited']),
+                #         len(game__solver.current_state['Rooms Visited']),
+                #         len(game__solver.current_state['Locations Visited']),
+                #     )
+                # )
                 continue
             game__solver.layer = step__solver
             if len(game__solver.goals_achieved) > 0:
@@ -425,6 +430,9 @@ class Solver():
                 # print(' ', command)
                 next_game__solver = game__solver.clone()
                 next_game__solver.process_command(command)
+                if restrict_to_stage is not None:
+                    if not next_game__solver.current_state['Location'].startswith(restrict_to_stage):
+                        continue
                 next_step__solver = step__solver + 1
                 next_hashed_state__solver = next_game__solver.get_key()
                 next_score = next_game__solver.get_score()

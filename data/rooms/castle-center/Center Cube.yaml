@@ -35,8 +35,4 @@ Commands:
         Requirements:
             Main, Default:
                 Section: Main
-                Item - Silver Ring:
-                    Minimum: 1
-                Item - Gold Ring:
-                    Minimum: 1
                 Check - Holy Glasses Location: false
