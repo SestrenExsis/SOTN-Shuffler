@@ -675,6 +675,8 @@ if __name__ == '__main__':
     Usage
     python shuffler.py
     '''
+    MIN_MAP_ROW = 5
+    MAX_MAP_ROW = 56
     with (
         open(os.path.join('build', 'sandbox', 'rules.json')) as rules_json,
         open(os.path.join('build', 'sandbox', 'skills.json')) as skills_json,
@@ -733,7 +735,7 @@ if __name__ == '__main__':
                     hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
                     # print('Prebaked', hash_of_rooms, stage_map.current_seed)
                     assert hash_of_rooms == mapper_data['Hash of Rooms']
-                    print(' ', 'chose file with hash:', hash_of_rooms)
+                    print(' ', 'hash:', hash_of_rooms)
                     changes = {
                         'Stages': {
                             stage_name: stage_changes,
@@ -750,10 +752,10 @@ if __name__ == '__main__':
                         # map_solver.solve_via_random_exploration(2, 9_999, stage_name)
                         map_solver.solve_via_steps(50 * validation['Solver Effort'], stage_name)
                         if len(map_solver.results['Wins']) < 1:
-                            print('   ', validation_name, '*** FAILED')
+                            print('   ', 'validation:', validation_name, '... FAILED')
                             all_valid_ind = False
                         else:
-                            print('   ', validation_name, '*** PASSED')
+                            print('   ', 'validation:', validation_name, '... PASSED')
                     if all_valid_ind:
                         break
                 stages[stage_name] = stage_map
@@ -780,6 +782,17 @@ if __name__ == '__main__':
             current_stage = stages['Underground Caverns'].stage
             stage_top = 33 - current_stage.rooms['Underground Caverns, False Save Room'].top
             stage_left = 45 - current_stage.rooms['Underground Caverns, False Save Room'].left
+            (top, left, bottom, right) = current_stage.get_bounds()
+            if not (
+                MIN_MAP_ROW <= stage_top + top < MAX_MAP_ROW and
+                MIN_MAP_ROW <= stage_top + bottom < MAX_MAP_ROW and
+                0 <= stage_left + left < 64 and
+                0 <= stage_left + right < 64
+            ):
+                print('******')
+                print('Underground Caverns cannot be placed within the bounds of the map due to the forced position of False Save Room; starting over from scratch')
+                print('******')
+                continue
             stage_offsets['Underground Caverns'] = (stage_top, stage_left)
             # print('Underground Caverns', (stage_top, stage_left))
             # NOTE(sestren): Place Warp Rooms
@@ -827,7 +840,7 @@ if __name__ == '__main__':
                 (top, left, bottom, right) = current_stage.get_bounds()
                 best_area = float('inf')
                 best_stage_offsets = []
-                for stage_top in range(5, 56 - bottom):
+                for stage_top in range(MIN_MAP_ROW, MAX_MAP_ROW - bottom):
                     for stage_left in range(0, 63 - right):
                         # NOTE(sestren): Reject if it overlaps another stage
                         current_cells = current_stage.get_cells(stage_top, stage_left)
@@ -1308,7 +1321,7 @@ if __name__ == '__main__':
                 changes['Castle Map'].append(row_data)
             shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)
             current_seed = {
-                # 'Data Core': mapper_core,
+                'Data Core': mapper_core,
                 # 'Logic Core': logic_core,
                 'Shuffler': shuffler,
                 # 'Solver': solution,
