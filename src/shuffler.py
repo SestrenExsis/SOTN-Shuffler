@@ -295,17 +295,7 @@ if __name__ == '__main__':
                     continue
                 source_top = changes['Stages']['Castle Entrance']['Rooms'][room_name]['Top']
                 source_left = changes['Stages']['Castle Entrance']['Rooms'][room_name]['Left']
-                revisited_room_name = room_name
-                entrance_teleporters = {
-                    'Castle Entrance, Fake Room With Teleporter ID 013': 'Castle Entrance Revisited, Fake Room With Teleporter ID 058',
-                    'Castle Entrance, Fake Room With Teleporter ID 011': 'Castle Entrance Revisited, Fake Room With Teleporter ID 056',
-                    'Castle Entrance, Fake Room With Teleporter ID 014': 'Castle Entrance Revisited, Fake Room With Teleporter ID 059',
-                    'Castle Entrance, Fake Room With Teleporter ID 012': 'Castle Entrance Revisited, Fake Room With Teleporter ID 057',
-                }
-                if room_name in entrance_teleporters:
-                    revisited_room_name = entrance_teleporters[room_name]
-                else:
-                    revisited_room_name = 'Castle Entrance Revisited, ' + room_name[len('Castle Entrance, '):]
+                revisited_room_name = 'Castle Entrance Revisited, ' + room_name[len('Castle Entrance, '):]
                 changes['Stages']['Castle Entrance Revisited']['Rooms'][revisited_room_name] = {
                     'Top': source_top,
                     'Left': source_left,

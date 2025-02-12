@@ -38,35 +38,6 @@ class RoomNode:
         return result
     
     def matches(self, node=None) -> bool:
-        # ./############## 0-1 Right Floor Ramp
-        # .../############ 0-3 Right Floor Ramp
-        # ......########## 0-6 Passage
-        # ................ 0-16 Passage
-        # #/....../####### 2-6 Left Ceiling Ramp, Right Floor Ramp
-        # #...###..###...# 1-3 7-2 12-3 Passage (e.g., Marble Gallery, Clock Room (Top))
-        # ##..############ 2-2 Passage
-        # ##......./###### 2-7 Right Floor Ramp
-        # ##............## 2-12 Passage (e.g., Castle Entrance, Gargoyle Room (Bottom))
-        # ##.............. 2-14 Passage
-        # ###........##### 3-8 Passage
-        # ###............/ 3-12 Right Floor Ramp
-        # ###........../## 3-10 Right Floor Ramp
-        # ####....######## 4-4 Passage
-        # ###/....../##### 4-6 Left Ceiling Ramp, Right Floor Ramp
-        # ####........#### 4-8 Passage
-        # ###/..........## 4-10 Left Ceiling Ramp
-        # #####..######### 5-2 Passage
-        # #####......##### 5-6 Passage
-        # #####........### 5-8 Passage
-        # ######..######## 6-2 Passage
-        # ######....###### 6-4 Passage (very common type, aka 'Passage')
-        # ######.....##### 6-5 Passage
-        # #######..####### 7-2 Passage
-        # #######.....#### 7-5 Passage
-        # ######/.......## 7-7 Left Ceiling Ramp
-        # #########..##### 9-2 Passage
-        # #########....### 9-4 Passage
-        # ###########/.... 12-4 Left Ceiling Ramp
         incompatible_types = {
             (
                 '#####..#########',
@@ -262,6 +233,10 @@ class RoomSet:
         self.rooms.pop(room_name, None)
 
 stages = {
+    # NOTE(sestren): Loading Room and Fake Room With Teleporters use First Castle Loading Rooms to determine their shared canonical names
+    # NOTE(sestren): For instance, the Loading Room from Castle Entrance to Alchemy Laboratory is the third Loading Room in the indexed list, so it is assigned the letter C
+    # NOTE(sestren): The Fake Room attached to that Loading Room is also assigned the letter C to match it, even though that Fake Room's index comes first in the list
+    # NOTE(sestren): The same letter is used to refer to the corresponding Loading Room and Fake Room in Inverted Castle, regardless of which order their indexes occur
     'Castle Entrance': [
         # NOTE(sestren): For now, these rooms are not being added to the mapper
         # { 'Castle Entrance, Forest Cutscene': (44, 0) },
