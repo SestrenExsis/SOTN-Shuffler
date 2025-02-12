@@ -385,30 +385,25 @@ class Solver():
                     game__solver.location
                 )
 
-    def solve_via_steps(self, restrict_to_stage: str=None):
+    def solve_via_steps(self, step_limit: int=100, restrict_to_stage: str=None):
         initial_game = Game(self.logic_core)
         memo = {}
         solution_found = False
-        work__solver = []
+        current_work_key = 0
+        work__solver = {
+            current_work_key: (0, initial_game),
+        }
         self.cycle_count = 0
-        heapq.heappush(work__solver, (-initial_game.get_score(), 0, initial_game))
         while len(work__solver) > 0 and not solution_found:
-            (score__solver, step__solver, game__solver) = heapq.heappop(work__solver)
-            # print('', score__solver, step__solver, game__solver.location)
-            # print(game__solver.current_state)
+            chosen_work_key = random.choice(list(work__solver.keys()))
+            (step__solver, game__solver) = work__solver.pop(chosen_work_key)
+            if self.debug:
+                print((step__solver, len(work__solver)), (self.cycle_count, chosen_work_key), game__solver.current_state['Location'])
+            if step__solver >= step_limit:
+                continue
             self.cycle_count += 1
             should_prune = self.get_should_prune()
             if should_prune:
-                # decay_code = 'Y' if should_prune else '-'
-                # print(
-                #     'Cycles:', (self.cycle_count, decay_code, len(work__solver)),
-                #     'Layer:', (score__solver, step__solver, game__solver.get_progression()),
-                #     'Exploration:', (
-                #         len(game__solver.current_state['Stages Visited']),
-                #         len(game__solver.current_state['Rooms Visited']),
-                #         len(game__solver.current_state['Locations Visited']),
-                #     )
-                # )
                 continue
             game__solver.layer = step__solver
             if len(game__solver.goals_achieved) > 0:
@@ -417,17 +412,9 @@ class Solver():
                 break
             hashed_state__solver = game__solver.get_key()
             if hashed_state__solver in memo and memo[hashed_state__solver] <= step__solver:
-                # if self.debug:
-                #     print('    seen', hashed_state__solver, 'with layer', memo[hashed_state__solver], len(work__solver), len(memo))
                 continue
             memo[hashed_state__solver] = step__solver
-            if step__solver > -score__solver:
-                # print('Too many steps')
-                continue
-            # if self.debug:
-            #     print(score__solver, step__solver, game__solver.location, hashed_state__solver, len(work__solver), len(memo))
             for command in game__solver.get_valid_command_names():
-                # print(' ', command)
                 next_game__solver = game__solver.clone()
                 next_game__solver.process_command(command)
                 if restrict_to_stage is not None:
@@ -435,12 +422,10 @@ class Solver():
                         continue
                 next_step__solver = step__solver + 1
                 next_hashed_state__solver = next_game__solver.get_key()
-                next_score = next_game__solver.get_score()
                 if next_hashed_state__solver in memo and memo[next_hashed_state__solver] <= next_step__solver:
-                    # if self.debug:
-                    #     print('    seen', next_hashed_state__solver, 'with layer', memo[next_hashed_state__solver], next_step__solver, len(memo))
                     continue
-                heapq.heappush(work__solver, (-next_score, next_step__solver, next_game__solver))
+                current_work_key += 1
+                work__solver[current_work_key] = (next_step__solver, next_game__solver)
     
     def solve_via_layers(self, reflexive_limit: int=3, max_layers: int=8, require_validation: bool=True):
         highest_layer_found = (0, -1)
