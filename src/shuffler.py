@@ -120,9 +120,7 @@ if __name__ == '__main__':
                     'Seed': stage_map.current_seed,
                     'Stage': stage_name,
                 }
-            # ...
             stage_offsets = {}
-
             # NOTE(sestren): Place Castle Entrance
             # NOTE(sestren): For now, the position of the Castle Entrance stage is restricted by where 'Unknown Room 20' and 'After Drawbridge' can be
             current_stage = stages['Castle Entrance'].stage
@@ -130,15 +128,13 @@ if __name__ == '__main__':
             stage_left = max(0, 1 - current_stage.rooms['Castle Entrance, Unknown Room 20'].left)
             stage_offsets['Castle Entrance'] = (stage_top, stage_left)
             # print('Castle Entrance', (stage_top, stage_left))
-
             # NOTE(sestren): Place Underground Caverns
-            # NOTE(sestren): For now, the position of the Underground Caverns stage is restricted by where 'False Save Room' can be?
+            # NOTE(sestren): For now, the position of the Underground Caverns stage is restricted by where 'False Save Room' can be
             current_stage = stages['Underground Caverns'].stage
             stage_top = 33 - current_stage.rooms['Underground Caverns, False Save Room'].top
             stage_left = 45 - current_stage.rooms['Underground Caverns, False Save Room'].left
             stage_offsets['Underground Caverns'] = (stage_top, stage_left)
             # print('Underground Caverns', (stage_top, stage_left))
-
             # NOTE(sestren): Place Warp Rooms
             # NOTE(sestren): For now, the position of the Warp Rooms stage must be in its vanilla location
             current_stage = stages['Warp Rooms'].stage
@@ -146,7 +142,6 @@ if __name__ == '__main__':
             stage_left = max(0, 40 - current_stage.rooms['Warp Rooms, Warp Room A'].left)
             stage_offsets['Warp Rooms'] = (stage_top, stage_left)
             # print('Warp Rooms', (stage_top, stage_left))
-            
             # TODO(sestren): Then randomly place down other stages one at a time
             stage_names = [
                 'Abandoned Mine',
@@ -684,7 +679,7 @@ if __name__ == '__main__':
                 '26': ('Death Wing\'s Lair', 'Death Wing\'s Lair, Olrox\'s Room', 1, 1), # Boss - Akmodan II
                 '27': ('Floating Catacombs', 'Floating Catacombs, Granfaloon\'s Lair', 1, 0), # Boss - Galamoth
             }
-            for (boss_teleporter_id, (stage_name, room_nam, offset_top, offset_left)) in boss_teleporters.items():
+            for (boss_teleporter_id, (stage_name, room_name, offset_top, offset_left)) in boss_teleporters.items():
                 source_room = changes['Stages'][stage_name]['Rooms'][room_name]
                 changes['Boss Teleporters'][boss_teleporter_id] = {
                     'Room Y': source_room['Top'] + offset_top,
@@ -1262,10 +1257,6 @@ if __name__ == '__main__':
                     for (state_key, state_value) in validation['State'].items():
                         logic_core['State'][state_key] = state_value
                     logic_core['Goals'] = validation['Goals']
-                    # if validation_name == 'Loading Room A with Soul of Bat -> Olrox\'s Room (Ground)':
-                    #     game__tester = solver.Game(logic_core)
-                    #     while True:
-                    #         game__tester.play()
                     # Validate
                     map_solver = solver.Solver(logic_core, skills)
                     map_solver.debug = False
