@@ -355,12 +355,7 @@ if __name__ == '__main__':
                     },
                 },
             }
-            changes['Boss Teleporters']['0'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'],
-            }
             # Move the Olrox Boss stage to match Olrox's Quarters, Olrox's Room
-            # NOTE(sestren): There is only one boss teleporter in the game data for Olrox, despite there being two entrances, so one of the entrances will not be covered
             source_room = changes['Stages']['Olrox\'s Quarters']['Rooms']['Olrox\'s Quarters, Olrox\'s Room']
             changes['Stages']['Boss - Olrox'] = {
                 'Rooms': {
@@ -378,12 +373,7 @@ if __name__ == '__main__':
                     },
                 },
             }
-            changes['Boss Teleporters']['3'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'] + 1,
-            }
             # Move the Granfaloon Boss stage to match Catacombs, Granfaloon's Lair
-            # NOTE(sestren): There is only one boss teleporter in the game data for Granfaloon, despite there being two entrances, so one of the entrances will not be covered
             source_room = changes['Stages']['Catacombs']['Rooms']['Catacombs, Granfaloon\'s Lair']
             changes['Stages']['Boss - Granfaloon'] = {
                 'Rooms': {
@@ -400,10 +390,6 @@ if __name__ == '__main__':
                         'Left': source_room['Left'] - 1,
                     },
                 },
-            }
-            changes['Boss Teleporters']['4'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'] + 1,
             }
             # Move the Minotaur and Werewolf Boss stage to match Colosseum, Arena
             source_room = changes['Stages']['Colosseum']['Rooms']['Colosseum, Arena']
@@ -422,14 +408,6 @@ if __name__ == '__main__':
                         'Left': source_room['Left'] + 2,
                     },
                 },
-            }
-            changes['Boss Teleporters']['5'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'],
-            }
-            changes['Boss Teleporters']['6'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'] + 1,
             }
             # Move the Scylla Boss stage to match Underground Caverns, Scylla Wyrm Room
             source_room = changes['Stages']['Underground Caverns']['Rooms']['Underground Caverns, Scylla Wyrm Room']
@@ -457,10 +435,6 @@ if __name__ == '__main__':
                     },
                 },
             }
-            changes['Boss Teleporters']['7'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'],
-            }
             # Move the Doppelganger 10 Boss stage to match Outer Wall, Doppelganger Room
             source_room = changes['Stages']['Outer Wall']['Rooms']['Outer Wall, Doppelganger Room']
             changes['Stages']['Boss - Doppelganger 10'] = {
@@ -478,14 +452,6 @@ if __name__ == '__main__':
                         'Left': source_room['Left'] + 2,
                     },
                 },
-            }
-            changes['Boss Teleporters']['8'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'],
-            }
-            changes['Boss Teleporters']['9'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'] + 1,
             }
             # Move the Hippogryph Boss stage to match Royal Chapel, Hippogryph Room
             source_room = changes['Stages']['Royal Chapel']['Rooms']['Royal Chapel, Hippogryph Room']
@@ -505,14 +471,6 @@ if __name__ == '__main__':
                     },
                 },
             }
-            changes['Boss Teleporters']['10'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'],
-            }
-            changes['Boss Teleporters']['11'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'] + 1,
-            }
             # Move the Richter Boss stage and castle teleporter to match Castle Keep, Keep Area
             source_room = changes['Stages']['Castle Keep']['Rooms']['Castle Keep, Keep Area']
             changes['Stages']['Boss - Richter'] = {
@@ -522,10 +480,6 @@ if __name__ == '__main__':
                         'Left': source_room['Left'] + 3,
                     },
                 },
-            }
-            changes['Boss Teleporters']['12'] = {
-                'Room Y': source_room['Top'] + 3,
-                'Room X': source_room['Left'] + 3,
             }
             changes['Constants']['Castle Teleporter, Y Offset'] = -1 * (256 * source_room['Top'] + 847)
             changes['Constants']['Castle Teleporter, X Offset'] = -1 * (256 * source_room['Left'] + 320)
@@ -547,14 +501,6 @@ if __name__ == '__main__':
                     },
                 },
             }
-            changes['Boss Teleporters']['13'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'],
-            }
-            changes['Boss Teleporters']['14'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'] + 1,
-            }
             # Move the Trio Boss stage to match Reverse Colosseum, Arena
             source_room = changes['Stages']['Reverse Colosseum']['Rooms']['Reverse Colosseum, Arena']
             changes['Stages']['Boss - Trio'] = {
@@ -572,14 +518,6 @@ if __name__ == '__main__':
                         'Left': source_room['Left'] + 2,
                     },
                 },
-            }
-            changes['Boss Teleporters']['15'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'],
-            }
-            changes['Boss Teleporters']['16'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'] + 1,
             }
             # Move the Beelzebub Boss stage to match Necromancy Laboratory, Slogra and Gaibon Room
             source_room = changes['Stages']['Necromancy Laboratory']['Rooms']['Necromancy Laboratory, Slogra and Gaibon Room']
@@ -603,14 +541,6 @@ if __name__ == '__main__':
                     },
                 },
             }
-            changes['Boss Teleporters']['17'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'],
-            }
-            changes['Boss Teleporters']['18'] = {
-                'Room Y': source_room['Top'] + 1,
-                'Room X': source_room['Left'] + 3,
-            }
             # Move the Death Boss stage to match Cave, Cerberus Room
             source_room = changes['Stages']['Cave']['Rooms']['Cave, Cerberus Room']
             changes['Stages']['Boss - Death'] = {
@@ -628,14 +558,6 @@ if __name__ == '__main__':
                         'Left': source_room['Left'] + 2,
                     },
                 },
-            }
-            changes['Boss Teleporters']['19'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'] + 1,
-            }
-            changes['Boss Teleporters']['20'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'],
             }
             # Move the Medusa Boss stage to match Anti-Chapel, Hippogryph Room
             source_room = changes['Stages']['Anti-Chapel']['Rooms']['Anti-Chapel, Hippogryph Room']
@@ -655,14 +577,6 @@ if __name__ == '__main__':
                     },
                 },
             }
-            changes['Boss Teleporters']['21'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'] + 1,
-            }
-            changes['Boss Teleporters']['22'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'],
-            }
             # Move the Creature Boss stage to match Reverse Outer Wall, Doppelganger Room
             source_room = changes['Stages']['Reverse Outer Wall']['Rooms']['Reverse Outer Wall, Doppelganger Room']
             changes['Stages']['Boss - Creature'] = {
@@ -680,14 +594,6 @@ if __name__ == '__main__':
                         'Left': source_room['Left'] + 2,
                     },
                 },
-            }
-            changes['Boss Teleporters']['23'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'] + 1,
-            }
-            changes['Boss Teleporters']['24'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'],
             }
             # Move the Doppelganger 40 Boss stage to match Reverse Caverns, Scylla Wyrm Room
             source_room = changes['Stages']['Reverse Caverns']['Rooms']['Reverse Caverns, Scylla Wyrm Room']
@@ -707,12 +613,7 @@ if __name__ == '__main__':
                     },
                 },
             }
-            changes['Boss Teleporters']['25'] = {
-                'Room Y': source_room['Top'],
-                'Room X': source_room['Left'],
-            }
             # Move the Akmodan II Boss stage to match Olrox's Quarters, Olrox's Room
-            # NOTE(sestren): There is only one boss teleporter in the game data for Akmodan II, despite there being two entrances, so one of the entrances will not be covered
             source_room = changes['Stages']['Death Wing\'s Lair']['Rooms']['Death Wing\'s Lair, Olrox\'s Room']
             changes['Stages']['Boss - Akmodan II'] = {
                 'Rooms': {
@@ -730,12 +631,7 @@ if __name__ == '__main__':
                     },
                 },
             }
-            changes['Boss Teleporters']['26'] = {
-                'Room Y': source_room['Top'] + 1,
-                'Room X': source_room['Left'] + 1,
-            }
             # Move the Galamoth Boss stage to match Floating Catacombs, Granfaloon's Lair
-            # NOTE(sestren): There is only one boss teleporter in the game data for Galamoth, despite there being two entrances, so one of the entrances will not be covered
             source_room = changes['Stages']['Floating Catacombs']['Rooms']['Floating Catacombs, Granfaloon\'s Lair']
             changes['Stages']['Boss - Galamoth'] = {
                 'Rooms': {
@@ -753,10 +649,47 @@ if __name__ == '__main__':
                     },
                 },
             }
-            changes['Boss Teleporters']['27'] = {
-                'Room Y': source_room['Top'] + 1,
-                'Room X': source_room['Left'],
+            # Assign boss teleporter locations to their counterparts in the castle
+            # NOTE(sestren): There is only one boss teleporter in the game data for the following bosses,
+            # NOTE(sestren): despite there being multiple entrances, so not all entrances will be covered:
+            # NOTE(sestren): - Granfaloon
+            # NOTE(sestren): - Akmodan II
+            # NOTE(sestren): - Olrox
+            # NOTE(sestren): - Galamoth
+            boss_teleporters = {
+                '0': ('Marble Gallery', 'Marble Gallery, Clock Room', 0, 0), # Cutscene - Meeting Maria in Clock Room
+                '3': ('Olrox\'s Quarters', 'Olrox\'s Quarters, Olrox\'s Room', 0, 1), # Boss - Olrox
+                '4': ('Catacombs', 'Catacombs, Granfaloon\'s Lair', 0, 1), # Boss - Granfaloon
+                '5': ('Colosseum', 'Colosseum, Arena', 0, 0), # Boss - Minotaur and Werewolf
+                '6': ('Colosseum', 'Colosseum, Arena', 0, 1), # Boss - Minotaur and Werewolf
+                '7': ('Underground Caverns', 'Underground Caverns, Scylla Wyrm Room', 0, 0), # Boss - Scylla
+                '8': ('Outer Wall', 'Outer Wall, Doppelganger Room', 0, 0), # Boss - Doppelganger 10
+                '9': ('Outer Wall', 'Outer Wall, Doppelganger Room', 0, 1), # Boss - Doppelganger 10
+                '10': ('Royal Chapel', 'Royal Chapel, Hippogryph Room', 0, 0), # Boss - Hippogryph
+                '11': ('Royal Chapel', 'Royal Chapel, Hippogryph Room', 0, 1), # Boss - Hippogryph
+                '12': ('Castle Keep', 'Castle Keep, Keep Area', 3, 3), # Boss - Richter
+                '13': ('Abandoned Mine', 'Abandoned Mine, Cerberus Room', 0, 0), # Boss - Cerberus
+                '14': ('Abandoned Mine', 'Abandoned Mine, Cerberus Room', 0, 1), # Boss - Cerberus
+                '15': ('Reverse Colosseum', 'Reverse Colosseum, Arena', 0, 0), # Boss - Trio
+                '16': ('Reverse Colosseum', 'Reverse Colosseum, Arena', 0, 1), # Boss - Trio
+                '17': ('Necromancy Laboratory', 'Necromancy Laboratory, Slogra and Gaibon Room', 0, 0), # Boss - Beelzebub
+                '18': ('Necromancy Laboratory', 'Necromancy Laboratory, Slogra and Gaibon Room', 1, 3), # Boss - Beelzebub
+                '19': ('Cave', 'Cave, Cerberus Room', 0, 1), # Boss - Death
+                '20': ('Cave', 'Cave, Cerberus Room', 0, 0), # Boss - Death
+                '21': ('Anti-Chapel', 'Anti-Chapel, Hippogryph Room', 0, 1), # Boss - Medusa
+                '22': ('Anti-Chapel', 'Anti-Chapel, Hippogryph Room', 0, 0), # Boss - Medusa
+                '23': ('Reverse Outer Wall', 'Reverse Outer Wall, Doppelganger Room', 0, 1), # Boss - Creature
+                '24': ('Reverse Outer Wall', 'Reverse Outer Wall, Doppelganger Room', 0, 0), # Boss - Creature
+                '25': ('Reverse Caverns', 'Reverse Caverns, Scylla Wyrm Room', 0, 0), # Boss - Doppelganger 40
+                '26': ('Death Wing\'s Lair', 'Death Wing\'s Lair, Olrox\'s Room', 1, 1), # Boss - Akmodan II
+                '27': ('Floating Catacombs', 'Floating Catacombs, Granfaloon\'s Lair', 1, 0), # Boss - Galamoth
             }
+            for (boss_teleporter_id, (stage_name, room_nam, offset_top, offset_left)) in boss_teleporters.items():
+                source_room = changes['Stages'][stage_name]['Rooms'][room_name]
+                changes['Boss Teleporters'][boss_teleporter_id] = {
+                    'Room Y': source_room['Top'] + offset_top,
+                    'Room X': source_room['Left'] + offset_left,
+                }
             # Apply castle map drawing grid to changes
             changes['Castle Map'] = []
             for row in range(len(castle_map)):
