@@ -40,23 +40,31 @@ class RoomNode:
     def matches(self, node=None) -> bool:
         incompatible_types = {
             (
+                '####...--...####',
+                '#######..#######',
+            ),
+            (
+                '####..##########',
+                '#######..#######',
+            ),
+            (
                 '#####..#########',
                 '#######..#######',
+            ),
+            (
+                '#####..#########',
+                '#########..#####',
             ),
             (
                 '#####\\..........',
                 '#######\\........',
             ),
             (
-                '####...--...####',
-                '#######..#######',
-            ),
-            (
                 '#######..#######',
                 '#########....###',
             ),
             (
-                '#####..#########',
+                '#######..#######',
                 '#########..#####',
             ),
             # (
@@ -841,12 +849,12 @@ class LogicCore:
             'Underground Caverns',
             'Warp Rooms',
         ):
-            # print('', stage_name)
+            if stage_name not in changes['Stages']:
+                continue
             nodes = {}
             for (location_name, room_data) in mapper_data['Rooms'].items():
                 if room_data['Stage'] != stage_name:
                     continue
-                # print(' ', location_name)
                 stage_changes = changes['Stages'][stage_name]
                 location_key = None
                 for possible_location_key in (
@@ -862,8 +870,6 @@ class LogicCore:
                     print('Could not find key')
                     print(room_data)
                     print(stage_changes['Rooms'])
-                # if mapper_data['Rooms'][location_name]['Stage'] != stage_name:
-                #     continue
                 room_top = None
                 room_left = None
                 if 'Rooms' in stage_changes and location_key in stage_changes['Rooms']:
@@ -875,7 +881,6 @@ class LogicCore:
                     print('stage_name:', stage_name, 'has invalid dimensions')
                 assert room_top is not None
                 assert room_left is not None
-                # print(location_name, (stage_name, location_key), (room_top, room_left))
                 self.commands[location_name] = room_data['Commands']
                 for (node_name, node) in room_data['Nodes'].items():
                     row = room_top + node['Row']
@@ -896,8 +901,6 @@ class LogicCore:
                     }
                     self.commands[location_name]['Exit - ' + node_name] = exit
             for (row, column, edge), (location_name, node_name, section_name, stage_name) in nodes.items():
-                # if stage_name == 'Castle Entrance':
-                #     print((row, column, edge), (location_name, node_name, section_name, stage_name))
                 matching_row = row
                 matching_column = column
                 matching_edge = edge
@@ -918,7 +921,6 @@ class LogicCore:
                     (matching_location_name, matching_node_name, matching_section, matching_stage_name) = nodes[(matching_row, matching_column, matching_edge)]
                 self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Location'] = matching_location_name
                 self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Section'] = matching_section
-                # TODO(sestren): Use Milestone instead of Progression for reaching a stage
         # Replace source teleporter locations with their targets
         for (location_name, location_info) in self.commands.items():
             for (command_name, command_info) in location_info.items():
@@ -992,7 +994,6 @@ class Mapper:
         self.stage = pool.pop(0)
         for roomset_id in range(1, len(stages[self.stage_name])):
             if len(self.stage.get_open_nodes()) < 1:
-                # print('place extra room', roomset_id)
                 self.stage.add_roomset(pool.pop(roomset_id), 0, 0)
             else:
                 break
