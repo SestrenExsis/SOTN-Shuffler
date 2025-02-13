@@ -666,7 +666,7 @@ boss_teleporters = {
     '23': ('Reverse Outer Wall', 'Reverse Outer Wall, Doppelganger Room', 0, 1), # Boss - Creature
     '24': ('Reverse Outer Wall', 'Reverse Outer Wall, Doppelganger Room', 0, 0), # Boss - Creature
     '25': ('Reverse Caverns', 'Reverse Caverns, Scylla Wyrm Room', 0, 0), # Boss - Doppelganger 40
-    '26': ('Death Wing\'s Lair', 'Death Wing\'s Lair, Olrox\'s Room', 1, 1), # Boss - Akmodan II
+    '26': ('Death Wing\'s Lair', 'Death Wing\'s Lair, Olrox\'s Room', 1, 0), # Boss - Akmodan II
     '27': ('Floating Catacombs', 'Floating Catacombs, Granfaloon\'s Lair', 1, 0), # Boss - Galamoth
 }
 
@@ -1125,12 +1125,6 @@ if __name__ == '__main__':
                     },
                 },
             }
-            # NOTE(sestren): The target point for the Castle Teleporter relative to the room is (y=847, x=320) in TOP and (y=1351, x=1728) in RTOP
-            changes['Constants']['Castle Keep Teleporter, Y Offset'] = -1 * (256 * source_room['Top'] + 847)
-            changes['Constants']['Castle Keep Teleporter, X Offset'] = -1 * (256 * source_room['Left'] + 320)
-            source_room = changes['Stages']['Reverse Keep']['Rooms']['Reverse Keep, Keep Area']
-            changes['Constants']['Reverse Keep Teleporter, Y Offset'] = -1 * (256 * source_room['Top'] + 1351)
-            changes['Constants']['Reverse Keep Teleporter, X Offset'] = -1 * (256 * source_room['Left'] + 1728)
             # Move the Cerberus Boss stage to match Abandoned Mine, Cerberus Room
             source_room = changes['Stages']['Abandoned Mine']['Rooms']['Abandoned Mine, Cerberus Room']
             changes['Stages']['Boss - Cerberus'] = {
@@ -1270,11 +1264,11 @@ if __name__ == '__main__':
                         'Left': source_room['Left'],
                     },
                     'Boss - Akmodan II, Fake Room With Teleporter A': {
-                        'Top': source_room['Top'],
+                        'Top': source_room['Top'] + 1,
                         'Left': source_room['Left'] - 1,
                     },
                     'Boss - Akmodan II, Fake Room With Teleporter B': {
-                        'Top': source_room['Top'],
+                        'Top': source_room['Top'] + 1,
                         'Left': source_room['Left'] + 2,
                     },
                 },
@@ -1304,6 +1298,14 @@ if __name__ == '__main__':
                     'Room Y': source_room['Top'] + offset_top,
                     'Room X': source_room['Left'] + offset_left,
                 }
+            # NOTE(sestren): Adjust the target point for the Castle Teleporter locations
+            # NOTE(sestren): The target points relative to their respective rooms is (y=847, x=320) in TOP and (y=1351, x=1728) in RTOP
+            source_room = changes['Stages']['Castle Keep']['Rooms']['Castle Keep, Keep Area']
+            changes['Constants']['Castle Keep Teleporter, Y Offset'] = -1 * (256 * source_room['Top'] + 847)
+            changes['Constants']['Castle Keep Teleporter, X Offset'] = -1 * (256 * source_room['Left'] + 320)
+            source_room = changes['Stages']['Reverse Keep']['Rooms']['Reverse Keep, Keep Area']
+            changes['Constants']['Reverse Keep Teleporter, Y Offset'] = -1 * (256 * source_room['Top'] + 1351)
+            changes['Constants']['Reverse Keep Teleporter, X Offset'] = -1 * (256 * source_room['Left'] + 1728)
             # Apply castle map drawing grid to changes
             changes['Castle Map'] = []
             for row in range(len(castle_map)):
