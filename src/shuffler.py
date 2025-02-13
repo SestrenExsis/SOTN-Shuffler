@@ -1125,10 +1125,12 @@ if __name__ == '__main__':
                     },
                 },
             }
-            changes['Constants']['Castle Teleporter, Y Offset'] = -1 * (256 * source_room['Top'] + 847)
-            changes['Constants']['Castle Teleporter, X Offset'] = -1 * (256 * source_room['Left'] + 320)
-            # TODO(sestren): Reverse Keep Teleporter
-            # NOTE(sestren): https://github.com/Xeeynamo/sotn-decomp/blob/bb6ea0946f9d999aef0f9153725057755c9ccc3c/src/dra/692E8.c#L544
+            # NOTE(sestren): The target point for the Castle Teleporter relative to the room is (y=847, x=320) in TOP and (y=1351, x=1728) in RTOP
+            changes['Constants']['Castle Keep Teleporter, Y Offset'] = -1 * (256 * source_room['Top'] + 847)
+            changes['Constants']['Castle Keep Teleporter, X Offset'] = -1 * (256 * source_room['Left'] + 320)
+            source_room = changes['Stages']['Reverse Keep']['Rooms']['Reverse Keep, Keep Area']
+            changes['Constants']['Reverse Keep Teleporter, Y Offset'] = -1 * (256 * source_room['Top'] + 1351)
+            changes['Constants']['Reverse Keep Teleporter, X Offset'] = -1 * (256 * source_room['Left'] + 1728)
             # Move the Cerberus Boss stage to match Abandoned Mine, Cerberus Room
             source_room = changes['Stages']['Abandoned Mine']['Rooms']['Abandoned Mine, Cerberus Room']
             changes['Stages']['Boss - Cerberus'] = {
