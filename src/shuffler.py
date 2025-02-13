@@ -775,8 +775,19 @@ if __name__ == '__main__':
             current_stage = stages['Castle Entrance'].stage
             stage_top = 38 - current_stage.rooms['Castle Entrance, After Drawbridge'].top
             stage_left = max(0, 1 - current_stage.rooms['Castle Entrance, Unknown Room 20'].left)
+            (top, left, bottom, right) = current_stage.get_bounds()
+            if not (
+                MIN_MAP_ROW <= stage_top + top < MAX_MAP_ROW and
+                MIN_MAP_ROW <= stage_top + bottom < MAX_MAP_ROW and
+                0 <= stage_left + left < 64 and
+                0 <= stage_left + right < 64
+            ):
+                print('******')
+                print('Castle Entrance cannot be placed within the bounds of the map due to the forced position of Unknown Room 20 and After Drawbridge')
+                print('Starting over from scratch')
+                print('******')
+                continue
             stage_offsets['Castle Entrance'] = (stage_top, stage_left)
-            # print('Castle Entrance', (stage_top, stage_left))
             # NOTE(sestren): Place Underground Caverns
             # NOTE(sestren): For now, the position of the Underground Caverns stage is restricted by where 'False Save Room' can be
             current_stage = stages['Underground Caverns'].stage
@@ -790,23 +801,23 @@ if __name__ == '__main__':
                 0 <= stage_left + right < 64
             ):
                 print('******')
-                print('Underground Caverns cannot be placed within the bounds of the map due to the forced position of False Save Room; starting over from scratch')
+                print('Underground Caverns cannot be placed within the bounds of the map due to the forced position of False Save Room')
+                print('Starting over from scratch')
                 print('******')
                 continue
             stage_offsets['Underground Caverns'] = (stage_top, stage_left)
-            # print('Underground Caverns', (stage_top, stage_left))
             # NOTE(sestren): Place Warp Rooms
             # NOTE(sestren): For now, the position of the Warp Rooms stage must be in its vanilla location
             current_stage = stages['Warp Rooms'].stage
             stage_top = 12 - current_stage.rooms['Warp Rooms, Warp Room A'].top
             stage_left = max(0, 40 - current_stage.rooms['Warp Rooms, Warp Room A'].left)
             stage_offsets['Warp Rooms'] = (stage_top, stage_left)
-            # print('Warp Rooms', (stage_top, stage_left))
             # TODO(sestren): Then randomly place down other stages one at a time
             stage_names = [
                 'Abandoned Mine',
                 'Alchemy Laboratory',
                 'Castle Center',
+                # 'Castle Entrance',
                 'Castle Keep',
                 'Catacombs',
                 'Clock Tower',
@@ -817,6 +828,7 @@ if __name__ == '__main__':
                 'Outer Wall',
                 'Royal Chapel',
                 # 'Underground Caverns',
+                # 'Warp Rooms',
             ]
             valid_ind = False
             global_rng.shuffle(stage_names)
@@ -826,17 +838,6 @@ if __name__ == '__main__':
                 for (prev_stage_name, (stage_top, stage_left)) in stage_offsets.items():
                     cells = stages[prev_stage_name].stage.get_cells(stage_top, stage_left)
                     prev_cells = prev_cells.union(cells)
-                # print('')
-                # print(i, len(prev_cells))
-                # for row in range(64):
-                #     row_data = []
-                #     for col in range(64):
-                #         cell = '.'
-                #         if (row, col) in prev_cells:
-                #             cell = '#'
-                #         row_data.append(cell)
-                #     print(''.join(row_data))
-                # print('')
                 (top, left, bottom, right) = current_stage.get_bounds()
                 best_area = float('inf')
                 best_stage_offsets = []
@@ -859,13 +860,11 @@ if __name__ == '__main__':
                         if area == best_area:
                             best_stage_offsets.append((stage_top, stage_left))
                 if best_area >= float('inf'):
-                    # print(f'ERROR: {stage_name} stage could not be placed successfully')
                     break
                 (stage_top, stage_left) = global_rng.choice(best_stage_offsets)
                 cells = current_stage.get_cells(stage_top, stage_left)
                 prev_cells.union(cells)
                 stage_offsets[stage_name] = (stage_top, stage_left)
-                # print(stage_name, (stage_top, stage_left))
             else:
                 valid_ind = True
             if not valid_ind:
@@ -873,17 +872,6 @@ if __name__ == '__main__':
                 print('Gave up trying to find a valid arrangement of the stages; starting over from scratch')
                 print('******')
                 continue
-            # print('')
-            # print(len(prev_cells))
-            # for row in range(64):
-            #     row_data = []
-            #     for col in range(64):
-            #         cell = '.'
-            #         if (row, col) in prev_cells:
-            #             cell = '#'
-            #         row_data.append(cell)
-            #     print(''.join(row_data))
-            # print('')
             changes = {
                 'Boss Teleporters': {},
                 'Castle Map': [],
@@ -895,8 +883,6 @@ if __name__ == '__main__':
             # Process each stage
             for (stage_name, stage_map) in stages.items():
                 (stage_top, stage_left) = stage_offsets[stage_name]
-                # print()
-                # print('stage_name:', stage_name)
                 changes['Stages'][stage_name] = {
                     'Rooms': {},
                 }
@@ -1141,6 +1127,8 @@ if __name__ == '__main__':
             }
             changes['Constants']['Castle Teleporter, Y Offset'] = -1 * (256 * source_room['Top'] + 847)
             changes['Constants']['Castle Teleporter, X Offset'] = -1 * (256 * source_room['Left'] + 320)
+            # TODO(sestren): Reverse Keep Teleporter
+            # NOTE(sestren): https://github.com/Xeeynamo/sotn-decomp/blob/bb6ea0946f9d999aef0f9153725057755c9ccc3c/src/dra/692E8.c#L544
             # Move the Cerberus Boss stage to match Abandoned Mine, Cerberus Room
             source_room = changes['Stages']['Abandoned Mine']['Rooms']['Abandoned Mine, Cerberus Room']
             changes['Stages']['Boss - Cerberus'] = {

@@ -5,6 +5,12 @@ Index: 4
 Columns: 1
 Rows: 1
 Empty Cells: {}
+Map:
+    - "00000"
+    - "05550"
+    - "15550"
+    - "05550"
+    - "00000"
 Nodes:
     Left Red Door:
         Type: "######....######"
