@@ -670,6 +670,11 @@ boss_teleporters = {
     '27': ('Floating Catacombs', 'Floating Catacombs, Granfaloon\'s Lair', 1, 0), # Boss - Galamoth
 }
 
+familiar_events = {
+    '4': ('Abandoned Mine', 'Abandoned Mine, Crumbling Stairwells With Demon Switch', 0, 0), # Demon Familiar
+    '9': ('Abandoned Mine', 'Abandoned Mine, Crumbling Stairwells With Demon Switch', 0, 0), # Nose Demon Familiar?
+}
+
 if __name__ == '__main__':
     '''
     Usage
@@ -877,6 +882,7 @@ if __name__ == '__main__':
                 'Castle Map': [],
                 'Constants': {},
                 'Stages': {},
+                'Familiar Events': {},
             }
             # Initialize the castle map drawing grid
             castle_map = [['0' for col in range(256)] for row in range(256)]
@@ -1295,6 +1301,13 @@ if __name__ == '__main__':
             for (boss_teleporter_id, (stage_name, room_name, offset_top, offset_left)) in boss_teleporters.items():
                 source_room = changes['Stages'][stage_name]['Rooms'][room_name]
                 changes['Boss Teleporters'][boss_teleporter_id] = {
+                    'Room Y': source_room['Top'] + offset_top,
+                    'Room X': source_room['Left'] + offset_left,
+                }
+            # Assign familiar event locations to their counterparts in the castle
+            for (familiar_event_id, (stage_name, room_name, offset_top, offset_left)) in familiar_events.items():
+                source_room = changes['Stages'][stage_name]['Rooms'][room_name]
+                changes['Familiar Events'][familiar_event_id] = {
                     'Room Y': source_room['Top'] + offset_top,
                     'Room X': source_room['Left'] + offset_left,
                 }
