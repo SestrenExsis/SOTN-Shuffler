@@ -1,10 +1,24 @@
-# Current status of the project
+# SOTN Shuffler
+
+A tool for shuffling the locations of rooms in SOTN, in the form of change files. Intended to be used in conjunction with the [SOTN Patcher](https://github.com/SestrenExsis/SOTN-Patcher) tool, which turns those JSON files into patch (PPF) files.
+
+## Current status of the project
 
 This project is still actively in the prototyping phase of development. It almost definitely has bugs, will cause softlocks, and may even corrupt the game BIN in its current state. Use at your own risk.
 
 While still in the prototyping and proof-of-concept phase, much of this project will be coded in Python. As the project matures, it may be translated to Javascript over time.
 
-# Acknowledgements
+## Usage
+
+Make a copy of your target BIN (SLUS-00067) in a folder called `patcher` inside a folder called `build` and make sure it is called `Castlevania - Symphony of the Night (Track 1).bin`.
+
+Run the `setup.bat` script, which will generate the necessary extraction and randomly-generated map files for shuffling. Be aware that this step can take several minutes to run.
+
+Once the necessary files have been generated, running the `randomize.bat` script will go through the process of building a randomized PPF file. Be aware that this step can also take several minutes to complete.
+
+Once that step has completed, a file called `current-seed.ppf` inside the `build/patcher` folder can be used in conjunction with [ppf.sotn.io](https://ppf.sotn.io/) to apply the changes to your BIN file.
+
+## Acknowledgements
 
 Most of the knowledge present in this project is only possible due to the immense efforts of the SOTN and rom-hacking community:
 
