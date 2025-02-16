@@ -1147,12 +1147,12 @@ if __name__ == '__main__':
     '''
     for stage_name in stages:
         pathlib.Path(
-            os.path.join('build', 'mapper', stage_name)
+            os.path.join('build', 'shuffler', stage_name)
         ).mkdir(parents=True, exist_ok=True)
     GENERATION_VERSION = '0.0.4'
     mapper_core = MapperData().get_core()
     with (
-        open(os.path.join('build', 'mapper', 'mapper-core.json'), 'w') as mapper_core_json,
+        open(os.path.join('build', 'shuffler', 'mapper-core.json'), 'w') as mapper_core_json,
     ):
         json.dump(mapper_core, mapper_core_json, indent='    ', sort_keys=True, default=str)
     parser = argparse.ArgumentParser()
@@ -1186,10 +1186,10 @@ if __name__ == '__main__':
         # spoiler = stage_map.get_spoiler(args.stage_name)
         # for line in spoiler:
         #     print(line)
-        filepath = os.path.join('build', 'mapper', args.stage_name, hash_of_rooms + '.json')
+        filepath = os.path.join('build', 'shuffler', args.stage_name, hash_of_rooms + '.json')
         if not os.path.exists(filepath):
             with (
-                open(os.path.join('build', 'mapper', args.stage_name, hash_of_rooms + '.json'), 'w') as mapper_data_json,
+                open(os.path.join('build', 'shuffler', args.stage_name, hash_of_rooms + '.json'), 'w') as mapper_data_json,
             ):
                 json.dump(mapper_data, mapper_data_json, indent='    ', sort_keys=True, default=str)
         else:
