@@ -12,6 +12,8 @@ While still in the prototyping and proof-of-concept phase, much of this project 
 
 Make a copy of your target BIN (SLUS-00067) in a folder called `patcher` inside a folder called `build` and make sure it is called `Castlevania - Symphony of the Night (Track 1).bin`.
 
+Run `git submodule update --init --recursive` to fetch the required SOTN-Patcher repo as a submodule.
+
 Run the `setup.bat` script, which will generate the necessary extraction and randomly-generated map files for shuffling. Be aware that this step can take several minutes to run.
 
 Once the necessary files have been generated, running the `randomize.bat` script will go through the process of building a randomized PPF file. Be aware that this step can also take several minutes to complete.
