@@ -1,9 +1,10 @@
 
-mkdir -p "build/extractor"
-mkdir -p "build/mapper"
-mkdir -p "build/patcher"
+mkdir "build/extractor"
+mkdir "build/mapper"
+mkdir "build/patcher"
 
-@REM First, make sure the BIN is placed inside build/patcher and is named "Castlevania - Symphony of the Night (Track 1).bin"
+@REM If the next step fails, make sure the BIN is placed inside build/patcher and is named "Castlevania - Symphony of the Night (Track 1).bin"
+@REM After doing so, rerun this script
 
 python lib/SOTN-Patcher/src/sotn_extractor.py "build/patcher/Castlevania - Symphony of the Night (Track 1).bin" "build/extractor/extraction.json" || goto :error
 
