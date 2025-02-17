@@ -1323,13 +1323,17 @@ if __name__ == '__main__':
         for row in range(len(castle_map)):
             row_data = ''.join(castle_map[row])
             changes['Castle Map'].append(row_data)
+        changes['Strings'] = {
+            '10': 'SOTN Shuffler v0.1.0a',
+            '11': str(shuffler['Initial Seed']),
+        }
         shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)
         current_seed = {
+            'Changes': changes,
             'Data Core': mapper_core,
             # 'Logic Core': logic_core,
             'Shuffler': shuffler,
             # 'Solver': solution,
-            'Changes': changes,
         }
         with open(os.path.join('build', 'shuffler', 'current-seed.json'), 'w') as current_seed_json:
             json.dump(current_seed, current_seed_json, indent='    ', sort_keys=True, default=str)
