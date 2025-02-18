@@ -724,7 +724,7 @@ if __name__ == '__main__':
             stage_rng = random.Random(stage_seed)
             directory_listing = os.listdir(os.path.join('build', 'shuffler', stage_name))
             file_listing = list(name for name in directory_listing if name.endswith('.json'))
-            # TODO(sestren): Keep randomly choosing a shuffled stage until one that passes all its validation checks is found
+            # Keep randomly choosing a shuffled stage until one that passes all its validation checks is found
             while True:
                 all_valid_ind = True
                 chosen_file_name = stage_rng.choice(file_listing)
@@ -1323,10 +1323,36 @@ if __name__ == '__main__':
         for row in range(len(castle_map)):
             row_data = ''.join(castle_map[row])
             changes['Castle Map'].append(row_data)
+        # Show version and seed on file select screen
         changes['Strings'] = {
             '10': 'SOTN Shuffler v0.1.0a',
             '11': str(shuffler['Initial Seed']),
         }
+        # Patch - Assign Power of Wolf Relic its own ID (was previously duplicating the trap door's ID)
+        # https://github.com/SestrenExsis/SOTN-Shuffler/issues/36
+        room = changes['Stages']['Castle Entrance Revisited']['Rooms']['Castle Entrance Revisited, After Drawbridge']
+        room['Object Layout - Horizontal'] = {
+            '12': {
+                'Entity Room Index': 18,
+            },
+        }
+        room['Object Layout - Vertical'] = {
+            '1': {
+                'Entity Room Index': 18,
+            },
+        }
+        room = changes['Stages']['Castle Entrance']['Rooms']['Castle Entrance, After Drawbridge']
+        room['Object Layout - Horizontal'] = {
+            '10': {
+                'Entity Room Index': 18,
+            },
+        }
+        room['Object Layout - Vertical'] = {
+            '1': {
+                'Entity Room Index': 18,
+            },
+        }
+        # ...
         shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)
         current_seed = {
             'Changes': changes,
