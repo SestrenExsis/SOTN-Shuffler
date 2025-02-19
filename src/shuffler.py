@@ -686,7 +686,7 @@ if __name__ == '__main__':
     python shuffler.py
     '''
     MIN_MAP_ROW = 5
-    MAX_MAP_ROW = 56
+    MAX_MAP_ROW = 55
     mapper_core = mapper.MapperData().get_core()
     # Keep randomizing until a solution is found
     initial_seed = random.randint(0, 2 ** 64)
@@ -696,48 +696,56 @@ if __name__ == '__main__':
         'Start Time': datetime.datetime.now(datetime.timezone.utc),
         'Stages': {},
     }
+    invalid_stage_files = set()
     while True:
         print('')
         shuffler['Stages'] = {}
         # Randomize
-        stages = {}
-        stages_to_process = (
-            ('Abandoned Mine', global_rng.randint(0, 2 ** 64)),
-            ('Alchemy Laboratory', global_rng.randint(0, 2 ** 64)),
-            ('Castle Center', global_rng.randint(0, 2 ** 64)),
-            ('Castle Keep', global_rng.randint(0, 2 ** 64)),
-            ('Castle Entrance', global_rng.randint(0, 2 ** 64)),
-            ('Catacombs', global_rng.randint(0, 2 ** 64)),
-            ('Clock Tower', global_rng.randint(0, 2 ** 64)),
-            ('Colosseum', global_rng.randint(0, 2 ** 64)),
-            ('Long Library', global_rng.randint(0, 2 ** 64)),
-            ('Marble Gallery', global_rng.randint(0, 2 ** 64)),
-            ('Olrox\'s Quarters', global_rng.randint(0, 2 ** 64)),
-            ('Outer Wall', global_rng.randint(0, 2 ** 64)),
-            ('Royal Chapel', global_rng.randint(0, 2 ** 64)),
-            ('Underground Caverns', global_rng.randint(0, 2 ** 64)),
-            ('Warp Rooms', global_rng.randint(0, 2 ** 64)),
-        )
-        print('Randomize with seeds')
-        for (stage_name, stage_seed) in stages_to_process:
-            print(stage_name, stage_seed)
-            stage_rng = random.Random(stage_seed)
+        stages = {
+            'Abandoned Mine': {},
+            'Alchemy Laboratory': {},
+            'Castle Center': {},
+            'Castle Keep': {},
+            'Castle Entrance': {},
+            'Catacombs': {},
+            'Clock Tower': {},
+            'Colosseum': {},
+            'Long Library': {},
+            'Marble Gallery': {},
+            'Olrox\'s Quarters': {},
+            'Outer Wall': {},
+            'Royal Chapel': {},
+            'Underground Caverns': {},
+            'Warp Rooms': {},
+        }
+        print('Set starting seeds for each stage')
+        for stage_name in sorted(stages.keys()):
+            stages[stage_name]['Initial Seed'] = global_rng.randint(0, 2 ** 64)
+            stages[stage_name]['RNG'] = random.Random(stages[stage_name]['Initial Seed'])
+            print('', stage_name, stages[stage_name]['Initial Seed'])
+        print('Randomize stages with starting seeds')
+        for stage_name in sorted(stages.keys()):
             directory_listing = os.listdir(os.path.join('build', 'shuffler', stage_name))
-            file_listing = list(name for name in directory_listing if name.endswith('.json'))
+            file_listing = list(
+                name for name in directory_listing if
+                name.endswith('.json') and
+                (stage_name, name[:-len('.json')]) not in invalid_stage_files
+            )
+            print('', stage_name, len(file_listing), stages[stage_name]['Initial Seed'])
+            assert len(file_listing) > 0
             # Keep randomly choosing a shuffled stage until one that passes all its validation checks is found
             while True:
                 all_valid_ind = True
-                chosen_file_name = stage_rng.choice(file_listing)
+                chosen_file_name = stages[stage_name]['RNG'].choice(file_listing)
                 with open(os.path.join('build', 'shuffler', stage_name, chosen_file_name)) as mapper_data_json:
                     mapper_data = json.load(mapper_data_json)
                     mapper_data_json.close()
-                stage_map = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
-                stage_map.generate()
-                stage_map.stage.normalize()
-                stage_changes = stage_map.stage.get_changes()
-                assert stage_map.validate()
+                stages[stage_name]['Mapper'] = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
+                stages[stage_name]['Mapper'].generate()
+                stages[stage_name]['Mapper'].stage.normalize()
+                stage_changes = stages[stage_name]['Mapper'].stage.get_changes()
+                assert stages[stage_name]['Mapper'].validate()
                 hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
-                # print('Prebaked', hash_of_rooms, stage_map.current_seed)
                 assert hash_of_rooms == mapper_data['Hash of Rooms']
                 print(' ', 'hash:', hash_of_rooms)
                 changes = {
@@ -754,121 +762,105 @@ if __name__ == '__main__':
                     map_solver = solver.Solver(logic_core, skills)
                     # map_solver.debug = True
                     # map_solver.solve_via_random_exploration(2, 9_999, stage_name)
-                    map_solver.solve_via_steps(50 * validation['Solver Effort'], stage_name)
+                    map_solver.solve_via_steps(100 * validation['Solver Effort'], stage_name)
                     if len(map_solver.results['Wins']) < 1:
-                        print('   ', 'validation:', validation_name, '... FAILED')
+                        print('   ', validation_name, '... FAILED')
                         all_valid_ind = False
                     else:
-                        print('   ', 'validation:', validation_name, '... PASSED')
+                        print('   ', validation_name, '... PASSED')
                 if all_valid_ind:
                     break
-            stages[stage_name] = stage_map
+                else:
+                    invalid_stage_files.add((stage_name, chosen_file_name[:-len('.json')]))
             shuffler['Stages'][stage_name] = {
                 'Note': 'Prebaked',
-                'Attempts': stage_map.attempts,
-                'Generation Start Date': stage_map.start_time.isoformat(),
-                'Generation End Date': stage_map.end_time.isoformat(),
+                'Attempts': stages[stage_name]['Mapper'].attempts,
+                'Generation Start Date': stages[stage_name]['Mapper'].start_time.isoformat(),
+                'Generation End Date': stages[stage_name]['Mapper'].end_time.isoformat(),
                 # 'Generation Version': GENERATION_VERSION,
                 'Hash of Rooms': hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest(),
-                'Seed': stage_map.current_seed,
+                'Seed': stages[stage_name]['Mapper'].current_seed,
                 'Stage': stage_name,
             }
-        stage_offsets = {}
-        # NOTE(sestren): Place Castle Entrance
-        # NOTE(sestren): For now, the position of the Castle Entrance stage is restricted by where 'Unknown Room 20' and 'After Drawbridge' can be
-        current_stage = stages['Castle Entrance'].stage
-        stage_top = 38 - current_stage.rooms['Castle Entrance, After Drawbridge'].top
-        stage_left = max(0, 1 - current_stage.rooms['Castle Entrance, Unknown Room 20'].left)
-        (top, left, bottom, right) = current_stage.get_bounds()
-        if not (
-            MIN_MAP_ROW <= stage_top + top < MAX_MAP_ROW and
-            MIN_MAP_ROW <= stage_top + bottom < MAX_MAP_ROW and
-            0 <= stage_left + left < 64 and
-            0 <= stage_left + right < 64
-        ):
-            print('******')
-            print('Castle Entrance cannot be placed within the bounds of the map due to the forced position of Unknown Room 20 and After Drawbridge')
-            print('Starting over from scratch')
-            print('******')
-            continue
-        stage_offsets['Castle Entrance'] = (stage_top, stage_left)
-        # NOTE(sestren): Place Underground Caverns
-        # NOTE(sestren): For now, the position of the Underground Caverns stage is restricted by where 'False Save Room' can be
-        current_stage = stages['Underground Caverns'].stage
-        stage_top = 33 - current_stage.rooms['Underground Caverns, False Save Room'].top
-        stage_left = 45 - current_stage.rooms['Underground Caverns, False Save Room'].left
-        (top, left, bottom, right) = current_stage.get_bounds()
-        if not (
-            MIN_MAP_ROW <= stage_top + top < MAX_MAP_ROW and
-            MIN_MAP_ROW <= stage_top + bottom < MAX_MAP_ROW and
-            0 <= stage_left + left < 64 and
-            0 <= stage_left + right < 64
-        ):
-            print('******')
-            print('Underground Caverns cannot be placed within the bounds of the map due to the forced position of False Save Room')
-            print('Starting over from scratch')
-            print('******')
-            continue
-        stage_offsets['Underground Caverns'] = (stage_top, stage_left)
-        # NOTE(sestren): Place Warp Rooms
-        # NOTE(sestren): For now, the position of the Warp Rooms stage must be in its vanilla location
-        current_stage = stages['Warp Rooms'].stage
-        stage_top = 12 - current_stage.rooms['Warp Rooms, Warp Room A'].top
-        stage_left = max(0, 40 - current_stage.rooms['Warp Rooms, Warp Room A'].left)
-        stage_offsets['Warp Rooms'] = (stage_top, stage_left)
-        # TODO(sestren): Then randomly place down other stages one at a time
-        stage_names = [
-            'Abandoned Mine',
-            'Alchemy Laboratory',
-            'Castle Center',
-            # 'Castle Entrance',
-            'Castle Keep',
-            'Catacombs',
-            'Clock Tower',
-            'Colosseum',
-            'Long Library',
-            'Marble Gallery',
-            'Olrox\'s Quarters',
-            'Outer Wall',
-            'Royal Chapel',
-            # 'Underground Caverns',
-            # 'Warp Rooms',
-        ]
-        valid_ind = False
+        # Place down Warp Rooms first, then randomly place down other stages one at a time
+        stage_names = list(stages.keys() - {'Warp Rooms'})
         global_rng.shuffle(stage_names)
-        for (i, stage_name) in enumerate(stage_names):
-            current_stage = stages[stage_name].stage
+        stage_names = ['Warp Rooms'] + stage_names
+        valid_ind = False
+        for (index, stage_name) in enumerate(stage_names):
+            current_stage = stages[stage_name]['Mapper'].stage
             prev_cells = set()
-            for (prev_stage_name, (stage_top, stage_left)) in stage_offsets.items():
-                cells = stages[prev_stage_name].stage.get_cells(stage_top, stage_left)
+            for prev_stage_name in stage_names[:index]:
+                cells = current_stage.get_cells(
+                    stages[prev_stage_name]['Stage Top'],
+                    stages[prev_stage_name]['Stage Left']
+                )
                 prev_cells = prev_cells.union(cells)
+            if stage_name == 'Warp Rooms':
+                # Warp Rooms is being kept in its vanilla location for now
+                stage_top = 12 - current_stage.rooms['Warp Rooms, Warp Room A'].top
+                stage_left = 40 - current_stage.rooms['Warp Rooms, Warp Room A'].left
+                assert stage_left >= 0
+            elif stage_name == 'Castle Entrance':
+                # Castle Entrance is being restricted by where 'Unknown Room 20' and 'After Drawbridge' can be
+                stage_top = 38 - current_stage.rooms['Castle Entrance, After Drawbridge'].top
+                stage_left = max(0, 1 - current_stage.rooms['Castle Entrance, Unknown Room 20'].left)
+            elif stage_name == 'Underground Caverns':
+                # Underground Caverns is being restricted by where 'False Save Room' can be
+                stage_top = 33 - current_stage.rooms['Underground Caverns, False Save Room'].top
+                stage_left = 45 - current_stage.rooms['Underground Caverns, False Save Room'].left
+            else:
+                (top, left, bottom, right) = current_stage.get_bounds()
+                best_area = float('inf')
+                best_stage_offsets = []
+                for stage_top in range(MIN_MAP_ROW, MAX_MAP_ROW - bottom):
+                    for stage_left in range(0, 63 - right):
+                        # NOTE(sestren): Reject if it overlaps another stage
+                        current_cells = current_stage.get_cells(stage_top, stage_left)
+                        if len(current_cells.intersection(prev_cells)) > 0:
+                            continue
+                        # Exclude warp rooms so their position doesn't skew the area calculation
+                        warp_room = stages['Warp Rooms']
+                        all_cells = current_cells.union(prev_cells) - warp_room['Mapper'].stage.get_cells(warp_room['Stage Top'], warp_room['Stage Left'])
+                        min_row = min((row for (row, col) in all_cells))
+                        max_row = max((row for (row, col) in all_cells))
+                        min_col = min((col for (row, col) in all_cells))
+                        max_col = max((col for (row, col) in all_cells))
+                        area = (1 + max_row - min_row) * (1 + max_col - min_col)
+                        # Keep track of whichever offset minimizes the overall area
+                        if area < best_area:
+                            best_stage_offsets = []
+                            best_area = area
+                        if area == best_area:
+                            best_stage_offsets.append((stage_top, stage_left))
+                if best_area >= float('inf'):
+                    print('******')
+                    print('Could not find a suitable spot on the map for', stage_name)
+                    print('******')
+                    break
+                (stage_top, stage_left) = global_rng.choice(best_stage_offsets)
+            # cells = current_stage.get_cells(stage_top, stage_left)
+            # prev_cells.union(cells)
             (top, left, bottom, right) = current_stage.get_bounds()
-            best_area = float('inf')
-            best_stage_offsets = []
-            for stage_top in range(MIN_MAP_ROW, MAX_MAP_ROW - bottom):
-                for stage_left in range(0, 63 - right):
-                    # NOTE(sestren): Reject if it overlaps another stage
-                    current_cells = current_stage.get_cells(stage_top, stage_left)
-                    if len(current_cells.intersection(prev_cells)) > 0:
-                        continue
-                    all_cells = current_cells.union(prev_cells) - stages['Warp Rooms'].stage.get_cells(stage_offsets['Warp Rooms'][0], stage_offsets['Warp Rooms'][1])
-                    min_row = min((row for (row, col) in all_cells))
-                    max_row = max((row for (row, col) in all_cells))
-                    min_col = min((col for (row, col) in all_cells))
-                    max_col = max((col for (row, col) in all_cells))
-                    area = (1 + max_row - min_row) * (1 + max_col - min_col)
-                    # NOTE(sestren): Keep track of whichever offset minimizes the overall area
-                    if area < best_area:
-                        best_stage_offsets = []
-                        best_area = area
-                    if area == best_area:
-                        best_stage_offsets.append((stage_top, stage_left))
-            if best_area >= float('inf'):
+            if not (
+                MIN_MAP_ROW <= stage_top + top < MAX_MAP_ROW and
+                MIN_MAP_ROW <= stage_top + bottom < MAX_MAP_ROW and
+                0 <= stage_left + left < 64 and
+                0 <= stage_left + right < 64
+            ):
+                print('******')
+                print(stage_name, 'could not be placed within the bounds of the map')
+                print('******')
                 break
-            (stage_top, stage_left) = global_rng.choice(best_stage_offsets)
-            cells = current_stage.get_cells(stage_top, stage_left)
-            prev_cells.union(cells)
-            stage_offsets[stage_name] = (stage_top, stage_left)
+            current_cells = current_stage.get_cells(stage_top, stage_left)
+            if len(current_cells.intersection(prev_cells)) > 0:
+                print('******')
+                print(stage_name, 'could not be placed without overlapping with another stage')
+                print('******')
+                break
+            stages[stage_name]['Stage Top'] = stage_top
+            stages[stage_name]['Stage Left'] = stage_left
+            print('>>>', stage_name, (stage_top, stage_left))
         else:
             valid_ind = True
         if not valid_ind:
@@ -886,12 +878,12 @@ if __name__ == '__main__':
         # Initialize the castle map drawing grid
         castle_map = [['0' for col in range(256)] for row in range(256)]
         # Process each stage
-        for (stage_name, stage_map) in stages.items():
-            (stage_top, stage_left) = stage_offsets[stage_name]
+        for (stage_name, stage) in stages.items():
+            (stage_top, stage_left) = (stage['Stage Top'], stage['Stage Left'])
             changes['Stages'][stage_name] = {
                 'Rooms': {},
             }
-            stage_changes = stage_map.stage.get_changes()
+            stage_changes = stage['Mapper'].stage.get_changes()
             if stage_name == 'Castle Entrance':
                 # NOTE(sestren): These rooms are being placed out of the way to provide more room on the map
                 changes['Stages'][stage_name]['Rooms']['Castle Entrance, Forest Cutscene'] = {
