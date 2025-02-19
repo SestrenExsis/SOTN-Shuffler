@@ -724,7 +724,6 @@ if __name__ == '__main__':
             stages[stage_name]['RNG'] = random.Random(stages[stage_name]['Initial Seed'])
             print('', stage_name, stages[stage_name]['Initial Seed'])
         print('Randomize stages with starting seeds')
-        # TODO(sestren): Keep track of map files that have passed or failed validation and narrow the search as you go
         for stage_name in sorted(stages.keys()):
             directory_listing = os.listdir(os.path.join('build', 'shuffler', stage_name))
             file_listing = list(
