@@ -5,6 +5,12 @@ Index: 15
 Columns: 1
 Rows: 1
 Empty Cells: {}
+Map:
+    - "     "
+    - "     "
+    - "     "
+    - "     "
+    - "     "
 Nodes:
     Left Passage:
         Type: "................"

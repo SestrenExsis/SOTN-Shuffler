@@ -6,11 +6,11 @@ Columns: 1
 Rows: 1
 Empty Cells: {}
 Map:
-    - "00000"
-    - "0aaa0"
-    - "0aaa0"
-    - "0aaa0"
-    - "00100"
+    - "     "
+    - "     "
+    - "     "
+    - "     "
+    - "     "
 Nodes:
     Bottom Passage:
         Type: "................"
