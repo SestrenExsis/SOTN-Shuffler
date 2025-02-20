@@ -370,6 +370,42 @@ stage_validations = {
                 },
             },
         },
+        'Loading Room A with Soul of Bat and Form of Mist -> Top of Three Layer Room': {
+            'Solver Effort': 0.5,
+            'State': {
+                'Location': 'Long Library, Loading Room A',
+                'Section': 'Main',
+                'Relic - Form of Mist': True,
+                'Progression - Mist Transformation': True,
+                'Relic - Soul of Bat': True,
+                'Progression - Bat Transformation': True,
+            },
+            'Goals': {
+                'Reach Top of Three Layer Room': {
+                    'Locations Visited': {
+                        'All': {
+                            'Long Library, Three Layer Room (Upper Layer)': True,
+                        },
+                    },
+                },
+            },
+        },
+        'Outside Shop -> Loading Room A': {
+            'Solver Effort': 0.5,
+            'State': {
+                'Location': 'Long Library, Outside Shop',
+                'Section': 'Main',
+            },
+            'Goals': {
+                'Reach Outer Wall': {
+                    'Locations Visited': {
+                        'All': {
+                            'Long Library, Loading Room A (Main)': True,
+                        },
+                    },
+                },
+            },
+        },
     },
     'Marble Gallery': {
         'Loading Room A with Leap Stone -> Loading Room D': {
