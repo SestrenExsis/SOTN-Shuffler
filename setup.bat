@@ -20,7 +20,7 @@ python src/mapper.py "Marble Gallery" 300 || goto :error
 python src/mapper.py "Olrox's Quarters" 200 || goto :error
 python src/mapper.py "Outer Wall" 200 || goto :error
 python src/mapper.py "Royal Chapel" 200 || goto :error
-python src/mapper.py "Underground Caverns" 100 || goto :error
+python src/mapper.py "Underground Caverns" 200 || goto :error
 python src/mapper.py "Warp Rooms" 100 || goto :error
 
 goto :EOF
