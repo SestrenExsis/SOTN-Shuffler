@@ -694,7 +694,7 @@ stage_validations = {
     },
     'Underground Caverns': {
         'Loading Room B with Soul of Bat -> Gold Ring': {
-            'Solver Effort': 0.7,
+            'Solver Effort': 1.0,
             'State': {
                 'Location': 'Underground Caverns, Loading Room B',
                 'Section': 'Main',
