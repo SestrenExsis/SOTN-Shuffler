@@ -11,24 +11,22 @@ import solver
 
 def get_room_drawing(mapper_core, room_name) -> list[str]:
     room = mapper_core['Rooms'][room_name]
-    rows = room['Rows']
-    cols = room['Columns']
     char = '1'
     if room_name.startswith('Warp Room '):
         char = '5'
     elif 'Save Room' in room_name:
         char = '4'
     elif 'Loading Room' in room_name:
-        char = 'c'
+        char = 'd'
     elif 'Fake Room With Teleporter' in room_name:
-        char = 'a'
-    grid = [['0' for col in range(1 + 4 * cols)] for row in range(1 + 4 * rows)]
-    for row in range(rows):
-        row_span = 4 if row < (rows - 1) else 3
-        for col in range(cols):
+        char = ' '
+    grid = [[' ' for col in range(1 + 4 * room['Columns'])] for row in range(1 + 4 * room['Rows'])]
+    for row in range(room['Rows']):
+        row_span = 4 if row < (room['Rows'] - 1) else 3
+        for col in range(room['Columns']):
             if (row, col) in room['Empty Cells']:
                 continue
-            col_span = 4 if col < (cols - 1) else 3
+            col_span = 4 if col < (room['Columns'] - 1) else 3
             for r in range(row_span):
                 for c in range(col_span):
                     grid[1 + 4 * row + r][1 + 4 * col + c] = char
@@ -74,6 +72,20 @@ stage_validations = {
                 },
             },
         },
+        'Loading Room C with Soul of Bat -> Demon Card': {
+            'Solver Effort': 0.7,
+            'State': {
+                'Location': 'Abandoned Mine, Loading Room C',
+                'Section': 'Main',
+                'Relic - Soul of Bat': True,
+                'Progression - Bat Transformation': True,
+            },
+            'Goals': {
+                'Get Demon Card': {
+                    'Relic - Demon Card': True,
+                },
+            },
+        },
         'Loading Room C with Soul of Bat -> Cerberus Room': {
             'Solver Effort': 0.5,
             'State': {
@@ -83,7 +95,7 @@ stage_validations = {
                 'Progression - Bat Transformation': True,
             },
             'Goals': {
-                'Reach Catacombs': {
+                'Reach Cerberus Room': {
                     'Locations Visited': {
                         'All': {
                             'Abandoned Mine, Cerberus Room (Main)': True,
@@ -150,17 +162,36 @@ stage_validations = {
         },
     },
     'Castle Center': {
-        'Elevator Shaft -> Holy Glasses': {
+        'Elevator Shaft with Library Card -> Holy Glasses': {
             'Solver Effort': 0.3,
             'State': {
                 'Location': 'Castle Center, Elevator Shaft',
                 'Section': 'Main',
+                # 'Item - Library Card': 1,
             },
             'Goals': {
                 'Get Holy Glasses': {
                     'Item - Holy Glasses': {
                         'Minimum': 1,
                     },
+                },
+            },
+        },
+        'Elevator Shaft with Soul of Bat -> Holy Glasses -> Return': {
+            'Solver Effort': 0.3,
+            'State': {
+                'Location': 'Castle Center, Elevator Shaft',
+                'Section': 'Main',
+                'Relic - Soul of Bat': True,
+                'Progression - Bat Transformation': True,
+            },
+            'Goals': {
+                'Get Holy Glasses and Return': {
+                    'Item - Holy Glasses': {
+                        'Minimum': 1,
+                    },
+                    'Location': 'Castle Center, Elevator Shaft',
+                    'Section': 'Main',
                 },
             },
         },
@@ -182,6 +213,7 @@ stage_validations = {
                 },
             },
         },
+        # TODO(sestren): Add more logic regarding the other loading rooms
     },
     'Castle Keep': {
         'Loading Room A with Soul of Bat and Holy Glasses -> Save Richter': {
@@ -370,6 +402,42 @@ stage_validations = {
                 },
             },
         },
+        'Loading Room A with Soul of Bat and Form of Mist -> Top of Three Layer Room': {
+            'Solver Effort': 0.5,
+            'State': {
+                'Location': 'Long Library, Loading Room A',
+                'Section': 'Main',
+                'Relic - Form of Mist': True,
+                'Progression - Mist Transformation': True,
+                'Relic - Soul of Bat': True,
+                'Progression - Bat Transformation': True,
+            },
+            'Goals': {
+                'Reach Top of Three Layer Room': {
+                    'Locations Visited': {
+                        'All': {
+                            'Long Library, Three Layer Room (Upper Layer)': True,
+                        },
+                    },
+                },
+            },
+        },
+        'Outside Shop -> Loading Room A': {
+            'Solver Effort': 0.5,
+            'State': {
+                'Location': 'Long Library, Outside Shop',
+                'Section': 'Main',
+            },
+            'Goals': {
+                'Reach Outer Wall': {
+                    'Locations Visited': {
+                        'All': {
+                            'Long Library, Loading Room A (Main)': True,
+                        },
+                    },
+                },
+            },
+        },
     },
     'Marble Gallery': {
         'Loading Room A with Leap Stone -> Loading Room D': {
@@ -390,7 +458,7 @@ stage_validations = {
                 },
             },
         },
-        'Loading Room A with Soul of Bat, Jewel of Open, Gold Ring, and Silver Ring -> Elevator Room': {
+        'Loading Room A with Soul of Bat, Jewel of Open, and Both Rings -> Elevator Room': {
             'Solver Effort': 1.0,
             'State': {
                 'Location': 'Marble Gallery, Loading Room A',
@@ -588,13 +656,15 @@ stage_validations = {
                 },
             },
         },
-        'Loading Room B with Jewel of Open and Spike Breaker -> Silver Ring': {
+        'Loading Room B with Jewel of Open, Form of Mist and Spike Breaker -> Silver Ring': {
             'Solver Effort': 0.5,
             'State': {
                 'Location': 'Royal Chapel, Loading Room B',
                 'Section': 'Main',
                 'Relic - Jewel of Open': True,
                 'Progression - Unlock Blue Doors': True,
+                'Relic - Form of Mist': True,
+                'Progression - Mist Transformation': True,
                 'Item - Spike Breaker': 1,
             },
             'Goals': {
@@ -626,6 +696,20 @@ stage_validations = {
     },
     'Underground Caverns': {
         'Loading Room B with Soul of Bat -> Gold Ring': {
+            'Solver Effort': 1.0,
+            'State': {
+                'Location': 'Underground Caverns, Loading Room B',
+                'Section': 'Main',
+                'Relic - Soul of Bat': True,
+                'Progression - Bat Transformation': True,
+            },
+            'Goals': {
+                'Get Gold Ring': {
+                    'Item - Gold Ring': 1,
+                },
+            },
+        },
+        'Loading Room B with Soul of Bat -> Loading Room C': {
             'Solver Effort': 0.7,
             'State': {
                 'Location': 'Underground Caverns, Loading Room B',
@@ -634,8 +718,43 @@ stage_validations = {
                 'Progression - Bat Transformation': True,
             },
             'Goals': {
-                'Get Gold Ring and Reach Abandoned Mine': {
-                    'Item - Gold Ring': 1,
+                'Reach Abandoned Mine': {
+                    'Locations Visited': {
+                        'All': {
+                            'Underground Caverns, Loading Room A (Main)': True,
+                        },
+                    },
+                },
+            },
+        },
+        'Loading Room B -> Merman Statue -> Loading Room A': {
+            'Solver Effort': 1.0,
+            'State': {
+                'Location': 'Underground Caverns, Loading Room B',
+                'Section': 'Main',
+            },
+            'Goals': {
+                'Get Merman Statue and Reach Marble Gallery': {
+                    'Relic - Merman Statue': True,
+                    'Locations Visited': {
+                        'All': {
+                            'Underground Caverns, Loading Room A (Main)': True,
+                        },
+                    },
+                },
+            },
+        },
+        'Loading Room B with Merman Statue -> Holy Symbol': {
+            'Solver Effort': 1.0,
+            'State': {
+                'Location': 'Underground Caverns, Loading Room B',
+                'Section': 'Main',
+                'Relic - Merman Statue': True,
+                'Progression - Summon Ferryman': True,
+            },
+            'Goals': {
+                'Get Merman Statue and Reach Marble Gallery': {
+                    'Relic - Holy Symbol': True,
                 },
             },
         },
@@ -687,6 +806,8 @@ if __name__ == '__main__':
     '''
     MIN_MAP_ROW = 5
     MAX_MAP_ROW = 55
+    MIN_MAP_COL = 0
+    MAX_MAP_COL = 63
     mapper_core = mapper.MapperData().get_core()
     # Keep randomizing until a solution is found
     initial_seed = random.randint(0, 2 ** 64)
@@ -786,67 +907,70 @@ if __name__ == '__main__':
         stage_names = list(stages.keys() - {'Warp Rooms'})
         global_rng.shuffle(stage_names)
         stage_names = ['Warp Rooms'] + stage_names
+
         valid_ind = False
         for (index, stage_name) in enumerate(stage_names):
             current_stage = stages[stage_name]['Mapper'].stage
             prev_cells = set()
             for prev_stage_name in stage_names[:index]:
-                cells = current_stage.get_cells(
+                cells = stages[prev_stage_name]['Mapper'].stage.get_cells(
                     stages[prev_stage_name]['Stage Top'],
                     stages[prev_stage_name]['Stage Left']
                 )
                 prev_cells = prev_cells.union(cells)
-            if stage_name == 'Warp Rooms':
-                # Warp Rooms is being kept in its vanilla location for now
-                stage_top = 12 - current_stage.rooms['Warp Rooms, Warp Room A'].top
-                stage_left = 40 - current_stage.rooms['Warp Rooms, Warp Room A'].left
-                assert stage_left >= 0
-            elif stage_name == 'Castle Entrance':
+            (top, left, bottom, right) = current_stage.get_bounds()
+            best_area = float('inf')
+            best_stage_offsets = []
+            (min_map_row, max_map_row) = (MIN_MAP_ROW, MAX_MAP_ROW - bottom)
+            (min_map_col, max_map_col) = (MIN_MAP_COL, MAX_MAP_COL - right)
+            if stage_name == 'Castle Entrance':
                 # Castle Entrance is being restricted by where 'Unknown Room 20' and 'After Drawbridge' can be
-                stage_top = 38 - current_stage.rooms['Castle Entrance, After Drawbridge'].top
-                stage_left = max(0, 1 - current_stage.rooms['Castle Entrance, Unknown Room 20'].left)
-            elif stage_name == 'Underground Caverns':
-                # Underground Caverns is being restricted by where 'False Save Room' can be
-                stage_top = 33 - current_stage.rooms['Underground Caverns, False Save Room'].top
-                stage_left = 45 - current_stage.rooms['Underground Caverns, False Save Room'].left
-            else:
-                (top, left, bottom, right) = current_stage.get_bounds()
-                best_area = float('inf')
-                best_stage_offsets = []
-                for stage_top in range(MIN_MAP_ROW, MAX_MAP_ROW - bottom):
-                    for stage_left in range(0, 63 - right):
-                        # NOTE(sestren): Reject if it overlaps another stage
-                        current_cells = current_stage.get_cells(stage_top, stage_left)
-                        if len(current_cells.intersection(prev_cells)) > 0:
-                            continue
+                min_map_row = 38 - current_stage.rooms['Castle Entrance, After Drawbridge'].top
+                max_map_row = min_map_row + 1
+                min_map_col = max(min_map_col, 1 - current_stage.rooms['Castle Entrance, Unknown Room 20'].left)
+            elif stage_name == 'Warp Rooms':
+                # Warp Rooms is being kept in its vanilla location for now
+                min_map_row = 12 - current_stage.rooms['Warp Rooms, Warp Room A'].top
+                max_map_row = min_map_row + 1
+                min_map_col = 40 - current_stage.rooms['Warp Rooms, Warp Room A'].left
+                max_map_col = min_map_col + 1
+            # TODO(sestren): Figure out why Long Drop in Underground Caverns overlaps other stages sometimes
+            for stage_top in range(min_map_row, max_map_row):
+                for stage_left in range(min_map_col, max_map_col):
+                    # Reject if it overlaps another stage
+                    current_cells = current_stage.get_cells(stage_top, stage_left)
+                    if len(current_cells.intersection(prev_cells)) > 0:
+                        continue
+                    all_cells = current_cells.union(prev_cells)
+                    if stage_name != 'Warp Rooms':
                         # Exclude warp rooms so their position doesn't skew the area calculation
                         warp_room = stages['Warp Rooms']
-                        all_cells = current_cells.union(prev_cells) - warp_room['Mapper'].stage.get_cells(warp_room['Stage Top'], warp_room['Stage Left'])
-                        min_row = min((row for (row, col) in all_cells))
-                        max_row = max((row for (row, col) in all_cells))
-                        min_col = min((col for (row, col) in all_cells))
-                        max_col = max((col for (row, col) in all_cells))
-                        area = (1 + max_row - min_row) * (1 + max_col - min_col)
-                        # Keep track of whichever offset minimizes the overall area
-                        if area < best_area:
-                            best_stage_offsets = []
-                            best_area = area
-                        if area == best_area:
-                            best_stage_offsets.append((stage_top, stage_left))
-                if best_area >= float('inf'):
-                    print('******')
-                    print('Could not find a suitable spot on the map for', stage_name)
-                    print('******')
-                    break
-                (stage_top, stage_left) = global_rng.choice(best_stage_offsets)
+                        all_cells -= warp_room['Mapper'].stage.get_cells(warp_room['Stage Top'], warp_room['Stage Left'])
+                    min_row = min((row for (row, col) in all_cells))
+                    max_row = max((row for (row, col) in all_cells))
+                    min_col = min((col for (row, col) in all_cells))
+                    max_col = max((col for (row, col) in all_cells))
+                    area = (1 + max_row - min_row) * (1 + max_col - min_col)
+                    # Keep track of whichever offset minimizes the overall area
+                    if area < best_area:
+                        best_stage_offsets = []
+                        best_area = area
+                    if area == best_area:
+                        best_stage_offsets.append((stage_top, stage_left))
+            if best_area >= float('inf'):
+                print('******')
+                print('Could not find a suitable spot on the map for', stage_name)
+                print('******')
+                break
+            (stage_top, stage_left) = global_rng.choice(best_stage_offsets)
             # cells = current_stage.get_cells(stage_top, stage_left)
             # prev_cells.union(cells)
             (top, left, bottom, right) = current_stage.get_bounds()
             if not (
                 MIN_MAP_ROW <= stage_top + top < MAX_MAP_ROW and
                 MIN_MAP_ROW <= stage_top + bottom < MAX_MAP_ROW and
-                0 <= stage_left + left < 64 and
-                0 <= stage_left + right < 64
+                MIN_MAP_COL <= stage_left + left < MAX_MAP_COL and
+                MIN_MAP_COL <= stage_left + right < MAX_MAP_COL
             ):
                 print('******')
                 print(stage_name, 'could not be placed within the bounds of the map')
@@ -1310,15 +1434,22 @@ if __name__ == '__main__':
         source_room = changes['Stages']['Reverse Keep']['Rooms']['Reverse Keep, Keep Area']
         changes['Constants']['Reverse Keep Teleporter, Y Offset'] = -1 * (256 * source_room['Top'] + 1351)
         changes['Constants']['Reverse Keep Teleporter, X Offset'] = -1 * (256 * source_room['Left'] + 1728)
+        # NOTE(sestren): Adjust the False Save Room trigger, solved by @MottZilla
+        # See https://github.com/Xeeynamo/sotn-decomp/blob/ffce97b0022ab5d4118ad35c93dea86bb18b25cc/src/dra/5087C.c#L1012
+        source_room = changes['Stages']['Underground Caverns']['Rooms']['Underground Caverns, False Save Room']
+        changes['Constants']['False Save Room, Room Y'] = source_room['Top']
+        changes['Constants']['False Save Room, Room X'] = source_room['Left']
+        # NOTE(sestren): Disable NOCLIP checker; this will allow NOCLIP to always be on
+        changes['Constants']['Set initial NOCLIP value'] = 0xAC258850
         # Apply castle map drawing grid to changes
         changes['Castle Map'] = []
         for row in range(len(castle_map)):
             row_data = ''.join(castle_map[row])
             changes['Castle Map'].append(row_data)
-        # Show version and seed on file select screen
+        # Show softlock warning and build number on file select screen
         changes['Strings'] = {
-            '10': 'SOTN Shuffler v0.1.0a',
-            '11': str(shuffler['Initial Seed']),
+            '10': 'Press L2 if softlocked.     ',
+            '11': 'Alpha Build 70      ',
         }
         # Patch - Assign Power of Wolf Relic its own ID (was previously duplicating the trap door's ID)
         # https://github.com/SestrenExsis/SOTN-Shuffler/issues/36
@@ -1353,6 +1484,12 @@ if __name__ == '__main__':
             'Shuffler': shuffler,
             # 'Solver': solution,
         }
+        print(' '.join((
+            shuffler['End Time'].strftime('%Y-%m-%d %H-%M-%S'),
+            'SOTN Shuffler',
+            changes['Strings']['11'].strip(),
+            '(' + str(shuffler['Initial Seed']) + ')',
+        )))
         with open(os.path.join('build', 'shuffler', 'current-seed.json'), 'w') as current_seed_json:
             json.dump(current_seed, current_seed_json, indent='    ', sort_keys=True, default=str)
         # while True:
