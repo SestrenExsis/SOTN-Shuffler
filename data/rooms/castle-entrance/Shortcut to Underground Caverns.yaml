@@ -8,7 +8,7 @@ Empty Cells: {}
 Map:
     - "00000"
     - "01110"
-    - "11111"
+    - "11114"
     - "01110"
     - "00000"
 Nodes:
@@ -19,7 +19,7 @@ Nodes:
         Edge: Left
         Entry Section: Left Side
         Exit Section: Left Side
-    Right Passage:
+    Right Red Door:
         Type: "######....######"
         Row: 0
         Column: 0
