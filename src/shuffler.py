@@ -1437,6 +1437,8 @@ if __name__ == '__main__':
         source_room = changes['Stages']['Underground Caverns']['Rooms']['Underground Caverns, False Save Room']
         changes['Constants']['False Save Room, Room Y'] = source_room['Top']
         changes['Constants']['False Save Room, Room X'] = source_room['Left']
+        # NOTE(sestren): Disable NOCLIP checker; this will allow NOCLIP to always be on
+        changes['Constants']['Set initial NOCLIP value'] = 0xAC258850
         # Apply castle map drawing grid to changes
         changes['Castle Map'] = []
         for row in range(len(castle_map)):
@@ -1444,8 +1446,8 @@ if __name__ == '__main__':
             changes['Castle Map'].append(row_data)
         # Show version and seed on file select screen
         changes['Strings'] = {
-            '10': 'Alpha Build 70',
-            '11': str(shuffler['Initial Seed']),
+            '10': 'Press L2 if softlocked.     ',
+            '11': 'Alpha Build 70      ',
         }
         # Patch - Assign Power of Wolf Relic its own ID (was previously duplicating the trap door's ID)
         # https://github.com/SestrenExsis/SOTN-Shuffler/issues/36
@@ -1480,11 +1482,10 @@ if __name__ == '__main__':
             'Shuffler': shuffler,
             # 'Solver': solution,
         }
-        
         print(' '.join((
             shuffler['End Time'].strftime('%Y-%m-%d %H-%M-%S'),
             'SOTN Shuffler',
-            changes['Strings']['10'],
+            changes['Strings']['11'].strip(),
             '(' + str(shuffler['Initial Seed']) + ')',
         )))
         with open(os.path.join('build', 'shuffler', 'current-seed.json'), 'w') as current_seed_json:
