@@ -656,13 +656,15 @@ stage_validations = {
                 },
             },
         },
-        'Loading Room B with Jewel of Open and Spike Breaker -> Silver Ring': {
+        'Loading Room B with Jewel of Open, Form of Mist and Spike Breaker -> Silver Ring': {
             'Solver Effort': 0.5,
             'State': {
                 'Location': 'Royal Chapel, Loading Room B',
                 'Section': 'Main',
                 'Relic - Jewel of Open': True,
                 'Progression - Unlock Blue Doors': True,
+                'Relic - Form of Mist': True,
+                'Progression - Mist Transformation': True,
                 'Item - Spike Breaker': 1,
             },
             'Goals': {
@@ -1444,7 +1446,7 @@ if __name__ == '__main__':
         for row in range(len(castle_map)):
             row_data = ''.join(castle_map[row])
             changes['Castle Map'].append(row_data)
-        # Show version and seed on file select screen
+        # Show softlock warning and build number on file select screen
         changes['Strings'] = {
             '10': 'Press L2 if softlocked.     ',
             '11': 'Alpha Build 70      ',
