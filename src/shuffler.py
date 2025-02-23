@@ -1047,6 +1047,34 @@ if __name__ == '__main__':
                             castle_map[row][col] = char
                         else:
                             print('Tried to draw pixel out of bounds of map:', room_name, (room_top, room_left), (row, col))
+        # Calculate which cells on the map to reveal
+        cells_to_reveal = set()
+        for (row, row_data) in enumerate(castle_map):
+            for (col, char) in enumerate(row_data):
+                if char == '0':
+                    continue
+                cell_row = row // 4
+                cell_col = col // 4
+                cells_to_reveal.add((cell_row, cell_col))
+        castle_map_reveal_top = min(row for (row, col) in cells_to_reveal)
+        castle_map_reveal_grid = []
+        for row in range(38):
+            row_data = []
+            for col in range(64):
+                char = ' '
+                if (castle_map_reveal_top + row, col) in cells_to_reveal:
+                    char = '#'
+                row_data.append(char)
+            castle_map_reveal_grid.append(''.join(row_data))
+        changes['Castle Map Reveals'] = [
+            {
+                'Bytes Per Row': 8,
+                'Grid': castle_map_reveal_grid,
+                'Left': 0,
+                'Rows': 38,
+                'Top': castle_map_reveal_top,
+            },
+        ]
         # Apply Castle Entrance room positions to Castle Entrance Revisited
         changes['Stages']['Castle Entrance Revisited'] = {
             'Rooms': {},
@@ -1441,6 +1469,8 @@ if __name__ == '__main__':
         changes['Constants']['False Save Room, Room X'] = source_room['Left']
         # NOTE(sestren): Disable NOCLIP checker; this will allow NOCLIP to always be on
         changes['Constants']['Set initial NOCLIP value'] = 0xAC258850
+        # NOTE(sestren): Reveal all map tiles within vanilla boundaries when purchasing the Castle Map
+        # changes['Constants']['Should reveal map tile'] = 0x00000000
         # Apply castle map drawing grid to changes
         changes['Castle Map'] = []
         for row in range(len(castle_map)):
