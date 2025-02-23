@@ -1047,6 +1047,34 @@ if __name__ == '__main__':
                             castle_map[row][col] = char
                         else:
                             print('Tried to draw pixel out of bounds of map:', room_name, (room_top, room_left), (row, col))
+        # Calculate which cells on the map to reveal
+        cells_to_reveal = set()
+        for (row, row_data) in enumerate(castle_map):
+            for (col, char) in enumerate(row_data):
+                if char == '0':
+                    continue
+                cell_row = row // 4
+                cell_col = col // 4
+                cells_to_reveal.add((cell_row, cell_col))
+        castle_map_reveal_top = min(row for (row, col) in cells_to_reveal)
+        castle_map_reveal_grid = []
+        for row in range(38):
+            row_data = []
+            for col in range(64):
+                char = ' '
+                if (castle_map_reveal_top + row, col) in cells_to_reveal:
+                    char = '#'
+                row_data.append(char)
+            castle_map_reveal_grid.append(''.join(row_data))
+        changes['Castle Map Reveals'] = [
+            {
+                'Bytes Per Row': 8,
+                'Grid': castle_map_reveal_grid,
+                'Left': 0,
+                'Rows': 38,
+                'Top': castle_map_reveal_top,
+            },
+        ]
         # Apply Castle Entrance room positions to Castle Entrance Revisited
         changes['Stages']['Castle Entrance Revisited'] = {
             'Rooms': {},
@@ -1426,20 +1454,20 @@ if __name__ == '__main__':
                 'Room Y': source_room['Top'] + offset_top,
                 'Room X': source_room['Left'] + offset_left,
             }
-        # NOTE(sestren): Adjust the target point for the Castle Teleporter locations
-        # NOTE(sestren): The target points relative to their respective rooms is (y=847, x=320) in TOP and (y=1351, x=1728) in RTOP
+        # Adjust the target point for the Castle Teleporter locations
+        # The target points relative to their respective rooms is (y=847, x=320) in TOP and (y=1351, x=1728) in RTOP
         source_room = changes['Stages']['Castle Keep']['Rooms']['Castle Keep, Keep Area']
         changes['Constants']['Castle Keep Teleporter, Y Offset'] = -1 * (256 * source_room['Top'] + 847)
         changes['Constants']['Castle Keep Teleporter, X Offset'] = -1 * (256 * source_room['Left'] + 320)
         source_room = changes['Stages']['Reverse Keep']['Rooms']['Reverse Keep, Keep Area']
         changes['Constants']['Reverse Keep Teleporter, Y Offset'] = -1 * (256 * source_room['Top'] + 1351)
         changes['Constants']['Reverse Keep Teleporter, X Offset'] = -1 * (256 * source_room['Left'] + 1728)
-        # NOTE(sestren): Adjust the False Save Room trigger, solved by @MottZilla
+        # Adjust the False Save Room trigger, solved by @MottZilla
         # See https://github.com/Xeeynamo/sotn-decomp/blob/ffce97b0022ab5d4118ad35c93dea86bb18b25cc/src/dra/5087C.c#L1012
         source_room = changes['Stages']['Underground Caverns']['Rooms']['Underground Caverns, False Save Room']
         changes['Constants']['False Save Room, Room Y'] = source_room['Top']
         changes['Constants']['False Save Room, Room X'] = source_room['Left']
-        # NOTE(sestren): Disable NOCLIP checker; this will allow NOCLIP to always be on
+        # Disable NOCLIP checker; this will allow NOCLIP to always be on
         changes['Constants']['Set initial NOCLIP value'] = 0xAC258850
         # Apply castle map drawing grid to changes
         changes['Castle Map'] = []
@@ -1449,7 +1477,7 @@ if __name__ == '__main__':
         # Show softlock warning and build number on file select screen
         changes['Strings'] = {
             '10': 'Press L2 if softlocked.     ',
-            '11': 'Alpha Build 70      ',
+            '11': 'Alpha Build 71      ',
         }
         # Patch - Assign Power of Wolf Relic its own ID (was previously duplicating the trap door's ID)
         # https://github.com/SestrenExsis/SOTN-Shuffler/issues/36

@@ -609,6 +609,7 @@ stages = {
         { 'Castle Keep, Tyrfing Room': (0, 0) },
     ],
     'Royal Chapel': [
+        # TODO(sestren): Save Room B connecting at Middle-Right Passage of Left Tower causes flickering and softlocks
         {
             # NOTE(sestren): For now, these hallways and towers must be combined until the special behavior that controls transitions between them is better understood
             # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
