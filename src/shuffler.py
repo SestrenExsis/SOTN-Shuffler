@@ -984,6 +984,7 @@ if __name__ == '__main__':
             'Castle Map': [],
             'Constants': {},
             'Familiar Events': {},
+            'Reverse Warp Room Coordinates': {},
             'Stages': {},
             'Warp Room Coordinates': {},
         }
@@ -991,7 +992,7 @@ if __name__ == '__main__':
         stages['Warp Rooms']['Stage Left'] = 0
         # Initialize the castle map drawing grid
         castle_map = [['0' for col in range(256)] for row in range(256)]
-        # Process each stage
+        # Process each stage, with Warp Rooms being processed last
         stage_names = list(stages.keys() - {'Warp Rooms'})
         stage_names += ['Warp Rooms']
         overrides = {}
@@ -1035,6 +1036,10 @@ if __name__ == '__main__':
                     'Room Y': source_room['Top'],
                     'Room X': source_room['Left'],
                 }
+                changes['Reverse Warp Room Coordinates'][3] = {
+                    'Room Y': 63 - source_room['Top'],
+                    'Room X': 63 - source_room['Left'],
+                }
                 # Warp Room B is attached to Olrox's Quarters
                 source_room = changes['Stages']['Olrox\'s Quarters']['Rooms']['Olrox\'s Quarters, Fake Room With Teleporter ID 027']
                 overrides['Warp Rooms, Fake Room With Teleporter ID 030'] = {
@@ -1052,6 +1057,10 @@ if __name__ == '__main__':
                 changes['Warp Room Coordinates'][4] = {
                     'Room Y': source_room['Top'],
                     'Room X': source_room['Left'],
+                }
+                changes['Reverse Warp Room Coordinates'][4] = {
+                    'Room Y': 63 - source_room['Top'],
+                    'Room X': 63 - source_room['Left'],
                 }
                 # Warp Room C is attached to Outer Wall
                 source_room = changes['Stages']['Outer Wall']['Rooms']['Outer Wall, Fake Room With Teleporter ID 042']
@@ -1071,6 +1080,10 @@ if __name__ == '__main__':
                     'Room Y': source_room['Top'],
                     'Room X': source_room['Left'],
                 }
+                changes['Reverse Warp Room Coordinates'][2] = {
+                    'Room Y': 63 - source_room['Top'],
+                    'Room X': 63 - source_room['Left'],
+                }
                 # Warp Room D is attached to Castle Entrance
                 source_room = changes['Stages']['Castle Entrance']['Rooms']['Castle Entrance, Fake Room With Teleporter D']
                 overrides['Warp Rooms, Warp Room D'] = {
@@ -1089,6 +1102,10 @@ if __name__ == '__main__':
                     'Room Y': source_room['Top'],
                     'Room X': source_room['Left'],
                 }
+                changes['Reverse Warp Room Coordinates'][0] = {
+                    'Room Y': 63 - source_room['Top'],
+                    'Room X': 63 - source_room['Left'],
+                }
                 # Warp Room E is attached to Abandoned Mine
                 source_room = changes['Stages']['Abandoned Mine']['Rooms']['Abandoned Mine, Fake Room With Teleporter ID 020']
                 overrides['Warp Rooms, Fake Room With Teleporter ID 032'] = {
@@ -1106,6 +1123,10 @@ if __name__ == '__main__':
                 changes['Warp Room Coordinates'][1] = {
                     'Room Y': source_room['Top'],
                     'Room X': source_room['Left'],
+                }
+                changes['Reverse Warp Room Coordinates'][1] = {
+                    'Room Y': 63 - source_room['Top'],
+                    'Room X': 63 - source_room['Left'],
                 }
             for room_name in stage_changes['Rooms']:
                 room_top = stage_top + stage_changes['Rooms'][room_name]['Top']
@@ -1135,7 +1156,7 @@ if __name__ == '__main__':
                             castle_map[row][col] = char
                         else:
                             print('Tried to draw pixel out of bounds of map:', room_name, (room_top, room_left), (row, col))
-        # Calculate which cells on the map to reveal
+        # Calculate which cells on the map buying the Castle Map in the Shop will reveal
         cells_to_reveal = set()
         for (row, row_data) in enumerate(castle_map):
             for (col, char) in enumerate(row_data):
