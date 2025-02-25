@@ -1,0 +1,474 @@
+
+Abandoned Mine:
+    Loading Room C with Soul of Bat -> Loading Room A:
+        Solver Effort: 0.7
+        State:
+            Location: Abandoned Mine, Loading Room C
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Catacombs:
+                Locations Visited:
+                    All:
+                        Abandoned Mine, Loading Room A (Main): true
+    Loading Room C with Soul of Bat -> Demon Card:
+        Solver Effort: 0.7
+        State:
+            Location: Abandoned Mine, Loading Room C
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Get Demon Card:
+                Relic - Demon Card: true
+    Loading Room C with Soul of Bat -> Cerberus Room:
+        Solver Effort: 0.5
+        State:
+            Location: Abandoned Mine, Loading Room C
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Cerberus Room:
+                Locations Visited:
+                    All:
+                        Abandoned Mine, Cerberus Room (Main): true
+Alchemy Laboratory:
+    Loading Room A with Jewel of Open -> Loading Room B:
+        Solver Effort: 0.7
+        State:
+            Location: Alchemy Laboratory, Loading Room A
+            Section: Main
+            Relic - Jewel of Open: true
+            Progression - Unlock Blue Doors: true
+        Goals:
+            Reach Royal Chapel:
+                Locations Visited:
+                    All:
+                        Alchemy Laboratory, Loading Room B (Main): true
+    Loading Room C with Soul of Bat and Jewel of Open -> Slogra and Gaibon Room:
+        Solver Effort: 0.5
+        State:
+            Location: Alchemy Laboratory, Loading Room C
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+            Relic - Jewel of Open: true
+            Progression - Unlock Blue Doors: true
+        Goals:
+            Reach Slogra and Gaibon:
+                Locations Visited:
+                    All:
+                        Alchemy Laboratory, Slogra and Gaibon Room (Ground): true
+    Loading Room C -> Loading Room A:
+        Solver Effort: 0.7
+        State:
+            Location: Alchemy Laboratory, Loading Room C
+            Section: Main
+        Goals:
+            Reach Marble Gallery:
+                Locations Visited:
+                    All:
+                        Alchemy Laboratory, Loading Room A (Main): true
+Castle Center:
+    Elevator Shaft -> Holy Glasses:
+        Solver Effort: 0.3
+        State:
+            Location: Castle Center, Elevator Shaft
+            Section: Main
+        Goals:
+            Get Holy Glasses (assumes escape using Library Card):
+                Item - Holy Glasses:
+                    Minimum: 1
+    Elevator Shaft with Soul of Bat -> Holy Glasses -> Return:
+        Solver Effort: 0.3
+        State:
+            Location: Castle Center, Elevator Shaft
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Get Holy Glasses and Return:
+                Item - Holy Glasses:
+                    Minimum: 1
+                Location: Castle Center, Elevator Shaft
+                Section: Main
+Castle Entrance:
+    Start -> Loading Room C:
+        Solver Effort: 0.5
+        State:
+            Location: Castle Entrance, After Drawbridge
+            Section: Ground
+        Goals:
+            Reach Alchemy Laboratory:
+                Locations Visited:
+                    All:
+                        Castle Entrance, Loading Room C (Main): true
+Castle Keep:
+    Loading Room A with Soul of Bat and Holy Glasses -> Save Richter:
+        Solver Effort: 0.5
+        State:
+            Location: Castle Keep, Loading Room A
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+            Item - Holy Glasses: 1
+        Goals:
+            Save Richter:
+                Status - Richter Saved: true
+    Loading Room C -> Leap Stone -> Loading Room C:
+        Solver Effort: 0.7
+        State:
+            Location: Castle Keep, Loading Room C
+            Section: Main
+        Goals:
+            Get Leap Stone and Return to Royal Chapel:
+                Relic - Leap Stone: true
+                Progression - Double Jump: true
+                Locations Visited:
+                    All:
+                        Castle Keep, Loading Room C (Main): true
+Catacombs:
+    Loading Room A with Soul of Bat and Echo of Bat -> Spike Breaker:
+        Solver Effort: 0.7
+        State:
+            Location: Catacombs, Loading Room A
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+            Relic - Echo of Bat: true
+            Progression - Echolocation: true
+        Goals:
+            Get Spike Breaker:
+                Item - Spike Breaker:
+                    Minimum: 1
+Clock Tower:
+    Loading Room A with Double Jump -> Loading Room B:
+        Solver Effort: 0.5
+        State:
+            Location: Clock Tower, Loading Room A
+            Section: Main
+            Relic - Leap Stone: true
+            Progression - Double Jump: true
+        Goals:
+            Reach Castle Keep:
+                Locations Visited:
+                    All:
+                        Clock Tower, Loading Room B (Main): true
+    Loading Room A with Soul of Bat -> Karasuman's Room:
+        Solver Effort: 0.4
+        State:
+            Location: Clock Tower, Loading Room A
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Karasuman's Room:
+                Locations Visited:
+                    All:
+                        Clock Tower, Karasuman's Room (Main): true
+Colosseum:
+    Loading Room B -> Loading Room A:
+        Solver Effort: 0.5
+        State:
+            Location: Colosseum, Loading Room B
+            Section: Main
+        Goals:
+            Reach Castle Keep:
+                Locations Visited:
+                    All:
+                        Colosseum, Loading Room A (Main): true
+    Loading Room A with Shortcut Unlocked -> Loading Room B:
+        Solver Effort: 0.5
+        State:
+            Location: Colosseum, Loading Room A
+            Section: Main
+            Status - Shortcut Between Holy Chapel and Colosseum Unlocked: true
+        Goals:
+            Reach Castle Keep:
+                Locations Visited:
+                    All:
+                        Colosseum, Loading Room B (Main): true
+    Loading Room B -> Library Card -> Form of Mist:
+        Solver Effort: 0.5
+        State:
+            Location: Colosseum, Loading Room B
+            Section: Main
+        Goals:
+            Get Library Card and Form of Mist:
+                Item - Library Card: 1
+                Relic - Form of Mist: true
+                Progression - Mist Transformation: true
+Long Library:
+    Loading Room A with Soul of Wolf -> Jewel of Open -> Loading Room A:
+        Solver Effort: 0.7
+        State:
+            Location: Long Library, Loading Room A
+            Section: Main
+            Relic - Soul of Wolf: true
+            Progression - Wolf Transformation: true
+        Goals:
+            Get Jewel of Open and Reach Outer Wall:
+                Relic - Jewel of Open: true
+                Progression - Unlock Blue Doors: true
+                Locations Visited:
+                    All:
+                        Long Library, Loading Room A (Main): true
+    Loading Room A with Double Jump, Soul of Wolf, and Form of Mist -> Soul of Bat -> Loading Room A:
+        Solver Effort: 0.7
+        State:
+            Location: Long Library, Loading Room A
+            Section: Main
+            Relic - Leap Stone: true
+            Progression - Double Jump: true
+            Relic - Soul of Wolf: true
+            Progression - Wolf Transformation: true
+            Relic - Form of Mist: true
+            Progression - Mist Transformation: true
+        Goals:
+            Get Soul of Bat and Reach Outer Wall:
+                Relic - Soul of Bat: true
+                Progression - Bat Transformation: true
+                Locations Visited:
+                    All:
+                        Long Library, Loading Room A (Main): true
+    Loading Room A with Soul of Bat and Form of Mist -> Top of Three Layer Room:
+        Solver Effort: 0.5
+        State:
+            Location: Long Library, Loading Room A
+            Section: Main
+            Relic - Form of Mist: true
+            Progression - Mist Transformation: true
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Top of Three Layer Room:
+                Locations Visited:
+                    All:
+                        Long Library, Three Layer Room (Upper Layer): true
+    Outside Shop -> Loading Room A:
+        Solver Effort: 0.5
+        State:
+            Location: Long Library, Outside Shop
+            Section: Main
+        Goals:
+            Reach Outer Wall:
+                Locations Visited:
+                    All:
+                        Long Library, Loading Room A (Main): true
+Marble Gallery:
+    Loading Room A with Leap Stone -> Loading Room D:
+        Solver Effort: 0.7
+        State:
+            Location: Marble Gallery, Loading Room A
+            Section: Main
+            Relic - Leap Stone: true
+            Progression - Double Jump: true
+        Goals:
+            Reach Olrox's Quarters:
+                Locations Visited:
+                    All:
+                        Marble Gallery, Loading Room D (Main): true
+    Loading Room A with Soul of Bat, Jewel of Open, and Both Rings -> Elevator Room:
+        Solver Effort: 1.0
+        State:
+            Location: Marble Gallery, Loading Room A
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+            Relic - Jewel of Open: true
+            Progression - Unlock Blue Doors: true
+            Item - Silver Ring: 1
+            Item - Gold Ring: 1
+        Goals:
+            Reach Castle Center:
+                Locations Visited:
+                    All:
+                        Marble Gallery, Elevator Room (Main): true
+    Loading Room A with Jewel of Open -> Loading Room B:
+        Solver Effort: 0.7
+        State:
+            Location: Marble Gallery, Loading Room A
+            Section: Main
+            Relic - Jewel of Open: true
+            Progression - Unlock Blue Doors: true
+        Goals:
+            Reach Underground Caverns:
+                Locations Visited:
+                    All:
+                        Marble Gallery, Loading Room B (Main): true
+    Loading Room C -> Loading Room A:
+        Solver Effort: 0.7
+        State:
+            Location: Marble Gallery, Loading Room C
+            Section: Main
+        Goals:
+            Reach Outer Wall:
+                Locations Visited:
+                    All:
+                        Marble Gallery, Loading Room A (Main): true
+Olrox's Quarters:
+    Loading Room A -> Loading Room B:
+        Solver Effort: 0.7
+        State:
+            Location: Olrox's Quarters, Loading Room A
+            Section: Main
+        Goals:
+            Reach Colosseum:
+                Locations Visited:
+                    All:
+                        Olrox's Quarters, Loading Room B (Main): true
+    Loading Room A with Soul of Bat -> Echo of Bat:
+        Solver Effort: 0.5
+        State:
+            Location: Olrox's Quarters, Loading Room A
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Get Echo of Bat:
+                Relic - Echo of Bat: true
+                Progression - Echolocation: true
+    Loading Room A with Soul of Bat -> Olrox's Room (Ground):
+        Solver Effort: 0.5
+        State:
+            Location: Olrox's Quarters, Loading Room A
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Catacombs:
+                Locations Visited:
+                    All:
+                        Olrox's Quarters, Olrox's Room (Ground): true
+Outer Wall:
+    Loading Room D -> Soul of Wolf -> Loading Room A:
+        Solver Effort: 0.7
+        State:
+            Location: Outer Wall, Loading Room A
+            Section: Main
+        Goals:
+            Reach Warp Rooms:
+                Relic - Soul of Wolf: true
+                Locations Visited:
+                    All:
+                        Outer Wall, Loading Room A (Main): true
+    Loading Room D -> Soul of Wolf -> Loading Room B:
+        Solver Effort: 0.7
+        State:
+            Location: Outer Wall, Loading Room A
+            Section: Main
+        Goals:
+            Get Soul of Wolf and Reach Clock Tower:
+                Relic - Soul of Wolf: true
+                Locations Visited:
+                    All:
+                        Outer Wall, Loading Room B (Main): true
+    Loading Room D -> Soul of Wolf -> Loading Room C:
+        Solver Effort: 0.7
+        State:
+            Location: Outer Wall, Loading Room A
+            Section: Main
+        Goals:
+            Get Soul of Wolf and Reach Long Library:
+                Relic - Soul of Wolf: true
+                Locations Visited:
+                    All:
+                        Outer Wall, Loading Room C (Main): true
+    Loading Room B with Soul of Bat -> Doppelganger Room:
+        Solver Effort: 0.5
+        State:
+            Location: Outer Wall, Loading Room B
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Catacombs:
+                Locations Visited:
+                    All:
+                        Outer Wall, Doppelganger Room (Main): true
+Royal Chapel:
+    Loading Room B with Jewel of Open -> Loading Room C:
+        Solver Effort: 0.5
+        State:
+            Location: Royal Chapel, Loading Room B
+            Section: Main
+            Relic - Jewel of Open: true
+            Progression - Unlock Blue Doors: true
+        Goals:
+            Reach Castle Keep:
+                Locations Visited:
+                    All:
+                        Royal Chapel, Loading Room C (Main): true
+    Loading Room B with Jewel of Open, Form of Mist and Spike Breaker -> Silver Ring:
+        Solver Effort: 0.5
+        State:
+            Location: Royal Chapel, Loading Room B
+            Section: Main
+            Relic - Jewel of Open: true
+            Progression - Unlock Blue Doors: true
+            Relic - Form of Mist: true
+            Progression - Mist Transformation: true
+            Item - Spike Breaker: 1
+        Goals:
+            Reach Castle Keep:
+                Item - Silver Ring:
+                    Minimum: 1
+    Loading Room B with Soul of Bat -> Hippogryph Room:
+        Solver Effort: 0.5
+        State:
+            Location: Royal Chapel, Loading Room B
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Catacombs:
+                Locations Visited:
+                    All:
+                        Royal Chapel, Hippogryph Room (Main): true
+Underground Caverns:
+    Loading Room B with Soul of Bat -> Gold Ring:
+        Solver Effort: 1.0
+        State:
+            Location: Underground Caverns, Loading Room B
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Get Gold Ring:
+                Item - Gold Ring: 1
+    Loading Room B with Soul of Bat -> Loading Room C:
+        Solver Effort: 0.7
+        State:
+            Location: Underground Caverns, Loading Room B
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Abandoned Mine:
+                Locations Visited:
+                    All:
+                        Underground Caverns, Loading Room A (Main): true
+    Loading Room B -> Merman Statue -> Loading Room A:
+        Solver Effort: 1.0
+        State:
+            Location: Underground Caverns, Loading Room B
+            Section: Main
+        Goals:
+            Get Merman Statue and Reach Marble Gallery:
+                Relic - Merman Statue: true
+                Locations Visited:
+                    All:
+                        Underground Caverns, Loading Room A (Main): true
+    Loading Room B with Merman Statue -> Holy Symbol:
+        Solver Effort: 1.0
+        State:
+            Location: Underground Caverns, Loading Room B
+            Section: Main
+            Relic - Merman Statue: true
+            Progression - Summon Ferryman: true
+        Goals:
+            Get Merman Statue and Reach Marble Gallery:
+                Relic - Holy Symbol: true
+Warp Rooms: {}
