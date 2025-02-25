@@ -36,8 +36,8 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Right
-        Entry Section: Moved Block
-        Exit Section: Moved Block
+        Entry Section: Block Area
+        Exit Section: Block Area
     Bottom Passage:
         Type: "######....######"
         Row: 3
@@ -54,9 +54,9 @@ Commands:
                 Section: Upper-Left Ledge
                 Progression - Summon Demon Familiar: true
                 Status - Switch in Abandoned Mine Pressed: false
-    Move - Moved Block:
+    Move - Block Area:
         Outcomes:
-            Section: Moved Block
+            Section: Block Area
         Requirements:
             Upper-Left Ledge - Switch Pressed:
                 Section: Upper-Left Ledge
@@ -73,8 +73,9 @@ Commands:
         Requirements:
             Bottom, Rising - Default:
                 Section: Bottom, Rising
-            Moved Block - Default:
-                Section: Moved Block
+            Block Area - Default:
+                Section: Block Area
+                Status - Switch in Abandoned Mine Pressed: true
             Upper-Left Ledge - Default:
                 Section: Upper-Left Ledge
     Move - Upper-Left Ledge:
@@ -94,5 +95,6 @@ Commands:
                 Section: Lower Ledges
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-            Moved Block - Default:
-                Section: Moved Block
+            Block Area - Default:
+                Section: Block Area
+                Status - Switch in Abandoned Mine Pressed: true
