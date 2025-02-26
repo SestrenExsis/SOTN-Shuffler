@@ -155,6 +155,7 @@ if __name__ == '__main__':
             print('', stage_name, len(file_listing), stages[stage_name]['Initial Seed'])
             assert len(file_listing) > 0
             # Keep randomly choosing a shuffled stage until one that passes all its validation checks is found
+            # TODO(sestren): Allow validation of secondary stages like Castle Entrance Revisited or Reverse Keep
             while True:
                 all_valid_ind = True
                 chosen_file_name = stages[stage_name]['RNG'].choice(file_listing)
@@ -169,6 +170,7 @@ if __name__ == '__main__':
                 hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
                 assert hash_of_rooms == mapper_data['Hash of Rooms']
                 print(' ', 'hash:', hash_of_rooms)
+                print('   ', stage_name)
                 changes = {
                     'Stages': {
                         stage_name: stage_changes,
@@ -185,10 +187,11 @@ if __name__ == '__main__':
                     # map_solver.solve_via_random_exploration(2, 9_999, stage_name)
                     map_solver.solve_via_steps(100 * validation['Solver Effort'], stage_name)
                     if len(map_solver.results['Wins']) < 1:
-                        print('   ', validation_name, '... FAILED')
+                        print('   ', '❌ ...', validation_name)
                         all_valid_ind = False
+
                     else:
-                        print('   ', validation_name, '... PASSED')
+                        print('   ', '✅ ...', validation_name)
                 if all_valid_ind:
                     break
                 else:

@@ -1,29 +1,35 @@
 
 Abandoned Mine:
-    Loading Room C with Soul of Bat -> Loading Room A:
+    Loading Room A with Flight, Unblocked -> Cerberus Room:
         Solver Effort: 0.7
         State:
-            Location: Abandoned Mine, Loading Room C
+            Location: Abandoned Mine, Loading Room A
             Section: Main
             Relic - Soul of Bat: true
             Progression - Bat Transformation: true
+            Status - Switch in Abandoned Mine Pressed: true
+            Status - Snake Column Wall Broken: true
         Goals:
-            Reach Catacombs:
+            Reach Cerberus Room:
                 Locations Visited:
                     All:
-                        Abandoned Mine, Loading Room A (Main): true
-    Loading Room C with Soul of Bat -> Demon Card:
+                        Abandoned Mine, Cerberus Room (Main): true
+    Loading Room B with Flight, Unblocked -> Cerberus Room:
         Solver Effort: 0.7
         State:
-            Location: Abandoned Mine, Loading Room C
+            Location: Abandoned Mine, Loading Room B
             Section: Main
             Relic - Soul of Bat: true
             Progression - Bat Transformation: true
+            Status - Switch in Abandoned Mine Pressed: true
+            Status - Snake Column Wall Broken: true
         Goals:
-            Get Demon Card:
-                Relic - Demon Card: true
-    Loading Room C with Soul of Bat -> Cerberus Room:
-        Solver Effort: 0.5
+            Reach Cerberus Room:
+                Locations Visited:
+                    All:
+                        Abandoned Mine, Cerberus Room (Main): true
+    Loading Room C with Flight -> Cerberus Room:
+        Solver Effort: 0.7
         State:
             Location: Abandoned Mine, Loading Room C
             Section: Main
@@ -34,12 +40,116 @@ Abandoned Mine:
                 Locations Visited:
                     All:
                         Abandoned Mine, Cerberus Room (Main): true
+    Loading Room C with Flight -> Break Wall:
+        Solver Effort: 0.7
+        State:
+            Location: Abandoned Mine, Loading Room C
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Break Wall:
+                Status - Snake Column Wall Broken: true
+    Loading Room C with Flight -> Demon Card:
+        Solver Effort: 0.7
+        State:
+            Location: Abandoned Mine, Loading Room C
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Get Demon Card:
+                Relic - Demon Card: true
+    Cerberus Room with Flight, Unblocked -> Loading Room A:
+        Solver Effort: 0.7
+        State:
+            Location: Abandoned Mine, Cerberus Room
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+            Status - Switch in Abandoned Mine Pressed: true
+            Status - Snake Column Wall Broken: true
+        Goals:
+            Reach Warp Rooms:
+                Locations Visited:
+                    All:
+                        Abandoned Mine, Loading Room A (Main): true
+    Cerberus Room with Flight, Unblocked -> Loading Room B:
+        Solver Effort: 0.7
+        State:
+            Location: Abandoned Mine, Cerberus Room
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+            Status - Switch in Abandoned Mine Pressed: true
+            Status - Snake Column Wall Broken: true
+        Goals:
+            Reach Warp Rooms:
+                Locations Visited:
+                    All:
+                        Abandoned Mine, Loading Room B (Main): true
+    Cerberus Room with Flight, Unblocked -> Loading Room C:
+        Solver Effort: 0.7
+        State:
+            Location: Abandoned Mine, Cerberus Room
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+            Status - Switch in Abandoned Mine Pressed: true
+            Status - Snake Column Wall Broken: true
+        Goals:
+            Reach Warp Rooms:
+                Locations Visited:
+                    All:
+                        Abandoned Mine, Loading Room C (Main): true
 Alchemy Laboratory:
-    Loading Room A with Jewel of Open -> Loading Room B:
+    Loading Room A -> Slogra and Gaibon Room:
         Solver Effort: 0.7
         State:
             Location: Alchemy Laboratory, Loading Room A
             Section: Main
+        Goals:
+            Reach Slogra and Gaibon Room:
+                Locations Visited:
+                    All:
+                        Alchemy Laboratory, Slogra and Gaibon Room (Ground): true
+    Loading Room B with Jewel of Open -> Slogra and Gaibon Room:
+        Solver Effort: 0.7
+        State:
+            Location: Alchemy Laboratory, Loading Room B
+            Section: Main
+            Relic - Jewel of Open: true
+            Progression - Unlock Blue Doors: true
+        Goals:
+            Reach Slogra and Gaibon Room:
+                Locations Visited:
+                    All:
+                        Alchemy Laboratory, Slogra and Gaibon Room (Ground): true
+    Loading Room C -> Slogra and Gaibon Room:
+        Solver Effort: 0.7
+        State:
+            Location: Alchemy Laboratory, Loading Room C
+            Section: Main
+        Goals:
+            Reach Slogra and Gaibon Room:
+                Locations Visited:
+                    All:
+                        Alchemy Laboratory, Slogra and Gaibon Room (Ground): true
+    Slogra and Gaibon Room (Ground) -> Loading Room A:
+        Solver Effort: 0.7
+        State:
+            Location: Alchemy Laboratory, Slogra and Gaibon Room
+            Section: Ground
+        Goals:
+            Reach Marble Gallery:
+                Locations Visited:
+                    All:
+                        Alchemy Laboratory, Loading Room A (Main): true
+    Slogra and Gaibon Room (Ground) with Jewel of Open -> Loading Room B:
+        Solver Effort: 0.7
+        State:
+            Location: Alchemy Laboratory, Slogra and Gaibon Room
+            Section: Ground
             Relic - Jewel of Open: true
             Progression - Unlock Blue Doors: true
         Goals:
@@ -47,88 +157,156 @@ Alchemy Laboratory:
                 Locations Visited:
                     All:
                         Alchemy Laboratory, Loading Room B (Main): true
-    Loading Room C with Soul of Bat and Jewel of Open -> Slogra and Gaibon Room:
-        Solver Effort: 0.5
+    Slogra and Gaibon Room (Ground) with Jewel of Open -> Loading Room C:
+        Solver Effort: 0.7
         State:
-            Location: Alchemy Laboratory, Loading Room C
-            Section: Main
-            Relic - Soul of Bat: true
-            Progression - Bat Transformation: true
+            Location: Alchemy Laboratory, Slogra and Gaibon Room
+            Section: Ground
             Relic - Jewel of Open: true
             Progression - Unlock Blue Doors: true
         Goals:
-            Reach Slogra and Gaibon:
+            Reach Royal Chapel:
                 Locations Visited:
                     All:
-                        Alchemy Laboratory, Slogra and Gaibon Room (Ground): true
-    Loading Room C -> Loading Room A:
+                        Alchemy Laboratory, Loading Room C (Main): true
+Castle Center: {}
+Castle Entrance:
+    Start -> Meeting Room With Death (Special):
+        Solver Effort: 1.0
+        State:
+            Location: Castle Entrance, After Drawbridge
+            Section: Ground
+        Goals:
+            Reach Meeting Room With Death:
+                Locations Visited:
+                    All:
+                        Castle Entrance, Meeting Room With Death (Special): true
+    Loading Room A with Flight -> Meeting Room With Death (Special):
         Solver Effort: 0.7
         State:
-            Location: Alchemy Laboratory, Loading Room C
-            Section: Main
-        Goals:
-            Reach Marble Gallery:
-                Locations Visited:
-                    All:
-                        Alchemy Laboratory, Loading Room A (Main): true
-Castle Center:
-    Elevator Shaft -> Holy Glasses:
-        Solver Effort: 0.3
-        State:
-            Location: Castle Center, Elevator Shaft
-            Section: Main
-        Goals:
-            Get Holy Glasses (assumes escape using Library Card):
-                Item - Holy Glasses:
-                    Minimum: 1
-    Elevator Shaft with Soul of Bat -> Holy Glasses -> Return:
-        Solver Effort: 0.3
-        State:
-            Location: Castle Center, Elevator Shaft
+            Location: Castle Entrance, Loading Room A
             Section: Main
             Relic - Soul of Bat: true
             Progression - Bat Transformation: true
         Goals:
-            Get Holy Glasses and Return:
-                Item - Holy Glasses:
-                    Minimum: 1
-                Location: Castle Center, Elevator Shaft
-                Section: Main
-Castle Entrance:
-    Start -> Loading Room C:
+            Reach Meeting Room With Death (Special):
+                Locations Visited:
+                    All:
+                        Castle Entrance, Meeting Room With Death (Special): true
+    Loading Room B with Flight -> Meeting Room With Death (Special):
+        Solver Effort: 0.7
+        State:
+            Location: Castle Entrance, Loading Room B
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Meeting Room With Death (Special):
+                Locations Visited:
+                    All:
+                        Castle Entrance, Meeting Room With Death (Special): true
+    Loading Room C with Flight -> Meeting Room With Death (Special):
+        Solver Effort: 0.7
+        State:
+            Location: Castle Entrance, Loading Room C
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Meeting Room With Death (Special):
+                Locations Visited:
+                    All:
+                        Castle Entrance, Meeting Room With Death (Special): true
+    Loading Room D with Flight -> Meeting Room With Death (Special):
+        Solver Effort: 0.7
+        State:
+            Location: Castle Entrance, Loading Room D
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Meeting Room With Death (Special):
+                Locations Visited:
+                    All:
+                        Castle Entrance, Meeting Room With Death (Special): true
+    Meeting Room With Death (Special) -> Loading Room C:
         Solver Effort: 0.5
         State:
-            Location: Castle Entrance, After Drawbridge
-            Section: Ground
+            Location: Castle Entrance, Meeting Room With Death
+            Section: Special
         Goals:
             Reach Alchemy Laboratory:
                 Locations Visited:
                     All:
                         Castle Entrance, Loading Room C (Main): true
+    Meeting Room With Death (Special) -> Cube of Zoe:
+        Solver Effort: 0.7
+        State:
+            Location: Castle Entrance, Meeting Room With Death
+            Section: Special
+        Goals:
+            Get Power of Wolf:
+                Relic - Cube of Zoe: true
+    Meeting Room With Death (Special) with Flight -> Power of Wolf:
+        Solver Effort: 0.7
+        State:
+            Location: Castle Entrance, Meeting Room With Death
+            Section: Special
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Get Power of Wolf:
+                Relic - Power of Wolf: true
 Castle Keep:
-    Loading Room A with Soul of Bat and Holy Glasses -> Save Richter:
+    Loading Room A -> Keep Area (Ground):
         Solver Effort: 0.5
         State:
             Location: Castle Keep, Loading Room A
             Section: Main
+        Goals:
+            Reach Keep Area (Ground):
+                Locations Visited:
+                    All:
+                        Castle Keep, Keep Area (Ground): true
+    Loading Room B -> Keep Area (Ground):
+        Solver Effort: 0.5
+        State:
+            Location: Castle Keep, Loading Room B
+            Section: Main
+        Goals:
+            Reach Keep Area (Ground):
+                Locations Visited:
+                    All:
+                        Castle Keep, Keep Area (Ground): true
+    Loading Room C -> Keep Area (Ground):
+        Solver Effort: 0.5
+        State:
+            Location: Castle Keep, Loading Room C
+            Section: Main
+        Goals:
+            Reach Keep Area (Ground):
+                Locations Visited:
+                    All:
+                        Castle Keep, Keep Area (Ground): true
+    Keep Area (Ground) with Soul of Bat and Holy Glasses -> Save Richter:
+        Solver Effort: 0.5
+        State:
+            Location: Castle Keep, Keep Area
+            Section: Ground
             Relic - Soul of Bat: true
             Progression - Bat Transformation: true
             Item - Holy Glasses: 1
         Goals:
             Save Richter:
                 Status - Richter Saved: true
-    Loading Room C -> Leap Stone -> Loading Room C:
+    Keep Area (Ground) -> Leap Stone:
         Solver Effort: 0.7
         State:
-            Location: Castle Keep, Loading Room C
-            Section: Main
+            Location: Castle Keep, Keep Area
+            Section: Ground
         Goals:
-            Get Leap Stone and Return to Royal Chapel:
+            Get Leap Stone:
                 Relic - Leap Stone: true
-                Progression - Double Jump: true
-                Locations Visited:
-                    All:
-                        Castle Keep, Loading Room C (Main): true
 Catacombs:
     Loading Room A with Soul of Bat and Echo of Bat -> Spike Breaker:
         Solver Effort: 0.7
