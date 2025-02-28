@@ -156,6 +156,7 @@ if __name__ == '__main__':
             assert len(file_listing) > 0
             # Keep randomly choosing a shuffled stage until one that passes all its validation checks is found
             # TODO(sestren): Allow validation of secondary stages like Castle Entrance Revisited or Reverse Keep
+            max_unique_pass_count = 0
             while True:
                 all_valid_ind = True
                 chosen_file_name = stages[stage_name]['RNG'].choice(file_listing)
@@ -170,12 +171,13 @@ if __name__ == '__main__':
                 hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
                 assert hash_of_rooms == mapper_data['Hash of Rooms']
                 print(' ', 'hash:', hash_of_rooms)
-                print('   ', stage_name)
+                print('   ', stage_name, len(file_listing), max_unique_pass_count)
                 changes = {
                     'Stages': {
                         stage_name: stage_changes,
                     },
                 }
+                unique_passes = set()
                 for (validation_name, validation) in stage_validations[stage_name].items():
                     logic_core = mapper.LogicCore(mapper_core, changes).get_core()
                     for (state_key, state_value) in validation['State'].items():
@@ -189,9 +191,11 @@ if __name__ == '__main__':
                     if len(map_solver.results['Wins']) < 1:
                         print('   ', '❌ ...', validation_name)
                         all_valid_ind = False
-
+                        break
                     else:
                         print('   ', '✅ ...', validation_name)
+                        unique_passes.add(validation_name)
+                        max_unique_pass_count = max(max_unique_pass_count, len(unique_passes))
                 if all_valid_ind:
                     break
                 else:
@@ -443,7 +447,8 @@ if __name__ == '__main__':
                 }
                 # Draw room on castle map drawing grid
                 room_drawing = None
-                if 'Alternate Map' in mapper_core['Rooms'][room_name]:
+                use_alt_map = False
+                if use_alt_map and 'Alternate Map' in mapper_core['Rooms'][room_name]:
                     room_drawing = mapper_core['Rooms'][room_name]['Alternate Map']
                 elif 'Map' in mapper_core['Rooms'][room_name]:
                     room_drawing = mapper_core['Rooms'][room_name]['Map']
