@@ -7,23 +7,15 @@ Abandoned Mine:
     # - When returning to Abandoned Mine from any of the other entrances, it is 
     #   assumed you have already pressed the Demon Switch and broken the wall.
     Loading Room A with Flight, Unblocked -> Cerberus Room:
-        Solver Effort: 0.7
+        Solver:
+            Approach: Steps
+            Attempts: 1
+            Limit: 70
+            Debug: False
+            Wins:
+                Minimum: 1
         State:
             Location: Abandoned Mine, Loading Room A
-            Section: Main
-            Relic - Soul of Bat: true
-            Progression - Bat Transformation: true
-            Status - Switch in Abandoned Mine Pressed: true
-            Status - Snake Column Wall Broken: true
-        Goals:
-            Reach Cerberus Room:
-                Locations Visited:
-                    All:
-                        Abandoned Mine, Cerberus Room (Main): true
-    Loading Room B with Flight, Unblocked -> Cerberus Room:
-        Solver Effort: 0.7
-        State:
-            Location: Abandoned Mine, Loading Room B
             Section: Main
             Relic - Soul of Bat: true
             Progression - Bat Transformation: true
@@ -263,6 +255,55 @@ Castle Entrance:
         Goals:
             Get Power of Wolf:
                 Relic - Power of Wolf: true
+    Reach Cube of Zoe Room After Meeting With Death:
+        Solver:
+            Approach: Steps
+            Attempts: 1
+            Limit: 100
+            Debug: False
+            Wins:
+                Minimum: 1
+        State:
+            Location: Castle Entrance, After Drawbridge
+            Section: Ground
+        Goals:
+            Reach Cube of Zoe Room Without Meeting Death:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Main
+                Check - Meet Death in Castle Entrance: true
+    DISALLOW - Reach Cube of Zoe Room Without Meeting With Death:
+        Solver:
+            Approach: Steps
+            Attempts: 1
+            Limit: 100
+            Debug: False
+            Wins:
+                Maximum: 0
+        State:
+            Location: Castle Entrance, After Drawbridge
+            Section: Ground
+        Goals:
+            Reach Cube of Zoe Room Without Meeting Death:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Main
+                Check - Meet Death in Castle Entrance: false
+    Guard Against Softlocks in Castle Entrance:
+        Solver:
+            Approach: Random Exploration
+            Attempts: 50
+            Limit: 1999
+            Debug: False
+            Losses:
+                Maximum: 0
+            Wins:
+                Minimum: 1
+        State:
+            Location: Castle Entrance, After Drawbridge
+            Section: Ground
+        Goals:
+            Reach Cube of Zoe Room:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Main
 Castle Keep:
     Loading Room A -> Keep Area (Ground):
         Solver Effort: 0.5
