@@ -10,7 +10,7 @@ Abandoned Mine:
         Solver:
             Approach: Steps
             Attempts: 1
-            Limit: 70
+            Limit: 30
             Debug: False
             Wins:
                 Minimum: 1
@@ -27,7 +27,13 @@ Abandoned Mine:
                     All:
                         Abandoned Mine, Cerberus Room (Main): true
     Loading Room C with Flight -> Cerberus Room:
-        Solver Effort: 0.7
+        Solver:
+            Approach: Steps
+            Attempts: 1
+            Limit: 70
+            Debug: False
+            Wins:
+                Minimum: 1
         State:
             Location: Abandoned Mine, Loading Room C
             Section: Main
@@ -39,7 +45,13 @@ Abandoned Mine:
                     All:
                         Abandoned Mine, Cerberus Room (Main): true
     Loading Room C with Flight -> Break Wall:
-        Solver Effort: 0.7
+        Solver:
+            Approach: Steps
+            Attempts: 1
+            Limit: 70
+            Debug: False
+            Wins:
+                Minimum: 1
         State:
             Location: Abandoned Mine, Loading Room C
             Section: Main
@@ -306,7 +318,13 @@ Castle Entrance:
                 Section: Main
 Castle Keep:
     Loading Room A -> Keep Area (Ground):
-        Solver Effort: 0.5
+        Solver:
+            Approach: Steps
+            Attempts: 1
+            Limit: 50
+            Debug: False
+            Wins:
+                Minimum: 1
         State:
             Location: Castle Keep, Loading Room A
             Section: Main

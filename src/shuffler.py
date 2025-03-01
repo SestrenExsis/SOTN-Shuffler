@@ -9,7 +9,7 @@ import yaml
 
 # Local libraries
 import mapper
-import solver
+import validator
 
 def get_room_drawing(mapper_core, room_name) -> list[str]:
     room = mapper_core['Rooms'][room_name]
@@ -146,6 +146,7 @@ if __name__ == '__main__':
             print('', stage_name, stages[stage_name]['Initial Seed'])
         print('Randomize stages with starting seeds')
         for stage_name in sorted(stages.keys()):
+            # TODO(sestren): Add SKIP and ONLY to tests
             directory_listing = os.listdir(os.path.join('build', 'shuffler', stage_name))
             file_listing = list(
                 name for name in directory_listing if
@@ -184,18 +185,20 @@ if __name__ == '__main__':
                         logic_core['State'][state_key] = state_value
                     logic_core['Goals'] = validation['Goals']
                     # Validate
-                    map_solver = solver.Solver(logic_core, skills)
-                    # map_solver.debug = True
-                    # map_solver.solve_via_random_exploration(2, 9_999, stage_name)
-                    map_solver.solve_via_steps(100 * validation['Solver Effort'], stage_name)
-                    if len(map_solver.results['Wins']) < 1:
-                        print('   ', '❌ ...', validation_name)
-                        all_valid_ind = False
-                        break
-                    else:
+                    validation_result = validator.validate(
+                        mapper_core,
+                        mapper_data,
+                        stage_name,
+                        validation
+                    )
+                    if validation_result:
                         print('   ', '✅ ...', validation_name)
                         unique_passes.add(validation_name)
                         max_unique_pass_count = max(max_unique_pass_count, len(unique_passes))
+                    else:
+                        print('   ', '❌ ...', validation_name)
+                        all_valid_ind = False
+                        break
                 if all_valid_ind:
                     break
                 else:
