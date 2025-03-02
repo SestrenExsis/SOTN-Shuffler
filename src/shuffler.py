@@ -112,7 +112,7 @@ familiar_events = {
     '14': ('Royal Chapel', 'Royal Chapel, Confessional Booth', False),
     '30': ('Royal Chapel', 'Royal Chapel, Confessional Booth', False),
     '46': ('Royal Chapel', 'Royal Chapel, Confessional Booth', False),
-    # TODO(sestren): RCHI_DEMON_SWITCH (y=20, x=-31)
+    # Cave, Crumbling Stairwells With Demon Switch (y=20, x=-31)
     '6': ('Cave', 'Cave, Crumbling Stairwells With Demon Switch', True),
     '11': ('Cave', 'Cave, Crumbling Stairwells With Demon Switch', True),
     # Colosseum, Top of Elevator Shaft (y=22, x=21)
