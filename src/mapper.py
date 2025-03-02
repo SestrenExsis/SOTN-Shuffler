@@ -546,9 +546,11 @@ stages = {
             'Clock Tower, Spire': (0, 0),
             'Clock Tower, Belfry': (2, 1),
         },
-        { 'Clock Tower, Path to Karasuman': (0, 0) },
+        {
+            'Clock Tower, Path to Karasuman': (0, 0),
+            'Clock Tower, Pendulum Room': (0, 2),
+        },
         { 'Clock Tower, Healing Mail Room': (0, 0) },
-        { 'Clock Tower, Pendulum Room': (0, 0) },
         { 'Clock Tower, Spire': (0, 0) },
         { 'Clock Tower, Hidden Armory': (0, 0) },
         { 'Clock Tower, Left Gear Room': (0, 0) },
@@ -615,18 +617,16 @@ stages = {
             'Royal Chapel, Spike Hallway': (32 + 5, 32 + 0),
             'Royal Chapel, Left Tower': (32 + 2, 32 + 3),
             'Royal Chapel, Walkway Between Towers': (32 + 4, 32 + 5),
+            'Royal Chapel, Pushing Statue Shortcut': (32 + 9, 32 + 6),
+            'Royal Chapel, Loading Room D': (32 + 9, 32 + 7),
             'Royal Chapel, Middle Tower': (32 + 1, 32 + 8),
+            'Royal Chapel, Fake Room With Teleporter ID 033': (32 + 9, 32 + 8),
             'Royal Chapel, Walkway Left of Hippogryph': (32 + 3, 32 + 10),
             'Royal Chapel, Hippogryph Room': (32 + 3, 32 + 13),
             'Royal Chapel, Walkway Right of Hippogryph': (32 + 3, 32 + 15),
             'Royal Chapel, Right Tower': (32 + 0, 32 + 16),
             'Royal Chapel, Loading Room A': (32 + 2, 32 + 19),
             'Royal Chapel, Fake Room With Teleporter ID 036': (32 + 2, 32 + 20),
-        },
-        {
-            'Royal Chapel, Pushing Statue Shortcut': (0 + 0, 0 + 0),
-            'Royal Chapel, Loading Room D': (0 + 0, 0 + 1),
-            'Royal Chapel, Fake Room With Teleporter ID 033': (0 + 0, 0 + 2),
         },
         {
             'Royal Chapel, Nave': (0 + 0, 0 + 0),
@@ -1178,7 +1178,13 @@ if __name__ == '__main__':
     print('')
     print(args.stage_name, args.stage_count)
     seed = random.randint(0, 2 ** 64)
-    for _ in range(args.stage_count):
+    directory_listing = os.listdir(os.path.join('build', 'shuffler', args.stage_name))
+    file_listing = list(
+        name for name in directory_listing if
+        name.endswith('.json')
+    )
+    generation_limit = max(0, args.stage_count - len(file_listing))
+    for _ in range(generation_limit):
         stage_map = Mapper(mapper_core, args.stage_name, seed)
         while True:
             stage_map.generate()

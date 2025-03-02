@@ -21,8 +21,8 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Right
-        Entry Section: Shop
-        Exit Section: Shop
+        Entry Section: Main
+        Exit Section: Main
     Lower-Right Passage:
         Type: "######....######"
         Row: 1
@@ -37,6 +37,6 @@ Commands:
             Progression - Unlock Blue Doors: true
         Requirements:
             Default:
-                Section: Shop
+                Section: Main
                 Relic - Jewel of Open: false
 

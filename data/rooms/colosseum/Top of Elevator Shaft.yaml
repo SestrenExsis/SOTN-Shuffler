@@ -76,6 +76,7 @@ Commands:
         Outcomes:
             Relic - Form of Mist: true
             Progression - Mist Transformation: true
+            Progression - Mid-Air Reset: true
         Requirements:
             Default:
                 Section: Left Side

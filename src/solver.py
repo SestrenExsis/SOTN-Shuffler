@@ -311,7 +311,7 @@ class Game:
         print('')
 
 class Solver():
-    def __init__(self, logic_core, skills):
+    def __init__(self, logic_core, skills, seed: int=0):
         self.logic_core = logic_core
         for (skill_key, skill_value) in skills.items():
             self.logic_core['State'][skill_key] = skill_value
@@ -324,6 +324,9 @@ class Solver():
         self.debug = False
         self.decay_start = 4_999
         self.cycle_limit = 9_999
+        self.solver_count = 0
+        self.initial_seed = seed
+        self.rng = random.Random(self.initial_seed)
     
     def get_should_prune(self) -> bool:
         result = False
@@ -331,61 +334,62 @@ class Solver():
             span = self.cycle_limit - self.decay_start
             chance_of_decay = 0.0
             chance_of_decay = (self.cycle_count - self.decay_start) / span
-            roll = random.random()
+            roll = self.rng.random()
             if roll < chance_of_decay:
                 result = True
         return result
     
-    def solve_via_random_exploration(self, explorer_count: int=999, cycle_limit: int=1999, restrict_to_stage: str=None):
-        for explorer_id in range(explorer_count):
-            # print('')
-            game__solver = Game(self.logic_core)
-            memo = {}
-            self.cycle_count = 0
-            while self.cycle_count < cycle_limit:
-                # print('', self.cycle_count, game__solver.location)
-                game__solver.layer = self.cycle_count
-                hashed_state__solver = game__solver.get_key()
-                # assert hashed_state__solver not in memo
-                if hashed_state__solver not in memo:
-                    memo[hashed_state__solver] = 0
-                memo[hashed_state__solver] += 1
-                if len(game__solver.goals_achieved) > 0:
-                    self.results['Wins'].append((self.cycle_count, game__solver))
-                    break
-                commands = {}
-                for command_name in game__solver.get_valid_command_names():
-                    next_game__solver = game__solver.clone()
-                    next_game__solver.process_command(command_name)
-                    if restrict_to_stage is not None:
-                        if not next_game__solver.current_state['Location'].startswith(restrict_to_stage):
-                            continue
-                    next_hashed_state__solver = next_game__solver.get_key()
-                    visit_count = 0
-                    if next_hashed_state__solver in memo:
-                        visit_count = memo[next_hashed_state__solver]
-                    if visit_count not in commands:
-                        commands[visit_count] = set()
-                    commands[visit_count].add(command_name)
-                if len(commands) > 0:
-                    priority_visit_count = min(commands.keys())
-                    command_name = random.choice(
-                        list(sorted(commands[priority_visit_count]))
-                    )
-                    game__solver.process_command(command_name)
-                else:
-                    self.results['Losses'].append((self.cycle_count, game__solver))
-                    break
-                self.cycle_count += 1
-            self.results['Withdrawals'].append((self.cycle_count, game__solver))
-            if self.debug:
-                print(
-                    'Explorer ID:', explorer_id,
-                    (self.cycle_count, len(game__solver.current_state['Locations Visited']), game__solver.goals_achieved),
-                    game__solver.location
+    def solve_via_random_exploration(self, cycle_limit: int=1999, restrict_to_stage: str=None):
+        self.rng = random.Random(self.initial_seed)
+        game__solver = Game(self.logic_core)
+        memo = {}
+        self.cycle_count = 0
+        while self.cycle_count < cycle_limit:
+            # print('', self.cycle_count, game__solver.location)
+            game__solver.layer = self.cycle_count
+            hashed_state__solver = game__solver.get_key()
+            # assert hashed_state__solver not in memo
+            if hashed_state__solver not in memo:
+                memo[hashed_state__solver] = 0
+            memo[hashed_state__solver] += 1
+            if len(game__solver.goals_achieved) > 0:
+                self.results['Wins'].append((self.cycle_count, game__solver))
+                break
+            commands = {}
+            for command_name in game__solver.get_valid_command_names():
+                next_game__solver = game__solver.clone()
+                next_game__solver.process_command(command_name)
+                if restrict_to_stage is not None:
+                    if not next_game__solver.current_state['Location'].startswith(restrict_to_stage):
+                        continue
+                next_hashed_state__solver = next_game__solver.get_key()
+                visit_count = 0
+                if next_hashed_state__solver in memo:
+                    visit_count = memo[next_hashed_state__solver]
+                if visit_count not in commands:
+                    commands[visit_count] = set()
+                commands[visit_count].add(command_name)
+            if len(commands) > 0:
+                priority_visit_count = min(commands.keys())
+                command_name = self.rng.choice(
+                    list(sorted(commands[priority_visit_count]))
                 )
+                game__solver.process_command(command_name)
+            else:
+                self.results['Losses'].append((self.cycle_count, game__solver))
+                break
+            self.cycle_count += 1
+        self.results['Withdrawals'].append((self.cycle_count, game__solver))
+        if self.debug:
+            print(
+                'Explorer ID:', self.solver_count,
+                (self.cycle_count, len(game__solver.current_state['Locations Visited']), game__solver.goals_achieved),
+                game__solver.location
+            )
+        self.solver_count += 1
 
     def solve_via_steps(self, step_limit: int=100, restrict_to_stage: str=None):
+        self.rng = random.Random(self.initial_seed)
         initial_game = Game(self.logic_core)
         memo = {}
         solution_found = False
@@ -395,7 +399,7 @@ class Solver():
         }
         self.cycle_count = 0
         while len(work__solver) > 0 and not solution_found:
-            chosen_work_key = random.choice(list(work__solver.keys()))
+            chosen_work_key = self.rng.choice(list(work__solver.keys()))
             (step__solver, game__solver) = work__solver.pop(chosen_work_key)
             if self.debug:
                 print((step__solver, len(work__solver)), (self.cycle_count, chosen_work_key), game__solver.current_state['Location'])
@@ -616,7 +620,8 @@ if __name__ == '__main__':
         map_solver.debug = True
         # map_solver.solve_via_layers(3, 10)
         # map_solver.solve_via_steps()
-        map_solver.solve_via_random_exploration(99, 29_999)
+        for _ in range(100):
+            map_solver.solve_via_random_exploration(29_999)
         if len(map_solver.results['Wins']) > 0:
             best_index = 0
             for (index, (_, game)) in enumerate(map_solver.results['Wins']):
