@@ -87,8 +87,69 @@ boss_teleporters = {
 }
 
 familiar_events = {
-    '4': ('Abandoned Mine', 'Abandoned Mine, Crumbling Stairwells With Demon Switch', 0, 0), # Demon Familiar
-    '9': ('Abandoned Mine', 'Abandoned Mine, Crumbling Stairwells With Demon Switch', 0, 0), # Nose Demon Familiar?
+    # Catacombs, Pitch Black Spike Maze (y=50, x=41)
+    '1': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', 0, 0),
+    '2': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', 0, 0),
+    '7': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', 0, 0),
+    '12': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', 0, 0),
+    '15': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', 0, 0),
+    '28': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', 0, 0),
+    '31': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', 0, 0),
+    '44': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', 0, 0),
+    '47': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', 0, 0),
+    # Long Library, Shop (y=20, x=49)
+    '3': ('Long Library', 'Long Library, Shop', 0, 0),
+    '8': ('Long Library', 'Long Library, Shop', 0, 0),
+    '13': ('Long Library', 'Long Library, Shop', 0, 0),
+    '29': ('Long Library', 'Long Library, Shop', 0, 0),
+    '45': ('Long Library', 'Long Library, Shop', 0, 0),
+    # Abandoned Mine, Crumbling Stairwells With Demon Switch (y=40, x=32)
+    '4': ('Abandoned Mine', 'Abandoned Mine, Crumbling Stairwells With Demon Switch', 0, 0),
+    '9': ('Abandoned Mine', 'Abandoned Mine, Crumbling Stairwells With Demon Switch', 0, 0),
+    # Royal Chapel, Confessional Booth (y=21, x=16)
+    '5': ('Royal Chapel', 'Royal Chapel, Confessional Booth', 0, 0),
+    '10': ('Royal Chapel', 'Royal Chapel, Confessional Booth', 0, 0),
+    '14': ('Royal Chapel', 'Royal Chapel, Confessional Booth', 0, 0),
+    '30': ('Royal Chapel', 'Royal Chapel, Confessional Booth', 0, 0),
+    '46': ('Royal Chapel', 'Royal Chapel, Confessional Booth', 0, 0),
+    # TODO(sestren): RCHI_DEMON_SWITCH (y=20, x=-31)
+    # '6': ('', '', 0, 0),
+    # '11': ('', '', 0, 0),
+    # Colosseum, Top of Elevator Shaft (y=22, x=21)
+    '16': ('Colosseum', 'Colosseum, Top of Elevator Shaft', 0, 0),
+    '32': ('Colosseum', 'Colosseum, Top of Elevator Shaft', 0, 0),
+    # Outer Wall, Lower Medusa Room (y=26, x=60)
+    '17': ('Outer Wall', 'Outer Wall, Lower Medusa Room', 0, 0),
+    '33': ('Outer Wall', 'Outer Wall, Lower Medusa Room', 0, 0),
+    # Long Library, Lesser Demon Area (y=18, x=44)
+    '18': ('Long Library', 'Long Library, Lesser Demon Area', 0, 0),
+    '34': ('Long Library', 'Long Library, Lesser Demon Area', 0, 0),
+    # Royal Chapel, Spike Hallway (y=15, x=10)
+    '19': ('Royal Chapel', 'Royal Chapel, Spike Hallway', 0, 0),
+    '35': ('Royal Chapel', 'Royal Chapel, Spike Hallway', 0, 0),
+    # Underground Caverns, Hidden Crystal Entrance (y=37, x=39)
+    '20': ('Underground Caverns', 'Underground Caverns, Hidden Crystal Entrance', 0, 0),
+    '36': ('Underground Caverns', 'Underground Caverns, Hidden Crystal Entrance', 0, 0),
+    # Underground Caverns, Plaque Room With Breakable Wall (y=27, x=36)
+    '21': ('Underground Caverns', 'Underground Caverns, Plaque Room With Breakable Wall', 0, 0),
+    '37': ('Underground Caverns', 'Underground Caverns, Plaque Room With Breakable Wall', 0, 0),
+    # Alchemy Laboratory, Tall Zig Zag Room (y=32, x=12)
+    '22': ('Alchemy Laboratory', 'Alchemy Laboratory, Tall Zig Zag Room', 0, 0),
+    '23': ('Alchemy Laboratory', 'Alchemy Laboratory, Tall Zig Zag Room', 0, 0),
+    '38': ('Alchemy Laboratory', 'Alchemy Laboratory, Tall Zig Zag Room', 0, 0),
+    '39': ('Alchemy Laboratory', 'Alchemy Laboratory, Tall Zig Zag Room', 0, 0),
+    # Olrox's Quarters, Grand Staircase (y=21, x=27)
+    '24': ('Olrox\'s Quarters', 'Olrox\'s Quarters, Grand Staircase', 0, 0),
+    '40': ('Olrox\'s Quarters', 'Olrox\'s Quarters, Grand Staircase', 0, 0),
+    # Long Library, Secret Bookcase Room (y=18, x=49)
+    '25': ('Long Library', 'Long Library, Secret Bookcase Room', 0, 0),
+    '41': ('Long Library', 'Long Library, Secret Bookcase Room', 0, 0),
+    # Clock Tower, Left Gear Room (y=11, x=50)
+    '26': ('Clock Tower', 'Clock Tower, Left Gear Room', 0, 0),
+    '42': ('Clock Tower', 'Clock Tower, Left Gear Room', 0, 0),
+    # Clock Tower, Pendulum Room (y=10, x=43)
+    '27': ('Clock Tower', 'Clock Tower, Pendulum Room', 0, 0),
+    '43': ('Clock Tower', 'Clock Tower, Pendulum Room', 0, 0),
 }
 
 if __name__ == '__main__':
