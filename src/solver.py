@@ -311,7 +311,7 @@ class Game:
         print('')
 
 class Solver():
-    def __init__(self, logic_core, skills):
+    def __init__(self, logic_core, skills, seed: int=0):
         self.logic_core = logic_core
         for (skill_key, skill_value) in skills.items():
             self.logic_core['State'][skill_key] = skill_value
@@ -325,6 +325,8 @@ class Solver():
         self.decay_start = 4_999
         self.cycle_limit = 9_999
         self.solver_count = 0
+        self.initial_seed = seed
+        self.rng = random.Random(self.initial_seed)
     
     def get_should_prune(self) -> bool:
         result = False
@@ -332,12 +334,13 @@ class Solver():
             span = self.cycle_limit - self.decay_start
             chance_of_decay = 0.0
             chance_of_decay = (self.cycle_count - self.decay_start) / span
-            roll = random.random()
+            roll = self.rng.random()
             if roll < chance_of_decay:
                 result = True
         return result
     
     def solve_via_random_exploration(self, cycle_limit: int=1999, restrict_to_stage: str=None):
+        self.rng = random.Random(self.initial_seed)
         game__solver = Game(self.logic_core)
         memo = {}
         self.cycle_count = 0
@@ -368,7 +371,7 @@ class Solver():
                 commands[visit_count].add(command_name)
             if len(commands) > 0:
                 priority_visit_count = min(commands.keys())
-                command_name = random.choice(
+                command_name = self.rng.choice(
                     list(sorted(commands[priority_visit_count]))
                 )
                 game__solver.process_command(command_name)
@@ -386,6 +389,7 @@ class Solver():
         self.solver_count += 1
 
     def solve_via_steps(self, step_limit: int=100, restrict_to_stage: str=None):
+        self.rng = random.Random(self.initial_seed)
         initial_game = Game(self.logic_core)
         memo = {}
         solution_found = False
@@ -395,7 +399,7 @@ class Solver():
         }
         self.cycle_count = 0
         while len(work__solver) > 0 and not solution_found:
-            chosen_work_key = random.choice(list(work__solver.keys()))
+            chosen_work_key = self.rng.choice(list(work__solver.keys()))
             (step__solver, game__solver) = work__solver.pop(chosen_work_key)
             if self.debug:
                 print((step__solver, len(work__solver)), (self.cycle_count, chosen_work_key), game__solver.current_state['Location'])

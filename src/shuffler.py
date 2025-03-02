@@ -99,11 +99,15 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('stage_validations', help='Input a filepath to the stage validations YAML file', type=str)
     stage_validations = {}
+    validation_results = {}
+    validation_results_filepath = os.path.join('build', 'shuffler', 'validation_results.json')
     args = parser.parse_args()
     with (
+        open(validation_results_filepath) as validation_results_json,
         open(args.stage_validations) as stage_validations_file,
     ):
         stage_validations = yaml.safe_load(stage_validations_file)
+        validation_results = json.load(validation_results_json)
     MIN_MAP_ROW = 5
     MAX_MAP_ROW = 55
     MIN_MAP_COL = 0
@@ -185,12 +189,27 @@ if __name__ == '__main__':
                         logic_core['State'][state_key] = state_value
                     logic_core['Goals'] = validation['Goals']
                     # Validate
-                    validation_result = validator.validate(
-                        mapper_core,
-                        mapper_data,
-                        stage_name,
-                        validation
-                    )
+                    cached_ind = True
+                    if stage_name not in validation_results:
+                        validation_results[stage_name] = {}
+                        cached_ind = False
+                    if hash_of_rooms not in validation_results[stage_name]:
+                        validation_results[stage_name][hash_of_rooms] = {}
+                        cached_ind = False
+                    hash_of_validation = hashlib.sha256(
+                        json.dumps(validation, sort_keys=True).encode()
+                    ).hexdigest()
+                    if hash_of_validation not in validation_results[stage_name][hash_of_rooms]:
+                        cached_ind = False
+                    validation_result = True
+                    if not cached_ind:
+                        validation_results[stage_name][hash_of_rooms][hash_of_validation] = validator.validate(
+                            mapper_core,
+                            mapper_data,
+                            stage_name,
+                            validation
+                        )
+                    validation_result = validation_results[stage_name][hash_of_rooms][hash_of_validation]
                     if validation_result:
                         print('   ', '✅ ...', validation_name)
                         unique_passes.add(validation_name)
@@ -943,3 +962,7 @@ if __name__ == '__main__':
         # while True:
         #     winning_game.play()
         break
+    with (
+        open(validation_results_filepath, 'w') as validation_results_json,
+    ):
+        json.dump(validation_results, validation_results_json, indent='    ', sort_keys=True, default=str)

@@ -1179,7 +1179,13 @@ if __name__ == '__main__':
     print('')
     print(args.stage_name, args.stage_count)
     seed = random.randint(0, 2 ** 64)
-    for _ in range(args.stage_count):
+    directory_listing = os.listdir(os.path.join('build', 'shuffler', args.stage_name))
+    file_listing = list(
+        name for name in directory_listing if
+        name.endswith('.json')
+    )
+    generation_limit = max(0, args.stage_count - len(file_listing))
+    for _ in range(generation_limit):
         stage_map = Mapper(mapper_core, args.stage_name, seed)
         while True:
             stage_map.generate()

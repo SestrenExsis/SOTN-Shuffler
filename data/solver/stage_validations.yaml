@@ -322,6 +322,7 @@ Castle Keep:
             Approach: Steps
             Attempts: 1
             Limit: 50
+            Initial Seed: 1
             Debug: False
             Wins:
                 Minimum: 1

@@ -1,10 +1,8 @@
 # External libraries
 import argparse
-import datetime
 import hashlib
 import json
 import os
-import random
 import yaml
 
 # Local libraries
@@ -45,6 +43,7 @@ def validate(mapper_core, mapper_data, stage_name, validation) -> bool:
             validation_passed = True
     else:
         solver_config = validation['Solver']
+        map_solver.initial_seed = solver_config.get('Initial Seed', 0)
         map_solver.debug = solver_config.get('Debug', False)
         for attempt_id in range(solver_config.get('Attempts', 1)):
             if solver_config['Approach'] == 'Random Exploration':
