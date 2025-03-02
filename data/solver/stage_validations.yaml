@@ -708,7 +708,7 @@ Outer Wall:
     Loading Room D -> Soul of Wolf -> Loading Room A:
         Solver Effort: 0.7
         State:
-            Location: Outer Wall, Loading Room A
+            Location: Outer Wall, Loading Room D
             Section: Main
         Goals:
             Reach Warp Rooms:
@@ -719,7 +719,7 @@ Outer Wall:
     Loading Room D -> Soul of Wolf -> Loading Room B:
         Solver Effort: 0.7
         State:
-            Location: Outer Wall, Loading Room A
+            Location: Outer Wall, Loading Room D
             Section: Main
         Goals:
             Get Soul of Wolf and Reach Clock Tower:
@@ -730,7 +730,7 @@ Outer Wall:
     Loading Room D -> Soul of Wolf -> Loading Room C:
         Solver Effort: 0.7
         State:
-            Location: Outer Wall, Loading Room A
+            Location: Outer Wall, Loading Room D
             Section: Main
         Goals:
             Get Soul of Wolf and Reach Long Library:
