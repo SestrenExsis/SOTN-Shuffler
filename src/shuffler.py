@@ -87,8 +87,69 @@ boss_teleporters = {
 }
 
 familiar_events = {
-    '4': ('Abandoned Mine', 'Abandoned Mine, Crumbling Stairwells With Demon Switch', 0, 0), # Demon Familiar
-    '9': ('Abandoned Mine', 'Abandoned Mine, Crumbling Stairwells With Demon Switch', 0, 0), # Nose Demon Familiar?
+    # Catacombs, Pitch Black Spike Maze (y=50, x=41)
+    '1': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', False),
+    '2': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', False),
+    '7': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', False),
+    '12': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', False),
+    '15': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', False),
+    '28': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', False),
+    '31': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', False),
+    '44': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', False),
+    '47': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', False),
+    # Long Library, Shop (y=20, x=49)
+    '3': ('Long Library', 'Long Library, Shop', False),
+    '8': ('Long Library', 'Long Library, Shop', False),
+    '13': ('Long Library', 'Long Library, Shop', False),
+    '29': ('Long Library', 'Long Library, Shop', False),
+    '45': ('Long Library', 'Long Library, Shop', False),
+    # Abandoned Mine, Crumbling Stairwells With Demon Switch (y=40, x=32)
+    '4': ('Abandoned Mine', 'Abandoned Mine, Crumbling Stairwells With Demon Switch', False),
+    '9': ('Abandoned Mine', 'Abandoned Mine, Crumbling Stairwells With Demon Switch', False),
+    # Royal Chapel, Confessional Booth (y=21, x=16)
+    '5': ('Royal Chapel', 'Royal Chapel, Confessional Booth', False),
+    '10': ('Royal Chapel', 'Royal Chapel, Confessional Booth', False),
+    '14': ('Royal Chapel', 'Royal Chapel, Confessional Booth', False),
+    '30': ('Royal Chapel', 'Royal Chapel, Confessional Booth', False),
+    '46': ('Royal Chapel', 'Royal Chapel, Confessional Booth', False),
+    # Cave, Crumbling Stairwells With Demon Switch (y=20, x=-31)
+    '6': ('Cave', 'Cave, Crumbling Stairwells With Demon Switch', True),
+    '11': ('Cave', 'Cave, Crumbling Stairwells With Demon Switch', True),
+    # Colosseum, Top of Elevator Shaft (y=22, x=21)
+    '16': ('Colosseum', 'Colosseum, Top of Elevator Shaft', False),
+    '32': ('Colosseum', 'Colosseum, Top of Elevator Shaft', False),
+    # Outer Wall, Lower Medusa Room (y=26, x=60)
+    '17': ('Outer Wall', 'Outer Wall, Lower Medusa Room', False),
+    '33': ('Outer Wall', 'Outer Wall, Lower Medusa Room', False),
+    # Long Library, Lesser Demon Area (y=18, x=44)
+    '18': ('Long Library', 'Long Library, Lesser Demon Area', False),
+    '34': ('Long Library', 'Long Library, Lesser Demon Area', False),
+    # Royal Chapel, Spike Hallway (y=15, x=10)
+    '19': ('Royal Chapel', 'Royal Chapel, Spike Hallway', False),
+    '35': ('Royal Chapel', 'Royal Chapel, Spike Hallway', False),
+    # Underground Caverns, Hidden Crystal Entrance (y=37, x=39)
+    '20': ('Underground Caverns', 'Underground Caverns, Hidden Crystal Entrance', False),
+    '36': ('Underground Caverns', 'Underground Caverns, Hidden Crystal Entrance', False),
+    # Underground Caverns, Plaque Room With Breakable Wall (y=27, x=36)
+    '21': ('Underground Caverns', 'Underground Caverns, Plaque Room With Breakable Wall', False),
+    '37': ('Underground Caverns', 'Underground Caverns, Plaque Room With Breakable Wall', False),
+    # Alchemy Laboratory, Tall Zig Zag Room (y=32, x=12)
+    '22': ('Alchemy Laboratory', 'Alchemy Laboratory, Tall Zig Zag Room', False),
+    '23': ('Alchemy Laboratory', 'Alchemy Laboratory, Tall Zig Zag Room', False),
+    '38': ('Alchemy Laboratory', 'Alchemy Laboratory, Tall Zig Zag Room', False),
+    '39': ('Alchemy Laboratory', 'Alchemy Laboratory, Tall Zig Zag Room', False),
+    # Olrox's Quarters, Grand Staircase (y=21, x=27)
+    '24': ('Olrox\'s Quarters', 'Olrox\'s Quarters, Grand Staircase', False),
+    '40': ('Olrox\'s Quarters', 'Olrox\'s Quarters, Grand Staircase', False),
+    # Long Library, Secret Bookcase Room (y=18, x=49)
+    '25': ('Long Library', 'Long Library, Secret Bookcase Room', False),
+    '41': ('Long Library', 'Long Library, Secret Bookcase Room', False),
+    # Clock Tower, Left Gear Room (y=11, x=50)
+    '26': ('Clock Tower', 'Clock Tower, Left Gear Room', False),
+    '42': ('Clock Tower', 'Clock Tower, Left Gear Room', False),
+    # Clock Tower, Pendulum Room (y=10, x=43)
+    '27': ('Clock Tower', 'Clock Tower, Pendulum Room', False),
+    '43': ('Clock Tower', 'Clock Tower, Pendulum Room', False),
 }
 
 if __name__ == '__main__':
@@ -887,11 +948,12 @@ if __name__ == '__main__':
                 'Room X': source_room['Left'] + offset_left,
             }
         # Assign familiar event locations to their counterparts in the castle
-        for (familiar_event_id, (stage_name, room_name, offset_top, offset_left)) in familiar_events.items():
+        for (familiar_event_id, (stage_name, room_name, inverted)) in familiar_events.items():
             source_room = changes['Stages'][stage_name]['Rooms'][room_name]
+            sign = -1 if inverted else 1
             changes['Familiar Events'][familiar_event_id] = {
-                'Room Y': source_room['Top'] + offset_top,
-                'Room X': source_room['Left'] + offset_left,
+                'Room Y': source_room['Top'],
+                'Room X': sign * source_room['Left'],
             }
         # Adjust the target point for the Castle Teleporter locations
         # The target points relative to their respective rooms is (y=847, x=320) in TOP and (y=1351, x=1728) in RTOP
