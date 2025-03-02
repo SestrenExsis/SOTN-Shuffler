@@ -203,13 +203,12 @@ Castle Entrance:
                 Locations Visited:
                     All:
                         Castle Entrance, Meeting Room With Death (Special): true
-    Loading Room B with Flight -> Meeting Room With Death (Special):
+    Loading Room B -> Meeting Room With Death (Special):
+        Note: Movement from Warp Room back into the main loop should be easy
         Solver Effort: 0.7
         State:
             Location: Castle Entrance, Loading Room B
             Section: Main
-            Relic - Soul of Bat: true
-            Progression - Bat Transformation: true
         Goals:
             Reach Meeting Room With Death (Special):
                 Locations Visited:
@@ -267,38 +266,6 @@ Castle Entrance:
         Goals:
             Get Power of Wolf:
                 Relic - Power of Wolf: true
-    Reach Cube of Zoe Room After Meeting With Death:
-        Solver:
-            Approach: Steps
-            Attempts: 1
-            Limit: 100
-            Debug: False
-            Wins:
-                Minimum: 1
-        State:
-            Location: Castle Entrance, After Drawbridge
-            Section: Ground
-        Goals:
-            Reach Cube of Zoe Room Without Meeting Death:
-                Location: Castle Entrance, Cube of Zoe Room
-                Section: Main
-                Check - Meet Death in Castle Entrance: true
-    DISALLOW - Reach Cube of Zoe Room Without Meeting With Death:
-        Solver:
-            Approach: Steps
-            Attempts: 1
-            Limit: 100
-            Debug: False
-            Wins:
-                Maximum: 0
-        State:
-            Location: Castle Entrance, After Drawbridge
-            Section: Ground
-        Goals:
-            Reach Cube of Zoe Room Without Meeting Death:
-                Location: Castle Entrance, Cube of Zoe Room
-                Section: Main
-                Check - Meet Death in Castle Entrance: false
     Guard Against Softlocks in Castle Entrance:
         Solver:
             Approach: Random Exploration

@@ -546,9 +546,11 @@ stages = {
             'Clock Tower, Spire': (0, 0),
             'Clock Tower, Belfry': (2, 1),
         },
-        { 'Clock Tower, Path to Karasuman': (0, 0) },
+        {
+            'Clock Tower, Path to Karasuman': (0, 0),
+            'Clock Tower, Pendulum Room': (0, 2),
+        },
         { 'Clock Tower, Healing Mail Room': (0, 0) },
-        { 'Clock Tower, Pendulum Room': (0, 0) },
         { 'Clock Tower, Spire': (0, 0) },
         { 'Clock Tower, Hidden Armory': (0, 0) },
         { 'Clock Tower, Left Gear Room': (0, 0) },
@@ -609,25 +611,22 @@ stages = {
         { 'Castle Keep, Tyrfing Room': (0, 0) },
     ],
     'Royal Chapel': [
-        # TODO(sestren): Save Room B connecting at Middle-Right Passage of Left Tower causes flickering and softlocks
         {
             # NOTE(sestren): For now, these hallways and towers must be combined until the special behavior that controls transitions between them is better understood
             # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
             'Royal Chapel, Spike Hallway': (32 + 5, 32 + 0),
             'Royal Chapel, Left Tower': (32 + 2, 32 + 3),
             'Royal Chapel, Walkway Between Towers': (32 + 4, 32 + 5),
+            'Royal Chapel, Pushing Statue Shortcut': (32 + 9, 32 + 6),
+            'Royal Chapel, Loading Room D': (32 + 9, 32 + 7),
             'Royal Chapel, Middle Tower': (32 + 1, 32 + 8),
+            'Royal Chapel, Fake Room With Teleporter ID 033': (32 + 9, 32 + 8),
             'Royal Chapel, Walkway Left of Hippogryph': (32 + 3, 32 + 10),
             'Royal Chapel, Hippogryph Room': (32 + 3, 32 + 13),
             'Royal Chapel, Walkway Right of Hippogryph': (32 + 3, 32 + 15),
             'Royal Chapel, Right Tower': (32 + 0, 32 + 16),
             'Royal Chapel, Loading Room A': (32 + 2, 32 + 19),
             'Royal Chapel, Fake Room With Teleporter ID 036': (32 + 2, 32 + 20),
-        },
-        {
-            'Royal Chapel, Pushing Statue Shortcut': (0 + 0, 0 + 0),
-            'Royal Chapel, Loading Room D': (0 + 0, 0 + 1),
-            'Royal Chapel, Fake Room With Teleporter ID 033': (0 + 0, 0 + 2),
         },
         {
             'Royal Chapel, Nave': (0 + 0, 0 + 0),
