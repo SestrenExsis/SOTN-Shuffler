@@ -906,6 +906,9 @@ if __name__ == '__main__':
         source_room = changes['Stages']['Underground Caverns']['Rooms']['Underground Caverns, False Save Room']
         changes['Constants']['False Save Room, Room Y'] = source_room['Top']
         changes['Constants']['False Save Room, Room X'] = source_room['Left']
+        source_room = changes['Stages']['Reverse Caverns']['Rooms']['Reverse Caverns, False Save Room']
+        changes['Constants']['Reverse False Save Room, Room Y'] = source_room['Top']
+        changes['Constants']['Reverse False Save Room, Room X'] = source_room['Left']
         # Disable NOCLIP checker; this will allow NOCLIP to always be on
         changes['Constants']['Set initial NOCLIP value'] = 0xAC258850
         # Apply castle map drawing grid to changes
