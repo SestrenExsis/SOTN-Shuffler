@@ -19,7 +19,7 @@ python src/mapper.py "Long Library" 400 || goto :error
 python src/mapper.py "Marble Gallery" 500 || goto :error
 python src/mapper.py "Olrox's Quarters" 400 || goto :error
 python src/mapper.py "Outer Wall" 100 || goto :error
-python src/mapper.py "Royal Chapel" 300 || goto :error
+python src/mapper.py "Royal Chapel" 100 || goto :error
 python src/mapper.py "Underground Caverns" 300 || goto :error
 python src/mapper.py "Warp Rooms" 1 || goto :error
 
