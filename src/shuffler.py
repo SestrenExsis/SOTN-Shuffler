@@ -54,6 +54,8 @@ skills = {
     "Technique - Pixel-Perfect Diagonal Gravity Jump Through Narrow Gap": True,
 }
 
+# NOTE(sestren): Doppelganger 40 is an unavoidable boss fight once you access the room
+
 # NOTE(sestren): There is only one boss teleporter in the game data for the following bosses,
 # NOTE(sestren): despite there being multiple entrances, so not all entrances will be covered:
 # NOTE(sestren): Granfaloon, Akmodan II, Olrox, Galamoth
