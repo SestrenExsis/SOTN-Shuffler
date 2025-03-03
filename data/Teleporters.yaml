@@ -30,6 +30,26 @@ Sources:
         Stage: Alchemy Laboratory
         Room: Fake Room With Teleporter ID 021
         Target: Castle Entrance Revisited, Cube of Zoe Room (Upper-Left Red Door)
+    Boss - Creature, Fake Room With Teleporter A:
+        Index: 77
+        Stage: Boss - Creature
+        Room: Doppelganger Room
+        Target: Outer Wall, Garlic Room (Upper-Right Passage)
+    Boss - Creature, Fake Room With Teleporter B:
+        Index: 78
+        Stage: Boss - Creature
+        Room: Doppelganger Room
+        Target: Outer Wall, Gladius Room (Left Passage)
+    Boss - Doppelganger 10, Fake Room With Teleporter A:
+        Index: 106
+        Stage: Boss - Doppelganger 10
+        Room: Doppelganger Room
+        Target: Outer Wall, Garlic Room (Upper-Right Passage)
+    Boss - Doppelganger 10, Fake Room With Teleporter B:
+        Index: 107
+        Stage: Boss - Doppelganger 10
+        Room: Doppelganger Room
+        Target: Outer Wall, Gladius Room (Left Passage)
     Castle Center, Fake Room With Teleporter ID 007:
         Index: 7
         Stage: Castle Center
@@ -463,6 +483,18 @@ Targets:
         Stage: Outer Wall
         Room: Exit to Marble Gallery
         Node: Left Red Door
+        Player X: 16
+        Player Y: 132
+    Outer Wall, Garlic Room (Upper-Right Passage):
+        Stage: Outer Wall
+        Room: Garlic Room
+        Node: Upper-Right Passage
+        Player X: 16
+        Player Y: 132
+    Outer Wall, Gladius Room (Left Passage):
+        Stage: Outer Wall
+        Room: Gladius Room
+        Node: Left Passage
         Player X: 16
         Player Y: 132
     Royal Chapel, Statue Ledge (Right Red Door):
