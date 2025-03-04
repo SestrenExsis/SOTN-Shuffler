@@ -87,7 +87,7 @@ boss_teleporters = {
 }
 
 boss_stage_rooms = [
-    {
+    { # Boss - Cerberus
         'Source Stage': 'Abandoned Mine',
         'Source Room': 'Abandoned Mine, Cerberus Room',
         'Target Stage': 'Boss - Cerberus',
@@ -106,7 +106,7 @@ boss_stage_rooms = [
             },
         },
     },
-    {
+    { # Boss - Medusa
         'Source Stage': 'Anti-Chapel',
         'Source Room': 'Anti-Chapel, Hippogryph Room',
         'Target Stage': 'Boss - Medusa',
@@ -125,7 +125,7 @@ boss_stage_rooms = [
             },
         },
     },
-    {
+    { # Boss - Richter
         'Source Stage': 'Castle Keep',
         'Source Room': 'Castle Keep, Keep Area',
         'Target Stage': 'Boss - Richter',
@@ -136,7 +136,7 @@ boss_stage_rooms = [
             },
         },
     },
-    {
+    { # Boss - Granfaloon
         'Source Stage': 'Catacombs',
         'Source Room': 'Catacombs, Granfaloon\'s Lair',
         'Target Stage': 'Boss - Granfaloon',
@@ -155,7 +155,7 @@ boss_stage_rooms = [
             },
         },
     },
-    {
+    { # Boss - Death
         'Source Stage': 'Cave',
         'Source Room': 'Cave, Cerberus Room',
         'Target Stage': 'Boss - Death',
@@ -174,7 +174,7 @@ boss_stage_rooms = [
             },
         },
     },
-    {
+    { # Boss - Minotaur and Werewolf
         'Source Stage': 'Colosseum',
         'Source Room': 'Colosseum, Arena',
         'Target Stage': 'Boss - Minotaur and Werewolf',
@@ -193,7 +193,7 @@ boss_stage_rooms = [
             },
         },
     },
-    {
+    { # Boss - Akmodan II
         'Source Stage': 'Death Wing\'s Lair',
         'Source Room': 'Death Wing\'s Lair, Olrox\'s Room',
         'Target Stage': 'Boss - Akmodan II',
@@ -212,7 +212,7 @@ boss_stage_rooms = [
             },
         },
     },
-    {
+    { # Boss - Galamoth
         'Source Stage': 'Floating Catacombs',
         'Source Room': 'Floating Catacombs, Granfaloon\'s Lair',
         'Target Stage': 'Boss - Galamoth',
@@ -231,7 +231,7 @@ boss_stage_rooms = [
             },
         },
     },
-    {
+    { # Cutscene - Meeting Maria in Clock Room
         'Source Stage': 'Marble Gallery',
         'Source Room': 'Marble Gallery, Clock Room',
         'Target Stage': 'Cutscene - Meeting Maria in Clock Room',
@@ -250,7 +250,7 @@ boss_stage_rooms = [
             },
         },
     },
-    {
+    { # Boss - Beelzebub
         'Source Stage': 'Necromancy Laboratory',
         'Source Room': 'Necromancy Laboratory, Slogra and Gaibon Room',
         'Target Stage': 'Boss - Beelzebub',
@@ -273,7 +273,7 @@ boss_stage_rooms = [
             },
         },
     },
-    {
+    { # Boss - Olrox
         'Source Stage': 'Olrox\'s Quarters',
         'Source Room': 'Olrox\'s Quarters, Olrox\'s Room',
         'Target Stage': 'Boss - Olrox',
@@ -292,7 +292,7 @@ boss_stage_rooms = [
             },
         },
     },
-    {
+    { # Boss - Doppelganger 10
         'Source Stage': 'Outer Wall',
         'Source Room': 'Outer Wall, Doppelganger Room',
         'Target Stage': 'Boss - Doppelganger 10',
@@ -311,7 +311,7 @@ boss_stage_rooms = [
             },
         },
     },
-    {
+    { # Boss - Doppelganger 40
         'Source Stage': 'Reverse Caverns',
         'Source Room': 'Reverse Caverns, Scylla Wyrm Room',
         'Target Stage': 'Boss - Doppelganger 40',
@@ -330,7 +330,7 @@ boss_stage_rooms = [
             },
         },
     },
-    {
+    { # Boss - Trio
         'Source Stage': 'Reverse Colosseum',
         'Source Room': 'Reverse Colosseum, Arena',
         'Target Stage': 'Boss - Trio',
@@ -349,7 +349,7 @@ boss_stage_rooms = [
             },
         },
     },
-    {
+    { # Boss - Creature
         'Source Stage': 'Reverse Outer Wall',
         'Source Room': 'Reverse Outer Wall, Doppelganger Room',
         'Target Stage': 'Boss - Creature',
@@ -368,7 +368,7 @@ boss_stage_rooms = [
             },
         },
     },
-    {
+    { # Boss - Hippogryph
         'Source Stage': 'Royal Chapel',
         'Source Room': 'Royal Chapel, Hippogryph Room',
         'Target Stage': 'Boss - Hippogryph',
@@ -387,7 +387,7 @@ boss_stage_rooms = [
             },
         },
     },
-    {
+    { # Boss - Scylla
         'Source Stage': 'Underground Caverns',
         'Source Room': 'Underground Caverns, Scylla Wyrm Room',
         'Target Stage': 'Boss - Scylla',
