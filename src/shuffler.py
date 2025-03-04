@@ -86,6 +86,336 @@ boss_teleporters = {
     '27': ('Floating Catacombs', 'Floating Catacombs, Granfaloon\'s Lair', 1, 0), # Boss - Galamoth
 }
 
+boss_stage_rooms = [
+    { # Boss - Cerberus
+        'Source Stage': 'Abandoned Mine',
+        'Source Room': 'Abandoned Mine, Cerberus Room',
+        'Target Stage': 'Boss - Cerberus',
+        'Target Rooms': {
+            'Boss - Cerberus, Cerberus Room': {
+                'Top': 0,
+                'Left': 0,
+            },
+            'Boss - Cerberus, Fake Room With Teleporter A': {
+                'Top': 0,
+                'Left': -1,
+            },
+            'Boss - Cerberus, Fake Room With Teleporter B': {
+                'Top': 0,
+                'Left': 2,
+            },
+        },
+    },
+    { # Boss - Medusa
+        'Source Stage': 'Anti-Chapel',
+        'Source Room': 'Anti-Chapel, Hippogryph Room',
+        'Target Stage': 'Boss - Medusa',
+        'Target Rooms': {
+            'Boss - Medusa, Hippogryph Room': {
+                'Top': 0,
+                'Left': 0,
+            },
+            'Boss - Medusa, Fake Room With Teleporter A': {
+                'Top': 0,
+                'Left': -1,
+            },
+            'Boss - Medusa, Fake Room With Teleporter B': {
+                'Top': 0,
+                'Left': 2,
+            },
+        },
+    },
+    { # Boss - Richter
+        'Source Stage': 'Castle Keep',
+        'Source Room': 'Castle Keep, Keep Area',
+        'Target Stage': 'Boss - Richter',
+        'Target Rooms': {
+            'Boss - Richter, Throne Room': {
+                'Top': 3,
+                'Left': 3,
+            },
+        },
+    },
+    { # Boss - Granfaloon
+        'Source Stage': 'Catacombs',
+        'Source Room': 'Catacombs, Granfaloon\'s Lair',
+        'Target Stage': 'Boss - Granfaloon',
+        'Target Rooms': {
+            'Boss - Granfaloon, Granfaloon\'s Lair': {
+                'Top': 0,
+                'Left': 0
+            },
+            'Boss - Granfaloon, Fake Room With Teleporter A': {
+                'Top': 0,
+                'Left': 2,
+            },
+            'Boss - Granfaloon, Fake Room With Teleporter B': {
+                'Top': 1,
+                'Left': -1,
+            },
+        },
+    },
+    { # Boss - Death
+        'Source Stage': 'Cave',
+        'Source Room': 'Cave, Cerberus Room',
+        'Target Stage': 'Boss - Death',
+        'Target Rooms': {
+            'Boss - Death, Cerberus Room': {
+                'Top': 0,
+                'Left': 0,
+            },
+            'Boss - Death, Fake Room With Teleporter A': {
+                'Top': 0,
+                'Left': -1,
+            },
+            'Boss - Death, Fake Room With Teleporter B': {
+                'Top': 0,
+                'Left': 2,
+            },
+        },
+    },
+    { # Boss - Minotaur and Werewolf
+        'Source Stage': 'Colosseum',
+        'Source Room': 'Colosseum, Arena',
+        'Target Stage': 'Boss - Minotaur and Werewolf',
+        'Target Rooms': {
+            'Boss - Minotaur and Werewolf, Arena': {
+                'Top': 0,
+                'Left': 0
+            },
+            'Boss - Minotaur and Werewolf, Fake Room With Teleporter A': {
+                'Top': 0,
+                'Left': -1,
+            },
+            'Boss - Minotaur and Werewolf, Fake Room With Teleporter B': {
+                'Top': 0,
+                'Left': 2,
+            },
+        },
+    },
+    { # Boss - Akmodan II
+        'Source Stage': 'Death Wing\'s Lair',
+        'Source Room': 'Death Wing\'s Lair, Olrox\'s Room',
+        'Target Stage': 'Boss - Akmodan II',
+        'Target Rooms': {
+            'Boss - Akmodan II, Olrox\'s Room': {
+                'Top': 0,
+                'Left': 0,
+            },
+            'Boss - Akmodan II, Fake Room With Teleporter A': {
+                'Top': 1,
+                'Left': -1,
+            },
+            'Boss - Akmodan II, Fake Room With Teleporter B': {
+                'Top': 1,
+                'Left': 2,
+            },
+        },
+    },
+    { # Boss - Galamoth
+        'Source Stage': 'Floating Catacombs',
+        'Source Room': 'Floating Catacombs, Granfaloon\'s Lair',
+        'Target Stage': 'Boss - Galamoth',
+        'Target Rooms': {
+            'Boss - Galamoth, Granfaloon\'s Lair': {
+                'Top': 0,
+                'Left': 0,
+            },
+            'Boss - Galamoth, Fake Room With Teleporter A': {
+                'Top': 0,
+                'Left': 2,
+            },
+            'Boss - Galamoth, Fake Room With Teleporter B': {
+                'Top': 1,
+                'Left': -1,
+            },
+        },
+    },
+    { # Cutscene - Meeting Maria in Clock Room
+        'Source Stage': 'Marble Gallery',
+        'Source Room': 'Marble Gallery, Clock Room',
+        'Target Stage': 'Cutscene - Meeting Maria in Clock Room',
+        'Target Rooms': {
+            'Cutscene - Meeting Maria in Clock Room, Clock Room': {
+                'Top': 0,
+                'Left': 0
+            },
+            'Cutscene - Meeting Maria in Clock Room, Fake Room With Teleporter A': {
+                'Top': 0,
+                'Left': -1,
+            },
+            'Cutscene - Meeting Maria in Clock Room, Fake Room With Teleporter B': {
+                'Top': 0,
+                'Left': 1,
+            },
+        },
+    },
+    { # Boss - Beelzebub
+        'Source Stage': 'Necromancy Laboratory',
+        'Source Room': 'Necromancy Laboratory, Slogra and Gaibon Room',
+        'Target Stage': 'Boss - Beelzebub',
+        'Target Rooms': {
+            'Boss - Beelzebub, Slogra and Gaibon Room': {
+                'Top': 0,
+                'Left': 0,
+            },
+            'Boss - Beelzebub, Fake Room With Teleporter A': {
+                'Top': 0,
+                'Left': -1,
+            },
+            'Boss - Beelzebub, Fake Room With Teleporter B': {
+                'Top': 1,
+                'Left': -1,
+            },
+            'Boss - Beelzebub, Fake Room With Teleporter C': {
+                'Top': 1,
+                'Left': 4,
+            },
+        },
+    },
+    { # Boss - Olrox
+        'Source Stage': 'Olrox\'s Quarters',
+        'Source Room': 'Olrox\'s Quarters, Olrox\'s Room',
+        'Target Stage': 'Boss - Olrox',
+        'Target Rooms': {
+            'Boss - Olrox, Olrox\'s Room': {
+                'Top': 0,
+                'Left': 0
+            },
+            'Boss - Olrox, Fake Room With Teleporter A': {
+                'Top': 0,
+                'Left': -1,
+            },
+            'Boss - Olrox, Fake Room With Teleporter B': {
+                'Top': 0,
+                'Left': 2,
+            },
+        },
+    },
+    { # Boss - Doppelganger 10
+        'Source Stage': 'Outer Wall',
+        'Source Room': 'Outer Wall, Doppelganger Room',
+        'Target Stage': 'Boss - Doppelganger 10',
+        'Target Rooms': {
+            'Boss - Doppelganger 10, Doppelganger Room': {
+                'Top': 0,
+                'Left': 0,
+            },
+            'Boss - Doppelganger 10, Fake Room With Teleporter A': {
+                'Top': 0,
+                'Left': -1,
+            },
+            'Boss - Doppelganger 10, Fake Room With Teleporter B': {
+                'Top': 0,
+                'Left': 2,
+            },
+        },
+    },
+    { # Boss - Doppelganger 40
+        'Source Stage': 'Reverse Caverns',
+        'Source Room': 'Reverse Caverns, Scylla Wyrm Room',
+        'Target Stage': 'Boss - Doppelganger 40',
+        'Target Rooms': {
+            'Boss - Doppelganger 40, Scylla Wyrm Room': {
+                'Top': 0,
+                'Left': 0,
+            },
+            'Boss - Doppelganger 40, Fake Room With Teleporter A': {
+                'Top': 0,
+                'Left': -1,
+            },
+            'Boss - Doppelganger 40, Fake Room With Teleporter B': {
+                'Top': 0,
+                'Left': 1,
+            },
+        },
+    },
+    { # Boss - Trio
+        'Source Stage': 'Reverse Colosseum',
+        'Source Room': 'Reverse Colosseum, Arena',
+        'Target Stage': 'Boss - Trio',
+        'Target Rooms': {
+            'Boss - Trio, Arena': {
+                'Top': 0,
+                'Left': 0,
+            },
+            'Boss - Trio, Fake Room With Teleporter A': {
+                'Top': 0,
+                'Left': -1,
+            },
+            'Boss - Trio, Fake Room With Teleporter B': {
+                'Top': 0,
+                'Left': 2,
+            },
+        },
+    },
+    { # Boss - Creature
+        'Source Stage': 'Reverse Outer Wall',
+        'Source Room': 'Reverse Outer Wall, Doppelganger Room',
+        'Target Stage': 'Boss - Creature',
+        'Target Rooms': {
+            'Boss - Creature, Doppelganger Room': {
+                'Top': 0,
+                'Left': 0,
+            },
+            'Boss - Creature, Fake Room With Teleporter A': {
+                'Top': 0,
+                'Left': -1,
+            },
+            'Boss - Creature, Fake Room With Teleporter B': {
+                'Top': 0,
+                'Left': 2,
+            },
+        },
+    },
+    { # Boss - Hippogryph
+        'Source Stage': 'Royal Chapel',
+        'Source Room': 'Royal Chapel, Hippogryph Room',
+        'Target Stage': 'Boss - Hippogryph',
+        'Target Rooms': {
+            'Boss - Hippogryph, Hippogryph Room': {
+                'Top': 0,
+                'Left': 0,
+            },
+            'Boss - Hippogryph, Fake Room With Teleporter A': {
+                'Top': 0,
+                'Left': -1,
+            },
+            'Boss - Hippogryph, Fake Room With Teleporter B': {
+                'Top': 0,
+                'Left': 2,
+            },
+        },
+    },
+    { # Boss - Scylla
+        'Source Stage': 'Underground Caverns',
+        'Source Room': 'Underground Caverns, Scylla Wyrm Room',
+        'Target Stage': 'Boss - Scylla',
+        'Target Rooms': {
+            'Boss - Scylla, Scylla Wyrm Room': {
+                'Top': 0,
+                'Left': 0
+            },
+            'Boss - Scylla, Fake Room With Teleporter A': {
+                'Top': 0,
+                'Left': -1,
+            },
+            'Boss - Scylla, Rising Water Room': {
+                'Top': 0,
+                'Left': 1,
+            },
+            'Boss - Scylla, Scylla Room': {
+                'Top': -1,
+                'Left': 1,
+            },
+            'Boss - Scylla, Crystal Cloak Room': {
+                'Top': -1,
+                'Left': 0,
+            },
+        },
+    },
+]
+
 familiar_events = {
     # Catacombs, Pitch Black Spike Maze (y=50, x=41)
     '1': ('Catacombs', 'Catacombs, Pitch Black Spike Maze', False),
@@ -630,316 +960,21 @@ if __name__ == '__main__':
                     'Top': 63 - source_top - (source_rows - 1),
                     'Left': 63 - source_left - (source_cols - 1),
                 }
-        # Move the Meeting Maria in Clock Room Cutscene stage to match Marble Gallery, Clock Room
-        source_room = changes['Stages']['Marble Gallery']['Rooms']['Marble Gallery, Clock Room']
-        changes['Stages']['Cutscene - Meeting Maria in Clock Room'] = {
-            'Rooms': {
-                'Cutscene - Meeting Maria in Clock Room, Clock Room': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                },
-                'Cutscene - Meeting Maria in Clock Room, Fake Room With Teleporter A': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 1,
-                },
-                'Cutscene - Meeting Maria in Clock Room, Fake Room With Teleporter B': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] + 1,
-                },
-            },
-        }
-        # Move the Olrox Boss stage to match Olrox's Quarters, Olrox's Room
-        source_room = changes['Stages']['Olrox\'s Quarters']['Rooms']['Olrox\'s Quarters, Olrox\'s Room']
-        changes['Stages']['Boss - Olrox'] = {
-            'Rooms': {
-                'Boss - Olrox, Olrox\'s Room': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                },
-                'Boss - Olrox, Fake Room With Teleporter A': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 1,
-                },
-                'Boss - Olrox, Fake Room With Teleporter B': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] + 2,
-                },
-            },
-        }
-        # Move the Granfaloon Boss stage to match Catacombs, Granfaloon's Lair
-        source_room = changes['Stages']['Catacombs']['Rooms']['Catacombs, Granfaloon\'s Lair']
-        changes['Stages']['Boss - Granfaloon'] = {
-            'Rooms': {
-                'Boss - Granfaloon, Granfaloon\'s Lair': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                },
-                'Boss - Granfaloon, Fake Room With Teleporter A': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] + 2,
-                },
-                'Boss - Granfaloon, Fake Room With Teleporter B': {
-                    'Top': source_room['Top'] + 1,
-                    'Left': source_room['Left'] - 1,
-                },
-            },
-        }
-        # Move the Minotaur and Werewolf Boss stage to match Colosseum, Arena
-        source_room = changes['Stages']['Colosseum']['Rooms']['Colosseum, Arena']
-        changes['Stages']['Boss - Minotaur and Werewolf'] = {
-            'Rooms': {
-                'Boss - Minotaur and Werewolf, Arena': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                },
-                'Boss - Minotaur and Werewolf, Fake Room With Teleporter A': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 1,
-                },
-                'Boss - Minotaur and Werewolf, Fake Room With Teleporter B': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] + 2,
-                },
-            },
-        }
-        # Move the Scylla Boss stage to match Underground Caverns, Scylla Wyrm Room
-        source_room = changes['Stages']['Underground Caverns']['Rooms']['Underground Caverns, Scylla Wyrm Room']
-        changes['Stages']['Boss - Scylla'] = {
-            'Rooms': {
-                'Boss - Scylla, Scylla Wyrm Room': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                },
-                'Boss - Scylla, Fake Room With Teleporter A': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 1,
-                },
-                'Boss - Scylla, Rising Water Room': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] + 1,
-                },
-                'Boss - Scylla, Scylla Room': {
-                    'Top': source_room['Top'] - 1,
-                    'Left': source_room['Left'] + 1,
-                },
-                'Boss - Scylla, Crystal Cloak Room': {
-                    'Top': source_room['Top'] - 1,
-                    'Left': source_room['Left'],
-                },
-            },
-        }
-        # Move the Doppelganger 10 Boss stage to match Outer Wall, Doppelganger Room
-        source_room = changes['Stages']['Outer Wall']['Rooms']['Outer Wall, Doppelganger Room']
-        changes['Stages']['Boss - Doppelganger 10'] = {
-            'Rooms': {
-                'Boss - Doppelganger 10, Doppelganger Room': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                },
-                'Boss - Doppelganger 10, Fake Room With Teleporter A': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 1,
-                },
-                'Boss - Doppelganger 10, Fake Room With Teleporter B': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] + 2,
-                },
-            },
-        }
-        # Move the Hippogryph Boss stage to match Royal Chapel, Hippogryph Room
-        source_room = changes['Stages']['Royal Chapel']['Rooms']['Royal Chapel, Hippogryph Room']
-        changes['Stages']['Boss - Hippogryph'] = {
-            'Rooms': {
-                'Boss - Hippogryph, Hippogryph Room': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                },
-                'Boss - Hippogryph, Fake Room With Teleporter A': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 1,
-                },
-                'Boss - Hippogryph, Fake Room With Teleporter B': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] + 2,
-                },
-            },
-        }
-        # Move the Richter Boss stage and castle teleporter to match Castle Keep, Keep Area
-        source_room = changes['Stages']['Castle Keep']['Rooms']['Castle Keep, Keep Area']
-        changes['Stages']['Boss - Richter'] = {
-            'Rooms': {
-                'Boss - Richter, Throne Room': {
-                    'Top': source_room['Top'] + 3,
-                    'Left': source_room['Left'] + 3,
-                },
-            },
-        }
-        # Move the Cerberus Boss stage to match Abandoned Mine, Cerberus Room
-        source_room = changes['Stages']['Abandoned Mine']['Rooms']['Abandoned Mine, Cerberus Room']
-        changes['Stages']['Boss - Cerberus'] = {
-            'Rooms': {
-                'Boss - Cerberus, Cerberus Room': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                },
-                'Boss - Cerberus, Fake Room With Teleporter A': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 1,
-                },
-                'Boss - Cerberus, Fake Room With Teleporter B': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] + 2,
-                },
-            },
-        }
-        # Move the Trio Boss stage to match Reverse Colosseum, Arena
-        source_room = changes['Stages']['Reverse Colosseum']['Rooms']['Reverse Colosseum, Arena']
-        changes['Stages']['Boss - Trio'] = {
-            'Rooms': {
-                'Boss - Trio, Arena': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                },
-                'Boss - Trio, Fake Room With Teleporter A': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 1,
-                },
-                'Boss - Trio, Fake Room With Teleporter B': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] + 2,
-                },
-            },
-        }
-        # Move the Beelzebub Boss stage to match Necromancy Laboratory, Slogra and Gaibon Room
-        source_room = changes['Stages']['Necromancy Laboratory']['Rooms']['Necromancy Laboratory, Slogra and Gaibon Room']
-        changes['Stages']['Boss - Beelzebub'] = {
-            'Rooms': {
-                'Boss - Beelzebub, Slogra and Gaibon Room': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                },
-                'Boss - Beelzebub, Fake Room With Teleporter A': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 1,
-                },
-                'Boss - Beelzebub, Fake Room With Teleporter B': {
-                    'Top': source_room['Top'] + 1,
-                    'Left': source_room['Left'] - 1,
-                },
-                'Boss - Beelzebub, Fake Room With Teleporter C': {
-                    'Top': source_room['Top'] + 1,
-                    'Left': source_room['Left'] + 4,
-                },
-            },
-        }
-        # Move the Death Boss stage to match Cave, Cerberus Room
-        source_room = changes['Stages']['Cave']['Rooms']['Cave, Cerberus Room']
-        changes['Stages']['Boss - Death'] = {
-            'Rooms': {
-                'Boss - Death, Cerberus Room': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                },
-                'Boss - Death, Fake Room With Teleporter A': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 1,
-                },
-                'Boss - Death, Fake Room With Teleporter B': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] + 2,
-                },
-            },
-        }
-        # Move the Medusa Boss stage to match Anti-Chapel, Hippogryph Room
-        source_room = changes['Stages']['Anti-Chapel']['Rooms']['Anti-Chapel, Hippogryph Room']
-        changes['Stages']['Boss - Medusa'] = {
-            'Rooms': {
-                'Boss - Medusa, Hippogryph Room': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                },
-                'Boss - Medusa, Fake Room With Teleporter A': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 1,
-                },
-                'Boss - Medusa, Fake Room With Teleporter B': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] + 2,
-                },
-            },
-        }
-        # Move the Creature Boss stage to match Reverse Outer Wall, Doppelganger Room
-        source_room = changes['Stages']['Reverse Outer Wall']['Rooms']['Reverse Outer Wall, Doppelganger Room']
-        changes['Stages']['Boss - Creature'] = {
-            'Rooms': {
-                'Boss - Creature, Doppelganger Room': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                },
-                'Boss - Creature, Fake Room With Teleporter A': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 1,
-                },
-                'Boss - Creature, Fake Room With Teleporter B': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] + 2,
-                },
-            },
-        }
-        # Move the Doppelganger 40 Boss stage to match Reverse Caverns, Scylla Wyrm Room
-        source_room = changes['Stages']['Reverse Caverns']['Rooms']['Reverse Caverns, Scylla Wyrm Room']
-        changes['Stages']['Boss - Doppelganger 40'] = {
-            'Rooms': {
-                'Boss - Doppelganger 40, Scylla Wyrm Room': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                },
-                'Boss - Doppelganger 40, Fake Room With Teleporter A': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 1,
-                },
-                'Boss - Doppelganger 40, Fake Room With Teleporter B': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] + 1,
-                },
-            },
-        }
-        # Move the Akmodan II Boss stage to match Olrox's Quarters, Olrox's Room
-        source_room = changes['Stages']['Death Wing\'s Lair']['Rooms']['Death Wing\'s Lair, Olrox\'s Room']
-        changes['Stages']['Boss - Akmodan II'] = {
-            'Rooms': {
-                'Boss - Akmodan II, Olrox\'s Room': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                },
-                'Boss - Akmodan II, Fake Room With Teleporter A': {
-                    'Top': source_room['Top'] + 1,
-                    'Left': source_room['Left'] - 1,
-                },
-                'Boss - Akmodan II, Fake Room With Teleporter B': {
-                    'Top': source_room['Top'] + 1,
-                    'Left': source_room['Left'] + 2,
-                },
-            },
-        }
-        # Move the Galamoth Boss stage to match Floating Catacombs, Granfaloon's Lair
-        source_room = changes['Stages']['Floating Catacombs']['Rooms']['Floating Catacombs, Granfaloon\'s Lair']
-        changes['Stages']['Boss - Galamoth'] = {
-            'Rooms': {
-                'Boss - Galamoth, Granfaloon\'s Lair': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                },
-                'Boss - Galamoth, Fake Room With Teleporter A': {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] + 2,
-                },
-                'Boss - Galamoth, Fake Room With Teleporter B': {
-                    'Top': source_room['Top'] + 1,
-                    'Left': source_room['Left'] - 1,
-                },
-            },
-        }
+        # Move Boss and Cutscene stages to the match their respective rooms
+        for element in boss_stage_rooms:
+            source_stage_name = element['Source Stage']
+            source_room_name = element['Source Room']
+            target_stage_name = element['Target Stage']
+            if target_stage_name not in changes['Stages']:
+                changes['Stages'][target_stage_name] = {
+                    'Rooms': {},
+                }
+            for (target_room_name, target_room) in element['Target Rooms'].items():
+                source_room = changes['Stages'][source_stage_name]['Rooms'][source_room_name]
+                changes['Stages'][target_stage_name]['Rooms'][target_room_name] = {
+                    'Top': source_room['Top'] + target_room['Top'],
+                    'Left': source_room['Left'] + target_room['Left'],
+                }
         # Assign boss teleporter locations to their counterparts in the castle
         for (boss_teleporter_id, (stage_name, room_name, offset_top, offset_left)) in boss_teleporters.items():
             source_room = changes['Stages'][stage_name]['Rooms'][room_name]
@@ -981,7 +1016,7 @@ if __name__ == '__main__':
         # Show softlock warning and build number on file select screen
         changes['Strings'] = {
             '10': 'Press L2 if softlocked.     ',
-            '11': 'Alpha Build 71      ',
+            '11': 'Alpha Build 72      ',
         }
         # Patch - Assign Power of Wolf Relic its own ID (was previously duplicating the trap door's ID)
         # https://github.com/SestrenExsis/SOTN-Shuffler/issues/36
