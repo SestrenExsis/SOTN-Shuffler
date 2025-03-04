@@ -482,6 +482,63 @@ familiar_events = {
     '43': ('Clock Tower', 'Clock Tower, Pendulum Room', False),
 }
 
+# Rules to follow regarding stage connections
+# - A stage may not connect to itself
+# - A stage may not connect to the same stage (including Warp Rooms) more than once
+# - A Left Passage must connect to a Right Passage, and vice versa
+# - At least one "loop" of stage connections must exist:
+#   - The loop must consist of at least 5 stages that aren't Warp Rooms
+# - At first, Warp Room connections will be kept vanilla
+stage_connections = {
+    'Abandoned Mine, Loading Room A (Left Passage)': 'Abandoned Mine, Bend (Lower-Left Red Door)',
+    # 'Abandoned Mine, Loading Room B (Right Passage)': 'Abandoned Mine, Four-Way Intersection (Right Red Door)',
+    'Abandoned Mine, Loading Room C (Right Passage)': 'Abandoned Mine, Wolf\'s Head Column (Upper-Right Red Door)',
+    'Alchemy Laboratory, Loading Room A (Right Passage)': 'Alchemy Laboratory, Exit to Marble Gallery (Right Red Door)',
+    'Alchemy Laboratory, Loading Room B (Left Passage)': 'Alchemy Laboratory, Exit to Royal Chapel (Left Red Door)',
+    'Alchemy Laboratory, Loading Room C (Right Passage)': 'Alchemy Laboratory, Entryway (Right Red Door)',
+    'Castle Entrance, Loading Room A (Right Passage)': 'Castle Entrance, Cube of Zoe Room (Upper-Right Red Door)',
+    # 'Castle Entrance, Loading Room B (Left Passage)': 'Castle Entrance, Shortcut to Warp (Left Red Door)',
+    'Castle Entrance, Loading Room C (Left Passage)': 'Castle Entrance, Cube of Zoe Room (Upper-Left Red Door)',
+    'Castle Entrance, Loading Room D (Right Passage)': 'Castle Entrance, Shortcut to Underground Caverns (Right Red Door)',
+    'Castle Keep, Loading Room A (Right Passage)': 'Castle Keep, Lion Torch Platform (Lower-Right Red Door)',
+    # 'Castle Keep, Loading Room B (Right Passage)': 'Castle Keep, Dual Platforms (Lower-Right Red Door)',
+    'Castle Keep, Loading Room C (Left Passage)': 'Castle Keep, Keep Area (Lower-Left Red Door)',
+    'Catacombs, Loading Room A (Right Passage)': 'Catacombs, Exit to Abandoned Mine (Upper-Right Red Door)',
+    'Clock Tower, Loading Room A (Right Passage)': 'Clock Tower, Stairwell to Outer Wall (Right Red Door)',
+    'Clock Tower, Loading Room B (Left Passage)': 'Clock Tower, Karasuman\'s Room (Left Red Door)',
+    'Colosseum, Loading Room A (Left Passage)': 'Colosseum, Passageway Between Arena and Royal Chapel (Left Red Door)',
+    'Colosseum, Loading Room B (Right Passage)': 'Colosseum, Top of Elevator Shaft (Right Red Door)',
+    'Long Library, Loading Room A (Right Passage)': 'Long Library, Exit to Outer Wall (Right Red Door)',
+    'Marble Gallery, Loading Room A (Right Passage)': 'Marble Gallery, Long Hallway (Right Red Door)',
+    'Marble Gallery, Loading Room B (Left Passage)': 'Marble Gallery, Stairwell to Underground Caverns (Lower-Left Red Door)',
+    'Marble Gallery, Loading Room C (Left Passage)': 'Marble Gallery, Entrance (Left Red Door)',
+    'Marble Gallery, Loading Room D (Left Passage)': 'Marble Gallery, Pathway After Left Statue (Left Red Door)',
+    'Marble Gallery, Loading Room E (Left Passage)': 'Marble Gallery, S-Shaped Hallways (Lower-Left Red Door)',
+    'Olrox\'s Quarters, Loading Room A (Right Passage)': 'Olrox\'s Quarters, Skelerang Room (Lower-Right Red Door)',
+    'Olrox\'s Quarters, Loading Room B (Left Passage)': 'Olrox\'s Quarters, Grand Staircase (Lower-Left Red Door)',
+    # 'Olrox\'s Quarters, Loading Room C (Right Passage)': 'Olrox\'s Quarters, Tall Shaft (Lower-Right Red Door)',
+    'Olrox\'s Quarters, Loading Room D (Left Passage)': 'Olrox\'s Quarters, Catwalk Crypt (Left Red Door)',
+    # 'Outer Wall, Loading Room A (Left Passage)': 'Outer Wall, Elevator Shaft Room (Upper-Left Red Door)',
+    'Outer Wall, Loading Room B (Left Passage)': 'Outer Wall, Exit to Clock Tower (Left Red Door)',
+    'Outer Wall, Loading Room C (Left Passage)': 'Outer Wall, Elevator Shaft Room (Middle-Left Red Door)',
+    'Outer Wall, Loading Room D (Left Passage)': 'Outer Wall, Exit to Marble Gallery (Left Red Door)',
+    'Royal Chapel, Loading Room A (Right Passage)': 'Royal Chapel, Right Tower (Middle-Right Red Door)',
+    'Royal Chapel, Loading Room B (Right Passage)': 'Royal Chapel, Statue Ledge (Right Red Door)',
+    'Royal Chapel, Loading Room C (Right Passage)': 'Royal Chapel, Nave (Lower-Right Red Door)',
+    'Royal Chapel, Loading Room D (Right Passage)': 'Royal Chapel, Pushing Statue Shortcut (Right Red Door)',
+    'Underground Caverns, Loading Room A (Left Passage)': 'Underground Caverns, Exit to Castle Entrance (Left Red Door)',
+    'Underground Caverns, Loading Room B (Right Passage)': 'Underground Caverns, Long Drop (Upper-Right Red Door)',
+    'Underground Caverns, Loading Room C (Left Passage)': 'Underground Caverns, Exit to Abandoned Mine (Left Red Door)',
+    # 'Warp Rooms, Loading Room A (Left Passage)': 'Warp Rooms, Warp Room X (XXX Red Door)',
+    # 'Warp Rooms, Loading Room B (Right Passage)': 'Warp Rooms, Warp Room X (XXX Red Door)',
+    # 'Warp Rooms, Loading Room C (Left Passage)': 'Warp Rooms, Warp Room X (XXX Red Door)',
+    # 'Warp Rooms, Loading Room D (Right Passage)': 'Warp Rooms, Warp Room X (XXX Red Door)',
+    # 'Warp Rooms, Loading Room E (Left Passage)': 'Warp Rooms, Warp Room X (XXX Red Door)',
+}
+
+def shuffle_stage_connections() -> dict:
+    pass
+
 if __name__ == '__main__':
     '''
     Usage
