@@ -257,10 +257,7 @@ class RoomSet:
         self.rooms.pop(room_name, None)
 
 stages = {
-    # NOTE(sestren): Loading Room and Fake Room With Teleporters use First Castle Loading Rooms to determine their shared canonical names
-    # NOTE(sestren): For instance, the Loading Room from Castle Entrance to Alchemy Laboratory is the third Loading Room in the indexed list, so it is assigned the letter C
-    # NOTE(sestren): The Fake Room attached to that Loading Room is also assigned the letter C to match it, even though that Fake Room's index comes first in the list
-    # NOTE(sestren): The same letter is used to refer to the corresponding Loading Room and Fake Room in Inverted Castle, regardless of which order their indexes occur
+    # NOTE(sestren): Loading Room and Fake Rooms use the name of the stage they lead to in First Castle to determine their shared canonical names
     'Castle Entrance': [
         # NOTE(sestren): For now, these rooms are not being added to the mapper
         # { 'Castle Entrance, Forest Cutscene': (44, 0) },
@@ -704,17 +701,17 @@ stages = {
     'Abandoned Mine': [
         {
             'Abandoned Mine, Wolf\'s Head Column': (32 + 0, 32 + 0),
-            'Abandoned Mine, Loading Room C': (32 + 0, 32 + 1),
-            'Abandoned Mine, Fake Room With Teleporter ID 019': (32 + 0, 32 + 2),
+            'Abandoned Mine, Loading Room to Underground Caverns': (32 + 0, 32 + 1),
+            'Abandoned Mine, Fake Room with Teleporter to Underground Caverns': (32 + 0, 32 + 2),
         },
         {
             'Abandoned Mine, Four-Way Intersection': (0, 0),
-            'Abandoned Mine, Loading Room B': (0 + 0, 0 + 3),
-            'Abandoned Mine, Fake Room With Teleporter ID 020': (0 + 0, 0 + 4),
+            'Abandoned Mine, Loading Room to Warp Rooms': (0 + 0, 0 + 3),
+            'Abandoned Mine, Fake Room with Teleporter to Warp Rooms': (0 + 0, 0 + 4),
         },
         {
-            'Abandoned Mine, Fake Room With Teleporter ID 018': (1 + 0, 0 + 0),
-            'Abandoned Mine, Loading Room A': (1 + 0, 0 + 1),
+            'Abandoned Mine, Fake Room with Teleporter to Catacombs': (1 + 0, 0 + 0),
+            'Abandoned Mine, Loading Room to Catacombs': (1 + 0, 0 + 1),
             'Abandoned Mine, Bend': (0, 2),
         },
         {

@@ -1,16 +1,16 @@
 
 Stage: Abandoned Mine
-Room: Loading Room A
-Index: 12
+Room: Loading Room to Underground Caverns
+Index: 14
 Columns: 1
 Rows: 1
 Empty Cells: {}
 Map:
-    - "0000 "
-    - "0ccc "
-    - "5ccc "
-    - "0ccc "
-    - "0000 "
+    - " 0000"
+    - " ccc0"
+    - " ccc5"
+    - " ccc0"
+    - " 0000"
 Nodes:
     Left Passage:
         Type: "######....######"

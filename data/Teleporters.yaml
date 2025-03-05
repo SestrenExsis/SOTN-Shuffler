@@ -1,20 +1,20 @@
 
 Sources:
-    Abandoned Mine, Fake Room With Teleporter ID 019:
-        Index: 19
-        Stage: Abandoned Mine
-        Room: Fake Room With Teleporter ID 019
-        Target: Underground Caverns, Exit to Abandoned Mine (Left Red Door)
-    Abandoned Mine, Fake Room With Teleporter ID 020:
-        Index: 20
-        Stage: Abandoned Mine
-        Room: Fake Room With Teleporter ID 020
-        Target: Warp Rooms, Warp Room E (Left Red Door)
-    Abandoned Mine, Fake Room With Teleporter ID 018:
+    Abandoned Mine, Fake Room with Teleporter to Catacombs:
         Index: 18
         Stage: Abandoned Mine
-        Room: Fake Room With Teleporter ID 018
+        Room: Fake Room with Teleporter to Catacombs
         Target: Catacombs, Exit to Abandoned Mine (Upper-Right Red Door)
+    Abandoned Mine, Fake Room with Teleporter to Underground Caverns:
+        Index: 19
+        Stage: Abandoned Mine
+        Room: Fake Room with Teleporter to Underground Caverns
+        Target: Underground Caverns, Exit to Abandoned Mine (Left Red Door)
+    Abandoned Mine, Fake Room with Teleporter to Warp Rooms:
+        Index: 20
+        Stage: Abandoned Mine
+        Room: Fake Room with Teleporter to Warp Rooms
+        Target: Warp Rooms, Warp Room E (Left Red Door)
     Alchemy Laboratory, Fake Room With Teleporter ID 022:
         Index: 22
         Stage: Alchemy Laboratory

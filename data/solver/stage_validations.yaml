@@ -6,7 +6,7 @@ Abandoned Mine:
     #   wall, and collect the Demon Card.
     # - When returning to Abandoned Mine from any of the other entrances, it is 
     #   assumed you have already pressed the Demon Switch and broken the wall.
-    Loading Room A with Flight, Unblocked -> Cerberus Room:
+    Catacombs with Flight, Unblocked -> Cerberus Room:
         Solver:
             Approach: Steps
             Attempts: 1
@@ -15,7 +15,7 @@ Abandoned Mine:
             Wins:
                 Minimum: 1
         State:
-            Location: Abandoned Mine, Loading Room A
+            Location: Abandoned Mine, Loading Room to Catacombs
             Section: Main
             Relic - Soul of Bat: true
             Progression - Bat Transformation: true
@@ -26,7 +26,7 @@ Abandoned Mine:
                 Locations Visited:
                     All:
                         Abandoned Mine, Cerberus Room (Main): true
-    Loading Room C with Flight -> Cerberus Room:
+    Underground Caverns with Flight -> Cerberus Room:
         Solver:
             Approach: Steps
             Attempts: 1
@@ -35,7 +35,7 @@ Abandoned Mine:
             Wins:
                 Minimum: 1
         State:
-            Location: Abandoned Mine, Loading Room C
+            Location: Abandoned Mine, Loading Room to Underground Caverns
             Section: Main
             Relic - Soul of Bat: true
             Progression - Bat Transformation: true
@@ -44,7 +44,7 @@ Abandoned Mine:
                 Locations Visited:
                     All:
                         Abandoned Mine, Cerberus Room (Main): true
-    Loading Room C with Flight -> Break Wall:
+    Underground Caverns with Flight -> Break Wall:
         Solver:
             Approach: Steps
             Attempts: 1
@@ -53,24 +53,24 @@ Abandoned Mine:
             Wins:
                 Minimum: 1
         State:
-            Location: Abandoned Mine, Loading Room C
+            Location: Abandoned Mine, Loading Room to Underground Caverns
             Section: Main
             Relic - Soul of Bat: true
             Progression - Bat Transformation: true
         Goals:
             Break Wall:
                 Status - Snake Column Wall Broken: true
-    Loading Room C with Flight -> Demon Card:
+    Underground Caverns with Flight -> Demon Card:
         Solver Effort: 0.7
         State:
-            Location: Abandoned Mine, Loading Room C
+            Location: Abandoned Mine, Loading Room to Underground Caverns
             Section: Main
             Relic - Soul of Bat: true
             Progression - Bat Transformation: true
         Goals:
             Get Demon Card:
                 Relic - Demon Card: true
-    Cerberus Room with Flight, Unblocked -> Loading Room A:
+    Cerberus Room with Flight, Unblocked -> Warp Rooms:
         Solver Effort: 0.7
         State:
             Location: Abandoned Mine, Cerberus Room
@@ -83,8 +83,8 @@ Abandoned Mine:
             Reach Warp Rooms:
                 Locations Visited:
                     All:
-                        Abandoned Mine, Loading Room A (Main): true
-    Cerberus Room with Flight, Unblocked -> Loading Room B:
+                        Abandoned Mine, Loading Room to Warp Rooms (Main): true
+    Cerberus Room with Flight, Unblocked -> Catacombs:
         Solver Effort: 0.7
         State:
             Location: Abandoned Mine, Cerberus Room
@@ -97,8 +97,8 @@ Abandoned Mine:
             Reach Warp Rooms:
                 Locations Visited:
                     All:
-                        Abandoned Mine, Loading Room B (Main): true
-    Cerberus Room with Flight, Unblocked -> Loading Room C:
+                        Abandoned Mine, Loading Room to Catacombs (Main): true
+    Cerberus Room with Flight, Unblocked -> Underground Caverns:
         Solver Effort: 0.7
         State:
             Location: Abandoned Mine, Cerberus Room
@@ -111,7 +111,7 @@ Abandoned Mine:
             Reach Warp Rooms:
                 Locations Visited:
                     All:
-                        Abandoned Mine, Loading Room C (Main): true
+                        Abandoned Mine, Loading Room to Underground Caverns (Main): true
 Alchemy Laboratory:
     Loading Room A -> Slogra and Gaibon Room (Ground):
         Solver Effort: 0.7

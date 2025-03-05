@@ -20,7 +20,7 @@ def get_room_drawing(mapper_core, room_name) -> list[str]:
         char = '4'
     elif 'Loading Room' in room_name:
         char = 'd'
-    elif 'Fake Room With Teleporter' in room_name:
+    elif 'FAKE ROOM WITH TELEPORTER' in room_name.upper():
         char = ' '
     grid = [[' ' for col in range(1 + 4 * room['Columns'])] for row in range(1 + 4 * room['Rows'])]
     for row in range(room['Rows']):
@@ -490,18 +490,18 @@ familiar_events = {
 #   - The loop must consist of at least 5 stages that aren't Warp Rooms
 # - At first, Warp Room connections will be kept vanilla
 stage_connections = {
-    'Abandoned Mine, Loading Room A (Left Passage)': 'Abandoned Mine, Bend (Lower-Left Red Door)',
-    # 'Abandoned Mine, Loading Room B (Right Passage)': 'Abandoned Mine, Four-Way Intersection (Right Red Door)',
-    'Abandoned Mine, Loading Room C (Right Passage)': 'Abandoned Mine, Wolf\'s Head Column (Upper-Right Red Door)',
+    'Abandoned Mine, Loading Room to Catacombs (Left Passage)': 'Abandoned Mine, Bend (Lower-Left Red Door)',
+    'Abandoned Mine, Loading Room to Warp Rooms (Right Passage)': 'Abandoned Mine, Four-Way Intersection (Right Red Door)',
+    'Abandoned Mine, Loading Room to Underground Caverns (Right Passage)': 'Abandoned Mine, Wolf\'s Head Column (Upper-Right Red Door)',
     'Alchemy Laboratory, Loading Room A (Right Passage)': 'Alchemy Laboratory, Exit to Marble Gallery (Right Red Door)',
     'Alchemy Laboratory, Loading Room B (Left Passage)': 'Alchemy Laboratory, Exit to Royal Chapel (Left Red Door)',
     'Alchemy Laboratory, Loading Room C (Right Passage)': 'Alchemy Laboratory, Entryway (Right Red Door)',
     'Castle Entrance, Loading Room A (Right Passage)': 'Castle Entrance, Cube of Zoe Room (Upper-Right Red Door)',
-    # 'Castle Entrance, Loading Room B (Left Passage)': 'Castle Entrance, Shortcut to Warp (Left Red Door)',
+    'Castle Entrance, Loading Room B (Left Passage)': 'Castle Entrance, Shortcut to Warp (Left Red Door)',
     'Castle Entrance, Loading Room C (Left Passage)': 'Castle Entrance, Cube of Zoe Room (Upper-Left Red Door)',
     'Castle Entrance, Loading Room D (Right Passage)': 'Castle Entrance, Shortcut to Underground Caverns (Right Red Door)',
     'Castle Keep, Loading Room A (Right Passage)': 'Castle Keep, Lion Torch Platform (Lower-Right Red Door)',
-    # 'Castle Keep, Loading Room B (Right Passage)': 'Castle Keep, Dual Platforms (Lower-Right Red Door)',
+    'Castle Keep, Loading Room B (Right Passage)': 'Castle Keep, Dual Platforms (Lower-Right Red Door)',
     'Castle Keep, Loading Room C (Left Passage)': 'Castle Keep, Keep Area (Lower-Left Red Door)',
     'Catacombs, Loading Room A (Right Passage)': 'Catacombs, Exit to Abandoned Mine (Upper-Right Red Door)',
     'Clock Tower, Loading Room A (Right Passage)': 'Clock Tower, Stairwell to Outer Wall (Right Red Door)',
@@ -516,9 +516,9 @@ stage_connections = {
     'Marble Gallery, Loading Room E (Left Passage)': 'Marble Gallery, S-Shaped Hallways (Lower-Left Red Door)',
     'Olrox\'s Quarters, Loading Room A (Right Passage)': 'Olrox\'s Quarters, Skelerang Room (Lower-Right Red Door)',
     'Olrox\'s Quarters, Loading Room B (Left Passage)': 'Olrox\'s Quarters, Grand Staircase (Lower-Left Red Door)',
-    # 'Olrox\'s Quarters, Loading Room C (Right Passage)': 'Olrox\'s Quarters, Tall Shaft (Lower-Right Red Door)',
+    'Olrox\'s Quarters, Loading Room C (Right Passage)': 'Olrox\'s Quarters, Tall Shaft (Lower-Right Red Door)',
     'Olrox\'s Quarters, Loading Room D (Left Passage)': 'Olrox\'s Quarters, Catwalk Crypt (Left Red Door)',
-    # 'Outer Wall, Loading Room A (Left Passage)': 'Outer Wall, Elevator Shaft Room (Upper-Left Red Door)',
+    'Outer Wall, Loading Room A (Left Passage)': 'Outer Wall, Elevator Shaft Room (Upper-Left Red Door)',
     'Outer Wall, Loading Room B (Left Passage)': 'Outer Wall, Exit to Clock Tower (Left Red Door)',
     'Outer Wall, Loading Room C (Left Passage)': 'Outer Wall, Elevator Shaft Room (Middle-Left Red Door)',
     'Outer Wall, Loading Room D (Left Passage)': 'Outer Wall, Exit to Marble Gallery (Left Red Door)',
@@ -529,11 +529,11 @@ stage_connections = {
     'Underground Caverns, Loading Room A (Left Passage)': 'Underground Caverns, Exit to Castle Entrance (Left Red Door)',
     'Underground Caverns, Loading Room B (Right Passage)': 'Underground Caverns, Long Drop (Upper-Right Red Door)',
     'Underground Caverns, Loading Room C (Left Passage)': 'Underground Caverns, Exit to Abandoned Mine (Left Red Door)',
-    # 'Warp Rooms, Loading Room A (Left Passage)': 'Warp Rooms, Warp Room X (XXX Red Door)',
-    # 'Warp Rooms, Loading Room B (Right Passage)': 'Warp Rooms, Warp Room X (XXX Red Door)',
-    # 'Warp Rooms, Loading Room C (Left Passage)': 'Warp Rooms, Warp Room X (XXX Red Door)',
-    # 'Warp Rooms, Loading Room D (Right Passage)': 'Warp Rooms, Warp Room X (XXX Red Door)',
-    # 'Warp Rooms, Loading Room E (Left Passage)': 'Warp Rooms, Warp Room X (XXX Red Door)',
+    'Warp Rooms, Loading Room A (Left Passage)': 'Warp Rooms, Warp Room E (Left Red Door)',
+    'Warp Rooms, Loading Room B (Right Passage)': 'Warp Rooms, Warp Room D (Right Red Door)',
+    'Warp Rooms, Loading Room C (Left Passage)': 'Warp Rooms, Warp Room B (Right Red Door)',
+    'Warp Rooms, Loading Room D (Right Passage)': 'Warp Rooms, Warp Room C (Left Red Door)',
+    'Warp Rooms, Loading Room E (Left Passage)': 'Warp Rooms, Warp Room A (Right Red Door)',
 }
 
 def shuffle_stage_connections() -> dict:
@@ -884,7 +884,7 @@ if __name__ == '__main__':
                     'Room X': 63 - source_room['Left'],
                 }
                 # Warp Room E is attached to Abandoned Mine
-                source_room = changes['Stages']['Abandoned Mine']['Rooms']['Abandoned Mine, Fake Room With Teleporter ID 020']
+                source_room = changes['Stages']['Abandoned Mine']['Rooms']['Abandoned Mine, Fake Room with Teleporter to Warp Rooms']
                 overrides['Warp Rooms, Fake Room With Teleporter ID 032'] = {
                     'Top': source_room['Top'],
                     'Left': source_room['Left'] - 2,
