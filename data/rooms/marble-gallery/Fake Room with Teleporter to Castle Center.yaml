@@ -1,0 +1,22 @@
+
+Stage: Marble Gallery
+Room: Fake Room with Teleporter to Castle Center
+Index: 37
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Map:
+    - "     "
+    - "     "
+    - "     "
+    - "     "
+    - "     "
+Nodes:
+    Top Passage:
+        Type: "................"
+        Row: 0
+        Column: 0
+        Edge: Top
+        Entry Section: Fake
+        Exit Section: Dummy
+Commands: {}

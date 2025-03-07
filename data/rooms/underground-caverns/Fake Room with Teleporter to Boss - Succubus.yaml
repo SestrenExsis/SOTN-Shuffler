@@ -1,0 +1,15 @@
+
+Stage: Underground Caverns
+Room: Fake Room with Teleporter to Boss - Succubus
+Index: 39
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Map:
+    - "     "
+    - "     "
+    - "     "
+    - "     "
+    - "     "
+Nodes: {}
+Commands: {}

@@ -1,0 +1,29 @@
+
+Stage: Castle Entrance Revisited
+Room: Loading Room to Marble Gallery
+Index: 18
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Map:
+    - " 0000"
+    - " ccc0"
+    - " ccc5"
+    - " ccc0"
+    - " 0000"
+Nodes:
+    Left Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Main
+        Exit Section: Main
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Main
+        Exit Section: Main
+Commands: {}

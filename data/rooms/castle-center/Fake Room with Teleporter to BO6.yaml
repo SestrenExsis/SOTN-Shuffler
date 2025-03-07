@@ -1,0 +1,15 @@
+
+Stage: Castle Center
+Room: Fake Room with Teleporter to BO6
+Index: 4
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Map:
+    - "     "
+    - "     "
+    - "     "
+    - "     "
+    - "     "
+Nodes: {}
+Commands: {}
