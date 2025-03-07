@@ -12,11 +12,11 @@ Map:
     - "     "
     - "     "
 Nodes:
-    Right Passage:
+    Left Passage:
         Type: "................"
         Row: 0
         Column: 0
-        Edge: Right
+        Edge: Left
         Entry Section: Fake
         Exit Section: Dummy
 Commands: {}

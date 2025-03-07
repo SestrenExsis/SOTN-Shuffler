@@ -1,7 +1,7 @@
 
 Stage: Warp Rooms
-Room: Warp Room C
-Index: 2
+Room: Warp Room to Castle Entrance
+Index: 3
 Columns: 1
 Rows: 1
 Empty Cells: {}
@@ -23,10 +23,27 @@ Commands:
     Move - Main:
         Outcomes:
             Section: Main
-            Status - Warp Room C Unlocked: true
+            Status - Warp Room D Unlocked: true
         Requirements:
             Default:
                 Section: Special
+    Teleport - Warp Room E:
+        Outcomes:
+            Location: Warp Rooms, Warp Room E
+            Section: Special
+        Requirements:
+            Default:
+                Section: Main
+                Status - Warp Room E Unlocked: true
+    Teleport - Warp Room C:
+        Outcomes:
+            Location: Warp Rooms, Warp Room C
+            Section: Special
+        Requirements:
+            Default:
+                Section: Main
+                Status - Warp Room E Unlocked: false
+                Status - Warp Room C Unlocked: true
     Teleport - Warp Room A:
         Outcomes:
             Location: Warp Rooms, Warp Room A
@@ -34,6 +51,8 @@ Commands:
         Requirements:
             Default:
                 Section: Main
+                Status - Warp Room E Unlocked: false
+                Status - Warp Room C Unlocked: false
                 Status - Warp Room A Unlocked: true
     Teleport - Warp Room B:
         Outcomes:
@@ -42,6 +61,8 @@ Commands:
         Requirements:
             Default:
                 Section: Main
+                Status - Warp Room E Unlocked: false
+                Status - Warp Room C Unlocked: false
                 Status - Warp Room A Unlocked: false
                 Status - Warp Room B Unlocked: true
     Teleport - Warp Room D:
@@ -51,5 +72,7 @@ Commands:
         Requirements:
             Default:
                 Section: Main
+                Status - Warp Room E Unlocked: false
+                Status - Warp Room C Unlocked: false
                 Status - Warp Room A Unlocked: false
                 Status - Warp Room B Unlocked: false

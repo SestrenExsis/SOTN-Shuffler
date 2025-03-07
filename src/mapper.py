@@ -1082,14 +1082,21 @@ class Mapper:
                 no_nodes_unused and
                 (all_rooms_connected or self.stage_name in ('Warp Rooms', 'Castle Center', 'Underground Caverns'))
             )
-            # if len(self.stage.rooms) > 29:
+            # if (
+            #     self.stage_name == 'Clock Tower' and
+            #     len(self.stage.rooms) > 16
+            # ):
             #     print(all_rooms_used, no_nodes_unused, all_rooms_connected, len(self.stage.rooms), len(self.rooms))
-            #     for line in self.get_spoiler('Alchemy Laboratory'):
+            #     for line in self.get_spoiler('Clock Tower'):
             #         print(line)
             #     print(len(self.steps))
             #     for step in self.steps:
             #         print(step)
             #     print(set(self.rooms) - set(self.stage.rooms.keys()))
+            #     print('open nodes:', len(self.stage.get_open_nodes()))
+            #     for node in self.stage.get_open_nodes():
+            #         print(node)
+            #     print(self.stage.get_open_nodes())
         return result
 
     def get_spoiler(self, stage_name: str) -> list[str]:
@@ -1162,7 +1169,7 @@ if __name__ == '__main__':
         pathlib.Path(
             os.path.join('build', 'shuffler', stage_name)
         ).mkdir(parents=True, exist_ok=True)
-    GENERATION_VERSION = '0.0.4'
+    GENERATION_VERSION = 'Alpha Build 72'
     mapper_core = MapperData().get_core()
     with (
         open(os.path.join('build', 'shuffler', 'mapper-core.json'), 'w') as mapper_core_json,

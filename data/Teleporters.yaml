@@ -14,7 +14,7 @@ Sources:
         Index: 20
         Stage: Abandoned Mine
         Room: Fake Room with Teleporter to Warp Rooms
-        Target: Warp Room to Abandoned Mine (Left Red Door) (Left Red Door)
+        Target: Warp Rooms, Warp Room to Abandoned Mine (Left Red Door)
     Alchemy Laboratory, Fake Room with Teleporter to Marble Gallery:
         Index: 22
         Stage: Alchemy Laboratory
@@ -89,7 +89,7 @@ Sources:
         Index: 46
         Stage: Castle Keep
         Room: Fake Room with Teleporter to Warp Rooms
-        Target: Warp Room to Castle Keep (Left Red Door)
+        Target: Warp Rooms, Warp Room to Castle Keep (Left Red Door)
     Catacombs, Fake Room with Teleporter to Abandoned Mine:
         Index: 16
         Stage: Catacombs
@@ -159,7 +159,7 @@ Sources:
         Index: 27
         Stage: Olrox's Quarters
         Room: Fake Room with Teleporter to Warp Rooms
-        Target: Warp Room to Olrox's Quarters (Left Red Door)
+        Target: Warp Rooms, Warp Room to Olrox's Quarters (Left Red Door)
     Olrox's Quarters, Fake Room with Teleporter to Colosseum:
         Index: 26
         Stage: Olrox's Quarters
@@ -179,7 +179,7 @@ Sources:
         Index: 42
         Stage: Outer Wall
         Room: Fake Room with Teleporter to Warp Rooms
-        Target: Warp Room to Outer Wall (Right Red Door)
+        Target: Warp Rooms, Warp Room to Outer Wall (Right Red Door)
     Outer Wall, Fake Room with Teleporter to Long Library:
         Index: 41
         Stage: Outer Wall

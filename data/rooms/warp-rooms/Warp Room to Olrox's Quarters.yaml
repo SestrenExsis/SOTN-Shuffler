@@ -1,7 +1,7 @@
 
 Stage: Warp Rooms
-Room: Warp Room A
-Index: 0
+Room: Warp Room to Olrox's Quarters
+Index: 1
 Columns: 1
 Rows: 1
 Empty Cells: {}
@@ -23,18 +23,10 @@ Commands:
     Move - Main:
         Outcomes:
             Section: Main
-            Status - Warp Room A Unlocked: true
+            Status - Warp Room B Unlocked: true
         Requirements:
             Default:
                 Section: Special
-    Teleport - Warp Room B:
-        Outcomes:
-            Location: Warp Rooms, Warp Room B
-            Section: Special
-        Requirements:
-            Default:
-                Section: Main
-                Status - Warp Room B Unlocked: true
     Teleport - Warp Room D:
         Outcomes:
             Location: Warp Rooms, Warp Room D
@@ -42,4 +34,3 @@ Commands:
         Requirements:
             Default:
                 Section: Main
-                Status - Warp Room B Unlocked: false
