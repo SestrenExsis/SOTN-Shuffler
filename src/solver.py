@@ -118,7 +118,7 @@ class Game:
             'Status - Pressure Plate in Marble Gallery Activated': 25.0,
             # 'Status - Secret Wall in Merman Room Opened': 2.0,
             # 'Status - Shortcut in Cube of Zoe Room Activated': 3.0,
-            # 'Status - Shortcut to Warp Activated': 3.0,
+            # 'Status - Shortcut to Warp Rooms Activated': 3.0,
             # 'Status - Trapdoor After Drawbridge Opened': 2.0,
             # 'Status - Upper-Left Gear in Clock Tower Set': 1.25,
             # 'Status - Upper-Right Gear in Clock Tower Set': 1.25,

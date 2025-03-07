@@ -496,10 +496,10 @@ stage_connections = {
     'Alchemy Laboratory, Loading Room A (Right Passage)': 'Alchemy Laboratory, Exit to Marble Gallery (Right Red Door)',
     'Alchemy Laboratory, Loading Room B (Left Passage)': 'Alchemy Laboratory, Exit to Royal Chapel (Left Red Door)',
     'Alchemy Laboratory, Loading Room C (Right Passage)': 'Alchemy Laboratory, Entryway (Right Red Door)',
-    'Castle Entrance, Loading Room A (Right Passage)': 'Castle Entrance, Cube of Zoe Room (Upper-Right Red Door)',
-    'Castle Entrance, Loading Room B (Left Passage)': 'Castle Entrance, Shortcut to Warp (Left Red Door)',
-    'Castle Entrance, Loading Room C (Left Passage)': 'Castle Entrance, Cube of Zoe Room (Upper-Left Red Door)',
-    'Castle Entrance, Loading Room D (Right Passage)': 'Castle Entrance, Shortcut to Underground Caverns (Right Red Door)',
+    'Castle Entrance, Loading Room to Marble Gallery (Right Passage)': 'Castle Entrance, Cube of Zoe Room (Upper-Right Red Door)',
+    'Castle Entrance, Loading Room to Warp Rooms (Left Passage)': 'Castle Entrance, Shortcut to Warp Rooms (Left Red Door)',
+    'Castle Entrance, Loading Room to Alchemy Laboratory (Left Passage)': 'Castle Entrance, Cube of Zoe Room (Upper-Left Red Door)',
+    'Castle Entrance, Loading Room to Underground Caverns (Right Passage)': 'Castle Entrance, Shortcut to Underground Caverns (Right Red Door)',
     'Castle Keep, Loading Room A (Right Passage)': 'Castle Keep, Lion Torch Platform (Lower-Right Red Door)',
     'Castle Keep, Loading Room B (Right Passage)': 'Castle Keep, Dual Platforms (Lower-Right Red Door)',
     'Castle Keep, Loading Room C (Left Passage)': 'Castle Keep, Keep Area (Lower-Left Red Door)',
@@ -795,17 +795,17 @@ if __name__ == '__main__':
                     'Rooms': {},
                 }
             elif stage_name == 'Warp Rooms':
-                # Warp Room A is attached to Castle Keep
-                source_room = changes['Stages']['Castle Keep']['Rooms']['Castle Keep, Fake Room With Teleporter ID 046']
-                overrides['Warp Rooms, Fake Room With Teleporter ID 028'] = {
+                # Warp Room to Castle Keep
+                source_room = changes['Stages']['Castle Keep']['Rooms']['Castle Keep, Fake Room with Teleporter to Warp Rooms']
+                overrides['Warp Rooms, Fake Room with Teleporter to Castle Keep'] = {
                     'Top': source_room['Top'],
                     'Left': source_room['Left'] - 2,
                 }
-                overrides['Warp Rooms, Loading Room E'] = {
+                overrides['Warp Rooms, Loading Room to Castle Keep'] = {
                     'Top': source_room['Top'],
                     'Left': source_room['Left'] - 1,
                 }
-                overrides['Warp Rooms, Warp Room A'] = {
+                overrides['Warp Rooms, Warp Room to Castle Keep'] = {
                     'Top': source_room['Top'],
                     'Left': source_room['Left'],
                 }
@@ -817,17 +817,17 @@ if __name__ == '__main__':
                     'Room Y': 63 - source_room['Top'],
                     'Room X': 63 - source_room['Left'],
                 }
-                # Warp Room B is attached to Olrox's Quarters
-                source_room = changes['Stages']['Olrox\'s Quarters']['Rooms']['Olrox\'s Quarters, Fake Room With Teleporter ID 027']
-                overrides['Warp Rooms, Fake Room With Teleporter ID 030'] = {
+                # Warp Room to Olrox's Quarters
+                source_room = changes['Stages']['Olrox\'s Quarters']['Rooms']['Olrox\'s Quarters, Fake Room with Teleporter to Warp Rooms']
+                overrides['Warp Rooms, Fake Room with Teleporter to Olrox\'s Quarters'] = {
                     'Top': source_room['Top'],
                     'Left': source_room['Left'] - 2,
                 }
-                overrides['Warp Rooms, Loading Room C'] = {
+                overrides['Warp Rooms, Loading Room to Olrox\'s Quarters'] = {
                     'Top': source_room['Top'],
                     'Left': source_room['Left'] - 1,
                 }
-                overrides['Warp Rooms, Warp Room B'] = {
+                overrides['Warp Rooms, Warp Room to Olrox\'s Quarters'] = {
                     'Top': source_room['Top'],
                     'Left': source_room['Left'],
                 }
@@ -839,17 +839,17 @@ if __name__ == '__main__':
                     'Room Y': 63 - source_room['Top'],
                     'Room X': 63 - source_room['Left'],
                 }
-                # Warp Room C is attached to Outer Wall
-                source_room = changes['Stages']['Outer Wall']['Rooms']['Outer Wall, Fake Room With Teleporter ID 042']
-                overrides['Warp Rooms, Warp Room C'] = {
+                # Warp Room to Outer Wall
+                source_room = changes['Stages']['Outer Wall']['Rooms']['Outer Wall, Fake Room with Teleporter to Warp Rooms']
+                overrides['Warp Rooms, Warp Room to Outer Wall'] = {
                     'Top': source_room['Top'],
                     'Left': source_room['Left'],
                 }
-                overrides['Warp Rooms, Loading Room D'] = {
+                overrides['Warp Rooms, Loading Room to Outer Wall'] = {
                     'Top': source_room['Top'],
                     'Left': source_room['Left'] + 1,
                 }
-                overrides['Warp Rooms, Fake Room With Teleporter ID 029'] = {
+                overrides['Warp Rooms, Fake Room with Teleporter to Outer Wall'] = {
                     'Top': source_room['Top'],
                     'Left': source_room['Left'] + 2,
                 }
@@ -861,17 +861,17 @@ if __name__ == '__main__':
                     'Room Y': 63 - source_room['Top'],
                     'Room X': 63 - source_room['Left'],
                 }
-                # Warp Room D is attached to Castle Entrance
-                source_room = changes['Stages']['Castle Entrance']['Rooms']['Castle Entrance, Fake Room With Teleporter D']
-                overrides['Warp Rooms, Warp Room D'] = {
+                # Warp Room to Castle Entrance
+                source_room = changes['Stages']['Castle Entrance']['Rooms']['Castle Entrance, Fake Room with Teleporter to Warp Rooms']
+                overrides['Warp Rooms, Warp Room to Castle Entrance'] = {
                     'Top': source_room['Top'],
                     'Left': source_room['Left'],
                 }
-                overrides['Warp Rooms, Loading Room B'] = {
+                overrides['Warp Rooms, Loading Room to Castle Entrance'] = {
                     'Top': source_room['Top'],
                     'Left': source_room['Left'] + 1,
                 }
-                overrides['Warp Rooms, Fake Room With Teleporter ID 031'] = {
+                overrides['Warp Rooms, Fake Room with Teleporter to Castle Entrance'] = {
                     'Top': source_room['Top'],
                     'Left': source_room['Left'] + 2,
                 }
@@ -883,17 +883,17 @@ if __name__ == '__main__':
                     'Room Y': 63 - source_room['Top'],
                     'Room X': 63 - source_room['Left'],
                 }
-                # Warp Room E is attached to Abandoned Mine
+                # Warp Room to Abandoned Mine
                 source_room = changes['Stages']['Abandoned Mine']['Rooms']['Abandoned Mine, Fake Room with Teleporter to Warp Rooms']
-                overrides['Warp Rooms, Fake Room With Teleporter ID 032'] = {
+                overrides['Warp Rooms, Fake Room with Teleporter to Abandoned Mine'] = {
                     'Top': source_room['Top'],
                     'Left': source_room['Left'] - 2,
                 }
-                overrides['Warp Rooms, Loading Room A'] = {
+                overrides['Warp Rooms, Loading Room to Abandoned Mine'] = {
                     'Top': source_room['Top'],
                     'Left': source_room['Left'] - 1,
                 }
-                overrides['Warp Rooms, Warp Room E'] = {
+                overrides['Warp Rooms, Warp Room to Abandoned Mine'] = {
                     'Top': source_room['Top'],
                     'Left': source_room['Left'],
                 }

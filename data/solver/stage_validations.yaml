@@ -113,20 +113,20 @@ Abandoned Mine:
                     All:
                         Abandoned Mine, Loading Room to Underground Caverns (Main): true
 Alchemy Laboratory:
-    Loading Room A -> Slogra and Gaibon Room (Ground):
+    Marble Gallery -> Slogra and Gaibon Room (Ground):
         Solver Effort: 0.7
         State:
-            Location: Alchemy Laboratory, Loading Room A
+            Location: Alchemy Laboratory, Loading Room to Marble Gallery
             Section: Main
         Goals:
             Reach Slogra and Gaibon Room:
                 Locations Visited:
                     All:
                         Alchemy Laboratory, Slogra and Gaibon Room (Ground): true
-    Loading Room B with Jewel of Open -> Slogra and Gaibon Room (Ground):
+    Royal Chapel with Jewel of Open -> Slogra and Gaibon Room (Ground):
         Solver Effort: 0.7
         State:
-            Location: Alchemy Laboratory, Loading Room B
+            Location: Alchemy Laboratory, Loading Room to Royal Chapel
             Section: Main
             Relic - Jewel of Open: true
             Progression - Unlock Blue Doors: true
@@ -135,17 +135,17 @@ Alchemy Laboratory:
                 Locations Visited:
                     All:
                         Alchemy Laboratory, Slogra and Gaibon Room (Ground): true
-    Loading Room C -> Slogra and Gaibon Room (Ground):
+    Castle Entrance -> Slogra and Gaibon Room (Ground):
         Solver Effort: 0.7
         State:
-            Location: Alchemy Laboratory, Loading Room C
+            Location: Alchemy Laboratory, Loading Room to Castle Entrance
             Section: Main
         Goals:
             Reach Slogra and Gaibon Room:
                 Locations Visited:
                     All:
                         Alchemy Laboratory, Slogra and Gaibon Room (Ground): true
-    Slogra and Gaibon Room (Ground) -> Loading Room A:
+    Slogra and Gaibon Room (Ground) -> Marble Gallery:
         Solver Effort: 0.7
         State:
             Location: Alchemy Laboratory, Slogra and Gaibon Room
@@ -154,8 +154,8 @@ Alchemy Laboratory:
             Reach Marble Gallery:
                 Locations Visited:
                     All:
-                        Alchemy Laboratory, Loading Room A (Main): true
-    Slogra and Gaibon Room (Ground) with Jewel of Open -> Loading Room B:
+                        Alchemy Laboratory, Loading Room to Marble Gallery (Main): true
+    Slogra and Gaibon Room (Ground) with Jewel of Open -> Royal Chapel:
         Solver Effort: 0.7
         State:
             Location: Alchemy Laboratory, Slogra and Gaibon Room
@@ -166,8 +166,8 @@ Alchemy Laboratory:
             Reach Royal Chapel:
                 Locations Visited:
                     All:
-                        Alchemy Laboratory, Loading Room B (Main): true
-    Slogra and Gaibon Room (Ground) with Jewel of Open -> Loading Room C:
+                        Alchemy Laboratory, Loading Room to Royal Chapel (Main): true
+    Slogra and Gaibon Room (Ground) with Jewel of Open -> Castle Entrance Revisited:
         Solver Effort: 0.7
         State:
             Location: Alchemy Laboratory, Slogra and Gaibon Room
@@ -178,93 +178,74 @@ Alchemy Laboratory:
             Reach Royal Chapel:
                 Locations Visited:
                     All:
-                        Alchemy Laboratory, Loading Room C (Main): true
+                        Alchemy Laboratory, Loading Room to Castle Entrance (Main): true
 Castle Center: {}
 Castle Entrance:
-    Start -> Meeting Room With Death (Special):
+    Start -> Cube of Zoe:
         Solver Effort: 1.0
         State:
             Location: Castle Entrance, After Drawbridge
             Section: Ground
         Goals:
-            Reach Meeting Room With Death:
-                Locations Visited:
-                    All:
-                        Castle Entrance, Meeting Room With Death (Special): true
-    Loading Room A with Flight -> Meeting Room With Death (Special):
-        Solver Effort: 0.7
+            Get Cube of Zoe:
+                Relic - Cube of Zoe: true
+    Cube of Zoe Room -> Alchemy Laboratory, Marble Gallery, or Underground Caverns:
+        Solver Effort: 1.0
         State:
-            Location: Castle Entrance, Loading Room A
+            Location: Castle Entrance, Cube of Zoe Room
             Section: Main
-            Relic - Soul of Bat: true
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Meeting Room With Death (Special):
-                Locations Visited:
-                    All:
-                        Castle Entrance, Meeting Room With Death (Special): true
-    Loading Room B -> Meeting Room With Death (Special):
-        Note: Movement from Warp Room back into the main loop should be easy
-        Solver Effort: 0.7
-        State:
-            Location: Castle Entrance, Loading Room B
-            Section: Main
-        Goals:
-            Reach Meeting Room With Death (Special):
-                Locations Visited:
-                    All:
-                        Castle Entrance, Meeting Room With Death (Special): true
-    Loading Room C with Flight -> Meeting Room With Death (Special):
-        Solver Effort: 0.7
-        State:
-            Location: Castle Entrance, Loading Room C
-            Section: Main
-            Relic - Soul of Bat: true
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Meeting Room With Death (Special):
-                Locations Visited:
-                    All:
-                        Castle Entrance, Meeting Room With Death (Special): true
-    Loading Room D with Flight -> Meeting Room With Death (Special):
-        Solver Effort: 0.7
-        State:
-            Location: Castle Entrance, Loading Room D
-            Section: Main
-            Relic - Soul of Bat: true
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Meeting Room With Death (Special):
-                Locations Visited:
-                    All:
-                        Castle Entrance, Meeting Room With Death (Special): true
-    Meeting Room With Death (Special) -> Loading Room C:
-        Solver Effort: 0.5
-        State:
-            Location: Castle Entrance, Meeting Room With Death
-            Section: Special
+            Relic - Cube of Zoe: true
+            Progression - Item Materialization: true
         Goals:
             Reach Alchemy Laboratory:
-                Locations Visited:
-                    All:
-                        Castle Entrance, Loading Room C (Main): true
-    Meeting Room With Death (Special) -> Cube of Zoe:
+                Location: Castle Entrance, Loading Room to Alchemy Laboratory
+                Section: Main
+            Reach Marble Gallery:
+                Location: Castle Entrance, Loading Room to Marble Gallery
+                Section: Main
+            Reach Underground Caverns:
+                Location: Castle Entrance, Loading Room to Underground Caverns
+                Section: Main
+    Marble Gallery -> Alchemy Laboratory:
+        Note: Returning should get you back into the main loop easily
         Solver Effort: 0.7
         State:
-            Location: Castle Entrance, Meeting Room With Death
-            Section: Special
+            Location: Castle Entrance, Loading Room to Marble Gallery
+            Section: Main
         Goals:
-            Get Power of Wolf:
-                Relic - Cube of Zoe: true
-    Meeting Room With Death (Special) with Flight -> Power of Wolf:
+            Reach Alchemy Laboratory:
+                Location: Castle Entrance, Loading Room to Alchemy Laboratory
+                Section: Main
+    Warp Rooms -> Alchemy Laboratory:
+        Note: Returning should get you back into the main loop easily
         Solver Effort: 0.7
         State:
-            Location: Castle Entrance, Meeting Room With Death
-            Section: Special
+            Location: Castle Entrance, Loading Room to Warp Rooms
+            Section: Main
+        Goals:
+            Reach Alchemy Laboratory:
+                Location: Castle Entrance, Loading Room to Alchemy Laboratory
+                Section: Main
+    Underground Caverns with Flight -> Alchemy Laboratory:
+        Solver Effort: 0.7
+        State:
+            Location: Castle Entrance, Loading Room to Underground Caverns
+            Section: Main
             Relic - Soul of Bat: true
             Progression - Bat Transformation: true
         Goals:
-            Get Power of Wolf:
+            Reach Alchemy Laboratory:
+                Location: Castle Entrance, Loading Room to Alchemy Laboratory
+                Section: Main
+    Alchemy Laboratory with Flight -> Power of Wolf:
+        Solver Effort: 0.7
+        State:
+            Location: Castle Entrance, Loading Room to Alchemy Laboratory
+            Section: Main
+            Relic - Soul of Bat: true
+            Progression - Bat Transformation: true
+        Goals:
+            Get Power of Wolf Relic:
                 Relic - Power of Wolf: true
     Guard Against Softlocks in Castle Entrance:
         Solver:
@@ -284,7 +265,7 @@ Castle Entrance:
                 Location: Castle Entrance, Cube of Zoe Room
                 Section: Main
 Castle Keep:
-    Loading Room A -> Keep Area (Ground):
+    Clock Tower -> Keep Area (Ground):
         Solver:
             Approach: Steps
             Attempts: 1
@@ -294,27 +275,27 @@ Castle Keep:
             Wins:
                 Minimum: 1
         State:
-            Location: Castle Keep, Loading Room A
+            Location: Castle Keep, Loading Room to Clock Tower
             Section: Main
         Goals:
             Reach Keep Area (Ground):
                 Locations Visited:
                     All:
                         Castle Keep, Keep Area (Ground): true
-    Loading Room B -> Keep Area (Ground):
+    Warp Rooms -> Keep Area (Ground):
         Solver Effort: 0.5
         State:
-            Location: Castle Keep, Loading Room B
+            Location: Castle Keep, Loading Room to Warp Rooms
             Section: Main
         Goals:
             Reach Keep Area (Ground):
                 Locations Visited:
                     All:
                         Castle Keep, Keep Area (Ground): true
-    Loading Room C -> Keep Area (Ground):
+    Royal Chapel -> Keep Area (Ground):
         Solver Effort: 0.5
         State:
-            Location: Castle Keep, Loading Room C
+            Location: Castle Keep, Loading Room to Royal Chapel
             Section: Main
         Goals:
             Reach Keep Area (Ground):
@@ -340,7 +321,7 @@ Castle Keep:
         Goals:
             Get Leap Stone:
                 Relic - Leap Stone: true
-    Keep Area (Ground) -> Loading Room C:
+    Keep Area (Ground) -> Royal Chapel:
         Solver Effort: 0.7
         State:
             Location: Castle Keep, Keep Area
@@ -349,12 +330,12 @@ Castle Keep:
             Reach Royal Chapel:
                 Locations Visited:
                     All:
-                        Castle Keep, Loading Room C (Main): true
+                        Castle Keep, Loading Room to Royal Chapel (Main): true
 Catacombs:
-    Loading Room A with Soul of Bat and Echo of Bat -> Spike Breaker:
+    Abandoned Mine with Soul of Bat and Echo of Bat -> Spike Breaker:
         Solver Effort: 0.7
         State:
-            Location: Catacombs, Loading Room A
+            Location: Catacombs, Loading Room to Abandoned Mine
             Section: Main
             Relic - Soul of Bat: true
             Progression - Bat Transformation: true
@@ -365,10 +346,10 @@ Catacombs:
                 Item - Spike Breaker:
                     Minimum: 1
 Clock Tower:
-    Loading Room A with Double Jump -> Exit to Courtyard (Main):
+    Outer Wall with Double Jump -> Exit to Courtyard (Main):
         Solver Effort: 0.5
         State:
-            Location: Clock Tower, Loading Room A
+            Location: Clock Tower, Loading Room to Outer Wall
             Section: Main
             Relic - Leap Stone: true
             Progression - Double Jump: true
@@ -377,17 +358,17 @@ Clock Tower:
                 Locations Visited:
                     All:
                         Clock Tower, Exit to Courtyard (Main): true
-    Loading Room B -> Exit to Courtyard (Main):
+    Castle Keep -> Exit to Courtyard (Main):
         Solver Effort: 0.5
         State:
-            Location: Clock Tower, Loading Room B
+            Location: Clock Tower, Loading Room to Castle Keep
             Section: Main
         Goals:
             Reach Castle Keep:
                 Locations Visited:
                     All:
                         Clock Tower, Exit to Courtyard (Main): true
-    Exit to Courtyard (Main) -> Loading Room A:
+    Exit to Courtyard (Main) -> Outer Wall:
         Solver Effort: 0.5
         State:
             Location: Clock Tower, Exit to Courtyard
@@ -396,8 +377,8 @@ Clock Tower:
             Reach Castle Keep:
                 Locations Visited:
                     All:
-                        Clock Tower, Loading Room A (Main): true
-    Exit to Courtyard (Main) with Double Jump -> Loading Room B:
+                        Clock Tower, Loading Room to Outer Wall (Main): true
+    Exit to Courtyard (Main) with Double Jump -> Castle Keep:
         Solver Effort: 0.5
         State:
             Location: Clock Tower, Exit to Courtyard
@@ -408,22 +389,22 @@ Clock Tower:
             Reach Castle Keep:
                 Locations Visited:
                     All:
-                        Clock Tower, Loading Room B (Main): true
+                        Clock Tower, Loading Room to Castle Keep (Main): true
 Colosseum:
-    Loading Room B -> Loading Room A:
+    Olrox's Quarters -> Royal Chapel:
         Solver Effort: 0.5
         State:
-            Location: Colosseum, Loading Room B
+            Location: Colosseum, Loading Room to Olrox's Quarters
             Section: Main
         Goals:
             Reach Castle Keep:
                 Locations Visited:
                     All:
-                        Colosseum, Loading Room A (Main): true
-    Loading Room A with Shortcut Unlocked -> Loading Room B:
+                        Colosseum, Loading Room to Royal Chapel (Main): true
+    Royal Chapel with Shortcut Unlocked -> Loading Room B:
         Solver Effort: 0.5
         State:
-            Location: Colosseum, Loading Room A
+            Location: Colosseum, Loading Room to Royal Chapel
             Section: Main
             Status - Shortcut Between Holy Chapel and Colosseum Unlocked: true
         Goals:
@@ -431,10 +412,10 @@ Colosseum:
                 Locations Visited:
                     All:
                         Colosseum, Loading Room B (Main): true
-    Loading Room B -> Library Card -> Form of Mist:
+    Olrox's Quarters -> Library Card -> Form of Mist:
         Solver Effort: 0.5
         State:
-            Location: Colosseum, Loading Room B
+            Location: Colosseum, Loading Room to Olrox's Quarters
             Section: Main
         Goals:
             Get Library Card and Form of Mist:
@@ -442,11 +423,11 @@ Colosseum:
                 Relic - Form of Mist: true
                 Progression - Mist Transformation: true
 Long Library:
-    Loading Room A -> Outside Shop (Main):
+    Outer Wall -> Outside Shop (Main):
         Note: Using Library Card should never trap you in Long Library
         Solver Effort: 0.7
         State:
-            Location: Long Library, Loading Room A
+            Location: Long Library, Loading Room to Outer Wall
             Section: Main
         Goals:
             Reach Outside Shop:
@@ -464,11 +445,11 @@ Long Library:
         Goals:
             Get Jewel of Open:
                 Relic - Jewel of Open: true
-    Outside Shop (Main) with Double Jump and Form of Mist -> Soul of Bat:
+    Outer Wall with Double Jump and Form of Mist -> Soul of Bat:
         Note: Getting Soul of Bat requires Form of Mist and expects Double Jump
         Solver Effort: 0.7
         State:
-            Location: Long Library, Loading Room A
+            Location: Long Library, Loading Room to Outer Wall
             Section: Main
             Relic - Leap Stone: true
             Progression - Double Jump: true
@@ -478,11 +459,11 @@ Long Library:
         Goals:
             Get Soul of Bat:
                 Relic - Soul of Bat: true
-    Outside Shop (Main) with Flight -> Faerie Card:
+    Outer Wall with Flight -> Faerie Card:
         Note: Getting Faerie Card expects flight
         Solver Effort: 0.7
         State:
-            Location: Long Library, Loading Room A
+            Location: Long Library, Loading Room to Outer Wall
             Section: Main
             Relic - Soul of Bat: true
             Progression - Bat Transformation: true
@@ -505,7 +486,7 @@ Long Library:
                 Locations Visited:
                     All:
                         Long Library, Three Layer Room (Upper Layer): true
-    Outside Shop (Main) -> Loading Room A:
+    Outside Shop (Main) -> Outer Wall:
         Note: Using Library Card should never trap you in Long Library
         Solver Effort: 0.5
         State:
@@ -513,60 +494,59 @@ Long Library:
             Section: Main
         Goals:
             Reach Outer Wall:
-                Locations Visited:
-                    All:
-                        Long Library, Loading Room A (Main): true
+                Location: Long Library, Loading Room to Outer Wall
+                Section: Main
 Marble Gallery:
     # TODO(sestren): Expect the player to find Clock Room and Blue Door Room in Layer 0
-    Layer 0 - Loading Room C -> Blue Door Room (Left Side):
+    Layer 0 - Alchemy Laboratory -> Blue Door Room (Left Side):
         Solver Effort: 0.7
         State:
-            Location: Marble Gallery, Loading Room C
+            Location: Marble Gallery, Loading Room to Alchemy Laboratory
             Section: Main
         Goals:
             Reach Blue Door Room:
                 Location: Marble Gallery, Blue Door Room
                 Section: Left Side
-    Layer 0 - Loading Room A -> Blue Door Room (Left Side):
+    Layer 0 - Alchemy Laboratory -> Blue Door Room (Left Side):
         Solver Effort: 0.7
         State:
-            Location: Marble Gallery, Loading Room A
+            Location: Marble Gallery, Loading Room to Alchemy Laboratory
             Section: Main
         Goals:
             Reach Blue Door Room:
                 Location: Marble Gallery, Blue Door Room
                 Section: Left Side
-    Layer 0 - Blue Door Room (Left Side) -> Loading Room A:
+    Layer 0 - Blue Door Room (Left Side) -> Alchemy Laboratory:
         Solver Effort: 1.0
         State:
             Location: Marble Gallery, Blue Door Room
             Section: Left Side
         Goals:
             Reach Outer Wall:
-                Location: Marble Gallery, Loading Room A
+                Location: Marble Gallery, Loading Room to Alchemy Laboratory
                 Section: Main
-    Layer 0 - Loading Room A -> Blue Door Room (Left Side):
+    Layer 0 - Alchemy Laboratory -> Blue Door Room (Left Side):
         Solver Effort: 0.7
         State:
-            Location: Marble Gallery, Loading Room A
+            Location: Marble Gallery, Loading Room to Alchemy Laboratory
             Section: Main
         Goals:
             Reach Blue Door Room:
                 Location: Marble Gallery, Blue Door Room
                 Section: Left Side
-    Layer 0 - Blue Door Room (Left Side) -> Loading Room E:
+    Layer 0 - Blue Door Room (Left Side) -> Castle Entrance:
         Solver Effort: 0.7
         State:
             Location: Marble Gallery, Blue Door Room
             Section: Left Side
         Goals:
             Reach Castle Entrance:
-                Location: Marble Gallery, Loading Room E
+                Location: Marble Gallery, Loading Room to Castle Entrance
                 Section: Main
-    Layer 0 - Loading Room E -> Blue Door Room (Left Side):
+    Layer 0 - Castle Entrance -> Blue Door Room (Left Side):
         Solver Effort: 0.7
         State:
-            Location: Marble Gallery, Loading Room E
+            Location: Marble Gallery, Loading Room to Castle Entrance
             Section: Main
         Goals:
             Reach Blue Door Room:
@@ -587,7 +567,7 @@ Marble Gallery:
                 Location: Marble Gallery, Clock Room
                 Section: Main
                 Status - Pressure Plate in Marble Gallery Activated: true
-    Layer 2 - Clock Room (Main) -> Loading Room B:
+    Layer 2 - Clock Room (Main) -> Underground Caverns:
         Note: Layer 2 expects Layer 1 + Marble Gallery Pressure Plate
         Solver Effort: 0.5
         State:
@@ -600,13 +580,13 @@ Marble Gallery:
             Status - Pressure Plate in Marble Gallery Activated: true
         Goals:
             Reach Underground Caverns:
-                Location: Marble Gallery, Loading Room B
+                Location: Marble Gallery, Loading Room to Underground Caverns
                 Section: Main
-    Layer 2 - Loading Room B -> Clock Room (Main):
+    Layer 2 - Underground Caverns -> Clock Room (Main):
         Note: Layer 2 expects Layer 1 + Marble Gallery Pressure Plate
         Solver Effort: 0.5
         State:
-            Location: Marble Gallery, Loading Room B
+            Location: Marble Gallery, Loading Room to Underground Caverns
             Section: Main
             Relic - Jewel of Open: true
             Progression - Unlock Blue Doors: true
@@ -617,7 +597,7 @@ Marble Gallery:
             Reach Clock Room:
                 Location: Marble Gallery, Clock Room
                 Section: Main
-    Layer 2 - Clock Room (Main) -> Loading Room D:
+    Layer 2 - Clock Room (Main) -> Olrox's Quarters:
         Note: Layer 2 expects Layer 1 + Marble Gallery Pressure Plate
         Solver Effort: 0.5
         State:
@@ -630,7 +610,7 @@ Marble Gallery:
             Status - Pressure Plate in Marble Gallery Activated: true
         Goals:
             Reach Olrox's Quarters:
-                Location: Marble Gallery, Loading Room D
+                Location: Marble Gallery, Loading Room to Olrox's Quarters
                 Section: Main
     Layer 3 - Clock Room (Main) -> Elevator Room:
         Note: Layer 3 expects Layer 2 + Gold Ring and Silver Ring
@@ -671,20 +651,20 @@ Marble Gallery:
                 Location: Marble Gallery, Clock Room
                 Section: Main
 Olrox's Quarters:
-    Loading Room A -> Loading Room B:
+    Marble Gallery -> Colosseum:
         Solver Effort: 0.7
         State:
-            Location: Olrox's Quarters, Loading Room A
+            Location: Olrox's Quarters, Loading Room to Marble Gallery
             Section: Main
         Goals:
             Reach Colosseum:
                 Locations Visited:
                     All:
-                        Olrox's Quarters, Loading Room B (Main): true
-    Loading Room A with Soul of Bat -> Echo of Bat:
+                        Olrox's Quarters, Loading Room to Colosseum (Main): true
+    Marble Gallery with Soul of Bat -> Echo of Bat:
         Solver Effort: 0.5
         State:
-            Location: Olrox's Quarters, Loading Room A
+            Location: Olrox's Quarters, Loading Room to Marble Gallery
             Section: Main
             Relic - Soul of Bat: true
             Progression - Bat Transformation: true
@@ -692,10 +672,10 @@ Olrox's Quarters:
             Get Echo of Bat:
                 Relic - Echo of Bat: true
                 Progression - Echolocation: true
-    Loading Room A with Soul of Bat -> Olrox's Room (Ground):
+    Marble Gallery with Soul of Bat -> Olrox's Room (Ground):
         Solver Effort: 0.5
         State:
-            Location: Olrox's Quarters, Loading Room A
+            Location: Olrox's Quarters, Loading Room to Marble Gallery
             Section: Main
             Relic - Soul of Bat: true
             Progression - Bat Transformation: true
@@ -705,43 +685,43 @@ Olrox's Quarters:
                     All:
                         Olrox's Quarters, Olrox's Room (Ground): true
 Outer Wall:
-    Loading Room D -> Soul of Wolf -> Loading Room A:
+    Marble Gallery -> Soul of Wolf -> Warp Rooms:
         Solver Effort: 0.7
         State:
-            Location: Outer Wall, Loading Room D
+            Location: Outer Wall, Loading Room to Marble Gallery
             Section: Main
         Goals:
             Reach Warp Rooms:
                 Relic - Soul of Wolf: true
                 Locations Visited:
                     All:
-                        Outer Wall, Loading Room A (Main): true
-    Loading Room D -> Soul of Wolf -> Loading Room B:
+                        Outer Wall, Loading Room to Warp Rooms (Main): true
+    Marble Gallery -> Soul of Wolf -> Clock Tower:
         Solver Effort: 0.7
         State:
-            Location: Outer Wall, Loading Room D
+            Location: Outer Wall, Loading Room to Marble Gallery
             Section: Main
         Goals:
             Get Soul of Wolf and Reach Clock Tower:
                 Relic - Soul of Wolf: true
                 Locations Visited:
                     All:
-                        Outer Wall, Loading Room B (Main): true
-    Loading Room D -> Soul of Wolf -> Loading Room C:
+                        Outer Wall, Loading Room to Clock Tower (Main): true
+    Marble Gallery -> Soul of Wolf -> Long Library:
         Solver Effort: 0.7
         State:
-            Location: Outer Wall, Loading Room D
+            Location: Outer Wall, Loading Room to Marble Gallery
             Section: Main
         Goals:
             Get Soul of Wolf and Reach Long Library:
                 Relic - Soul of Wolf: true
                 Locations Visited:
                     All:
-                        Outer Wall, Loading Room C (Main): true
-    Loading Room B with Soul of Bat -> Doppelganger Room:
+                        Outer Wall, Loading Room to Long Library (Main): true
+    Clock Tower with Soul of Bat -> Doppelganger Room:
         Solver Effort: 0.5
         State:
-            Location: Outer Wall, Loading Room B
+            Location: Outer Wall, Loading Room to Clock Tower
             Section: Main
             Relic - Soul of Bat: true
             Progression - Bat Transformation: true
@@ -751,10 +731,10 @@ Outer Wall:
                     All:
                         Outer Wall, Doppelganger Room (Main): true
 Royal Chapel:
-    Loading Room B with Jewel of Open -> Loading Room C:
+    Alchemy Laboratory with Jewel of Open -> Castle Keep:
         Solver Effort: 0.5
         State:
-            Location: Royal Chapel, Loading Room B
+            Location: Royal Chapel, Loading Room to Alchemy Laboratory
             Section: Main
             Relic - Jewel of Open: true
             Progression - Unlock Blue Doors: true
@@ -762,11 +742,11 @@ Royal Chapel:
             Reach Castle Keep:
                 Locations Visited:
                     All:
-                        Royal Chapel, Loading Room C (Main): true
-    Loading Room B with Jewel of Open, Form of Mist and Spike Breaker -> Silver Ring:
+                        Royal Chapel, Loading Room to Castle Keep (Main): true
+    Alchemy Laboratory with Jewel of Open, Form of Mist and Spike Breaker -> Silver Ring:
         Solver Effort: 0.5
         State:
-            Location: Royal Chapel, Loading Room B
+            Location: Royal Chapel, Loading Room to Alchemy Laboratory
             Section: Main
             Relic - Jewel of Open: true
             Progression - Unlock Blue Doors: true
@@ -777,10 +757,10 @@ Royal Chapel:
             Reach Castle Keep:
                 Item - Silver Ring:
                     Minimum: 1
-    Loading Room B with Soul of Bat -> Hippogryph Room:
+    Alchemy Laboratory with Soul of Bat -> Hippogryph Room:
         Solver Effort: 0.5
         State:
-            Location: Royal Chapel, Loading Room B
+            Location: Royal Chapel, Loading Room to Alchemy Laboratory
             Section: Main
             Relic - Soul of Bat: true
             Progression - Bat Transformation: true
@@ -790,20 +770,20 @@ Royal Chapel:
                     All:
                         Royal Chapel, Hippogryph Room (Main): true
 Underground Caverns:
-    Loading Room B with Soul of Bat -> Gold Ring:
+    Marble Gallery with Soul of Bat -> Gold Ring:
         Solver Effort: 1.0
         State:
-            Location: Underground Caverns, Loading Room B
+            Location: Underground Caverns, Loading Room to Marble Gallery
             Section: Main
             Relic - Soul of Bat: true
             Progression - Bat Transformation: true
         Goals:
             Get Gold Ring:
                 Item - Gold Ring: 1
-    Loading Room B with Soul of Bat -> Loading Room C:
+    Marble Gallery with Soul of Bat -> Abandoned Mine:
         Solver Effort: 0.7
         State:
-            Location: Underground Caverns, Loading Room B
+            Location: Underground Caverns, Loading Room to Marble Gallery
             Section: Main
             Relic - Soul of Bat: true
             Progression - Bat Transformation: true
@@ -811,22 +791,22 @@ Underground Caverns:
             Reach Abandoned Mine:
                 Locations Visited:
                     All:
-                        Underground Caverns, Loading Room A (Main): true
-    Loading Room B -> Merman Statue -> Loading Room A:
+                        Underground Caverns, Loading Room to Abandoned Mine (Main): true
+    Marble Gallery -> Merman Statue -> Abandoned Mine:
         Solver Effort: 1.0
         State:
-            Location: Underground Caverns, Loading Room B
+            Location: Underground Caverns, Loading Room to Marble Gallery
             Section: Main
         Goals:
             Get Merman Statue and Reach Marble Gallery:
                 Relic - Merman Statue: true
                 Locations Visited:
                     All:
-                        Underground Caverns, Loading Room A (Main): true
-    Loading Room B with Merman Statue -> Holy Symbol:
+                        Underground Caverns, Loading Room to Abandoned Mine (Main): true
+    Marble Gallery with Merman Statue -> Holy Symbol:
         Solver Effort: 1.0
         State:
-            Location: Underground Caverns, Loading Room B
+            Location: Underground Caverns, Loading Room to Marble Gallery
             Section: Main
             Relic - Merman Statue: true
             Progression - Summon Ferryman: true
