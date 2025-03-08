@@ -401,7 +401,7 @@ Colosseum:
                 Locations Visited:
                     All:
                         Colosseum, Loading Room to Royal Chapel (Main): true
-    Royal Chapel with Shortcut Unlocked -> Loading Room B:
+    Royal Chapel with Shortcut Unlocked -> Olrox's Quarters:
         Solver Effort: 0.5
         State:
             Location: Colosseum, Loading Room to Royal Chapel
@@ -411,7 +411,7 @@ Colosseum:
             Reach Castle Keep:
                 Locations Visited:
                     All:
-                        Colosseum, Loading Room B (Main): true
+                        Colosseum, Loading Room to Olrox's Quarters (Main): true
     Olrox's Quarters -> Library Card -> Form of Mist:
         Solver Effort: 0.5
         State:
@@ -497,7 +497,7 @@ Long Library:
                 Location: Long Library, Loading Room to Outer Wall
                 Section: Main
 Marble Gallery:
-    # TODO(sestren): Expect the player to find Clock Room and Blue Door Room in Layer 0
+    # NOTE(sestren): Expect the player to find Clock Room and Blue Door Room in Layer 0
     Layer 0 - Alchemy Laboratory -> Blue Door Room (Left Side):
         Solver Effort: 0.7
         State:
@@ -507,28 +507,28 @@ Marble Gallery:
             Reach Blue Door Room:
                 Location: Marble Gallery, Blue Door Room
                 Section: Left Side
-    Layer 0 - Alchemy Laboratory -> Blue Door Room (Left Side):
+    Layer 0 - Outer Wall -> Blue Door Room (Left Side):
         Solver Effort: 0.7
         State:
-            Location: Marble Gallery, Loading Room to Alchemy Laboratory
+            Location: Marble Gallery, Loading Room to Outer Wall
             Section: Main
         Goals:
             Reach Blue Door Room:
                 Location: Marble Gallery, Blue Door Room
                 Section: Left Side
-    Layer 0 - Blue Door Room (Left Side) -> Alchemy Laboratory:
+    Layer 0 - Blue Door Room (Left Side) -> Outer Wall:
         Solver Effort: 1.0
         State:
             Location: Marble Gallery, Blue Door Room
             Section: Left Side
         Goals:
             Reach Outer Wall:
-                Location: Marble Gallery, Loading Room to Alchemy Laboratory
+                Location: Marble Gallery, Loading Room to Outer Wall
                 Section: Main
-    Layer 0 - Alchemy Laboratory -> Blue Door Room (Left Side):
+    Layer 0 - Castle Entrance -> Blue Door Room (Left Side):
         Solver Effort: 0.7
         State:
-            Location: Marble Gallery, Loading Room to Alchemy Laboratory
+            Location: Marble Gallery, Loading Room to Castle Entrance
             Section: Main
         Goals:
             Reach Blue Door Room:
@@ -543,15 +543,6 @@ Marble Gallery:
             Reach Castle Entrance:
                 Location: Marble Gallery, Loading Room to Castle Entrance
                 Section: Main
-    Layer 0 - Castle Entrance -> Blue Door Room (Left Side):
-        Solver Effort: 0.7
-        State:
-            Location: Marble Gallery, Loading Room to Castle Entrance
-            Section: Main
-        Goals:
-            Reach Blue Door Room:
-                Location: Marble Gallery, Blue Door Room
-                Section: Left Side
     Layer 1 - Blue Door Room (Left Side) -> Activate Pressure Plate -> Clock Room (Main):
         Note: Layer 1 expects Jewel of Open and Leap Stone
         Solver Effort: 1.0
