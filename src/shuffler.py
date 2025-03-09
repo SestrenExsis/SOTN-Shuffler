@@ -621,6 +621,13 @@ if __name__ == '__main__':
             teleporters = {}
             shuffle_teleporters(mapper_core['Teleporters'])
             for (source_name, source) in mapper_core['Teleporters']['Sources'].items():
+                if source_name in (
+                    'Castle Center, Fake Room with Teleporter to Marble Gallery',
+                    'Marble Gallery, Fake Room with Teleporter to Castle Center',
+                    'Special, Succubus Defeated',
+                    'Underground Caverns, Fake Room with Teleporter to Boss - Succubus',
+                ):
+                    continue
                 target_name = source['Target']
                 target = mapper_core['Teleporters']['Targets'][target_name]
                 teleporters[source['Index']] = {
