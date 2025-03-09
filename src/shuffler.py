@@ -482,62 +482,85 @@ familiar_events = {
     '43': ('Clock Tower', 'Clock Tower, Pendulum Room', False),
 }
 
-# Rules to follow regarding stage connections
-# - A stage may not connect to itself
-# - A stage may not connect to the same stage (including Warp Rooms) more than once
-# - A Left Passage must connect to a Right Passage, and vice versa
-# - At least one "loop" of stage connections must exist:
-#   - The loop must consist of at least 5 stages that aren't Warp Rooms
-# - At first, Warp Room connections will be kept vanilla
-stage_connections = {
-    'Abandoned Mine, Loading Room to Catacombs (Left Passage)': 'Abandoned Mine, Bend (Lower-Left Red Door)',
-    'Abandoned Mine, Loading Room to Warp Rooms (Right Passage)': 'Abandoned Mine, Four-Way Intersection (Right Red Door)',
-    'Abandoned Mine, Loading Room to Underground Caverns (Right Passage)': 'Abandoned Mine, Wolf\'s Head Column (Upper-Right Red Door)',
-    'Alchemy Laboratory, Loading Room A (Right Passage)': 'Alchemy Laboratory, Exit to Marble Gallery (Right Red Door)',
-    'Alchemy Laboratory, Loading Room B (Left Passage)': 'Alchemy Laboratory, Exit to Royal Chapel (Left Red Door)',
-    'Alchemy Laboratory, Loading Room C (Right Passage)': 'Alchemy Laboratory, Entryway (Right Red Door)',
-    'Castle Entrance, Loading Room to Marble Gallery (Right Passage)': 'Castle Entrance, Cube of Zoe Room (Upper-Right Red Door)',
-    'Castle Entrance, Loading Room to Warp Rooms (Left Passage)': 'Castle Entrance, Shortcut to Warp Rooms (Left Red Door)',
-    'Castle Entrance, Loading Room to Alchemy Laboratory (Left Passage)': 'Castle Entrance, Cube of Zoe Room (Upper-Left Red Door)',
-    'Castle Entrance, Loading Room to Underground Caverns (Right Passage)': 'Castle Entrance, Shortcut to Underground Caverns (Right Red Door)',
-    'Castle Keep, Loading Room A (Right Passage)': 'Castle Keep, Lion Torch Platform (Lower-Right Red Door)',
-    'Castle Keep, Loading Room B (Right Passage)': 'Castle Keep, Dual Platforms (Lower-Right Red Door)',
-    'Castle Keep, Loading Room C (Left Passage)': 'Castle Keep, Keep Area (Lower-Left Red Door)',
-    'Catacombs, Loading Room A (Right Passage)': 'Catacombs, Exit to Abandoned Mine (Upper-Right Red Door)',
-    'Clock Tower, Loading Room A (Right Passage)': 'Clock Tower, Stairwell to Outer Wall (Right Red Door)',
-    'Clock Tower, Loading Room B (Left Passage)': 'Clock Tower, Karasuman\'s Room (Left Red Door)',
-    'Colosseum, Loading Room A (Left Passage)': 'Colosseum, Passageway Between Arena and Royal Chapel (Left Red Door)',
-    'Colosseum, Loading Room B (Right Passage)': 'Colosseum, Top of Elevator Shaft (Right Red Door)',
-    'Long Library, Loading Room A (Right Passage)': 'Long Library, Exit to Outer Wall (Right Red Door)',
-    'Marble Gallery, Loading Room A (Right Passage)': 'Marble Gallery, Long Hallway (Right Red Door)',
-    'Marble Gallery, Loading Room B (Left Passage)': 'Marble Gallery, Stairwell to Underground Caverns (Lower-Left Red Door)',
-    'Marble Gallery, Loading Room C (Left Passage)': 'Marble Gallery, Entrance (Left Red Door)',
-    'Marble Gallery, Loading Room D (Left Passage)': 'Marble Gallery, Pathway After Left Statue (Left Red Door)',
-    'Marble Gallery, Loading Room E (Left Passage)': 'Marble Gallery, S-Shaped Hallways (Lower-Left Red Door)',
-    'Olrox\'s Quarters, Loading Room A (Right Passage)': 'Olrox\'s Quarters, Skelerang Room (Lower-Right Red Door)',
-    'Olrox\'s Quarters, Loading Room B (Left Passage)': 'Olrox\'s Quarters, Grand Staircase (Lower-Left Red Door)',
-    'Olrox\'s Quarters, Loading Room C (Right Passage)': 'Olrox\'s Quarters, Tall Shaft (Lower-Right Red Door)',
-    'Olrox\'s Quarters, Loading Room D (Left Passage)': 'Olrox\'s Quarters, Catwalk Crypt (Left Red Door)',
-    'Outer Wall, Loading Room A (Left Passage)': 'Outer Wall, Elevator Shaft Room (Upper-Left Red Door)',
-    'Outer Wall, Loading Room B (Left Passage)': 'Outer Wall, Exit to Clock Tower (Left Red Door)',
-    'Outer Wall, Loading Room C (Left Passage)': 'Outer Wall, Elevator Shaft Room (Middle-Left Red Door)',
-    'Outer Wall, Loading Room D (Left Passage)': 'Outer Wall, Exit to Marble Gallery (Left Red Door)',
-    'Royal Chapel, Loading Room A (Right Passage)': 'Royal Chapel, Right Tower (Middle-Right Red Door)',
-    'Royal Chapel, Loading Room B (Right Passage)': 'Royal Chapel, Statue Ledge (Right Red Door)',
-    'Royal Chapel, Loading Room C (Right Passage)': 'Royal Chapel, Nave (Lower-Right Red Door)',
-    'Royal Chapel, Loading Room D (Right Passage)': 'Royal Chapel, Pushing Statue Shortcut (Right Red Door)',
-    'Underground Caverns, Loading Room A (Left Passage)': 'Underground Caverns, Exit to Castle Entrance (Left Red Door)',
-    'Underground Caverns, Loading Room B (Right Passage)': 'Underground Caverns, Long Drop (Upper-Right Red Door)',
-    'Underground Caverns, Loading Room C (Left Passage)': 'Underground Caverns, Exit to Abandoned Mine (Left Red Door)',
-    'Warp Rooms, Loading Room A (Left Passage)': 'Warp Rooms, Warp Room E (Left Red Door)',
-    'Warp Rooms, Loading Room B (Right Passage)': 'Warp Rooms, Warp Room D (Right Red Door)',
-    'Warp Rooms, Loading Room C (Left Passage)': 'Warp Rooms, Warp Room B (Right Red Door)',
-    'Warp Rooms, Loading Room D (Right Passage)': 'Warp Rooms, Warp Room C (Left Red Door)',
-    'Warp Rooms, Loading Room E (Left Passage)': 'Warp Rooms, Warp Room A (Right Red Door)',
-}
-
-def shuffle_stage_connections() -> dict:
-    pass
+def shuffle_teleporters(teleporters) -> dict:
+    exclusions = (
+        'Castle Center, Fake Room with Teleporter to Marble Gallery',
+        'Castle Entrance Revisited, Fake Room with Teleporter to Alchemy Laboratory',
+        'Castle Entrance Revisited, Fake Room with Teleporter to Marble Gallery',
+        'Castle Entrance Revisited, Fake Room with Teleporter to Warp Rooms',
+        'Castle Entrance Revisited, Fake Room with Teleporter to Underground Caverns',
+        'Marble Gallery, Fake Room with Teleporter to Castle Center',
+        'Special, Succubus Defeated',
+        'Underground Caverns, Fake Room with Teleporter to Boss - Succubus',
+    )
+    connections = set()
+    while True:
+        stages = {}
+        sources = {}
+        targets = {}
+        connections = set()
+        for (source_key, source) in teleporters['Sources'].items():
+            if source_key in exclusions:
+                continue
+            source_stage = source['Stage']
+            target_key = source['Target']
+            target_stage = teleporters['Targets'][target_key]['Stage']
+            source_direction = 'Right'
+            target_direction = 'Left'
+            if 'Right Red Door' in target_key:
+                source_direction = 'Left'
+                target_direction = 'Right'
+            sources[source_key] = {
+                'Stage': source_stage,
+                'Direction': source_direction,
+            }
+            targets[target_key] = {
+                'Stage': target_stage,
+                'Direction': target_direction,
+            }
+        work = set()
+        work.add(random.choice(list(sorted(sources.keys()))))
+        while len(work) > 0:
+            source_a_key = random.choice(list(sorted(work)))
+            work.remove(source_a_key)
+            source_a = sources[source_a_key]
+            if source_a['Stage'] not in stages:
+                stages[source_a['Stage']] = set()
+            source_b_candidates = set()
+            for (candidate_source_b_key, candidate_source_b) in sources.items():
+                if candidate_source_b['Stage'] == source_a['Stage']:
+                    # A stage may not connect to itself
+                    continue
+                if candidate_source_b['Direction'] == source_a['Direction']:
+                    # A Left Passage must connect to a Right Passage, and vice versa
+                    continue
+                if candidate_source_b['Stage'] in stages[source_a['Stage']]:
+                    # A stage may not connect to the same stage more than once
+                    continue
+                source_b_candidates.add(candidate_source_b_key)
+            if len(source_b_candidates) < 1:
+                break
+            source_b_key = random.choice(list(sorted(source_b_candidates)))
+            source_b = sources[source_b_key]
+            if source_b['Stage'] not in stages:
+                stages[source_b['Stage']] = set()
+            stages[source_a['Stage']].add(source_b['Stage'])
+            stages[source_b['Stage']].add(source_a['Stage'])
+            sources.pop(source_a_key)
+            sources.pop(source_b_key)
+            if source_b_key in work:
+                work.remove(source_b_key)
+            connections.add((source_a_key, source_b_key))
+            connections.add((source_b_key, source_a_key))
+            for (next_source_key, next_source) in sources.items():
+                if next_source['Stage'] in stages:
+                    work.add(next_source_key)
+        if len(sources) < 1:
+            break
+    for (source_a_key, source_b_key) in connections:
+        print((source_a_key, source_b_key))
+        teleporters['Sources'][source_a_key]['Target'] = teleporters['Sources'][source_b_key]['Return']
+        teleporters['Sources'][source_b_key]['Target'] = teleporters['Sources'][source_a_key]['Return']
 
 if __name__ == '__main__':
     '''
@@ -556,11 +579,11 @@ if __name__ == '__main__':
     ):
         stage_validations = yaml.safe_load(stage_validations_file)
         validation_results = json.load(validation_results_json)
+    SHUFFLE_STAGE_CONNECTIONS = True
     MIN_MAP_ROW = 5
     MAX_MAP_ROW = 55
     MIN_MAP_COL = 0
     MAX_MAP_COL = 63
-    mapper_core = mapper.MapperData().get_core()
     # Keep randomizing until a solution is found
     initial_seed = random.randint(0, 2 ** 64)
     global_rng = random.Random(initial_seed)
@@ -591,6 +614,21 @@ if __name__ == '__main__':
             'Underground Caverns': {},
             'Warp Rooms': {},
         }
+        mapper_core = mapper.MapperData().get_core()
+        # Calculate teleporter changes
+        teleporters = None
+        if SHUFFLE_STAGE_CONNECTIONS:
+            teleporters = {}
+            shuffle_teleporters(mapper_core['Teleporters'])
+            for (source_name, source) in mapper_core['Teleporters']['Sources'].items():
+                target_name = source['Target']
+                target = mapper_core['Teleporters']['Targets'][target_name]
+                teleporters[source['Index']] = {
+                    'Player X': target['Player X'],
+                    'Player Y': target['Player Y'],
+                    'Room': target['Stage'] + ', ' + target['Room'],
+                    'Stage': target['Stage'],
+                }
         print('Set starting seeds for each stage')
         for stage_name in sorted(stages.keys()):
             stages[stage_name]['Initial Seed'] = global_rng.randint(0, 2 ** 64)
@@ -763,6 +801,7 @@ if __name__ == '__main__':
             'Familiar Events': {},
             'Reverse Warp Room Coordinates': {},
             'Stages': {},
+            'Teleporters': teleporters,
             'Warp Room Coordinates': {},
         }
         stages['Warp Rooms']['Stage Top'] = 0

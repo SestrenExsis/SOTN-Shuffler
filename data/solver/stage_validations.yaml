@@ -498,68 +498,35 @@ Long Library:
                 Section: Main
 Marble Gallery:
     # NOTE(sestren): Expect the player to find Clock Room and Blue Door Room in Layer 0
-    Layer 0 - Alchemy Laboratory -> Blue Door Room (Left Side):
-        Solver Effort: 0.7
+    Layer 0 - Alchemy Laboratory -> Clock Room:
+        Solver Effort: 1.0
         State:
             Location: Marble Gallery, Loading Room to Alchemy Laboratory
             Section: Main
         Goals:
-            Reach Blue Door Room:
-                Location: Marble Gallery, Blue Door Room
-                Section: Left Side
-    Layer 0 - Outer Wall -> Blue Door Room (Left Side):
-        Solver Effort: 0.7
-        State:
-            Location: Marble Gallery, Loading Room to Outer Wall
-            Section: Main
-        Goals:
-            Reach Blue Door Room:
-                Location: Marble Gallery, Blue Door Room
-                Section: Left Side
-    Layer 0 - Blue Door Room (Left Side) -> Outer Wall:
+            Reach Outer Wall:
+                Location: Marble Gallery, Clock Room
+                Section: Main
+    Layer 0 - Clock Room -> Outer Wall:
         Solver Effort: 1.0
         State:
-            Location: Marble Gallery, Blue Door Room
-            Section: Left Side
+            Location: Marble Gallery, Clock Room
+            Section: Main
         Goals:
             Reach Outer Wall:
                 Location: Marble Gallery, Loading Room to Outer Wall
                 Section: Main
-    Layer 0 - Castle Entrance -> Blue Door Room (Left Side):
-        Solver Effort: 0.7
-        State:
-            Location: Marble Gallery, Loading Room to Castle Entrance
-            Section: Main
-        Goals:
-            Reach Blue Door Room:
-                Location: Marble Gallery, Blue Door Room
-                Section: Left Side
-    Layer 0 - Blue Door Room (Left Side) -> Castle Entrance:
-        Solver Effort: 0.7
-        State:
-            Location: Marble Gallery, Blue Door Room
-            Section: Left Side
-        Goals:
-            Reach Castle Entrance:
-                Location: Marble Gallery, Loading Room to Castle Entrance
-                Section: Main
-    Layer 1 - Blue Door Room (Left Side) -> Activate Pressure Plate -> Clock Room (Main):
-        Note: Layer 1 expects Jewel of Open and Leap Stone
+    Layer 0 - Clock Room -> Castle Entrance:
         Solver Effort: 1.0
         State:
-            Location: Marble Gallery, Blue Door Room
-            Section: Left Side
-            Relic - Jewel of Open: true
-            Progression - Unlock Blue Doors: true
-            Relic - Leap Stone: true
-            Progression - Double Jump: true
+            Location: Marble Gallery, Clock Room
+            Section: Main
         Goals:
-            Activate Pressure Plate and Reach Clock Room:
-                Location: Marble Gallery, Clock Room
+            Reach Outer Wall:
+                Location: Marble Gallery, Loading Room to Castle Entrance
                 Section: Main
-                Status - Pressure Plate in Marble Gallery Activated: true
-    Layer 2 - Clock Room (Main) -> Underground Caverns:
-        Note: Layer 2 expects Layer 1 + Marble Gallery Pressure Plate
+    Layer 3 - Clock Room -> Underground Caverns:
+        Note: Layer 3 expects Layer 1 + Gold Ring, Silver Ring, and Marble Gallery Pressure Plate
         Solver Effort: 0.5
         State:
             Location: Marble Gallery, Clock Room
@@ -569,12 +536,15 @@ Marble Gallery:
             Relic - Leap Stone: true
             Progression - Double Jump: true
             Status - Pressure Plate in Marble Gallery Activated: true
+            Status - Floor in Clock Room Opened Up: true
+            Item - Gold Ring: 1
+            Item - Silver Ring: 1
         Goals:
             Reach Underground Caverns:
                 Location: Marble Gallery, Loading Room to Underground Caverns
                 Section: Main
-    Layer 2 - Underground Caverns -> Clock Room (Main):
-        Note: Layer 2 expects Layer 1 + Marble Gallery Pressure Plate
+    Layer 3 - Underground Caverns -> Clock Room:
+        Note: Layer 3 expects Layer 1 + Gold Ring, Silver Ring, and Marble Gallery Pressure Plate
         Solver Effort: 0.5
         State:
             Location: Marble Gallery, Loading Room to Underground Caverns
@@ -584,12 +554,15 @@ Marble Gallery:
             Relic - Leap Stone: true
             Progression - Double Jump: true
             Status - Pressure Plate in Marble Gallery Activated: true
+            Status - Floor in Clock Room Opened Up: true
+            Item - Gold Ring: 1
+            Item - Silver Ring: 1
         Goals:
             Reach Clock Room:
                 Location: Marble Gallery, Clock Room
                 Section: Main
-    Layer 2 - Clock Room (Main) -> Olrox's Quarters:
-        Note: Layer 2 expects Layer 1 + Marble Gallery Pressure Plate
+    Layer 3 - Clock Room -> Olrox's Quarters:
+        Note: Layer 3 expects Layer 1 + Gold Ring, Silver Ring, and Marble Gallery Pressure Plate
         Solver Effort: 0.5
         State:
             Location: Marble Gallery, Clock Room
@@ -599,29 +572,14 @@ Marble Gallery:
             Relic - Leap Stone: true
             Progression - Double Jump: true
             Status - Pressure Plate in Marble Gallery Activated: true
+            Status - Floor in Clock Room Opened Up: true
+            Item - Gold Ring: 1
+            Item - Silver Ring: 1
         Goals:
             Reach Olrox's Quarters:
                 Location: Marble Gallery, Loading Room to Olrox's Quarters
                 Section: Main
-    Layer 3 - Clock Room (Main) -> Elevator Room:
-        Note: Layer 3 expects Layer 2 + Gold Ring and Silver Ring
-        Solver Effort: 0.5
-        State:
-            Location: Marble Gallery, Clock Room
-            Section: Main
-            Relic - Jewel of Open: true
-            Progression - Unlock Blue Doors: true
-            Relic - Leap Stone: true
-            Progression - Double Jump: true
-            Status - Pressure Plate in Marble Gallery Activated: true
-            Item - Gold Ring: 1
-            Item - Silver Ring: 1
-        Goals:
-            Open Up Clock Room Floor and Reach Elevator Room:
-                Location: Marble Gallery, Elevator Room
-                Section: Main
-                Status - Floor in Clock Room Opened Up: true
-    Layer 3 - Elevator Room -> Clock Room (Main):
+    Layer 3 - Elevator Room -> Clock Room:
         Note: Layer 3 expects Layer 2 + Gold Ring and Silver Ring
         Solver Effort: 0.5
         State:
@@ -633,10 +591,8 @@ Marble Gallery:
             Progression - Double Jump: true
             Status - Pressure Plate in Marble Gallery Activated: true
             Status - Floor in Clock Room Opened Up: true
-            Item - Gold Ring:
-                Minimum: 1
-            Item - Silver Ring:
-                Minimum: 1
+            Item - Gold Ring: 1
+            Item - Silver Ring: 1
         Goals:
             Reach Elevator Room:
                 Location: Marble Gallery, Clock Room
