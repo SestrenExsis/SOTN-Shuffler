@@ -561,6 +561,12 @@ def shuffle_teleporters(teleporters) -> dict:
         print((source_a_key, source_b_key))
         teleporters['Sources'][source_a_key]['Target'] = teleporters['Sources'][source_b_key]['Return']
         teleporters['Sources'][source_b_key]['Target'] = teleporters['Sources'][source_a_key]['Return']
+        if source_a_key.startswith('Castle Entrance, '):
+            alt_source_key = 'Castle Entrance Revisited' + source_a_key[len('Castle Entrance'):]
+            teleporters['Sources'][alt_source_key]['Target'] = teleporters['Sources'][source_b_key]['Return']
+        if source_b_key.startswith('Castle Entrance, '):
+            alt_source_key = 'Castle Entrance Revisited' + source_b_key[len('Castle Entrance'):]
+            teleporters['Sources'][alt_source_key]['Target'] = teleporters['Sources'][source_a_key]['Return']
 
 if __name__ == '__main__':
     '''
