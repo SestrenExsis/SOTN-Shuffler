@@ -95,6 +95,8 @@ if __name__ == '__main__':
     prev_stage = None
     prev_file_name = None
     for stage_name in stage_validations:
+        if stage_name == 'Template':
+            continue
         should_validate_ind = False
         directory_listing = os.listdir(os.path.join('build', 'shuffler', stage_name))
         file_listing = list(

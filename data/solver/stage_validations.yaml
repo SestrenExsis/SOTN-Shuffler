@@ -1,201 +1,367 @@
 
-Abandoned Mine:
-    # - Moving around Abandoned Mine effectively expects Flight
-    # - When approaching Abandoned Mine for the first time from Underground 
-    #   Caverns, you are expected to be able to reach Cerberus Room, break the 
-    #   wall, and collect the Demon Card.
-    # - When returning to Abandoned Mine from any of the other entrances, it is 
-    #   assumed you have already pressed the Demon Switch and broken the wall.
-    Catacombs with Flight, Unblocked -> Cerberus Room:
-        Solver:
+Template:
+    Guard against softlocks:
+        Solver: &guard-against-softlocks
+            Approach: Random Exploration
+            Attempts: 20
+            Limit: 1999
+            Initial Seed: 1
+            Debug: False
+            Losses:
+                Maximum: 0
+            Wins:
+                Minimum: 2
+    Solve within 30 steps:
+        Solver: &solve-within-30-steps
             Approach: Steps
             Attempts: 1
             Limit: 30
+            Initial Seed: 1
             Debug: False
             Wins:
                 Minimum: 1
+    Solve within 99 steps:
+        Solver: &solve-within-99-steps
+            Approach: Steps
+            Attempts: 1
+            Limit: 99
+            Initial Seed: 1
+            Debug: False
+            Wins:
+                Minimum: 1
+        State: &full-progression-fully-unblocked
+            Progression - Item Materialization: true
+            Progression - Summon Demon Familiar: true
+            Progression - Echolocation: true
+            Progression - Bat Transformation: true
+            Progression - Mist Transformation: true
+            Progression - Longer Mist Duration: true
+            Progression - Double Jump: true
+            Progression - Unlock Blue Doors: true
+            Item - Gold Ring: 1
+            Item - Silver Ring: 1
+            Item - Spike Breaker: 1
+            Item - Holy Glasses: 1
+            Status - Cannon Activated: true
+            Status - Floor in Clock Room Opened Up: true
+            Status - Pressure Plate in Marble Gallery Activated: true
+            Status - Richter Saved: true
+            Status - Shortcut Between Holy Chapel and Colosseum Unlocked: true
+            Status - Snake Column Wall Broken: true
+            Status - Stopwatch Collected: true
+            Status - Switch in Abandoned Mine Pressed: true
+        Goals: {}
+Abandoned Mine:
+    (Entry) Catacombs -> Cerberus Room:
+        Solver: *guard-against-softlocks
         State:
             Location: Abandoned Mine, Loading Room to Catacombs
             Section: Main
-            Relic - Soul of Bat: true
-            Progression - Bat Transformation: true
-            Status - Switch in Abandoned Mine Pressed: true
-            Status - Snake Column Wall Broken: true
+            Progression - Double Jump: true
         Goals:
             Reach Cerberus Room:
-                Locations Visited:
-                    All:
-                        Abandoned Mine, Cerberus Room (Main): true
-    Underground Caverns with Flight -> Cerberus Room:
-        Solver:
-            Approach: Steps
-            Attempts: 1
-            Limit: 70
-            Debug: False
-            Wins:
-                Minimum: 1
+                Location: Abandoned Mine, Cerberus Room
+                Section: Main
+    (Entry) Underground Caverns -> Cerberus Room:
+        Solver: *guard-against-softlocks
         State:
             Location: Abandoned Mine, Loading Room to Underground Caverns
             Section: Main
-            Relic - Soul of Bat: true
-            Progression - Bat Transformation: true
+            Progression - Double Jump: true
         Goals:
             Reach Cerberus Room:
-                Locations Visited:
-                    All:
-                        Abandoned Mine, Cerberus Room (Main): true
-    Underground Caverns with Flight -> Break Wall:
-        Solver:
-            Approach: Steps
-            Attempts: 1
-            Limit: 70
-            Debug: False
-            Wins:
-                Minimum: 1
+                Location: Abandoned Mine, Cerberus Room
+                Section: Main
+    (Entry) Warp Rooms -> Cerberus Room:
+        Solver: *guard-against-softlocks
         State:
-            Location: Abandoned Mine, Loading Room to Underground Caverns
+            Location: Abandoned Mine, Loading Room to Warp Rooms
             Section: Main
-            Relic - Soul of Bat: true
-            Progression - Bat Transformation: true
+            Progression - Double Jump: true
         Goals:
-            Break Wall:
-                Status - Snake Column Wall Broken: true
-    Underground Caverns with Flight -> Demon Card:
-        Solver Effort: 0.7
-        State:
-            Location: Abandoned Mine, Loading Room to Underground Caverns
-            Section: Main
-            Relic - Soul of Bat: true
-            Progression - Bat Transformation: true
-        Goals:
-            Get Demon Card:
-                Relic - Demon Card: true
-    Cerberus Room with Flight, Unblocked -> Warp Rooms:
-        Solver Effort: 0.7
+            Reach Cerberus Room:
+                Location: Abandoned Mine, Cerberus Room
+                Section: Main
+    (Abandon) Cerberus Room -> Any Loading Room:
+        Solver: *guard-against-softlocks
         State:
             Location: Abandoned Mine, Cerberus Room
             Section: Main
-            Relic - Soul of Bat: true
-            Progression - Bat Transformation: true
-            Status - Switch in Abandoned Mine Pressed: true
-            Status - Snake Column Wall Broken: true
+            Progression - Double Jump: true
         Goals:
+            Reach Catacombs:
+                Location: Abandoned Mine, Loading Room to Catacombs
+                Section: Main
+            Reach Underground Caverns:
+                Location: Abandoned Mine, Loading Room to Underground Caverns
+                Section: Main
             Reach Warp Rooms:
-                Locations Visited:
-                    All:
-                        Abandoned Mine, Loading Room to Warp Rooms (Main): true
-    Cerberus Room with Flight, Unblocked -> Catacombs:
-        Solver Effort: 0.7
+                Location: Abandoned Mine, Loading Room to Warp Rooms
+                Section: Main
+    (Progress) Cerberus Room -> Crumbling Stairwells With Demon Switch:
+        Solver: *guard-against-softlocks
         State:
             Location: Abandoned Mine, Cerberus Room
             Section: Main
-            Relic - Soul of Bat: true
-            Progression - Bat Transformation: true
-            Status - Switch in Abandoned Mine Pressed: true
-            Status - Snake Column Wall Broken: true
+            Progression - Double Jump: true
         Goals:
-            Reach Warp Rooms:
-                Locations Visited:
-                    All:
-                        Abandoned Mine, Loading Room to Catacombs (Main): true
-    Cerberus Room with Flight, Unblocked -> Underground Caverns:
-        Solver Effort: 0.7
+            Press Switch:
+                Location: Abandoned Mine, Crumbling Stairwells With Demon Switch
+                Section: Upper-Left Ledge
+    (Progress) Cerberus Room -> Demon Card Room:
+        Solver: *guard-against-softlocks
         State:
             Location: Abandoned Mine, Cerberus Room
             Section: Main
-            Relic - Soul of Bat: true
-            Progression - Bat Transformation: true
-            Status - Switch in Abandoned Mine Pressed: true
+            Progression - Double Jump: true
+        Goals:
+            Reach Demon Card Room:
+                Location: Abandoned Mine, Demon Card Room
+                Section: Main
+    (Progress) Cerberus Room -> Snake Column:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Abandoned Mine, Cerberus Room
+            Section: Main
+            Progression - Double Jump: true
+        Goals:
+            Press Switch:
+                Location: Abandoned Mine, Snake Column
+                Section: Main
+    (Exit) Cerberus Room -> Catacombs:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Abandoned Mine, Cerberus Room
+            Section: Main
+            Progression - Double Jump: true
+            Progression - Summon Demon Familiar: true
             Status - Snake Column Wall Broken: true
+            Status - Switch in Abandoned Mine Pressed: true
+        Goals:
+            Reach Catacombs:
+                Location: Abandoned Mine, Loading Room to Catacombs
+                Section: Main
+    (Exit) Cerberus Room -> Underground Caverns:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Abandoned Mine, Cerberus Room
+            Section: Main
+            Progression - Double Jump: true
+            Progression - Summon Demon Familiar: true
+            Status - Snake Column Wall Broken: true
+            Status - Switch in Abandoned Mine Pressed: true
+        Goals:
+            Reach Underground Caverns:
+                Location: Abandoned Mine, Loading Room to Underground Caverns
+                Section: Main
+    (Exit) Cerberus Room -> Warp Rooms:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Abandoned Mine, Cerberus Room
+            Section: Main
+            Progression - Double Jump: true
+            Progression - Summon Demon Familiar: true
+            Status - Snake Column Wall Broken: true
+            Status - Switch in Abandoned Mine Pressed: true
         Goals:
             Reach Warp Rooms:
-                Locations Visited:
-                    All:
-                        Abandoned Mine, Loading Room to Underground Caverns (Main): true
+                Location: Abandoned Mine, Loading Room to Warp Rooms
+                Section: Main
 Alchemy Laboratory:
-    Marble Gallery -> Slogra and Gaibon Room (Ground):
-        Solver Effort: 0.7
-        State:
-            Location: Alchemy Laboratory, Loading Room to Marble Gallery
-            Section: Main
-        Goals:
-            Reach Slogra and Gaibon Room:
-                Locations Visited:
-                    All:
-                        Alchemy Laboratory, Slogra and Gaibon Room (Ground): true
-    Royal Chapel with Jewel of Open -> Slogra and Gaibon Room (Ground):
-        Solver Effort: 0.7
-        State:
-            Location: Alchemy Laboratory, Loading Room to Royal Chapel
-            Section: Main
-            Relic - Jewel of Open: true
-            Progression - Unlock Blue Doors: true
-        Goals:
-            Reach Slogra and Gaibon Room:
-                Locations Visited:
-                    All:
-                        Alchemy Laboratory, Slogra and Gaibon Room (Ground): true
-    Castle Entrance -> Slogra and Gaibon Room (Ground):
-        Solver Effort: 0.7
+    (Entry) Castle Entrance -> Slogra and Gaibon Room:
+        Solver: *guard-against-softlocks
         State:
             Location: Alchemy Laboratory, Loading Room to Castle Entrance
             Section: Main
         Goals:
             Reach Slogra and Gaibon Room:
-                Locations Visited:
-                    All:
-                        Alchemy Laboratory, Slogra and Gaibon Room (Ground): true
-    Slogra and Gaibon Room (Ground) -> Marble Gallery:
-        Solver Effort: 0.7
+                Location: Alchemy Laboratory, Slogra and Gaibon Room
+                Section: Main
+    (Entry) Marble Gallery -> Slogra and Gaibon Room:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Alchemy Laboratory, Loading Room to Marble Gallery
+            Section: Main
+        Goals:
+            Reach Slogra and Gaibon Room:
+                Location: Alchemy Laboratory, Slogra and Gaibon Room
+                Section: Main
+    (Entry) Royal Chapel -> Slogra and Gaibon Room:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Alchemy Laboratory, Loading Room to Royal Chapel
+            Section: Main
+        Goals:
+            Reach Slogra and Gaibon Room:
+                Location: Alchemy Laboratory, Slogra and Gaibon Room
+                Section: Main
+    (Abandon) Slogra and Gaibon Room -> Any Loading Room:
+        Solver: *guard-against-softlocks
         State:
             Location: Alchemy Laboratory, Slogra and Gaibon Room
-            Section: Ground
+            Section: Main
+        Goals:
+            Reach Castle Entrance:
+                Location: Alchemy Laboratory, Loading Room to Castle Entrance
+                Section: Main
+            Reach Marble Gallery:
+                Location: Alchemy Laboratory, Loading Room to Marble Gallery
+                Section: Main
+            Reach Royal Chapel:
+                Location: Alchemy Laboratory, Loading Room to Royal Chapel
+                Section: Main
+    (Progress) Slogra and Gaibon Room -> Bat Card Room:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Alchemy Laboratory, Slogra and Gaibon Room
+            Section: Main
+            Progression - Gravity Jump: true
+            Progression - Unlock Blue Doors: true
+            Status - Cannon Activated: true
+            Status - Breakable Floor in Tall Zig Zag Room Broken: true
+            Status - Breakable Wall in Tall Zig Zag Room Broken: true
+        Goals:
+            Reach Progression Area:
+                Location: Alchemy Laboratory, Tetromino Room
+                Section: Bat Card Room Duplicate
+    (Progress) Slogra and Gaibon Room -> Cannon Room:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Alchemy Laboratory, Slogra and Gaibon Room
+            Section: Main
+            Progression - Gravity Jump: true
+            Progression - Unlock Blue Doors: true
+            Status - Breakable Floor in Tall Zig Zag Room Broken: true
+            Status - Breakable Wall in Tall Zig Zag Room Broken: true
+        Goals:
+            Reach Progression Area:
+                Location: Alchemy Laboratory, Cannon Room
+                Section: Right Side
+    (Progress) Slogra and Gaibon Room -> Tall Zig Zag Room:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Alchemy Laboratory, Slogra and Gaibon Room
+            Section: Main
+            Progression - Gravity Jump: true
+            Progression - Unlock Blue Doors: true
+            Status - Cannon Activated: true
+        Goals:
+            Reach Progression Area:
+                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Section: Main
+    (Progress) Slogra and Gaibon Room -> Skill of Wolf Room:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Alchemy Laboratory, Slogra and Gaibon Room
+            Section: Main
+            Progression - Gravity Jump: true
+            Progression - Unlock Blue Doors: true
+            Status - Cannon Activated: true
+            Status - Breakable Floor in Tall Zig Zag Room Broken: true
+            Status - Breakable Wall in Tall Zig Zag Room Broken: true
+        Goals:
+            Reach Progression Area:
+                Location: Alchemy Laboratory, Skill of Wolf Room
+                Section: Main
+    (Exit) Slogra and Gaibon Room -> Castle Entrance:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Alchemy Laboratory, Slogra and Gaibon Room
+            Section: Main
+            Progression - Gravity Jump: true
+            Progression - Unlock Blue Doors: true
+            Status - Cannon Activated: true
+            Status - Breakable Floor in Tall Zig Zag Room Broken: true
+            Status - Breakable Wall in Tall Zig Zag Room Broken: true
+        Goals:
+            Reach Castle Entrance:
+                Location: Alchemy Laboratory, Loading Room to Castle Entrance
+                Section: Main
+    (Exit) Slogra and Gaibon Room -> Marble Gallery:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Alchemy Laboratory, Slogra and Gaibon Room
+            Section: Main
+            Progression - Gravity Jump: true
+            Progression - Unlock Blue Doors: true
+            Status - Cannon Activated: true
+            Status - Breakable Floor in Tall Zig Zag Room Broken: true
+            Status - Breakable Wall in Tall Zig Zag Room Broken: true
         Goals:
             Reach Marble Gallery:
-                Locations Visited:
-                    All:
-                        Alchemy Laboratory, Loading Room to Marble Gallery (Main): true
-    Slogra and Gaibon Room (Ground) with Jewel of Open -> Royal Chapel:
-        Solver Effort: 0.7
+                Location: Alchemy Laboratory, Loading Room to Marble Gallery
+                Section: Main
+    (Exit) Slogra and Gaibon Room -> Royal Chapel:
+        Solver: *guard-against-softlocks
         State:
             Location: Alchemy Laboratory, Slogra and Gaibon Room
-            Section: Ground
-            Relic - Jewel of Open: true
+            Section: Main
+            Progression - Gravity Jump: true
             Progression - Unlock Blue Doors: true
+            Status - Cannon Activated: true
+            Status - Breakable Floor in Tall Zig Zag Room Broken: true
+            Status - Breakable Wall in Tall Zig Zag Room Broken: true
         Goals:
             Reach Royal Chapel:
-                Locations Visited:
-                    All:
-                        Alchemy Laboratory, Loading Room to Royal Chapel (Main): true
-    Slogra and Gaibon Room (Ground) with Jewel of Open -> Castle Entrance Revisited:
-        Solver Effort: 0.7
-        State:
-            Location: Alchemy Laboratory, Slogra and Gaibon Room
-            Section: Ground
-            Relic - Jewel of Open: true
-            Progression - Unlock Blue Doors: true
-        Goals:
-            Reach Royal Chapel:
-                Locations Visited:
-                    All:
-                        Alchemy Laboratory, Loading Room to Castle Entrance (Main): true
+                Location: Alchemy Laboratory, Loading Room to Royal Chapel
+                Section: Main
 Castle Center: {}
 Castle Entrance:
-    Start -> Cube of Zoe:
-        Solver Effort: 1.0
+    (Entry) START -> Hub:
+        Solver: *solve-within-99-steps
         State:
             Location: Castle Entrance, After Drawbridge
             Section: Ground
         Goals:
-            Get Cube of Zoe:
-                Relic - Cube of Zoe: true
-    Cube of Zoe Room -> Alchemy Laboratory, Marble Gallery, or Underground Caverns:
-        Solver Effort: 1.0
+            Reach Hub:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Main
+    (Entry) Alchemy Laboratory -> Hub:
+        Solver: *solve-within-30-steps
+        State:
+            Location: Castle Entrance, Loading Room to Alchemy Laboratory
+            Section: Main
+            Check - Meet Death in Castle Entrance: true
+        Goals:
+            Reach Hub:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Main
+    (Entry) Marble Gallery -> Hub:
+        Solver: *solve-within-30-steps
+        State:
+            Location: Castle Entrance, Loading Room to Marble Gallery
+            Section: Main
+            Check - Meet Death in Castle Entrance: true
+        Goals:
+            Reach Hub:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Main
+    (Entry) Underground Caverns -> Hub:
+        Solver: *solve-within-99-steps
+        State:
+            Location: Castle Entrance, Loading Room to Underground Caverns
+            Section: Main
+            Check - Meet Death in Castle Entrance: true
+        Goals:
+            Reach Hub:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Main
+    (Entry) Warp Rooms -> Hub:
+        Solver: *solve-within-99-steps
+        State:
+            Location: Castle Entrance, Loading Room to Warp Rooms
+            Section: Main
+            Check - Meet Death in Castle Entrance: true
+        Goals:
+            Reach Hub:
+                Location: Castle Entrance, Cube of Zoe Room
+                Section: Main
+    (Abandon) Hub -> Any Loading Room:
+        Solver: *solve-within-30-steps
         State:
             Location: Castle Entrance, Cube of Zoe Room
             Section: Main
-            Relic - Cube of Zoe: true
-            Progression - Item Materialization: true
+            Check - Meet Death in Castle Entrance: true
         Goals:
             Reach Alchemy Laboratory:
                 Location: Castle Entrance, Loading Room to Alchemy Laboratory
@@ -206,294 +372,463 @@ Castle Entrance:
             Reach Underground Caverns:
                 Location: Castle Entrance, Loading Room to Underground Caverns
                 Section: Main
-    Marble Gallery -> Alchemy Laboratory:
-        Note: Returning should get you back into the main loop easily
-        Solver Effort: 0.7
-        State:
-            Location: Castle Entrance, Loading Room to Marble Gallery
-            Section: Main
-        Goals:
-            Reach Alchemy Laboratory:
-                Location: Castle Entrance, Loading Room to Alchemy Laboratory
+            Reach Warp Rooms:
+                Location: Castle Entrance, Loading Room to Warp Rooms
                 Section: Main
-    Warp Rooms -> Alchemy Laboratory:
-        Note: Returning should get you back into the main loop easily
-        Solver Effort: 0.7
+    (Progress) Hub -> After Drawbridge:
+        Solver: *solve-within-99-steps
         State:
-            Location: Castle Entrance, Loading Room to Warp Rooms
+            Location: Castle Entrance, Cube of Zoe Room
             Section: Main
-        Goals:
-            Reach Alchemy Laboratory:
-                Location: Castle Entrance, Loading Room to Alchemy Laboratory
-                Section: Main
-    Underground Caverns with Flight -> Alchemy Laboratory:
-        Solver Effort: 0.7
-        State:
-            Location: Castle Entrance, Loading Room to Underground Caverns
-            Section: Main
-            Relic - Soul of Bat: true
+            Check - Meet Death in Castle Entrance: true
             Progression - Bat Transformation: true
+            Progression - Wolf Transformation: true
         Goals:
-            Reach Alchemy Laboratory:
+            Reach Progression Area:
+                Location: Castle Entrance, After Drawbridge
+                Section: Ground
+    (Exit) Hub -> Alchemy Laboratory:
+        Solver: *solve-within-30-steps
+        State:
+            Location: Castle Entrance, Cube of Zoe Room
+            Section: Main
+            Check - Meet Death in Castle Entrance: true
+            Progression - Item Materialization: true
+            Progression - Bat Transformation: true
+            Progression - Wolf Transformation: true
+            Status - Shortcut in Cube of Zoe Room Activated: true
+            Status - Secret Wall in Merman Room Opened: true
+            Status - Shortcut to Underground Caverns Activated: true
+            Status - Shortcut to Warp Rooms Activated: true
+        Goals:
+            Reach Exit:
                 Location: Castle Entrance, Loading Room to Alchemy Laboratory
                 Section: Main
-    Alchemy Laboratory with Flight -> Power of Wolf:
-        Solver Effort: 0.7
+    (Exit) Hub -> Marble Gallery:
+        Solver: *solve-within-30-steps
         State:
-            Location: Castle Entrance, Loading Room to Alchemy Laboratory
+            Location: Castle Entrance, Cube of Zoe Room
             Section: Main
-            Relic - Soul of Bat: true
+            Check - Meet Death in Castle Entrance: true
+            Progression - Item Materialization: true
             Progression - Bat Transformation: true
+            Progression - Wolf Transformation: true
+            Status - Shortcut in Cube of Zoe Room Activated: true
+            Status - Secret Wall in Merman Room Opened: true
+            Status - Shortcut to Underground Caverns Activated: true
+            Status - Shortcut to Warp Rooms Activated: true
         Goals:
-            Get Power of Wolf Relic:
-                Relic - Power of Wolf: true
-    Guard Against Softlocks in Castle Entrance:
-        Solver:
-            Approach: Random Exploration
-            Attempts: 50
-            Limit: 1999
-            Debug: False
-            Losses:
-                Maximum: 0
-            Wins:
-                Minimum: 1
+            Reach Exit:
+                Location: Castle Entrance, Loading Room to Marble Gallery
+                Section: Main
+    (Exit) Hub -> Underground Caverns:
+        Solver: *solve-within-99-steps
         State:
-            Location: Castle Entrance, After Drawbridge
-            Section: Ground
+            Location: Castle Entrance, Cube of Zoe Room
+            Section: Main
+            Check - Meet Death in Castle Entrance: true
+            Progression - Item Materialization: true
+            Progression - Bat Transformation: true
+            Progression - Wolf Transformation: true
+            Status - Shortcut in Cube of Zoe Room Activated: true
+            Status - Secret Wall in Merman Room Opened: true
+            Status - Shortcut to Underground Caverns Activated: true
+            Status - Shortcut to Warp Rooms Activated: true
         Goals:
-            Reach Cube of Zoe Room:
-                Location: Castle Entrance, Cube of Zoe Room
+            Reach Exit:
+                Location: Castle Entrance, Loading Room to Underground Caverns
+                Section: Main
+    (Exit) Hub -> Warp Rooms:
+        Solver: *solve-within-99-steps
+        State:
+            Location: Castle Entrance, Cube of Zoe Room
+            Section: Main
+            Check - Meet Death in Castle Entrance: true
+            Progression - Item Materialization: true
+            Progression - Bat Transformation: true
+            Progression - Wolf Transformation: true
+            Status - Shortcut in Cube of Zoe Room Activated: true
+            Status - Secret Wall in Merman Room Opened: true
+            Status - Shortcut to Underground Caverns Activated: true
+            Status - Shortcut to Warp Rooms Activated: true
+        Goals:
+            Reach Exit:
+                Location: Castle Entrance, Loading Room to Warp Rooms
                 Section: Main
 Castle Keep:
-    Clock Tower -> Keep Area (Ground):
-        Solver:
-            Approach: Steps
-            Attempts: 1
-            Limit: 50
-            Initial Seed: 1
-            Debug: False
-            Wins:
-                Minimum: 1
+    (Entry) Clock Tower -> Hub:
+        Solver: *guard-against-softlocks
         State:
             Location: Castle Keep, Loading Room to Clock Tower
             Section: Main
         Goals:
-            Reach Keep Area (Ground):
-                Locations Visited:
-                    All:
-                        Castle Keep, Keep Area (Ground): true
-    Warp Rooms -> Keep Area (Ground):
-        Solver Effort: 0.5
-        State:
-            Location: Castle Keep, Loading Room to Warp Rooms
-            Section: Main
-        Goals:
-            Reach Keep Area (Ground):
-                Locations Visited:
-                    All:
-                        Castle Keep, Keep Area (Ground): true
-    Royal Chapel -> Keep Area (Ground):
-        Solver Effort: 0.5
+            Reach Hub:
+                Location: Castle Keep, Keep Area
+                Section: Ground
+    (Entry) Royal Chapel -> Hub:
+        Solver: *guard-against-softlocks
         State:
             Location: Castle Keep, Loading Room to Royal Chapel
             Section: Main
         Goals:
-            Reach Keep Area (Ground):
-                Locations Visited:
-                    All:
-                        Castle Keep, Keep Area (Ground): true
-    Keep Area (Ground) with Soul of Bat and Holy Glasses -> Save Richter:
-        Solver Effort: 0.5
+            Reach Hub:
+                Location: Castle Keep, Keep Area
+                Section: Ground
+    (Entry) Warp Rooms -> Hub:
+        Solver: *guard-against-softlocks
         State:
-            Location: Castle Keep, Keep Area
-            Section: Ground
-            Relic - Soul of Bat: true
-            Progression - Bat Transformation: true
-            Item - Holy Glasses: 1
+            Location: Castle Keep, Loading Room to Warp Rooms
+            Section: Main
         Goals:
-            Save Richter:
-                Status - Richter Saved: true
-    Keep Area (Ground) -> Leap Stone:
-        Solver Effort: 0.7
-        State:
-            Location: Castle Keep, Keep Area
-            Section: Ground
-        Goals:
-            Get Leap Stone:
-                Relic - Leap Stone: true
-    Keep Area (Ground) -> Royal Chapel:
-        Solver Effort: 0.7
+            Reach Hub:
+                Location: Castle Keep, Keep Area
+                Section: Ground
+    (Abandon) Hub -> Any Loading Room:
+        Solver: *guard-against-softlocks
         State:
             Location: Castle Keep, Keep Area
             Section: Ground
         Goals:
+            Reach Clock Tower:
+                Location: Castle Keep, Loading Room to Clock Tower
+                Section: Main
             Reach Royal Chapel:
-                Locations Visited:
-                    All:
-                        Castle Keep, Loading Room to Royal Chapel (Main): true
+                Location: Castle Keep, Loading Room to Royal Chapel
+                Section: Main
+            Reach Warp Rooms:
+                Location: Castle Keep, Loading Room to Warp Rooms
+                Section: Main
+    (Progress) Hub -> Keep Area (Ground):
+        Solver: *guard-against-softlocks
+        State:
+            Location: Castle Keep, Keep Area
+            Section: Ground
+        Goals:
+            Reach Progression Area:
+                Location: Castle Keep, Keep Area
+                Section: Ground
+    (Progress) Hub -> Keep Area (Middle-Left):
+        Solver: *guard-against-softlocks
+        State:
+            Location: Castle Keep, Keep Area
+            Section: Ground
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Progression Area:
+                Location: Castle Keep, Keep Area
+                Section: Middle-Left Ledge
+    (Progress) Hub -> Ghost Card Room:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Castle Keep, Keep Area
+            Section: Ground
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Progression Area:
+                Location: Castle Keep, Ghost Card Room
+                Section: Ground
+    (Exit) Hub -> Clock Tower:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Castle Keep, Keep Area
+            Section: Ground
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Exit:
+                Location: Castle Keep, Loading Room to Clock Tower
+                Section: Main
+    (Exit) Hub -> Royal Chapel:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Castle Keep, Keep Area
+            Section: Ground
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Exit:
+                Location: Castle Keep, Loading Room to Royal Chapel
+                Section: Main
+    (Exit) Hub -> Warp Rooms:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Castle Keep, Keep Area
+            Section: Ground
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Exit:
+                Location: Castle Keep, Loading Room to Warp Rooms
+                Section: Main
 Catacombs:
-    Abandoned Mine with Soul of Bat and Echo of Bat -> Spike Breaker:
-        Solver Effort: 0.7
+    (Entry) Abandoned Mine -> Hub:
+        Solver: *guard-against-softlocks
         State:
             Location: Catacombs, Loading Room to Abandoned Mine
             Section: Main
-            Relic - Soul of Bat: true
             Progression - Bat Transformation: true
-            Relic - Echo of Bat: true
+        Goals:
+            Reach Hub:
+                Location: Catacombs, Pitch Black Spike Maze
+                Section: Left Side
+    (Abandon) Hub -> Any Loading Room:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Catacombs, Pitch Black Spike Maze
+            Section: Left Side
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Abandoned Mine:
+                Location: Catacombs, Loading Room to Abandoned Mine
+                Section: Main
+    (Progress) Hub -> Spike Breaker Room:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Catacombs, Pitch Black Spike Maze
+            Section: Left Side
+            Progression - Bat Transformation: true
             Progression - Echolocation: true
         Goals:
-            Get Spike Breaker:
-                Item - Spike Breaker:
-                    Minimum: 1
-Clock Tower:
-    Outer Wall with Double Jump -> Exit to Courtyard (Main):
-        Solver Effort: 0.5
+            Reach Progression Area:
+                Location: Catacombs, Spike Breaker Room
+                Section: Main
+    (Exit) Hub -> Abandoned Mine:
+        Solver: *guard-against-softlocks
         State:
-            Location: Clock Tower, Loading Room to Outer Wall
-            Section: Main
-            Relic - Leap Stone: true
-            Progression - Double Jump: true
+            Location: Catacombs, Pitch Black Spike Maze
+            Section: Left Side
+            Progression - Bat Transformation: true
+            Progression - Echolocation: true
+            Item - Spike Breaker: 1
         Goals:
-            Reach Castle Keep:
-                Locations Visited:
-                    All:
-                        Clock Tower, Exit to Courtyard (Main): true
-    Castle Keep -> Exit to Courtyard (Main):
-        Solver Effort: 0.5
+            Reach Abandoned Mine:
+                Location: Catacombs, Loading Room to Abandoned Mine
+                Section: Main
+Clock Tower:
+    (Entry) Castle Keep -> Hub:
+        Solver: *guard-against-softlocks
         State:
             Location: Clock Tower, Loading Room to Castle Keep
             Section: Main
         Goals:
-            Reach Castle Keep:
-                Locations Visited:
-                    All:
-                        Clock Tower, Exit to Courtyard (Main): true
-    Exit to Courtyard (Main) -> Outer Wall:
-        Solver Effort: 0.5
+            Reach Hub:
+                Location: Clock Tower, Open Courtyard
+                Section: Ground
+    (Entry) Outer Wall -> Hub:
+        Solver: *guard-against-softlocks
         State:
-            Location: Clock Tower, Exit to Courtyard
+            Location: Clock Tower, Loading Room to Outer Wall
             Section: Main
         Goals:
-            Reach Castle Keep:
-                Locations Visited:
-                    All:
-                        Clock Tower, Loading Room to Outer Wall (Main): true
-    Exit to Courtyard (Main) with Double Jump -> Castle Keep:
-        Solver Effort: 0.5
+            Reach Hub:
+                Location: Clock Tower, Open Courtyard
+                Section: Ground
+    (Abandon) Hub -> Any Loading Room:
+        Solver: *guard-against-softlocks
         State:
-            Location: Clock Tower, Exit to Courtyard
-            Section: Main
-            Relic - Leap Stone: true
-            Progression - Double Jump: true
+            Location: Clock Tower, Open Courtyard
+            Section: Ground
         Goals:
             Reach Castle Keep:
-                Locations Visited:
-                    All:
-                        Clock Tower, Loading Room to Castle Keep (Main): true
+                Location: Clock Tower, Loading Room to Castle Keep
+                Section: Main
+            Reach Outer Wall:
+                Location: Clock Tower, Loading Room to Outer Wall
+                Section: Main
+    (Progress) Hub -> Left Gear Room:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Clock Tower, Open Courtyard
+            Section: Ground
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Progression Area:
+                Location: Clock Tower, Left Gear Room
+                Section: Main
+    (Progress) Hub -> Right Gear Room:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Clock Tower, Open Courtyard
+            Section: Ground
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Progression Area:
+                Location: Clock Tower, Right Gear Room
+                Section: Main
+    (Progress) Hub -> Fire of Bat Room:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Clock Tower, Open Courtyard
+            Section: Ground
+            Progression - Bat Transformation: true
+            Status - Breakable Wall in Left Gear Room Broken: true
+            Status - Upper-Left Gear in Clock Tower Set: true
+            Status - Upper-Right Gear in Clock Tower Set: true
+            Status - Lower-Left Gear in Clock Tower Set: true
+            Status - Lower-Right Gear in Clock Tower Set: true
+        Goals:
+            Reach Progression Area:
+                Location: Clock Tower, Fire of Bat Room
+                Section: Main
+    (Exit) Hub -> Castle Keep:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Clock Tower, Open Courtyard
+            Section: Ground
+            Progression - Bat Transformation: true
+            Status - Breakable Wall in Left Gear Room Broken: true
+            Status - Upper-Left Gear in Clock Tower Set: true
+            Status - Upper-Right Gear in Clock Tower Set: true
+            Status - Lower-Left Gear in Clock Tower Set: true
+            Status - Lower-Right Gear in Clock Tower Set: true
+        Goals:
+            Reach Castle Keep:
+                Location: Clock Tower, Loading Room to Castle Keep
+                Section: Main
+    (Exit) Hub -> Outer Wall:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Clock Tower, Open Courtyard
+            Section: Ground
+            Progression - Bat Transformation: true
+            Status - Breakable Wall in Left Gear Room Broken: true
+            Status - Upper-Left Gear in Clock Tower Set: true
+            Status - Upper-Right Gear in Clock Tower Set: true
+            Status - Lower-Left Gear in Clock Tower Set: true
+            Status - Lower-Right Gear in Clock Tower Set: true
+        Goals:
+            Reach Outer Wall:
+                Location: Clock Tower, Loading Room to Outer Wall
+                Section: Main
 Colosseum:
-    Olrox's Quarters -> Royal Chapel:
-        Solver Effort: 0.5
-        State:
-            Location: Colosseum, Loading Room to Olrox's Quarters
-            Section: Main
-        Goals:
-            Reach Castle Keep:
-                Locations Visited:
-                    All:
-                        Colosseum, Loading Room to Royal Chapel (Main): true
-    Royal Chapel with Shortcut Unlocked -> Olrox's Quarters:
-        Solver Effort: 0.5
+    (Entry) Royal Chapel -> Hub:
+        Solver: *guard-against-softlocks
         State:
             Location: Colosseum, Loading Room to Royal Chapel
             Section: Main
             Status - Shortcut Between Holy Chapel and Colosseum Unlocked: true
         Goals:
-            Reach Castle Keep:
-                Locations Visited:
-                    All:
-                        Colosseum, Loading Room to Olrox's Quarters (Main): true
-    Olrox's Quarters -> Library Card -> Form of Mist:
-        Solver Effort: 0.5
+            Reach Hub:
+                Location: Colosseum, Arena
+                Section: Main
+    (Entry) Olrox's Quarters -> Hub:
+        Solver: *guard-against-softlocks
         State:
             Location: Colosseum, Loading Room to Olrox's Quarters
             Section: Main
         Goals:
-            Get Library Card and Form of Mist:
-                Item - Library Card: 1
-                Relic - Form of Mist: true
-                Progression - Mist Transformation: true
-Long Library:
-    Outer Wall -> Outside Shop (Main):
-        Note: Using Library Card should never trap you in Long Library
-        Solver Effort: 0.7
+            Reach Hub:
+                Location: Colosseum, Arena
+                Section: Main
+    (Abandon) Hub -> Any Loading Room:
+        Solver: *guard-against-softlocks
         State:
-            Location: Long Library, Loading Room to Outer Wall
+            Location: Colosseum, Arena
             Section: Main
+            Status - Shortcut Between Holy Chapel and Colosseum Unlocked: true
         Goals:
-            Reach Outside Shop:
-                Locations Visited:
-                    All:
-                        Long Library, Outside Shop (Main): true
-    Outside Shop (Main) with Double Jump -> Jewel of Open:
-        Note: Getting Jewel of Open expects Leap Stone
-        Solver Effort: 0.7
-        State:
-            Location: Long Library, Outside Shop
-            Section: Main
-            Relic - Leap Stone: true
-            Progression - Double Jump: true
-        Goals:
-            Get Jewel of Open:
-                Relic - Jewel of Open: true
-    Outer Wall with Double Jump and Form of Mist -> Soul of Bat:
-        Note: Getting Soul of Bat requires Form of Mist and expects Double Jump
-        Solver Effort: 0.7
-        State:
-            Location: Long Library, Loading Room to Outer Wall
-            Section: Main
-            Relic - Leap Stone: true
-            Progression - Double Jump: true
-            Relic - Form of Mist: true
-            Progression - Mist Transformation: true
-            Progression - Mid-Air Reset: true
-        Goals:
-            Get Soul of Bat:
-                Relic - Soul of Bat: true
-    Outer Wall with Flight -> Faerie Card:
-        Note: Getting Faerie Card expects flight
-        Solver Effort: 0.7
-        State:
-            Location: Long Library, Loading Room to Outer Wall
-            Section: Main
-            Relic - Soul of Bat: true
-            Progression - Bat Transformation: true
-        Goals:
-            Get Faerie Card:
-                Relic - Faerie Card: true
-    Outside Shop (Main) with Soul of Bat and Form of Mist -> Top of Three Layer Room:
-        Note: Prevent Three Layer Room (Upper Layer) from being orphaned
-        Solver Effort: 0.5
-        State:
-            Location: Long Library, Outside Shop
-            Section: Main
-            Relic - Form of Mist: true
-            Progression - Mist Transformation: true
-            Progression - Mid-Air Reset: true
-            Relic - Soul of Bat: true
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Top of Three Layer Room:
-                Locations Visited:
-                    All:
-                        Long Library, Three Layer Room (Upper Layer): true
-    Outside Shop (Main) -> Outer Wall:
-        Note: Using Library Card should never trap you in Long Library
-        Solver Effort: 0.5
-        State:
-            Location: Long Library, Outside Shop
-            Section: Main
-        Goals:
+            Reach Castle Keep:
+                Location: Colosseum, Loading Room to Castle Keep
+                Section: Main
             Reach Outer Wall:
+                Location: Colosseum, Loading Room to Outer Wall
+                Section: Main
+    (Progress) Hub -> Top of Elevator Shaft:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Colosseum, Arena
+            Section: Main
+        Goals:
+            Reach Progression Area:
+                Location: Colosseum, Top of Elevator Shaft
+                Section: Left Side
+    (Exit) Hub -> Royal Chapel:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Colosseum, Arena
+            Section: Main
+            Status - Shortcut Between Holy Chapel and Colosseum Unlocked: true
+        Goals:
+            Reach Exit:
+                Location: Colosseum, Loading Room to Royal Chapel
+                Section: Main
+    (Exit) Hub -> Olrox's Quarters:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Colosseum, Arena
+            Section: Main
+            Status - Shortcut Between Holy Chapel and Colosseum Unlocked: true
+        Goals:
+            Reach Exit:
+                Location: Colosseum, Loading Room to Olrox's Quarters
+                Section: Main
+Long Library:
+    (Entry) Outer Wall -> Hub:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Long Library, Loading Room to Outer Wall
+            Section: Main
+            Progression - Double Jump: true
+        Goals:
+            Reach Hub:
+                Location: Long Library, Outside Shop
+                Section: Main
+    (Abandon) Hub -> Any Loading Room:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Long Library, Outside Shop
+            Section: Main
+        Goals:
+            Reach Castle Keep:
+                Location: Long Library, Loading Room to Outer Wall
+                Section: Main
+    (Progress) Hub -> Shop:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Long Library, Outside Shop
+            Section: Main
+            Progression - Double Jump: true
+        Goals:
+            Reach Progression Area:
+                Location: Long Library, Shop
+                Section: Main
+    (Progress) Hub -> Three Layer Room:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Long Library, Outside Shop
+            Section: Main
+            Progression - Double Jump: true
+        Goals:
+            Reach Progression Area:
+                Location: Long Library, Three Layer Room
+                Section: Upper Layer
+    (Progress) Hub -> Faerie Card Room:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Long Library, Outside Shop
+            Section: Main
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Progression Area:
+                Location: Long Library, Faerie Card Room
+                Section: Upper Layer
+    (Progress) Hub -> Lesser Demon Area:
+        Solver: *solve-within-99-steps
+        State:
+            Location: Long Library, Outside Shop
+            Section: Main
+            Progression - Double Jump: true
+            Progression - Mist Transformation: true
+        Goals:
+            Reach Progression Area:
+                Location: Long Library, Lesser Demon Area
+                Section: Upper Layer
+    (Exit) Hub -> Outer Wall:
+        Solver: *guard-against-softlocks
+        State:
+            Location: Long Library, Outside Shop
+            Section: Main
+            Progression - Bat Transformation: true
+            Progression - Mist Transformation: true
+        Goals:
+            Reach Exit:
                 Location: Long Library, Loading Room to Outer Wall
                 Section: Main
 Marble Gallery:
