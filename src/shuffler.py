@@ -483,6 +483,7 @@ familiar_events = {
 }
 
 def shuffle_teleporters(teleporters) -> dict:
+    print('*** Shuffle teleporters ***')
     exclusions = (
         'Castle Center, Fake Room with Teleporter to Marble Gallery',
         'Castle Entrance Revisited, Fake Room with Teleporter to Alchemy Laboratory',
@@ -495,6 +496,7 @@ def shuffle_teleporters(teleporters) -> dict:
     )
     connections = set()
     while True:
+        print('*** Try to find teleporter arrangement ***')
         stages = {}
         sources = {}
         targets = {}
@@ -518,16 +520,50 @@ def shuffle_teleporters(teleporters) -> dict:
                 'Stage': target_stage,
                 'Direction': target_direction,
             }
+        # The following exclusions are temporary, and will be unlocked once certain stage connections have already been defined
+        locked = {
+            'Abandoned Mine, Fake Room with Teleporter to Catacombs',
+            'Abandoned Mine, Fake Room with Teleporter to Underground Caverns',
+            'Abandoned Mine, Fake Room with Teleporter to Warp Rooms',
+            'Underground Caverns, Fake Room with Teleporter to Marble Gallery',
+            'Underground Caverns, Fake Room with Teleporter to Abandoned Mine',
+            'Underground Caverns, Fake Room with Teleporter to Castle Entrance',
+            'Catacombs, Fake Room with Teleporter to Abandoned Mine',
+        }
+        use_lock_ind = True
+        seen = set()
         work = set()
-        work.add(random.choice(list(sorted(sources.keys()))))
+        work.add('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory')
+        # work.add(random.choice(list(sorted(sources.keys()))))
         while len(work) > 0:
-            source_a_key = random.choice(list(sorted(work)))
+            if (
+                'Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory' in seen and
+                'Colosseum, Loading Room to Olrox\'s Quarters' in seen and 
+                'Long Library, Loading Room to Outer Wall' in seen and
+                (
+                    'Castle Keep, Fake Room with Teleporter to Clock Tower' in seen or
+                    'Castle Keep, Fake Room with Teleporter to Royal Chapel' in seen or
+                    'Castle Keep, Fake Room with Teleporter to Warp Rooms' in seen
+                )
+            ):
+                print('*** Unlock secondary stages ***')
+                use_lock_ind = False
+            possible_choices = work
+            if use_lock_ind:
+                possible_choices = work - locked
+            if len(possible_choices) < 1:
+                print('*** Ran out of choices ***')
+                break
+            source_a_key = random.choice(list(sorted(possible_choices)))
+            print(source_a_key)
             work.remove(source_a_key)
+            seen.add(source_a_key)
             source_a = sources[source_a_key]
             if source_a['Stage'] not in stages:
                 stages[source_a['Stage']] = set()
             source_b_candidates = set()
             for (candidate_source_b_key, candidate_source_b) in sources.items():
+                # TODO(sestren): Consider preventing Castle Entrance, Loading Room to Alchemy Laboratory from connecting to the base Warp Room
                 if candidate_source_b['Stage'] == source_a['Stage']:
                     # A stage may not connect to itself
                     continue
@@ -549,7 +585,9 @@ def shuffle_teleporters(teleporters) -> dict:
             sources.pop(source_a_key)
             sources.pop(source_b_key)
             if source_b_key in work:
+                print(source_b_key)
                 work.remove(source_b_key)
+                seen.add(source_b_key)
             connections.add((source_a_key, source_b_key))
             connections.add((source_b_key, source_a_key))
             for (next_source_key, next_source) in sources.items():
@@ -567,6 +605,8 @@ def shuffle_teleporters(teleporters) -> dict:
         if source_b_key.startswith('Castle Entrance, '):
             alt_source_key = 'Castle Entrance Revisited' + source_b_key[len('Castle Entrance'):]
             teleporters['Sources'][alt_source_key]['Target'] = teleporters['Sources'][source_a_key]['Return']
+    print('*** Teleporter arrangement found! ***')
+    # TODO(sestren): Move Warp Rooms to match the shuffled teleporters
 
 if __name__ == '__main__':
     '''
