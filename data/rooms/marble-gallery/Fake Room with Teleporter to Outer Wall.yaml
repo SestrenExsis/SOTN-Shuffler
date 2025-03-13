@@ -1,0 +1,22 @@
+
+Stage: Marble Gallery
+Room: Fake Room with Teleporter to Outer Wall
+Index: 34
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Map:
+    - "     "
+    - "     "
+    - "     "
+    - "     "
+    - "     "
+Nodes:
+    Left Passage:
+        Type: "................"
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Fake
+        Exit Section: Dummy
+Commands: {}

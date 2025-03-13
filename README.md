@@ -10,15 +10,19 @@ While still in the prototyping and proof-of-concept phase, much of this project 
 
 ## Usage
 
-Make a copy of your target BIN (SLUS-00067) in a folder called `patcher` inside a folder called `build` and make sure it is called `Castlevania - Symphony of the Night (Track 1).bin`.
+Make a folder called `build` in the root directory of this repository.
 
-Run `git submodule update --init --recursive` to fetch the required SOTN-Patcher repo as a submodule.
+Inside the `build` folder, make a folder called `patcher`.
 
-Run the `setup.bat` script, which will generate the necessary extraction and randomly-generated map files for shuffling. Be aware that this step can take several minutes to run.
+Make a **COPY** of your target BIN (`SLUS-00067`) and place it inside the `build/patcher` folder. Make sure it is called `Castlevania - Symphony of the Night (Track 1).bin`.
 
-Once the necessary files have been generated, running the `randomize.bat` script will go through the process of building a randomized PPF file. Be aware that this step can also take several minutes to complete.
+From the root of the repository, run `git submodule update --init --recursive` to fetch the required SOTN-Patcher repo as a submodule.
 
-Once that step has completed, a file called `current-seed.ppf` inside the `build/patcher` folder can be used in conjunction with [ppf.sotn.io](https://ppf.sotn.io/) to apply the changes to your BIN file.
+Run the `setup.bat` script, which will generate the necessary extraction and randomly-generated map files for shuffling. It will also run validation checks against the generated map files. Be aware that this step can take several minutes to run.
+
+Once the necessary files have been generated, running the `randomize.bat` script will go through the process of building a randomized PPF file. Be aware that this step can also take a few minutes to complete.
+
+Once that step has completed, a file called `current-seed.ppf` will have been created inside the `build/patcher` folder. This file can be used in conjunction with [ppf.sotn.io](https://ppf.sotn.io/) to apply the changes to your BIN file.
 
 ## Acknowledgements
 
