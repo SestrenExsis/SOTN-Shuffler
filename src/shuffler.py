@@ -606,7 +606,6 @@ def shuffle_teleporters(teleporters) -> dict:
             alt_source_key = 'Castle Entrance Revisited' + source_b_key[len('Castle Entrance'):]
             teleporters['Sources'][alt_source_key]['Target'] = teleporters['Sources'][source_a_key]['Return']
     print('*** Teleporter arrangement found! ***')
-    # TODO(sestren): Move Warp Rooms to match the shuffled teleporters
 
 if __name__ == '__main__':
     '''
@@ -887,116 +886,68 @@ if __name__ == '__main__':
                     'Rooms': {},
                 }
             elif stage_name == 'Warp Rooms':
-                # Warp Room to Castle Keep
-                source_room = changes['Stages']['Castle Keep']['Rooms']['Castle Keep, Fake Room with Teleporter to Warp Rooms']
-                overrides['Warp Rooms, Fake Room with Teleporter to Castle Keep'] = {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 2,
-                }
-                overrides['Warp Rooms, Loading Room to Castle Keep'] = {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 1,
-                }
-                overrides['Warp Rooms, Warp Room to Castle Keep'] = {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                }
-                changes['Warp Room Coordinates'][3] = {
-                    'Room Y': source_room['Top'],
-                    'Room X': source_room['Left'],
-                }
-                changes['Reverse Warp Room Coordinates'][3] = {
-                    'Room Y': 63 - source_room['Top'],
-                    'Room X': 63 - source_room['Left'],
-                }
-                # Warp Room to Olrox's Quarters
-                source_room = changes['Stages']['Olrox\'s Quarters']['Rooms']['Olrox\'s Quarters, Fake Room with Teleporter to Warp Rooms']
-                overrides['Warp Rooms, Fake Room with Teleporter to Olrox\'s Quarters'] = {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 2,
-                }
-                overrides['Warp Rooms, Loading Room to Olrox\'s Quarters'] = {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 1,
-                }
-                overrides['Warp Rooms, Warp Room to Olrox\'s Quarters'] = {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                }
-                changes['Warp Room Coordinates'][4] = {
-                    'Room Y': source_room['Top'],
-                    'Room X': source_room['Left'],
-                }
-                changes['Reverse Warp Room Coordinates'][4] = {
-                    'Room Y': 63 - source_room['Top'],
-                    'Room X': 63 - source_room['Left'],
-                }
-                # Warp Room to Outer Wall
-                source_room = changes['Stages']['Outer Wall']['Rooms']['Outer Wall, Fake Room with Teleporter to Warp Rooms']
-                overrides['Warp Rooms, Warp Room to Outer Wall'] = {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                }
-                overrides['Warp Rooms, Loading Room to Outer Wall'] = {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] + 1,
-                }
-                overrides['Warp Rooms, Fake Room with Teleporter to Outer Wall'] = {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] + 2,
-                }
-                changes['Warp Room Coordinates'][2] = {
-                    'Room Y': source_room['Top'],
-                    'Room X': source_room['Left'],
-                }
-                changes['Reverse Warp Room Coordinates'][2] = {
-                    'Room Y': 63 - source_room['Top'],
-                    'Room X': 63 - source_room['Left'],
-                }
-                # Warp Room to Castle Entrance
-                source_room = changes['Stages']['Castle Entrance']['Rooms']['Castle Entrance, Fake Room with Teleporter to Warp Rooms']
-                overrides['Warp Rooms, Warp Room to Castle Entrance'] = {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                }
-                overrides['Warp Rooms, Loading Room to Castle Entrance'] = {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] + 1,
-                }
-                overrides['Warp Rooms, Fake Room with Teleporter to Castle Entrance'] = {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] + 2,
-                }
-                changes['Warp Room Coordinates'][0] = {
-                    'Room Y': source_room['Top'],
-                    'Room X': source_room['Left'],
-                }
-                changes['Reverse Warp Room Coordinates'][0] = {
-                    'Room Y': 63 - source_room['Top'],
-                    'Room X': 63 - source_room['Left'],
-                }
-                # Warp Room to Abandoned Mine
-                source_room = changes['Stages']['Abandoned Mine']['Rooms']['Abandoned Mine, Fake Room with Teleporter to Warp Rooms']
-                overrides['Warp Rooms, Fake Room with Teleporter to Abandoned Mine'] = {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 2,
-                }
-                overrides['Warp Rooms, Loading Room to Abandoned Mine'] = {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'] - 1,
-                }
-                overrides['Warp Rooms, Warp Room to Abandoned Mine'] = {
-                    'Top': source_room['Top'],
-                    'Left': source_room['Left'],
-                }
-                changes['Warp Room Coordinates'][1] = {
-                    'Room Y': source_room['Top'],
-                    'Room X': source_room['Left'],
-                }
-                changes['Reverse Warp Room Coordinates'][1] = {
-                    'Room Y': 63 - source_room['Top'],
-                    'Room X': 63 - source_room['Left'],
-                }
+                for (warp_room_name, warp_room_id) in (
+                    ('Castle Keep', 3),
+                    ('Olrox\'s Quarters', 4),
+                    ('Abandoned Mine', 1),
+                ):
+                    warp__fake_room_name = 'Warp Rooms, Fake Room with Teleporter to ' + warp_room_name
+                    return_name = mapper_core['Teleporters']['Sources'][warp__fake_room_name]['Return']
+                    for (source_room_name, source_room) in mapper_core['Teleporters']['Sources'].items():
+                        if source_room['Target'] == return_name:
+                            source_room = changes['Stages'][source_room['Stage']]['Rooms'][source_room_name]
+                            overrides[warp__fake_room_name] = {
+                                'Top': source_room['Top'],
+                                'Left': source_room['Left'] - 2,
+                            }
+                            overrides['Warp Rooms, Loading Room to ' + warp_room_name] = {
+                                'Top': source_room['Top'],
+                                'Left': source_room['Left'] - 1,
+                            }
+                            overrides['Warp Rooms, Warp Room to ' + warp_room_name] = {
+                                'Top': source_room['Top'],
+                                'Left': source_room['Left'],
+                            }
+                            changes['Warp Room Coordinates'][warp_room_id] = {
+                                'Room Y': source_room['Top'],
+                                'Room X': source_room['Left'],
+                            }
+                            changes['Reverse Warp Room Coordinates'][warp_room_id] = {
+                                'Room Y': 63 - source_room['Top'],
+                                'Room X': 63 - source_room['Left'],
+                            }
+                            break
+                for (warp_room_name, warp_room_id) in (
+                    ('Outer Wall', 2),
+                    ('Castle Entrance', 0),
+                ):
+                    warp__fake_room_name = 'Warp Rooms, Fake Room with Teleporter to ' + warp_room_name
+                    return_name = mapper_core['Teleporters']['Sources'][warp__fake_room_name]['Return']
+                    for (source_room_name, source_room) in mapper_core['Teleporters']['Sources'].items():
+                        if source_room['Target'] == return_name:
+                            source_room = changes['Stages'][source_room['Stage']]['Rooms'][source_room_name]
+                            # source_room = changes['Stages']['Castle Keep']['Rooms']['Castle Keep, Fake Room with Teleporter to Warp Rooms']
+                            overrides['Warp Rooms, Warp Room to ' + warp_room_name] = {
+                                'Top': source_room['Top'],
+                                'Left': source_room['Left'],
+                            }
+                            overrides['Warp Rooms, Loading Room to ' + warp_room_name] = {
+                                'Top': source_room['Top'],
+                                'Left': source_room['Left'] + 1,
+                            }
+                            overrides[warp__fake_room_name] = {
+                                'Top': source_room['Top'],
+                                'Left': source_room['Left'] + 2,
+                            }
+                            changes['Warp Room Coordinates'][warp_room_id] = {
+                                'Room Y': source_room['Top'],
+                                'Room X': source_room['Left'],
+                            }
+                            changes['Reverse Warp Room Coordinates'][warp_room_id] = {
+                                'Room Y': 63 - source_room['Top'],
+                                'Room X': 63 - source_room['Left'],
+                            }
+                            break
             for room_name in stage_changes['Rooms']:
                 room_top = stage_top + stage_changes['Rooms'][room_name]['Top']
                 room_left = stage_left + stage_changes['Rooms'][room_name]['Left']
