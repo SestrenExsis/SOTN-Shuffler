@@ -932,7 +932,6 @@ if __name__ == '__main__':
                     for (source_room_name, source_room) in mapper_core['Teleporters']['Sources'].items():
                         if source_room['Target'] == return_name:
                             source_room = changes['Stages'][source_room['Stage']]['Rooms'][source_room_name]
-                            # source_room = changes['Stages']['Castle Keep']['Rooms']['Castle Keep, Fake Room with Teleporter to Warp Rooms']
                             overrides['Warp Rooms, Warp Room to ' + warp_room_name] = {
                                 'Top': source_room['Top'],
                                 'Left': source_room['Left'],
@@ -983,6 +982,46 @@ if __name__ == '__main__':
                             castle_map[row][col] = char
                         else:
                             print('Tried to draw pixel out of bounds of map:', room_name, (room_top, room_left), (row, col))
+        links = {}
+        for (index, stage_name) in enumerate(stage_names):
+            # print('***', '', stage_name)
+            stage = stages[stage_name]
+            stage_changes = stage['Mapper'].stage.get_changes()
+            for room_name in stage_changes['Rooms']:
+                if 'Loading Room' in room_name:
+                    # print('***', '  -', 'LOADING:', room_name)
+                    fake_room_name = stage_name + ', Fake Room with Teleporter to ' + room_name[room_name.find('Loading Room to ') + len('Loading Room to '):]
+                    # print('***', '  -', 'fake_room_name:', fake_room_name)
+                    return_name = mapper_core['Teleporters']['Sources'][fake_room_name]['Return']
+                    # print('***', '  -', 'return_name:', return_name)
+                    for (source_room_name, source_room) in mapper_core['Teleporters']['Sources'].items():
+                        if source_room['Target'] == return_name:
+                            source_room_stage = source_room['Stage']
+                            source_room = changes['Stages'][source_room_stage]['Rooms'][source_room_name]
+                            source_loading_room = source_room_name.replace('Fake Room with Teleporter', 'Loading Room')
+                            # print('***', '  -', 'source_room_name:', source_room_name)
+                            code = 'CDHIJKLNOSTUVXYZ147+-|###'[len(links)]
+                            rooms = tuple(sorted((room_name, source_loading_room)))
+                            print(len(links), code, rooms)
+                            drawing = [
+                                '444 44d 4d4 444 444 4d4 4dd 444 444 d44 444 4d4 4d4 4d4 4d4 44d d4d 4d4 444 d4d ddd d4d 444 444 444 ',
+                                '4dd 4d4 444 d4d d4d 44d 4dd 4d4 4d4 d4d d4d 4d4 4d4 d4d d4d d4d d4d 444 dd4 444 444 d4d 444 444 444 ',
+                                '444 44d 4d4 444 44d 4d4 444 4d4 444 44d d4d 444 d4d 4d4 d4d d44 d4d dd4 dd4 d4d ddd d4d 444 444 444 ',
+                            ]
+                            room_a = changes['Stages'][stage_name]['Rooms'][room_name]
+                            room_b = changes['Stages'][source_room_stage]['Rooms'][source_loading_room]
+                            for room_pos in (
+                                room_a,
+                                room_b,
+                            ):
+                                top = 4 * room_pos['Top'] + 1
+                                left = 4 * room_pos['Left'] + 1
+                                # for row in range(3):
+                                #     for col in range(3):
+                                #         if drawing[row][col] != ' ':
+                                #             castle_map[top + row][left + col] = drawing[row][4 * len(links) + col]
+                            links[rooms] = code
+                            break
         # Calculate which cells on the map buying the Castle Map in the Shop will reveal
         cells_to_reveal = set()
         for (row, row_data) in enumerate(castle_map):
