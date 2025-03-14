@@ -47,14 +47,14 @@ Commands:
         Requirements:
             Right Side - Shortcut:
                 Section: Right Side
-                Status - Shortcut Between Holy Chapel and Colosseum Unlocked: true
+                Status - Shortcut Between Royal Chapel and Colosseum Unlocked: true
     Move - Right Side:
         Outcomes:
             Section: Right Side
         Requirements:
             Left Side - Shortcut:
                 Section: Left Side
-                Status - Shortcut Between Holy Chapel and Colosseum Unlocked: true
+                Status - Shortcut Between Royal Chapel and Colosseum Unlocked: true
     Action - Collect Library Card:
         Outcomes:
             Item - Library Card: 1
@@ -63,10 +63,10 @@ Commands:
             Default:
                 Section: Right Side
                 Check - Colosseum Library Card: false
-    Action - Unlock Shortcut Between Holy Chapel and Colosseum:
+    Action - Unlock Shortcut Between Royal Chapel and Colosseum:
         Outcomes:
-            Status - Shortcut Between Holy Chapel and Colosseum Unlocked: true
+            Status - Shortcut Between Royal Chapel and Colosseum Unlocked: true
         Requirements:
             Right Side - Default:
                 Section: Right Side
-                Status - Shortcut Between Holy Chapel and Colosseum Unlocked: false
+                Status - Shortcut Between Royal Chapel and Colosseum Unlocked: false

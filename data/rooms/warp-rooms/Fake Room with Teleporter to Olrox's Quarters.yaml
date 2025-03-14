@@ -1,0 +1,22 @@
+
+Stage: Warp Rooms
+Room: Fake Room with Teleporter to Olrox's Quarters
+Index: 12
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Map:
+    - "     "
+    - "     "
+    - "     "
+    - "     "
+    - "     "
+Nodes:
+    Right Passage:
+        Type: "................"
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Fake
+        Exit Section: Dummy
+Commands: {}

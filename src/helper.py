@@ -16,7 +16,7 @@ def get_room_drawing(mapper_core, room_name) -> list[str]:
         char = '4'
     elif 'Loading Room' in room_name:
         char = 'c'
-    elif 'Fake Room With Teleporter' in room_name:
+    elif 'FAKE ROOM WITH TELEPORTER' in room_name.upper():
         char = 'a'
     grid = [['0' for col in range(1 + 4 * cols)] for row in range(1 + 4 * rows)]
     for row in range(rows):

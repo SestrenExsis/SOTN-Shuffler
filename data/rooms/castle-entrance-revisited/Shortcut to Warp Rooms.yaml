@@ -1,0 +1,50 @@
+
+Stage: Castle Entrance Revisited
+Room: Shortcut to Warp Rooms
+Index: 16
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Map:
+    - "00000"
+    - "01110"
+    - "41111"
+    - "01110"
+    - "00000"
+Nodes:
+    Left Red Door:
+        Type: Red Door
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Left Side
+        Exit Section: Left Side
+    Right Passage:
+        Type: Passage
+        Row: 0
+        Column: 0
+        Edge: Right
+        Entry Section: Right Side
+        Exit Section: Right Side
+Commands:
+    Move - Left Side:
+        Outcomes:
+            Section: Left Side
+        Requirements:
+            Use Shortcut:
+                Section: Right Side
+                Status - Shortcut to Warp Rooms Activated: true
+    Move - Right Side:
+        Outcomes:
+            Section: Right Side
+        Requirements:
+            Use Shortcut:
+                Section: Left Side
+                Status - Shortcut to Warp Rooms Activated: true
+    Action - Activate Pressure Plate:
+        Outcomes:
+            Status - Shortcut to Warp Rooms Activated: true
+        Requirements:
+            Default:
+                Section: Left Side
+                Status - Shortcut to Warp Rooms Activated: false

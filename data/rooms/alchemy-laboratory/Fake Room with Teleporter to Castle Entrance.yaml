@@ -1,0 +1,22 @@
+
+Stage: Alchemy Laboratory
+Room: Fake Room with Teleporter to Castle Entrance
+Index: 31
+Columns: 1
+Rows: 1
+Empty Cells: {}
+Map:
+    - "     "
+    - "     "
+    - "     "
+    - "     "
+    - "     "
+Nodes:
+    Left Node:
+        Type: "................"
+        Row: 0
+        Column: 0
+        Edge: Left
+        Entry Section: Fake
+        Exit Section: Dummy
+Commands: {}
