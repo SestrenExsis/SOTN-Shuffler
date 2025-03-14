@@ -483,6 +483,8 @@ familiar_events = {
 }
 
 def shuffle_teleporters(teleporters) -> dict:
+    print('shuffle_teleporters')
+    MAX_LAYER = 5
     print('*** Shuffle teleporters ***')
     exclusions = (
         'Castle Center, Fake Room with Teleporter to Marble Gallery',
@@ -494,13 +496,26 @@ def shuffle_teleporters(teleporters) -> dict:
         'Special, Succubus Defeated',
         'Underground Caverns, Fake Room with Teleporter to Boss - Succubus',
     )
+    layers = {
+        'Alchemy Laboratory': 0,
+        'Castle Entrance': 0,
+        'Castle Keep': 0,
+        'Colosseum': 0,
+        'Marble Gallery': 0,
+        'Outer Wall': 0,
+        'Royal Chapel': 0,
+        'Warp Rooms': 0,
+        'Abandoned Mine': 1,
+        'Long Library': 1,
+        'Underground Caverns': 1,
+        'Catacombs': 2,
+        'Clock Tower': 2,
+        'Olrox\'s Quarters': 2,
+    }
     connections = set()
     while True:
-        print('*** Try to find teleporter arrangement ***')
-        stages = {}
         sources = {}
         targets = {}
-        connections = set()
         for (source_key, source) in teleporters['Sources'].items():
             if source_key in exclusions:
                 continue
@@ -520,44 +535,26 @@ def shuffle_teleporters(teleporters) -> dict:
                 'Stage': target_stage,
                 'Direction': target_direction,
             }
-        # The following exclusions are temporary, and will be unlocked once certain stage connections have already been defined
-        locked = {
-            'Abandoned Mine, Fake Room with Teleporter to Catacombs',
-            'Abandoned Mine, Fake Room with Teleporter to Underground Caverns',
-            'Abandoned Mine, Fake Room with Teleporter to Warp Rooms',
-            'Underground Caverns, Fake Room with Teleporter to Marble Gallery',
-            'Underground Caverns, Fake Room with Teleporter to Abandoned Mine',
-            'Underground Caverns, Fake Room with Teleporter to Castle Entrance',
-            'Catacombs, Fake Room with Teleporter to Abandoned Mine',
-        }
-        use_lock_ind = True
-        seen = set()
+        current_layer = 0
+        stages = {}
+        connections = set()
         work = set()
         work.add('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory')
-        # work.add(random.choice(list(sorted(sources.keys()))))
         while len(work) > 0:
-            if (
-                'Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory' in seen and
-                'Colosseum, Loading Room to Olrox\'s Quarters' in seen and 
-                'Long Library, Loading Room to Outer Wall' in seen and
-                (
-                    'Castle Keep, Fake Room with Teleporter to Clock Tower' in seen or
-                    'Castle Keep, Fake Room with Teleporter to Royal Chapel' in seen or
-                    'Castle Keep, Fake Room with Teleporter to Warp Rooms' in seen
-                )
-            ):
-                print('*** Unlock secondary stages ***')
-                use_lock_ind = False
-            possible_choices = work
-            if use_lock_ind:
-                possible_choices = work - locked
-            if len(possible_choices) < 1:
-                print('*** Ran out of choices ***')
-                break
+            possible_choices = set(work)
+            for choice in work:
+                choice_stage = choice.split(', ')[0]
+                if layers[choice_stage] > current_layer:
+                    possible_choices.remove(choice)
+            if len(possible_choices) < 1:# or random.random() < 0.01:
+                current_layer += 1
+                if current_layer > MAX_LAYER:
+                    break
+                else:
+                    pass
+                continue
             source_a_key = random.choice(list(sorted(possible_choices)))
-            print(source_a_key)
             work.remove(source_a_key)
-            seen.add(source_a_key)
             source_a = sources[source_a_key]
             if source_a['Stage'] not in stages:
                 stages[source_a['Stage']] = set()
@@ -573,9 +570,16 @@ def shuffle_teleporters(teleporters) -> dict:
                 if candidate_source_b['Stage'] in stages[source_a['Stage']]:
                     # A stage may not connect to the same stage more than once
                     continue
+                candidate_stage = candidate_source_b_key.split(', ')[0]
+                if layers[candidate_stage] > current_layer:
+                    # A stage may not connect to a stage beyond the current layer
+                    continue
                 source_b_candidates.add(candidate_source_b_key)
             if len(source_b_candidates) < 1:
-                break
+                current_layer += 1
+                if current_layer > MAX_LAYER:
+                    break
+                continue
             source_b_key = random.choice(list(sorted(source_b_candidates)))
             source_b = sources[source_b_key]
             if source_b['Stage'] not in stages:
@@ -584,15 +588,17 @@ def shuffle_teleporters(teleporters) -> dict:
             stages[source_b['Stage']].add(source_a['Stage'])
             sources.pop(source_a_key)
             sources.pop(source_b_key)
+            # print('  - ', 'source A:', source_a_key)
+            # print('  - ', 'source B:', source_b_key)
             if source_b_key in work:
-                print(source_b_key)
                 work.remove(source_b_key)
-                seen.add(source_b_key)
             connections.add((source_a_key, source_b_key))
             connections.add((source_b_key, source_a_key))
             for (next_source_key, next_source) in sources.items():
-                if next_source['Stage'] in stages:
+                if next_source['Stage'] in source_b['Stage']:
+                    # print('    ', 'add to work:', next_source_key)
                     work.add(next_source_key)
+        # print(len(sources))
         if len(sources) < 1:
             break
     for (source_a_key, source_b_key) in connections:
