@@ -546,7 +546,7 @@ def shuffle_teleporters(teleporters) -> dict:
                 choice_stage = choice.split(', ')[0]
                 if layers[choice_stage] > current_layer:
                     possible_choices.remove(choice)
-            if len(possible_choices) < 1:# or random.random() < 0.01:
+            if len(possible_choices) < 1:
                 current_layer += 1
                 if current_layer > MAX_LAYER:
                     break
@@ -560,7 +560,10 @@ def shuffle_teleporters(teleporters) -> dict:
                 stages[source_a['Stage']] = set()
             source_b_candidates = set()
             for (candidate_source_b_key, candidate_source_b) in sources.items():
-                # TODO(sestren): Consider preventing Castle Entrance, Loading Room to Alchemy Laboratory from connecting to the base Warp Room
+                if source_a_key == 'Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory':
+                    if candidate_source_b_key == 'Warp Rooms, Fake Room with Teleporter to Castle Entrance':
+                        # First stage connection in the game is not allowed to connect to the root Warp Room
+                        continue
                 if candidate_source_b['Stage'] == source_a['Stage']:
                     # A stage may not connect to itself
                     continue
@@ -984,24 +987,35 @@ if __name__ == '__main__':
                             print('Tried to draw pixel out of bounds of map:', room_name, (room_top, room_left), (row, col))
         links = {}
         for (index, stage_name) in enumerate(stage_names):
-            # print('***', '', stage_name)
+            if stage_name.startswith('Warp Rooms, '):
+                continue
+            print('***', '', stage_name)
             stage = stages[stage_name]
             stage_changes = stage['Mapper'].stage.get_changes()
             for room_name in stage_changes['Rooms']:
                 if 'Loading Room' in room_name:
-                    # print('***', '  -', 'LOADING:', room_name)
+                    print('***', '  -', 'LOADING:', room_name)
                     fake_room_name = stage_name + ', Fake Room with Teleporter to ' + room_name[room_name.find('Loading Room to ') + len('Loading Room to '):]
-                    # print('***', '  -', 'fake_room_name:', fake_room_name)
+                    print('***', '  -', 'fake_room_name:', fake_room_name)
                     return_name = mapper_core['Teleporters']['Sources'][fake_room_name]['Return']
-                    # print('***', '  -', 'return_name:', return_name)
+                    print('***', '  -', 'return_name:', return_name)
                     for (source_room_name, source_room) in mapper_core['Teleporters']['Sources'].items():
                         if source_room['Target'] == return_name:
                             source_room_stage = source_room['Stage']
-                            source_room = changes['Stages'][source_room_stage]['Rooms'][source_room_name]
+                            if source_room_stage == 'Warp Rooms':
+                                continue
+                            try:
+                                source_room = changes['Stages'][source_room_stage]['Rooms'][source_room_name]
+                            except KeyError:
+                                source_room_name = source_room_name.replace('Castle Entrance Revisited', 'Castle Entrance')
+                                source_room = changes['Stages'][source_room_stage]['Rooms'][source_room_name]
+                            # TODO(sestren): Figure out why this throws KeyErrors on 'Castle Entrance Revisited, Fake Room with Teleporter to Underground Caverns'
                             source_loading_room = source_room_name.replace('Fake Room with Teleporter', 'Loading Room')
                             # print('***', '  -', 'source_room_name:', source_room_name)
                             code = 'CDHIJKLNOSTUVXYZ147+-|###'[len(links)]
                             rooms = tuple(sorted((room_name, source_loading_room)))
+                            if rooms in links:
+                                continue
                             print(len(links), code, rooms)
                             drawing = [
                                 '444 44d 4d4 444 444 4d4 4dd 444 444 d44 444 4d4 4d4 4d4 4d4 44d d4d 4d4 444 d4d ddd d4d 444 444 444 ',
@@ -1016,10 +1030,10 @@ if __name__ == '__main__':
                             ):
                                 top = 4 * room_pos['Top'] + 1
                                 left = 4 * room_pos['Left'] + 1
-                                # for row in range(3):
-                                #     for col in range(3):
-                                #         if drawing[row][col] != ' ':
-                                #             castle_map[top + row][left + col] = drawing[row][4 * len(links) + col]
+                                for row in range(3):
+                                    for col in range(3):
+                                        if drawing[row][col] != ' ':
+                                            castle_map[top + row][left + col] = drawing[row][4 * len(links) + col]
                             links[rooms] = code
                             break
         # Calculate which cells on the map buying the Castle Map in the Shop will reveal
