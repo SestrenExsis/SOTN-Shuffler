@@ -501,12 +501,12 @@ def shuffle_teleporters(teleporters) -> dict:
         'Castle Entrance': 0,
         'Castle Keep': 0,
         'Colosseum': 0,
-        'Marble Gallery': 0,
+        'Long Library': 0,
         'Outer Wall': 0,
-        'Royal Chapel': 0,
         'Warp Rooms': 0,
         'Abandoned Mine': 1,
-        'Long Library': 1,
+        'Marble Gallery': 1,
+        'Royal Chapel': 1,
         'Underground Caverns': 1,
         'Catacombs': 2,
         'Clock Tower': 2,
@@ -1004,13 +1004,10 @@ if __name__ == '__main__':
                             source_room_stage = source_room['Stage']
                             if source_room_stage == 'Warp Rooms':
                                 continue
-                            try:
-                                source_room = changes['Stages'][source_room_stage]['Rooms'][source_room_name]
-                            except KeyError:
-                                source_room_name = source_room_name.replace('Castle Entrance Revisited', 'Castle Entrance')
-                                source_room = changes['Stages'][source_room_stage]['Rooms'][source_room_name]
+                            # if source_room_name in changes['Stages'][source_room_stage]['Rooms']:
+                            #     source_room = changes['Stages'][source_room_stage]['Rooms'][source_room_name]
                             # TODO(sestren): Figure out why this throws KeyErrors on 'Castle Entrance Revisited, Fake Room with Teleporter to Underground Caverns'
-                            source_loading_room = source_room_name.replace('Fake Room with Teleporter', 'Loading Room')
+                            source_loading_room = source_room_name.replace('Fake Room with Teleporter', 'Loading Room').replace('Castle Entrance Revisited', 'Castle Entrance')
                             # print('***', '  -', 'source_room_name:', source_room_name)
                             code = 'CDHIJKLNOSTUVXYZ147+-|###'[len(links)]
                             rooms = tuple(sorted((room_name, source_loading_room)))
