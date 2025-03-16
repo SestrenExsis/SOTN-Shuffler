@@ -1172,8 +1172,10 @@ if __name__ == '__main__':
         # Show softlock warning and build number on file select screen
         changes['Strings'] = {
             '10': 'Press L2 if softlocked.     ',
-            '11': 'Alpha Build 72      ',
+            '11': 'Alpha Build 73      ',
         }
+        # Patch - Skip Maria cutscene in Alchemy Laboratory to prevent softlocks when approaching from the left side
+        changes['Constants']['Should skip Maria Alchemy Laboratory'] = 0x0806E296
         # Patch - Assign Power of Wolf Relic its own ID (was previously duplicating the trap door's ID)
         # https://github.com/SestrenExsis/SOTN-Shuffler/issues/36
         room = changes['Stages']['Castle Entrance Revisited']['Rooms']['Castle Entrance Revisited, After Drawbridge']
