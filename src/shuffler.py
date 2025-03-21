@@ -464,10 +464,8 @@ if __name__ == '__main__':
             'Boss Teleporters': {},
             'Castle Map': [],
             'Constants': {},
-            'Reverse Warp Room Coordinates': {},
             'Stages': {},
             'Teleporters': teleporters,
-            'Warp Room Coordinates': {},
         }
         stages['Warp Rooms']['Stage Top'] = 0
         stages['Warp Rooms']['Stage Left'] = 0
@@ -499,10 +497,10 @@ if __name__ == '__main__':
                     'Rooms': {},
                 }
             elif stage_name == 'Warp Rooms':
-                for (warp_room_name, warp_room_id) in (
-                    ('Castle Keep', 3),
-                    ('Olrox\'s Quarters', 4),
-                    ('Abandoned Mine', 1),
+                for warp_room_name in (
+                    'Castle Keep',
+                    'Olrox\'s Quarters',
+                    'Abandoned Mine',
                 ):
                     warp__fake_room_name = 'Warp Rooms, Fake Room with Teleporter to ' + warp_room_name
                     return_name = mapper_core['Teleporters']['Sources'][warp__fake_room_name]['Return']
@@ -521,18 +519,10 @@ if __name__ == '__main__':
                                 'Top': source_room['Top'],
                                 'Left': source_room['Left'],
                             }
-                            changes['Warp Room Coordinates'][warp_room_id] = {
-                                'Room Y': source_room['Top'],
-                                'Room X': source_room['Left'],
-                            }
-                            changes['Reverse Warp Room Coordinates'][warp_room_id] = {
-                                'Room Y': 63 - source_room['Top'],
-                                'Room X': 63 - source_room['Left'],
-                            }
                             break
-                for (warp_room_name, warp_room_id) in (
-                    ('Outer Wall', 2),
-                    ('Castle Entrance', 0),
+                for warp_room_name in (
+                    'Outer Wall',
+                    'Castle Entrance',
                 ):
                     warp__fake_room_name = 'Warp Rooms, Fake Room with Teleporter to ' + warp_room_name
                     return_name = mapper_core['Teleporters']['Sources'][warp__fake_room_name]['Return']
@@ -550,14 +540,6 @@ if __name__ == '__main__':
                             overrides[warp__fake_room_name] = {
                                 'Top': source_room['Top'],
                                 'Left': source_room['Left'] + 2,
-                            }
-                            changes['Warp Room Coordinates'][warp_room_id] = {
-                                'Room Y': source_room['Top'],
-                                'Room X': source_room['Left'],
-                            }
-                            changes['Reverse Warp Room Coordinates'][warp_room_id] = {
-                                'Room Y': 63 - source_room['Top'],
-                                'Room X': 63 - source_room['Left'],
                             }
                             break
             for room_name in stage_changes['Rooms']:
