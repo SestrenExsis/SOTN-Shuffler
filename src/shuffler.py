@@ -57,8 +57,12 @@ skills = {
 # NOTE(sestren): There is only one boss teleporter in the game data for the following bosses,
 # NOTE(sestren): despite there being multiple entrances, so not all entrances will be covered:
 # NOTE(sestren): Granfaloon, Akmodan II, Olrox, Galamoth
+# Ideally, there would need to be 4 addtional boss teleporter entries added to the list to cover all entrances
+# Since each boss teleporter takes up 20 bytes, that is a total of 80 bytes that would have to be found or taken from somewhere else
 boss_teleporters = {
     '0': ('Marble Gallery', 'Marble Gallery, Clock Room', 0, 0), # Cutscene - Meeting Maria in Clock Room
+    # 1 -> Nightmare
+    # 2 -> Nightmare
     '3': ('Olrox\'s Quarters', 'Olrox\'s Quarters, Olrox\'s Room', 0, 1), # Boss - Olrox
     '4': ('Catacombs', 'Catacombs, Granfaloon\'s Lair', 0, 1), # Boss - Granfaloon
     '5': ('Colosseum', 'Colosseum, Arena', 0, 0), # Boss - Minotaur and Werewolf
@@ -88,7 +92,6 @@ boss_teleporters = {
 
 
 def shuffle_teleporters(teleporters) -> dict:
-    print('shuffle_teleporters')
     MAX_LAYER = 5
     print('*** Shuffle teleporters ***')
     exclusions = (
@@ -709,23 +712,8 @@ if __name__ == '__main__':
                 'Room Y': source_room['Top'] + offset_top,
                 'Room X': source_room['Left'] + offset_left,
             }
-        # Adjust the target point for the Castle Teleporter locations
-        # The target points relative to their respective rooms is (y=847, x=320) in TOP and (y=1351, x=1728) in RTOP
-        source_room = changes['Stages']['Castle Keep']['Rooms']['Castle Keep, Keep Area']
-        changes['Constants']['Castle Keep Teleporter, Y Offset'] = -1 * (256 * source_room['Top'] + 847)
-        changes['Constants']['Castle Keep Teleporter, X Offset'] = -1 * (256 * source_room['Left'] + 320)
-        source_room = changes['Stages']['Reverse Keep']['Rooms']['Reverse Keep, Keep Area']
-        changes['Constants']['Reverse Keep Teleporter, Y Offset'] = -1 * (256 * source_room['Top'] + 1351)
-        changes['Constants']['Reverse Keep Teleporter, X Offset'] = -1 * (256 * source_room['Left'] + 1728)
-        # Adjust the False Save Room trigger, solved by @MottZilla
-        # See https://github.com/Xeeynamo/sotn-decomp/blob/ffce97b0022ab5d4118ad35c93dea86bb18b25cc/src/dra/5087C.c#L1012
-        source_room = changes['Stages']['Underground Caverns']['Rooms']['Underground Caverns, False Save Room']
-        changes['Constants']['False Save Room, Room Y'] = source_room['Top']
-        changes['Constants']['False Save Room, Room X'] = source_room['Left']
-        source_room = changes['Stages']['Reverse Caverns']['Rooms']['Reverse Caverns, False Save Room']
-        changes['Constants']['Reverse False Save Room, Room Y'] = source_room['Top']
-        changes['Constants']['Reverse False Save Room, Room X'] = source_room['Left']
         # Disable NOCLIP checker; this will allow NOCLIP to always be on
+        # TODO(sestren): Use ['Settings']['Enable NOCLIP mode'] = True instead
         changes['Constants']['Set initial NOCLIP value'] = 0xAC258850
         # Apply castle map drawing grid to changes
         changes['Castle Map'] = []
