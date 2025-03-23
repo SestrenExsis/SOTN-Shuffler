@@ -91,9 +91,10 @@ boss_teleporters = {
 }
 
 
-def shuffle_teleporters(teleporters) -> dict:
+def shuffle_teleporters(teleporters, seed: int) -> dict:
+    rng = random.Random(seed)
+    # print('Shuffle teleporters')
     MAX_LAYER = 5
-    print('*** Shuffle teleporters ***')
     exclusions = (
         'Castle Center, Fake Room with Teleporter to Marble Gallery',
         'Castle Entrance Revisited, Fake Room with Teleporter to Alchemy Laboratory',
@@ -161,7 +162,7 @@ def shuffle_teleporters(teleporters) -> dict:
                 else:
                     pass
                 continue
-            source_a_key = random.choice(list(sorted(possible_choices)))
+            source_a_key = rng.choice(list(sorted(possible_choices)))
             work.remove(source_a_key)
             source_a = sources[source_a_key]
             if source_a['Stage'] not in stages:
@@ -191,7 +192,7 @@ def shuffle_teleporters(teleporters) -> dict:
                 if current_layer > MAX_LAYER:
                     break
                 continue
-            source_b_key = random.choice(list(sorted(source_b_candidates)))
+            source_b_key = rng.choice(list(sorted(source_b_candidates)))
             source_b = sources[source_b_key]
             if source_b['Stage'] not in stages:
                 stages[source_b['Stage']] = set()
@@ -199,21 +200,16 @@ def shuffle_teleporters(teleporters) -> dict:
             stages[source_b['Stage']].add(source_a['Stage'])
             sources.pop(source_a_key)
             sources.pop(source_b_key)
-            # print('  - ', 'source A:', source_a_key)
-            # print('  - ', 'source B:', source_b_key)
             if source_b_key in work:
                 work.remove(source_b_key)
             connections.add((source_a_key, source_b_key))
             connections.add((source_b_key, source_a_key))
             for (next_source_key, next_source) in sources.items():
                 if next_source['Stage'] in source_b['Stage']:
-                    # print('    ', 'add to work:', next_source_key)
                     work.add(next_source_key)
-        # print(len(sources))
         if len(sources) < 1:
             break
     for (source_a_key, source_b_key) in connections:
-        print((source_a_key, source_b_key))
         teleporters['Sources'][source_a_key]['Target'] = teleporters['Sources'][source_b_key]['Return']
         teleporters['Sources'][source_b_key]['Target'] = teleporters['Sources'][source_a_key]['Return']
         if source_a_key.startswith('Castle Entrance, '):
@@ -222,7 +218,6 @@ def shuffle_teleporters(teleporters) -> dict:
         if source_b_key.startswith('Castle Entrance, '):
             alt_source_key = 'Castle Entrance Revisited' + source_b_key[len('Castle Entrance'):]
             teleporters['Sources'][alt_source_key]['Target'] = teleporters['Sources'][source_a_key]['Return']
-    print('*** Teleporter arrangement found! ***')
 
 if __name__ == '__main__':
     '''
@@ -231,6 +226,7 @@ if __name__ == '__main__':
     '''
     parser = argparse.ArgumentParser()
     parser.add_argument('stage_validations', help='Input a filepath to the stage validations YAML file', type=str)
+    parser.add_argument('--seed', help='Input an optional starting seed', type=str)
     stage_validations = {}
     validation_results = {}
     validation_results_filepath = os.path.join('build', 'shuffler', 'validation_results.json')
@@ -246,8 +242,10 @@ if __name__ == '__main__':
     MAX_MAP_ROW = 55
     MIN_MAP_COL = 0
     MAX_MAP_COL = 63
+    initial_seed = args.seed
+    if initial_seed is None:
+        initial_seed = str(random.randint(0, 2 ** 64))
     # Keep randomizing until a solution is found
-    initial_seed = random.randint(0, 2 ** 64)
     global_rng = random.Random(initial_seed)
     shuffler = {
         'Initial Seed': initial_seed,
@@ -256,7 +254,6 @@ if __name__ == '__main__':
     }
     invalid_stage_files = set()
     while True:
-        print('')
         shuffler['Stages'] = {}
         # Randomize
         stages = {
@@ -281,7 +278,8 @@ if __name__ == '__main__':
         teleporters = None
         if SHUFFLE_STAGE_CONNECTIONS:
             teleporters = {}
-            shuffle_teleporters(mapper_core['Teleporters'])
+            next_seed = global_rng.randint(0, 2 ** 64)
+            shuffle_teleporters(mapper_core['Teleporters'], next_seed)
             for (source_name, source) in mapper_core['Teleporters']['Sources'].items():
                 if source_name in (
                     'Castle Center, Fake Room with Teleporter to Marble Gallery',
@@ -298,12 +296,13 @@ if __name__ == '__main__':
                     'Room': target['Stage'] + ', ' + target['Room'],
                     'Stage': target['Stage'],
                 }
-        print('Set starting seeds for each stage')
+        # print('Set starting seeds for each stage')
         for stage_name in sorted(stages.keys()):
-            stages[stage_name]['Initial Seed'] = global_rng.randint(0, 2 ** 64)
+            next_seed = global_rng.randint(0, 2 ** 64)
+            stages[stage_name]['Initial Seed'] = next_seed
             stages[stage_name]['RNG'] = random.Random(stages[stage_name]['Initial Seed'])
-            print('', stage_name, stages[stage_name]['Initial Seed'])
-        print('Randomize stages with starting seeds')
+            # print('', stage_name, stages[stage_name]['Initial Seed'])
+        # print('Randomize stages with starting seeds')
         for stage_name in sorted(stages.keys()):
             # TODO(sestren): Add SKIP and ONLY to tests
             directory_listing = os.listdir(os.path.join('build', 'shuffler', stage_name))
@@ -312,14 +311,14 @@ if __name__ == '__main__':
                 name.endswith('.json') and
                 (stage_name, name[:-len('.json')]) not in invalid_stage_files
             )
-            print('', stage_name, len(file_listing), stages[stage_name]['Initial Seed'])
+            # print('', stage_name, len(file_listing), stages[stage_name]['Initial Seed'])
             assert len(file_listing) > 0
             # Keep randomly choosing a shuffled stage until one that passes all its validation checks is found
             # TODO(sestren): Allow validation of secondary stages like Castle Entrance Revisited or Reverse Keep
             max_unique_pass_count = 0
             while True:
                 all_valid_ind = True
-                chosen_file_name = stages[stage_name]['RNG'].choice(file_listing)
+                chosen_file_name = stages[stage_name]['RNG'].choice(list(sorted(file_listing)))
                 with open(os.path.join('build', 'shuffler', stage_name, chosen_file_name)) as mapper_data_json:
                     mapper_data = json.load(mapper_data_json)
                     mapper_data_json.close()
@@ -330,8 +329,7 @@ if __name__ == '__main__':
                 assert stages[stage_name]['Mapper'].validate()
                 hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
                 assert hash_of_rooms == mapper_data['Hash of Rooms']
-                print(' ', 'hash:', hash_of_rooms)
-                print('   ', stage_name, len(file_listing), max_unique_pass_count)
+                # print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), max_unique_pass_count)
                 changes = {
                     'Stages': {
                         stage_name: stage_changes,
@@ -366,11 +364,11 @@ if __name__ == '__main__':
                         )
                     validation_result = validation_results[stage_name][hash_of_rooms][hash_of_validation]
                     if validation_result:
-                        print('   ', '✅ ...', validation_name)
+                        # print('   ', '✅ ...', validation_name)
                         unique_passes.add(validation_name)
                         max_unique_pass_count = max(max_unique_pass_count, len(unique_passes))
                     else:
-                        print('   ', '❌ ...', validation_name)
+                        # print('   ', '❌ ...', validation_name)
                         all_valid_ind = False
                         break
                 if all_valid_ind:
@@ -388,7 +386,7 @@ if __name__ == '__main__':
                 'Stage': stage_name,
             }
         # Randomly place down stages one at a time
-        stage_names = list(stages.keys() - {'Warp Rooms'})
+        stage_names = list(sorted(stages.keys() - {'Warp Rooms'}))
         global_rng.shuffle(stage_names)
         valid_ind = False
         for (index, stage_name) in enumerate(stage_names):
@@ -429,11 +427,9 @@ if __name__ == '__main__':
                     if area == best_area:
                         best_stage_offsets.append((stage_top, stage_left))
             if best_area >= float('inf'):
-                print('******')
-                print('Could not find a suitable spot on the map for', stage_name)
-                print('******')
+                # print('Could not find a suitable spot on the map for', stage_name)
                 break
-            (stage_top, stage_left) = global_rng.choice(best_stage_offsets)
+            (stage_top, stage_left) = global_rng.choice(list(sorted(best_stage_offsets)))
             # cells = current_stage.get_cells(stage_top, stage_left)
             # prev_cells.union(cells)
             (top, left, bottom, right) = current_stage.get_bounds()
@@ -443,25 +439,19 @@ if __name__ == '__main__':
                 MIN_MAP_COL <= stage_left + left < MAX_MAP_COL and
                 MIN_MAP_COL <= stage_left + right < MAX_MAP_COL
             ):
-                print('******')
-                print(stage_name, 'could not be placed within the bounds of the map')
-                print('******')
+                # print(stage_name, 'could not be placed within the bounds of the map')
                 break
             current_cells = current_stage.get_cells(stage_top, stage_left)
             if len(current_cells.intersection(prev_cells)) > 0:
-                print('******')
-                print(stage_name, 'could not be placed without overlapping with another stage')
-                print('******')
+                # print(stage_name, 'could not be placed without overlapping with another stage')
                 break
             stages[stage_name]['Stage Top'] = stage_top
             stages[stage_name]['Stage Left'] = stage_left
-            print('>>>', stage_name, (stage_top, stage_left))
+            # print('>>>', stage_name, (stage_top, stage_left))
         else:
             valid_ind = True
         if not valid_ind:
-            print('******')
-            print('Gave up trying to find a valid arrangement of the stages; starting over from scratch')
-            print('******')
+            # print('Gave up trying to find a valid arrangement of the stages; starting over from scratch')
             continue
         changes = {
             'Boss Teleporters': {},
@@ -573,21 +563,18 @@ if __name__ == '__main__':
                         if (0 <= row < 256) and (0 <= col < 256):
                             castle_map[row][col] = char
                         else:
-                            print('Tried to draw pixel out of bounds of map:', room_name, (room_top, room_left), (row, col))
+                            # print('Tried to draw pixel out of bounds of map:', room_name, (room_top, room_left), (row, col))
+                            pass
         links = {}
         for (index, stage_name) in enumerate(stage_names):
             if stage_name.startswith('Warp Rooms, '):
                 continue
-            print('***', '', stage_name)
             stage = stages[stage_name]
             stage_changes = stage['Mapper'].stage.get_changes()
             for room_name in stage_changes['Rooms']:
                 if 'Loading Room' in room_name:
-                    print('***', '  -', 'LOADING:', room_name)
                     fake_room_name = stage_name + ', Fake Room with Teleporter to ' + room_name[room_name.find('Loading Room to ') + len('Loading Room to '):]
-                    print('***', '  -', 'fake_room_name:', fake_room_name)
                     return_name = mapper_core['Teleporters']['Sources'][fake_room_name]['Return']
-                    print('***', '  -', 'return_name:', return_name)
                     for (source_room_name, source_room) in mapper_core['Teleporters']['Sources'].items():
                         if source_room['Target'] == return_name:
                             source_room_stage = source_room['Stage']
@@ -597,12 +584,10 @@ if __name__ == '__main__':
                             #     source_room = changes['Stages'][source_room_stage]['Rooms'][source_room_name]
                             # TODO(sestren): Figure out why this throws KeyErrors on 'Castle Entrance Revisited, Fake Room with Teleporter to Underground Caverns'
                             source_loading_room = source_room_name.replace('Fake Room with Teleporter', 'Loading Room').replace('Castle Entrance Revisited', 'Castle Entrance')
-                            # print('***', '  -', 'source_room_name:', source_room_name)
                             code = 'CDHIJKLNOSTUVXYZ147+-|###'[len(links)]
                             rooms = tuple(sorted((room_name, source_loading_room)))
                             if rooms in links:
                                 continue
-                            print(len(links), code, rooms)
                             drawing = [
                                 '444 44d 4d4 444 444 4d4 4dd 444 444 d44 444 4d4 4d4 4d4 4d4 44d d4d 4d4 444 d4d ddd d4d 444 444 444 ',
                                 '4dd 4d4 444 d4d d4d 44d 4dd 4d4 4d4 d4d d4d 4d4 4d4 d4d d4d d4d d4d 444 dd4 444 444 d4d 444 444 444 ',
@@ -700,7 +685,8 @@ if __name__ == '__main__':
                     source_rows = mapper_core['Rooms'][room_name]['Rows']
                     source_cols = mapper_core['Rooms'][room_name]['Columns']
                 else:
-                    print('room_name not found:', room_name)
+                    # print('room_name not found:', room_name)
+                    pass
                 changes['Stages'][reversed_stage_name]['Rooms'][reversed_room_name] = {
                     'Top': 63 - source_top - (source_rows - 1),
                     'Left': 63 - source_left - (source_cols - 1),

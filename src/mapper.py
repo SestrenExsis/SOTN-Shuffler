@@ -778,7 +778,7 @@ stages = {
 
 class MapperData:
     def __init__(self):
-        print('Build data core')
+        # print('Build data core')
         self.rooms = {}
         self.teleporters = {}
         for stage_folder in (
@@ -1181,6 +1181,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     print('')
     print(args.stage_name, args.stage_count)
+    # TODO(sestren): Move into standardized randomization
     seed = random.randint(0, 2 ** 64)
     directory_listing = os.listdir(os.path.join('build', 'shuffler', args.stage_name))
     file_listing = list(
