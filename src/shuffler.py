@@ -55,12 +55,6 @@ skills = {
     "Technique - Pixel-Perfect Diagonal Gravity Jump Through Narrow Gap": True,
 }
 
-settings = {
-    'Assign Power of Wolf Relic a Unique ID': True,
-    'Enable Debug Mode': True,
-    'Skip Maria Cutscene in Alchemy Laboratory': True,
-}
-
 # NOTE(sestren): There is only one boss teleporter in the game data for the following bosses,
 # NOTE(sestren): despite there being multiple entrances, so not all entrances will be covered:
 # NOTE(sestren): Granfaloon, Akmodan II, Olrox, Galamoth
@@ -228,22 +222,25 @@ def shuffle_teleporters(teleporters, seed: int) -> dict:
 if __name__ == '__main__':
     '''
     Usage
-    python shuffler.py
+    python shuffler.py SETTINGS STAGE_VALIDATIONS --seed SEED
     '''
     parser = argparse.ArgumentParser()
+    parser.add_argument('settings', help='Input a filepath to the shuffler settings YAML file', type=str)
     parser.add_argument('stage_validations', help='Input a filepath to the stage validations YAML file', type=str)
     parser.add_argument('--seed', help='Input an optional starting seed', type=str)
+    settings = {}
     stage_validations = {}
     validation_results = {}
     validation_results_filepath = os.path.join('build', 'shuffler', 'validation_results.json')
     args = parser.parse_args()
     with (
-        open(validation_results_filepath) as validation_results_json,
+        open(args.settings) as settings_file,
         open(args.stage_validations) as stage_validations_file,
+        open(validation_results_filepath) as validation_results_json,
     ):
+        settings = yaml.safe_load(settings_file)
         stage_validations = yaml.safe_load(stage_validations_file)
         validation_results = json.load(validation_results_json)
-    SHUFFLE_STAGE_CONNECTIONS = True
     MIN_MAP_ROW = 5
     MAX_MAP_ROW = 55
     MIN_MAP_COL = 0
@@ -255,6 +252,7 @@ if __name__ == '__main__':
     global_rng = random.Random(initial_seed)
     shuffler = {
         'Initial Seed': initial_seed,
+        'Settings': settings,
         'Start Time': datetime.datetime.now(datetime.timezone.utc),
         'Stages': {},
     }
@@ -282,10 +280,11 @@ if __name__ == '__main__':
         mapper_core = mapper.MapperData().get_core()
         # Calculate teleporter changes
         teleporters = None
-        if SHUFFLE_STAGE_CONNECTIONS:
+        # Generate the seed regardless, so RNG can be independent of the setting
+        stage_randomizer_seed = global_rng.randint(0, 2 ** 64)
+        if settings.get('Stage connections are randomized', False):
             teleporters = {}
-            next_seed = global_rng.randint(0, 2 ** 64)
-            shuffle_teleporters(mapper_core['Teleporters'], next_seed)
+            shuffle_teleporters(mapper_core['Teleporters'], stage_randomizer_seed)
             for (source_name, source) in mapper_core['Teleporters']['Sources'].items():
                 if source_name in (
                     'Castle Center, Fake Room with Teleporter to Marble Gallery',
@@ -459,10 +458,19 @@ if __name__ == '__main__':
         if not valid_ind:
             # print('Gave up trying to find a valid arrangement of the stages; starting over from scratch')
             continue
+        # Some settings are Shuffler-specific, while the rest get passed down to the Patcher as options
+        options = {}
+        for (setting_key, setting_value) in settings.items():
+            if setting_key in (
+                'Assign Power of Wolf relic a unique ID',
+                'Enable debug mode',
+                'Skip Maria cutscene in Alchemy Laboratory',
+            ):
+                options[setting_key] = setting_value
         changes = {
             'Boss Teleporters': {},
             'Castle Map': [],
-            'Settings': settings,
+            'Options': options,
             'Stages': {},
             'Teleporters': teleporters,
         }
