@@ -50,8 +50,15 @@ def get_room_drawing(mapper_core, room_name) -> list[str]:
     return result
 
 rules = {}
+
 skills = {
     "Technique - Pixel-Perfect Diagonal Gravity Jump Through Narrow Gap": True,
+}
+
+settings = {
+    'Assign Power of Wolf Relic a Unique ID': True,
+    'Enable Debug Mode': True,
+    'Skip Maria Cutscene in Alchemy Laboratory': True,
 }
 
 # NOTE(sestren): There is only one boss teleporter in the game data for the following bosses,
@@ -89,7 +96,6 @@ boss_teleporters = {
     '26': ('Death Wing\'s Lair', 'Death Wing\'s Lair, Olrox\'s Room', 1, 0), # Boss - Akmodan II
     '27': ('Floating Catacombs', 'Floating Catacombs, Granfaloon\'s Lair', 1, 0), # Boss - Galamoth
 }
-
 
 def shuffle_teleporters(teleporters, seed: int) -> dict:
     rng = random.Random(seed)
@@ -456,7 +462,7 @@ if __name__ == '__main__':
         changes = {
             'Boss Teleporters': {},
             'Castle Map': [],
-            'Constants': {},
+            'Settings': settings,
             'Stages': {},
             'Teleporters': teleporters,
         }
@@ -698,9 +704,6 @@ if __name__ == '__main__':
                 'Room Y': source_room['Top'] + offset_top,
                 'Room X': source_room['Left'] + offset_left,
             }
-        # Disable NOCLIP checker; this will allow NOCLIP to always be on
-        # TODO(sestren): Use ['Settings']['Enable NOCLIP mode'] = True instead
-        changes['Constants']['Set initial NOCLIP value'] = 0xAC258850
         # Apply castle map drawing grid to changes
         changes['Castle Map'] = []
         for row in range(len(castle_map)):
@@ -710,32 +713,6 @@ if __name__ == '__main__':
         changes['Strings'] = {
             '10': 'Press L2 if softlocked.     ',
             '11': 'Alpha Build 73      ',
-        }
-        # Patch - Skip Maria cutscene in Alchemy Laboratory to prevent softlocks when approaching from the left side
-        changes['Constants']['Should skip Maria Alchemy Laboratory'] = 0x0806E296
-        # Patch - Assign Power of Wolf Relic its own ID (was previously duplicating the trap door's ID)
-        # https://github.com/SestrenExsis/SOTN-Shuffler/issues/36
-        room = changes['Stages']['Castle Entrance Revisited']['Rooms']['Castle Entrance Revisited, After Drawbridge']
-        room['Object Layout - Horizontal'] = {
-            '12': {
-                'Entity Room Index': 18,
-            },
-        }
-        room['Object Layout - Vertical'] = {
-            '1': {
-                'Entity Room Index': 18,
-            },
-        }
-        room = changes['Stages']['Castle Entrance']['Rooms']['Castle Entrance, After Drawbridge']
-        room['Object Layout - Horizontal'] = {
-            '10': {
-                'Entity Room Index': 18,
-            },
-        }
-        room['Object Layout - Vertical'] = {
-            '1': {
-                'Entity Room Index': 18,
-            },
         }
         # ...
         shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)
