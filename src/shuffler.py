@@ -91,6 +91,7 @@ boss_teleporters = {
     '27': ('Floating Catacombs', 'Floating Catacombs, Granfaloon\'s Lair', 1, 0), # Boss - Galamoth
 }
 
+# Shuffle connections between stages
 def shuffle_teleporters(teleporters, seed: int) -> dict:
     rng = random.Random(seed)
     # print('Shuffle teleporters')

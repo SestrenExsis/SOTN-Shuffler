@@ -1,5 +1,8 @@
-
-Stage connections are randomized: true
-Assign Power of Wolf relic a unique ID: true
-Enable debug mode: true
-Skip Maria cutscene in Alchemy Laboratory: true
+---
+Options:
+    Assign Power of Wolf relic a unique ID: true
+    Clock hands show minutes and seconds instead of hours and minutes: true
+    Enable debug mode: true
+    Skip Maria cutscene in Alchemy Laboratory: true
+Stage shuffler:
+    Shuffle connections between stages: true
