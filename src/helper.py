@@ -48,7 +48,7 @@ def get_room_drawing(mapper_core, room_name) -> list[str]:
 if __name__ == '__main__':
     '''
     Usage
-    python shuffler.py
+    python helper.py
     '''
     mapper_core = mapper.MapperData().get_core()
     for folder_name in (

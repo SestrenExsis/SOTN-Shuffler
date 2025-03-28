@@ -2,6 +2,10 @@
 
 A tool for shuffling the locations of rooms in SOTN, in the form of change files. Intended to be used in conjunction with the [SOTN Patcher](https://github.com/SestrenExsis/SOTN-Patcher) tool, which turns those JSON files into patch (PPF) files.
 
+## JSON and YAML files
+
+This project makes use of both JSON and YAML files. In general, if a file has been created by hand, it will be a YAML file, and if a file was program-generated, it will be a JSON file.
+
 ## Current status of the project
 
 This project is still actively in the prototyping phase of development. It almost definitely has bugs, will cause softlocks, and may even corrupt the game BIN in its current state. Use at your own risk.

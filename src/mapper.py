@@ -258,6 +258,87 @@ class RoomSet:
 
 stages = {
     # NOTE(sestren): Loading Room and Fake Rooms use the name of the stage they lead to in First Castle to determine their shared canonical names
+    'Abandoned Mine': [
+        {
+            'Abandoned Mine, Wolf\'s Head Column': (32 + 0, 32 + 0),
+            'Abandoned Mine, Loading Room to Underground Caverns': (32 + 0, 32 + 1),
+            'Abandoned Mine, Fake Room with Teleporter to Underground Caverns': (32 + 0, 32 + 2),
+        },
+        {
+            'Abandoned Mine, Four-Way Intersection': (0, 0),
+            'Abandoned Mine, Loading Room to Warp Rooms': (0 + 0, 0 + 3),
+            'Abandoned Mine, Fake Room with Teleporter to Warp Rooms': (0 + 0, 0 + 4),
+        },
+        {
+            'Abandoned Mine, Fake Room with Teleporter to Catacombs': (1 + 0, 0 + 0),
+            'Abandoned Mine, Loading Room to Catacombs': (1 + 0, 0 + 1),
+            'Abandoned Mine, Bend': (0, 2),
+        },
+        {
+            # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
+            'Abandoned Mine, Well-Lit Skull Room': (0, 0),
+            'Abandoned Mine, Cerberus Room': (0, 2),
+            'Abandoned Mine, Crumbling Stairwells With Demon Switch': (0, 4),
+        },
+        { 'Abandoned Mine, Venus Weed Room': (0, 0) },
+        { 'Abandoned Mine, Snake Column': (0, 0) },
+        { 'Abandoned Mine, Peanuts Room': (0, 0) },
+        { 'Abandoned Mine, Crumbling Stairwells With Mushrooms': (0, 0) },
+        { 'Abandoned Mine, Karma Coin Room': (0, 0) },
+        { 'Abandoned Mine, Demon Card Room': (0, 0) },
+        { 'Abandoned Mine, Save Room A': (0, 0) },
+    ],
+    'Alchemy Laboratory': [
+        {
+            'Alchemy Laboratory, Entryway': (32 + 0, 32 + 0),
+            'Alchemy Laboratory, Loading Room to Castle Entrance': (32 + 0, 32 + 3),
+            'Alchemy Laboratory, Fake Room with Teleporter to Castle Entrance': (32 + 0, 32 + 4),
+        },
+        {
+            'Alchemy Laboratory, Fake Room with Teleporter to Royal Chapel': (0, 0),
+            'Alchemy Laboratory, Loading Room to Royal Chapel': (0, 1),
+            'Alchemy Laboratory, Exit to Royal Chapel': (0, 2),
+        },
+        {
+            'Alchemy Laboratory, Exit to Marble Gallery': (0, 0),
+            'Alchemy Laboratory, Loading Room to Marble Gallery': (1, 2),
+            'Alchemy Laboratory, Fake Room with Teleporter to Marble Gallery': (1, 3),
+        },
+        {
+            'Alchemy Laboratory, Tall Spittlebone Room': (1, 0),
+            'Alchemy Laboratory, Slogra and Gaibon Room': (1, 1),
+            'Alchemy Laboratory, Tetromino Room': (0, 5),
+            'Alchemy Laboratory, Bat Card Room': (1, 5),
+        },
+        { 'Alchemy Laboratory, Bloody Zombie Hallway': (0, 0) },
+        { 'Alchemy Laboratory, Blue Door Hallway': (0, 0) },
+        { 'Alchemy Laboratory, Box Puzzle Room': (0, 0) },
+        { 'Alchemy Laboratory, Cannon Room': (0, 0) },
+        { 'Alchemy Laboratory, Cloth Cape Room': (0, 0) },
+        { 'Alchemy Laboratory, Corridor to Elevator': (0, 0) },
+        { 'Alchemy Laboratory, Elevator Shaft': (0, 0) },
+        { 'Alchemy Laboratory, Empty Zig Zag Room': (0, 0) },
+        { 'Alchemy Laboratory, Glass Vats': (0, 0) },
+        { 'Alchemy Laboratory, Heart Max-Up Room': (0, 0) },
+        { 'Alchemy Laboratory, Red Skeleton Lift Room': (0, 0) },
+        { 'Alchemy Laboratory, Save Room A': (0, 0) },
+        { 'Alchemy Laboratory, Save Room B': (0, 0) },
+        { 'Alchemy Laboratory, Save Room C': (0, 0) },
+        { 'Alchemy Laboratory, Secret Life Max-Up Room': (0, 0) },
+        { 'Alchemy Laboratory, Short Zig Zag Room': (0, 0) },
+        { 'Alchemy Laboratory, Skill of Wolf Room': (0, 0) },
+        { 'Alchemy Laboratory, Sunglasses Room': (0, 0) },
+        { 'Alchemy Laboratory, Tall Zig Zag Room': (0, 0) },
+    ],
+    'Castle Center': [
+        {
+            'Castle Center, Fake Room with Teleporter to Marble Gallery': (27 + 0, 32 + 0),
+            'Castle Center, Elevator Shaft': (27 + 1, 32 + 0),
+            'Castle Center, Center Cube': (27 + 3, 32 - 1),
+            'Castle Center, Fake Room with Teleporter to BO6': (27 + 4, 32 + 2),
+            'Castle Center, Unknown Room ID 02': (27 + 6, 32 + 0),
+        },
+    ],
     'Castle Entrance': [
         # NOTE(sestren): For now, these rooms are not being added to the mapper
         # { 'Castle Entrance, Forest Cutscene': (44, 0) },
@@ -302,47 +383,142 @@ stages = {
         { 'Castle Entrance, Warg Hallway': (0, 0) },
         { 'Castle Entrance, Zombie Hallway': (0, 0) },
     ],
-    'Alchemy Laboratory': [
+    'Castle Keep': [
         {
-            'Alchemy Laboratory, Entryway': (32 + 0, 32 + 0),
-            'Alchemy Laboratory, Loading Room to Castle Entrance': (32 + 0, 32 + 3),
-            'Alchemy Laboratory, Fake Room with Teleporter to Castle Entrance': (32 + 0, 32 + 4),
+            'Castle Keep, Keep Area': (32 + 0, 32 + 2),
+            'Castle Keep, Upper Attic': (32 + 1, 32 + 5),
+            'Castle Keep, Lower Attic': (32 + 2, 32 + 6),
+            'Castle Keep, Loading Room to Royal Chapel': (32 + 7, 32 + 1),
+            'Castle Keep, Fake Room with Teleporter to Royal Chapel': (32 + 7, 32 + 0),
         },
         {
-            'Alchemy Laboratory, Fake Room with Teleporter to Royal Chapel': (0, 0),
-            'Alchemy Laboratory, Loading Room to Royal Chapel': (0, 1),
-            'Alchemy Laboratory, Exit to Royal Chapel': (0, 2),
+            'Castle Keep, Lion Torch Platform': (0 + 0, 0 + 0),
+            'Castle Keep, Loading Room to Clock Tower': (0 + 1, 0 + 1),
+            'Castle Keep, Fake Room with Teleporter to Clock Tower': (0 + 1, 0 + 2),
         },
         {
-            'Alchemy Laboratory, Exit to Marble Gallery': (0, 0),
-            'Alchemy Laboratory, Loading Room to Marble Gallery': (1, 2),
-            'Alchemy Laboratory, Fake Room with Teleporter to Marble Gallery': (1, 3),
+            'Castle Keep, Dual Platforms': (0 + 0, 0 + 0),
+            'Castle Keep, Loading Room to Warp Rooms': (0 + 1, 0 + 1),
+            'Castle Keep, Fake Room with Teleporter to Warp Rooms': (0 + 1, 0 + 2),
+        },
+        { 'Castle Keep, Bend': (0, 0) },
+        { 'Castle Keep, Falchion Room': (0, 0) },
+        { 'Castle Keep, Ghost Card Room': (0, 0) },
+        { 'Castle Keep, Save Room A': (0, 0) },
+        { 'Castle Keep, Tyrfing Room': (0, 0) },
+    ],
+    'Catacombs': [
+        {
+            'Catacombs, Exit to Abandoned Mine': (32 + 0, 32 + 0),
+            'Catacombs, Loading Room to Abandoned Mine': (32 + 0, 32 + 1),
+            'Catacombs, Fake Room with Teleporter to Abandoned Mine': (32 + 0, 32 + 2),
         },
         {
-            'Alchemy Laboratory, Tall Spittlebone Room': (1, 0),
-            'Alchemy Laboratory, Slogra and Gaibon Room': (1, 1),
-            'Alchemy Laboratory, Tetromino Room': (0, 5),
-            'Alchemy Laboratory, Bat Card Room': (1, 5),
+            # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
+            'Catacombs, Room ID 02': (1, 0),
+            'Catacombs, Granfaloon\'s Lair': (0, 1),
+            'Catacombs, Room ID 04': (0, 3),
         },
-        { 'Alchemy Laboratory, Bloody Zombie Hallway': (0, 0) },
-        { 'Alchemy Laboratory, Blue Door Hallway': (0, 0) },
-        { 'Alchemy Laboratory, Box Puzzle Room': (0, 0) },
-        { 'Alchemy Laboratory, Cannon Room': (0, 0) },
-        { 'Alchemy Laboratory, Cloth Cape Room': (0, 0) },
-        { 'Alchemy Laboratory, Corridor to Elevator': (0, 0) },
-        { 'Alchemy Laboratory, Elevator Shaft': (0, 0) },
-        { 'Alchemy Laboratory, Empty Zig Zag Room': (0, 0) },
-        { 'Alchemy Laboratory, Glass Vats': (0, 0) },
-        { 'Alchemy Laboratory, Heart Max-Up Room': (0, 0) },
-        { 'Alchemy Laboratory, Red Skeleton Lift Room': (0, 0) },
-        { 'Alchemy Laboratory, Save Room A': (0, 0) },
-        { 'Alchemy Laboratory, Save Room B': (0, 0) },
-        { 'Alchemy Laboratory, Save Room C': (0, 0) },
-        { 'Alchemy Laboratory, Secret Life Max-Up Room': (0, 0) },
-        { 'Alchemy Laboratory, Short Zig Zag Room': (0, 0) },
-        { 'Alchemy Laboratory, Skill of Wolf Room': (0, 0) },
-        { 'Alchemy Laboratory, Sunglasses Room': (0, 0) },
-        { 'Alchemy Laboratory, Tall Zig Zag Room': (0, 0) },
+        { 'Catacombs, Room ID 00': (0, 0) },
+        { 'Catacombs, Mormegil Room': (0, 0) },
+        { 'Catacombs, Room ID 05': (0, 0) },
+        { 'Catacombs, Small Gremlin Room': (0, 0) },
+        { 'Catacombs, Save Room A': (0, 0) },
+        { 'Catacombs, Walk Armor Room': (0, 0) },
+        { 'Catacombs, Icebrand Room': (0, 0) },
+        { 'Catacombs, Left Lava Path': (0, 0) },
+        { 'Catacombs, Ballroom Mask Room': (0, 0) },
+        { 'Catacombs, Right Lava Path': (0, 0) },
+        { 'Catacombs, Cat-Eye Circlet Room': (0, 0) },
+        { 'Catacombs, Room ID 14': (0, 0) },
+        { 'Catacombs, Save Room B': (0, 0) },
+        { 'Catacombs, Hellfire Beast Room': (0, 0) },
+        { 'Catacombs, Bone Ark Room': (0, 0) },
+        { 'Catacombs, Room ID 19': (0, 0) },
+        { 'Catacombs, Room ID 20': (0, 0) },
+        { 'Catacombs, Room ID 21': (0, 0) },
+        { 'Catacombs, Room ID 22': (0, 0) },
+        { 'Catacombs, Room ID 23': (0, 0) },
+        { 'Catacombs, Pitch Black Spike Maze': (0, 0) },
+        { 'Catacombs, Room ID 25': (0, 0) },
+        { 'Catacombs, Room ID 26': (0, 0) },
+        { 'Catacombs, Spike Breaker Room': (0, 0) },
+    ],
+    'Clock Tower': [
+        {
+            'Clock Tower, Fake Room with Teleporter to Castle Keep': (32 + 0, 32 + 0),
+            'Clock Tower, Loading Room to Castle Keep': (32 + 0, 32 + 1),
+            'Clock Tower, Karasuman\'s Room': (32 + 0, 32 + 2),
+        },
+        {
+            'Clock Tower, Stairwell to Outer Wall': (0, 0),
+            'Clock Tower, Loading Room to Outer Wall': (0, 1),
+            'Clock Tower, Fake Room with Teleporter to Outer Wall': (0, 2),
+        },
+        {
+            'Clock Tower, Spire': (0, 0),
+            'Clock Tower, Belfry': (2, 1),
+        },
+        {
+            'Clock Tower, Path to Karasuman': (0, 0),
+            'Clock Tower, Pendulum Room': (0, 2),
+        },
+        { 'Clock Tower, Healing Mail Room': (0, 0) },
+        { 'Clock Tower, Spire': (0, 0) },
+        { 'Clock Tower, Hidden Armory': (0, 0) },
+        { 'Clock Tower, Left Gear Room': (0, 0) },
+        { 'Clock Tower, Right Gear Room': (0, 0) },
+        { 'Clock Tower, Exit to Courtyard': (0, 0) },
+        { 'Clock Tower, Open Courtyard': (0, 0) },
+        { 'Clock Tower, Fire of Bat Room': (0, 0) },
+    ],
+    'Colosseum': [
+        {
+            # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
+            'Colosseum, Fake Room with Teleporter to Royal Chapel': (32 + 0, 32 + 0),
+            'Colosseum, Loading Room to Royal Chapel': (32 + 0, 32 + 1),
+            'Colosseum, Passageway Between Arena and Royal Chapel': (32 + 0, 32 + 2),
+            'Colosseum, Arena': (32 + 0, 32 + 7),
+            'Colosseum, Top of Elevator Shaft': (32 + 0, 32 + 9),
+            'Colosseum, Loading Room to Olrox\'s Quarters': (32 + 0, 32 + 14),
+            'Colosseum, Fake Room with Teleporter to Olrox\'s Quarters': (32 + 0, 32 + 15),
+            # NOTE(sestren): This room must be connected for now due to the two-room elevator
+            'Colosseum, Bottom of Elevator Shaft': (32 + 1, 32 + 9),
+        },
+        { 'Colosseum, Blade Master Room': (0, 0) },
+        { 'Colosseum, Blood Cloak Room': (0, 0) },
+        { 'Colosseum, Fountain Room': (0, 0) },
+        { 'Colosseum, Holy Sword Room': (0, 0) },
+        { 'Colosseum, Left-Side Armory': (0, 0) },
+        { 'Colosseum, Right-Side Armory': (0, 0) },
+        { 'Colosseum, Save Room A': (0, 0) },
+        { 'Colosseum, Save Room B': (0, 0) },
+        { 'Colosseum, Spiral Staircases': (0, 0) },
+        { 'Colosseum, Top of Left Spiral Staircase': (0, 0) },
+        { 'Colosseum, Top of Right Spiral Staircase': (0, 0) },
+        { 'Colosseum, Valhalla Knight Room': (0, 0) },
+    ],
+    'Long Library': [
+        {
+            'Long Library, Exit to Outer Wall': (32 + 0, 32 + 0),
+            'Long Library, Loading Room to Outer Wall': (32 + 0, 32 + 3),
+            'Long Library, Fake Room with Teleporter to Outer Wall': (32 + 0, 32 + 4),
+        },
+        {
+            'Long Library, Spellbook Area': (0, 0),
+            'Long Library, Foot of Staircase': (3, 2),
+        },
+        { 'Long Library, Lesser Demon Area': (0, 0) },
+        { 'Long Library, Secret Bookcase Room': (0, 0) },
+        { 'Long Library, Holy Rod Room': (0, 0) },
+        { 'Long Library, Dhuron and Flea Armor Room': (0, 0) },
+        { 'Long Library, Shop': (0, 0) },
+        { 'Long Library, Outside Shop': (0, 0) },
+        { 'Long Library, Flea Man Room': (0, 0) },
+        { 'Long Library, Faerie Card Room': (0, 0) },
+        { 'Long Library, Three Layer Room': (0, 0) },
+        { 'Long Library, Dhuron and Flea Man Room': (0, 0) },
+        { 'Long Library, Save Room A': (0, 0) },
     ],
     'Marble Gallery': [
         {
@@ -403,45 +579,6 @@ stages = {
         { 'Marble Gallery, Save Room A': (0, 0) },
         { 'Marble Gallery, Save Room B': (0, 0) },
     ],
-    'Outer Wall': [
-        {
-            'Outer Wall, Elevator Shaft Room': (32 + 0, 32 + 2),
-            'Outer Wall, Fake Room with Teleporter to Warp Rooms': (32 + 2, 32 + 1),
-            'Outer Wall, Loading Room to Warp Rooms': (32 + 2, 32 + 2),
-            'Outer Wall, Fake Room with Teleporter to Long Library': (32 + 6, 32 + 0),
-            'Outer Wall, Loading Room to Long Library': (32 + 6, 32 + 1),
-        },
-        {
-            'Outer Wall, Fake Room with Teleporter to Clock Tower': (0, 0),
-            'Outer Wall, Loading Room to Clock Tower': (0, 1),
-            'Outer Wall, Exit to Clock Tower': (0, 2),
-        },
-        {
-            'Outer Wall, Fake Room with Teleporter to Marble Gallery': (0, 0),
-            'Outer Wall, Loading Room to Marble Gallery': (0, 1),
-            'Outer Wall, Exit to Marble Gallery': (0, 2),
-        },
-        {
-            'Outer Wall, Lower Medusa Room': (0, 1),
-            'Outer Wall, Telescope Room': (3, 0),
-        },
-        {
-            # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
-            'Outer Wall, Garlic Room': (0, 0),
-            'Outer Wall, Doppelganger Room': (0, 1),
-            'Outer Wall, Gladius Room': (0, 3),
-        },
-        {
-            # NOTE(sestren): These rooms must be connected for now due to the secret platform moving between them
-            'Outer Wall, Secret Platform Room': (0, 0),
-            'Outer Wall, Jewel Knuckles Room': (1, 0),
-        },
-        { 'Outer Wall, Blue Axe Knight Room': (0, 0) },
-        { 'Outer Wall, Garnet Vase Room': (0, 0) },
-        { 'Outer Wall, Save Room A': (0, 0) },
-        { 'Outer Wall, Save Room B': (0, 0) },
-        { 'Outer Wall, Top of Outer Wall': (0, 0) },
-    ],
     'Olrox\'s Quarters': [
         {
             'Olrox\'s Quarters, Skelerang Room': (32 + 0, 32 + 0),
@@ -480,132 +617,44 @@ stages = {
         { 'Olrox\'s Quarters, Secret Onyx Room': (0, 0) },
         { 'Olrox\'s Quarters, Sword Card Room': (0, 0) },
     ],
-    'Colosseum': [
+    'Outer Wall': [
+        {
+            'Outer Wall, Elevator Shaft Room': (32 + 0, 32 + 2),
+            'Outer Wall, Fake Room with Teleporter to Warp Rooms': (32 + 2, 32 + 1),
+            'Outer Wall, Loading Room to Warp Rooms': (32 + 2, 32 + 2),
+            'Outer Wall, Fake Room with Teleporter to Long Library': (32 + 6, 32 + 0),
+            'Outer Wall, Loading Room to Long Library': (32 + 6, 32 + 1),
+        },
+        {
+            'Outer Wall, Fake Room with Teleporter to Clock Tower': (0, 0),
+            'Outer Wall, Loading Room to Clock Tower': (0, 1),
+            'Outer Wall, Exit to Clock Tower': (0, 2),
+        },
+        {
+            'Outer Wall, Fake Room with Teleporter to Marble Gallery': (0, 0),
+            'Outer Wall, Loading Room to Marble Gallery': (0, 1),
+            'Outer Wall, Exit to Marble Gallery': (0, 2),
+        },
+        {
+            'Outer Wall, Lower Medusa Room': (0, 1),
+            'Outer Wall, Telescope Room': (3, 0),
+        },
         {
             # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
-            'Colosseum, Fake Room with Teleporter to Royal Chapel': (32 + 0, 32 + 0),
-            'Colosseum, Loading Room to Royal Chapel': (32 + 0, 32 + 1),
-            'Colosseum, Passageway Between Arena and Royal Chapel': (32 + 0, 32 + 2),
-            'Colosseum, Arena': (32 + 0, 32 + 7),
-            'Colosseum, Top of Elevator Shaft': (32 + 0, 32 + 9),
-            'Colosseum, Loading Room to Olrox\'s Quarters': (32 + 0, 32 + 14),
-            'Colosseum, Fake Room with Teleporter to Olrox\'s Quarters': (32 + 0, 32 + 15),
-            # NOTE(sestren): This room must be connected for now due to the two-room elevator
-            'Colosseum, Bottom of Elevator Shaft': (32 + 1, 32 + 9),
-        },
-        { 'Colosseum, Blade Master Room': (0, 0) },
-        { 'Colosseum, Blood Cloak Room': (0, 0) },
-        { 'Colosseum, Fountain Room': (0, 0) },
-        { 'Colosseum, Holy Sword Room': (0, 0) },
-        { 'Colosseum, Left-Side Armory': (0, 0) },
-        { 'Colosseum, Right-Side Armory': (0, 0) },
-        { 'Colosseum, Save Room A': (0, 0) },
-        { 'Colosseum, Save Room B': (0, 0) },
-        { 'Colosseum, Spiral Staircases': (0, 0) },
-        { 'Colosseum, Top of Left Spiral Staircase': (0, 0) },
-        { 'Colosseum, Top of Right Spiral Staircase': (0, 0) },
-        { 'Colosseum, Valhalla Knight Room': (0, 0) },
-    ],
-    'Long Library': [
-        {
-            'Long Library, Exit to Outer Wall': (32 + 0, 32 + 0),
-            'Long Library, Loading Room to Outer Wall': (32 + 0, 32 + 3),
-            'Long Library, Fake Room with Teleporter to Outer Wall': (32 + 0, 32 + 4),
+            'Outer Wall, Garlic Room': (0, 0),
+            'Outer Wall, Doppelganger Room': (0, 1),
+            'Outer Wall, Gladius Room': (0, 3),
         },
         {
-            'Long Library, Spellbook Area': (0, 0),
-            'Long Library, Foot of Staircase': (3, 2),
+            # NOTE(sestren): These rooms must be connected for now due to the secret platform moving between them
+            'Outer Wall, Secret Platform Room': (0, 0),
+            'Outer Wall, Jewel Knuckles Room': (1, 0),
         },
-        { 'Long Library, Lesser Demon Area': (0, 0) },
-        { 'Long Library, Secret Bookcase Room': (0, 0) },
-        { 'Long Library, Holy Rod Room': (0, 0) },
-        { 'Long Library, Dhuron and Flea Armor Room': (0, 0) },
-        { 'Long Library, Shop': (0, 0) },
-        { 'Long Library, Outside Shop': (0, 0) },
-        { 'Long Library, Flea Man Room': (0, 0) },
-        { 'Long Library, Faerie Card Room': (0, 0) },
-        { 'Long Library, Three Layer Room': (0, 0) },
-        { 'Long Library, Dhuron and Flea Man Room': (0, 0) },
-        { 'Long Library, Save Room A': (0, 0) },
-    ],
-    'Clock Tower': [
-        {
-            'Clock Tower, Fake Room with Teleporter to Castle Keep': (32 + 0, 32 + 0),
-            'Clock Tower, Loading Room to Castle Keep': (32 + 0, 32 + 1),
-            'Clock Tower, Karasuman\'s Room': (32 + 0, 32 + 2),
-        },
-        {
-            'Clock Tower, Stairwell to Outer Wall': (0, 0),
-            'Clock Tower, Loading Room to Outer Wall': (0, 1),
-            'Clock Tower, Fake Room with Teleporter to Outer Wall': (0, 2),
-        },
-        {
-            'Clock Tower, Spire': (0, 0),
-            'Clock Tower, Belfry': (2, 1),
-        },
-        {
-            'Clock Tower, Path to Karasuman': (0, 0),
-            'Clock Tower, Pendulum Room': (0, 2),
-        },
-        { 'Clock Tower, Healing Mail Room': (0, 0) },
-        { 'Clock Tower, Spire': (0, 0) },
-        { 'Clock Tower, Hidden Armory': (0, 0) },
-        { 'Clock Tower, Left Gear Room': (0, 0) },
-        { 'Clock Tower, Right Gear Room': (0, 0) },
-        { 'Clock Tower, Exit to Courtyard': (0, 0) },
-        { 'Clock Tower, Open Courtyard': (0, 0) },
-        { 'Clock Tower, Fire of Bat Room': (0, 0) },
-    ],
-    'Warp Rooms': [
-        {
-            'Warp Rooms, Warp Room to Castle Entrance': (38 + 0, 15 + 0),
-            'Warp Rooms, Loading Room to Castle Entrance': (38 + 0, 15 + 1),
-            'Warp Rooms, Fake Room with Teleporter to Castle Entrance': (38 + 0, 15 + 2),
-        },
-        {
-            'Warp Rooms, Fake Room with Teleporter to Castle Keep': (12 + 0, 38 + 0),
-            'Warp Rooms, Loading Room to Castle Keep': (12 + 0, 38 + 1),
-            'Warp Rooms, Warp Room to Castle Keep': (12 + 0, 38 + 2),
-        },
-        {
-            'Warp Rooms, Fake Room with Teleporter to Olrox\'s Quarters': (21 + 0, 35 + 0),
-            'Warp Rooms, Loading Room to Olrox\'s Quarters': (21 + 0, 35 + 1),
-            'Warp Rooms, Warp Room to Olrox\'s Quarters': (21 + 0, 35 + 2),
-        },
-        {
-            'Warp Rooms, Warp Room to Outer Wall': (17 + 0, 59 + 0),
-            'Warp Rooms, Loading Room to Outer Wall': (17 + 0, 59 + 1),
-            'Warp Rooms, Fake Room with Teleporter to Outer Wall': (17 + 0, 59 + 2),
-        },
-        {
-            'Warp Rooms, Fake Room with Teleporter to Abandoned Mine': (44 + 0, 33 + 0),
-            'Warp Rooms, Loading Room to Abandoned Mine': (44 + 0, 33 + 1),
-            'Warp Rooms, Warp Room to Abandoned Mine': (44 + 0, 33 + 2),
-        },
-    ],
-    'Castle Keep': [
-        {
-            'Castle Keep, Keep Area': (32 + 0, 32 + 2),
-            'Castle Keep, Upper Attic': (32 + 1, 32 + 5),
-            'Castle Keep, Lower Attic': (32 + 2, 32 + 6),
-            'Castle Keep, Loading Room to Royal Chapel': (32 + 7, 32 + 1),
-            'Castle Keep, Fake Room with Teleporter to Royal Chapel': (32 + 7, 32 + 0),
-        },
-        {
-            'Castle Keep, Lion Torch Platform': (0 + 0, 0 + 0),
-            'Castle Keep, Loading Room to Clock Tower': (0 + 1, 0 + 1),
-            'Castle Keep, Fake Room with Teleporter to Clock Tower': (0 + 1, 0 + 2),
-        },
-        {
-            'Castle Keep, Dual Platforms': (0 + 0, 0 + 0),
-            'Castle Keep, Loading Room to Warp Rooms': (0 + 1, 0 + 1),
-            'Castle Keep, Fake Room with Teleporter to Warp Rooms': (0 + 1, 0 + 2),
-        },
-        { 'Castle Keep, Bend': (0, 0) },
-        { 'Castle Keep, Falchion Room': (0, 0) },
-        { 'Castle Keep, Ghost Card Room': (0, 0) },
-        { 'Castle Keep, Save Room A': (0, 0) },
-        { 'Castle Keep, Tyrfing Room': (0, 0) },
+        { 'Outer Wall, Blue Axe Knight Room': (0, 0) },
+        { 'Outer Wall, Garnet Vase Room': (0, 0) },
+        { 'Outer Wall, Save Room A': (0, 0) },
+        { 'Outer Wall, Save Room B': (0, 0) },
+        { 'Outer Wall, Top of Outer Wall': (0, 0) },
     ],
     'Royal Chapel': [
         {
@@ -698,87 +747,38 @@ stages = {
         { 'Underground Caverns, Waterfall': (0, 0) },
         { 'Underground Caverns, Bandanna Room': (0, 0) },
     ],
-    'Abandoned Mine': [
+    'Warp Rooms': [
         {
-            'Abandoned Mine, Wolf\'s Head Column': (32 + 0, 32 + 0),
-            'Abandoned Mine, Loading Room to Underground Caverns': (32 + 0, 32 + 1),
-            'Abandoned Mine, Fake Room with Teleporter to Underground Caverns': (32 + 0, 32 + 2),
+            'Warp Rooms, Warp Room to Castle Entrance': (38 + 0, 15 + 0),
+            'Warp Rooms, Loading Room to Castle Entrance': (38 + 0, 15 + 1),
+            'Warp Rooms, Fake Room with Teleporter to Castle Entrance': (38 + 0, 15 + 2),
         },
         {
-            'Abandoned Mine, Four-Way Intersection': (0, 0),
-            'Abandoned Mine, Loading Room to Warp Rooms': (0 + 0, 0 + 3),
-            'Abandoned Mine, Fake Room with Teleporter to Warp Rooms': (0 + 0, 0 + 4),
+            'Warp Rooms, Fake Room with Teleporter to Castle Keep': (12 + 0, 38 + 0),
+            'Warp Rooms, Loading Room to Castle Keep': (12 + 0, 38 + 1),
+            'Warp Rooms, Warp Room to Castle Keep': (12 + 0, 38 + 2),
         },
         {
-            'Abandoned Mine, Fake Room with Teleporter to Catacombs': (1 + 0, 0 + 0),
-            'Abandoned Mine, Loading Room to Catacombs': (1 + 0, 0 + 1),
-            'Abandoned Mine, Bend': (0, 2),
+            'Warp Rooms, Fake Room with Teleporter to Olrox\'s Quarters': (21 + 0, 35 + 0),
+            'Warp Rooms, Loading Room to Olrox\'s Quarters': (21 + 0, 35 + 1),
+            'Warp Rooms, Warp Room to Olrox\'s Quarters': (21 + 0, 35 + 2),
         },
         {
-            # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
-            'Abandoned Mine, Well-Lit Skull Room': (0, 0),
-            'Abandoned Mine, Cerberus Room': (0, 2),
-            'Abandoned Mine, Crumbling Stairwells With Demon Switch': (0, 4),
+            'Warp Rooms, Warp Room to Outer Wall': (17 + 0, 59 + 0),
+            'Warp Rooms, Loading Room to Outer Wall': (17 + 0, 59 + 1),
+            'Warp Rooms, Fake Room with Teleporter to Outer Wall': (17 + 0, 59 + 2),
         },
-        { 'Abandoned Mine, Venus Weed Room': (0, 0) },
-        { 'Abandoned Mine, Snake Column': (0, 0) },
-        { 'Abandoned Mine, Peanuts Room': (0, 0) },
-        { 'Abandoned Mine, Crumbling Stairwells With Mushrooms': (0, 0) },
-        { 'Abandoned Mine, Karma Coin Room': (0, 0) },
-        { 'Abandoned Mine, Demon Card Room': (0, 0) },
-        { 'Abandoned Mine, Save Room A': (0, 0) },
-    ],
-    'Castle Center': [
         {
-            'Castle Center, Fake Room with Teleporter to Marble Gallery': (27 + 0, 32 + 0),
-            'Castle Center, Elevator Shaft': (27 + 1, 32 + 0),
-            'Castle Center, Center Cube': (27 + 3, 32 - 1),
-            'Castle Center, Fake Room with Teleporter to BO6': (27 + 4, 32 + 2),
-            'Castle Center, Unknown Room ID 02': (27 + 6, 32 + 0),
+            'Warp Rooms, Fake Room with Teleporter to Abandoned Mine': (44 + 0, 33 + 0),
+            'Warp Rooms, Loading Room to Abandoned Mine': (44 + 0, 33 + 1),
+            'Warp Rooms, Warp Room to Abandoned Mine': (44 + 0, 33 + 2),
         },
     ],
-    'Catacombs': [
-        {
-            'Catacombs, Exit to Abandoned Mine': (32 + 0, 32 + 0),
-            'Catacombs, Loading Room to Abandoned Mine': (32 + 0, 32 + 1),
-            'Catacombs, Fake Room with Teleporter to Abandoned Mine': (32 + 0, 32 + 2),
-        },
-        {
-            # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
-            'Catacombs, Room ID 02': (1, 0),
-            'Catacombs, Granfaloon\'s Lair': (0, 1),
-            'Catacombs, Room ID 04': (0, 3),
-        },
-        { 'Catacombs, Room ID 00': (0, 0) },
-        { 'Catacombs, Mormegil Room': (0, 0) },
-        { 'Catacombs, Room ID 05': (0, 0) },
-        { 'Catacombs, Small Gremlin Room': (0, 0) },
-        { 'Catacombs, Save Room A': (0, 0) },
-        { 'Catacombs, Walk Armor Room': (0, 0) },
-        { 'Catacombs, Icebrand Room': (0, 0) },
-        { 'Catacombs, Left Lava Path': (0, 0) },
-        { 'Catacombs, Ballroom Mask Room': (0, 0) },
-        { 'Catacombs, Right Lava Path': (0, 0) },
-        { 'Catacombs, Cat-Eye Circlet Room': (0, 0) },
-        { 'Catacombs, Room ID 14': (0, 0) },
-        { 'Catacombs, Save Room B': (0, 0) },
-        { 'Catacombs, Hellfire Beast Room': (0, 0) },
-        { 'Catacombs, Bone Ark Room': (0, 0) },
-        { 'Catacombs, Room ID 19': (0, 0) },
-        { 'Catacombs, Room ID 20': (0, 0) },
-        { 'Catacombs, Room ID 21': (0, 0) },
-        { 'Catacombs, Room ID 22': (0, 0) },
-        { 'Catacombs, Room ID 23': (0, 0) },
-        { 'Catacombs, Pitch Black Spike Maze': (0, 0) },
-        { 'Catacombs, Room ID 25': (0, 0) },
-        { 'Catacombs, Room ID 26': (0, 0) },
-        { 'Catacombs, Spike Breaker Room': (0, 0) },
-    ]
 }
 
 class MapperData:
     def __init__(self):
-        print('Build data core')
+        # print('Build data core')
         self.rooms = {}
         self.teleporters = {}
         for stage_folder in (
@@ -1044,7 +1044,7 @@ class Mapper:
             self.steps.append(' | '.join(step))
         self.attempts += 1
         self.end_time = datetime.datetime.now(datetime.timezone.utc)
-    
+
     def validate(self) -> bool:
         result = False
         if self.stage is not None:
@@ -1165,11 +1165,12 @@ if __name__ == '__main__':
     Usage
     python mapper.py
     '''
+    # TODO(sestren): Add initial seed as an argument
     for stage_name in stages:
         pathlib.Path(
             os.path.join('build', 'shuffler', stage_name)
         ).mkdir(parents=True, exist_ok=True)
-    GENERATION_VERSION = 'Alpha Build 72'
+    GENERATION_VERSION = 'Alpha Build 73'
     mapper_core = MapperData().get_core()
     with (
         open(os.path.join('build', 'shuffler', 'mapper-core.json'), 'w') as mapper_core_json,
@@ -1177,18 +1178,27 @@ if __name__ == '__main__':
         json.dump(mapper_core, mapper_core_json, indent='    ', sort_keys=True, default=str)
     parser = argparse.ArgumentParser()
     parser.add_argument('stage_name', help='Input a valid stage name', type=str)
-    parser.add_argument('stage_count', help='Input the number of stage instances to generate', type=int)
+    parser.add_argument('target_stage_count', help='Input the desired number of stage instances to generate', type=int)
+    parser.add_argument('max_attempts', help='Input the maximum number of attempts at generating stage instances', type=int)
+    parser.add_argument('--seed', help='Input an optional starting seed', type=str)
     args = parser.parse_args()
+    initial_seed = args.seed
+    if initial_seed is None:
+        initial_seed = str(random.randint(0, 2 ** 64))
+    rng = random.Random(initial_seed)
     print('')
-    print(args.stage_name, args.stage_count)
-    seed = random.randint(0, 2 ** 64)
+    print(args.stage_name, args.target_stage_count, args.max_attempts, "seed='" + initial_seed + "'")
+    # TODO(sestren): Move into standardized randomization
     directory_listing = os.listdir(os.path.join('build', 'shuffler', args.stage_name))
     file_listing = list(
         name for name in directory_listing if
         name.endswith('.json')
     )
-    generation_limit = max(0, args.stage_count - len(file_listing))
-    for _ in range(generation_limit):
+    stage_count_remaining = max(0, args.target_stage_count - len(file_listing))
+    seed = rng.randint(0, 2 ** 64)
+    for _ in range(args.max_attempts):
+        if stage_count_remaining < 1:
+            break
         stage_map = Mapper(mapper_core, args.stage_name, seed)
         while True:
             stage_map.generate()
@@ -1218,6 +1228,7 @@ if __name__ == '__main__':
                 open(os.path.join('build', 'shuffler', args.stage_name, hash_of_rooms + '.json'), 'w') as mapper_data_json,
             ):
                 json.dump(mapper_data, mapper_data_json, indent='    ', sort_keys=True, default=str)
+            stage_count_remaining -= 1
         else:
             print('Stage with that hash already exists:', (args.stage_name, hash_of_rooms))
-        seed = stage_map.rng.randint(0, 2 ** 64)
+        seed = rng.randint(0, 2 ** 64)
