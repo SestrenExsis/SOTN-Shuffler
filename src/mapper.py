@@ -1044,7 +1044,7 @@ class Mapper:
             self.steps.append(' | '.join(step))
         self.attempts += 1
         self.end_time = datetime.datetime.now(datetime.timezone.utc)
-    
+
     def validate(self) -> bool:
         result = False
         if self.stage is not None:
@@ -1165,11 +1165,12 @@ if __name__ == '__main__':
     Usage
     python mapper.py
     '''
+    # TODO(sestren): Add initial seed as an argument
     for stage_name in stages:
         pathlib.Path(
             os.path.join('build', 'shuffler', stage_name)
         ).mkdir(parents=True, exist_ok=True)
-    GENERATION_VERSION = 'Alpha Build 72'
+    GENERATION_VERSION = 'Alpha Build 73'
     mapper_core = MapperData().get_core()
     with (
         open(os.path.join('build', 'shuffler', 'mapper-core.json'), 'w') as mapper_core_json,
@@ -1177,19 +1178,27 @@ if __name__ == '__main__':
         json.dump(mapper_core, mapper_core_json, indent='    ', sort_keys=True, default=str)
     parser = argparse.ArgumentParser()
     parser.add_argument('stage_name', help='Input a valid stage name', type=str)
-    parser.add_argument('stage_count', help='Input the number of stage instances to generate', type=int)
+    parser.add_argument('target_stage_count', help='Input the desired number of stage instances to generate', type=int)
+    parser.add_argument('max_attempts', help='Input the maximum number of attempts at generating stage instances', type=int)
+    parser.add_argument('--seed', help='Input an optional starting seed', type=str)
     args = parser.parse_args()
+    initial_seed = args.seed
+    if initial_seed is None:
+        initial_seed = str(random.randint(0, 2 ** 64))
+    rng = random.Random(initial_seed)
     print('')
-    print(args.stage_name, args.stage_count)
+    print(args.stage_name, args.target_stage_count, args.max_attempts, "seed='" + initial_seed + "'")
     # TODO(sestren): Move into standardized randomization
-    seed = random.randint(0, 2 ** 64)
     directory_listing = os.listdir(os.path.join('build', 'shuffler', args.stage_name))
     file_listing = list(
         name for name in directory_listing if
         name.endswith('.json')
     )
-    generation_limit = max(0, args.stage_count - len(file_listing))
-    for _ in range(generation_limit):
+    stage_count_remaining = max(0, args.target_stage_count - len(file_listing))
+    seed = rng.randint(0, 2 ** 64)
+    for _ in range(args.max_attempts):
+        if stage_count_remaining < 1:
+            break
         stage_map = Mapper(mapper_core, args.stage_name, seed)
         while True:
             stage_map.generate()
@@ -1219,6 +1228,7 @@ if __name__ == '__main__':
                 open(os.path.join('build', 'shuffler', args.stage_name, hash_of_rooms + '.json'), 'w') as mapper_data_json,
             ):
                 json.dump(mapper_data, mapper_data_json, indent='    ', sort_keys=True, default=str)
+            stage_count_remaining -= 1
         else:
             print('Stage with that hash already exists:', (args.stage_name, hash_of_rooms))
-        seed = stage_map.rng.randint(0, 2 ** 64)
+        seed = rng.randint(0, 2 ** 64)

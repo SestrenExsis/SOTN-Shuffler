@@ -229,6 +229,8 @@ if __name__ == '__main__':
     parser.add_argument('settings', help='Input a filepath to the shuffler settings YAML file', type=str)
     parser.add_argument('stage_validations', help='Input a filepath to the stage validations YAML file', type=str)
     parser.add_argument('--seed', help='Input an optional starting seed', type=str)
+    parser.add_argument('--output', help='Input an optional filename for the output JSON', type=str)
+    parser.add_argument('--no-metadata', help='Remove all metadata from the output JSON', dest='metadata', action='store_false')
     settings = {}
     stage_validations = {}
     validation_results = {}
@@ -480,7 +482,7 @@ if __name__ == '__main__':
         # Initialize the castle map drawing grid
         castle_map = [['0' for col in range(256)] for row in range(256)]
         # Process each stage, with Warp Rooms being processed last
-        stage_names = list(stages.keys() - {'Warp Rooms'})
+        stage_names = list(sorted(stages.keys() - {'Warp Rooms'}))
         stage_names += ['Warp Rooms']
         overrides = {}
         for (index, stage_name) in enumerate(stage_names):
@@ -586,7 +588,7 @@ if __name__ == '__main__':
                 continue
             stage = stages[stage_name]
             stage_changes = stage['Mapper'].stage.get_changes()
-            for room_name in stage_changes['Rooms']:
+            for room_name in list(sorted(stage_changes['Rooms'])):
                 if 'Loading Room' in room_name:
                     fake_room_name = stage_name + ', Fake Room with Teleporter to ' + room_name[room_name.find('Loading Room to ') + len('Loading Room to '):]
                     return_name = mapper_core['Teleporters']['Sources'][fake_room_name]['Return']
@@ -727,18 +729,24 @@ if __name__ == '__main__':
         shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)
         current_seed = {
             'Changes': changes,
-            'Data Core': mapper_core,
-            # 'Logic Core': logic_core,
-            'Shuffler': shuffler,
-            # 'Solver': solution,
         }
-        print(' '.join((
-            shuffler['End Time'].strftime('%Y-%m-%d %H-%M-%S'),
-            'SOTN Shuffler',
-            changes['Strings']['11'].strip(),
-            '(' + str(shuffler['Initial Seed']) + ')',
-        )))
-        with open(os.path.join('build', 'shuffler', 'current-seed.json'), 'w') as current_seed_json:
+        if args.metadata:
+            current_seed['Data Core'] = mapper_core
+            current_seed['Shuffler'] = shuffler
+            # current_seed['Logic Core'] = logic_core
+            # current_seed['Solver'] = solution
+        filepath = None
+        if args.output is not None:
+            filepath = args.output
+        else:
+            filename = ' '.join((
+                shuffler['End Time'].strftime('%Y-%m-%d %H-%M-%S'),
+                'SOTN Shuffler',
+                changes['Strings']['11'].strip(),
+                '(' + str(shuffler['Initial Seed']) + ')',
+            ))
+            filepath = os.path.join('build', 'shuffler', filename + '.json')
+        with open(filepath, 'w') as current_seed_json:
             json.dump(current_seed, current_seed_json, indent='    ', sort_keys=True, default=str)
         # while True:
         #     winning_game.play()
