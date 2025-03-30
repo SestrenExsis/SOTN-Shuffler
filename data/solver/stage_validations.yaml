@@ -1386,7 +1386,7 @@ Underground Caverns:
             Reach Marble Gallery:
                 Location: Underground Caverns, Loading Room to Marble Gallery
                 Section: Main
-    (Progress) Hub -> Holy Symbol Room:
+    SKIP - (Progress) Hub -> Holy Symbol Room:
         Solver: *solve-within-99-steps
         State:
             Location: Underground Caverns, Waterfall
@@ -1396,7 +1396,7 @@ Underground Caverns:
             Reach Progression Area:
                 Location: Underground Caverns, Holy Symbol Room
                 Section: Main
-    (Progress) Hub -> Merman Statue Room:
+    SKIP - (Progress) Hub -> Merman Statue Room:
         Solver: *solve-within-99-steps
         State:
             Location: Underground Caverns, Waterfall
@@ -1454,7 +1454,7 @@ Underground Caverns:
             Reach Progression Area:
                 Location: Underground Caverns, Hidden Crystal Entrance
                 Section: Main
-    (Progress) Hub -> Plaque Room With Breakable Wall:
+    SKIP - (Progress) Hub -> Plaque Room With Breakable Wall:
         Solver: *solve-within-99-steps
         State:
             Location: Underground Caverns, Waterfall
@@ -1466,7 +1466,7 @@ Underground Caverns:
             Reach Progression Area:
                 Location: Underground Caverns, Plaque Room With Breakable Wall
                 Section: Main
-    (Progress) Hub -> Right Ferryman Route (Left Side):
+    SKIP - (Progress) Hub -> Right Ferryman Route (Left Side):
         Solver: *solve-within-99-steps
         State:
             Location: Underground Caverns, Waterfall

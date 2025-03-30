@@ -282,11 +282,10 @@ if __name__ == '__main__':
         }
         mapper_core = mapper.MapperData().get_core()
         # Calculate teleporter changes
-        teleporters = None
+        teleporters = {}
         # Generate the seed regardless, so RNG can be independent of the setting
         stage_randomizer_seed = global_rng.randint(0, 2 ** 64)
-        if settings.get('Stage connections are randomized', False):
-            teleporters = {}
+        if settings.get('Stage shuffler', {}).get('Shuffle connections between stages', False):
             shuffle_teleporters(mapper_core['Teleporters'], stage_randomizer_seed)
             for (source_name, source) in mapper_core['Teleporters']['Sources'].items():
                 if source_name in (
@@ -337,7 +336,7 @@ if __name__ == '__main__':
                 assert stages[stage_name]['Mapper'].validate()
                 hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
                 assert hash_of_rooms == mapper_data['Hash of Rooms']
-                # print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), max_unique_pass_count)
+                print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), max_unique_pass_count)
                 changes = {
                     'Stages': {
                         stage_name: stage_changes,
@@ -345,6 +344,8 @@ if __name__ == '__main__':
                 }
                 unique_passes = set()
                 for (validation_name, validation) in stage_validations[stage_name].items():
+                    if validation_name.startswith('SKIP '):
+                        continue
                     logic_core = mapper.LogicCore(mapper_core, changes).get_core()
                     for (state_key, state_value) in validation['State'].items():
                         logic_core['State'][state_key] = state_value
@@ -372,11 +373,11 @@ if __name__ == '__main__':
                         )
                     validation_result = validation_results[stage_name][hash_of_rooms][hash_of_validation]
                     if validation_result:
-                        # print('   ', '✅ ...', validation_name)
+                        print('   ', '✅ ...', validation_name)
                         unique_passes.add(validation_name)
                         max_unique_pass_count = max(max_unique_pass_count, len(unique_passes))
                     else:
-                        # print('   ', '❌ ...', validation_name)
+                        print('   ', '❌ ...', validation_name)
                         all_valid_ind = False
                         break
                 if all_valid_ind:
@@ -463,13 +464,13 @@ if __name__ == '__main__':
             continue
         # Some settings are Shuffler-specific, while the rest get passed down to the Patcher as options
         options = {}
-        for (setting_key, setting_value) in settings.items():
-            if setting_key in (
+        for (option_key, option_value) in settings['Options'].items():
+            if option_key in (
                 'Assign Power of Wolf relic a unique ID',
                 'Enable debug mode',
                 'Skip Maria cutscene in Alchemy Laboratory',
             ):
-                options[setting_key] = setting_value
+                options[option_key] = option_value
         changes = {
             'Boss Teleporters': {},
             'Castle Map': [],
@@ -737,7 +738,7 @@ if __name__ == '__main__':
             # current_seed['Solver'] = solution
         filepath = None
         if args.output is not None:
-            filepath = args.output
+            filepath = os.path.normpath(args.output)
         else:
             filename = ' '.join((
                 shuffler['End Time'].strftime('%Y-%m-%d %H-%M-%S'),
