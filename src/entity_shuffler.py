@@ -415,9 +415,9 @@ entity_error_levels = {
         22: 'UNIDENTIFIED',
         23: 'UNIDENTIFIED',
         24: 'UNIDENTIFIED',
-        26: 'UNIDENTIFIED',
-        27: 'UNIDENTIFIED',
-        31: 'UNIDENTIFIED',
+        26: 'SAFE', # Spike Contraption
+        27: 'SAFE', # Ctulhu
+        31: 'SAFE', # Fire Demon
         35: 'SAFE', # Lesser Demon
         39: 'UNIDENTIFIED',
         40: 'UNIDENTIFIED',
@@ -426,13 +426,13 @@ entity_error_levels = {
         43: 'UNIDENTIFIED',
         44: 'UNIDENTIFIED',
         48: 'UNIDENTIFIED',
-        49: 'UNIDENTIFIED',
-        50: 'UNIDENTIFIED',
-        52: 'UNIDENTIFIED',
-        55: 'UNIDENTIFIED',
+        49: 'SAFE', # Bitterfly
+        50: 'SAFE', # Imp
+        52: 'SAFE', # Gremlin
+        55: 'SAFE', # Salem Witch
     },
     "Olrox's Quarters": {
-        22: 'UNIDENTIFIED',
+        22: 'SAFE', # Skelerang
         25: 'UNIDENTIFIED',
         26: 'UNIDENTIFIED',
         27: 'UNIDENTIFIED',
@@ -444,13 +444,13 @@ entity_error_levels = {
         36: 'UNIDENTIFIED',
         37: 'UNIDENTIFIED',
         38: 'UNIDENTIFIED',
-        40: 'UNIDENTIFIED',
-        45: 'UNIDENTIFIED',
+        40: 'WEIRD', # Prisoner
+        45: 'SAFE', # Bloody Zombie
         51: 'UNIDENTIFIED',
-        52: 'UNIDENTIFIED',
-        55: 'UNIDENTIFIED',
-        60: 'UNIDENTIFIED',
-        62: 'UNIDENTIFIED',
+        52: 'SAFE', # Valhalla Knight
+        55: 'SAFE', # Hammer
+        60: 'SAFE', # Blade
+        62: 'SAFE', # Spectral Sword
     },
     'Outer Wall': {
         17: 'ERROR', # Elevator Switch Parts 1?
@@ -517,18 +517,18 @@ entity_error_levels = {
         55: 'UNIDENTIFIED',
         57: 'UNIDENTIFIED',
         58: 'UNIDENTIFIED',
-        61: 'UNIDENTIFIED',
-        64: 'UNIDENTIFIED',
-        67: 'UNIDENTIFIED',
-        72: 'UNIDENTIFIED',
+        61: 'SAFE', # Dark Octopus
+        64: 'SAFE', # Cave Troll
+        67: 'SAFE', # Blue Venus Weed
+        72: 'SAFE', # Rock Knight
         79: 'UNIDENTIFIED',
         80: 'UNIDENTIFIED',
         81: 'UNIDENTIFIED',
-        83: 'UNIDENTIFIED',
-        86: 'UNIDENTIFIED',
-        90: 'UNIDENTIFIED',
-        92: 'UNIDENTIFIED',
-        94: 'UNIDENTIFIED',
+        83: 'SAFE', # Jack O'Bones
+        86: 'SAFE', # Nova Skeleton
+        90: 'SAFE', # Imp
+        92: 'SAFE', # Balloon Pod
+        94: 'SAFE', # Killer Fish
     },
     'Reverse Clock Tower': {
         17: 'UNIDENTIFIED',
@@ -547,25 +547,25 @@ entity_error_levels = {
         35: 'UNIDENTIFIED',
         36: 'UNIDENTIFIED',
         42: 'UNIDENTIFIED',
-        51: 'UNIDENTIFIED',
-        54: 'UNIDENTIFIED',
+        51: 'SAFE', # Darkwing Bat
+        54: 'SAFE', # Cloaked Knight
         58: 'UNIDENTIFIED',
-        62: 'UNIDENTIFIED',
-        65: 'UNIDENTIFIED',
-        74: 'UNIDENTIFIED',
+        62: 'SAFE', # Valhalla Knight
+        65: 'SAFE', # Bomb Knight
+        74: 'WEIRD', # Spike Chandelier
     },
     'Reverse Colosseum': {
         17: 'UNIDENTIFIED',
-        22: 'UNIDENTIFIED',
-        26: 'UNIDENTIFIED',
+        22: 'SAFE', # Minotaur
+        26: 'SAFE', # Werewolf
         32: 'UNIDENTIFIED',
-        34: 'UNIDENTIFIED',
+        34: 'SAFE', # Azaghal
         36: 'UNIDENTIFIED',
         37: 'UNIDENTIFIED',
         38: 'UNIDENTIFIED',
         39: 'UNIDENTIFIED',
-        40: 'UNIDENTIFIED',
-        42: 'UNIDENTIFIED',
+        40: 'UNIDENTIFIED', # White Dragon
+        42: 'SAFE', # Stone Skull
     },
     'Reverse Entrance': {
         22: 'UNIDENTIFIED',
@@ -573,12 +573,12 @@ entity_error_levels = {
         24: 'UNIDENTIFIED',
         25: 'UNIDENTIFIED',
         26: 'UNIDENTIFIED',
-        29: 'UNIDENTIFIED',
-        36: 'UNIDENTIFIED',
-        39: 'UNIDENTIFIED',
-        43: 'UNIDENTIFIED',
-        48: 'UNIDENTIFIED',
-        52: 'UNIDENTIFIED',
+        29: 'SAFE', # Warg Rider
+        36: 'SAFE', # Jack O'Bones
+        39: 'SAFE', # Nova Skeleton
+        43: 'SAFE', # Oruburos
+        48: 'SAFE', # Dragon Rider
+        52: 'SAFE', # Blue Venus Weed
         59: 'UNIDENTIFIED',
         62: 'UNIDENTIFIED',
         65: 'UNIDENTIFIED',
@@ -587,7 +587,7 @@ entity_error_levels = {
         69: 'UNIDENTIFIED',
         71: 'UNIDENTIFIED',
         72: 'UNIDENTIFIED',
-        78: 'UNIDENTIFIED',
+        78: 'SAFE', # Dodo Bird
     },
     'Reverse Keep': {
         18: 'UNIDENTIFIED',
@@ -598,19 +598,19 @@ entity_error_levels = {
         26: 'UNIDENTIFIED',
         27: 'UNIDENTIFIED',
         29: 'UNIDENTIFIED',
-        34: 'UNIDENTIFIED',
-        37: 'UNIDENTIFIED',
-        38: 'UNIDENTIFIED',
+        34: 'SAFE', # Yorick
+        37: 'SAFE', # Tombstone
+        38: 'SAFE', # Skull Lord
     },
     'Reverse Outer Wall': {
         17: 'UNIDENTIFIED',
         22: 'UNIDENTIFIED',
         23: 'UNIDENTIFIED',
         24: 'UNIDENTIFIED',
-        25: 'UNIDENTIFIED',
-        29: 'UNIDENTIFIED',
-        30: 'UNIDENTIFIED',
-        33: 'UNIDENTIFIED',
+        25: 'SAFE', # Paranthropus
+        29: 'SAFE', # Stone Skull
+        30: 'SAFE', # Jack O'Bones
+        33: 'SAFE', # Nova Skeleton
         37: 'UNIDENTIFIED',
         38: 'UNIDENTIFIED',
         42: 'UNIDENTIFIED',
@@ -634,24 +634,24 @@ entity_error_levels = {
         33: 'UNIDENTIFIED',
         34: 'UNIDENTIFIED', # Confessional Booth?
         38: 'UNIDENTIFIED',
-        39: 'UNIDENTIFIED',
-        41: 'UNIDENTIFIED',
+        39: 'SAFE', # Corner Guard
+        41: 'SAFE', # Bone Pillar
         45: 'UNIDENTIFIED',
         46: 'UNIDENTIFIED',
-        50: 'UNIDENTIFIED',
-        55: 'UNIDENTIFIED',
-        56: 'UNIDENTIFIED',
-        57: 'UNIDENTIFIED',
-        58: 'UNIDENTIFIED',
-        61: 'UNIDENTIFIED',
-        63: 'UNIDENTIFIED',
+        50: 'SAFE', # Bone Halberd
+        55: 'SAFE', # Bat
+        56: 'SAFE', # Black Crow
+        57: 'SAFE', # Blue Raven
+        58: 'SAFE', # Skelerang
+        61: 'SAFE', # Hunting Girl
+        63: 'SAFE', # Puppet Sword
         66: 'UNIDENTIFIED',
-        67: 'UNIDENTIFIED',
+        67: 'UNCERTAIN', # Spike Ball
         69: 'UNIDENTIFIED',
         72: 'UNIDENTIFIED',
     },
     'Underground Caverns': {
-        17: 'UNIDENTIFIED',
+        17: 'WEIRD', # Mooring Post
         22: 'UNIDENTIFIED',
         28: 'UNIDENTIFIED',
         29: 'UNIDENTIFIED',
@@ -670,32 +670,32 @@ entity_error_levels = {
         42: 'UNIDENTIFIED',
         43: 'UNIDENTIFIED',
         44: 'UNIDENTIFIED',
-        45: 'UNIDENTIFIED',
+        45: 'UNCERTAIN', # Ferryman
         47: 'UNIDENTIFIED',
         48: 'UNIDENTIFIED',
-        54: 'UNIDENTIFIED',
+        54: 'UNCERTAIN', # Movable Crate
         55: 'UNIDENTIFIED',
         56: 'UNIDENTIFIED',
         57: 'UNIDENTIFIED',
-        58: 'UNIDENTIFIED',
-        60: 'UNIDENTIFIED',
-        61: 'UNIDENTIFIED',
-        63: 'UNIDENTIFIED',
-        68: 'UNIDENTIFIED',
-        69: 'UNIDENTIFIED',
+        58: 'SAFE', # Spear Guard, Trapped
+        60: 'SAFE', # Toad
+        61: 'SAFE', # Frog
+        63: 'SAFE', # Fishhead
+        68: 'SAFE', # Bat
+        69: 'SAFE', # Frozen Shade
         73: 'UNIDENTIFIED',
-        74: 'UNIDENTIFIED',
-        76: 'UNIDENTIFIED',
-        78: 'UNIDENTIFIED',
+        74: 'SAFE', # Spear Guard
+        76: 'SAFE', # Bone Archer
+        78: 'UNCERTAIN', # Water Barrier
         80: 'UNIDENTIFIED',
         81: 'UNIDENTIFIED',
         83: 'UNIDENTIFIED',
-        85: 'UNIDENTIFIED',
+        85: 'SAFE', # Killer Fish
         91: 'UNIDENTIFIED',
-        93: 'UNIDENTIFIED',
+        93: 'UNCERTAIN', # DK Bridge Button
         94: 'UNIDENTIFIED',
         95: 'UNIDENTIFIED',
-        96: 'UNIDENTIFIED',
+        96: 'UNCERTAIN', # DK Bridge
     },
     'Warp Rooms': {
         22: 'UNIDENTIFIED',
