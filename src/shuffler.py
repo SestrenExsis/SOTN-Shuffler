@@ -467,6 +467,7 @@ if __name__ == '__main__':
         for (option_key, option_value) in settings['Options'].items():
             if option_key in (
                 'Assign Power of Wolf relic a unique ID',
+                'Clock hands show minutes and seconds instead of hours and minutes',
                 'Enable debug mode',
                 'Skip Maria cutscene in Alchemy Laboratory',
             ):

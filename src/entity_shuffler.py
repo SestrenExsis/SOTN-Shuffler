@@ -18,687 +18,694 @@ def getID(aliases: dict, path: tuple):
         result = int(result)
     return result
 
-# UNIDENTIFIED: Unidentified
-# FATAL: Crashes the game
-# ERROR: Highly likely to cause softlocks or severe glitches
-# WARNING: Might cause softlocks or unintended glitches, depending on other factors
-# UNCERTAIN: Unsure of outcome
-# WEIRD: Safe, but will probably look strange or glitchy
-# SAFE: Safe
-entity_error_levels = {
+# Entity pools
+# - ENEMY: Enemy
+# - RELIC_ORB: Relic Orb
+# - ITEM_DROP: Unique Item Drop
+# - CANDLE: Candle
+# - UNIDENTIFIED: Unidentified
+# Error levels
+# - UNIDENTIFIED: Unidentified
+# - FATAL: Crashes the game
+# - ERROR: Highly likely to cause softlocks or severe glitches
+# - WARNING: Might cause softlocks or unintended glitches, depending on other factors
+# - UNCERTAIN: Unsure of outcome
+# - WEIRD: Safe, but will probably look strange or glitchy
+# - SAFE: Safe
+entity_types = {
     'GLOBAL': {
-        5: 'ERROR', # Red Door
-        8: 'ERROR', # Room Foreground Entity
-        9: 'WARNING', # Stage Name Popup
-        11: 'SAFE', # Relic Orb
-        12: 'SAFE', # Unique Item Drop
-        40961: 'SAFE', # Candle
+        5: ('UNIDENTIFIED', 'ERROR'), # Red Door
+        8: ('UNIDENTIFIED', 'ERROR'), # Room Foreground Entity
+        9: ('UNIDENTIFIED', 'WARNING'), # Stage Name Popup
+        11: ('RELIC_ORB', 'SAFE'), # Relic Orb
+        12: ('ITEM_DROP', 'SAFE'), # Unique Item Drop
+        40961: ('CANDLE', 'SAFE'), # Candle
     },
     'Abandoned Mine': {
-        22: 'WEIRD', # Wall for Demon Switch
-        23: 'WARNING', # Demon Switch
-        24: 'UNCERTAIN', # Breakable Wall in Abandoned Mine
-        28: 'SAFE', # Crumbling Stairwell
-        29: 'SAFE', # Tiny Crumbling Ledge
-        30: 'SAFE', # Gremlin
-        33: 'SAFE', # Salem Witch
-        38: 'SAFE', # Thornweed
-        41: 'SAFE', # Venus Weed
+        22: ('UNIDENTIFIED', 'WEIRD'), # Wall for Demon Switch
+        23: ('UNIDENTIFIED', 'WARNING'), # Demon Switch
+        24: ('UNIDENTIFIED', 'UNCERTAIN'), # Breakable Wall in Abandoned Mine
+        28: ('UNIDENTIFIED', 'SAFE'), # Crumbling Stairwell
+        29: ('UNIDENTIFIED', 'SAFE'), # Tiny Crumbling Ledge
+        30: ('ENEMY', 'SAFE'), # Gremlin
+        33: ('ENEMY', 'SAFE'), # Salem Witch
+        38: ('ENEMY', 'SAFE'), # Thornweed
+        41: ('ENEMY', 'SAFE'), # Venus Weed
     },
     'Alchemy Laboratory': {
-        22: 'UNIDENTIFIED',
-        25: 'UNCERTAIN', # Pressure Plate in Box Puzzle Room
-        26: 'WEIRD', # Retractable Spikes
-        27: 'WEIRD', # Movable Crate
-        28: 'WARNING', # Cannon?
-        29: 'WARNING', # Cannon Lever?
-        31: 'WARNING', # Cannon Wall?
-        32: 'UNIDENTIFIED',
-        33: 'WARNING', # Elevator Lift
-        35: 'SAFE', # Bust with Red Eyes
-        36: 'WARNING', # Retractable Spikes?
-        37: 'WARNING', # Pressure Plate for Spikes?
-        38: 'SAFE', # Red Skeleton 1
-        39: 'SAFE', # Red Skeleton 2
-        41: 'SAFE', # Green Axe Knight
-        43: 'SAFE', # Bloody Zombie
-        46: 'UNIDENTIFIED',
-        49: 'SAFE', # Spittlebone
-        52: 'UNIDENTIFIED',
-        53: 'UNIDENTIFIED',
-        54: 'UNIDENTIFIED',
-        55: 'SAFE', # Breakable Orb with Unique Item Drop
-        57: 'UNIDENTIFIED',
-        62: 'UNIDENTIFIED',
-        71: 'UNIDENTIFIED',
-        72: 'UNIDENTIFIED',
-        74: 'ERROR', # Blue Door
-        75: 'UNIDENTIFIED',
+        22: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        25: ('UNIDENTIFIED', 'UNCERTAIN'), # Pressure Plate in Box Puzzle Room
+        26: ('UNIDENTIFIED', 'WEIRD'), # Retractable Spikes
+        27: ('UNIDENTIFIED', 'WEIRD'), # Movable Crate
+        28: ('UNIDENTIFIED', 'WARNING'), # Cannon?
+        29: ('UNIDENTIFIED', 'WARNING'), # Cannon Lever?
+        31: ('UNIDENTIFIED', 'WARNING'), # Cannon Wall?
+        32: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        33: ('UNIDENTIFIED', 'WARNING'), # Elevator Lift
+        35: ('UNIDENTIFIED', 'SAFE'), # Bust with Red Eyes
+        36: ('UNIDENTIFIED', 'WARNING'), # Retractable Spikes?
+        37: ('UNIDENTIFIED', 'WARNING'), # Pressure Plate for Spikes?
+        38: ('ENEMY', 'SAFE'), # Red Skeleton 1
+        39: ('ENEMY', 'SAFE'), # Red Skeleton 2
+        41: ('ENEMY', 'SAFE'), # Green Axe Knight
+        43: ('ENEMY', 'SAFE'), # Bloody Zombie
+        46: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        49: ('ENEMY', 'SAFE'), # Spittlebone
+        52: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        53: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        54: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        55: ('UNIDENTIFIED', 'SAFE'), # Breakable Orb with Unique Item Drop
+        57: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        62: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        71: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        72: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        74: ('UNIDENTIFIED', 'ERROR'), # Blue Door
+        75: ('UNIDENTIFIED', 'UNIDENTIFIED'),
     },
     'Anti-Chapel': {
-        22: 'ERROR', # Invisible Room Transition Entity?
-        23: 'UNIDENTIFIED',
-        24: 'UNIDENTIFIED',
-        25: 'UNIDENTIFIED',
-        26: 'UNIDENTIFIED', # Background Geometry, Nave 1?
-        27: 'UNIDENTIFIED', # Background Geometry, Nave 2?
-        30: 'SAFE', # Archer?
-        34: 'SAFE', # Spectral Sword?
-        38: 'SAFE', # Sniper of Goth?
-        40: 'SAFE', # Imp?
-        42: 'UNIDENTIFIED',
-        43: 'UNIDENTIFIED',
-        44: 'UNIDENTIFIED',
-        45: 'UNIDENTIFIED',
-        50: 'UNIDENTIFIED',
-        51: 'UNIDENTIFIED',
+        22: ('UNIDENTIFIED', 'ERROR'), # Invisible Room Transition Entity?
+        23: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        24: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        25: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        26: ('UNIDENTIFIED', 'UNIDENTIFIED'), # Background Geometry, Nave 1?
+        27: ('UNIDENTIFIED', 'UNIDENTIFIED'), # Background Geometry, Nave 2?
+        30: ('ENEMY', 'SAFE'), # Archer?
+        34: ('ENEMY', 'SAFE'), # Spectral Sword?
+        38: ('ENEMY', 'SAFE'), # Sniper of Goth?
+        40: ('ENEMY', 'SAFE'), # Imp?
+        42: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        43: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        44: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        45: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        50: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        51: ('UNIDENTIFIED', 'UNIDENTIFIED'),
     },
     'Black Marble Gallery': {
-        17: 'UNIDENTIFIED',
-        23: 'UNIDENTIFIED',
-        25: 'UNIDENTIFIED',
-        33: 'SAFE', # Guardian
-        38: 'SAFE', # Spike Contraption?
-        39: 'SAFE', # Thornweed
-        42: 'SAFE', # Stone Skull
-        43: 'SAFE', # Jack O'Bones
-        46: 'SAFE', # Nova Skeleton
-        53: 'SAFE', # Gurkha
-        55: 'SAFE', # Blade
-        57: 'UNIDENTIFIED',
-        62: 'SAFE', # Gorgon
-        71: 'UNIDENTIFIED',
-        72: 'UNIDENTIFIED',
-        74: 'UNIDENTIFIED',
-        75: 'UNIDENTIFIED',
-        76: 'UNIDENTIFIED',
-        79: 'ERROR', # Blue Door
-        40977: 'UNIDENTIFIED',
-        41033: 'UNIDENTIFIED',
+        17: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        23: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        25: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        33: ('ENEMY', 'SAFE'), # Guardian
+        38: ('ENEMY', 'SAFE'), # Spike Contraption?
+        39: ('ENEMY', 'SAFE'), # Thornweed
+        42: ('ENEMY', 'SAFE'), # Stone Skull
+        43: ('ENEMY', 'SAFE'), # Jack O'Bones
+        46: ('ENEMY', 'SAFE'), # Nova Skeleton
+        53: ('ENEMY', 'SAFE'), # Gurkha
+        55: ('ENEMY', 'SAFE'), # Blade
+        57: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        62: ('ENEMY', 'SAFE'), # Gorgon
+        71: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        72: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        74: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        75: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        76: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        79: ('UNIDENTIFIED', 'ERROR'), # Blue Door
+        40977: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        41033: ('UNIDENTIFIED', 'UNIDENTIFIED'),
     },
     'Castle Center': {
-        17: 'UNIDENTIFIED',
-        22: 'UNIDENTIFIED',
-        23: 'UNIDENTIFIED',
-        24: 'UNIDENTIFIED',
-        25: 'UNIDENTIFIED',
-        26: 'UNIDENTIFIED',
+        17: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        22: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        23: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        24: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        25: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        26: ('UNIDENTIFIED', 'UNIDENTIFIED'),
     },
     'Castle Entrance': {
-        8: 'UNIDENTIFIED',
-        11: 'UNIDENTIFIED',
-        12: 'UNIDENTIFIED',
-        17: 'UNIDENTIFIED',
-        23: 'ERROR', # Background Effect, Lightning
-        24: 'WEIRD', # Water
-        25: 'UNIDENTIFIED',
-        26: 'ERROR',
-        27: 'ERROR',
-        28: 'UNIDENTIFIED',
-        29: 'ERROR', # Lever Platform
-        31: 'WEIRD', # Wooden Wall 1
-        32: 'FATAL',
-        33: 'FATAL',
-        34: 'FATAL',
-        35: 'WEIRD', # Trapdoor
-        36: 'WEIRD', # Left Breakable Rock
-        37: 'WEIRD', # Right Breakable Rock
-        38: 'UNIDENTIFIED',
-        40: 'UNIDENTIFIED',
-        43: 'WEIRD', # Pressure Plate
-        44: 'WEIRD', # Wooden Wall 2
-        52: 'UNIDENTIFIED', # Related to water?
-        58: 'UNIDENTIFIED',
-        65: 'WEIRD', # Merman
-        69: 'UNIDENTIFIED',
-        70: 'SAFE', # Bone Scimitar with Unique Drop
-        72: 'SAFE', # Bat
-        74: 'SAFE', # Warg
-        77: 'WEIRD', # Floor Zombie Spawner
-        78: 'UNIDENTIFIED', # UNIDENTIFIED in Forest Cutscene
-        79: 'UNIDENTIFIED', # UNIDENTIFIED in Forest Cutscene
-        80: 'UNIDENTIFIED', # UNIDENTIFIED in Forest Cutscene
-        81: 'UNIDENTIFIED', # UNIDENTIFIED in Forest Cutscene
-        82: 'UNIDENTIFIED', # UNIDENTIFIED in Forest Cutscene
-        83: 'UNIDENTIFIED',
-        84: 'UNIDENTIFIED', # UNIDENTIFIED in Forest Cutscene
-        85: 'UNIDENTIFIED', # UNIDENTIFIED in Forest Cutscene
-        86: 'UNIDENTIFIED', # UNIDENTIFIED in Forest Cutscene
-        87: 'UNIDENTIFIED',
-        92: 'WEIRD', # Breakable Corner Block
-        95: 'UNIDENTIFIED',
+        8: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        11: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        12: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        17: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        23: ('UNIDENTIFIED', 'ERROR'), # Background Effect, Lightning
+        24: ('UNIDENTIFIED', 'WEIRD'), # Water
+        25: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        26: ('UNIDENTIFIED', 'ERROR'),
+        27: ('UNIDENTIFIED', 'ERROR'),
+        28: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        29: ('UNIDENTIFIED', 'ERROR'), # Lever Platform
+        31: ('UNIDENTIFIED', 'WEIRD'), # Wooden Wall 1
+        32: ('UNIDENTIFIED', 'FATAL'),
+        33: ('UNIDENTIFIED', 'FATAL'),
+        34: ('UNIDENTIFIED', 'FATAL'),
+        35: ('UNIDENTIFIED', 'WEIRD'), # Trapdoor
+        36: ('UNIDENTIFIED', 'WEIRD'), # Left Breakable Rock
+        37: ('UNIDENTIFIED', 'WEIRD'), # Right Breakable Rock
+        38: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        40: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        43: ('UNIDENTIFIED', 'WEIRD'), # Pressure Plate
+        44: ('UNIDENTIFIED', 'WEIRD'), # Wooden Wall 2
+        52: ('UNIDENTIFIED', 'UNIDENTIFIED'), # Related to water?
+        58: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        65: ('ENEMY', 'WEIRD'), # Merman
+        69: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        70: ('ENEMY', 'SAFE'), # Bone Scimitar with Unique Drop
+        72: ('ENEMY', 'SAFE'), # Bat
+        74: ('ENEMY', 'SAFE'), # Warg
+        77: ('UNIDENTIFIED', 'WEIRD'), # Floor Zombie Spawner
+        78: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Forest Cutscene
+        79: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Forest Cutscene
+        80: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Forest Cutscene
+        81: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Forest Cutscene
+        82: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Forest Cutscene
+        83: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        84: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Forest Cutscene
+        85: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Forest Cutscene
+        86: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Forest Cutscene
+        87: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        92: ('UNIDENTIFIED', 'WEIRD'), # Breakable Corner Block
+        95: ('UNIDENTIFIED', 'UNIDENTIFIED'),
     },
     'Castle Entrance Revisited': {
-        17: 'UNIDENTIFIED',
-        23: 'ERROR', # Background Effect, Lightning
-        24: 'UNIDENTIFIED',
-        25: 'UNIDENTIFIED',
-        26: 'UNIDENTIFIED',
-        27: 'UNIDENTIFIED',
-        28: 'UNIDENTIFIED',
-        29: 'UNIDENTIFIED',
-        31: 'UNIDENTIFIED',
-        32: 'FATAL',
-        33: 'FATAL',
-        34: 'FATAL',
-        35: 'UNIDENTIFIED',
-        36: 'UNIDENTIFIED',
-        37: 'UNIDENTIFIED',
-        38: 'UNIDENTIFIED',
-        42: 'UNIDENTIFIED',
-        43: 'UNIDENTIFIED',
-        44: 'UNIDENTIFIED',
-        50: 'UNIDENTIFIED',
-        57: 'UNIDENTIFIED',
-        61: 'UNIDENTIFIED',
-        64: 'UNIDENTIFIED',
-        67: 'UNIDENTIFIED',
-        69: 'SAFE', # Owl (and Owl Knight?)
-        72: 'SAFE', # Bloody Zombie
-        75: 'SAFE', # Zombie
-        78: 'SAFE', # Slogra
-        81: 'SAFE', # Gaibon
-        88: 'SAFE', # Gurkha
-        90: 'SAFE', # Blade
+        17: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        23: ('UNIDENTIFIED', 'ERROR'), # Background Effect, Lightning
+        24: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        25: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        26: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        27: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        28: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        29: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        31: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        32: ('UNIDENTIFIED', 'FATAL'),
+        33: ('UNIDENTIFIED', 'FATAL'),
+        34: ('UNIDENTIFIED', 'FATAL'),
+        35: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        36: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        37: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        38: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        42: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        43: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        44: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        50: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        57: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        61: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        64: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        67: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        69: ('ENEMY', 'SAFE'), # Owl (and Owl Knight?)
+        72: ('ENEMY', 'SAFE'), # Bloody Zombie
+        75: ('ENEMY', 'SAFE'), # Zombie
+        78: ('ENEMY', 'SAFE'), # Slogra
+        81: ('ENEMY', 'SAFE'), # Gaibon
+        88: ('ENEMY', 'SAFE'), # Gurkha
+        90: ('ENEMY', 'SAFE'), # Blade
     },
     'Castle Keep': {
-        18: 'UNIDENTIFIED',
-        22: 'ERROR',
-        23: 'ERROR',
-        24: 'ERROR',
-        25: 'UNIDENTIFIED',
-        26: 'UNIDENTIFIED',
-        27: 'UNIDENTIFIED',
-        28: 'UNIDENTIFIED',
-        29: 'UNIDENTIFIED',
-        30: 'UNIDENTIFIED',
-        31: 'ERROR',
-        32: 'UNIDENTIFIED',
-        33: 'SAFE', # Flea Rider
-        34: 'ERROR',
-        35: 'ERROR',
-        40: 'SAFE', # Axe Knight
+        18: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        22: ('UNIDENTIFIED', 'ERROR'),
+        23: ('UNIDENTIFIED', 'ERROR'),
+        24: ('UNIDENTIFIED', 'ERROR'),
+        25: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        26: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        27: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        28: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        29: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        30: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        31: ('UNIDENTIFIED', 'ERROR'),
+        32: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        33: ('ENEMY', 'SAFE'), # Flea Rider
+        34: ('UNIDENTIFIED', 'ERROR'),
+        35: ('UNIDENTIFIED', 'ERROR'),
+        40: ('ENEMY', 'SAFE'), # Axe Knight
     },
     'Catacombs': {
-        22: 'UNIDENTIFIED',
-        23: 'UNIDENTIFIED',
-        24: 'UNIDENTIFIED',
-        26: 'UNIDENTIFIED',
-        27: 'WEIRD', # Dark Room Platform
-        28: 'UNIDENTIFIED',
-        31: 'UNIDENTIFIED',
-        33: 'UNIDENTIFIED',
-        34: 'UNIDENTIFIED',
-        36: 'UNIDENTIFIED',
-        37: 'UNIDENTIFIED',
-        43: 'UNIDENTIFIED',
-        44: 'UNIDENTIFIED',
-        46: 'SAFE', # Discus Lord
-        50: 'SAFE', # Hellfire Beast
-        55: 'SAFE', # Bone Ark?
-        62: 'SAFE', # Lossoth
-        67: 'UNIDENTIFIED',
-        68: 'SAFE', # Grave Keeper
-        71: 'SAFE', # Gremlin
-        74: 'SAFE', # Large Slime?
-        76: 'SAFE', # Slime
-        78: 'SAFE', # Wereskeleton
-        81: 'UNIDENTIFIED',
+        22: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        23: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        24: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        26: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        27: ('UNIDENTIFIED', 'WEIRD'), # Dark Room Platform
+        28: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        31: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        33: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        34: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        36: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        37: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        43: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        44: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        46: ('ENEMY', 'SAFE'), # Discus Lord
+        50: ('ENEMY', 'SAFE'), # Hellfire Beast
+        55: ('ENEMY', 'SAFE'), # Bone Ark?
+        62: ('ENEMY', 'SAFE'), # Lossoth
+        67: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        68: ('ENEMY', 'SAFE'), # Grave Keeper
+        71: ('ENEMY', 'SAFE'), # Gremlin
+        74: ('ENEMY', 'SAFE'), # Large Slime?
+        76: ('ENEMY', 'SAFE'), # Slime
+        78: ('ENEMY', 'SAFE'), # Wereskeleton
+        81: ('UNIDENTIFIED', 'UNIDENTIFIED'),
     },
     'Cave': {
-        22: 'SAFE', # Slogra
-        25: 'SAFE', # Gaibon
-        30: 'WEIRD', # Demon Switch Wall
-        31: 'WARNING', # Demon Switch
-        32: 'WEIRD', # Breakable Wall
-        34: 'SAFE', # Thornweed
-        37: 'SAFE', # Bat?
+        22: ('ENEMY', 'SAFE'), # Slogra
+        25: ('ENEMY', 'SAFE'), # Gaibon
+        30: ('UNIDENTIFIED', 'WEIRD'), # Demon Switch Wall
+        31: ('UNIDENTIFIED', 'WARNING'), # Demon Switch
+        32: ('UNIDENTIFIED', 'WEIRD'), # Breakable Wall
+        34: ('ENEMY', 'SAFE'), # Thornweed
+        37: ('ENEMY', 'SAFE'), # Bat?
     },
     'Clock Tower': {
-        17: 'UNIDENTIFIED',
-        18: 'UNIDENTIFIED',
-        22: 'UNIDENTIFIED',
-        24: 'UNIDENTIFIED',
-        25: 'UNIDENTIFIED',
-        26: 'UNIDENTIFIED',
-        27: 'UNIDENTIFIED',
-        28: 'UNIDENTIFIED',
-        29: 'UNIDENTIFIED',
-        30: 'UNIDENTIFIED',
-        31: 'WEIRD', # Pendulum?
-        34: 'WEIRD', # Breakable Wall
-        36: 'UNCERTAIN', # Invisible Room Transition Entity
-        37: 'UNIDENTIFIED',
-        38: 'UNIDENTIFIED',
-        39: 'UNIDENTIFIED',
-        40: 'UNIDENTIFIED',
-        46: 'UNIDENTIFIED',
-        50: 'SAFE', # Skull Lord
-        54: 'SAFE', # Harpy
-        59: 'SAFE', # Cloaked Knight
-        63: 'SAFE', # Sword Lord
-        68: 'SAFE', # Phantom Skull
-        70: 'SAFE', # Flail Guard
-        72: 'UNIDENTIFIED',
-        73: 'SAFE', # Flea Armor
-        77: 'UNIDENTIFIED', # UNIDENTIFIED in Karasuman's Room
-        86: 'UNIDENTIFIED',
+        17: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        18: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        22: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        24: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        25: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        26: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        27: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        28: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        29: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        30: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        31: ('UNIDENTIFIED', 'WEIRD'), # Pendulum?
+        34: ('UNIDENTIFIED', 'WEIRD'), # Breakable Wall
+        36: ('UNIDENTIFIED', 'UNCERTAIN'), # Invisible Room Transition Entity
+        37: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        38: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        39: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        40: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        46: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        50: ('ENEMY', 'SAFE'), # Skull Lord
+        54: ('ENEMY', 'SAFE'), # Harpy
+        59: ('ENEMY', 'SAFE'), # Cloaked Knight
+        63: ('ENEMY', 'SAFE'), # Sword Lord
+        68: ('ENEMY', 'SAFE'), # Phantom Skull
+        70: ('ENEMY', 'SAFE'), # Flail Guard
+        72: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        73: ('ENEMY', 'SAFE'), # Flea Armor
+        77: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Karasuman's Room
+        86: ('UNIDENTIFIED', 'UNIDENTIFIED'),
     },
     'Colosseum': {
-        17: 'UNIDENTIFIED',
-        22: 'WEIRD', # Background Detail 1?
-        23: 'WEIRD', # Background Detail 2?
-        24: 'WEIRD', # Stone Barrier
-        25: 'WEIRD', # Pressure Plate
-        26: 'UNIDENTIFIED',
-        27: 'UNIDENTIFIED',
-        28: 'WEIRD', # Elevator Hatch
-        29: 'UNIDENTIFIED',
-        30: 'WEIRD', # Breakable Ceiling
-        31: 'UNIDENTIFIED',
-        34: 'SAFE', # Blade Master
-        38: 'SAFE', # Blade Soldier
-        41: 'SAFE', # Bone Musket
-        44: 'SAFE', # Owl Knight
-        47: 'SAFE', # Valhalla Knight
-        50: 'SAFE', # Axe Knight
-        54: 'SAFE', # Armor Lord
-        58: 'SAFE', # Hunting Girl
-        60: 'SAFE', # Paranthropus
-        67: 'SAFE', # Bone Scimitar
-        69: 'SAFE', # Plate Lord
-        75: 'SAFE', # Grave Keeper
-        77: 'WEIRD', # Mist Gate
+        17: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        22: ('UNIDENTIFIED', 'WEIRD'), # Background Detail 1?
+        23: ('UNIDENTIFIED', 'WEIRD'), # Background Detail 2?
+        24: ('UNIDENTIFIED', 'WEIRD'), # Stone Barrier
+        25: ('UNIDENTIFIED', 'WEIRD'), # Pressure Plate
+        26: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        27: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        28: ('UNIDENTIFIED', 'WEIRD'), # Elevator Hatch
+        29: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        30: ('UNIDENTIFIED', 'WEIRD'), # Breakable Ceiling
+        31: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        34: ('ENEMY', 'SAFE'), # Blade Master
+        38: ('ENEMY', 'SAFE'), # Blade Soldier
+        41: ('ENEMY', 'SAFE'), # Bone Musket
+        44: ('ENEMY', 'SAFE'), # Owl Knight
+        47: ('ENEMY', 'SAFE'), # Valhalla Knight
+        50: ('ENEMY', 'SAFE'), # Axe Knight
+        54: ('ENEMY', 'SAFE'), # Armor Lord
+        58: ('ENEMY', 'SAFE'), # Hunting Girl
+        60: ('ENEMY', 'SAFE'), # Paranthropus
+        67: ('ENEMY', 'SAFE'), # Bone Scimitar
+        69: ('ENEMY', 'SAFE'), # Plate Lord
+        75: ('ENEMY', 'SAFE'), # Grave Keeper
+        77: ('UNIDENTIFIED', 'WEIRD'), # Mist Gate
     },
     "Death Wing's Lair": {
-        22: 'UNIDENTIFIED',
-        23: 'UNIDENTIFIED',
-        24: 'UNIDENTIFIED',
-        25: 'UNIDENTIFIED',
-        26: 'UNIDENTIFIED',
-        28: 'UNIDENTIFIED',
-        29: 'UNIDENTIFIED',
-        30: 'UNIDENTIFIED',
-        34: 'WEIRD', # Breakable Wall
-        35: 'UNIDENTIFIED',
-        36: 'UNIDENTIFIED',
-        38: 'ERROR', # Boss Door
-        39: 'UNIDENTIFIED',
-        43: 'SAFE', # Malachi
-        47: 'SAFE', # Karasuman
-        53: 'UNIDENTIFIED',
-        57: 'SAFE', # Azaghal
-        60: 'SAFE', # Ghost Dancer
-        61: 'UNIDENTIFIED',
+        22: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        23: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        24: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        25: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        26: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        28: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        29: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        30: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        34: ('UNIDENTIFIED', 'WEIRD'), # Breakable Wall
+        35: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        36: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        38: ('UNIDENTIFIED', 'ERROR'), # Boss Door
+        39: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        43: ('ENEMY', 'SAFE'), # Malachi
+        47: ('ENEMY', 'SAFE'), # Karasuman
+        53: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        57: ('ENEMY', 'SAFE'), # Azaghal
+        60: ('ENEMY', 'SAFE'), # Ghost Dancer
+        61: ('UNIDENTIFIED', 'UNIDENTIFIED'),
     },
     'Floating Catacombs': {
-        17: 'UNIDENTIFIED',
-        22: 'UNIDENTIFIED',
-        23: 'UNIDENTIFIED',
-        24: 'UNIDENTIFIED',
-        26: 'UNIDENTIFIED',
-        31: 'UNIDENTIFIED',
-        32: 'UNIDENTIFIED',
-        34: 'SAFE', # Frozen Half
-        40: 'SAFE', # Salome
-        45: 'WEIRD', # Breakable Wall
-        46: 'UNIDENTIFIED',
-        50: 'SAFE', # Skeleton
-        53: 'SAFE', # Blood Skeleton
-        54: 'SAFE', # Bat
+        17: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        22: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        23: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        24: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        26: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        31: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        32: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        34: ('ENEMY', 'SAFE'), # Frozen Half
+        40: ('ENEMY', 'SAFE'), # Salome
+        45: ('UNIDENTIFIED', 'WEIRD'), # Breakable Wall
+        46: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        50: ('ENEMY', 'SAFE'), # Skeleton
+        53: ('ENEMY', 'SAFE'), # Blood Skeleton
+        54: ('ENEMY', 'SAFE'), # Bat
     },
     'Forbidden Library': {
-        17: 'UNIDENTIFIED',
-        22: 'UNIDENTIFIED',
-        23: 'UNIDENTIFIED',
-        24: 'UNIDENTIFIED',
-        25: 'UNIDENTIFIED',
-        26: 'UNIDENTIFIED',
-        28: 'SAFE', # Lion
-        31: 'SAFE', # Tin Man
-        36: 'SAFE', # Scarecrow
-        39: 'SAFE', # Schmoo
-        41: 'UNIDENTIFIED',
+        17: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        22: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        23: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        24: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        25: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        26: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        28: ('ENEMY', 'SAFE'), # Lion
+        31: ('ENEMY', 'SAFE'), # Tin Man
+        36: ('ENEMY', 'SAFE'), # Scarecrow
+        39: ('ENEMY', 'SAFE'), # Schmoo
+        41: ('UNIDENTIFIED', 'UNIDENTIFIED'),
     },
     'Long Library': {
-        17: 'UNIDENTIFIED',
-        18: 'UNIDENTIFIED',
-        22: 'UNIDENTIFIED', # UNIDENTIFIED in Spellbook Area
-        23: 'UNIDENTIFIED', # UNIDENTIFIED in Spellbook Area
-        24: 'UNIDENTIFIED', # UNIDENTIFIED in Spellbook Area
-        25: 'UNIDENTIFIED',
-        26: 'UNIDENTIFIED', # UNIDENTIFIED in Bookcase Room
-        36: 'UNIDENTIFIED', # UNIDENTIFIED in Shop
-        43: 'UNIDENTIFIED', # UNIDENTIFIED in Shop
-        44: 'UNIDENTIFIED', # UNIDENTIFIED in Shop
-        48: 'SAFE', # Spellbook
-        50: 'SAFE', # Magic Tome
-        51: 'SAFE', # Dhuron
-        55: 'SAFE', # Ectoplasm
-        58: 'SAFE', # Thornweed
-        61: 'WEIRD', # Candle Table
-        64: 'UNIDENTIFIED', # UNIDENTIFIED in Lesser Demon Area
-        65: 'UNIDENTIFIED', # UNIDENTIFIED in Lesser Demon Area
-        70: 'UNIDENTIFIED', # UNIDENTIFIED in Bookcase Room
-        73: 'UNIDENTIFIED', # UNIDENTIFIED in Lesser Demon Area
-        74: 'SAFE', # Flea Armor
-        76: 'SAFE', # Flea Man
+        17: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        18: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        22: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Spellbook Area
+        23: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Spellbook Area
+        24: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Spellbook Area
+        25: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        26: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Bookcase Room
+        36: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Shop
+        43: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Shop
+        44: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Shop
+        48: ('ENEMY', 'SAFE'), # Spellbook
+        50: ('ENEMY', 'SAFE'), # Magic Tome
+        51: ('ENEMY', 'SAFE'), # Dhuron
+        55: ('ENEMY', 'SAFE'), # Ectoplasm
+        58: ('ENEMY', 'SAFE'), # Thornweed
+        61: ('UNIDENTIFIED', 'WEIRD'), # Candle Table
+        64: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Lesser Demon Area
+        65: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Lesser Demon Area
+        70: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Bookcase Room
+        73: ('UNIDENTIFIED', 'UNIDENTIFIED'), # UNIDENTIFIED in Lesser Demon Area
+        74: ('ENEMY', 'SAFE'), # Flea Armor
+        76: ('ENEMY', 'SAFE'), # Flea Man
     },
     'Marble Gallery': {
-        17: 'UNIDENTIFIED',
-        18: 'UNIDENTIFIED',
-        23: 'UNIDENTIFIED',
-        24: 'UNIDENTIFIED',
-        25: 'UNIDENTIFIED',
-        33: 'SAFE', # Diplocephalus
-        40: 'UNIDENTIFIED',
-        41: 'UNIDENTIFIED',
-        44: 'WEIRD', # Pressure Plate
-        45: 'UNIDENTIFIED',
-        46: 'SAFE', # Skelerang
-        49: 'SAFE', # Plate Lord
-        56: 'UNIDENTIFIED',
-        57: 'SAFE', # Marionette
-        58: 'SAFE', # Slinger
-        61: 'SAFE', # Stone Rose
-        66: 'UNIDENTIFIED',
-        67: 'SAFE', # Ctulhu
-        71: 'SAFE', # Axe Knight
-        74: 'SAFE', # Ouija Table
-        76: 'SAFE', # Flea Man
-        77: 'SAFE', # Skeleton
-        81: 'ERROR', # Blue Door
-        40977: 'UNIDENTIFIED',
-        41003: 'UNIDENTIFIED',
+        17: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        18: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        23: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        24: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        25: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        33: ('ENEMY', 'SAFE'), # Diplocephalus
+        40: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        41: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        44: ('UNIDENTIFIED', 'WEIRD'), # Pressure Plate
+        45: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        46: ('ENEMY', 'SAFE'), # Skelerang
+        49: ('ENEMY', 'SAFE'), # Plate Lord
+        56: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        57: ('ENEMY', 'SAFE'), # Marionette
+        58: ('ENEMY', 'SAFE'), # Slinger
+        61: ('ENEMY', 'SAFE'), # Stone Rose
+        66: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        67: ('ENEMY', 'SAFE'), # Ctulhu
+        71: ('ENEMY', 'SAFE'), # Axe Knight
+        74: ('ENEMY', 'SAFE'), # Ouija Table
+        76: ('ENEMY', 'SAFE'), # Flea Man
+        77: ('ENEMY', 'SAFE'), # Skeleton
+        81: ('UNIDENTIFIED', 'ERROR'), # Blue Door
+        40977: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        41003: ('UNIDENTIFIED', 'UNIDENTIFIED'),
     },
     'Necromancy Laboratory': {
-        22: 'UNIDENTIFIED',
-        23: 'UNIDENTIFIED',
-        24: 'UNIDENTIFIED',
-        26: 'SAFE', # Spike Contraption
-        27: 'SAFE', # Ctulhu
-        31: 'SAFE', # Fire Demon
-        35: 'SAFE', # Lesser Demon
-        39: 'UNIDENTIFIED',
-        40: 'UNIDENTIFIED',
-        41: 'UNIDENTIFIED',
-        42: 'UNIDENTIFIED',
-        43: 'UNIDENTIFIED',
-        44: 'UNIDENTIFIED',
-        48: 'UNIDENTIFIED',
-        49: 'SAFE', # Bitterfly
-        50: 'SAFE', # Imp
-        52: 'SAFE', # Gremlin
-        55: 'SAFE', # Salem Witch
+        22: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        23: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        24: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        26: ('UNIDENTIFIED', 'SAFE'), # Spike Contraption
+        27: ('ENEMY', 'SAFE'), # Ctulhu
+        31: ('ENEMY', 'SAFE'), # Fire Demon
+        35: ('ENEMY', 'SAFE'), # Lesser Demon
+        39: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        40: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        41: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        42: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        43: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        44: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        48: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        49: ('ENEMY', 'SAFE'), # Bitterfly
+        50: ('ENEMY', 'SAFE'), # Imp
+        52: ('ENEMY', 'SAFE'), # Gremlin
+        55: ('ENEMY', 'SAFE'), # Salem Witch
     },
     "Olrox's Quarters": {
-        22: 'SAFE', # Skelerang
-        25: 'UNIDENTIFIED',
-        26: 'UNIDENTIFIED',
-        27: 'UNIDENTIFIED',
-        28: 'UNIDENTIFIED',
-        29: 'UNIDENTIFIED',
-        31: 'UNIDENTIFIED',
-        32: 'UNIDENTIFIED',
-        33: 'UNIDENTIFIED',
-        36: 'UNIDENTIFIED',
-        37: 'UNIDENTIFIED',
-        38: 'UNIDENTIFIED',
-        40: 'WEIRD', # Prisoner
-        45: 'SAFE', # Bloody Zombie
-        51: 'UNIDENTIFIED',
-        52: 'SAFE', # Valhalla Knight
-        55: 'SAFE', # Hammer
-        60: 'SAFE', # Blade
-        62: 'SAFE', # Spectral Sword
+        22: ('ENEMY', 'SAFE'), # Skelerang
+        25: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        26: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        27: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        28: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        29: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        31: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        32: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        33: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        36: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        37: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        38: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        40: ('UNIDENTIFIED', 'WEIRD'), # Prisoner
+        45: ('ENEMY', 'SAFE'), # Bloody Zombie
+        51: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        52: ('ENEMY', 'SAFE'), # Valhalla Knight
+        55: ('ENEMY', 'SAFE'), # Hammer
+        60: ('ENEMY', 'SAFE'), # Blade
+        62: ('ENEMY', 'SAFE'), # Spectral Sword
     },
     'Outer Wall': {
-        17: 'ERROR', # Elevator Switch Parts 1?
-        23: 'UNIDENTIFIED', # Rain Effects 1?
-        24: 'UNIDENTIFIED', # Rain Effects 2?
-        26: 'UNIDENTIFIED',
-        27: 'UNIDENTIFIED',
-        29: 'WEIRD', # Bird's Nest?
-        30: 'UNIDENTIFIED',
-        31: 'UNIDENTIFIED',
-        32: 'SAFE', # Blue Axe Knight?
-        36: 'UNIDENTIFIED',
-        40: 'WEIRD', # Telescope?
-        41: 'WARNING', # Elevator Cage?
-        43: 'WARNING', # Elevator Shaft Parts?
-        46: 'UNIDENTIFIED',
-        50: 'WARNING', # Elevator Switch Parts 2?
-        51: 'WARNING', # Elevator Switch
-        53: 'UNIDENTIFIED',
-        55: 'UNIDENTIFIED',
-        59: 'UNIDENTIFIED',
-        61: 'UNIDENTIFIED',
-        62: 'SAFE', # Skeleton
-        68: 'SAFE', # Bone Archer
-        70: 'SAFE', # Bone Musket
-        72: 'SAFE', # Sword Lord
-        74: 'SAFE', # Armor Lord
-        79: 'SAFE', # Spear Guard
-        83: 'SAFE', # Skeleton Ape
-        87: 'UNIDENTIFIED',
-        89: 'UNCERTAIN', # Medusa Head Spawner
-        93: 'UNCERTAIN', # Mist Door
+        17: ('UNIDENTIFIED', 'ERROR'), # Elevator Switch Parts 1?
+        23: ('UNIDENTIFIED', 'UNIDENTIFIED'), # Rain Effects 1?
+        24: ('UNIDENTIFIED', 'UNIDENTIFIED'), # Rain Effects 2?
+        26: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        27: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        29: ('UNIDENTIFIED', 'WEIRD'), # Bird's Nest?
+        30: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        31: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        32: ('ENEMY', 'SAFE'), # Blue Axe Knight?
+        36: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        40: ('UNIDENTIFIED', 'WEIRD'), # Telescope?
+        41: ('UNIDENTIFIED', 'WARNING'), # Elevator Cage?
+        43: ('UNIDENTIFIED', 'WARNING'), # Elevator Shaft Parts?
+        46: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        50: ('UNIDENTIFIED', 'WARNING'), # Elevator Switch Parts 2?
+        51: ('UNIDENTIFIED', 'WARNING'), # Elevator Switch
+        53: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        55: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        59: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        61: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        62: ('ENEMY', 'SAFE'), # Skeleton
+        68: ('ENEMY', 'SAFE'), # Bone Archer
+        70: ('ENEMY', 'SAFE'), # Bone Musket
+        72: ('ENEMY', 'SAFE'), # Sword Lord
+        74: ('ENEMY', 'SAFE'), # Armor Lord
+        79: ('ENEMY', 'SAFE'), # Spear Guard
+        83: ('ENEMY', 'SAFE'), # Skeleton Ape
+        87: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        89: ('UNIDENTIFIED', 'UNCERTAIN'), # Medusa Head Spawner
+        93: ('UNIDENTIFIED', 'UNCERTAIN'), # Mist Door
     },
     'Reverse Castle Center': {
-        22: 'UNIDENTIFIED',
-        33: 'UNIDENTIFIED',
-        34: 'UNIDENTIFIED',
-        36: 'UNIDENTIFIED',
-        38: 'UNIDENTIFIED',
-        39: 'UNIDENTIFIED',
-        40: 'UNIDENTIFIED',
+        22: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        33: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        34: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        36: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        38: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        39: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        40: ('UNIDENTIFIED', 'UNIDENTIFIED'),
     },
     'Reverse Caverns': {
-        10: 'UNIDENTIFIED',
-        17: 'UNIDENTIFIED',
-        22: 'UNIDENTIFIED',
-        28: 'UNIDENTIFIED',
-        29: 'UNIDENTIFIED',
-        30: 'UNIDENTIFIED',
-        31: 'UNIDENTIFIED',
-        32: 'UNIDENTIFIED',
-        33: 'UNIDENTIFIED',
-        34: 'UNIDENTIFIED',
-        35: 'UNIDENTIFIED',
-        36: 'UNIDENTIFIED',
-        37: 'UNIDENTIFIED',
-        38: 'UNIDENTIFIED',
-        39: 'UNIDENTIFIED',
-        40: 'UNIDENTIFIED',
-        41: 'UNIDENTIFIED',
-        42: 'UNIDENTIFIED',
-        43: 'UNIDENTIFIED',
-        52: 'UNIDENTIFIED',
-        55: 'UNIDENTIFIED',
-        57: 'UNIDENTIFIED',
-        58: 'UNIDENTIFIED',
-        61: 'SAFE', # Dark Octopus
-        64: 'SAFE', # Cave Troll
-        67: 'SAFE', # Blue Venus Weed
-        72: 'SAFE', # Rock Knight
-        79: 'UNIDENTIFIED',
-        80: 'UNIDENTIFIED',
-        81: 'UNIDENTIFIED',
-        83: 'SAFE', # Jack O'Bones
-        86: 'SAFE', # Nova Skeleton
-        90: 'SAFE', # Imp
-        92: 'SAFE', # Balloon Pod
-        94: 'SAFE', # Killer Fish
+        10: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        17: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        22: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        28: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        29: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        30: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        31: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        32: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        33: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        34: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        35: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        36: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        37: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        38: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        39: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        40: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        41: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        42: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        43: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        52: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        55: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        57: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        58: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        61: ('ENEMY', 'SAFE'), # Dark Octopus
+        64: ('ENEMY', 'SAFE'), # Cave Troll
+        67: ('ENEMY', 'SAFE'), # Blue Venus Weed
+        72: ('ENEMY', 'SAFE'), # Rock Knight
+        79: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        80: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        81: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        83: ('ENEMY', 'SAFE'), # Jack O'Bones
+        86: ('ENEMY', 'SAFE'), # Nova Skeleton
+        90: ('ENEMY', 'SAFE'), # Imp
+        92: ('ENEMY', 'SAFE'), # Balloon Pod
+        94: ('ENEMY', 'SAFE'), # Killer Fish
     },
     'Reverse Clock Tower': {
-        17: 'UNIDENTIFIED',
-        18: 'UNIDENTIFIED',
-        23: 'UNIDENTIFIED',
-        24: 'UNIDENTIFIED',
-        25: 'UNIDENTIFIED',
-        26: 'UNIDENTIFIED',
-        27: 'UNIDENTIFIED',
-        28: 'UNIDENTIFIED',
-        29: 'UNIDENTIFIED',
-        30: 'UNIDENTIFIED',
-        32: 'UNIDENTIFIED',
-        33: 'UNIDENTIFIED',
-        34: 'UNIDENTIFIED',
-        35: 'UNIDENTIFIED',
-        36: 'UNIDENTIFIED',
-        42: 'UNIDENTIFIED',
-        51: 'SAFE', # Darkwing Bat
-        54: 'SAFE', # Cloaked Knight
-        58: 'UNIDENTIFIED',
-        62: 'SAFE', # Valhalla Knight
-        65: 'SAFE', # Bomb Knight
-        74: 'WEIRD', # Spike Chandelier
+        17: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        18: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        23: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        24: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        25: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        26: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        27: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        28: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        29: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        30: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        32: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        33: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        34: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        35: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        36: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        42: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        51: ('ENEMY', 'SAFE'), # Darkwing Bat
+        54: ('ENEMY', 'SAFE'), # Cloaked Knight
+        58: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        62: ('ENEMY', 'SAFE'), # Valhalla Knight
+        65: ('ENEMY', 'SAFE'), # Bomb Knight
+        74: ('ENEMY', 'WEIRD'), # Spike Chandelier
     },
     'Reverse Colosseum': {
-        17: 'UNIDENTIFIED',
-        22: 'SAFE', # Minotaur
-        26: 'SAFE', # Werewolf
-        32: 'UNIDENTIFIED',
-        34: 'SAFE', # Azaghal
-        36: 'UNIDENTIFIED',
-        37: 'UNIDENTIFIED',
-        38: 'UNIDENTIFIED',
-        39: 'UNIDENTIFIED',
-        40: 'UNIDENTIFIED', # White Dragon
-        42: 'SAFE', # Stone Skull
+        17: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        22: ('ENEMY', 'SAFE'), # Minotaur
+        26: ('ENEMY', 'SAFE'), # Werewolf
+        32: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        34: ('ENEMY', 'SAFE'), # Azaghal
+        36: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        37: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        38: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        39: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        40: ('ENEMY', 'UNIDENTIFIED'), # White Dragon
+        42: ('ENEMY', 'SAFE'), # Stone Skull
     },
     'Reverse Entrance': {
-        22: 'UNIDENTIFIED',
-        23: 'UNIDENTIFIED',
-        24: 'UNIDENTIFIED',
-        25: 'UNIDENTIFIED',
-        26: 'UNIDENTIFIED',
-        29: 'SAFE', # Warg Rider
-        36: 'SAFE', # Jack O'Bones
-        39: 'SAFE', # Nova Skeleton
-        43: 'SAFE', # Oruburos
-        48: 'SAFE', # Dragon Rider
-        52: 'SAFE', # Blue Venus Weed
-        59: 'UNIDENTIFIED',
-        62: 'UNIDENTIFIED',
-        65: 'UNIDENTIFIED',
-        66: 'UNIDENTIFIED',
-        67: 'UNIDENTIFIED',
-        69: 'UNIDENTIFIED',
-        71: 'UNIDENTIFIED',
-        72: 'UNIDENTIFIED',
-        78: 'SAFE', # Dodo Bird
+        22: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        23: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        24: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        25: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        26: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        29: ('ENEMY', 'SAFE'), # Warg Rider
+        36: ('ENEMY', 'SAFE'), # Jack O'Bones
+        39: ('ENEMY', 'SAFE'), # Nova Skeleton
+        43: ('ENEMY', 'SAFE'), # Oruburos
+        48: ('ENEMY', 'SAFE'), # Dragon Rider
+        52: ('ENEMY', 'SAFE'), # Blue Venus Weed
+        59: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        62: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        65: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        66: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        67: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        69: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        71: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        72: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        78: ('ENEMY', 'SAFE'), # Dodo Bird
     },
     'Reverse Keep': {
-        18: 'UNIDENTIFIED',
-        22: 'UNIDENTIFIED',
-        23: 'UNIDENTIFIED',
-        24: 'UNIDENTIFIED',
-        25: 'UNIDENTIFIED',
-        26: 'UNIDENTIFIED',
-        27: 'UNIDENTIFIED',
-        29: 'UNIDENTIFIED',
-        34: 'SAFE', # Yorick
-        37: 'SAFE', # Tombstone
-        38: 'SAFE', # Skull Lord
+        18: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        22: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        23: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        24: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        25: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        26: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        27: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        29: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        34: ('ENEMY', 'SAFE'), # Yorick
+        37: ('ENEMY', 'SAFE'), # Tombstone
+        38: ('ENEMY', 'SAFE'), # Skull Lord
     },
     'Reverse Outer Wall': {
-        17: 'UNIDENTIFIED',
-        22: 'UNIDENTIFIED',
-        23: 'UNIDENTIFIED',
-        24: 'UNIDENTIFIED',
-        25: 'SAFE', # Paranthropus
-        29: 'SAFE', # Stone Skull
-        30: 'SAFE', # Jack O'Bones
-        33: 'SAFE', # Nova Skeleton
-        37: 'UNIDENTIFIED',
-        38: 'UNIDENTIFIED',
-        42: 'UNIDENTIFIED',
-        44: 'UNIDENTIFIED',
-        45: 'UNIDENTIFIED',
-        47: 'UNIDENTIFIED',
+        17: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        22: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        23: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        24: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        25: ('ENEMY', 'SAFE'), # Paranthropus
+        29: ('ENEMY', 'SAFE'), # Stone Skull
+        30: ('ENEMY', 'SAFE'), # Jack O'Bones
+        33: ('ENEMY', 'SAFE'), # Nova Skeleton
+        37: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        38: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        42: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        44: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        45: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        47: ('UNIDENTIFIED', 'UNIDENTIFIED'),
     },
     'Reverse Warp Rooms': {
-        22: 'UNIDENTIFIED',
+        22: ('UNIDENTIFIED', 'UNIDENTIFIED'),
     },
     'Royal Chapel': {
-        22: 'UNCERTAIN', # Invisible Room Transition Entity
-        23: 'UNIDENTIFIED',
-        24: 'UNIDENTIFIED',
-        25: 'UNIDENTIFIED',
-        28: 'UNIDENTIFIED',
-        29: 'UNIDENTIFIED',
-        30: 'UNIDENTIFIED',
-        31: 'UNIDENTIFIED',
-        32: 'UNIDENTIFIED',
-        33: 'UNIDENTIFIED',
-        34: 'UNIDENTIFIED', # Confessional Booth?
-        38: 'UNIDENTIFIED',
-        39: 'SAFE', # Corner Guard
-        41: 'SAFE', # Bone Pillar
-        45: 'UNIDENTIFIED',
-        46: 'UNIDENTIFIED',
-        50: 'SAFE', # Bone Halberd
-        55: 'SAFE', # Bat
-        56: 'SAFE', # Black Crow
-        57: 'SAFE', # Blue Raven
-        58: 'SAFE', # Skelerang
-        61: 'SAFE', # Hunting Girl
-        63: 'SAFE', # Puppet Sword
-        66: 'UNIDENTIFIED',
-        67: 'UNCERTAIN', # Spike Ball
-        69: 'UNIDENTIFIED',
-        72: 'UNIDENTIFIED',
+        22: ('UNIDENTIFIED', 'UNCERTAIN'), # Invisible Room Transition Entity
+        23: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        24: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        25: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        28: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        29: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        30: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        31: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        32: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        33: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        34: ('UNIDENTIFIED', 'UNIDENTIFIED'), # Confessional Booth?
+        38: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        39: ('ENEMY', 'SAFE'), # Corner Guard
+        41: ('ENEMY', 'SAFE'), # Bone Pillar
+        45: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        46: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        50: ('ENEMY', 'SAFE'), # Bone Halberd
+        55: ('ENEMY', 'SAFE'), # Bat
+        56: ('ENEMY', 'SAFE'), # Black Crow
+        57: ('ENEMY', 'SAFE'), # Blue Raven
+        58: ('ENEMY', 'SAFE'), # Skelerang
+        61: ('ENEMY', 'SAFE'), # Hunting Girl
+        63: ('ENEMY', 'SAFE'), # Puppet Sword
+        66: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        67: ('ENEMY', 'UNCERTAIN'), # Spike Ball
+        69: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        72: ('UNIDENTIFIED', 'UNIDENTIFIED'),
     },
     'Underground Caverns': {
-        17: 'WEIRD', # Mooring Post
-        22: 'UNIDENTIFIED',
-        28: 'UNIDENTIFIED',
-        29: 'UNIDENTIFIED',
-        30: 'UNIDENTIFIED',
-        31: 'UNIDENTIFIED',
-        32: 'UNIDENTIFIED',
-        33: 'UNIDENTIFIED',
-        34: 'UNIDENTIFIED',
-        35: 'UNIDENTIFIED',
-        36: 'UNIDENTIFIED',
-        37: 'UNIDENTIFIED',
-        38: 'UNIDENTIFIED',
-        39: 'UNIDENTIFIED',
-        40: 'UNIDENTIFIED',
-        41: 'UNIDENTIFIED',
-        42: 'UNIDENTIFIED',
-        43: 'UNIDENTIFIED',
-        44: 'UNIDENTIFIED',
-        45: 'UNCERTAIN', # Ferryman
-        47: 'UNIDENTIFIED',
-        48: 'UNIDENTIFIED',
-        54: 'UNCERTAIN', # Movable Crate
-        55: 'UNIDENTIFIED',
-        56: 'UNIDENTIFIED',
-        57: 'UNIDENTIFIED',
-        58: 'SAFE', # Spear Guard, Trapped
-        60: 'SAFE', # Toad
-        61: 'SAFE', # Frog
-        63: 'SAFE', # Fishhead
-        68: 'SAFE', # Bat
-        69: 'SAFE', # Frozen Shade
-        73: 'UNIDENTIFIED',
-        74: 'SAFE', # Spear Guard
-        76: 'SAFE', # Bone Archer
-        78: 'UNCERTAIN', # Water Barrier
-        80: 'UNIDENTIFIED',
-        81: 'UNIDENTIFIED',
-        83: 'UNIDENTIFIED',
-        85: 'SAFE', # Killer Fish
-        91: 'UNIDENTIFIED',
-        93: 'UNCERTAIN', # DK Bridge Button
-        94: 'UNIDENTIFIED',
-        95: 'UNIDENTIFIED',
-        96: 'UNCERTAIN', # DK Bridge
+        17: ('UNIDENTIFIED', 'WEIRD'), # Mooring Post
+        22: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        28: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        29: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        30: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        31: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        32: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        33: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        34: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        35: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        36: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        37: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        38: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        39: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        40: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        41: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        42: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        43: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        44: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        45: ('UNIDENTIFIED', 'UNCERTAIN'), # Ferryman
+        47: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        48: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        54: ('UNIDENTIFIED', 'UNCERTAIN'), # Movable Crate
+        55: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        56: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        57: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        58: ('ENEMY', 'SAFE'), # Spear Guard, Trapped
+        60: ('ENEMY', 'SAFE'), # Toad
+        61: ('ENEMY', 'SAFE'), # Frog
+        63: ('ENEMY', 'SAFE'), # Fishhead
+        68: ('ENEMY', 'SAFE'), # Bat
+        69: ('ENEMY', 'SAFE'), # Frozen Shade
+        73: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        74: ('ENEMY', 'SAFE'), # Spear Guard
+        76: ('ENEMY', 'SAFE'), # Bone Archer
+        78: ('UNIDENTIFIED', 'UNCERTAIN'), # Water Barrier
+        80: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        81: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        83: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        85: ('ENEMY', 'SAFE'), # Killer Fish
+        91: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        93: ('UNIDENTIFIED', 'UNCERTAIN'), # DK Bridge Button
+        94: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        95: ('UNIDENTIFIED', 'UNIDENTIFIED'),
+        96: ('UNIDENTIFIED', 'UNCERTAIN'), # DK Bridge
     },
     'Warp Rooms': {
-        22: 'UNIDENTIFIED',
+        22: ('UNIDENTIFIED', 'UNIDENTIFIED'),
     },
 }
 
@@ -722,21 +729,21 @@ def shuffle_entities(object_layout, seed: int, stage_name: str=None) -> dict:
             'Entity Type ID': entity['Entity Type ID'],
             'Params': entity['Params'],
         })
-        status = 'UNIDENTIFIED'
-        if entity['Entity Type ID'] in entity_error_levels['GLOBAL']:
-            status = entity_error_levels['GLOBAL'][entity['Entity Type ID']]
-        elif entity['Entity Type ID'] in entity_error_levels[stage_name]:
-            status = entity_error_levels[stage_name][entity['Entity Type ID']]
         shuffle_percents = {
             'SAFE':    1.00,
             'WEIRD':   0.50,
             'UNIDENTIFIED': 0.25,
             'UNCERTAIN': 0.25,
             'WARNING': 0.10,
-            'ERROR':   0.02,
+            'ERROR':   0.00,
             'FATAL':   0.00,
         }
-        shuffle_ind = rng.random() < shuffle_percents[status]
+        error_status = 'UNIDENTIFIED'
+        if entity['Entity Type ID'] in entity_types['GLOBAL']:
+            (_, error_status) = entity_types['GLOBAL'][entity['Entity Type ID']]
+        elif entity['Entity Type ID'] in entity_types[stage_name]:
+            (_, error_status) = entity_types[stage_name][entity['Entity Type ID']]
+        shuffle_ind = rng.random() < shuffle_percents[error_status]
         if shuffle_ind:
             B.append({
                 'X': entity['X'],
@@ -774,6 +781,10 @@ if __name__ == '__main__':
     '''
     Usage
     python entity_shuffler.py EXTRACTION CHANGES ALIASES --seed SEED
+
+    - Shuffle all Relic Orbs across both castles
+    - Shuffle all Unique Item Drops across both castles
+    - Shuffle all enemies within each stage
     '''
     MIN_SEED = 0
     MAX_SEED = 2 ** 64 - 1
