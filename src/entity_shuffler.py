@@ -781,26 +781,28 @@ def shuffle_entities(object_layout, seed: int, stage_name: str=None) -> dict:
 def shuffle_relics_and_items(changes: dict, seed: int):
     rng = random.Random(seed)
     # Extract entities in pool type from their original positions and add them to the base object layouts
+    pools = [
+        ('RELIC_ORB', 'GLOBAL'),
+        ('ITEM_DROP', 'GLOBAL'),
+    ]
     object_layouts = {}
     for stage_name in sorted(changes['Stages'].keys()):
         object_layouts[stage_name] = {}
         for room_name in sorted(changes['Stages'][stage_name]['Rooms'].keys()):
+            pools.append(('ENEMY', room_name))
             room_id = str(getID(aliases, ('Rooms', room_name)))
             room_extract = extraction['Stages'][stage_name]['Rooms'][room_id]
             if 'Object Layout - Horizontal' not in room_extract:
                 continue
             object_layouts[stage_name][room_name] = copy.deepcopy(room_extract['Object Layout - Horizontal']['Data'][1:-1])
-    for pool_type in (
-        'RELIC_ORB', # ('RELIC_ORB', 'GLOBAL'),
-        'ITEM_DROP', # ('ITEM_DROP', 'GLOBAL'),
-        # 'ENEMY', # ('ENEMY', 'Abandoned Mine'),
-        # 'ENEMY', # ('ENEMY', 'Alchemy Laboratory'),
-    ):
-        print('', pool_type)
+    for (pool_type, scope) in pools:
+        print('', pool_type, scope)
         pooled_entities = []
         # Extract entities in pool type from their original positions and add them to the pool
         for stage_name in sorted(object_layouts.keys()):
             for room_name in sorted(object_layouts[stage_name].keys()):
+                if scope not in ('GLOBAL', stage_name, room_name):
+                    continue
                 for base_entity in object_layouts[stage_name][room_name]:
                     entity_type = entity_types.get(stage_name, {}).get(base_entity['Entity Type ID'], ('UNIDENTIFIED', 'UNIDENTIFIED'))
                     if entity_type == ('UNIDENTIFIED', 'UNIDENTIFIED'):
