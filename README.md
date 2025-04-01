@@ -46,4 +46,5 @@ Most of the knowledge present in this project is only possible due to the immens
   - [Mottzilla](https://github.com/MottZilla)
   - [eldri7ch](https://github.com/eldri7ch2)
   - [LuciaRolon](https://github.com/LuciaRolon)
+- Dr4gonBlitz, for being a huge inspiration for SOTN speedrunning, and for their continued help and patience during the alpha testing phase of this project
 - The entire SOTN community, for their generosity and kindness
