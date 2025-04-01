@@ -1,5 +1,6 @@
 # External libraries
 import argparse
+import copy
 import json
 import os
 import random
@@ -777,6 +778,76 @@ def shuffle_entities(object_layout, seed: int, stage_name: str=None) -> dict:
         print('   -', unique_entity_type, unique_entity_types[unique_entity_type])
     return result
 
+def shuffle_relics_and_items(changes: dict, seed: int):
+    rng = random.Random(seed)
+    # Extract entities in pool type from their original positions and add them to the base object layouts
+    object_layouts = {}
+    for stage_name in sorted(changes['Stages'].keys()):
+        object_layouts[stage_name] = {}
+        for room_name in sorted(changes['Stages'][stage_name]['Rooms'].keys()):
+            room_id = str(getID(aliases, ('Rooms', room_name)))
+            room_extract = extraction['Stages'][stage_name]['Rooms'][room_id]
+            if 'Object Layout - Horizontal' not in room_extract:
+                continue
+            object_layouts[stage_name][room_name] = copy.deepcopy(room_extract['Object Layout - Horizontal']['Data'][1:-1])
+    for pool_type in (
+        'RELIC_ORB', # ('RELIC_ORB', 'GLOBAL'),
+        'ITEM_DROP', # ('ITEM_DROP', 'GLOBAL'),
+        # 'ENEMY', # ('ENEMY', 'Abandoned Mine'),
+        # 'ENEMY', # ('ENEMY', 'Alchemy Laboratory'),
+    ):
+        print('', pool_type)
+        pooled_entities = []
+        # Extract entities in pool type from their original positions and add them to the pool
+        for stage_name in sorted(object_layouts.keys()):
+            for room_name in sorted(object_layouts[stage_name].keys()):
+                for base_entity in object_layouts[stage_name][room_name]:
+                    entity_type = entity_types.get(stage_name, {}).get(base_entity['Entity Type ID'], ('UNIDENTIFIED', 'UNIDENTIFIED'))
+                    if entity_type == ('UNIDENTIFIED', 'UNIDENTIFIED'):
+                        entity_type = entity_types.get('GLOBAL', {}).get(base_entity['Entity Type ID'], ('UNIDENTIFIED', 'UNIDENTIFIED'))
+                    if entity_type == (pool_type, 'SAFE'):
+                        print('*** Entity added to pool!', entity_type, base_entity)
+                        pooled_entity = {
+                            'Entity Room Index': base_entity.pop('Entity Room Index'),
+                            'Entity Type ID': base_entity.pop('Entity Type ID'),
+                            'Params': base_entity.pop('Params'),
+                        }
+                        pooled_entities.append(pooled_entity)
+        # Shuffle the pool of entities around
+        rng.shuffle(pooled_entities)
+        # Reassign the now-shuffled pool of entities in order
+        for stage_name in sorted(object_layouts.keys()):
+            for room_name in sorted(object_layouts[stage_name].keys()):
+                for base_entity in object_layouts[stage_name][room_name]:
+                    if 'Entity Type ID' not in base_entity:
+                        pooled_entity = pooled_entities.pop()
+                        base_entity['Entity Room Index'] = pooled_entity['Entity Room Index']
+                        base_entity['Entity Type ID'] = pooled_entity['Entity Type ID']
+                        base_entity['Params'] = pooled_entity['Params']
+        assert len(pooled_entities) < 1
+    # Sort the new entity lists by X and Y and add them to the horizontal and vertical lists, respectively
+    for stage_name in sorted(object_layouts.keys()):
+        for room_name in sorted(object_layouts[stage_name].keys()):
+            room_object_layouts = {
+                'Object Layout - Horizontal': {},
+                'Object Layout - Vertical': {},
+            }
+            horizontal_object_layout = list(sorted(
+                object_layouts[stage_name][room_name],
+                key=lambda x: (x['X'], x['Y'], x['Entity Room Index'], x['Entity Type ID'], x['Params'])
+            ))
+            vertical_object_layout = list(sorted(
+                object_layouts[stage_name][room_name],
+                key=lambda x: (x['Y'], x['X'], x['Entity Room Index'], x['Entity Type ID'], x['Params'])
+            ))
+            assert len(horizontal_object_layout) == len(vertical_object_layout)
+            for i in range(len(horizontal_object_layout)):
+                # NOTE(sestren): Add +1 to the changes key to account for the sentinel entity at the start of every entity list
+                room_object_layouts['Object Layout - Horizontal'][str(i + 1)] = horizontal_object_layout[i]
+                room_object_layouts['Object Layout - Vertical'][str(i + 1)] = vertical_object_layout[i]
+            changes['Stages'][stage_name]['Rooms'][room_name]['Object Layout - Horizontal'] = room_object_layouts['Object Layout - Horizontal']
+            changes['Stages'][stage_name]['Rooms'][room_name]['Object Layout - Vertical'] = room_object_layouts['Object Layout - Vertical']
+
 if __name__ == '__main__':
     '''
     Usage
@@ -785,6 +856,10 @@ if __name__ == '__main__':
     - Shuffle all Relic Orbs across both castles
     - Shuffle all Unique Item Drops across both castles
     - Shuffle all enemies within each stage
+
+    Iterate over all stages
+    - If condition met, pop (stage_name, room_name, x, y) from entity and add it to pool
+    - 
     '''
     MIN_SEED = 0
     MAX_SEED = 2 ** 64 - 1
@@ -807,24 +882,9 @@ if __name__ == '__main__':
     initial_seed = args.seed
     if initial_seed is None:
         initial_seed = str(random.randint(MIN_SEED, MAX_SEED))
-    # For each stage, shuffle entities within each room
+    # For each stage, shuffle enemies within each stage
     global_rng = random.Random(initial_seed)
-    for stage_name in sorted(changes['Stages'].keys()):
-        print('', stage_name)
-        stage_seed = global_rng.randint(MIN_SEED, MAX_SEED)
-        stage_rng = random.Random(stage_seed)
-        for room_name in sorted(changes['Stages'][stage_name]['Rooms'].keys()):
-            print('  ', room_name)
-            room_id = str(getID(aliases, ('Rooms', room_name)))
-            room_extract = extraction['Stages'][stage_name]['Rooms'][room_id]
-            room_seed = stage_rng.randint(MIN_SEED, MAX_SEED)
-            if 'Object Layout - Horizontal' not in room_extract:
-                continue
-            object_layouts = shuffle_entities(room_extract['Object Layout - Horizontal']['Data'][1:-1], room_seed, stage_name)
-            if object_layouts is not None:
-                changes['Stages'][stage_name]['Rooms'][room_name]['Object Layout - Horizontal'] = object_layouts['Object Layout - Horizontal']
-                changes['Stages'][stage_name]['Rooms'][room_name]['Object Layout - Vertical'] = object_layouts['Object Layout - Vertical']
-    # for entity in sorted(entities):
-    #     print(entity)
+    seed = global_rng.randint(MIN_SEED, MAX_SEED)
+    shuffle_relics_and_items(changes, seed)
     with open(os.path.join('build', 'shuffler', 'april-fools.json'), 'w') as changes_json:
         json.dump(changes, changes_json, indent='    ', sort_keys=True, default=str)
