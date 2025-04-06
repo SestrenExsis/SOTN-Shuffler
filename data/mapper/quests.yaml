@@ -68,9 +68,20 @@ Sources:
       Default:
         Check - Ghost Card Location: false
         Room: Castle Keep, Ghost Card Room
-        Section: UNKNOWN
+        Section: Ground
         Stage: Castle Keep
     Target Reward: Relic - Ghost Card
+  Location - Power of Mist:
+    Description: Action - Check Power of Mist Location
+    Outcomes:
+      Check - Power of Mist Location: true
+    Requirements:
+      Default:
+        Check - Power of Mist Location: false
+        Room: Castle Keep, Keep Area
+        Section: Middle-Left Ledge
+        Stage: Castle Keep
+    Target Reward: Relic - Power of Mist
   Location - Gravity Boots:
     Description: Action - Check Gravity Boots Location
     Outcomes:
@@ -170,6 +181,28 @@ Sources:
         Section: Main
         Stage: Olrox's Quarters
     Target Reward: Relic - Sword Card
+  Location - Faerie Card:
+    Description: Action - Check Faerie Card Location
+    Outcomes:
+      Check - Faerie Card Location: true
+    Requirements:
+      Default:
+        Check - Faerie Card Location: false
+        Room: Long Library, Faerie Card Room
+        Section: Main
+        Stage: Long Library
+    Target Reward: Relic - Faerie Card
+  Location - Faerie Scroll:
+    Description: Action - Check Faerie Scroll Location
+    Outcomes:
+      Check - Faerie Scroll Location: true
+    Requirements:
+      Default:
+        Check - Faerie Scroll Location: false
+        Room: Long Library, Spellbook Area
+        Section: Main
+        Stage: Long Library
+    Target Reward: Relic - Faerie Scroll
 Targets:
   Relic - Cube of Zoe:
     Outcomes:
@@ -232,3 +265,14 @@ Targets:
     Outcomes:
       Progression - Summon Sword Familiar: true
       Relic - Sword Card: true
+  Relic - Power of Mist:
+    Outcomes:
+      Progression - Longer Mist Duration: true
+      Relic - Power of Mist: true
+  Relic - Faerie Card:
+    Outcomes:
+      Progression - Summon Faerie Familiar: true
+      Relic - Faerie Card: true
+  Relic - Faerie Scroll:
+    Outcomes:
+      Relic - Faerie Scroll: true

@@ -1,6 +1,7 @@
 # External libraries
 import argparse
 import collections
+import copy
 import datetime
 import hashlib
 import json
@@ -824,6 +825,7 @@ class MapperData:
         result = {
             'Rooms': self.rooms,
             'Teleporters': self.teleporters,
+            'Quests': self.quests,
         }
         return result
 
@@ -953,6 +955,28 @@ class LogicCore:
         for room_name in mapper_data['Teleporters']['Sources']:
             if 'Fake' in room_name:
                 self.commands.pop(room_name, None)
+        # TODO(sestren): Apply changes to quests
+        # Apply quests to logic
+        for quest in mapper_data['Quests']['Sources'].values():
+            for requirement in quest['Requirements'].values():
+                stage_name = requirement.get('Stage', 'Global')
+                if stage_name not in changes['Stages']:
+                    continue
+                room_name = requirement.get('Room', 'Global')
+                command_name = quest['Description']
+                outcomes = quest['Outcomes']
+                target_reward = quest['Target Reward']
+                for (outcome_key, outcome_value) in mapper_data['Quests']['Targets'][target_reward]['Outcomes'].items():
+                    outcomes[outcome_key] = outcome_value
+                simplified_requirement = copy.deepcopy(requirement)
+                simplified_requirement.pop('Stage')
+                simplified_requirement.pop('Room')
+                self.commands[room_name][command_name] = {
+                    'Requirements': {
+                        'Default': simplified_requirement,
+                    },
+                    'Outcomes': outcomes,
+                }
         self.state = {
             'Character': 'Alucard',
             'Room': 'Castle Entrance, After Drawbridge',

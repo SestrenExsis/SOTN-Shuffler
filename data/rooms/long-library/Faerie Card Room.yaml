@@ -13,12 +13,4 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands:
-    Action - Collect Faerie Card Relic:
-        Outcomes:
-            Relic - Faerie Card: true
-            Progression - Summon Faerie Familiar: true
-        Requirements:
-            Default:
-                Section: Main
-                Relic - Faerie Card: false
+Commands: {}

@@ -13,12 +13,4 @@ Nodes:
         Edge: Bottom
         Entry Section: Main
         Exit Section: Main
-Commands:
-    Action - Collect Gravity Boots Relic:
-        Outcomes:
-            Relic - Gravity Boots: true
-            Progression - Gravity Jump: true
-        Requirements:
-            Default:
-                Section: Main
-                Relic - Gravity Boots: false
+Commands: {}

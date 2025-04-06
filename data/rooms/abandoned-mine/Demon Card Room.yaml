@@ -19,12 +19,4 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands:
-    Action - Collect Demon Card Relic:
-        Outcomes:
-            Relic - Demon Card: true
-            Progression - Summon Demon Familiar: true
-        Requirements:
-            Default:
-                Section: Main
-                Relic - Demon Card: false
+Commands: {}

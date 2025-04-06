@@ -123,11 +123,3 @@ Commands:
             Layer 1 - Mist:
                 Section: Layer 1
                 Progression - Mist Transformation: true
-    Action - Collect Soul of Bat Relic:
-        Outcomes:
-            Relic - Soul of Bat: true
-            Progression - Bat Transformation: true
-        Requirements:
-            Default:
-                Section: Behind Mist Gate
-                Relic - Soul of Bat: false
