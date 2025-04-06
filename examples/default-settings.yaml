@@ -5,4 +5,5 @@ Options:
     Enable debug mode: true
     Skip Maria cutscene in Alchemy Laboratory: true
 Stage shuffler:
-    Shuffle connections between stages: false
+    Shuffle connections between stages: true
+    Add labels to loading rooms: true
