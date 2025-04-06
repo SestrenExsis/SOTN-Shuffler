@@ -735,6 +735,7 @@ if __name__ == '__main__':
         if args.metadata:
             current_seed['Data Core'] = mapper_core
             current_seed['Shuffler'] = shuffler
+            # TODO(sestren): Recombine all stages into the logic core
             # current_seed['Logic Core'] = logic_core
             # current_seed['Solver'] = solution
         filepath = None

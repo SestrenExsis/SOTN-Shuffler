@@ -813,7 +813,7 @@ class MapperData:
                     ):
                         continue
                     self.rooms[room_name] = yaml_obj
-        with open(os.path.join('data', 'Teleporters.yaml')) as open_file:
+        with open(os.path.join('data', 'mapper', 'teleporters.yaml')) as open_file:
             yaml_obj = yaml.safe_load(open_file)
             self.teleporters = yaml_obj
     
