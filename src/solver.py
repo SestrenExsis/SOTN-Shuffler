@@ -41,8 +41,8 @@ class Game:
     def stage(self):
         stage_name = self.DEFAULT_STRING
         if 'Room' in self.current_state:
-            location_name = self.current_state['Room']
-            stage_name = location_name[:location_name.find(',')]
+            room_name = self.current_state['Room']
+            stage_name = room_name[:room_name.find(',')]
         result = stage_name
         return result
     
@@ -225,8 +225,8 @@ class Game:
                 result.add(requirement_key)
         return result
 
-    def cheat_location(self, location_name: str, section_name: str, helper: str=None):
-        self.current_state['Room'] = location_name
+    def cheat_location(self, room_name: str, section_name: str, helper: str=None):
+        self.current_state['Room'] = room_name
         self.current_state['Section'] = section_name
         if helper is None:
             if 'Helper' in self.current_state:
@@ -235,8 +235,8 @@ class Game:
             self.current_state['Helper'] = helper
         self.cleanup_state()
     
-    def cheat_command(self, location_name: str, command_name: str):
-        command_data = self.commands[location_name]
+    def cheat_command(self, room_name: str, command_name: str):
+        command_data = self.commands[room_name]
         # Apply outcomes from the command
         for (key, value) in command_data[command_name]['Outcomes'].items():
             if type(value) in (str, bool):

@@ -1,0 +1,234 @@
+---
+Sources:
+  Location - Cube of Zoe:
+    Description: Action - Check Cube of Zoe Location
+    Outcomes:
+      Check - Cube of Zoe Location: true
+    Requirements:
+      Castle Entrance:
+        Check - Cube of Zoe Location: false
+        Room: Castle Entrance, Cube of Zoe Room
+        Section: Main
+        Stage: Castle Entrance
+      Castle Entrance Revisited:
+        Check - Cube of Zoe Location: false
+        Room: Castle Entrance Revisited, Cube of Zoe Room
+        Section: Main
+        Stage: Castle Entrance Revisited
+    Target Reward: Relic - Cube of Zoe
+  Location - Demon Card:
+    Description: Action - Check Demon Card Location
+    Outcomes:
+      Check - Demon Card Location: true
+    Requirements:
+      Default:
+        Check - Demon Card Location: false
+        Room: Abandoned Mine, Demon Card Room
+        Section: Main
+        Stage: Abandoned Mine
+    Target Reward: Relic - Demon Card
+  Location - Echo of Bat:
+    Description: Action - Check Echo of Bat Location
+    Outcomes:
+      Check - Echo of Bat Location: true
+    Requirements:
+      Default:
+        Check - Echo of Bat Location: false
+        Room: Olrox's Quarters, Echo of Bat Room
+        Section: Main
+        Stage: Olrox's Quarters
+    Target Reward: Relic - Echo of Bat
+  Location - Fire of Bat:
+    Description: Action - Check Fire of Bat Location
+    Outcomes:
+      Check - Fire of Bat Location: true
+    Requirements:
+      Default:
+        Check - Fire of Bat Location: false
+        Room: Clock Tower, Fire of Bat Room
+        Section: Main
+        Stage: Clock Tower
+    Target Reward: Relic - Fire of Bat
+  Location - Form of Mist:
+    Description: Action - Check Form of Mist Location
+    Outcomes:
+      Check - Form of Mist Location: true
+    Requirements:
+      Default:
+        Check - Form of Mist Location: false
+        Room: Colosseum, Top of Elevator Shaft
+        Section: Left Side
+        Stage: Colosseum
+    Target Reward: Relic - Form of Mist
+  Location - Ghost Card:
+    Description: Action - Check Ghost Card Location
+    Outcomes:
+      Check - Ghost Card Location: true
+    Requirements:
+      Default:
+        Check - Ghost Card Location: false
+        Room: Castle Keep, Ghost Card Room
+        Section: UNKNOWN
+        Stage: Castle Keep
+    Target Reward: Relic - Ghost Card
+  Location - Gravity Boots:
+    Description: Action - Check Gravity Boots Location
+    Outcomes:
+      Check - Gravity Boots Location: true
+    Requirements:
+      Default:
+        Check - Gravity Boots Location: false
+        Room: Marble Gallery, Gravity Boots Room
+        Section: Main
+        Stage: Marble Gallery
+    Target Reward: Relic - Gravity Boots
+  Location - Holy Symbol:
+    Description: Action - Check Holy Symbol Location
+    Outcomes:
+      Check - Holy Symbol Location: true
+    Requirements:
+      Default:
+        Check - Holy Symbol Location: false
+        Room: Underground Caverns, Holy Symbol Room
+        Section: Main
+        Stage: Underground Caverns
+    Target Reward: Relic - Holy Symbol
+  Location - Leap Stone:
+    Description: Action - Check Leap Stone Location
+    Outcomes:
+      Check - Leap Stone Location: true
+    Requirements:
+      Default:
+        Check - Leap Stone Location: false
+        Room: Castle Keep, Keep Area
+        Section: Ground
+        Stage: Castle Keep
+    Target Reward: Relic - Leap Stone
+  Location - Merman Statue:
+    Description: Action - Check Merman Statue Location
+    Outcomes:
+      Check - Merman Statue Location: true
+    Requirements:
+      Default:
+        Check - Merman Statue Location: false
+        Room: Underground Caverns, Merman Statue Room
+        Section: Main
+        Stage: Underground Caverns
+    Target Reward: Relic - Merman Statue
+  Location - Power of Wolf:
+    Description: Action - Check Power of Wolf Location
+    Outcomes:
+      Check - Power of Wolf Location: true
+    Requirements:
+      Default:
+        Check - Power of Wolf Location: false
+        Room: Castle Entrance, After Drawbridge
+        Section: Parapet
+        Stage: Castle Entrance
+    Target Reward: Relic - Power of Wolf
+  Location - Soul of Bat:
+    Description: Action - Check Soul of Bat Location
+    Outcomes:
+      Check - Soul of Bat Location: true
+    Requirements:
+      Default:
+        Check - Soul of Bat Location: false
+        Room: Long Library, Lesser Demon Area
+        Section: Behind Mist Gate
+        Stage: Long Library
+    Target Reward: Relic - Soul of Bat
+  Location - Soul of Wolf:
+    Description: Action - Check Soul of Wolf Location
+    Outcomes:
+      Check - Soul of Wolf Location: true
+    Requirements:
+      Default:
+        Check - Soul of Wolf Location: false
+        Room: Outer Wall, Elevator Shaft Room
+        Section: Elevator Shaft
+        Stage: Outer Wall
+    Target Reward: Relic - Soul of Wolf
+  Location - Spirit Orb:
+    Description: Action - Check Spirit Orb Location
+    Outcomes:
+      Check - Spirit Orb Location: true
+    Requirements:
+      Default:
+        Check - Spirit Orb Location: false
+        Room: Marble Gallery, Spirit Orb Room
+        Section: Main
+        Stage: Marble Gallery
+    Target Reward: Relic - Spirit Orb
+  Location - Sword Card:
+    Description: Action - Check Sword Card Location
+    Outcomes:
+      Check - Sword Card Location: true
+    Requirements:
+      Default:
+        Check - Sword Card Location: false
+        Room: Olrox's Quarters, Sword Card Room
+        Section: Main
+        Stage: Olrox's Quarters
+    Target Reward: Relic - Sword Card
+Targets:
+  Relic - Cube of Zoe:
+    Outcomes:
+      Progression - Item Materialization: true
+      Relic - Cube of Zoe: true
+  Relic - Demon Card:
+    Outcomes:
+      Progression - Summon Demon Familiar: true
+      Relic - Demon Card: true
+  Relic - Echo of Bat:
+    Outcomes:
+      Progression - Echolocation: true
+      Relic - Echo of Bat: true
+  Relic - Fire of Bat:
+    Outcomes:
+      Relic - Fire of Bat: true
+  Relic - Form of Mist:
+    Outcomes:
+      Progression - Mid-Air Reset: true
+      Progression - Mist Transformation: true
+      Relic - Form of Mist: true
+  Relic - Ghost Card:
+    Outcomes:
+      Progression - Summon Ghost Familiar: true
+      Relic - Ghost Card: true
+  Relic - Gravity Boots:
+    Outcomes:
+      Progression - Gravity Jump: true
+      Relic - Gravity Boots: true
+  Relic - Holy Symbol:
+    Outcomes:
+      Progression - Protection From Water: true
+      Relic - Holy Symbol: true
+  Relic - Leap Stone:
+    Outcomes:
+      Progression - Double Jump: true
+      Relic - Leap Stone: true
+  Relic - Merman Statue:
+    Outcomes:
+      Progression - Summon Ferryman: true
+      Relic - Merman Statue: true
+  Relic - Power of Wolf:
+    Outcomes:
+      Progression - Faster Wolf Run Speed: true
+      Relic - Power of Wolf: true
+  Relic - Soul of Bat:
+    Outcomes:
+      Progression - Bat Transformation: true
+      Progression - Mid-Air Reset: true
+      Relic - Soul of Bat: true
+  Relic - Soul of Wolf:
+    Outcomes:
+      Progression - Mid-Air Reset: true
+      Progression - Wolf Transformation: true
+      Relic - Soul of Wolf: true
+  Relic - Spirit Orb:
+    Outcomes:
+      Relic - Spirit Orb: true
+  Relic - Sword Card:
+    Outcomes:
+      Progression - Summon Sword Familiar: true
+      Relic - Sword Card: true

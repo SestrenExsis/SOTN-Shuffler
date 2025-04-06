@@ -813,9 +813,12 @@ class MapperData:
                     ):
                         continue
                     self.rooms[room_name] = yaml_obj
-        with open(os.path.join('data', 'mapper', 'teleporters.yaml')) as open_file:
-            yaml_obj = yaml.safe_load(open_file)
-            self.teleporters = yaml_obj
+        with (
+            open(os.path.join('data', 'mapper', 'teleporters.yaml')) as teleporters_file,
+            open(os.path.join('data', 'mapper', 'quests.yaml')) as quests_file,
+        ):
+            self.teleporters = yaml.safe_load(teleporters_file)
+            self.quests = yaml.safe_load(quests_file)
     
     def get_core(self) -> dict:
         result = {
@@ -865,7 +868,7 @@ class LogicCore:
             if stage_name not in changes['Stages']:
                 continue
             nodes = {}
-            for (location_name, room_data) in mapper_data['Rooms'].items():
+            for (room_name, room_data) in mapper_data['Rooms'].items():
                 if room_data['Stage'] != stage_name:
                     continue
                 stage_changes = changes['Stages'][stage_name]
@@ -873,7 +876,7 @@ class LogicCore:
                 for possible_location_key in (
                     str(room_data['Index']),
                     room_data['Index'],
-                    location_name,
+                    room_name,
                     stage_name + ', Room ID ' + f'{room_data['Index']:02d}',
                 ):
                     if possible_location_key in stage_changes['Rooms']:
@@ -894,12 +897,12 @@ class LogicCore:
                     print('stage_name:', stage_name, 'has invalid dimensions')
                 assert room_top is not None
                 assert room_left is not None
-                self.commands[location_name] = room_data['Commands']
+                self.commands[room_name] = room_data['Commands']
                 for (node_name, node) in room_data['Nodes'].items():
                     row = room_top + node['Row']
                     column = room_left + node['Column']
                     edge = node['Edge']
-                    nodes[(row, column, edge)] = (location_name, node_name, node['Entry Section'], stage_name)
+                    nodes[(row, column, edge)] = (room_name, node_name, node['Entry Section'], stage_name)
                     exit = {
                         'Outcomes': {
                             'Room': None,
@@ -907,13 +910,13 @@ class LogicCore:
                         },
                         'Requirements': {
                             'Default': {
-                                'Room': location_name,
+                                'Room': room_name,
                                 'Section': node['Exit Section']
                             },
                         },
                     }
-                    self.commands[location_name]['Exit - ' + node_name] = exit
-            for (row, column, edge), (location_name, node_name, section_name, stage_name) in nodes.items():
+                    self.commands[room_name]['Exit - ' + node_name] = exit
+            for (row, column, edge), (room_name, node_name, section_name, stage_name) in nodes.items():
                 matching_row = row
                 matching_column = column
                 matching_edge = edge
@@ -929,27 +932,27 @@ class LogicCore:
                 elif edge == 'Right':
                     matching_edge = 'Left'
                     matching_column += 1
-                (matching_location_name, matching_node_name, matching_section, matching_stage_name) = (None, 'Unknown', None, 'Unknown')
+                (matching_room_name, matching_node_name, matching_section, matching_stage_name) = (None, 'Unknown', None, 'Unknown')
                 if (matching_row, matching_column, matching_edge) in nodes:
-                    (matching_location_name, matching_node_name, matching_section, matching_stage_name) = nodes[(matching_row, matching_column, matching_edge)]
-                self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Room'] = matching_location_name
-                self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Section'] = matching_section
+                    (matching_room_name, matching_node_name, matching_section, matching_stage_name) = nodes[(matching_row, matching_column, matching_edge)]
+                self.commands[room_name]['Exit - ' + node_name]['Outcomes']['Room'] = matching_room_name
+                self.commands[room_name]['Exit - ' + node_name]['Outcomes']['Section'] = matching_section
         # Replace source teleporter locations with their targets
-        for (location_name, location_info) in self.commands.items():
+        for (room_name, location_info) in self.commands.items():
             for (command_name, command_info) in location_info.items():
                 if 'Outcomes' in command_info and 'Room' in command_info['Outcomes']:
-                    old_location_name = command_info['Outcomes']['Room']
-                    if old_location_name in mapper_data['Teleporters']['Sources']:
-                        source = mapper_data['Teleporters']['Sources'][old_location_name]
+                    old_room_name = command_info['Outcomes']['Room']
+                    if old_room_name in mapper_data['Teleporters']['Sources']:
+                        source = mapper_data['Teleporters']['Sources'][old_room_name]
                         target = mapper_data['Teleporters']['Targets'][source['Target']]
-                        new_location_name = target['Stage'] + ', ' + target['Room']
-                        self.commands[location_name][command_name]['Outcomes']['Room'] = new_location_name
-                        target_section_name = mapper_data['Rooms'][new_location_name]['Nodes'][target['Node']]['Entry Section']
-                        self.commands[location_name][command_name]['Outcomes']['Section'] = target_section_name
+                        new_room_name = target['Stage'] + ', ' + target['Room']
+                        self.commands[room_name][command_name]['Outcomes']['Room'] = new_room_name
+                        target_section_name = mapper_data['Rooms'][new_room_name]['Nodes'][target['Node']]['Entry Section']
+                        self.commands[room_name][command_name]['Outcomes']['Section'] = target_section_name
         # Delete fake rooms mentioned as teleporter locations
-        for location_name in mapper_data['Teleporters']['Sources']:
-            if 'Fake' in location_name:
-                self.commands.pop(location_name, None)
+        for room_name in mapper_data['Teleporters']['Sources']:
+            if 'Fake' in room_name:
+                self.commands.pop(room_name, None)
         self.state = {
             'Character': 'Alucard',
             'Room': 'Castle Entrance, After Drawbridge',
