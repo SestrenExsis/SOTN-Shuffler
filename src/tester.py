@@ -17,6 +17,11 @@ if __name__ == '__main__':
         logic_core = mapper.LogicCore(mapper_data, changes).get_core()
         game = solver.Game(logic_core)
         # game.cheat_command('Outer Wall, Elevator Shaft Room', 'Action - Collect Soul of Wolf Relic')
-        # game.cheat_location('Marble Gallery, Clock Room', 'Main')
+        game.cheat_location('Warp Rooms, Warp Room to Castle Keep', 'Special')
+        game.current_state['Status - Warp Room to Abandoned Mine Unlocked'] = True
+        game.current_state['Status - Warp Room to Castle Entrance Unlocked'] = True
+        game.current_state['Status - Warp Room to Castle Keep Unlocked'] = True
+        game.current_state["Status - Warp Room to Olrox's Quarters Unlocked"] = True
+        game.current_state['Status - Warp Room to Outer Wall Unlocked'] = True
         while True:
             game.play()
