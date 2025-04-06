@@ -830,7 +830,7 @@ class LogicCore:
             'Global': {
                 'Use Library Card': {
                     'Outcomes': {
-                        'Location': 'Long Library, Outside Shop',
+                        'Room': 'Long Library, Outside Shop',
                         'Section': 'Main',
                         'Item - Library Card': -1,
                     },
@@ -902,12 +902,12 @@ class LogicCore:
                     nodes[(row, column, edge)] = (location_name, node_name, node['Entry Section'], stage_name)
                     exit = {
                         'Outcomes': {
-                            'Location': None,
+                            'Room': None,
                             'Section': None,
                         },
                         'Requirements': {
                             'Default': {
-                                'Location': location_name,
+                                'Room': location_name,
                                 'Section': node['Exit Section']
                             },
                         },
@@ -932,18 +932,18 @@ class LogicCore:
                 (matching_location_name, matching_node_name, matching_section, matching_stage_name) = (None, 'Unknown', None, 'Unknown')
                 if (matching_row, matching_column, matching_edge) in nodes:
                     (matching_location_name, matching_node_name, matching_section, matching_stage_name) = nodes[(matching_row, matching_column, matching_edge)]
-                self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Location'] = matching_location_name
+                self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Room'] = matching_location_name
                 self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Section'] = matching_section
         # Replace source teleporter locations with their targets
         for (location_name, location_info) in self.commands.items():
             for (command_name, command_info) in location_info.items():
-                if 'Outcomes' in command_info and 'Location' in command_info['Outcomes']:
-                    old_location_name = command_info['Outcomes']['Location']
+                if 'Outcomes' in command_info and 'Room' in command_info['Outcomes']:
+                    old_location_name = command_info['Outcomes']['Room']
                     if old_location_name in mapper_data['Teleporters']['Sources']:
                         source = mapper_data['Teleporters']['Sources'][old_location_name]
                         target = mapper_data['Teleporters']['Targets'][source['Target']]
                         new_location_name = target['Stage'] + ', ' + target['Room']
-                        self.commands[location_name][command_name]['Outcomes']['Location'] = new_location_name
+                        self.commands[location_name][command_name]['Outcomes']['Room'] = new_location_name
                         target_section_name = mapper_data['Rooms'][new_location_name]['Nodes'][target['Node']]['Entry Section']
                         self.commands[location_name][command_name]['Outcomes']['Section'] = target_section_name
         # Delete fake rooms mentioned as teleporter locations
@@ -952,7 +952,7 @@ class LogicCore:
                 self.commands.pop(location_name, None)
         self.state = {
             'Character': 'Alucard',
-            'Location': 'Castle Entrance, After Drawbridge',
+            'Room': 'Castle Entrance, After Drawbridge',
             'Section': 'Ground',
             'Item - Alucard Sword': 1,
             'Item - Alucard Shield': 1,

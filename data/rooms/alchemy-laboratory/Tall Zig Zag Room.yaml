@@ -70,7 +70,7 @@ Commands:
             Section: Broken Floor
         Requirements:
             Main:
-                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Room: Alchemy Laboratory, Tall Zig Zag Room
                 Section: Main
                 Status - Breakable Floor in Tall Zig Zag Room Broken: true
     Move - Broken Wall:
@@ -78,7 +78,7 @@ Commands:
             Section: Broken Wall
         Requirements:
             Main:
-                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Room: Alchemy Laboratory, Tall Zig Zag Room
                 Section: Main
                 Status - Breakable Wall in Tall Zig Zag Room Broken: true
     Move - Main:
@@ -86,10 +86,10 @@ Commands:
             Section: Main
         Requirements:
             Broken Floor:
-                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Room: Alchemy Laboratory, Tall Zig Zag Room
                 Section: Broken Floor
                 Status - Breakable Floor in Tall Zig Zag Room Broken: true
             Broken Wall:
-                Location: Alchemy Laboratory, Tall Zig Zag Room
+                Room: Alchemy Laboratory, Tall Zig Zag Room
                 Section: Broken Wall
                 Status - Breakable Wall in Tall Zig Zag Room Broken: true

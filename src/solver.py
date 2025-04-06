@@ -40,8 +40,8 @@ class Game:
     @property
     def stage(self):
         stage_name = self.DEFAULT_STRING
-        if 'Location' in self.current_state:
-            location_name = self.current_state['Location']
+        if 'Room' in self.current_state:
+            location_name = self.current_state['Room']
             stage_name = location_name[:location_name.find(',')]
         result = stage_name
         return result
@@ -49,8 +49,8 @@ class Game:
     @property
     def room(self):
         room_name = self.DEFAULT_STRING
-        if 'Location' in self.current_state:
-            room_name = self.current_state['Location']
+        if 'Room' in self.current_state:
+            room_name = self.current_state['Room']
         result = room_name
         return result
     
@@ -226,7 +226,7 @@ class Game:
         return result
 
     def cheat_location(self, location_name: str, section_name: str, helper: str=None):
-        self.current_state['Location'] = location_name
+        self.current_state['Room'] = location_name
         self.current_state['Section'] = section_name
         if helper is None:
             if 'Helper' in self.current_state:
@@ -360,7 +360,7 @@ class Solver():
                 next_game__solver = game__solver.clone()
                 next_game__solver.process_command(command_name)
                 if restrict_to_stage is not None:
-                    if not next_game__solver.current_state['Location'].startswith(restrict_to_stage):
+                    if not next_game__solver.current_state['Room'].startswith(restrict_to_stage):
                         continue
                 next_hashed_state__solver = next_game__solver.get_key()
                 visit_count = 0
@@ -402,7 +402,7 @@ class Solver():
             chosen_work_key = self.rng.choice(list(work__solver.keys()))
             (step__solver, game__solver) = work__solver.pop(chosen_work_key)
             if self.debug:
-                print((step__solver, len(work__solver)), (self.cycle_count, chosen_work_key), game__solver.current_state['Location'])
+                print((step__solver, len(work__solver)), (self.cycle_count, chosen_work_key), game__solver.current_state['Room'])
             if step__solver >= step_limit:
                 continue
             self.cycle_count += 1
@@ -422,7 +422,7 @@ class Solver():
                 next_game__solver = game__solver.clone()
                 next_game__solver.process_command(command)
                 if restrict_to_stage is not None:
-                    if not next_game__solver.current_state['Location'].startswith(restrict_to_stage):
+                    if not next_game__solver.current_state['Room'].startswith(restrict_to_stage):
                         continue
                 next_step__solver = step__solver + 1
                 next_hashed_state__solver = next_game__solver.get_key()
@@ -549,7 +549,7 @@ if __name__ == '__main__':
         logic_core = mapper.LogicCore(mapper_data, changes).get_core()
         with open(os.path.join('build', 'debug', 'logic-core.json'), 'w') as debug_logic_core_json:
             json.dump(logic_core, debug_logic_core_json, indent='    ', sort_keys=True, default=str)
-        logic_core['State']['Location'] = 'Castle Entrance, After Drawbridge'
+        logic_core['State']['Room'] = 'Castle Entrance, After Drawbridge'
         logic_core['State']['Section'] = 'Ground'
         # To prevent Bad Endings, require Holy Glasses before entering the Throne Room
         logic_core['Commands']['Castle Keep, Keep Area']['Move - Throne Room']['Requirements']['Anteroom - Default']['Item - Holy Glasses'] = {
@@ -557,7 +557,7 @@ if __name__ == '__main__':
         }
         logic_core['Goals'] = {
             # 'Debug': {
-            #     'Location': 'Castle Entrance, After Drawbridge',
+            #     'Room': 'Castle Entrance, After Drawbridge',
             # },
             'Exploration': {
                 'Stages Visited': {
