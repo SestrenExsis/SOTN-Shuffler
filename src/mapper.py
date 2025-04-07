@@ -991,8 +991,132 @@ class LogicCore:
             'Item - Heart Refresh': 1,
         }
         self.goals = {
-            'Debug - Get Soul of Wolf': {
-                'Relic - Soul of Wolf': True,
+            # Forms of progression
+            'Check Cube of Zoe Location': {
+                'Check - Cube of Zoe Location': True,
+            },
+            'Check Demon Card Location': {
+                'Check - Demon Card Location': True,
+            },
+            'Check Echo of Bat Location': {
+                'Check - Echo of Bat Location': True,
+            },
+            'Check Fire of Bat Location': {
+                'Check - Fire of Bat Location': True,
+            },
+            'Check Form of Mist Location': {
+                'Check - Form of Mist Location': True,
+            },
+            'Check Ghost Card Location': {
+                'Check - Ghost Card Location': True,
+            },
+            'Check Gravity Boots Location': {
+                'Check - Gravity Boots Location': True,
+            },
+            'Check Holy Symbol Location': {
+                'Check - Holy Symbol Location': True,
+            },
+            'Check Leap Stone Location': {
+                'Check - Leap Stone Location': True,
+            },
+            'Check Merman Statue Location': {
+                'Check - Merman Statue Location': True,
+            },
+            'Check Power of Wolf Location': {
+                'Check - Power of Wolf Location': True,
+            },
+            'Check Soul of Bat Location': {
+                'Check - Soul of Bat Location': True,
+            },
+            'Check Soul of Wolf Location': {
+                'Check - Soul of Wolf Location': True,
+            },
+            'Check Spirit Orb Location': {
+                'Check - Spirit Orb Location': True,
+            },
+            'Check Sword Card Location': {
+                'Check - Sword Card Location': True,
+            },
+            'Check Power of Mist Location': {
+                'Check - Power of Mist Location': True,
+            },
+            'Check Faerie Card Location': {
+                'Check - Faerie Card Location': True,
+            },
+            'Check Faerie Scroll Location': {
+                'Check - Faerie Scroll Location': True,
+            },
+            'Check Spike Breaker Location': {
+                'Check - Spike Breaker Location': True,
+            },
+            'Check Silver Ring Location': {
+                'Check - Silver Ring Location': True,
+            },
+            'Check Gold Ring: Location': {
+                'Check - Gold Ring': True,
+            },
+            'Check Holy Glasses Location': {
+                'Check - Holy Glasses Location': True,
+            },
+            'Find Equivalent Room for Creature': {
+                'Room': 'Outer Wall, Doppelganger Room',
+                'Section': 'Main',
+            },
+            'Find Equivalent Room for Death': {
+                'Room': 'Abandoned Mine, Cerberus Room',
+                'Section': 'Main',
+            },
+            'Find Equivalent Room for Medusa': {
+                'Room': 'Royal Chapel, Hippogryph Room',
+                'Section': 'Main',
+            },
+            'Find Equivalent Room for Darkwing Bat': {
+                'Room': "Clock Tower, Karasuman's Room",
+                'Section': 'Main',
+            },
+            'Find Equivalent Room for Akmodan II': {
+                'Room': "Olrox's Quarters, Olrox's Room",
+                'Section': 'Ground',
+            },
+            'Check Library Card Location in Catacombs': {
+                'Check - Library Card Location in Catacombs': True,
+            },
+            'Check Colosseum Library Card Location': {
+                'Check - Colosseum Library Card': True,
+            },
+            # Final goal
+            'END': {
+                'Check - Cube of Zoe Location': True,
+                'Check - Demon Card Location': True,
+                'Check - Echo of Bat Location': True,
+                'Check - Fire of Bat Location': True,
+                'Check - Form of Mist Location': True,
+                'Check - Ghost Card Location': True,
+                'Check - Gravity Boots Location': True,
+                'Check - Holy Symbol Location': True,
+                'Check - Leap Stone Location': True,
+                'Check - Merman Statue Location': True,
+                'Check - Power of Wolf Location': True,
+                'Check - Soul of Bat Location': True,
+                'Check - Soul of Wolf Location': True,
+                'Check - Spirit Orb Location': True,
+                'Check - Sword Card Location': True,
+                'Check - Power of Mist Location': True,
+                'Check - Faerie Card Location': True,
+                'Check - Faerie Scroll Location': True,
+                'Check - Spike Breaker Location': True,
+                'Check - Silver Ring Location': True,
+                'Check - Gold Ring': True,
+                'Check - Holy Glasses Location': True,
+                'Rooms Visited': {
+                    'All': {
+                        'Outer Wall, Doppelganger Room (Main)': True,
+                        'Abandoned Mine, Cerberus Room (Main)': True,
+                        'Royal Chapel, Hippogryph Room (Main)': True,
+                        "Clock Tower, Karasuman's Room (Main)": True,
+                        "Olrox's Quarters, Olrox's Room (Ground)": True,
+                    }
+                }
             },
         }
     

@@ -28,6 +28,8 @@ class Game:
         self.commands = self.logic_core['Commands']
         # NOTE(sestren): Anything that must also be added to self.clone() is below this line
         self.history = []
+        self.progression = []
+        self.goals_remaining = copy.deepcopy(logic_core['Goals'])
         self.goals_achieved = set()
         self.layer = 0
         self.debug = False
@@ -65,6 +67,7 @@ class Game:
     def clone(self):
         result = Game(self.logic_core, self.current_state)
         result.history = list(self.history)
+        result.goals_remaining = copy.deepcopy(self.goals_remaining)
         result.goals_achieved = set(self.goals_achieved)
         result.layer = self.layer
         result.debug = self.debug
@@ -271,7 +274,7 @@ class Game:
                 if self.debug:
                     print('  +', key, ': ', value)
                 self.current_state[key] += value
-        self.goals_achieved = self.get_validated(self.logic_core['Goals'])
+        self.goals_achieved = self.get_validated(self.goals_remaining)
         self.cleanup_state()
 
     def get_valid_command_names(self, require_validation: bool=True) -> list:
@@ -315,6 +318,7 @@ class Solver():
         self.logic_core = logic_core
         for (skill_key, skill_value) in skills.items():
             self.logic_core['State'][skill_key] = skill_value
+        self.current_game = Game(self.logic_core)
         self.results = {
             'Wins': [],
             'Withdrawals': [],
@@ -327,6 +331,15 @@ class Solver():
         self.solver_count = 0
         self.initial_seed = seed
         self.rng = random.Random(self.initial_seed)
+    
+    def clear(self):
+        self.results = {
+            'Wins': [],
+            'Withdrawals': [],
+            'Losses': [],
+            'Cycles': 0,
+        }
+        self.solver_count = 0
     
     def get_should_prune(self) -> bool:
         result = False
@@ -341,7 +354,7 @@ class Solver():
     
     def solve_via_random_exploration(self, cycle_limit: int=1999, restrict_to_stage: str=None):
         self.rng = random.Random(self.initial_seed)
-        game__solver = Game(self.logic_core)
+        game__solver = self.current_game
         memo = {}
         self.cycle_count = 0
         while self.cycle_count < cycle_limit:
@@ -390,7 +403,7 @@ class Solver():
 
     def solve_via_steps(self, step_limit: int=100, restrict_to_stage: str=None):
         self.rng = random.Random(self.initial_seed)
-        initial_game = Game(self.logic_core)
+        initial_game = self.current_game
         memo = {}
         solution_found = False
         current_work_key = 0
@@ -433,7 +446,7 @@ class Solver():
     
     def solve_via_layers(self, reflexive_limit: int=3, max_layers: int=8, require_validation: bool=True):
         highest_layer_found = (0, -1)
-        initial_game = Game(self.logic_core)
+        initial_game = self.current_game
         memo = {}
         solution_found = False
         work__solver = []

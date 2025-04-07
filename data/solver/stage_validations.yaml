@@ -53,41 +53,53 @@ Template:
         Goals: {}
 Abandoned Mine:
     (Entry) Catacombs -> Cerberus Room:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Abandoned Mine, Loading Room to Catacombs
             Section: Main
             Progression - Double Jump: true
+            Progression - Summon Demon Familiar: true
+            Status - Snake Column Wall Broken: true
+            Status - Switch in Abandoned Mine Pressed: true
         Goals:
             Reach Cerberus Room:
                 Room: Abandoned Mine, Cerberus Room
                 Section: Main
     (Entry) Underground Caverns -> Cerberus Room:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Abandoned Mine, Loading Room to Underground Caverns
             Section: Main
             Progression - Double Jump: true
+            Progression - Summon Demon Familiar: true
+            Status - Snake Column Wall Broken: true
+            Status - Switch in Abandoned Mine Pressed: true
         Goals:
             Reach Cerberus Room:
                 Room: Abandoned Mine, Cerberus Room
                 Section: Main
     (Entry) Warp Rooms -> Cerberus Room:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Abandoned Mine, Loading Room to Warp Rooms
             Section: Main
             Progression - Double Jump: true
+            Progression - Summon Demon Familiar: true
+            Status - Snake Column Wall Broken: true
+            Status - Switch in Abandoned Mine Pressed: true
         Goals:
             Reach Cerberus Room:
                 Room: Abandoned Mine, Cerberus Room
                 Section: Main
-    (Abandon) Cerberus Room -> Any Loading Room:
+    SKIP - (Abandon) Cerberus Room -> Any Loading Room:
         Solver: *guard-against-softlocks
         State:
             Room: Abandoned Mine, Cerberus Room
             Section: Main
             Progression - Double Jump: true
+            Progression - Summon Demon Familiar: true
+            Status - Snake Column Wall Broken: true
+            Status - Switch in Abandoned Mine Pressed: true
         Goals:
             Reach Catacombs:
                 Room: Abandoned Mine, Loading Room to Catacombs
@@ -129,7 +141,7 @@ Abandoned Mine:
                 Room: Abandoned Mine, Snake Column
                 Section: Main
     (Exit) Cerberus Room -> Catacombs:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Abandoned Mine, Cerberus Room
             Section: Main
@@ -142,7 +154,7 @@ Abandoned Mine:
                 Room: Abandoned Mine, Loading Room to Catacombs
                 Section: Main
     (Exit) Cerberus Room -> Underground Caverns:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Abandoned Mine, Cerberus Room
             Section: Main
@@ -155,7 +167,7 @@ Abandoned Mine:
                 Room: Abandoned Mine, Loading Room to Underground Caverns
                 Section: Main
     (Exit) Cerberus Room -> Warp Rooms:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Abandoned Mine, Cerberus Room
             Section: Main
@@ -169,33 +181,48 @@ Abandoned Mine:
                 Section: Main
 Alchemy Laboratory:
     (Entry) Castle Entrance -> Slogra and Gaibon Room:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Alchemy Laboratory, Loading Room to Castle Entrance
             Section: Main
+            Progression - Gravity Jump: true
+            Progression - Unlock Blue Doors: true
+            Status - Cannon Activated: true
+            Status - Breakable Floor in Tall Zig Zag Room Broken: true
+            Status - Breakable Wall in Tall Zig Zag Room Broken: true
         Goals:
             Reach Slogra and Gaibon Room:
                 Room: Alchemy Laboratory, Slogra and Gaibon Room
                 Section: Main
     (Entry) Marble Gallery -> Slogra and Gaibon Room:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Alchemy Laboratory, Loading Room to Marble Gallery
             Section: Main
+            Progression - Gravity Jump: true
+            Progression - Unlock Blue Doors: true
+            Status - Cannon Activated: true
+            Status - Breakable Floor in Tall Zig Zag Room Broken: true
+            Status - Breakable Wall in Tall Zig Zag Room Broken: true
         Goals:
             Reach Slogra and Gaibon Room:
                 Room: Alchemy Laboratory, Slogra and Gaibon Room
                 Section: Main
     (Entry) Royal Chapel -> Slogra and Gaibon Room:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Alchemy Laboratory, Loading Room to Royal Chapel
             Section: Main
+            Progression - Gravity Jump: true
+            Progression - Unlock Blue Doors: true
+            Status - Cannon Activated: true
+            Status - Breakable Floor in Tall Zig Zag Room Broken: true
+            Status - Breakable Wall in Tall Zig Zag Room Broken: true
         Goals:
             Reach Slogra and Gaibon Room:
                 Room: Alchemy Laboratory, Slogra and Gaibon Room
                 Section: Main
-    (Abandon) Slogra and Gaibon Room -> Any Loading Room:
+    SKIP - (Abandon) Slogra and Gaibon Room -> Any Loading Room:
         Solver: *guard-against-softlocks
         State:
             Room: Alchemy Laboratory, Slogra and Gaibon Room
@@ -264,7 +291,7 @@ Alchemy Laboratory:
                 Room: Alchemy Laboratory, Skill of Wolf Room
                 Section: Main
     (Exit) Slogra and Gaibon Room -> Castle Entrance:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Alchemy Laboratory, Slogra and Gaibon Room
             Section: Main
@@ -278,7 +305,7 @@ Alchemy Laboratory:
                 Room: Alchemy Laboratory, Loading Room to Castle Entrance
                 Section: Main
     (Exit) Slogra and Gaibon Room -> Marble Gallery:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Alchemy Laboratory, Slogra and Gaibon Room
             Section: Main
@@ -292,7 +319,7 @@ Alchemy Laboratory:
                 Room: Alchemy Laboratory, Loading Room to Marble Gallery
                 Section: Main
     (Exit) Slogra and Gaibon Room -> Royal Chapel:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Alchemy Laboratory, Slogra and Gaibon Room
             Section: Main
@@ -322,6 +349,13 @@ Castle Entrance:
             Room: Castle Entrance, Loading Room to Alchemy Laboratory
             Section: Main
             Check - Meet Death in Castle Entrance: true
+            Progression - Item Materialization: true
+            Progression - Bat Transformation: true
+            Progression - Wolf Transformation: true
+            Status - Shortcut in Cube of Zoe Room Activated: true
+            Status - Secret Wall in Merman Room Opened: true
+            Status - Shortcut to Underground Caverns Activated: true
+            Status - Shortcut to Warp Rooms Activated: true
         Goals:
             Reach Hub:
                 Room: Castle Entrance, Cube of Zoe Room
@@ -332,6 +366,13 @@ Castle Entrance:
             Room: Castle Entrance, Loading Room to Marble Gallery
             Section: Main
             Check - Meet Death in Castle Entrance: true
+            Progression - Item Materialization: true
+            Progression - Bat Transformation: true
+            Progression - Wolf Transformation: true
+            Status - Shortcut in Cube of Zoe Room Activated: true
+            Status - Secret Wall in Merman Room Opened: true
+            Status - Shortcut to Underground Caverns Activated: true
+            Status - Shortcut to Warp Rooms Activated: true
         Goals:
             Reach Hub:
                 Room: Castle Entrance, Cube of Zoe Room
@@ -342,6 +383,13 @@ Castle Entrance:
             Room: Castle Entrance, Loading Room to Underground Caverns
             Section: Main
             Check - Meet Death in Castle Entrance: true
+            Progression - Item Materialization: true
+            Progression - Bat Transformation: true
+            Progression - Wolf Transformation: true
+            Status - Shortcut in Cube of Zoe Room Activated: true
+            Status - Secret Wall in Merman Room Opened: true
+            Status - Shortcut to Underground Caverns Activated: true
+            Status - Shortcut to Warp Rooms Activated: true
         Goals:
             Reach Hub:
                 Room: Castle Entrance, Cube of Zoe Room
@@ -352,11 +400,18 @@ Castle Entrance:
             Room: Castle Entrance, Loading Room to Warp Rooms
             Section: Main
             Check - Meet Death in Castle Entrance: true
+            Progression - Item Materialization: true
+            Progression - Bat Transformation: true
+            Progression - Wolf Transformation: true
+            Status - Shortcut in Cube of Zoe Room Activated: true
+            Status - Secret Wall in Merman Room Opened: true
+            Status - Shortcut to Underground Caverns Activated: true
+            Status - Shortcut to Warp Rooms Activated: true
         Goals:
             Reach Hub:
                 Room: Castle Entrance, Cube of Zoe Room
                 Section: Main
-    (Abandon) Hub -> Any Loading Room:
+    SKIP - (Abandon) Hub -> Any Loading Room:
         Solver: *solve-within-30-steps
         State:
             Room: Castle Entrance, Cube of Zoe Room
@@ -457,33 +512,36 @@ Castle Entrance:
                 Section: Main
 Castle Keep:
     (Entry) Clock Tower -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Castle Keep, Loading Room to Clock Tower
             Section: Main
+            Progression - Bat Transformation: true
         Goals:
             Reach Hub:
                 Room: Castle Keep, Keep Area
                 Section: Ground
     (Entry) Royal Chapel -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Castle Keep, Loading Room to Royal Chapel
             Section: Main
+            Progression - Bat Transformation: true
         Goals:
             Reach Hub:
                 Room: Castle Keep, Keep Area
                 Section: Ground
     (Entry) Warp Rooms -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Castle Keep, Loading Room to Warp Rooms
             Section: Main
+            Progression - Bat Transformation: true
         Goals:
             Reach Hub:
                 Room: Castle Keep, Keep Area
                 Section: Ground
-    (Abandon) Hub -> Any Loading Room:
+    SKIP - (Abandon) Hub -> Any Loading Room:
         Solver: *guard-against-softlocks
         State:
             Room: Castle Keep, Keep Area
@@ -528,7 +586,7 @@ Castle Keep:
                 Room: Castle Keep, Ghost Card Room
                 Section: Ground
     (Exit) Hub -> Clock Tower:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Castle Keep, Keep Area
             Section: Ground
@@ -538,7 +596,7 @@ Castle Keep:
                 Room: Castle Keep, Loading Room to Clock Tower
                 Section: Main
     (Exit) Hub -> Royal Chapel:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Castle Keep, Keep Area
             Section: Ground
@@ -548,7 +606,7 @@ Castle Keep:
                 Room: Castle Keep, Loading Room to Royal Chapel
                 Section: Main
     (Exit) Hub -> Warp Rooms:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Castle Keep, Keep Area
             Section: Ground
@@ -559,16 +617,18 @@ Castle Keep:
                 Section: Main
 Catacombs:
     (Entry) Abandoned Mine -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Catacombs, Loading Room to Abandoned Mine
             Section: Main
             Progression - Bat Transformation: true
+            Progression - Echolocation: true
+            Item - Spike Breaker: 1
         Goals:
             Reach Hub:
                 Room: Catacombs, Pitch Black Spike Maze
                 Section: Left Side
-    (Abandon) Hub -> Any Loading Room:
+    SKIP - (Abandon) Hub -> Any Loading Room:
         Solver: *guard-against-softlocks
         State:
             Room: Catacombs, Pitch Black Spike Maze
@@ -590,7 +650,7 @@ Catacombs:
                 Room: Catacombs, Spike Breaker Room
                 Section: Main
     (Exit) Hub -> Abandoned Mine:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Catacombs, Pitch Black Spike Maze
             Section: Left Side
@@ -603,24 +663,36 @@ Catacombs:
                 Section: Main
 Clock Tower:
     (Entry) Castle Keep -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Clock Tower, Loading Room to Castle Keep
             Section: Main
+            Progression - Bat Transformation: true
+            Status - Breakable Wall in Left Gear Room Broken: true
+            Status - Upper-Left Gear in Clock Tower Set: true
+            Status - Upper-Right Gear in Clock Tower Set: true
+            Status - Lower-Left Gear in Clock Tower Set: true
+            Status - Lower-Right Gear in Clock Tower Set: true
         Goals:
             Reach Hub:
                 Room: Clock Tower, Open Courtyard
                 Section: Ground
     (Entry) Outer Wall -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Clock Tower, Loading Room to Outer Wall
             Section: Main
+            Progression - Bat Transformation: true
+            Status - Breakable Wall in Left Gear Room Broken: true
+            Status - Upper-Left Gear in Clock Tower Set: true
+            Status - Upper-Right Gear in Clock Tower Set: true
+            Status - Lower-Left Gear in Clock Tower Set: true
+            Status - Lower-Right Gear in Clock Tower Set: true
         Goals:
             Reach Hub:
                 Room: Clock Tower, Open Courtyard
                 Section: Ground
-    (Abandon) Hub -> Any Loading Room:
+    SKIP - (Abandon) Hub -> Any Loading Room:
         Solver: *guard-against-softlocks
         State:
             Room: Clock Tower, Open Courtyard
@@ -668,7 +740,7 @@ Clock Tower:
                 Room: Clock Tower, Fire of Bat Room
                 Section: Main
     (Exit) Hub -> Castle Keep:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Clock Tower, Open Courtyard
             Section: Ground
@@ -683,7 +755,7 @@ Clock Tower:
                 Room: Clock Tower, Loading Room to Castle Keep
                 Section: Main
     (Exit) Hub -> Outer Wall:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Clock Tower, Open Courtyard
             Section: Ground
@@ -699,7 +771,7 @@ Clock Tower:
                 Section: Main
 Colosseum:
     (Entry) Royal Chapel -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Colosseum, Loading Room to Royal Chapel
             Section: Main
@@ -709,15 +781,16 @@ Colosseum:
                 Room: Colosseum, Arena
                 Section: Main
     (Entry) Olrox's Quarters -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Colosseum, Loading Room to Olrox's Quarters
             Section: Main
+            Status - Shortcut Between Royal Chapel and Colosseum Unlocked: true
         Goals:
             Reach Hub:
                 Room: Colosseum, Arena
                 Section: Main
-    (Abandon) Hub -> Any Loading Room:
+    SKIP - (Abandon) Hub -> Any Loading Room:
         Solver: *guard-against-softlocks
         State:
             Room: Colosseum, Arena
@@ -740,7 +813,7 @@ Colosseum:
                 Room: Colosseum, Top of Elevator Shaft
                 Section: Left Side
     (Exit) Hub -> Royal Chapel:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Colosseum, Arena
             Section: Main
@@ -750,7 +823,7 @@ Colosseum:
                 Room: Colosseum, Loading Room to Royal Chapel
                 Section: Main
     (Exit) Hub -> Olrox's Quarters:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Colosseum, Arena
             Section: Main
@@ -761,17 +834,18 @@ Colosseum:
                 Section: Main
 Long Library:
     (Entry) Outer Wall -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Long Library, Loading Room to Outer Wall
             Section: Main
-            Progression - Double Jump: true
+            Progression - Bat Transformation: true
+            Progression - Mist Transformation: true
         Goals:
             Reach Hub:
                 Room: Long Library, Outside Shop
                 Section: Main
     (Abandon) Hub -> Any Loading Room:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Long Library, Outside Shop
             Section: Main
@@ -821,7 +895,7 @@ Long Library:
                 Room: Long Library, Lesser Demon Area
                 Section: Layer 1
     (Exit) Hub -> Outer Wall:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Long Library, Outside Shop
             Section: Main
@@ -833,61 +907,76 @@ Long Library:
                 Section: Main
 Marble Gallery:
     (Entry) Alchemy Laboratory -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Marble Gallery, Loading Room to Alchemy Laboratory
             Section: Main
+            Progression - Double Jump: true
+            Progression - Unlock Blue Doors: true
             Status - Floor in Clock Room Opened Up: true
             Status - Pressure Plate in Marble Gallery Activated: true
+            Subweapon: Stopwatch
         Goals:
             Reach Hub:
                 Room: Marble Gallery, Clock Room
                 Section: Main
     (Entry) Castle Entrance -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Marble Gallery, Loading Room to Castle Entrance
             Section: Main
+            Progression - Double Jump: true
+            Progression - Unlock Blue Doors: true
             Status - Floor in Clock Room Opened Up: true
             Status - Pressure Plate in Marble Gallery Activated: true
+            Subweapon: Stopwatch
         Goals:
             Reach Hub:
                 Room: Marble Gallery, Clock Room
                 Section: Main
     (Entry) Olrox's Quarters -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Marble Gallery, Loading Room to Olrox's Quarters
             Section: Main
+            Progression - Double Jump: true
+            Progression - Unlock Blue Doors: true
             Status - Floor in Clock Room Opened Up: true
             Status - Pressure Plate in Marble Gallery Activated: true
+            Subweapon: Stopwatch
         Goals:
             Reach Hub:
                 Room: Marble Gallery, Clock Room
                 Section: Main
     (Entry) Outer Wall -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Marble Gallery, Loading Room to Outer Wall
             Section: Main
+            Progression - Double Jump: true
+            Progression - Unlock Blue Doors: true
             Status - Floor in Clock Room Opened Up: true
             Status - Pressure Plate in Marble Gallery Activated: true
+            Subweapon: Stopwatch
         Goals:
             Reach Hub:
                 Room: Marble Gallery, Clock Room
                 Section: Main
     (Entry) Underground Caverns -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Marble Gallery, Loading Room to Underground Caverns
             Section: Main
+            Progression - Double Jump: true
+            Progression - Unlock Blue Doors: true
             Status - Floor in Clock Room Opened Up: true
             Status - Pressure Plate in Marble Gallery Activated: true
+            Subweapon: Stopwatch
         Goals:
             Reach Hub:
                 Room: Marble Gallery, Clock Room
                 Section: Main
-    (Abandon) Hub -> Any Loading Room:
+    SKIP - (Abandon) Hub -> Any Loading Room:
         Solver: *guard-against-softlocks
         State:
             Room: Marble Gallery, Clock Room
@@ -946,7 +1035,7 @@ Marble Gallery:
                 Room: Marble Gallery, Blue Door Room
                 Section: Left Side
     (Exit) Hub -> Alchemy Laboratory:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Marble Gallery, Clock Room
             Section: Main
@@ -960,7 +1049,7 @@ Marble Gallery:
                 Room: Marble Gallery, Loading Room to Alchemy Laboratory
                 Section: Main
     (Exit) Hub -> Castle Entrance:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Marble Gallery, Clock Room
             Section: Main
@@ -974,7 +1063,7 @@ Marble Gallery:
                 Room: Marble Gallery, Loading Room to Castle Entrance
                 Section: Main
     (Exit) Hub -> Olrox's Quarters:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Marble Gallery, Clock Room
             Section: Main
@@ -988,7 +1077,7 @@ Marble Gallery:
                 Room: Marble Gallery, Loading Room to Olrox's Quarters
                 Section: Main
     (Exit) Hub -> Outer Wall:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Marble Gallery, Clock Room
             Section: Main
@@ -1002,7 +1091,7 @@ Marble Gallery:
                 Room: Marble Gallery, Loading Room to Outer Wall
                 Section: Main
     (Exit) Hub -> Underground Caverns:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Marble Gallery, Clock Room
             Section: Main
@@ -1021,6 +1110,9 @@ Olrox's Quarters:
         State:
             Room: Olrox's Quarters, Loading Room to Colosseum
             Section: Main
+            Progression - Bat Transformation: true
+            Status - Breakable Ceiling in Catwalk Crypt Broken: true
+            Status - Breakable Wall in Grand Staircase Broken: false
         Goals:
             Reach Hub:
                 Room: Olrox's Quarters, Grand Staircase
@@ -1030,6 +1122,9 @@ Olrox's Quarters:
         State:
             Room: Olrox's Quarters, Loading Room to Marble Gallery
             Section: Main
+            Progression - Bat Transformation: true
+            Status - Breakable Ceiling in Catwalk Crypt Broken: true
+            Status - Breakable Wall in Grand Staircase Broken: false
         Goals:
             Reach Hub:
                 Room: Olrox's Quarters, Grand Staircase
@@ -1039,11 +1134,14 @@ Olrox's Quarters:
         State:
             Room: Olrox's Quarters, Loading Room to Royal Chapel
             Section: Main
+            Progression - Bat Transformation: true
+            Status - Breakable Ceiling in Catwalk Crypt Broken: true
+            Status - Breakable Wall in Grand Staircase Broken: false
         Goals:
             Reach Hub:
                 Room: Olrox's Quarters, Grand Staircase
                 Section: Main
-    (Abandon) Hub -> Any Loading Room:
+    SKIP - (Abandon) Hub -> Any Loading Room:
         Solver: *solve-within-99-steps
         State:
             Room: Olrox's Quarters, Grand Staircase
@@ -1072,7 +1170,7 @@ Olrox's Quarters:
                 Room: Olrox's Quarters, Echo of Bat Room
                 Section: Main
     (Exit) Hub -> Colosseum:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Olrox's Quarters, Grand Staircase
             Section: Main
@@ -1084,7 +1182,7 @@ Olrox's Quarters:
                 Room: Olrox's Quarters, Loading Room to Colosseum
                 Section: Main
     (Exit) Hub -> Marble Gallery:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Olrox's Quarters, Grand Staircase
             Section: Main
@@ -1096,7 +1194,7 @@ Olrox's Quarters:
                 Room: Olrox's Quarters, Loading Room to Marble Gallery
                 Section: Main
     (Exit) Hub -> Royal Chapel:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Olrox's Quarters, Grand Staircase
             Section: Main
@@ -1108,7 +1206,7 @@ Olrox's Quarters:
                 Room: Olrox's Quarters, Loading Room to Royal Chapel
                 Section: Main
     (Exit) Hub -> Warp Rooms:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Olrox's Quarters, Grand Staircase
             Section: Main
@@ -1121,7 +1219,7 @@ Olrox's Quarters:
                 Section: Main
 Outer Wall:
     (Entry) Clock Tower -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Outer Wall, Loading Room to Clock Tower
             Section: Main
@@ -1130,7 +1228,7 @@ Outer Wall:
                 Room: Outer Wall, Doppelganger Room
                 Section: Main
     (Entry) Long Library -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Outer Wall, Loading Room to Long Library
             Section: Main
@@ -1139,7 +1237,7 @@ Outer Wall:
                 Room: Outer Wall, Doppelganger Room
                 Section: Main
     (Entry) Marble Gallery -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Outer Wall, Loading Room to Marble Gallery
             Section: Main
@@ -1148,7 +1246,7 @@ Outer Wall:
                 Room: Outer Wall, Doppelganger Room
                 Section: Main
     (Entry) Warp Rooms -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Outer Wall, Loading Room to Warp Rooms
             Section: Main
@@ -1156,7 +1254,7 @@ Outer Wall:
             Reach Hub:
                 Room: Outer Wall, Doppelganger Room
                 Section: Main
-    (Abandon) Hub -> Any Loading Room:
+    SKIP - (Abandon) Hub -> Any Loading Room:
         Solver: *guard-against-softlocks
         State:
             Room: Outer Wall, Doppelganger Room
@@ -1184,7 +1282,7 @@ Outer Wall:
                 Room: Outer Wall, Elevator Shaft Room
                 Section: Main
     (Exit) Hub -> Clock Tower:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Outer Wall, Doppelganger Room
             Section: Main
@@ -1193,7 +1291,7 @@ Outer Wall:
                 Room: Outer Wall, Loading Room to Clock Tower
                 Section: Main
     (Exit) Hub -> Long Library:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Outer Wall, Doppelganger Room
             Section: Main
@@ -1202,7 +1300,7 @@ Outer Wall:
                 Room: Outer Wall, Loading Room to Long Library
                 Section: Main
     (Exit) Hub -> Marble Gallery:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Outer Wall, Doppelganger Room
             Section: Main
@@ -1211,7 +1309,7 @@ Outer Wall:
                 Room: Outer Wall, Loading Room to Marble Gallery
                 Section: Main
     (Exit) Hub -> Warp Rooms:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Outer Wall, Doppelganger Room
             Section: Main
@@ -1221,42 +1319,58 @@ Outer Wall:
                 Section: Main
 Royal Chapel:
     (Entry) Alchemy Laboratory -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Royal Chapel, Loading Room to Alchemy Laboratory
             Section: Main
+            Progression - Bat Transformation: true
+            Progression - Mist Transformation: true
+            Progression - Unlock Blue Doors: true
+            Item - Spike Breaker: 1
         Goals:
             Reach Hub:
                 Room: Royal Chapel, Hippogryph Room
                 Section: Main
     (Entry) Castle Keep -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Royal Chapel, Loading Room to Castle Keep
             Section: Main
+            Progression - Bat Transformation: true
+            Progression - Mist Transformation: true
+            Progression - Unlock Blue Doors: true
+            Item - Spike Breaker: 1
         Goals:
             Reach Hub:
                 Room: Royal Chapel, Hippogryph Room
                 Section: Main
     (Entry) Colosseum -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Royal Chapel, Loading Room to Colosseum
             Section: Main
+            Progression - Bat Transformation: true
+            Progression - Mist Transformation: true
+            Progression - Unlock Blue Doors: true
+            Item - Spike Breaker: 1
         Goals:
             Reach Hub:
                 Room: Royal Chapel, Hippogryph Room
                 Section: Main
     (Entry) Olrox's Quarters -> Hub:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Royal Chapel, Loading Room to Olrox's Quarters
             Section: Main
+            Progression - Bat Transformation: true
+            Progression - Mist Transformation: true
+            Progression - Unlock Blue Doors: true
+            Item - Spike Breaker: 1
         Goals:
             Reach Hub:
                 Room: Royal Chapel, Hippogryph Room
                 Section: Main
-    (Abandon) Hub -> Any Loading Room:
+    SKIP - (Abandon) Hub -> Any Loading Room:
         Solver: *guard-against-softlocks
         State:
             Room: Royal Chapel, Hippogryph Room
@@ -1288,7 +1402,7 @@ Royal Chapel:
                 Room: Royal Chapel, Silver Ring Room
                 Section: Main
     (Exit) Hub -> Alchemy Laboratory:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Royal Chapel, Hippogryph Room
             Section: Main
@@ -1301,7 +1415,7 @@ Royal Chapel:
                 Room: Royal Chapel, Loading Room to Alchemy Laboratory
                 Section: Main
     (Exit) Hub -> Castle Keep:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Royal Chapel, Hippogryph Room
             Section: Main
@@ -1314,7 +1428,7 @@ Royal Chapel:
                 Room: Royal Chapel, Loading Room to Castle Keep
                 Section: Main
     (Exit) Hub -> Colosseum:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Royal Chapel, Hippogryph Room
             Section: Main
@@ -1327,7 +1441,7 @@ Royal Chapel:
                 Room: Royal Chapel, Loading Room to Colosseum
                 Section: Main
     (Exit) Hub -> Olrox's Quarters:
-        Solver: *guard-against-softlocks
+        Solver: *solve-within-99-steps
         State:
             Room: Royal Chapel, Hippogryph Room
             Section: Main
@@ -1346,6 +1460,11 @@ Underground Caverns:
             Room: Underground Caverns, Loading Room to Abandoned Mine
             Section: Main
             Progression - Bat Transformation: true
+            Progression - Protection From Water: true
+            Progression - Summon Ferryman: true
+            Status - Breakable Floor in Hidden Crystal Entrance Broken: true
+            Status - DK Bridge Broken: true
+            Status - DK Button Pressed: true
         Goals:
             Reach Hub:
                 Room: Underground Caverns, Waterfall
@@ -1356,6 +1475,11 @@ Underground Caverns:
             Room: Underground Caverns, Loading Room to Castle Entrance
             Section: Main
             Progression - Bat Transformation: true
+            Progression - Protection From Water: true
+            Progression - Summon Ferryman: true
+            Status - Breakable Floor in Hidden Crystal Entrance Broken: true
+            Status - DK Bridge Broken: true
+            Status - DK Button Pressed: true
         Goals:
             Reach Hub:
                 Room: Underground Caverns, Waterfall
@@ -1366,11 +1490,16 @@ Underground Caverns:
             Room: Underground Caverns, Loading Room to Marble Gallery
             Section: Main
             Progression - Bat Transformation: true
+            Progression - Protection From Water: true
+            Progression - Summon Ferryman: true
+            Status - Breakable Floor in Hidden Crystal Entrance Broken: true
+            Status - DK Bridge Broken: true
+            Status - DK Button Pressed: true
         Goals:
             Reach Hub:
                 Room: Underground Caverns, Waterfall
                 Section: Ground
-    (Abandon) Hub -> Any Loading Room:
+    SKIP - (Abandon) Hub -> Any Loading Room:
         Solver: *solve-within-99-steps
         State:
             Room: Underground Caverns, Waterfall

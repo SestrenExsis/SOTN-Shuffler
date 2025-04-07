@@ -410,7 +410,7 @@ if __name__ == '__main__':
                         cached_ind = False
                     validation_result = True
                     if not cached_ind:
-                        validation_results[stage_name][hash_of_rooms][hash_of_validation] = validator.validate(
+                        validation_results[stage_name][hash_of_rooms][hash_of_validation] = validator.validate_stage(
                             mapper_core,
                             mapper_data,
                             stage_name,
@@ -683,6 +683,13 @@ if __name__ == '__main__':
                 'Top': source_top,
                 'Left': source_left,
             }
+        print('*********')
+        # Validate First Castle to ensure it is solvable
+        if validator.validate_logic(mapper_core, changes):
+            pass
+        else:
+            continue
+        print('*********')
         # Flip normal castle changes and apply them to inverted castle
         reversible_stages = {
             'Abandoned Mine': 'Cave',
