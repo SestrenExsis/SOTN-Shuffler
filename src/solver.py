@@ -23,8 +23,8 @@ class Game:
             self.current_state['Stages Visited'] = {}
         if 'Rooms Visited' not in self.current_state:
             self.current_state['Rooms Visited'] = {}
-        if 'Locations Visited' not in self.current_state:
-            self.current_state['Locations Visited'] = {}
+        if 'Sections Visited' not in self.current_state:
+            self.current_state['Sections Visited'] = {}
         self.commands = self.logic_core['Commands']
         # NOTE(sestren): Anything that must also be added to self.clone() is below this line
         self.history = []
@@ -93,7 +93,7 @@ class Game:
         score = 0
         score += 2.00 * len(self.current_state['Stages Visited'])
         score += 1.25 * len(self.current_state['Rooms Visited'])
-        score += 0.25 * len(self.current_state['Locations Visited'])
+        score += 0.25 * len(self.current_state['Sections Visited'])
         other_scores = {
             # 'Check - Colosseum Library Card': 10.0,
             'Relic - Cube of Zoe': 3.0,
@@ -162,9 +162,17 @@ class Game:
         result = ''.join(progressions) + ' > ' + self.location
         return result
     
-    def get_key(self) -> int:
+    def get_key(self, ignore_location: bool=False) -> int:
         self.cleanup_state()
-        hashed_state = hash(json.dumps(self.current_state, sort_keys=True, default=str))
+        current_state = copy.deepcopy(self.current_state)
+        if ignore_location:
+            if 'Stages Visited' in current_state:
+                current_state.pop('Stages Visited')
+            if 'Rooms Visited' in current_state:
+                current_state.pop('Rooms Visited')
+            if 'Sections Visited' in current_state:
+                current_state.pop('Sections Visited')
+        hashed_state = hash(json.dumps(current_state, sort_keys=True, default=str))
         result = hashed_state
         return result
     
@@ -257,7 +265,7 @@ class Game:
     def process_command(self, command_name: str):
         self.current_state['Stages Visited'][self.stage] = True
         self.current_state['Rooms Visited'][self.room] = True
-        self.current_state['Locations Visited'][self.location] = True
+        self.current_state['Sections Visited'][self.location] = True
         self.history.append((self.layer, self.location, command_name))
         command_data = {}
         if self.room in self.commands:
@@ -396,12 +404,50 @@ class Solver():
         if self.debug:
             print(
                 'Explorer ID:', self.solver_count,
-                (self.cycle_count, len(game__solver.current_state['Locations Visited']), game__solver.goals_achieved),
+                (self.cycle_count, len(game__solver.current_state['Sections Visited']), game__solver.goals_achieved),
                 game__solver.location
             )
         self.solver_count += 1
 
-    def solve_via_steps(self, step_limit: int=100, restrict_to_stage: str=None):
+    def solve_via_strict_steps(self, step_limit: int=100, restrict_to_stage: str=None):
+        self.rng = random.Random(self.initial_seed)
+        initial_game = self.current_game
+        memo = {}
+        solution_found = False
+        current_work_key = 0
+        work__solver = collections.deque()
+        work__solver.append((0, initial_game))
+        self.cycle_count = 0
+        while len(work__solver) > 0 and not solution_found:
+            (step__solver, game__solver) = work__solver.popleft()
+            if self.debug and self.cycle_count % 10_000 == 0:
+                print((step__solver, len(work__solver)), self.cycle_count, game__solver.current_state['Room'])
+            if step__solver >= step_limit:
+                continue
+            self.cycle_count += 1
+            game__solver.layer = step__solver
+            if len(game__solver.goals_achieved) > 0:
+                solution_found = True
+                self.results['Wins'].append((step__solver, game__solver))
+                break
+            hashed_state__solver = game__solver.get_key(True)
+            if hashed_state__solver in memo and memo[hashed_state__solver] <= step__solver:
+                continue
+            memo[hashed_state__solver] = step__solver
+            for command in game__solver.get_valid_command_names():
+                next_game__solver = game__solver.clone()
+                next_game__solver.process_command(command)
+                if restrict_to_stage is not None:
+                    if not next_game__solver.current_state['Room'].startswith(restrict_to_stage):
+                        continue
+                next_step__solver = step__solver + 1
+                next_hashed_state__solver = next_game__solver.get_key(True)
+                if next_hashed_state__solver in memo and memo[next_hashed_state__solver] <= next_step__solver:
+                    continue
+                current_work_key += 1
+                work__solver.append((next_step__solver, next_game__solver))
+
+    def solve_via_relaxed_steps(self, step_limit: int=100, restrict_to_stage: str=None):
         self.rng = random.Random(self.initial_seed)
         initial_game = self.current_game
         memo = {}
@@ -538,6 +584,10 @@ class Solver():
                         continue
                     heapq.heappush(work__solver, (-next_game__solver.get_score(), next_step__solver, next_game__solver))
 
+skills = {
+    "Technique - Pixel-Perfect Diagonal Gravity Jump Through Narrow Gap": True,
+}
+
 if __name__ == '__main__':
     '''
     Usage
@@ -545,104 +595,67 @@ if __name__ == '__main__':
     '''
     parser = argparse.ArgumentParser()
     parser.add_argument('changes', help='Input a filepath to the changes JSON file', type=str)
-    parser.add_argument('skills', help='Input a filepath to the skills JSON file', type=str)
     args = parser.parse_args()
     SOLVER_VERSION = '0.0.0'
-    mapper_data = mapper.MapperData().get_core()
-    with open(os.path.join('build', 'debug', 'mapper-data.json'), 'w') as debug_mapper_data_json:
-        json.dump(mapper_data, debug_mapper_data_json, indent='    ', sort_keys=True, default=str)
+    mapper_core = mapper.MapperData().get_core()
+    with open(os.path.join('build', 'solver', 'mapper-data.json'), 'w') as debug_mapper_data_json:
+        json.dump(mapper_core, debug_mapper_data_json, indent='    ', sort_keys=True, default=str)
     with (
         open(args.changes) as changes_json,
-        open(args.skills) as skills_json,
     ):
         changes = json.load(changes_json)
         changes_json.close()
         if 'Changes' in changes:
             changes = changes['Changes']
-        logic_core = mapper.LogicCore(mapper_data, changes).get_core()
-        with open(os.path.join('build', 'debug', 'logic-core.json'), 'w') as debug_logic_core_json:
+        logic_core = mapper.LogicCore(mapper_core, changes).get_core()
+        with open(os.path.join('build', 'solver', 'logic-core.json'), 'w') as debug_logic_core_json:
             json.dump(logic_core, debug_logic_core_json, indent='    ', sort_keys=True, default=str)
-        logic_core['State']['Room'] = 'Castle Entrance, After Drawbridge'
-        logic_core['State']['Section'] = 'Ground'
-        # To prevent Bad Endings, require Holy Glasses before entering the Throne Room
-        logic_core['Commands']['Castle Keep, Keep Area']['Move - Throne Room']['Requirements']['Anteroom - Default']['Item - Holy Glasses'] = {
-            'Minimum': 1,
-        }
-        logic_core['Goals'] = {
-            # 'Debug': {
-            #     'Room': 'Castle Entrance, After Drawbridge',
-            # },
-            'Exploration': {
-                'Stages Visited': {
-                    'All': {
-                        # 'Abandoned Mine': True,
-                        # 'Alchemy Laboratory': True,
-                        # 'Castle Center': True,
-                        'Castle Entrance': True,
-                        # 'Castle Entrance Revisited': True,
-                        # 'Castle Keep': True,
-                        # 'Catacombs': True,
-                        # 'Clock Tower': True,
-                        # 'Colosseum': True,
-                        # 'Long Library': True,
-                        # 'Marble Gallery': True,
-                        # 'Olrox\'s Quarters': True,
-                        # 'Outer Wall': True,
-                        # 'Royal Chapel': True,
-                        # 'Underground Caverns': True,
-                        # 'Warp Rooms': True,
-                    }
-                },
-            },
-            'Bad Ending': {
-                'Status - Richter Defeated': True,
-            },
-            'WIP: Good Ending': {
-                'Relic - Jewel of Open': True,
-                'Relic - Leap Stone': True,
-                'Relic - Form of Mist': True,
-                'Relic - Soul of Bat': True,
-                'Relic - Echo of Bat': True,
-                'Item - Spike Breaker': {
-                    'Minimum': 1,
-                },
-                'Item - Silver Ring': {
-                    'Minimum': 1,
-                },
-                'Item - Gold Ring': {
-                    'Minimum': 1,
-                },
-                'Item - Holy Glasses': {
-                    'Minimum': 1,
-                },
-                'Status - Richter Saved': True,
-                # 'Relic - Ring of Vlad': True,
-                # 'Relic - Heart of Vlad': True,
-                # 'Relic - Tooth of Vlad': True,
-                # 'Relic - Rib of Vlad': True,
-                # 'Relic - Eye of Vlad': True,
-                # 'Status - Dracula Defeated': True,
-            },
-        }
-        with open(os.path.join('build', 'debug', 'logic-core.json'), 'w') as debug_logic_core_json:
-            json.dump(logic_core, debug_logic_core_json, indent='    ', sort_keys=True, default=str)
-        skills = json.load(skills_json)
-        skills_json.close()
         print('Solving')
+        SOFTLOCK_CHECK__CYCLE_LIMIT = 99
+        SOFTLOCK_CHECK__MAX_SOFTLOCKS = 0
+        SOFTLOCK_CHECK__ATTEMPT_COUNT = 5
+        PROGRESSION_CHECK__STEP_LIMIT = 64
         map_solver = Solver(logic_core, skills)
-        map_solver.debug = True
-        # map_solver.solve_via_layers(3, 10)
-        # map_solver.solve_via_steps()
-        for _ in range(100):
-            map_solver.solve_via_random_exploration(29_999)
-        if len(map_solver.results['Wins']) > 0:
-            best_index = 0
-            for (index, (_, game)) in enumerate(map_solver.results['Wins']):
-                if 'WIP: Good Ending' in game.goals_achieved:
-                    N = len(map_solver.results['Wins'][best_index][1].history)
-                    if best_index == -1 or len(game.history) < N:
-                        best_index = index
-            (winning_layers, winning_game) = map_solver.results['Wins'][best_index]
+        map_solver.debug = False
+        map_solver.initial_seed = 1
+        map_solver.decay_start = 19_999
+        map_solver.cycle_limit = 39_999
+        valid_ind = True
+        while True:
+            print(len(map_solver.current_game.progression), map_solver.current_game.current_state['Room'], map_solver.current_game.progression)
+            prev_game = map_solver.current_game.clone()
+            # Guard against softlocks
+            print('', 'Guard against softlocks')
+            for attempt_id in range(SOFTLOCK_CHECK__ATTEMPT_COUNT):
+                map_solver.solve_via_random_exploration(SOFTLOCK_CHECK__CYCLE_LIMIT)
+            if len(map_solver.results['Losses']) > SOFTLOCK_CHECK__MAX_SOFTLOCKS:
+                valid_ind = False
+                break
+            # Require some form of nearby progression
+            print('', 'Require some form of nearby progression')
+            map_solver.clear()
+            map_solver.current_game = prev_game
+            map_solver.solve_via_strict_steps(PROGRESSION_CHECK__STEP_LIMIT)
+            if len(map_solver.results['Wins']) < 1:
+                valid_ind = False
+                break
+            (step__solver, game__solver) = map_solver.results['Wins'][-1]
+            if 'END' in game__solver.goals_achieved:
+                valid_ind = True
+                break
+            print('', len(game__solver.goals_remaining), game__solver.layer)
+            while len(game__solver.goals_achieved) > 0:
+                goal_achieved = game__solver.goals_achieved.pop()
+                print(goal_achieved)
+                # if goal_achieved == 'Check Holy Glasses Location':
+                #     game__solver.debug = True
+                game__solver.goals_remaining.pop(goal_achieved)
+                game__solver.progression.append(goal_achieved)
+            map_solver.current_game = game__solver
+            map_solver.clear()
+        print('', valid_ind, map_solver.current_game.progression)
+        if valid_ind:
+            (winning_layers, winning_game) = map_solver.results['Wins'][-1]
             print('-------------')
             print('GOAL REACHED: Layer', winning_layers)
             print('History')

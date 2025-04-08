@@ -131,11 +131,16 @@ Sources:
     Outcomes:
       Check - Power of Wolf Location: true
     Requirements:
-      Default:
+      Castle Entrance:
         Check - Power of Wolf Location: false
         Room: Castle Entrance, After Drawbridge
         Section: Parapet
         Stage: Castle Entrance
+      Castle Entrance Revisited:
+        Check - Power of Wolf Location: false
+        Room: Castle Entrance Revisited, After Drawbridge
+        Section: Parapet
+        Stage: Castle Entrance Revisited
     Target Reward: Relic - Power of Wolf
   Location - Soul of Bat:
     Description: Action - Check Soul of Bat Location

@@ -1078,11 +1078,18 @@ class LogicCore:
                 'Room': "Olrox's Quarters, Olrox's Room",
                 'Section': 'Ground',
             },
+            'Find Anteroom in Castle Keep': {
+                'Room': "Castle Keep, Keep Area",
+                'Section': 'Anteroom',
+            },
             'Check Library Card Location in Catacombs': {
                 'Check - Library Card Location in Catacombs': True,
             },
             'Check Colosseum Library Card Location': {
                 'Check - Colosseum Library Card': True,
+            },
+            'Purchase Jewel of Open': {
+                'Relic - Jewel of Open': True,
             },
             # Final goal
             'END': {
@@ -1108,15 +1115,17 @@ class LogicCore:
                 'Check - Silver Ring Location': True,
                 'Check - Gold Ring': True,
                 'Check - Holy Glasses Location': True,
-                'Rooms Visited': {
+                'Relic - Jewel of Open': True,
+                'Sections Visited': {
                     'All': {
                         'Outer Wall, Doppelganger Room (Main)': True,
                         'Abandoned Mine, Cerberus Room (Main)': True,
                         'Royal Chapel, Hippogryph Room (Main)': True,
                         "Clock Tower, Karasuman's Room (Main)": True,
                         "Olrox's Quarters, Olrox's Room (Ground)": True,
-                    }
-                }
+                        "Castle Keep, Keep Area (Anteroom)": True,
+                    },
+                },
             },
         }
     

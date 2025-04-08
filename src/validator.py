@@ -18,11 +18,13 @@ def validate_logic(mapper_core, changes) -> bool:
     SOFTLOCK_CHECK__CYCLE_LIMIT = 999
     SOFTLOCK_CHECK__MAX_SOFTLOCKS = 0
     SOFTLOCK_CHECK__ATTEMPT_COUNT = 10
-    PROGRESSION_CHECK__STEP_LIMIT = 99
+    PROGRESSION_CHECK__STEP_LIMIT = 64
     logic_core = mapper.LogicCore(mapper_core, changes).get_core()
     map_solver = solver.Solver(logic_core, skills)
-    map_solver.debug = False
+    map_solver.debug = True
     map_solver.initial_seed = 1
+    map_solver.decay_start = 19_999
+    map_solver.cycle_limit = 39_999
     valid_ind = True
     while True:
         print(len(map_solver.current_game.progression), map_solver.current_game.current_state['Room'], map_solver.current_game.progression)
@@ -38,7 +40,7 @@ def validate_logic(mapper_core, changes) -> bool:
         print('Require some form of nearby progression')
         # map_solver.clear()
         # map_solver.current_game = prev_game
-        map_solver.solve_via_steps(PROGRESSION_CHECK__STEP_LIMIT)
+        map_solver.solve_via_strict_steps(PROGRESSION_CHECK__STEP_LIMIT)
         if len(map_solver.results['Wins']) < 1:
             valid_ind = False
             break
@@ -81,7 +83,7 @@ def validate_stage(mapper_core, mapper_data, stage_name, validation) -> bool:
     map_solver = solver.Solver(logic_core, skills)
     validation_passed = True
     if 'Solver' not in validation: # Backwards compatibility for the old method of validating
-        map_solver.solve_via_steps(100 * validation['Solver Effort'], stage_name)
+        map_solver.solve_via_relaxed_steps(100 * validation['Solver Effort'], stage_name)
         if len(map_solver.results['Wins']) < 1:
             validation_passed = False
         else:
@@ -96,7 +98,7 @@ def validate_stage(mapper_core, mapper_data, stage_name, validation) -> bool:
                 map_solver.solve_via_random_exploration(cycle_limit, stage_name)
             elif solver_config['Approach'] == 'Steps':
                 step_limit = solver_config.get('Limit', 100)
-                map_solver.solve_via_steps(step_limit, stage_name)
+                map_solver.solve_via_relaxed_steps(step_limit, stage_name)
             else:
                 raise Exception('Unrecognized approach:', validation['Solver']['Approach'])
         for result_name in ('Wins', 'Losses', 'Withdrawals'):

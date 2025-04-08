@@ -56,7 +56,6 @@ Commands:
         Requirements:
             Default:
                 Section: Main
-                Progression - Ability to Strike at Floor: true
                 Status - Breakable Floor in Tall Zig Zag Room Broken: false
     Action - Break Wall:
         Outcomes:

@@ -92,5 +92,4 @@ Commands:
         Requirements:
             Default:
                 Section: Main
-                Progression - Ability to Strike at Floor: true
                 Status - Breakable Floor in Hidden Crystal Entrance Broken: false
