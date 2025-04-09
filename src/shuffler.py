@@ -220,6 +220,17 @@ def shuffle_teleporters(teleporters, seed: int) -> dict:
             alt_source_key = 'Castle Entrance Revisited' + source_b_key[len('Castle Entrance'):]
             teleporters['Sources'][alt_source_key]['Target'] = teleporters['Sources'][source_a_key]['Return']
 
+def shuffle_quests(quests, seed):
+    rng = random.Random(seed)
+    quest_targets = []
+    for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        quest_target = quests['Sources'][quest_source_name]['Target Reward']
+        quest_targets.append(quest_target)
+    rng.shuffle(quest_targets)
+    for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        quest_target = quest_targets.pop()
+        quests['Sources'][quest_source_name]['Target Reward'] = quest_target
+
 def add_labels_to_loading_rooms(mapper_core, stages, stage_names, castle_map):
     links = {}
     for (index, stage_name) in enumerate(stage_names):
@@ -350,6 +361,15 @@ if __name__ == '__main__':
                     'Room': target['Stage'] + ', ' + target['Room'],
                     'Stage': target['Stage'],
                 }
+        # Shuffle quests (such as Relics)
+        quest_randomizer_seed = global_rng.randint(0, 2 ** 64)
+        object_layouts = None
+        if settings.get('Quest shuffler', {}).get('Shuffle quests', False):
+            shuffle_quests(mapper_core['Quests'], quest_randomizer_seed)
+            object_layouts = {}
+            for (quest_name, quest) in mapper_core['Quests']['Sources'].items():
+                target_name = quest['Target Reward']
+                object_layouts[quest_name] = quest['Target Reward']
         # print('Set starting seeds for each stage')
         for stage_name in sorted(stages.keys()):
             next_seed = global_rng.randint(0, 2 ** 64)
@@ -525,6 +545,8 @@ if __name__ == '__main__':
             'Stages': {},
             'Teleporters': teleporters,
         }
+        if object_layouts is not None:
+            changes['Object Layouts'] = object_layouts
         stages['Warp Rooms']['Stage Top'] = 0
         stages['Warp Rooms']['Stage Left'] = 0
         # Initialize the castle map drawing grid

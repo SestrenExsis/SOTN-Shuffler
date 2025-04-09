@@ -7,3 +7,5 @@ Options:
 Stage shuffler:
     Shuffle connections between stages: true
     Add labels to loading rooms: true
+Quest shuffler:
+    Shuffle quests: true

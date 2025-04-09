@@ -955,8 +955,6 @@ class LogicCore:
         for room_name in mapper_data['Teleporters']['Sources']:
             if 'Fake' in room_name:
                 self.commands.pop(room_name, None)
-        # TODO(sestren): Apply changes to quests
-        # ...
         # Apply quests to logic
         for quest in mapper_data['Quests']['Sources'].values():
             for requirement in quest['Requirements'].values():
