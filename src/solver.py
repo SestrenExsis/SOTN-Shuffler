@@ -420,11 +420,14 @@ class Solver():
         self.cycle_count = 0
         while len(work__solver) > 0 and not solution_found:
             (step__solver, game__solver) = work__solver.popleft()
-            if self.debug and self.cycle_count % 10_000 == 0:
-                print((step__solver, len(work__solver)), self.cycle_count, game__solver.current_state['Room'])
+            if self.debug and self.cycle_count > 0 and self.cycle_count % 10_000 == 0:
+                print('   ', (step__solver, len(work__solver)), self.cycle_count, game__solver.current_state['Room'])
             if step__solver >= step_limit:
                 continue
             self.cycle_count += 1
+            should_prune = self.get_should_prune()
+            if should_prune:
+                continue
             game__solver.layer = step__solver
             if len(game__solver.goals_achieved) > 0:
                 solution_found = True
@@ -460,7 +463,7 @@ class Solver():
         while len(work__solver) > 0 and not solution_found:
             chosen_work_key = self.rng.choice(list(work__solver.keys()))
             (step__solver, game__solver) = work__solver.pop(chosen_work_key)
-            if self.debug:
+            if self.debug and self.cycle_count % 10_000 == 0:
                 print((step__solver, len(work__solver)), (self.cycle_count, chosen_work_key), game__solver.current_state['Room'])
             if step__solver >= step_limit:
                 continue
@@ -473,7 +476,7 @@ class Solver():
                 solution_found = True
                 self.results['Wins'].append((step__solver, game__solver))
                 break
-            hashed_state__solver = game__solver.get_key()
+            hashed_state__solver = game__solver.get_key(True)
             if hashed_state__solver in memo and memo[hashed_state__solver] <= step__solver:
                 continue
             memo[hashed_state__solver] = step__solver
@@ -484,7 +487,7 @@ class Solver():
                     if not next_game__solver.current_state['Room'].startswith(restrict_to_stage):
                         continue
                 next_step__solver = step__solver + 1
-                next_hashed_state__solver = next_game__solver.get_key()
+                next_hashed_state__solver = next_game__solver.get_key(True)
                 if next_hashed_state__solver in memo and memo[next_hashed_state__solver] <= next_step__solver:
                     continue
                 current_work_key += 1
@@ -618,8 +621,8 @@ if __name__ == '__main__':
         map_solver = Solver(logic_core, skills)
         map_solver.debug = False
         map_solver.initial_seed = 1
-        map_solver.decay_start = 19_999
-        map_solver.cycle_limit = 39_999
+        map_solver.decay_start = 49_999
+        map_solver.cycle_limit = 99_999
         valid_ind = True
         while True:
             print(len(map_solver.current_game.progression), map_solver.current_game.current_state['Room'], map_solver.current_game.progression)

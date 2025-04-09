@@ -307,6 +307,7 @@ if __name__ == '__main__':
     }
     invalid_stage_files = set()
     while True:
+        print('...')
         shuffler['Stages'] = {}
         # Randomize
         stages = {
@@ -381,7 +382,7 @@ if __name__ == '__main__':
                 assert stages[stage_name]['Mapper'].validate()
                 hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
                 assert hash_of_rooms == mapper_data['Hash of Rooms']
-                print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), max_unique_pass_count)
+                # print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), max_unique_pass_count)
                 changes = {
                     'Stages': {
                         stage_name: stage_changes,
@@ -418,11 +419,11 @@ if __name__ == '__main__':
                         )
                     validation_result = validation_results[stage_name][hash_of_rooms][hash_of_validation]
                     if validation_result:
-                        print('   ', '✅ ...', validation_name)
+                        # print('   ', '✅ ...', validation_name)
                         unique_passes.add(validation_name)
                         max_unique_pass_count = max(max_unique_pass_count, len(unique_passes))
                     else:
-                        print('   ', '❌ ...', validation_name)
+                        # print('   ', '❌ ...', validation_name)
                         all_valid_ind = False
                         break
                 if all_valid_ind:
@@ -683,13 +684,13 @@ if __name__ == '__main__':
                 'Top': source_top,
                 'Left': source_left,
             }
-        print('*********')
+        # print('*********')
         # Validate First Castle to ensure it is solvable
         if validator.validate_logic(mapper_core, changes):
             pass
         else:
             continue
-        print('*********')
+        # print('*********')
         # Flip normal castle changes and apply them to inverted castle
         reversible_stages = {
             'Abandoned Mine': 'Cave',

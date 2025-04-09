@@ -15,7 +15,7 @@ skills = {
 }
 
 def validate_logic(mapper_core, changes) -> bool:
-    SOFTLOCK_CHECK__CYCLE_LIMIT = 999
+    SOFTLOCK_CHECK__CYCLE_LIMIT = 199
     SOFTLOCK_CHECK__MAX_SOFTLOCKS = 0
     SOFTLOCK_CHECK__ATTEMPT_COUNT = 10
     PROGRESSION_CHECK__STEP_LIMIT = 64
@@ -23,42 +23,49 @@ def validate_logic(mapper_core, changes) -> bool:
     map_solver = solver.Solver(logic_core, skills)
     map_solver.debug = True
     map_solver.initial_seed = 1
-    map_solver.decay_start = 19_999
-    map_solver.cycle_limit = 39_999
+    map_solver.decay_start = 99_999
+    map_solver.cycle_limit = 199_999
     valid_ind = True
+    final_goal_ind = False
     while True:
-        print(len(map_solver.current_game.progression), map_solver.current_game.current_state['Room'], map_solver.current_game.progression)
-        # prev_game = map_solver.current_game.clone()
+        print(len(map_solver.current_game.goals_remaining), map_solver.current_game.current_state['Room'], map_solver.current_game.progression)
+        prev_game = map_solver.current_game.clone()
         # Guard against softlocks
-        # print('Guard against softlocks')
-        # for attempt_id in range(SOFTLOCK_CHECK__ATTEMPT_COUNT):
-        #     map_solver.solve_via_random_exploration(SOFTLOCK_CHECK__CYCLE_LIMIT)
-        # if len(map_solver.results['Losses']) > SOFTLOCK_CHECK__MAX_SOFTLOCKS:
-        #     valid_ind = False
-        #     break
+        map_solver.debug = False
+        for attempt_id in range(SOFTLOCK_CHECK__ATTEMPT_COUNT):
+            map_solver.solve_via_random_exploration(SOFTLOCK_CHECK__CYCLE_LIMIT)
+        if len(map_solver.results['Losses']) > SOFTLOCK_CHECK__MAX_SOFTLOCKS:
+            valid_ind = False
+            print(' ', '❌ ... Guard against softlocks')
+            break
+        print(' ', '✅ ... Guard against softlocks')
         # Require some form of nearby progression
-        print('Require some form of nearby progression')
-        # map_solver.clear()
-        # map_solver.current_game = prev_game
+        map_solver.debug = True
+        map_solver.clear()
+        map_solver.current_game = prev_game
         map_solver.solve_via_strict_steps(PROGRESSION_CHECK__STEP_LIMIT)
         if len(map_solver.results['Wins']) < 1:
             valid_ind = False
+            print(' ', '❌ ... Require some form of nearby progression')
             break
+        print(' ', '✅ ... Require some form of nearby progression')
         (step__solver, game__solver) = map_solver.results['Wins'][-1]
-        if 'END' in game__solver.goals_achieved:
-            valid_ind = True
-            break
-        print(len(game__solver.goals_remaining))
         while len(game__solver.goals_achieved) > 0:
             goal_achieved = game__solver.goals_achieved.pop()
-            print(goal_achieved)
+            if goal_achieved == 'END':
+                final_goal_ind = True
+            # print(goal_achieved)
             game__solver.goals_remaining.pop(goal_achieved)
             game__solver.progression.append(goal_achieved)
-        print(len(game__solver.goals_remaining))
         map_solver.current_game = game__solver
         map_solver.clear()
+        if final_goal_ind:
+            break
     result = valid_ind
-    print(valid_ind, map_solver.current_game.progression)
+    if 0 < len(map_solver.current_game.goals_remaining) < 5:
+        print('Goals not obtained')
+        for goal in sorted(map_solver.current_game.goals_remaining.keys()):
+            print(' -', goal)
     return result
 
 def validate_stage(mapper_core, mapper_data, stage_name, validation) -> bool:
@@ -166,6 +173,8 @@ if __name__ == '__main__':
             if hash_of_rooms not in results.get(stage_name, {}):
                 add_to_pool = True
             for (validation_name, validation) in stage_validations[stage_name].items():
+                if validation_name.startswith('SKIP '):
+                    continue
                 should_validate_ind = False
                 if stage_name not in results:
                     results[stage_name] = {}

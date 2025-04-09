@@ -956,6 +956,7 @@ class LogicCore:
             if 'Fake' in room_name:
                 self.commands.pop(room_name, None)
         # TODO(sestren): Apply changes to quests
+        # ...
         # Apply quests to logic
         for quest in mapper_data['Quests']['Sources'].values():
             for requirement in quest['Requirements'].values():
@@ -1052,7 +1053,7 @@ class LogicCore:
             'Check Silver Ring Location': {
                 'Check - Silver Ring Location': True,
             },
-            'Check Gold Ring: Location': {
+            'Check Gold Ring Location': {
                 'Check - Gold Ring': True,
             },
             'Check Holy Glasses Location': {
@@ -1082,9 +1083,9 @@ class LogicCore:
                 'Room': "Castle Keep, Keep Area",
                 'Section': 'Anteroom',
             },
-            'Check Library Card Location in Catacombs': {
-                'Check - Library Card Location in Catacombs': True,
-            },
+            # 'Check Library Card Location in Catacombs': {
+            #     'Check - Library Card Location in Catacombs': True,
+            # },
             'Check Colosseum Library Card Location': {
                 'Check - Colosseum Library Card': True,
             },
