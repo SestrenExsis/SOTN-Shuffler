@@ -6,6 +6,6 @@ Options:
     Skip Maria cutscene in Alchemy Laboratory: true
 Stage shuffler:
     Shuffle connections between stages: true
-    Add labels to loading rooms: true
+    Loading room labels: Connection
 Quest shuffler:
-    Shuffle quests: true
+    Shuffle quest rewards: true

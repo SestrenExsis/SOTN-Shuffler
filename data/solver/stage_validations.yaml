@@ -334,6 +334,40 @@ Alchemy Laboratory:
                 Section: Main
 Castle Center: {}
 Castle Entrance:
+    Guard Against Possibility of Skipping Death:
+        Solver:
+            Approach: Steps
+            Attempts: 1
+            Limit: 30
+            Initial Seed: 1
+            Debug: False
+            Wins:
+                Maximum: 0
+        State:
+            Room: Castle Entrance, After Drawbridge
+            Section: Ground
+        Goals:
+            Death Skip:
+                Room: Castle Entrance, Cube of Zoe Room
+                Section: Main
+                Check - Meet Death in Castle Entrance: false
+    Encourage Meeting Death on the Way to Cube of Zoe Room:
+        Solver:
+            Approach: Random Exploration
+            Attempts: 8
+            Limit: 3999
+            Initial Seed: 1
+            Debug: False
+            Wins:
+                Minimum: 8
+        State:
+            Room: Castle Entrance, After Drawbridge
+            Section: Ground
+        Goals:
+            Death Skip:
+                Room: Castle Entrance, Cube of Zoe Room
+                Section: Main
+                Check - Meet Death in Castle Entrance: true
     (Entry) START -> Hub:
         Solver: *solve-within-99-steps
         State:
@@ -343,6 +377,7 @@ Castle Entrance:
             Reach Hub:
                 Room: Castle Entrance, Cube of Zoe Room
                 Section: Main
+                Check - Meet Death in Castle Entrance: true
     (Entry) Alchemy Laboratory -> Hub:
         Solver: *solve-within-30-steps
         State:

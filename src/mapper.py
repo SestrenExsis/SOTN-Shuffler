@@ -1081,14 +1081,18 @@ class LogicCore:
                 'Room': "Castle Keep, Keep Area",
                 'Section': 'Anteroom',
             },
-            # 'Check Library Card Location in Catacombs': {
-            #     'Check - Library Card Location in Catacombs': True,
-            # },
+            'Check Library Card Location in Catacombs': {
+                'Check - Library Card Location in Catacombs': True,
+            },
             'Check Colosseum Library Card Location': {
                 'Check - Colosseum Library Card': True,
             },
             'Purchase Jewel of Open': {
                 'Relic - Jewel of Open': True,
+            },
+            'Find Equivalent Room for Gas Cloud': {
+                'Room': 'Catacombs, Mormegil Room',
+                'Section': 'Main',
             },
             # Final goal
             'END': {
@@ -1117,12 +1121,13 @@ class LogicCore:
                 'Relic - Jewel of Open': True,
                 'Sections Visited': {
                     'All': {
-                        'Outer Wall, Doppelganger Room (Main)': True,
                         'Abandoned Mine, Cerberus Room (Main)': True,
-                        'Royal Chapel, Hippogryph Room (Main)': True,
+                        "Castle Keep, Keep Area (Anteroom)": True,
+                        "Catacombs, Mormegil Room (Main)": True,
                         "Clock Tower, Karasuman's Room (Main)": True,
                         "Olrox's Quarters, Olrox's Room (Ground)": True,
-                        "Castle Keep, Keep Area (Anteroom)": True,
+                        'Outer Wall, Doppelganger Room (Main)': True,
+                        'Royal Chapel, Hippogryph Room (Main)': True,
                     },
                 },
             },
@@ -1329,7 +1334,7 @@ if __name__ == '__main__':
         pathlib.Path(
             os.path.join('build', 'shuffler', stage_name)
         ).mkdir(parents=True, exist_ok=True)
-    GENERATION_VERSION = 'Alpha Build 73'
+    GENERATION_VERSION = 'Alpha Build 74'
     mapper_core = MapperData().get_core()
     with (
         open(os.path.join('build', 'shuffler', 'mapper-core.json'), 'w') as mapper_core_json,

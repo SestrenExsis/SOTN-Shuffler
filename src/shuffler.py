@@ -361,10 +361,10 @@ if __name__ == '__main__':
                     'Room': target['Stage'] + ', ' + target['Room'],
                     'Stage': target['Stage'],
                 }
-        # Shuffle quests (such as Relics)
+        # Shuffle quest rewards (such as Relics)
         quest_randomizer_seed = global_rng.randint(0, 2 ** 64)
         object_layouts = None
-        if settings.get('Quest shuffler', {}).get('Shuffle quests', False):
+        if settings.get('Quest shuffler', {}).get('Shuffle quest rewards', False):
             shuffle_quests(mapper_core['Quests'], quest_randomizer_seed)
             object_layouts = {}
             for (quest_name, quest) in mapper_core['Quests']['Sources'].items():
@@ -653,8 +653,25 @@ if __name__ == '__main__':
                             # print('Tried to draw pixel out of bounds of map:', room_name, (room_top, room_left), (row, col))
                             pass
         # Draw connection labels onto the loading rooms of the map
-        if settings.get('Stage shuffler', {}).get('Add labels to loading rooms', False):
+        if settings.get('Stage shuffler', {}).get('Loading room labels', 'None') != 'None':
+            # Connection
             add_labels_to_loading_rooms(mapper_core, stages, stage_names, castle_map)
+            # Stage
+            # TODO(sestren): Allow the target stage to determine the label for the loading room ('C' = Catacombs, 'K' = 'Castle Keep', etc.)
+            # D = Abandoned Mine
+            # Y = Alchemy Laboratory
+            # + = Castle Center
+            # N = Castle Entrance
+            # K = Castle Keep
+            # C = Catacombs
+            # T = Clock Tower
+            # S = Colosseum
+            # L = Long Library
+            # V = Marble Gallery
+            # X = Olrox's Quarters
+            # O = Outer Wall
+            # H = Royal Chapel
+            # U = Underground Caverns
         # Apply castle map drawing grid to changes
         changes['Castle Map'] = []
         for row in range(len(castle_map)):
