@@ -301,19 +301,3 @@ Commands:
                 Section: Throne Room
                 Item - Holy Glasses:
                     Minimum: 1
-    Action - Collect Leap Stone Relic:
-        Outcomes:
-            Relic - Leap Stone: true
-            Progression - Double Jump: true
-        Requirements:
-            Default:
-                Section: Ground
-                Relic - Leap Stone: false
-    Action - Collect Power of Mist Relic:
-        Outcomes:
-            Relic - Power of Mist: true
-            Progression - Longer Mist Duration: true
-        Requirements:
-            Default:
-                Section: Middle-Left
-                Relic - Power of Mist: false

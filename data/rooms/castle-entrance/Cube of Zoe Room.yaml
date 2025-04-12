@@ -126,14 +126,6 @@ Commands:
                 Progression - Wolf Transformation: true
                 Skill - Wolf-Mist Rise: true
                 Skill - Extended Wolf-Mist Rise: true
-    Action - Collect Cube of Zoe Relic:
-        Outcomes:
-            Relic - Cube of Zoe: true
-            Progression - Item Materialization: true
-        Requirements:
-            Default:
-                Section: Main
-                Relic - Cube of Zoe: false
     Action - Activate Pressure Plate:
         Outcomes:
             Status - Shortcut in Cube of Zoe Room Activated: true

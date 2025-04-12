@@ -103,12 +103,3 @@ Commands:
             Default:
                 Section: Main
                 Status - Elevator in Outer Wall Activated: false
-    Action - Collect Soul of Wolf Relic:
-        Outcomes:
-            Relic - Soul of Wolf: true
-            Progression - Wolf Transformation: true
-            Progression - Mid-Air Reset: true
-        Requirements:
-            Default:
-                Section: Elevator Shaft
-                Relic - Soul of Wolf: false

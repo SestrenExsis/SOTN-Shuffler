@@ -27,10 +27,32 @@ Nodes:
         Entry Section: Main
         Exit Section: Main
     Bottom Passage:
-        Type: Passage
+        Type: "##............##"
         Row: 0
         Column: 0
         Edge: Bottom
-        Entry Section: Main
-        Exit Section: Main
-Commands: {}
+        Entry Section: Bottom, Rising
+        Exit Section: Bottom, Falling
+Commands:
+    Move - Bottom, Falling:
+        Outcomes:
+            Section: Bottom, Falling
+        Requirements:
+            Default - Main:
+                Section: Main
+            Default - Bottom, Rising:
+                Section: Bottom, Rising
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Lower - Bat Form:
+                Section: Bottom, Rising
+                Progression - Bat Transformation: true
+            Lower - Powered Mist:
+                Section: Bottom, Rising
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Lower - Gravity Jump:
+                Section: Bottom, Rising
+                Progression - Gravity Jump: true

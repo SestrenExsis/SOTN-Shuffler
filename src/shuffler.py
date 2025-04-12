@@ -220,6 +220,63 @@ def shuffle_teleporters(teleporters, seed: int) -> dict:
             alt_source_key = 'Castle Entrance Revisited' + source_b_key[len('Castle Entrance'):]
             teleporters['Sources'][alt_source_key]['Target'] = teleporters['Sources'][source_a_key]['Return']
 
+def shuffle_quests(quests, seed):
+    rng = random.Random(seed)
+    quest_targets = []
+    for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        quest_target = quests['Sources'][quest_source_name]['Target Reward']
+        quest_targets.append(quest_target)
+    rng.shuffle(quest_targets)
+    for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        quest_target = quest_targets.pop()
+        quests['Sources'][quest_source_name]['Target Reward'] = quest_target
+
+def add_labels_to_loading_rooms(mapper_core, stages, stage_names, castle_map):
+    links = {}
+    for (index, stage_name) in enumerate(stage_names):
+        if stage_name.startswith('Warp Rooms, '):
+            continue
+        stage = stages[stage_name]
+        stage_changes = stage['Mapper'].stage.get_changes()
+        for room_name in list(sorted(stage_changes['Rooms'])):
+            if 'Loading Room' not in room_name:
+                continue
+            fake_room_name = stage_name + ', Fake Room with Teleporter to ' + room_name[room_name.find('Loading Room to ') + len('Loading Room to '):]
+            return_name = mapper_core['Teleporters']['Sources'][fake_room_name]['Return']
+            for (source_room_name, source_room) in mapper_core['Teleporters']['Sources'].items():
+                if source_room['Target'] != return_name:
+                    continue
+                source_room_stage = source_room['Stage']
+                if source_room_stage == 'Warp Rooms':
+                    continue
+                # if source_room_name in changes['Stages'][source_room_stage]['Rooms']:
+                #     source_room = changes['Stages'][source_room_stage]['Rooms'][source_room_name]
+                # TODO(sestren): Figure out why this throws KeyErrors on 'Castle Entrance Revisited, Fake Room with Teleporter to Underground Caverns'
+                source_loading_room = source_room_name.replace('Fake Room with Teleporter', 'Loading Room').replace('Castle Entrance Revisited', 'Castle Entrance')
+                code = 'CDHIJKLNOSTUVXYZ147+-|###'[len(links)]
+                rooms = tuple(sorted((room_name, source_loading_room)))
+                if rooms in links:
+                    continue
+                drawing = [
+                    '444 44d 4d4 444 444 4d4 4dd 444 444 d44 444 4d4 4d4 4d4 4d4 44d d4d 4d4 444 d4d ddd d4d 444 444 444 ',
+                    '4dd 4d4 444 d4d d4d 44d 4dd 4d4 4d4 d4d d4d 4d4 4d4 d4d d4d d4d d4d 444 dd4 444 444 d4d 444 444 444 ',
+                    '444 44d 4d4 444 44d 4d4 444 4d4 444 44d d4d 444 d4d 4d4 d4d d44 d4d dd4 dd4 d4d ddd d4d 444 444 444 ',
+                ]
+                room_a = changes['Stages'][stage_name]['Rooms'][room_name]
+                room_b = changes['Stages'][source_room_stage]['Rooms'][source_loading_room]
+                for room_pos in (
+                    room_a,
+                    room_b,
+                ):
+                    top = 4 * room_pos['Top'] + 1
+                    left = 4 * room_pos['Left'] + 1
+                    for row in range(3):
+                        for col in range(3):
+                            if drawing[row][col] != ' ':
+                                castle_map[top + row][left + col] = drawing[row][4 * len(links) + col]
+                links[rooms] = code
+                break
+
 if __name__ == '__main__':
     '''
     Usage
@@ -261,6 +318,7 @@ if __name__ == '__main__':
     }
     invalid_stage_files = set()
     while True:
+        print('...')
         shuffler['Stages'] = {}
         # Randomize
         stages = {
@@ -282,11 +340,10 @@ if __name__ == '__main__':
         }
         mapper_core = mapper.MapperData().get_core()
         # Calculate teleporter changes
-        teleporters = None
+        teleporters = {}
         # Generate the seed regardless, so RNG can be independent of the setting
         stage_randomizer_seed = global_rng.randint(0, 2 ** 64)
-        if settings.get('Stage connections are randomized', False):
-            teleporters = {}
+        if settings.get('Stage shuffler', {}).get('Shuffle connections between stages', False):
             shuffle_teleporters(mapper_core['Teleporters'], stage_randomizer_seed)
             for (source_name, source) in mapper_core['Teleporters']['Sources'].items():
                 if source_name in (
@@ -304,6 +361,15 @@ if __name__ == '__main__':
                     'Room': target['Stage'] + ', ' + target['Room'],
                     'Stage': target['Stage'],
                 }
+        # Shuffle quest rewards (such as Relics)
+        quest_randomizer_seed = global_rng.randint(0, 2 ** 64)
+        object_layouts = None
+        if settings.get('Quest shuffler', {}).get('Shuffle quest rewards', False):
+            shuffle_quests(mapper_core['Quests'], quest_randomizer_seed)
+            object_layouts = {}
+            for (quest_name, quest) in mapper_core['Quests']['Sources'].items():
+                target_name = quest['Target Reward']
+                object_layouts[quest_name] = quest['Target Reward']
         # print('Set starting seeds for each stage')
         for stage_name in sorted(stages.keys()):
             next_seed = global_rng.randint(0, 2 ** 64)
@@ -312,7 +378,6 @@ if __name__ == '__main__':
             # print('', stage_name, stages[stage_name]['Initial Seed'])
         # print('Randomize stages with starting seeds')
         for stage_name in sorted(stages.keys()):
-            # TODO(sestren): Add SKIP and ONLY to tests
             directory_listing = os.listdir(os.path.join('build', 'shuffler', stage_name))
             file_listing = list(
                 name for name in directory_listing if
@@ -345,6 +410,8 @@ if __name__ == '__main__':
                 }
                 unique_passes = set()
                 for (validation_name, validation) in stage_validations[stage_name].items():
+                    if validation_name.startswith('SKIP '):
+                        continue
                     logic_core = mapper.LogicCore(mapper_core, changes).get_core()
                     for (state_key, state_value) in validation['State'].items():
                         logic_core['State'][state_key] = state_value
@@ -364,7 +431,7 @@ if __name__ == '__main__':
                         cached_ind = False
                     validation_result = True
                     if not cached_ind:
-                        validation_results[stage_name][hash_of_rooms][hash_of_validation] = validator.validate(
+                        validation_results[stage_name][hash_of_rooms][hash_of_validation] = validator.validate_stage(
                             mapper_core,
                             mapper_data,
                             stage_name,
@@ -463,13 +530,14 @@ if __name__ == '__main__':
             continue
         # Some settings are Shuffler-specific, while the rest get passed down to the Patcher as options
         options = {}
-        for (setting_key, setting_value) in settings.items():
-            if setting_key in (
+        for (option_key, option_value) in settings['Options'].items():
+            if option_key in (
                 'Assign Power of Wolf relic a unique ID',
+                'Clock hands show minutes and seconds instead of hours and minutes',
                 'Enable debug mode',
                 'Skip Maria cutscene in Alchemy Laboratory',
             ):
-                options[setting_key] = setting_value
+                options[option_key] = option_value
         changes = {
             'Boss Teleporters': {},
             'Castle Map': [],
@@ -477,6 +545,8 @@ if __name__ == '__main__':
             'Stages': {},
             'Teleporters': teleporters,
         }
+        if object_layouts is not None:
+            changes['Object Layouts'] = object_layouts
         stages['Warp Rooms']['Stage Top'] = 0
         stages['Warp Rooms']['Stage Left'] = 0
         # Initialize the castle map drawing grid
@@ -582,48 +652,31 @@ if __name__ == '__main__':
                         else:
                             # print('Tried to draw pixel out of bounds of map:', room_name, (room_top, room_left), (row, col))
                             pass
-        links = {}
-        for (index, stage_name) in enumerate(stage_names):
-            if stage_name.startswith('Warp Rooms, '):
-                continue
-            stage = stages[stage_name]
-            stage_changes = stage['Mapper'].stage.get_changes()
-            for room_name in list(sorted(stage_changes['Rooms'])):
-                if 'Loading Room' in room_name:
-                    fake_room_name = stage_name + ', Fake Room with Teleporter to ' + room_name[room_name.find('Loading Room to ') + len('Loading Room to '):]
-                    return_name = mapper_core['Teleporters']['Sources'][fake_room_name]['Return']
-                    for (source_room_name, source_room) in mapper_core['Teleporters']['Sources'].items():
-                        if source_room['Target'] == return_name:
-                            source_room_stage = source_room['Stage']
-                            if source_room_stage == 'Warp Rooms':
-                                continue
-                            # if source_room_name in changes['Stages'][source_room_stage]['Rooms']:
-                            #     source_room = changes['Stages'][source_room_stage]['Rooms'][source_room_name]
-                            # TODO(sestren): Figure out why this throws KeyErrors on 'Castle Entrance Revisited, Fake Room with Teleporter to Underground Caverns'
-                            source_loading_room = source_room_name.replace('Fake Room with Teleporter', 'Loading Room').replace('Castle Entrance Revisited', 'Castle Entrance')
-                            code = 'CDHIJKLNOSTUVXYZ147+-|###'[len(links)]
-                            rooms = tuple(sorted((room_name, source_loading_room)))
-                            if rooms in links:
-                                continue
-                            drawing = [
-                                '444 44d 4d4 444 444 4d4 4dd 444 444 d44 444 4d4 4d4 4d4 4d4 44d d4d 4d4 444 d4d ddd d4d 444 444 444 ',
-                                '4dd 4d4 444 d4d d4d 44d 4dd 4d4 4d4 d4d d4d 4d4 4d4 d4d d4d d4d d4d 444 dd4 444 444 d4d 444 444 444 ',
-                                '444 44d 4d4 444 44d 4d4 444 4d4 444 44d d4d 444 d4d 4d4 d4d d44 d4d dd4 dd4 d4d ddd d4d 444 444 444 ',
-                            ]
-                            room_a = changes['Stages'][stage_name]['Rooms'][room_name]
-                            room_b = changes['Stages'][source_room_stage]['Rooms'][source_loading_room]
-                            for room_pos in (
-                                room_a,
-                                room_b,
-                            ):
-                                top = 4 * room_pos['Top'] + 1
-                                left = 4 * room_pos['Left'] + 1
-                                for row in range(3):
-                                    for col in range(3):
-                                        if drawing[row][col] != ' ':
-                                            castle_map[top + row][left + col] = drawing[row][4 * len(links) + col]
-                            links[rooms] = code
-                            break
+        # Draw connection labels onto the loading rooms of the map
+        if settings.get('Stage shuffler', {}).get('Loading room labels', 'None') != 'None':
+            # Connection
+            add_labels_to_loading_rooms(mapper_core, stages, stage_names, castle_map)
+            # Stage
+            # TODO(sestren): Allow the target stage to determine the label for the loading room ('C' = Catacombs, 'K' = 'Castle Keep', etc.)
+            # D = Abandoned Mine
+            # Y = Alchemy Laboratory
+            # + = Castle Center
+            # N = Castle Entrance
+            # K = Castle Keep
+            # C = Catacombs
+            # T = Clock Tower
+            # S = Colosseum
+            # L = Long Library
+            # V = Marble Gallery
+            # X = Olrox's Quarters
+            # O = Outer Wall
+            # H = Royal Chapel
+            # U = Underground Caverns
+        # Apply castle map drawing grid to changes
+        changes['Castle Map'] = []
+        for row in range(len(castle_map)):
+            row_data = ''.join(castle_map[row])
+            changes['Castle Map'].append(row_data)
         # Calculate which cells on the map buying the Castle Map in the Shop will reveal
         cells_to_reveal = set()
         for (row, row_data) in enumerate(castle_map):
@@ -670,6 +723,13 @@ if __name__ == '__main__':
                 'Top': source_top,
                 'Left': source_left,
             }
+        # print('*********')
+        # Validate First Castle to ensure it is solvable
+        if validator.validate_logic(mapper_core, changes):
+            pass
+        else:
+            continue
+        # print('*********')
         # Flip normal castle changes and apply them to inverted castle
         reversible_stages = {
             'Abandoned Mine': 'Cave',
@@ -693,7 +753,7 @@ if __name__ == '__main__':
                 'Rooms': {},
             }
             for room_name in changes['Stages'][stage_name]['Rooms']:
-                reversed_room_name = reversed_stage_name + ', ' + room_name[(len(stage_name) + 2):]
+                reversed_room_name = reversed_stage_name + ', ' + room_name[(len(stage_name + ', ')):]
                 source_top = changes['Stages'][stage_name]['Rooms'][room_name]['Top']
                 source_left = changes['Stages'][stage_name]['Rooms'][room_name]['Left']
                 source_rows = 1
@@ -715,15 +775,10 @@ if __name__ == '__main__':
                 'Room Y': source_room['Top'] + offset_top,
                 'Room X': source_room['Left'] + offset_left,
             }
-        # Apply castle map drawing grid to changes
-        changes['Castle Map'] = []
-        for row in range(len(castle_map)):
-            row_data = ''.join(castle_map[row])
-            changes['Castle Map'].append(row_data)
         # Show softlock warning and build number on file select screen
         changes['Strings'] = {
             '10': 'Press L2 if softlocked.     ',
-            '11': 'Alpha Build 73      ',
+            '11': 'Alpha Build 74      ',
         }
         # ...
         shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)
@@ -733,11 +788,12 @@ if __name__ == '__main__':
         if args.metadata:
             current_seed['Data Core'] = mapper_core
             current_seed['Shuffler'] = shuffler
-            # current_seed['Logic Core'] = logic_core
+            logic_core = mapper.LogicCore(mapper_core, changes).get_core()
+            current_seed['Logic Core'] = logic_core
             # current_seed['Solver'] = solution
         filepath = None
         if args.output is not None:
-            filepath = args.output
+            filepath = os.path.normpath(args.output)
         else:
             filename = ' '.join((
                 shuffler['End Time'].strftime('%Y-%m-%d %H-%M-%S'),

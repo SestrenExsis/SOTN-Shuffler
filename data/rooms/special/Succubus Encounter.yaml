@@ -9,7 +9,7 @@ Nodes: {}
 Commands:
     Action - Defeat Succubus:
         Outcomes:
-            Location: Special, Succubus Defeated
+            Room: Special, Succubus Defeated
         Requirements:
             Default:
                 Section: Main

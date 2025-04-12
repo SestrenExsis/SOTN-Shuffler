@@ -1,6 +1,7 @@
 # External libraries
 import argparse
 import collections
+import copy
 import datetime
 import hashlib
 import json
@@ -813,14 +814,18 @@ class MapperData:
                     ):
                         continue
                     self.rooms[room_name] = yaml_obj
-        with open(os.path.join('data', 'Teleporters.yaml')) as open_file:
-            yaml_obj = yaml.safe_load(open_file)
-            self.teleporters = yaml_obj
+        with (
+            open(os.path.join('data', 'mapper', 'teleporters.yaml')) as teleporters_file,
+            open(os.path.join('data', 'mapper', 'quests.yaml')) as quests_file,
+        ):
+            self.teleporters = yaml.safe_load(teleporters_file)
+            self.quests = yaml.safe_load(quests_file)
     
     def get_core(self) -> dict:
         result = {
             'Rooms': self.rooms,
             'Teleporters': self.teleporters,
+            'Quests': self.quests,
         }
         return result
 
@@ -830,7 +835,7 @@ class LogicCore:
             'Global': {
                 'Use Library Card': {
                     'Outcomes': {
-                        'Location': 'Long Library, Outside Shop',
+                        'Room': 'Long Library, Outside Shop',
                         'Section': 'Main',
                         'Item - Library Card': -1,
                     },
@@ -865,7 +870,7 @@ class LogicCore:
             if stage_name not in changes['Stages']:
                 continue
             nodes = {}
-            for (location_name, room_data) in mapper_data['Rooms'].items():
+            for (room_name, room_data) in mapper_data['Rooms'].items():
                 if room_data['Stage'] != stage_name:
                     continue
                 stage_changes = changes['Stages'][stage_name]
@@ -873,7 +878,7 @@ class LogicCore:
                 for possible_location_key in (
                     str(room_data['Index']),
                     room_data['Index'],
-                    location_name,
+                    room_name,
                     stage_name + ', Room ID ' + f'{room_data['Index']:02d}',
                 ):
                     if possible_location_key in stage_changes['Rooms']:
@@ -894,26 +899,26 @@ class LogicCore:
                     print('stage_name:', stage_name, 'has invalid dimensions')
                 assert room_top is not None
                 assert room_left is not None
-                self.commands[location_name] = room_data['Commands']
+                self.commands[room_name] = room_data['Commands']
                 for (node_name, node) in room_data['Nodes'].items():
                     row = room_top + node['Row']
                     column = room_left + node['Column']
                     edge = node['Edge']
-                    nodes[(row, column, edge)] = (location_name, node_name, node['Entry Section'], stage_name)
+                    nodes[(row, column, edge)] = (room_name, node_name, node['Entry Section'], stage_name)
                     exit = {
                         'Outcomes': {
-                            'Location': None,
+                            'Room': None,
                             'Section': None,
                         },
                         'Requirements': {
                             'Default': {
-                                'Location': location_name,
+                                'Room': room_name,
                                 'Section': node['Exit Section']
                             },
                         },
                     }
-                    self.commands[location_name]['Exit - ' + node_name] = exit
-            for (row, column, edge), (location_name, node_name, section_name, stage_name) in nodes.items():
+                    self.commands[room_name]['Exit - ' + node_name] = exit
+            for (row, column, edge), (room_name, node_name, section_name, stage_name) in nodes.items():
                 matching_row = row
                 matching_column = column
                 matching_edge = edge
@@ -929,30 +934,51 @@ class LogicCore:
                 elif edge == 'Right':
                     matching_edge = 'Left'
                     matching_column += 1
-                (matching_location_name, matching_node_name, matching_section, matching_stage_name) = (None, 'Unknown', None, 'Unknown')
+                (matching_room_name, matching_node_name, matching_section, matching_stage_name) = (None, 'Unknown', None, 'Unknown')
                 if (matching_row, matching_column, matching_edge) in nodes:
-                    (matching_location_name, matching_node_name, matching_section, matching_stage_name) = nodes[(matching_row, matching_column, matching_edge)]
-                self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Location'] = matching_location_name
-                self.commands[location_name]['Exit - ' + node_name]['Outcomes']['Section'] = matching_section
+                    (matching_room_name, matching_node_name, matching_section, matching_stage_name) = nodes[(matching_row, matching_column, matching_edge)]
+                self.commands[room_name]['Exit - ' + node_name]['Outcomes']['Room'] = matching_room_name
+                self.commands[room_name]['Exit - ' + node_name]['Outcomes']['Section'] = matching_section
         # Replace source teleporter locations with their targets
-        for (location_name, location_info) in self.commands.items():
+        for (room_name, location_info) in self.commands.items():
             for (command_name, command_info) in location_info.items():
-                if 'Outcomes' in command_info and 'Location' in command_info['Outcomes']:
-                    old_location_name = command_info['Outcomes']['Location']
-                    if old_location_name in mapper_data['Teleporters']['Sources']:
-                        source = mapper_data['Teleporters']['Sources'][old_location_name]
+                if 'Outcomes' in command_info and 'Room' in command_info['Outcomes']:
+                    old_room_name = command_info['Outcomes']['Room']
+                    if old_room_name in mapper_data['Teleporters']['Sources']:
+                        source = mapper_data['Teleporters']['Sources'][old_room_name]
                         target = mapper_data['Teleporters']['Targets'][source['Target']]
-                        new_location_name = target['Stage'] + ', ' + target['Room']
-                        self.commands[location_name][command_name]['Outcomes']['Location'] = new_location_name
-                        target_section_name = mapper_data['Rooms'][new_location_name]['Nodes'][target['Node']]['Entry Section']
-                        self.commands[location_name][command_name]['Outcomes']['Section'] = target_section_name
+                        new_room_name = target['Stage'] + ', ' + target['Room']
+                        self.commands[room_name][command_name]['Outcomes']['Room'] = new_room_name
+                        target_section_name = mapper_data['Rooms'][new_room_name]['Nodes'][target['Node']]['Entry Section']
+                        self.commands[room_name][command_name]['Outcomes']['Section'] = target_section_name
         # Delete fake rooms mentioned as teleporter locations
-        for location_name in mapper_data['Teleporters']['Sources']:
-            if 'Fake' in location_name:
-                self.commands.pop(location_name, None)
+        for room_name in mapper_data['Teleporters']['Sources']:
+            if 'Fake' in room_name:
+                self.commands.pop(room_name, None)
+        # Apply quests to logic
+        for quest in mapper_data['Quests']['Sources'].values():
+            for requirement in quest['Requirements'].values():
+                stage_name = requirement.get('Stage', 'Global')
+                if stage_name not in changes['Stages']:
+                    continue
+                room_name = requirement.get('Room', 'Global')
+                command_name = quest['Description']
+                outcomes = quest['Outcomes']
+                target_reward = quest['Target Reward']
+                for (outcome_key, outcome_value) in mapper_data['Quests']['Targets'][target_reward]['Outcomes'].items():
+                    outcomes[outcome_key] = outcome_value
+                simplified_requirement = copy.deepcopy(requirement)
+                simplified_requirement.pop('Stage')
+                simplified_requirement.pop('Room')
+                self.commands[room_name][command_name] = {
+                    'Requirements': {
+                        'Default': simplified_requirement,
+                    },
+                    'Outcomes': outcomes,
+                }
         self.state = {
             'Character': 'Alucard',
-            'Location': 'Castle Entrance, After Drawbridge',
+            'Room': 'Castle Entrance, After Drawbridge',
             'Section': 'Ground',
             'Item - Alucard Sword': 1,
             'Item - Alucard Shield': 1,
@@ -964,8 +990,146 @@ class LogicCore:
             'Item - Heart Refresh': 1,
         }
         self.goals = {
-            'Debug - Get Soul of Wolf': {
-                'Relic - Soul of Wolf': True,
+            # Forms of progression
+            'Check Cube of Zoe Location': {
+                'Check - Cube of Zoe Location': True,
+            },
+            'Check Demon Card Location': {
+                'Check - Demon Card Location': True,
+            },
+            'Check Echo of Bat Location': {
+                'Check - Echo of Bat Location': True,
+            },
+            'Check Fire of Bat Location': {
+                'Check - Fire of Bat Location': True,
+            },
+            'Check Form of Mist Location': {
+                'Check - Form of Mist Location': True,
+            },
+            'Check Ghost Card Location': {
+                'Check - Ghost Card Location': True,
+            },
+            'Check Gravity Boots Location': {
+                'Check - Gravity Boots Location': True,
+            },
+            'Check Holy Symbol Location': {
+                'Check - Holy Symbol Location': True,
+            },
+            'Check Leap Stone Location': {
+                'Check - Leap Stone Location': True,
+            },
+            'Check Merman Statue Location': {
+                'Check - Merman Statue Location': True,
+            },
+            'Check Power of Wolf Location': {
+                'Check - Power of Wolf Location': True,
+            },
+            'Check Soul of Bat Location': {
+                'Check - Soul of Bat Location': True,
+            },
+            'Check Soul of Wolf Location': {
+                'Check - Soul of Wolf Location': True,
+            },
+            'Check Spirit Orb Location': {
+                'Check - Spirit Orb Location': True,
+            },
+            'Check Sword Card Location': {
+                'Check - Sword Card Location': True,
+            },
+            'Check Power of Mist Location': {
+                'Check - Power of Mist Location': True,
+            },
+            'Check Faerie Card Location': {
+                'Check - Faerie Card Location': True,
+            },
+            'Check Faerie Scroll Location': {
+                'Check - Faerie Scroll Location': True,
+            },
+            'Check Spike Breaker Location': {
+                'Check - Spike Breaker Location': True,
+            },
+            'Check Silver Ring Location': {
+                'Check - Silver Ring Location': True,
+            },
+            'Check Gold Ring Location': {
+                'Check - Gold Ring': True,
+            },
+            'Check Holy Glasses Location': {
+                'Check - Holy Glasses Location': True,
+            },
+            'Find Equivalent Room for Creature': {
+                'Room': 'Outer Wall, Doppelganger Room',
+                'Section': 'Main',
+            },
+            'Find Equivalent Room for Death': {
+                'Room': 'Abandoned Mine, Cerberus Room',
+                'Section': 'Main',
+            },
+            'Find Equivalent Room for Medusa': {
+                'Room': 'Royal Chapel, Hippogryph Room',
+                'Section': 'Main',
+            },
+            'Find Equivalent Room for Darkwing Bat': {
+                'Room': "Clock Tower, Karasuman's Room",
+                'Section': 'Main',
+            },
+            'Find Equivalent Room for Akmodan II': {
+                'Room': "Olrox's Quarters, Olrox's Room",
+                'Section': 'Ground',
+            },
+            'Find Anteroom in Castle Keep': {
+                'Room': "Castle Keep, Keep Area",
+                'Section': 'Anteroom',
+            },
+            'Check Library Card Location in Catacombs': {
+                'Check - Library Card Location in Catacombs': True,
+            },
+            'Check Colosseum Library Card Location': {
+                'Check - Colosseum Library Card': True,
+            },
+            'Purchase Jewel of Open': {
+                'Relic - Jewel of Open': True,
+            },
+            'Find Equivalent Room for Gas Cloud': {
+                'Room': 'Catacombs, Mormegil Room',
+                'Section': 'Main',
+            },
+            # Final goal
+            'END': {
+                'Check - Cube of Zoe Location': True,
+                'Check - Demon Card Location': True,
+                'Check - Echo of Bat Location': True,
+                'Check - Fire of Bat Location': True,
+                'Check - Form of Mist Location': True,
+                'Check - Ghost Card Location': True,
+                'Check - Gravity Boots Location': True,
+                'Check - Holy Symbol Location': True,
+                'Check - Leap Stone Location': True,
+                'Check - Merman Statue Location': True,
+                'Check - Power of Wolf Location': True,
+                'Check - Soul of Bat Location': True,
+                'Check - Soul of Wolf Location': True,
+                'Check - Spirit Orb Location': True,
+                'Check - Sword Card Location': True,
+                'Check - Power of Mist Location': True,
+                'Check - Faerie Card Location': True,
+                'Check - Faerie Scroll Location': True,
+                'Check - Spike Breaker Location': True,
+                'Check - Silver Ring Location': True,
+                'Check - Gold Ring': True,
+                'Check - Holy Glasses Location': True,
+                'Relic - Jewel of Open': True,
+                'Sections Visited': {
+                    'All': {
+                        'Abandoned Mine, Cerberus Room (Main)': True,
+                        "Castle Keep, Keep Area (Anteroom)": True,
+                        "Catacombs, Mormegil Room (Main)": True,
+                        "Clock Tower, Karasuman's Room (Main)": True,
+                        "Olrox's Quarters, Olrox's Room (Ground)": True,
+                        'Outer Wall, Doppelganger Room (Main)': True,
+                        'Royal Chapel, Hippogryph Room (Main)': True,
+                    },
+                },
             },
         }
     
@@ -1170,7 +1334,7 @@ if __name__ == '__main__':
         pathlib.Path(
             os.path.join('build', 'shuffler', stage_name)
         ).mkdir(parents=True, exist_ok=True)
-    GENERATION_VERSION = 'Alpha Build 73'
+    GENERATION_VERSION = 'Alpha Build 74'
     mapper_core = MapperData().get_core()
     with (
         open(os.path.join('build', 'shuffler', 'mapper-core.json'), 'w') as mapper_core_json,

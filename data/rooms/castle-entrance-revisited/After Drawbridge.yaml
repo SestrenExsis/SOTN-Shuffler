@@ -88,11 +88,3 @@ Commands:
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
                 Skill - Wolf-Mist Rise: true
-    Action - Collect Power of Wolf Relic:
-        Outcomes:
-            Relic - Power of Wolf: true
-            Progression - Faster Wolf Run Speed: true
-        Requirements:
-            Default:
-                Section: Parapet
-                Relic - Power of Wolf: false

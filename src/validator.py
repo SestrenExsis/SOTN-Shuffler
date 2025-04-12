@@ -14,7 +14,61 @@ skills = {
     "Technique - Pixel-Perfect Diagonal Gravity Jump Through Narrow Gap": True,
 }
 
-def validate(mapper_core, mapper_data, stage_name, validation) -> bool:
+def validate_logic(mapper_core, changes) -> bool:
+    SOFTLOCK_CHECK__CYCLE_LIMIT = 199
+    SOFTLOCK_CHECK__MAX_SOFTLOCKS = 0
+    SOFTLOCK_CHECK__ATTEMPT_COUNT = 10
+    PROGRESSION_CHECK__STEP_LIMIT = 64
+    logic_core = mapper.LogicCore(mapper_core, changes).get_core()
+    map_solver = solver.Solver(logic_core, skills)
+    map_solver.debug = True
+    map_solver.initial_seed = 1
+    map_solver.decay_start = 99_999
+    map_solver.cycle_limit = 199_999
+    valid_ind = True
+    final_goal_ind = False
+    while True:
+        print(len(map_solver.current_game.goals_remaining), map_solver.current_game.current_state['Room'], map_solver.current_game.progression)
+        prev_game = map_solver.current_game.clone()
+        # Guard against softlocks
+        map_solver.debug = False
+        for attempt_id in range(SOFTLOCK_CHECK__ATTEMPT_COUNT):
+            map_solver.solve_via_random_exploration(SOFTLOCK_CHECK__CYCLE_LIMIT)
+        if len(map_solver.results['Losses']) > SOFTLOCK_CHECK__MAX_SOFTLOCKS:
+            valid_ind = False
+            print(' ', '❌ ... Guard against softlocks')
+            break
+        print(' ', '✅ ... Guard against softlocks')
+        # Require some form of nearby progression
+        map_solver.debug = True
+        map_solver.clear()
+        map_solver.current_game = prev_game
+        map_solver.solve_via_strict_steps(PROGRESSION_CHECK__STEP_LIMIT)
+        if len(map_solver.results['Wins']) < 1:
+            valid_ind = False
+            print(' ', '❌ ... Require some form of nearby progression')
+            break
+        print(' ', '✅ ... Require some form of nearby progression')
+        (step__solver, game__solver) = map_solver.results['Wins'][-1]
+        while len(game__solver.goals_achieved) > 0:
+            goal_achieved = game__solver.goals_achieved.pop()
+            if goal_achieved == 'END':
+                final_goal_ind = True
+            # print(goal_achieved)
+            game__solver.goals_remaining.pop(goal_achieved)
+            game__solver.progression.append(goal_achieved)
+        map_solver.current_game = game__solver
+        map_solver.clear()
+        if final_goal_ind:
+            break
+    result = valid_ind
+    if 0 < len(map_solver.current_game.goals_remaining) < 5:
+        print('Goals not obtained')
+        for goal in sorted(map_solver.current_game.goals_remaining.keys()):
+            print(' -', goal)
+    return result
+
+def validate_stage(mapper_core, mapper_data, stage_name, validation) -> bool:
     current_mapper = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
     current_mapper.generate()
     current_mapper.stage.normalize()
@@ -36,7 +90,7 @@ def validate(mapper_core, mapper_data, stage_name, validation) -> bool:
     map_solver = solver.Solver(logic_core, skills)
     validation_passed = True
     if 'Solver' not in validation: # Backwards compatibility for the old method of validating
-        map_solver.solve_via_steps(100 * validation['Solver Effort'], stage_name)
+        map_solver.solve_via_relaxed_steps(100 * validation['Solver Effort'], stage_name)
         if len(map_solver.results['Wins']) < 1:
             validation_passed = False
         else:
@@ -51,7 +105,7 @@ def validate(mapper_core, mapper_data, stage_name, validation) -> bool:
                 map_solver.solve_via_random_exploration(cycle_limit, stage_name)
             elif solver_config['Approach'] == 'Steps':
                 step_limit = solver_config.get('Limit', 100)
-                map_solver.solve_via_steps(step_limit, stage_name)
+                map_solver.solve_via_relaxed_steps(step_limit, stage_name)
             else:
                 raise Exception('Unrecognized approach:', validation['Solver']['Approach'])
         for result_name in ('Wins', 'Losses', 'Withdrawals'):
@@ -119,6 +173,8 @@ if __name__ == '__main__':
             if hash_of_rooms not in results.get(stage_name, {}):
                 add_to_pool = True
             for (validation_name, validation) in stage_validations[stage_name].items():
+                if validation_name.startswith('SKIP '):
+                    continue
                 should_validate_ind = False
                 if stage_name not in results:
                     results[stage_name] = {}
@@ -132,12 +188,7 @@ if __name__ == '__main__':
                 if hash_of_validation not in results[stage_name][hash_of_rooms]:
                     should_validate_ind = True
                 if should_validate_ind:
-                    validation_result = validate(
-                        mapper_core,
-                        mapper_data,
-                        stage_name,
-                        validation
-                    )
+                    validation_result = validate_stage(mapper_core, mapper_data, stage_name, validation)
                     results[stage_name][hash_of_rooms][hash_of_validation] = validation_result
                     if stage_name != prev_stage:
                         print('', stage_name)

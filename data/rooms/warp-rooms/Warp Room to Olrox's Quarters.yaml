@@ -23,13 +23,13 @@ Commands:
     Move - Main:
         Outcomes:
             Section: Main
-            Status - Warp Room B Unlocked: true
+            Status - Warp Room to Olrox's Quarters Unlocked: true
         Requirements:
             Default:
                 Section: Special
-    Teleport - Warp Room D:
+    Teleport - Warp Room to Castle Entrance:
         Outcomes:
-            Location: Warp Rooms, Warp Room D
+            Room: Warp Rooms, Warp Room to Castle Entrance
             Section: Special
         Requirements:
             Default:

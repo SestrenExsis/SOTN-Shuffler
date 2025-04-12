@@ -110,10 +110,3 @@ Commands:
                 Section: Upper Ledge
             Lower Ledge - Default:
                 Section: Lower Ledge
-    Action - Collect Faerie Scroll Relic:
-        Outcomes:
-            Relic - Faerie Scroll: true
-        Requirements:
-            Default:
-                Section: Main
-                Relic - Faerie Scroll: false

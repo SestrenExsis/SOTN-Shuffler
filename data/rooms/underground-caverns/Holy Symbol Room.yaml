@@ -13,12 +13,4 @@ Nodes:
         Edge: Left
         Entry Section: Main
         Exit Section: Main
-Commands:
-    Action - Collect Holy Symbol Relic:
-        Outcomes:
-            Relic - Holy Symbol: true
-            Progression - Protection From Water: true
-        Requirements:
-            Default:
-                Section: Main
-                Relic - Holy Symbol: false
+Commands: {}
