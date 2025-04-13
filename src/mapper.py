@@ -177,9 +177,11 @@ class RoomSet:
             self.rooms[room_name].top -= stage_top
             self.rooms[room_name].left -= stage_left
     
-    def get_cells(self, offset_top: int=0, offset_left: int=0) -> set[tuple[int, int]]:
+    def get_cells(self, offset_top: int=0, offset_left: int=0, exclude_fake_rooms: bool=False) -> set[tuple[int, int]]:
         result = set()
         for (room_name, room) in self.rooms.items():
+            if exclude_fake_rooms and 'Fake Room' in room_name:
+                continue
             result = result.union(room.get_cells(offset_top, offset_left))
         return result
 
