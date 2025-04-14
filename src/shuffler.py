@@ -231,7 +231,44 @@ def shuffle_quests(quests, seed):
         quest_target = quest_targets.pop()
         quests['Sources'][quest_source_name]['Target Reward'] = quest_target
 
-def add_labels_to_loading_rooms(mapper_core, stages, stage_names, castle_map):
+def draw_labels_on_castle_map(castle_map, instructions):
+    # CDHIJKLNOSTUVXYZ147+-|#
+    labels = {
+        'C': ('###', '#  ', '###'),
+        'D': ('## ', '# #', '## '),
+        'H': ('# #', '###', '# #'),
+        'I': ('###', ' # ', '###'),
+        'J': ('###', ' # ', '## '),
+        'K': ('# #', '## ', '# #'),
+        'L': ('#  ', '#  ', '###'),
+        'N': ('###', '# #', '# #'),
+        'O': ('###', '# #', '###'),
+        'S': (' ##', ' # ', '## '),
+        'T': ('###', ' # ', ' # '),
+        'U': ('# #', '# #', '###'),
+        'V': ('# #', '# #', ' # '),
+        'X': ('# #', ' # ', '# #'),
+        'Y': ('# #', ' # ', ' # '),
+        'Z': ('## ', ' # ', ' ##'),
+        '1': (' # ', ' # ', ' # '),
+        '4': ('# #', '###', '  #'),
+        '7': ('###', '  #', '  #'),
+        '+': (' # ', '###', ' # '),
+        '-': ('   ', '###', '   '),
+        '|': (' # ', ' # ', ' # '),
+        '#': ('###', '###', '###'),
+    }
+    for (label, map_row, map_col, color) in instructions:
+        top = 4 * map_row + 1
+        left = 4 * map_col + 1
+        for (row, row_data) in enumerate(labels[label]):
+            for (col, char) in enumerate(row_data):
+                if char == ' ':
+                    continue
+                castle_map[top + row][left + col] = str(color)
+
+def get_loading_room_labels_by_connection(mapper_core, stages, stage_names):
+    instructions = []
     links = {}
     for (index, stage_name) in enumerate(stage_names):
         if stage_name.startswith('Warp Rooms, '):
@@ -257,25 +294,60 @@ def add_labels_to_loading_rooms(mapper_core, stages, stage_names, castle_map):
                 rooms = tuple(sorted((room_name, source_loading_room)))
                 if rooms in links:
                     continue
-                drawing = [
-                    '444 44d 4d4 444 444 4d4 4dd 444 444 d44 444 4d4 4d4 4d4 4d4 44d d4d 4d4 444 d4d ddd d4d 444 444 444 ',
-                    '4dd 4d4 444 d4d d4d 44d 4dd 4d4 4d4 d4d d4d 4d4 4d4 d4d d4d d4d d4d 444 dd4 444 444 d4d 444 444 444 ',
-                    '444 44d 4d4 444 44d 4d4 444 4d4 444 44d d4d 444 d4d 4d4 d4d d44 d4d dd4 dd4 d4d ddd d4d 444 444 444 ',
-                ]
                 room_a = changes['Stages'][stage_name]['Rooms'][room_name]
                 room_b = changes['Stages'][source_room_stage]['Rooms'][source_loading_room]
                 for room_pos in (
                     room_a,
                     room_b,
                 ):
-                    top = 4 * room_pos['Top'] + 1
-                    left = 4 * room_pos['Left'] + 1
-                    for row in range(3):
-                        for col in range(3):
-                            if drawing[row][col] != ' ':
-                                castle_map[top + row][left + col] = drawing[row][4 * len(links) + col]
+                    instructions.append((code, room_pos['Top'], room_pos['Left'], '4'))
                 links[rooms] = code
                 break
+    result = instructions
+    return result
+
+def get_loading_room_labels_by_stage(mapper_core, stages, stage_names):
+    stage_codes = {
+        'Abandoned Mine': 'D',
+        'Alchemy Laboratory': 'Y',
+        'Castle Center': '+',
+        'Castle Entrance': 'N',
+        'Castle Entrance Revisited': 'N',
+        'Castle Keep': 'K',
+        'Catacombs': 'C',
+        'Clock Tower': 'T',
+        'Colosseum': 'S',
+        'Long Library': 'L',
+        'Marble Gallery': 'V',
+        "Olrox's Quarters": 'X',
+        'Outer Wall': 'O',
+        'Royal Chapel': 'H',
+        'Underground Caverns': 'U',
+    }
+    instructions = []
+    for (index, stage_name) in enumerate(stage_names):
+        if stage_name.startswith('Warp Rooms, '):
+            continue
+        stage = stages[stage_name]
+        stage_changes = stage['Mapper'].stage.get_changes()
+        for room_name in list(sorted(stage_changes['Rooms'])):
+            if 'Loading Room' not in room_name:
+                continue
+            fake_room_name = stage_name + ', Fake Room with Teleporter to ' + room_name[room_name.find('Loading Room to ') + len('Loading Room to '):]
+            return_name = mapper_core['Teleporters']['Sources'][fake_room_name]['Return']
+            for (source_room_name, source_room) in mapper_core['Teleporters']['Sources'].items():
+                if source_room['Target'] != return_name:
+                    continue
+                source_room_stage = source_room['Stage']
+                if source_room_stage in ('Castle Center', 'Warp Rooms') or stage_name in ('Castle Center', 'Warp Rooms'):
+                    continue
+                source_loading_room = source_room_name.replace('Fake Room with Teleporter', 'Loading Room').replace('Castle Entrance Revisited', 'Castle Entrance')
+                room_pos = changes['Stages'][source_room_stage]['Rooms'][source_loading_room]
+                code = stage_codes.get(stage_name, '#')
+                instructions.append((code, room_pos['Top'], room_pos['Left'], '4'))
+                break
+    result = instructions
+    return result
 
 if __name__ == '__main__':
     '''
@@ -662,24 +734,13 @@ if __name__ == '__main__':
                             pass
         # Draw connection labels onto the loading rooms of the map
         if settings.get('Stage shuffler', {}).get('Loading room labels', 'None') != 'None':
-            # Connection
-            add_labels_to_loading_rooms(mapper_core, stages, stage_names, castle_map)
-            # Stage
-            # TODO(sestren): Allow the target stage to determine the label for the loading room ('C' = Catacombs, 'K' = 'Castle Keep', etc.)
-            # D = Abandoned Mine
-            # Y = Alchemy Laboratory
-            # + = Castle Center
-            # N = Castle Entrance
-            # K = Castle Keep
-            # C = Catacombs
-            # T = Clock Tower
-            # S = Colosseum
-            # L = Long Library
-            # V = Marble Gallery
-            # X = Olrox's Quarters
-            # O = Outer Wall
-            # H = Royal Chapel
-            # U = Underground Caverns
+            instructions = []
+            label_method = settings['Stage shuffler']['Loading room labels']
+            if label_method == 'Connection':
+                instructions = get_loading_room_labels_by_connection(mapper_core, stages, stage_names)
+            elif label_method == 'Stage':
+                instructions = get_loading_room_labels_by_stage(mapper_core, stages, stage_names)
+            draw_labels_on_castle_map(castle_map, instructions)
         # Apply castle map drawing grid to changes
         changes['Castle Map'] = []
         for row in range(len(castle_map)):
