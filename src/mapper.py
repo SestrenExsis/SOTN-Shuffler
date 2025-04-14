@@ -526,11 +526,15 @@ stages = {
     'Marble Gallery': [
         {
             # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
-            # NOTE(sestren): Clock Room must be hard-coded to its vanilla location until the MAR stage is found
+            # NOTE(sestren): Elevator Room is being kept to its vanilla location to keep overall logical progression (Holy Glasses and All Vlads) consistent with vanilla
             'Marble Gallery, Three Paths': (26 - 2, 32 + 0),
             'Marble Gallery, Left of Clock Room': (26 + 0, 32 - 3),
             'Marble Gallery, Clock Room': (26 + 0, 32 + 0),
             'Marble Gallery, Right of Clock Room': (26 + 0, 32 + 1),
+            'Marble Gallery, Save Room A': (26 + 1, 32 - 1),
+            'Marble Gallery, Elevator Room': (26 + 1, 32 + 0),
+            'Marble Gallery, Power-Up Room': (26 + 1, 32 + 1),
+            'Marble Gallery, Fake Room with Teleporter to Castle Center': (26 + 2, 32 + 0),
         },
         {
             'Marble Gallery, Long Hallway': (32 + 0, 32 + 0),
@@ -553,10 +557,6 @@ stages = {
             'Marble Gallery, Pathway After Left Statue': (0, 2),
         },
         {
-            'Marble Gallery, Elevator Room': (0, 0),
-            'Marble Gallery, Fake Room with Teleporter to Castle Center': (1, 0),
-        },
-        {
             'Marble Gallery, Fake Room with Teleporter to Underground Caverns': (1, 0),
             'Marble Gallery, Loading Room to Underground Caverns': (1, 1),
             'Marble Gallery, Stairwell to Underground Caverns': (0, 2),
@@ -569,7 +569,6 @@ stages = {
         { 'Marble Gallery, Alucart Room': (0, 0) },
         { 'Marble Gallery, Gravity Boots Room': (0, 0) },
         { 'Marble Gallery, Beneath Right Trapdoor': (0, 0) },
-        { 'Marble Gallery, Power-Up Room': (0, 0) },
         { 'Marble Gallery, Tall Stained Glass Windows': (0, 0) },
         { 'Marble Gallery, Spirit Orb Room': (0, 0) },
         { 'Marble Gallery, Stopwatch Room': (0, 0) },
@@ -579,7 +578,6 @@ stages = {
         { 'Marble Gallery, Ouija Table Stairway': (0, 0) },
         { 'Marble Gallery, Slinger Staircase': (0, 0) },
         { 'Marble Gallery, Beneath Left Trapdoor': (0, 0) },
-        { 'Marble Gallery, Save Room A': (0, 0) },
         { 'Marble Gallery, Save Room B': (0, 0) },
     ],
     'Olrox\'s Quarters': [
@@ -676,6 +674,7 @@ stages = {
             'Royal Chapel, Right Tower': (32 + 0, 32 + 16),
             'Royal Chapel, Loading Room to Castle Keep': (32 + 2, 32 + 19),
             'Royal Chapel, Fake Room with Teleporter to Castle Keep': (32 + 2, 32 + 20),
+            'Royal Chapel, Save Room B': (32 + 3, 32 + 19),
         },
         {
             'Royal Chapel, Nave': (0 + 0, 0 + 0),
@@ -683,16 +682,15 @@ stages = {
             'Royal Chapel, Fake Room with Teleporter to Colosseum': (0 + 1, 0 + 3),
         },
         {
-            'Royal Chapel, Statue Ledge': (0 + 0, 0 + 0),
-            'Royal Chapel, Loading Room to Alchemy Laboratory': (0 + 0, 0 + 1),
-            'Royal Chapel, Fake Room with Teleporter to Alchemy Laboratory': (0 + 0, 0 + 2),
+            'Royal Chapel, Save Room A': (0 + 0, 0 + 0),
+            'Royal Chapel, Statue Ledge': (0 + 0, 0 + 1),
+            'Royal Chapel, Loading Room to Alchemy Laboratory': (0 + 0, 0 + 2),
+            'Royal Chapel, Fake Room with Teleporter to Alchemy Laboratory': (0 + 0, 0 + 3),
         },
         { 'Royal Chapel, Chapel Staircase': (0, 0) },
         { 'Royal Chapel, Confessional Booth': (0, 0) },
         { 'Royal Chapel, Empty Room': (0, 0) },
         { 'Royal Chapel, Goggles Room': (0, 0) },
-        { 'Royal Chapel, Save Room A': (0, 0) },
-        { 'Royal Chapel, Save Room B': (0, 0) },
         { 'Royal Chapel, Silver Ring Room': (0, 0) },
     ],
     'Underground Caverns': [

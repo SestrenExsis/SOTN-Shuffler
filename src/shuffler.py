@@ -402,7 +402,7 @@ if __name__ == '__main__':
                 assert stages[stage_name]['Mapper'].validate()
                 hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
                 assert hash_of_rooms == mapper_data['Hash of Rooms']
-                # print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), max_unique_pass_count)
+                # print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), len(list(b for (a, b) in invalid_stage_files if a == stage_name)), max_unique_pass_count)
                 changes = {
                     'Stages': {
                         stage_name: stage_changes,
@@ -491,15 +491,11 @@ if __name__ == '__main__':
                 max_map_row = min_map_row + 1
                 min_map_col = stages['Marble Gallery']['Stage Left'] + stages['Marble Gallery']['Mapper'].stage.rooms['Marble Gallery, Elevator Room'].left - 1
                 max_map_col = min_map_col + 1
-                print(shuffler['Stages']['Marble Gallery']['Hash of Rooms'])
-                print((stages['Marble Gallery']['Stage Top'], stages['Marble Gallery']['Stage Left']), (min_map_row, min_map_col))
             for stage_top in range(min_map_row, max_map_row):
                 for stage_left in range(min_map_col, max_map_col):
                     # Reject if it overlaps another stage
                     current_cells = current_stage.get_cells(stage_top, stage_left, True)
                     if len(current_cells.intersection(prev_cells)) > 0:
-                        if stage_name == 'Castle Center':
-                            print('OVERLAP DETECTED!:', len(current_cells.intersection(prev_cells)), current_cells.intersection(prev_cells))
                         continue
                     all_cells = current_cells.union(prev_cells)
                     min_row = min((row for (row, col) in all_cells))
@@ -514,7 +510,7 @@ if __name__ == '__main__':
                     if area == best_area:
                         best_stage_offsets.append((stage_top, stage_left))
             if best_area >= float('inf'):
-                print('Could not find a suitable spot on the map for', stage_name)
+                # print('Could not find a suitable spot on the map for', stage_name)
                 break
             (stage_top, stage_left) = global_rng.choice(list(sorted(best_stage_offsets)))
             # cells = current_stage.get_cells(stage_top, stage_left)
@@ -526,18 +522,17 @@ if __name__ == '__main__':
                 MIN_MAP_COL <= stage_left + left < MAX_MAP_COL and
                 MIN_MAP_COL <= stage_left + right < MAX_MAP_COL
             ):
-                print(stage_name, 'could not be placed within the bounds of the map')
+                # print(stage_name, 'could not be placed within the bounds of the map')
                 break
             current_cells = current_stage.get_cells(stage_top, stage_left, True)
             if len(current_cells.intersection(prev_cells)) > 0:
-                print(stage_name, 'could not be placed without overlapping with another stage')
+                # print(stage_name, 'could not be placed without overlapping with another stage')
                 break
             stages[stage_name]['Stage Top'] = stage_top
             stages[stage_name]['Stage Left'] = stage_left
             # print('>>>', stage_name, (stage_top, stage_left))
         else:
             valid_ind = True
-            print('All stages placed')
         if not valid_ind:
             # print('Gave up trying to find a valid arrangement of the stages; starting over from scratch')
             continue
