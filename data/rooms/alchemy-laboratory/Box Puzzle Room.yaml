@@ -38,13 +38,6 @@ Nodes:
         Entry Section: Ledge
         Exit Section: Ledge
 Commands:
-    Action - Solve Box Puzzle:
-        Outcomes:
-            Status - Box Puzzle Solved: true
-        Requirements:
-            Default:
-                Section: Ground
-                Status - Box Puzzle Solved: false
     Move - Ledge:
         Outcomes:
             Section: Ledge

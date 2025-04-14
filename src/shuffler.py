@@ -402,7 +402,7 @@ if __name__ == '__main__':
                 assert stages[stage_name]['Mapper'].validate()
                 hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
                 assert hash_of_rooms == mapper_data['Hash of Rooms']
-                # print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), max_unique_pass_count)
+                # print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), len(list(b for (a, b) in invalid_stage_files if a == stage_name)), max_unique_pass_count)
                 changes = {
                     'Stages': {
                         stage_name: stage_changes,
@@ -461,8 +461,9 @@ if __name__ == '__main__':
                 'Stage': stage_name,
             }
         # Randomly place down stages one at a time
-        stage_names = list(sorted(stages.keys() - {'Warp Rooms'}))
+        stage_names = list(sorted(stages.keys() - {'Warp Rooms', 'Castle Center'}))
         global_rng.shuffle(stage_names)
+        stage_names.insert(stage_names.index('Marble Gallery') + 1, 'Castle Center')
         valid_ind = False
         for (index, stage_name) in enumerate(stage_names):
             current_stage = stages[stage_name]['Mapper'].stage
@@ -470,7 +471,8 @@ if __name__ == '__main__':
             for prev_stage_name in stage_names[:index]:
                 cells = stages[prev_stage_name]['Mapper'].stage.get_cells(
                     stages[prev_stage_name]['Stage Top'],
-                    stages[prev_stage_name]['Stage Left']
+                    stages[prev_stage_name]['Stage Left'],
+                    True
                 )
                 prev_cells = prev_cells.union(cells)
             (top, left, bottom, right) = current_stage.get_bounds()
@@ -483,10 +485,16 @@ if __name__ == '__main__':
                 min_map_row = 38 - current_stage.rooms['Castle Entrance, After Drawbridge'].top
                 max_map_row = min_map_row + 1
                 min_map_col = max(min_map_col, 1 - current_stage.rooms['Castle Entrance, Unknown Room 20'].left)
+            elif stage_name == 'Castle Center':
+                # Castle Center is being forced to join with Marble Gallery via the Elevator Room
+                min_map_row = stages['Marble Gallery']['Stage Top'] + stages['Marble Gallery']['Mapper'].stage.rooms['Marble Gallery, Elevator Room'].top
+                max_map_row = min_map_row + 1
+                min_map_col = stages['Marble Gallery']['Stage Left'] + stages['Marble Gallery']['Mapper'].stage.rooms['Marble Gallery, Elevator Room'].left - 1
+                max_map_col = min_map_col + 1
             for stage_top in range(min_map_row, max_map_row):
                 for stage_left in range(min_map_col, max_map_col):
                     # Reject if it overlaps another stage
-                    current_cells = current_stage.get_cells(stage_top, stage_left)
+                    current_cells = current_stage.get_cells(stage_top, stage_left, True)
                     if len(current_cells.intersection(prev_cells)) > 0:
                         continue
                     all_cells = current_cells.union(prev_cells)
@@ -516,7 +524,7 @@ if __name__ == '__main__':
             ):
                 # print(stage_name, 'could not be placed within the bounds of the map')
                 break
-            current_cells = current_stage.get_cells(stage_top, stage_left)
+            current_cells = current_stage.get_cells(stage_top, stage_left, True)
             if len(current_cells.intersection(prev_cells)) > 0:
                 # print(stage_name, 'could not be placed without overlapping with another stage')
                 break
