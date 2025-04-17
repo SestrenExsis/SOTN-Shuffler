@@ -12,12 +12,13 @@ import solver
 if __name__ == '__main__':
     with open(os.path.join('build', 'shuffler', 'current-seed.json')) as current_seed_json:
         current_seed = json.load(current_seed_json)
-        mapper_data = current_seed['Data Core']
-        changes = current_seed['Changes']
-        logic_core = mapper.LogicCore(mapper_data, changes).get_core()
+        logic_core = mapper.LogicCore(
+            current_seed['Data Core'],
+            current_seed['Changes'],
+        ).get_core()
         game = solver.Game(logic_core)
-        # game.cheat_command('Outer Wall, Elevator Shaft Room', 'Action - Collect Soul of Wolf Relic')
-        # game.cheat_location('Warp Rooms, Warp Room to Castle Keep', 'Special')
+        game.current_state['Progression - Summon Demon Familiar'] = False
+        game.cheat_location('Abandoned Mine, Crumbling Stairwells With Demon Switch', 'Block Area')
         # game.current_state['Status - Warp Room to Abandoned Mine Unlocked'] = True
         # game.current_state['Status - Warp Room to Castle Entrance Unlocked'] = True
         # game.current_state['Status - Warp Room to Castle Keep Unlocked'] = True

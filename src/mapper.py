@@ -989,6 +989,8 @@ class LogicCore:
             'Item - Neutron Bomb': 1,
             'Item - Heart Refresh': 1,
         }
+        if changes.get('Options', {}).get('Disable clipping on screen edge of Demon Switch Wall', False):
+            self.state['Option - Disable clipping on screen edge of Demon Switch Wall'] = True
         self.goals = {
             # Forms of progression
             'Check Cube of Zoe Location': {

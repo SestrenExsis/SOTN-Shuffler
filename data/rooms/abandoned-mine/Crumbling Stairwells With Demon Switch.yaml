@@ -55,6 +55,11 @@ Commands:
                 Section: Upper-Left Ledge
                 Progression - Summon Demon Familiar: true
                 Status - Switch in Abandoned Mine Pressed: false
+            Block Area (Normalized) - Demon Card:
+                Section: Block Area
+                Progression - Summon Demon Familiar: true
+                Status - Switch in Abandoned Mine Pressed: false
+                Option - Disable clipping on screen edge of Demon Switch Wall: true
     Move - Block Area:
         Outcomes:
             Section: Block Area
