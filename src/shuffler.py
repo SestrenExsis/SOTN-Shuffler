@@ -388,6 +388,17 @@ if __name__ == '__main__':
         'Start Time': datetime.datetime.now(datetime.timezone.utc),
         'Stages': {},
     }
+    # Some settings are Shuffler-specific, while the rest get passed down to the Patcher as options
+    options = {}
+    for (option_key, option_value) in settings['Options'].items():
+        if option_key in (
+            'Assign Power of Wolf relic a unique ID',
+            'Clock hands show minutes and seconds instead of hours and minutes',
+            'Disable clipping on screen edge of Demon Switch Wall',
+            'Enable debug mode',
+            'Skip Maria cutscene in Alchemy Laboratory',
+        ):
+            options[option_key] = option_value
     invalid_stage_files = set()
     while True:
         print('...')
@@ -476,6 +487,7 @@ if __name__ == '__main__':
                 assert hash_of_rooms == mapper_data['Hash of Rooms']
                 # print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), len(list(b for (a, b) in invalid_stage_files if a == stage_name)), max_unique_pass_count)
                 changes = {
+                    'Options': options,
                     'Stages': {
                         stage_name: stage_changes,
                     },
@@ -608,16 +620,6 @@ if __name__ == '__main__':
         if not valid_ind:
             # print('Gave up trying to find a valid arrangement of the stages; starting over from scratch')
             continue
-        # Some settings are Shuffler-specific, while the rest get passed down to the Patcher as options
-        options = {}
-        for (option_key, option_value) in settings['Options'].items():
-            if option_key in (
-                'Assign Power of Wolf relic a unique ID',
-                'Clock hands show minutes and seconds instead of hours and minutes',
-                'Enable debug mode',
-                'Skip Maria cutscene in Alchemy Laboratory',
-            ):
-                options[option_key] = option_value
         changes = {
             'Boss Teleporters': {},
             'Castle Map': [],

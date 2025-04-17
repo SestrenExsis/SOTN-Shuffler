@@ -2,10 +2,11 @@
 Options:
     Assign Power of Wolf relic a unique ID: true
     Clock hands show minutes and seconds instead of hours and minutes: true
+    Disable clipping on screen edge of Demon Switch Wall: true
     Enable debug mode: true
     Skip Maria cutscene in Alchemy Laboratory: true
 Stage shuffler:
     Shuffle connections between stages: true
-    Loading room labels: Connection
+    Loading room labels: Stage
 Quest shuffler:
     Shuffle quest rewards: true
