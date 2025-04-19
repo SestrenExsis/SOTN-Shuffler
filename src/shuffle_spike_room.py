@@ -1,4 +1,6 @@
 # External libraries
+import argparse
+import json
 import random
 
 def get_obstacles(seed, obstacle_count: int=4):
@@ -10,8 +12,8 @@ def get_obstacles(seed, obstacle_count: int=4):
             options = ['UP', 'UP', 'UP', 'DOWN', 'DOWN', 'DOWN']
             if len(obstacles) < (obstacle_count - 1):
                 options.extend(('RIGHT', 'RIGHT', 'RIGHT'))
-            if len(obstacles) > 0 and obstacles[-1] in ('UP', 'DOWN'):
-                options.append('LEFT_' + obstacles[-1])
+            # if len(obstacles) > 0 and obstacles[-1] in ('UP', 'DOWN'):
+            #     options.append('LEFT_' + obstacles[-1])
             choice = rng.choice(options)
             obstacles.append(choice)
         lanes = []
@@ -39,7 +41,8 @@ def get_obstacles(seed, obstacle_count: int=4):
     result = obstacles
     return result
 
-def get_updated_spike_room(spike_room, rules):
+def get_updated_spike_room(seed, spike_room, rules):
+    rng = random.Random(seed)
     result = spike_room.copy()
     for (search, replace, chance) in rules:
         rows = len(search)
@@ -63,15 +66,8 @@ def get_updated_spike_room(spike_room, rules):
                         result[top + row] = result[top + row][:left + col] + replace[row][col] + result[top + row][left + col + 1:]
     return result
 
-if __name__ == '__main__':
-    '''
-    Usage
-    python shuffle_spike_room.py
-
-    1) Within the "spike zone", every NONE or EMPTY tile orthogonally adjacent to one or more SOLID tiles will get SPIKES
-    2) Every SPIKES tile orthogonally adjacent to 3 or more NONE or EMPTY tiles will have the two "diagonal"
-    '''
-    rng = random.Random()
+def get_shuffled_spike_room(initial_seed: int):
+    rng = random.Random(initial_seed)
     obstacles = get_obstacles(rng.random(), 4)
     print(obstacles)
     spike_room = [
@@ -121,64 +117,68 @@ if __name__ == '__main__':
         print(row_data)
     rules = [
         # Fill in square-shaped walls
-        (('@@@@@@@', '@.....@', '@.....@', '@.....@', '@.....@', '@.....@', '@@@@@@@'), ('@@@@@@@', '@.....@', '.@...@.', '..@@@..', '..@@@..', '.@...@.', '@.....@'), 1.0),
-        (('@@@@@@@', '@.....@', '@.....@', '@.....@', '@.....@', '@.....@', '@.....@', '@@@@@@@'), ('.......', '@.....@', '.@...@.', '..@@@..', '..@@@..', '.@...@.', '@.....@', '@@@@@@@'), 1.0),
+        (('@@@@@@@', '@.....@', '@.....@', '@.....@', '@.....@', '@.....@', '@@@@@@@'), ('@@@@@@@', '@@...@@', '.@@.@@.', '..@@@..', '..@@@..', '.@@.@@.', '@@...@@'), 1.0),
+        (('@@@@@@@', '@.....@', '@.....@', '@.....@', '@.....@', '@.....@', '@.....@', '@@@@@@@'), ('.......', '@@...@@', '.@@.@@.', '..@@@..', '..@@@..', '.@@.@@.', '@@...@@', '@@@@@@@'), 1.0),
         # Convert empty tiles to soft walls
         (('.', ), ('*', ), 1.0),
         (('?', ), ('*', ), 1.0),
     ]
-    spike_room = get_updated_spike_room(spike_room, rules)
+    spike_room = get_updated_spike_room(rng.random(), spike_room, rules)
     for row_data in spike_room:
         print(row_data)
     # Carve a solvable path
-    (curr_row, curr_col, steps) = (7, 6, 0)
-    while curr_col < 41:
-        # Carve current radius
-        for row_offset in range(-2, 2 + 1):
-            for col_offset in range(-2, 2 + 1):
-                if (abs(row_offset) + abs(col_offset)) > 3:
-                    continue
-                (row, col) = (curr_row + row_offset, curr_col + col_offset)
-                if 0 < row < len(spike_room) and 0 < col < len(spike_room[0]):
-                    pass
-                else:
-                    print((curr_row, curr_col, steps), (row_offset, col_offset), (row, col))
-                    raise Exception()
-                if spike_room[row][col] == '*':
-                    spike_room[row] = spike_room[row][:col] + '.' + spike_room[row][col + 1:]
-        BASE_WEIGHT = 3
-        moves = set((
-            (BASE_WEIGHT + 1, curr_row - 1, curr_col),
-            (BASE_WEIGHT + 1, curr_row + 1, curr_col),
-            (BASE_WEIGHT + 0, curr_row    , curr_col - 1),
-            (BASE_WEIGHT + 2, curr_row    , curr_col + 1),
-        ))
-        # Valid moves must not get too close to a wall
-        valid_moves = []
-        for (weight, next_row, next_col) in list(moves):
-            valid_ind = True
-            if next_col < 6:
-                valid_ind = False
-                break
+    for (curr_row, curr_col, steps) in (
+        ( 5, 9, 0),
+        # (7, 6, 0)
+        (10, 9, 0),
+    ):
+        while curr_col < 41:
+            # Carve current radius
             for row_offset in range(-2, 2 + 1):
-                if not valid_ind:
-                    break
                 for col_offset in range(-2, 2 + 1):
                     if (abs(row_offset) + abs(col_offset)) > 3:
                         continue
-                    (row, col) = (next_row + row_offset, next_col + col_offset)
+                    (row, col) = (curr_row + row_offset, curr_col + col_offset)
                     if 0 < row < len(spike_room) and 0 < col < len(spike_room[0]):
-                        if spike_room[row][col] in ('#', '@'):
+                        pass
+                    else:
+                        print((curr_row, curr_col, steps), (row_offset, col_offset), (row, col))
+                        raise Exception()
+                    if spike_room[row][col] == '*':
+                        spike_room[row] = spike_room[row][:col] + '.' + spike_room[row][col + 1:]
+            BASE_WEIGHT = 3
+            FORWARD_WEIGHT = 4
+            moves = set((
+                (int(BASE_WEIGHT + 0.5 * FORWARD_WEIGHT), curr_row - 1, curr_col),
+                (int(BASE_WEIGHT + 0.5 * FORWARD_WEIGHT), curr_row + 1, curr_col),
+                (int(BASE_WEIGHT + 0.0 * FORWARD_WEIGHT), curr_row    , curr_col - 1),
+                (int(BASE_WEIGHT + 1.0 * FORWARD_WEIGHT), curr_row    , curr_col + 1),
+            ))
+            # Valid moves must not get too close to a wall
+            valid_moves = []
+            for (weight, next_row, next_col) in list(moves):
+                valid_ind = True
+                if next_col < 6:
+                    valid_ind = False
+                for row_offset in range(-2, 2 + 1):
+                    if not valid_ind:
+                        break
+                    for col_offset in range(-2, 2 + 1):
+                        if (abs(row_offset) + abs(col_offset)) > 3:
+                            continue
+                        (row, col) = (next_row + row_offset, next_col + col_offset)
+                        if 0 < row < len(spike_room) and 0 < col < len(spike_room[0]):
+                            if spike_room[row][col] in ('#', '@'):
+                                valid_ind = False
+                                break
+                        else:
                             valid_ind = False
                             break
-                    else:
-                        valid_ind = False
-                        break
-            if valid_ind:
-                for _ in range(weight):
-                    valid_moves.append((next_row, next_col))
-        assert len(valid_moves) > 0
-        (curr_row, curr_col) = rng.choice(list(sorted(valid_moves)))
+                if valid_ind:
+                    for _ in range(weight):
+                        valid_moves.append((next_row, next_col))
+            assert len(valid_moves) > 0
+            (curr_row, curr_col) = rng.choice(list(sorted(valid_moves)))
     for row_data in spike_room:
         print(row_data)
     # Add spikes
@@ -189,7 +189,7 @@ if __name__ == '__main__':
         (('..@', '.*@', '@@@'), ('..@', '..@', '@@@'), 0.5),
         (('@..', '@*.', '@@@'), ('@..', '@..', '@@@'), 0.5),
     ]
-    spike_room = get_updated_spike_room(spike_room, rules)
+    spike_room = get_updated_spike_room(rng.random(), spike_room, rules)
     for row_data in spike_room:
         print(row_data)
     # Add spikes
@@ -214,9 +214,34 @@ if __name__ == '__main__':
         # Spawn secondary spikes horizontally next to a single tile of primary spikes
         (('.x.'), ('vxv'), 1.0),
     ]
-    spike_room = get_updated_spike_room(spike_room, rules)
+    spike_room = get_updated_spike_room(rng.random(), spike_room, rules)
     for row_data in spike_room:
         print(row_data)
+    result = spike_room
+    return result
+
+if __name__ == '__main__':
+    '''
+    Usage
+    python shuffle_spike_room.py
+    '''
+    MIN_SEED = 0
+    MAX_SEED = 2 ** 64 - 1
+    parser = argparse.ArgumentParser()
+    parser.add_argument('extraction', help='Input a filepath to the extraction JSON file', type=str)
+    parser.add_argument('--seed', help='Input an optional starting seed', type=str)
+    args = parser.parse_args()
+    with (
+        open(args.extraction) as extraction_file,
+    ):
+        extraction = json.load(extraction_file)
+    initial_seed = args.seed
+    if initial_seed is None:
+        initial_seed = str(random.randint(MIN_SEED, MAX_SEED))
+    global_rng = random.Random(initial_seed)
+    seed = global_rng.randint(MIN_SEED, MAX_SEED)
+    room_extract = extraction['Stages']['Catacombs']['Rooms']['24']
+    shuffled_spike_room = get_shuffled_spike_room(seed)
     '''
     vxv 0730 0731 0732      0000 078B 0000
     x@x
