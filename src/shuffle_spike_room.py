@@ -1,6 +1,44 @@
 # External libraries
 import random
 
+def get_obstacles(seed, obstacle_count: int=4):
+    rng = random.Random(seed)
+    obstacles = []
+    while True:
+        obstacles = []
+        while len(obstacles) < obstacle_count:
+            options = ['UP', 'UP', 'UP', 'DOWN', 'DOWN', 'DOWN']
+            if len(obstacles) < (obstacle_count - 1):
+                options.extend(('RIGHT', 'RIGHT', 'RIGHT'))
+            if len(obstacles) > 0 and obstacles[-1] in ('UP', 'DOWN'):
+                options.append('LEFT_' + obstacles[-1])
+            choice = rng.choice(options)
+            obstacles.append(choice)
+        lanes = []
+        current_lane = 'MID'
+        lanes.append(current_lane)
+        for (choice_id, choice) in enumerate(obstacles):
+            if 'UP' in choice:
+                current_lane = 'LOW'
+            elif 'DOWN' in choice:
+                current_lane = 'HIGH'
+            elif 'RIGHT' in choice:
+                for future_choice in obstacles[choice_id + 1:]:
+                    if 'UP' in future_choice:
+                        current_lane = 'LOW'
+                        break
+                    elif 'DOWN' in future_choice:
+                        current_lane = 'HIGH'
+                        break
+            if current_lane != lanes[-1]:
+                lanes.append(current_lane)
+        if len(lanes) > 2 and lanes[1] == 'LOW':
+            # NOTE(sestren): Force initial lane change to be low for now
+            # TODO(sestren): Remove later
+            break
+    result = obstacles
+    return result
+
 def get_updated_spike_room(spike_room, rules):
     result = spike_room.copy()
     for (search, replace, chance) in rules:
@@ -33,62 +71,11 @@ if __name__ == '__main__':
     1) Within the "spike zone", every NONE or EMPTY tile orthogonally adjacent to one or more SOLID tiles will get SPIKES
     2) Every SPIKES tile orthogonally adjacent to 3 or more NONE or EMPTY tiles will have the two "diagonal"
     '''
-    while True:
-        choices = []
-        MAX_CHOICES = 4
-        rng = random.Random()
-        while len(choices) < MAX_CHOICES:
-            roll = rng.random()
-            options = ['UP', 'UP', 'UP', 'DOWN', 'DOWN', 'DOWN']
-            if len(choices) < (MAX_CHOICES - 1):
-                options.extend(('RIGHT', 'RIGHT', 'RIGHT'))
-            if len(choices) > 0 and choices[-1] in ('UP', 'DOWN'):
-                options.append('LEFT_' + choices[-1])
-            choice = rng.choice(options)
-            choices.append(choice)
-        lanes = []
-        current_lane = 'MID'
-        lanes.append(current_lane)
-        for (choice_id, choice) in enumerate(choices):
-            if 'UP' in choice:
-                current_lane = 'LOW'
-            elif 'DOWN' in choice:
-                current_lane = 'HIGH'
-            elif 'RIGHT' in choice:
-                for future_choice in choices[choice_id + 1:]:
-                    if 'UP' in future_choice:
-                        current_lane = 'LOW'
-                        break
-                    elif 'DOWN' in future_choice:
-                        current_lane = 'HIGH'
-                        break
-            if current_lane != lanes[-1]:
-                lanes.append(current_lane)
-        if len(lanes) > 2 and lanes[1] == 'LOW':
-            # NOTE(sestren): Force initial lane change to be low for now
-            # TODO(sestren): Remove later
-            break
-    print(choices)
-    vanilla_spike_room = [
-        '                                                ',
-        '#########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@########',
-        '#########xxxxxxxxxxxxxxx@@@@xxxxxxxx@@@@########',
-        '########x..............x@@xx........xx@@########',
-        '#######x ..............x@@x...........xx########',
-        '###      ..............x@@x.............     ?##',
-        '         ..vxv...vxxxxxx@@x...vxx.......        ',
-        '         ..x@x...x@@@@@@@@x...x@@xx.....        ',
-        '         ..x@x...vxxxxxx@xv...vx@@@xxxxx        ',
-        '         ..x@x.........vxv.....x@@@@@@@@ ===    ',
-        '###??    ..x@x.................x@@@@@@@@########',
-        '#####?   ..x@xx...............xx@@@@@@@@########',
-        '######xxxxxx@@@xxxxx.........x@@@@@@@@@@########',
-        '#########@@@@@@@@@@@xxxxxxxxx@@@@@@@@@@@########',
-        '#########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@########',
-        '                                                ',
-    ]
+    rng = random.Random()
+    obstacles = get_obstacles(rng.random(), 4)
+    print(obstacles)
     spike_room = [
-        '                                                ',
+        '------------------------------------------------',
         '#########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@##########',
         '#########...?.....?.....?.....?.....?.@#########',
         '########X..............................@########',
@@ -103,30 +90,30 @@ if __name__ == '__main__':
         '######XXX...?.....?.....?.....?.....?.@#########',
         '#########............................@##########',
         '#########@@@@@@@@@@@@@@@@@@@@@@@@@@@@###########',
-        '                                                ',
+        '------------------------------------------------',
     ]
-    for (choice_id, choice) in enumerate(choices):
-        if 'UP' in choice:
+    for (obstacle_id, obstacle) in enumerate(obstacles):
+        if 'UP' in obstacle:
             top = 2
-            col = 12 + 6 * choice_id
+            col = 12 + 6 * obstacle_id
             for row_offset in range(6):
                 row = top + row_offset
                 spike_room[row] = spike_room[row][:col] + '@' + spike_room[row][col + 1:]
-        if 'DOWN' in choice:
+        if 'DOWN' in obstacle:
             top = 7
-            col = 12 + 6 * choice_id
+            col = 12 + 6 * obstacle_id
             for row_offset in range(7):
                 row = top + row_offset
                 spike_room[row] = spike_room[row][:col] + '@' + spike_room[row][col + 1:]
-        if 'RIGHT' in choice:
+        if 'RIGHT' in obstacle:
             row = 7
-            left = 12 + 6 * choice_id
+            left = 12 + 6 * obstacle_id
             for col_offset in range(7):
                 col = left + col_offset
                 spike_room[row] = spike_room[row][:col] + '@' + spike_room[row][col + 1:]
-        if 'LEFT' in choice:
+        if 'LEFT' in obstacle:
             row = 7
-            left = 6 + 6 * choice_id
+            left = 6 + 6 * obstacle_id
             for col_offset in range(7):
                 col = left + col_offset
                 spike_room[row] = spike_room[row][:col] + '@' + spike_room[row][col + 1:]
@@ -230,3 +217,30 @@ if __name__ == '__main__':
     spike_room = get_updated_spike_room(spike_room, rules)
     for row_data in spike_room:
         print(row_data)
+    '''
+    vxv 0730 0731 0732      0000 078B 0000
+    x@x
+    ?@?
+
+    v
+    x@  0745 0746 
+    v
+    '''
+    vanilla_spike_room = [
+        '------------------------------------------------',
+        '#########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@########',
+        '#########xxxxxxxxxxxxxxx@@@@xxxxxxxx@@@@########',
+        '########x..............x@@xx........xx@@########',
+        '#######x ..............x@@x...........xx########',
+        '###      ..............x@@x.............     ?##',
+        '         ..vxv...vxxxxxx@@x...vxx.......        ',
+        '         ..x@x...x@@@@@@@@x...x@@xx.....        ',
+        '         ..x@x...vxxxxxx@xv...vx@@@xxxxx        ',
+        '         ..x@x.........vxv.....x@@@@@@@@ ===    ',
+        '###??    ..x@x.................x@@@@@@@@########',
+        '#####?   ..x@xx...............xx@@@@@@@@########',
+        '######xxxxxx@@@xxxxx.........x@@@@@@@@@@########',
+        '#########@@@@@@@@@@@xxxxxxxxx@@@@@@@@@@@########',
+        '#########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@########',
+        '------------------------------------------------',
+    ]
