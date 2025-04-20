@@ -146,7 +146,7 @@ def get_shuffled_spike_room(initial_seed: int):
                         raise Exception()
                     if spike_room[row][col] == '*':
                         spike_room[row] = spike_room[row][:col] + '.' + spike_room[row][col + 1:]
-            BASE_WEIGHT = 3
+            BASE_WEIGHT = 5
             FORWARD_WEIGHT = 4
             moves = set((
                 (int(BASE_WEIGHT + 0.5 * FORWARD_WEIGHT), curr_row - 1, curr_col),
@@ -231,30 +231,35 @@ if __name__ == '__main__':
     parser.add_argument('extraction', help='Input a filepath to the extraction JSON file', type=str)
     parser.add_argument('--seed', help='Input an optional starting seed', type=str)
     args = parser.parse_args()
-    with (
-        open(args.extraction) as extraction_file,
-    ):
-        extraction = json.load(extraction_file)
     initial_seed = args.seed
     if initial_seed is None:
         initial_seed = str(random.randint(MIN_SEED, MAX_SEED))
     global_rng = random.Random(initial_seed)
     seed = global_rng.randint(MIN_SEED, MAX_SEED)
-    room_extract = extraction['Stages']['Catacombs']['Rooms']['24']
     shuffled_spike_room = get_shuffled_spike_room(seed)
-    '''
-    vxv 0730 0731 0732      0000 078B 0000
-    x@x
-    ?@?
-
-    v
-    x@  0745 0746 
-    v
-    '''
+    with (
+        open(args.extraction) as extraction_file,
+    ):
+        extraction = json.load(extraction_file)
+    room_extract = extraction['Stages']['Catacombs']['Rooms']['24']
+    tilemaps = {
+        'Vanilla BG': [],
+        'Vanilla FG': [],
+        'Shuffled BG': [],
+        'Shuffled FG': [],
+    }
+    vanilla_fg = []
+    for row_data in room_extract['Tilemap Foreground']:
+        tilemaps['Vanilla FG'].append(list(map(lambda x: int(x, 16), row_data.split(' '))))
+        tilemaps['Shuffled FG'].append([None] * len(tilemaps['Vanilla FG'][-1]))
+    vanilla_bg = []
+    for row_data in room_extract['Tilemap Background']:
+        tilemaps['Vanilla BG'].append(list(map(lambda x: int(x, 16), row_data.split(' '))))
+        tilemaps['Shuffled BG'].append([None] * len(tilemaps['Vanilla BG'][-1]))
     vanilla_spike_room = [
         '------------------------------------------------',
-        '#########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@########',
-        '#########xxxxxxxxxxxxxxx@@@@xxxxxxxx@@@@########',
+        '#########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@##########',
+        '#########xxxxxxxxxxxxxxx@@@@xxxxxxxx@@@#########',
         '########x..............x@@xx........xx@@########',
         '#######x ..............x@@x...........xx########',
         '###      ..............x@@x.............     ?##',
@@ -265,7 +270,98 @@ if __name__ == '__main__':
         '###??    ..x@x.................x@@@@@@@@########',
         '#####?   ..x@xx...............xx@@@@@@@@########',
         '######xxxxxx@@@xxxxx.........x@@@@@@@@@@########',
-        '#########@@@@@@@@@@@xxxxxxxxx@@@@@@@@@@@########',
-        '#########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@########',
+        '#########@@@@@@@@@@@xxxxxxxxx@@@@@@@@@@#########',
+        '#########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@##########',
         '------------------------------------------------',
     ]
+    (TOP, LEFT) = (1, 9)
+    (ROWS, COLS) = (14, 31)
+    # fill = []
+    # for row in range(ROWS):
+    #     row_data = ['.'] * COLS
+    #     fill.append(row_data)
+    for (stamp_height, stamp_width) in (
+        (5, 5), # 25
+        (5, 4), # 20
+        (4, 5), # 20
+        (4, 4), # 16
+        (5, 3), # 15
+        (3, 5), # 15
+        (4, 3), # 12
+        (3, 4), # 12
+        (5, 2), # 10
+        (2, 5), # 10
+        (3, 3), # 9
+        (4, 2), # 8
+        (2, 4), # 8
+        (3, 2), # 6
+        (2, 3), # 6
+        (5, 1), # 5
+        (1, 5), # 5
+        (2, 2), # 4
+        (3, 1), # 3
+        (1, 3), # 3
+        (2, 1), # 2
+        (1, 2), # 2
+        (1, 1), # 1
+    ):
+        # Find valid target locations for the stamp
+        for target_top in range(TOP, TOP + ROWS - (stamp_height - 1)):
+            for target_left in range(LEFT, LEFT + COLS - (stamp_width - 1)):
+                # Confirm target location has empty space for the stamp
+                valid_ind = True
+                for row in range(stamp_height):
+                    if not valid_ind:
+                        break
+                    for col in range(stamp_width):
+                        if tilemaps['Shuffled FG'][target_top + row][target_left + col] is not None:
+                            valid_ind = False
+                            break
+                if not valid_ind:
+                    continue
+                # Stamp if a valid source location can be found
+                valid_ind = False
+                for source_top in range(TOP, TOP + ROWS - (stamp_height - 1)):
+                    if valid_ind:
+                        break
+                    for source_left in range(LEFT, LEFT + COLS - (stamp_width - 1)):
+                        # Find first source location that matches the shuffled location for the stamp
+                        valid_ind = True
+                        for row in range(stamp_height):
+                            if not valid_ind:
+                                break
+                            for col in range(stamp_width):
+                                source = vanilla_spike_room[source_top + row][source_left + col]
+                                target = shuffled_spike_room[target_top + row][target_left + col]
+                                if source != target:
+                                    valid_ind = False
+                                    break
+                        # Apply the stamp
+                        if valid_ind:
+                            # print('Stamp:', (stamp_height, stamp_width))
+                            # print('  Target:', (target_top, target_left))
+                            # print('  Source:', (source_top, source_left))
+                            for row in range(stamp_height):
+                                for col in range(stamp_width):
+                                    # fill[target_top + row - TOP][target_left + col - LEFT] = '#'
+                                    fg = tilemaps['Vanilla FG'][source_top + row][source_left + col]
+                                    tilemaps['Shuffled FG'][target_top + row][target_left + col] = fg
+                                    bg = tilemaps['Vanilla BG'][source_top + row][source_left + col]
+                                    tilemaps['Shuffled BG'][target_top + row][target_left + col] = bg
+                            break
+    # for row_data in fill:
+        # print(''.join(row_data))
+    for row in range(len(tilemaps['Shuffled FG'])):
+        for col in range(len(tilemaps['Shuffled FG'][row])):
+            if tilemaps['Shuffled FG'][row][col] is None:
+                tilemaps['Shuffled FG'][row][col] = tilemaps['Vanilla FG'][row][col]
+    for row in range(len(tilemaps['Shuffled BG'])):
+        for col in range(len(tilemaps['Shuffled BG'][row])):
+            if tilemaps['Shuffled BG'][row][col] is None:
+                tilemaps['Shuffled BG'][row][col] = tilemaps['Vanilla BG'][row][col]
+    for row in range(len(tilemaps['Shuffled FG'])):
+        print(' '.join(map(lambda x: ('{:04X}').format(x), tilemaps['Shuffled FG'][row])))
+    print()
+    for row in range(len(tilemaps['Shuffled BG'])):
+        row_data = []
+        print(' '.join(map(lambda x: ('{:04X}').format(x), tilemaps['Shuffled BG'][row])))
