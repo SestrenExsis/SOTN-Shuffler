@@ -181,27 +181,33 @@ def get_shuffled_spike_room(initial_seed: int):
     # Add spikes
     rules = [
         # Clear all spikes before every round
-        (('x', ), ('.', ), 1.0),
-        (('v', ), ('.', ), 1.0),
+        # (('x', ), ('.', ), 1.0),
+        # (('v', ), ('.', ), 1.0),
         # Trim soft walls that are too close to the left side
         ((' *', ), (' .', ), 1.0),
         # Convert soft walls into hard walls
         (('*', ), ('@', ), 1.0),
         # Spawn primary spikes next to solid walls
-        (('@.', ), ('@x', ), 1.0),
-        (('.@', ), ('x@', ), 1.0),
+        (('@.', ), ('@>', ), 1.0),
+        (('.@', ), ('<@', ), 1.0),
         # Spawn primary spikes next to solid floors and ceilings
-        (('.', '@'), ('x', '@'), 1.0),
-        (('@', '.'), ('@', 'x'), 1.0),
+        (('.', '@'), ('^', '@'), 1.0),
+        (('@', '.'), ('@', 'v'), 1.0),
         # Spawn secondary spikes vertically next to a single tile or vertical array of primary spikes
-        (('.', 'x', '.'), ('v', 'x', 'v'), 1.0),
-        (('x', 'x', '.'), ('x', 'x', 'v'), 1.0),
-        (('.', 'x', 'x'), ('v', 'x', 'x'), 1.0),
+        (('.', '>', '.'), ('/', '>', '\\'), 1.0),
+        (('.', '<', '.'), ('\\', '<', '/'), 1.0),
+        (('>', '>', '.'), ('>', '>', '\\'), 1.0),
+        (('<', '<', '.'), ('<', '<', '/'), 1.0),
+        (('.', '>', '>'), ('/', '>', '>'), 1.0),
+        (('.', '<', '<'), ('\\', '<', '<'), 1.0),
         # Spawn secondary spikes horizontally next to a single tile of primary spikes
-        (('.x.'), ('vxv'), 1.0),
+        (('.^.'), ('\\^/'), 1.0),
+        (('.v.'), ('/v\\'), 1.0),
     ]
     spike_room = get_updated_spike_room(rng.random(), spike_room, rules)
     result = spike_room
+    for row_data in result:
+        print(row_data)
     return result
 
 def main(initial_seed: int):
@@ -217,29 +223,29 @@ def main(initial_seed: int):
         'Shuffled BG': [],
         'Shuffled FG': [],
     }
-    for row_data in room_extract['Tilemap Foreground']:
+    for row_data in room_extract['Tilemap Foreground']['Data']:
         tilemaps['Vanilla FG'].append(list(map(lambda x: int(x, 16), row_data.split(' '))))
         tilemaps['Shuffled FG'].append([None] * len(tilemaps['Vanilla FG'][-1]))
-    for row_data in room_extract['Tilemap Background']:
+    for row_data in room_extract['Tilemap Background']['Data']:
         tilemaps['Vanilla BG'].append(list(map(lambda x: int(x, 16), row_data.split(' '))))
         tilemaps['Shuffled BG'].append([None] * len(tilemaps['Vanilla BG'][-1]))
     vanilla_spike_room = [
-        '------------------------------------------------',
-        '#########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@##########',
-        '#########xxxxxxxxxxxxxxx@@@@xxxxxxxx@@@#########',
-        '########x..............x@@xx........xx@@########',
-        '#######x ..............x@@x...........xx########',
-        '###      ..............x@@x.............     ?##',
-        '         ..vxv...vxxxxxx@@x...vxx.......        ',
-        '         ..x@x...x@@@@@@@@x...x@@xx.....        ',
-        '         ..x@x...vxxxxxx@xv...vx@@@xxxxx        ',
-        '         ..x@x.........vxv.....x@@@@@@@@ ===    ',
-        '###??    ..x@x.................x@@@@@@@@########',
-        '#####?   ..x@xx...............xx@@@@@@@@########',
-        '######xxxxxx@@@xxxxx.........x@@@@@@@@@@########',
-        '#########@@@@@@@@@@@xxxxxxxxx@@@@@@@@@@#########',
-        '#########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@##########',
-        '------------------------------------------------',
+        r'------------------------------------------------',
+        r'#########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@##########',
+        r'#########vvvvvvvvvvvvvvx@@@@vvvvvvvv@@@#########',
+        r'########v..............<@@x\........vv@@########',
+        r'#######v ..............<@@>...........vv########',
+        r'###      ..............<@@>.............     ?##',
+        r'         ..\x/...\^^^^^x@@>...\^^.......        ',
+        r'         ..<@>...<@@@@@@@@>...<@@^^.....        ',
+        r'         ..<@>.../vvvvvx@x\.../x@@@^^^^^        ',
+        r'         ..<@>........./x\.....<@@@@@@@@ ===    ',
+        r'###??    ..<@>.................<@@@@@@@@########',
+        r'#####?   ..<@x^...............^x@@@@@@@@########',
+        r'######^^^^^x@@@^^^^^.........^@@@@@@@@@@########',
+        r'#########@@@@@@@@@@@^^^^^^^^^@@@@@@@@@@#########',
+        r'#########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@##########',
+        r'------------------------------------------------',
     ]
     (TOP, LEFT) = (1, 9)
     (ROWS, COLS) = (14, 31)
