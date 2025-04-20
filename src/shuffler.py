@@ -9,6 +9,7 @@ import yaml
 
 # Local libraries
 import mapper
+import shuffle_spike_room
 import validator
 
 def get_room_drawing(mapper_core, room_name) -> list[str]:
@@ -258,13 +259,14 @@ def draw_labels_on_castle_map(castle_map, instructions):
         '|': (' # ', ' # ', ' # '),
         '#': ('###', '###', '###'),
     }
-    for (label, map_row, map_col, color) in instructions:
+    for (label, map_row, map_col, label_color, bg_color) in instructions:
         top = 4 * map_row + 1
         left = 4 * map_col + 1
         for (row, row_data) in enumerate(labels[label]):
             for (col, char) in enumerate(row_data):
+                color = label_color
                 if char == ' ':
-                    continue
+                    color = bg_color
                 castle_map[top + row][left + col] = str(color)
 
 def get_loading_room_labels_by_connection(mapper_core, stages, stage_names):
@@ -300,7 +302,7 @@ def get_loading_room_labels_by_connection(mapper_core, stages, stage_names):
                     room_a,
                     room_b,
                 ):
-                    instructions.append((code, room_pos['Top'], room_pos['Left'], '4'))
+                    instructions.append((code, room_pos['Top'], room_pos['Left'], 'C', 'E'))
                 links[rooms] = code
                 break
     result = instructions
@@ -344,7 +346,7 @@ def get_loading_room_labels_by_stage(mapper_core, stages, stage_names):
                 source_loading_room = source_room_name.replace('Fake Room with Teleporter', 'Loading Room').replace('Castle Entrance Revisited', 'Castle Entrance')
                 room_pos = changes['Stages'][source_room_stage]['Rooms'][source_loading_room]
                 code = stage_codes.get(stage_name, '#')
-                instructions.append((code, room_pos['Top'], room_pos['Left'], '4'))
+                instructions.append((code, room_pos['Top'], room_pos['Left'], 'C', 'E'))
                 break
     result = instructions
     return result
@@ -396,6 +398,7 @@ if __name__ == '__main__':
             'Clock hands show minutes and seconds instead of hours and minutes',
             'Disable clipping on screen edge of Demon Switch Wall',
             'Enable debug mode',
+            'Shuffle Pitch Black Spike Maze',
             'Skip Maria cutscene in Alchemy Laboratory',
         ):
             options[option_key] = option_value
@@ -743,6 +746,11 @@ if __name__ == '__main__':
             elif label_method == 'Stage':
                 instructions = get_loading_room_labels_by_stage(mapper_core, stages, stage_names)
             draw_labels_on_castle_map(castle_map, instructions)
+        spike_room_seed = global_rng.randint(0, 2 ** 64)
+        if settings.get('Options', {}).get('Shuffle Pitch Black Spike Maze', False):
+            spike_room = shuffle_spike_room.main(spike_room_seed)
+            changes['Stages']['Catacombs']['Rooms']['Catacombs, Pitch Black Spike Maze']['Tilemap Foreground'] = spike_room['Tilemap Foreground']
+            changes['Stages']['Catacombs']['Rooms']['Catacombs, Pitch Black Spike Maze']['Tilemap Background'] = spike_room['Tilemap Background']
         # Apply castle map drawing grid to changes
         changes['Castle Map'] = []
         for row in range(len(castle_map)):

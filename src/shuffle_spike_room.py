@@ -1,6 +1,7 @@
 # External libraries
 import argparse
 import json
+import os
 import random
 
 def get_obstacles(seed, obstacle_count: int=4):
@@ -69,7 +70,6 @@ def get_updated_spike_room(seed, spike_room, rules):
 def get_shuffled_spike_room(initial_seed: int):
     rng = random.Random(initial_seed)
     obstacles = get_obstacles(rng.random(), 4)
-    print(obstacles)
     spike_room = [
         '------------------------------------------------',
         '#########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@##########',
@@ -113,8 +113,6 @@ def get_shuffled_spike_room(initial_seed: int):
             for col_offset in range(7):
                 col = left + col_offset
                 spike_room[row] = spike_room[row][:col] + '@' + spike_room[row][col + 1:]
-    for row_data in spike_room:
-        print(row_data)
     rules = [
         # Fill in square-shaped walls
         (('@@@@@@@', '@.....@', '@.....@', '@.....@', '@.....@', '@.....@', '@@@@@@@'), ('@@@@@@@', '@@...@@', '.@@.@@.', '..@@@..', '..@@@..', '.@@.@@.', '@@...@@'), 1.0),
@@ -124,13 +122,10 @@ def get_shuffled_spike_room(initial_seed: int):
         (('?', ), ('*', ), 1.0),
     ]
     spike_room = get_updated_spike_room(rng.random(), spike_room, rules)
-    for row_data in spike_room:
-        print(row_data)
     # Carve a solvable path
-    for (curr_row, curr_col, steps) in (
-        ( 5, 9, 0),
-        # (7, 6, 0)
-        (10, 9, 0),
+    for (curr_row, curr_col) in (
+        ( 5, 9),
+        (10, 9),
     ):
         while curr_col < 41:
             # Carve current radius
@@ -139,11 +134,6 @@ def get_shuffled_spike_room(initial_seed: int):
                     if (abs(row_offset) + abs(col_offset)) > 3:
                         continue
                     (row, col) = (curr_row + row_offset, curr_col + col_offset)
-                    if 0 < row < len(spike_room) and 0 < col < len(spike_room[0]):
-                        pass
-                    else:
-                        print((curr_row, curr_col, steps), (row_offset, col_offset), (row, col))
-                        raise Exception()
                     if spike_room[row][col] == '*':
                         spike_room[row] = spike_room[row][:col] + '.' + spike_room[row][col + 1:]
             BASE_WEIGHT = 5
@@ -179,8 +169,6 @@ def get_shuffled_spike_room(initial_seed: int):
                         valid_moves.append((next_row, next_col))
             assert len(valid_moves) > 0
             (curr_row, curr_col) = rng.choice(list(sorted(valid_moves)))
-    for row_data in spike_room:
-        print(row_data)
     # Add spikes
     rules = [
         # Consider trimming rounded corners
@@ -190,8 +178,6 @@ def get_shuffled_spike_room(initial_seed: int):
         (('@..', '@*.', '@@@'), ('@..', '@..', '@@@'), 0.5),
     ]
     spike_room = get_updated_spike_room(rng.random(), spike_room, rules)
-    for row_data in spike_room:
-        print(row_data)
     # Add spikes
     rules = [
         # Clear all spikes before every round
@@ -215,32 +201,15 @@ def get_shuffled_spike_room(initial_seed: int):
         (('.x.'), ('vxv'), 1.0),
     ]
     spike_room = get_updated_spike_room(rng.random(), spike_room, rules)
-    for row_data in spike_room:
-        print(row_data)
     result = spike_room
     return result
 
-if __name__ == '__main__':
-    '''
-    Usage
-    python shuffle_spike_room.py
-    '''
-    MIN_SEED = 0
-    MAX_SEED = 2 ** 64 - 1
-    parser = argparse.ArgumentParser()
-    parser.add_argument('extraction', help='Input a filepath to the extraction JSON file', type=str)
-    parser.add_argument('--seed', help='Input an optional starting seed', type=str)
-    args = parser.parse_args()
-    initial_seed = args.seed
-    if initial_seed is None:
-        initial_seed = str(random.randint(MIN_SEED, MAX_SEED))
-    global_rng = random.Random(initial_seed)
-    seed = global_rng.randint(MIN_SEED, MAX_SEED)
-    shuffled_spike_room = get_shuffled_spike_room(seed)
+def main(initial_seed: int):
     with (
-        open(args.extraction) as extraction_file,
+        open(os.path.join('build', 'patcher', 'extraction.json')) as extraction_file,
     ):
         extraction = json.load(extraction_file)
+    shuffled_spike_room = get_shuffled_spike_room(initial_seed)
     room_extract = extraction['Stages']['Catacombs']['Rooms']['24']
     tilemaps = {
         'Vanilla BG': [],
@@ -248,11 +217,9 @@ if __name__ == '__main__':
         'Shuffled BG': [],
         'Shuffled FG': [],
     }
-    vanilla_fg = []
     for row_data in room_extract['Tilemap Foreground']:
         tilemaps['Vanilla FG'].append(list(map(lambda x: int(x, 16), row_data.split(' '))))
         tilemaps['Shuffled FG'].append([None] * len(tilemaps['Vanilla FG'][-1]))
-    vanilla_bg = []
     for row_data in room_extract['Tilemap Background']:
         tilemaps['Vanilla BG'].append(list(map(lambda x: int(x, 16), row_data.split(' '))))
         tilemaps['Shuffled BG'].append([None] * len(tilemaps['Vanilla BG'][-1]))
@@ -276,10 +243,6 @@ if __name__ == '__main__':
     ]
     (TOP, LEFT) = (1, 9)
     (ROWS, COLS) = (14, 31)
-    # fill = []
-    # for row in range(ROWS):
-    #     row_data = ['.'] * COLS
-    #     fill.append(row_data)
     for (stamp_height, stamp_width) in (
         (5, 5), # 25
         (5, 4), # 20
@@ -338,19 +301,13 @@ if __name__ == '__main__':
                                     break
                         # Apply the stamp
                         if valid_ind:
-                            # print('Stamp:', (stamp_height, stamp_width))
-                            # print('  Target:', (target_top, target_left))
-                            # print('  Source:', (source_top, source_left))
                             for row in range(stamp_height):
                                 for col in range(stamp_width):
-                                    # fill[target_top + row - TOP][target_left + col - LEFT] = '#'
                                     fg = tilemaps['Vanilla FG'][source_top + row][source_left + col]
                                     tilemaps['Shuffled FG'][target_top + row][target_left + col] = fg
                                     bg = tilemaps['Vanilla BG'][source_top + row][source_left + col]
                                     tilemaps['Shuffled BG'][target_top + row][target_left + col] = bg
                             break
-    # for row_data in fill:
-        # print(''.join(row_data))
     for row in range(len(tilemaps['Shuffled FG'])):
         for col in range(len(tilemaps['Shuffled FG'][row])):
             if tilemaps['Shuffled FG'][row][col] is None:
@@ -359,9 +316,38 @@ if __name__ == '__main__':
         for col in range(len(tilemaps['Shuffled BG'][row])):
             if tilemaps['Shuffled BG'][row][col] is None:
                 tilemaps['Shuffled BG'][row][col] = tilemaps['Vanilla BG'][row][col]
+    tilemap_fg = []
     for row in range(len(tilemaps['Shuffled FG'])):
-        print(' '.join(map(lambda x: ('{:04X}').format(x), tilemaps['Shuffled FG'][row])))
-    print()
+        row_data = ' '.join(map(lambda x: ('{:04X}').format(x), tilemaps['Shuffled FG'][row]))
+        tilemap_fg.append(row_data)
+    tilemap_bg = []
     for row in range(len(tilemaps['Shuffled BG'])):
-        row_data = []
-        print(' '.join(map(lambda x: ('{:04X}').format(x), tilemaps['Shuffled BG'][row])))
+        row_data = ' '.join(map(lambda x: ('{:04X}').format(x), tilemaps['Shuffled BG'][row]))
+        tilemap_bg.append(row_data)
+    result = {
+        'Tilemap Foreground': tilemap_fg,
+        'Tilemap Background': tilemap_bg,
+    }
+    return result
+
+if __name__ == '__main__':
+    '''
+    Usage
+    python shuffle_spike_room.py
+    '''
+    MIN_SEED = 0
+    MAX_SEED = 2 ** 64 - 1
+    parser = argparse.ArgumentParser()
+    parser.add_argument('extraction', help='Input a filepath to the extraction JSON file', type=str)
+    parser.add_argument('--seed', help='Input an optional starting seed', type=str)
+    args = parser.parse_args()
+    initial_seed = args.seed
+    if initial_seed is None:
+        initial_seed = str(random.randint(MIN_SEED, MAX_SEED))
+    global_rng = random.Random(initial_seed)
+    seed = global_rng.randint(MIN_SEED, MAX_SEED)
+    # with (
+    #     open(args.extraction) as extraction_file,
+    # ):
+    #     extraction = json.load(extraction_file)
+    tilemaps = main(initial_seed)
