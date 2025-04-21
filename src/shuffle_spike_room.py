@@ -76,13 +76,13 @@ def get_shuffled_spike_room(initial_seed: int):
         '#########...?.....?.....?.....?.....?.@#########',
         '########X..............................@########',
         '#######X ...............................########',
-        '###      ...............................     ?##',
+        '###      ...............................     _##',
         '         ...............................        ',
         '         ...?.....?.....?.....?.....?...        ',
         '         ...............................        ',
         '         ............................... ===    ',
-        '###??    ...............................########',
-        '#####?   ..............................@########',
+        '###__    ...............................########',
+        '#####_   ..............................@########',
         '######XXX...?.....?.....?.....?.....?.@#########',
         '#########............................@##########',
         '#########@@@@@@@@@@@@@@@@@@@@@@@@@@@@###########',
@@ -194,15 +194,15 @@ def get_shuffled_spike_room(initial_seed: int):
         (('.', '@'), ('^', '@'), 1.0),
         (('@', '.'), ('@', 'v'), 1.0),
         # Spawn secondary spikes vertically next to a single tile or vertical array of primary spikes
-        (('.', '>', '.'), ('/', '>', '\\'), 1.0),
-        (('.', '<', '.'), ('\\', '<', '/'), 1.0),
-        (('>', '>', '.'), ('>', '>', '\\'), 1.0),
-        (('<', '<', '.'), ('<', '<', '/'), 1.0),
-        (('.', '>', '>'), ('/', '>', '>'), 1.0),
-        (('.', '<', '<'), ('\\', '<', '<'), 1.0),
+        (('.', '>', '.'), (')', '>', '('), 1.0),
+        (('.', '<', '.'), ('(', '<', ')'), 1.0),
+        (('>', '>', '.'), ('>', '>', '('), 1.0),
+        (('<', '<', '.'), ('<', '<', ')'), 1.0),
+        (('.', '>', '>'), (')', '>', '>'), 1.0),
+        (('.', '<', '<'), ('(', '<', '<'), 1.0),
         # Spawn secondary spikes horizontally next to a single tile of primary spikes
-        (('.^.'), ('\\^/'), 1.0),
-        (('.v.'), ('/v\\'), 1.0),
+        (('.^.'), ('(^)'), 1.0),
+        (('.v.'), (')v('), 1.0),
     ]
     spike_room = get_updated_spike_room(rng.random(), spike_room, rules)
     result = spike_room
@@ -211,129 +211,38 @@ def get_shuffled_spike_room(initial_seed: int):
     return result
 
 def main(initial_seed: int):
-    with (
-        open(os.path.join('build', 'patcher', 'extraction.json')) as extraction_file,
-    ):
-        extraction = json.load(extraction_file)
+    edits = []
     shuffled_spike_room = get_shuffled_spike_room(initial_seed)
-    room_extract = extraction['Stages']['Catacombs']['Rooms']['24']
-    tilemaps = {
-        'Vanilla BG': [],
-        'Vanilla FG': [],
-        'Shuffled BG': [],
-        'Shuffled FG': [],
+    target = []
+    target.append(' ' * 48)
+    for row_data in shuffled_spike_room[1:-1]:
+        truncated_row_data = ' ' * 9 + row_data[9:40] + ' ' * 8
+        target.append(truncated_row_data)
+    target.append(' ' * 48)
+    edit = {
+        'Layer': 'Foreground and Background',
+        'Source': [
+            '                                                ',
+            '         @@@@@@@@@@@@@@@@@@@@@@@@@@@@@##        ',
+            '         vvvvvvvvvvvvvvx@@@@vvvvvvvv@@@#        ',
+            '         ..............<@@x(........vv@@        ',
+            '         ..............<@@>...........vv        ',
+            '         ..............<@@>.............        ',
+            '         ..(x)...(^^^^^x@@>...(^^.......        ',
+            '         ..<@>...<@@@@@@@@>...<@@^^.....        ',
+            '         ..<@>...)vvvvvx@x(...)x@@@^^^^^        ',
+            '         ..<@>.........)x(.....<@@@@@@@@        ',
+            '         ..<@>.................<@@@@@@@@        ',
+            '         ..<@x^...............^x@@@@@@@@        ',
+            '         ^^x@@@^^^^^.........^@@@@@@@@@@        ',
+            '         @@@@@@@@@@@^^^^^^^^^@@@@@@@@@@#        ',
+            '         @@@@@@@@@@@@@@@@@@@@@@@@@@@@@##        ',
+            '                                                '
+        ],
+        'Target': target,
     }
-    for row_data in room_extract['Tilemap Foreground']['Data']:
-        tilemaps['Vanilla FG'].append(list(map(lambda x: int(x, 16), row_data.split(' '))))
-        tilemaps['Shuffled FG'].append([None] * len(tilemaps['Vanilla FG'][-1]))
-    for row_data in room_extract['Tilemap Background']['Data']:
-        tilemaps['Vanilla BG'].append(list(map(lambda x: int(x, 16), row_data.split(' '))))
-        tilemaps['Shuffled BG'].append([None] * len(tilemaps['Vanilla BG'][-1]))
-    vanilla_spike_room = [
-        r'------------------------------------------------',
-        r'#########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@##########',
-        r'#########vvvvvvvvvvvvvvx@@@@vvvvvvvv@@@#########',
-        r'########v..............<@@x\........vv@@########',
-        r'#######v ..............<@@>...........vv########',
-        r'###      ..............<@@>.............     ?##',
-        r'         ..\x/...\^^^^^x@@>...\^^.......        ',
-        r'         ..<@>...<@@@@@@@@>...<@@^^.....        ',
-        r'         ..<@>.../vvvvvx@x\.../x@@@^^^^^        ',
-        r'         ..<@>........./x\.....<@@@@@@@@ ===    ',
-        r'###??    ..<@>.................<@@@@@@@@########',
-        r'#####?   ..<@x^...............^x@@@@@@@@########',
-        r'######^^^^^x@@@^^^^^.........^@@@@@@@@@@########',
-        r'#########@@@@@@@@@@@^^^^^^^^^@@@@@@@@@@#########',
-        r'#########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@##########',
-        r'------------------------------------------------',
-    ]
-    (TOP, LEFT) = (1, 9)
-    (ROWS, COLS) = (14, 31)
-    for (stamp_height, stamp_width) in (
-        (5, 5), # 25
-        (5, 4), # 20
-        (4, 5), # 20
-        (4, 4), # 16
-        (5, 3), # 15
-        (3, 5), # 15
-        (4, 3), # 12
-        (3, 4), # 12
-        (5, 2), # 10
-        (2, 5), # 10
-        (3, 3), # 9
-        (4, 2), # 8
-        (2, 4), # 8
-        (3, 2), # 6
-        (2, 3), # 6
-        (5, 1), # 5
-        (1, 5), # 5
-        (2, 2), # 4
-        (3, 1), # 3
-        (1, 3), # 3
-        (2, 1), # 2
-        (1, 2), # 2
-        (1, 1), # 1
-    ):
-        # Find valid target locations for the stamp
-        for target_top in range(TOP, TOP + ROWS - (stamp_height - 1)):
-            for target_left in range(LEFT, LEFT + COLS - (stamp_width - 1)):
-                # Confirm target location has empty space for the stamp
-                valid_ind = True
-                for row in range(stamp_height):
-                    if not valid_ind:
-                        break
-                    for col in range(stamp_width):
-                        if tilemaps['Shuffled FG'][target_top + row][target_left + col] is not None:
-                            valid_ind = False
-                            break
-                if not valid_ind:
-                    continue
-                # Stamp if a valid source location can be found
-                valid_ind = False
-                for source_top in range(TOP, TOP + ROWS - (stamp_height - 1)):
-                    if valid_ind:
-                        break
-                    for source_left in range(LEFT, LEFT + COLS - (stamp_width - 1)):
-                        # Find first source location that matches the shuffled location for the stamp
-                        valid_ind = True
-                        for row in range(stamp_height):
-                            if not valid_ind:
-                                break
-                            for col in range(stamp_width):
-                                source = vanilla_spike_room[source_top + row][source_left + col]
-                                target = shuffled_spike_room[target_top + row][target_left + col]
-                                if source != target:
-                                    valid_ind = False
-                                    break
-                        # Apply the stamp
-                        if valid_ind:
-                            for row in range(stamp_height):
-                                for col in range(stamp_width):
-                                    fg = tilemaps['Vanilla FG'][source_top + row][source_left + col]
-                                    tilemaps['Shuffled FG'][target_top + row][target_left + col] = fg
-                                    bg = tilemaps['Vanilla BG'][source_top + row][source_left + col]
-                                    tilemaps['Shuffled BG'][target_top + row][target_left + col] = bg
-                            break
-    for row in range(len(tilemaps['Shuffled FG'])):
-        for col in range(len(tilemaps['Shuffled FG'][row])):
-            if tilemaps['Shuffled FG'][row][col] is None:
-                tilemaps['Shuffled FG'][row][col] = tilemaps['Vanilla FG'][row][col]
-    for row in range(len(tilemaps['Shuffled BG'])):
-        for col in range(len(tilemaps['Shuffled BG'][row])):
-            if tilemaps['Shuffled BG'][row][col] is None:
-                tilemaps['Shuffled BG'][row][col] = tilemaps['Vanilla BG'][row][col]
-    tilemap_fg = []
-    for row in range(len(tilemaps['Shuffled FG'])):
-        row_data = ' '.join(map(lambda x: ('{:04X}').format(x), tilemaps['Shuffled FG'][row]))
-        tilemap_fg.append(row_data)
-    tilemap_bg = []
-    for row in range(len(tilemaps['Shuffled BG'])):
-        row_data = ' '.join(map(lambda x: ('{:04X}').format(x), tilemaps['Shuffled BG'][row]))
-        tilemap_bg.append(row_data)
-    result = {
-        'Tilemap Foreground': tilemap_fg,
-        'Tilemap Background': tilemap_bg,
-    }
+    edits.append(edit)
+    result = edits
     return result
 
 if __name__ == '__main__':

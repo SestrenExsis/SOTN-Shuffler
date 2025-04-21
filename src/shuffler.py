@@ -748,9 +748,7 @@ if __name__ == '__main__':
             draw_labels_on_castle_map(castle_map, instructions)
         spike_room_seed = global_rng.randint(0, 2 ** 64)
         if settings.get('Options', {}).get('Shuffle Pitch Black Spike Maze', False):
-            spike_room = shuffle_spike_room.main(spike_room_seed)
-            changes['Stages']['Catacombs']['Rooms']['Catacombs, Pitch Black Spike Maze']['Tilemap Foreground'] = spike_room['Tilemap Foreground']
-            changes['Stages']['Catacombs']['Rooms']['Catacombs, Pitch Black Spike Maze']['Tilemap Background'] = spike_room['Tilemap Background']
+            changes['Stages']['Catacombs']['Rooms']['Catacombs, Pitch Black Spike Maze']['Tilemap'] = shuffle_spike_room.main(spike_room_seed)
         # Apply castle map drawing grid to changes
         changes['Castle Map'] = []
         for row in range(len(castle_map)):
