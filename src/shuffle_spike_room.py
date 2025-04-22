@@ -206,8 +206,6 @@ def get_shuffled_spike_room(initial_seed: int):
     ]
     spike_room = get_updated_spike_room(rng.random(), spike_room, rules)
     result = spike_room
-    for row_data in result:
-        print(row_data)
     return result
 
 def main(initial_seed: int):

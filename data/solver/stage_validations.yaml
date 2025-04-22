@@ -651,6 +651,25 @@ Castle Keep:
                 Room: Castle Keep, Loading Room to Warp Rooms
                 Section: Main
 Catacombs:
+    (Rule) Spikebreaker Locked Behind Spike Maze:
+        Solver:
+            Approach: Steps
+            Attempts: 1
+            Limit: 99
+            Initial Seed: 1
+            Debug: False
+            Wins:
+                Maximum: 0
+        State:
+            Room: Catacombs, Loading Room to Abandoned Mine
+            Section: Main
+            Progression - Bat Transformation: true
+        Goals:
+            Find Spikebreaker without Spike Maze:
+                Item - Spike Breaker: 1
+                Rooms Visited:
+                    All:
+                        Catacombs, Pitch Black Spike Maze: false
     (Entry) Abandoned Mine -> Hub:
         Solver: *solve-within-99-steps
         State:
@@ -1316,6 +1335,28 @@ Outer Wall:
                 Room: Outer Wall, Loading Room to Warp Rooms
                 Section: Main
 Royal Chapel:
+    (Rule) Silver Ring Locked Behind Spike Hallway:
+        Solver:
+            Approach: Steps
+            Attempts: 1
+            Limit: 99
+            Initial Seed: 1
+            Debug: False
+            Wins:
+                Maximum: 0
+        State:
+            Room: Royal Chapel, Hippogryph Room
+            Section: Main
+            Progression - Bat Transformation: true
+            Progression - Mist Transformation: true
+            Progression - Unlock Blue Doors: true
+            Item - Spike Breaker: 1
+        Goals:
+            Find Silver Ring without Going Through Spike Hallway:
+                Item - Silver Ring: 1
+                Rooms Visited:
+                    All:
+                        Royal Chapel, Spike Hallway: false
     (Entry) Alchemy Laboratory -> Hub:
         Solver: *solve-within-99-steps
         State:
