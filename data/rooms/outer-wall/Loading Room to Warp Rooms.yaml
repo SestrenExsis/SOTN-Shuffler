@@ -6,11 +6,11 @@ Columns: 1
 Rows: 1
 Empty Cells: {}
 Map:
-    - "0000 "
-    - "0ccc "
-    - "5ccc "
-    - "0ccc "
-    - "0000 "
+    - " 000 "
+    - " ccc "
+    - " ccc "
+    - " ccc "
+    - " 000 "
 Nodes:
     Left Passage:
         Type: "######....######"
