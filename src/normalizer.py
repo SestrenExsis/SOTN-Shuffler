@@ -18,7 +18,9 @@ stages = {
         'Underground Caverns, Crystal Bend',
         'Underground Caverns, DK Bridge',
         'Underground Caverns, Exit to Abandoned Mine',
+        'Underground Caverns, Hidden Crystal Entrance',
         'Underground Caverns, Long Drop',
+        'Underground Caverns, Plaque Room With Life Max-Up',
         'Underground Caverns, Tall Stairwell',
     },
 }
@@ -212,22 +214,29 @@ edit = {
 edits.append(edit)
 rooms['Underground Caverns, Exit to Abandoned Mine'] = edits
 
-
 # Underground Caverns, Hidden Crystal Entrance
-# edits = []
-# source = get_empty_room(3, 1)
-# stamp(source, 14, 3 * 16 + 0, ['######@...@#####'])
-# stamp(source, 15, 3 * 16 + 0, ['-------...------'])
-# target = get_empty_room(3, 1)
-# stamp(target, 14, 3 * 16 + 0, ['#####@....@#####'])
-# stamp(target, 15, 3 * 16 + 0, ['------....------'])
-# edit = {
-#     'Layer': 'Foreground',
-#     'Source': source,
-#     'Target': target,
-# }
-# edits.append(edit)
-# rooms['Underground Caverns, Hidden Crystal Entrance'] = edits
+edits = []
+source = get_empty_room(3, 1)
+stamp(source,  0, 0, ['-----.......----'])
+stamp(source,  1, 0, ['####@.......@###'])
+stamp(source,  2, 0, ['####@.......@###'])
+stamp(source,  3, 0, ['####@.......@###'])
+stamp(source,  4, 0, ['###@r.......@###'])
+stamp(source,  5, 0, ['@@@r........7@@@'])
+target = get_empty_room(3, 1)
+stamp(target, 0, 0, ['------....------'])
+stamp(target, 1, 0, ['#####@....@#####'])
+stamp(target, 2, 0, ['#####@....@#####'])
+stamp(target, 3, 0, ['####@r....7@####'])
+stamp(target, 4, 0, ['###@r......7@###'])
+stamp(target, 5, 0, ['@@@r........7@@@'])
+edit = {
+    'Layer': 'Foreground',
+    'Source': source,
+    'Target': target,
+}
+edits.append(edit)
+rooms['Underground Caverns, Hidden Crystal Entrance'] = edits
 
 # Underground Caverns, Long Drop
 edits = []
@@ -250,18 +259,45 @@ edit = {
 edits.append(edit)
 rooms['Underground Caverns, Long Drop'] = edits
 
+
+# Underground Caverns, Plaque Room With Life Max-Up
+edits = []
+source = get_empty_room(1, 1)
+stamp(source, 11, 0, ['@@@@@L.......@@@'])
+stamp(source, 12, 0, ['##@.7#L......@##'])
+stamp(source, 13, 0, ['##@..7#L.....@##'])
+stamp(source, 14, 0, ['@@@@@@@@@@...@@@'])
+stamp(source, 15, 0, ['----------...---'])
+target = get_empty_room(1, 1)
+stamp(target, 11, 0, ['                '])
+stamp(target, 12, 0, ['      ....      '])
+stamp(target, 13, 0, ['      ....      '])
+stamp(target, 14, 0, ['      ....@@@@  '])
+stamp(target, 15, 0, ['      ....----  '])
+edit = {
+    'Layer': 'Foreground and Background',
+    'Source': source,
+    'Target': target,
+}
+edits.append(edit)
+rooms['Underground Caverns, Plaque Room With Life Max-Up'] = edits
+
 # Underground Caverns, Tall Stairwell
 edits = []
 source = get_empty_room(9, 1)
-stamp(source, 8 * 16 + 12, 4, ['##.  .##'])
-stamp(source, 8 * 16 + 13, 4, ['        '])
-stamp(source, 8 * 16 + 14, 4, ['        '])
-stamp(source, 8 * 16 + 15, 4, ['---..---'])
+stamp(source, 8 * 16 + 10, 3, ['@L.++++...'])
+stamp(source, 8 * 16 + 11, 3, ['#@L,,,,J@@'])
+stamp(source, 8 * 16 + 12, 3, ['##@,,,,@##'])
+stamp(source, 8 * 16 + 13, 3, ['##@L,,J@##'])
+stamp(source, 8 * 16 + 14, 3, ['###@,,@###'])
+stamp(source, 8 * 16 + 15, 3, ['----..----'])
 target = get_empty_room(9, 1)
-stamp(target, 8 * 16 + 12, 4, ['        '])
-stamp(target, 8 * 16 + 13, 4, ['##.  .##'])
-stamp(target, 8 * 16 + 14, 4, ['##.  .##'])
-stamp(target, 8 * 16 + 15, 4, ['--.  .--'])
+stamp(target, 8 * 16 + 10, 3, ['L..    ...'])
+stamp(target, 8 * 16 + 11, 3, ['@L,    ,J@'])
+stamp(target, 8 * 16 + 12, 3, ['#@,    ,@#'])
+stamp(target, 8 * 16 + 13, 3, ['#@L,  ,J@#'])
+stamp(target, 8 * 16 + 14, 3, ['##@,  ,@##'])
+stamp(target, 8 * 16 + 15, 3, ['---.  .---'])
 edit = {
     'Layer': 'Foreground',
     'Source': source,
