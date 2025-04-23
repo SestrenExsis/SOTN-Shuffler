@@ -79,6 +79,11 @@ Commands:
         Requirements:
             Bottom, Rising - Default:
                 Section: Bottom, Rising
+    Move - Lower Ledges (Dislodging Stairwell):
+        Outcomes:
+            Section: Lower Ledges
+            Status - Stairwell Near Demon Switch Dislodged: true
+        Requirements:
             Block Area - Default:
                 Section: Block Area
                 Status - Switch in Abandoned Mine Pressed: true
@@ -94,6 +99,7 @@ Commands:
             Lower Ledges - Double Jump:
                 Section: Lower Ledges
                 Progression - Double Jump: true
+                Status - Stairwell Near Demon Switch Dislodged: true
             Lower Ledges - Gravity Jump:
                 Section: Lower Ledges
                 Progression - Gravity Jump: true

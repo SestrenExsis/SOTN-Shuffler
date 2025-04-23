@@ -9,6 +9,7 @@ import yaml
 
 # Local libraries
 import mapper
+import normalizer
 import shuffle_spike_room
 import validator
 
@@ -749,6 +750,10 @@ if __name__ == '__main__':
         spike_room_seed = global_rng.randint(0, 2 ** 64)
         if settings.get('Options', {}).get('Shuffle Pitch Black Spike Maze', False):
             changes['Stages']['Catacombs']['Rooms']['Catacombs, Pitch Black Spike Maze']['Tilemap'] = shuffle_spike_room.main(spike_room_seed)
+        if settings.get('Room shuffler', {}).get('Normalize room connections', False):
+            for stage_name in normalizer.stages:
+                for room_name in normalizer.stages[stage_name]:
+                    changes['Stages'][stage_name]['Rooms'][room_name]['Tilemap'] = normalizer.normalize(room_name)
         # Apply castle map drawing grid to changes
         changes['Castle Map'] = []
         for row in range(len(castle_map)):

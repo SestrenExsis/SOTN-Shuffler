@@ -18,7 +18,7 @@ def validate_logic(mapper_core, changes) -> bool:
     SOFTLOCK_CHECK__CYCLE_LIMIT = 199
     SOFTLOCK_CHECK__MAX_SOFTLOCKS = 0
     SOFTLOCK_CHECK__ATTEMPT_COUNT = 10
-    PROGRESSION_CHECK__STEP_LIMIT = 64
+    PROGRESSION_CHECK__STEP_LIMIT = 50 # 46 highest observed successful, 49 lowest observed failed
     logic_core = mapper.LogicCore(mapper_core, changes).get_core()
     map_solver = solver.Solver(logic_core, skills)
     map_solver.debug = True
@@ -36,7 +36,7 @@ def validate_logic(mapper_core, changes) -> bool:
             map_solver.solve_via_random_exploration(SOFTLOCK_CHECK__CYCLE_LIMIT)
         if len(map_solver.results['Losses']) > SOFTLOCK_CHECK__MAX_SOFTLOCKS:
             valid_ind = False
-            print(' ', '❌ ... Guard against softlocks')
+            print(' ', '❌ ... Guard against softlocks [', map_solver.results['Losses'][-1][1].location, ']')
             break
         print(' ', '✅ ... Guard against softlocks')
         # Require some form of nearby progression

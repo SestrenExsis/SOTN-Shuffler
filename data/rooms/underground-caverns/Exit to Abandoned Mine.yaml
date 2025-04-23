@@ -13,7 +13,7 @@ Map:
     - "00000"
 Nodes:
     Top Passage:
-        Type: "######....######"
+        Type: "#######...######"
         Row: 0
         Column: 0
         Edge: Top

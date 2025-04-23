@@ -24,7 +24,7 @@ Nodes:
         Entry Section: Ledge
         Exit Section: Ledge
     Top Passage:
-        Type: "######....######"
+        Type: "##............##"
         Row: 0
         Column: 0
         Edge: Top

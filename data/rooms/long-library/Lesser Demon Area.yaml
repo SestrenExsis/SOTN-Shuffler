@@ -93,8 +93,31 @@ Commands:
         Outcomes:
             Section: Layer 2
         Requirements:
-            Layer 3 - Default:
+            Layer 3 - Bat Form:
                 Section: Layer 3
+                Progression - Bat Transformation: true
+            Layer 3 - Double Jump:
+                Section: Layer 3
+                Progression - Double Jump: true
+            Layer 3 - Gravity Jump:
+                Section: Layer 3
+                Progression - Gravity Jump: true
+            Layer 3 - Powered Mist:
+                Section: Layer 3
+                Progression - Mist Transformation: true
+                Progression - Extended Mist Duration: true
+            Layer 3 - Wolf-Mist Rise:
+                Section: Layer 3
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+            Layer 3 - Logical Blunder:
+                Section: Layer 3
+                Option - Permit Logical Blunders: true
+            Layer 3 - Logical Risk:
+                Section: Layer 3
+                Option - Permit Logical Risks: true
+                Progression - Mist Transformation: true
             Layer 1 - Bat Form:
                 Section: Layer 1
                 Progression - Bat Transformation: true
@@ -111,8 +134,21 @@ Commands:
         Outcomes:
             Section: Layer 1
         Requirements:
-            Layer 2 - Default:
+            Layer 2 - Bat Form:
                 Section: Layer 2
+                Progression - Bat Transformation: true
+            Layer 2 - Double Jump:
+                Section: Layer 2
+                Progression - Double Jump: true
+            Layer 2 - Gravity Jump:
+                Section: Layer 2
+                Progression - Gravity Jump: true
+            Layer 2 - Mist:
+                Section: Layer 2
+                Progression - Mist Transformation: true
+            Layer 2 - Logical Blunder:
+                Section: Layer 2
+                Option - Permit Logical Blunders: true
             Behind Mist Gate - Mist:
                 Section: Behind Mist Gate
                 Progression - Mist Transformation: true
