@@ -158,13 +158,21 @@ stamp(source,  2, 0, ['####@.......@###'])
 stamp(source,  3, 0, ['####@.......@###'])
 stamp(source,  4, 0, ['###@r.......@###'])
 stamp(source,  5, 0, ['@@@r........7@@@'])
+# ...
+stamp(source, 13, 0, ['      @@@@      '])
+stamp(source, 14, 0, ['      @###      '])
+stamp(source, 15, 0, ['    ..----      '])
 target = get_empty_room(3, 1)
-stamp(target, 0, 0, ['------....------'])
-stamp(target, 1, 0, ['#####@....@#####'])
-stamp(target, 2, 0, ['#####@....@#####'])
-stamp(target, 3, 0, ['####@r....7@####'])
-stamp(target, 4, 0, ['###@r......7@###'])
-stamp(target, 5, 0, ['@@@r........7@@@'])
+stamp(target,  0, 0, ['------....------'])
+stamp(target,  1, 0, ['#####@....@#####'])
+stamp(target,  2, 0, ['#####@....@#####'])
+stamp(target,  3, 0, ['####@r....7@####'])
+stamp(target,  4, 0, ['###@r......7@###'])
+stamp(target,  5, 0, ['@@@r........7@@@'])
+# TODO(sestren): Fix this passageway using the breakable floor entity instead of using direct tilemap editing
+stamp(source, 13, 0, ['      ....      '])
+stamp(source, 14, 0, ['      ....      '])
+stamp(source, 15, 0, ['      ....      '])
 edit = {
     'Layer': 'Foreground',
     'Source': source,
