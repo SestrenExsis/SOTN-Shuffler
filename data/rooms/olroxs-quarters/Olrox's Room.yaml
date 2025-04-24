@@ -32,10 +32,32 @@ Commands:
         Outcomes:
             Section: Ground
         Requirements:
-            Upper-Left Ledge - Default:
+            Upper-Left Ledge - Logical Blunder:
                 Section: Upper-Left Ledge
-            Upper-Right Ledge - Default:
+                Option - Permit Logical Blunders: true
+            Upper-Left Ledge - Bat:
+                Section: Upper-Left Ledge
+                Progression - Bat Transformation: true
+            Upper-Left Ledge - Gravity Jump:
+                Section: Ground
+                Progression - Gravity Jump: true
+            Upper-Left Ledge - Powered Mist:
+                Section: Ground
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Upper-Right Ledge - Logical Blunder:
                 Section: Upper-Right Ledge
+                Option - Permit Logical Blunders: true
+            Upper-Right Ledge - Bat:
+                Section: Upper-Right Ledge
+                Progression - Bat Transformation: true
+            Upper-Right Ledge - Gravity Jump:
+                Section: Ground
+                Progression - Gravity Jump: true
+            Upper-Right Ledge - Powered Mist:
+                Section: Ground
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
     Move - Upper-Left Ledge:
         Outcomes:
             Section: Upper-Left Ledge

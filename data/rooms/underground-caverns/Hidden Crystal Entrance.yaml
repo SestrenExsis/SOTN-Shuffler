@@ -49,6 +49,8 @@ Commands:
             Main - Default:
                 Section: Main
                 Status - Breakable Floor in Hidden Crystal Entrance Broken: true
+            Bottom, Rising - Default:
+                Section: Bottom, Rising
     Move - Main:
         Outcomes:
             Section: Main

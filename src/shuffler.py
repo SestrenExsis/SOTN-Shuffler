@@ -9,6 +9,7 @@ import yaml
 
 # Local libraries
 import mapper
+import normalizer
 import shuffle_spike_room
 import validator
 
@@ -857,6 +858,14 @@ if __name__ == '__main__':
             '10': 'Press L2 if softlocked.     ',
             '11': 'Alpha Build 74      ',
         }
+        # Normalize room connections
+        if settings.get('Room shuffler', {}).get('Normalize room connections', False):
+            print('Normalize room connections')
+            for stage_name in normalizer.stages:
+                print('', stage_name)
+                for room_name in normalizer.stages[stage_name]:
+                    print('  ', room_name)
+                    changes['Stages'][stage_name]['Rooms'][room_name]['Tilemap'] = normalizer.normalize(room_name)
         # ...
         shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)
         current_seed = {
