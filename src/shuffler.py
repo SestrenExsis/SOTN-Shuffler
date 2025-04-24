@@ -860,8 +860,11 @@ if __name__ == '__main__':
         }
         # Normalize room connections
         if settings.get('Room shuffler', {}).get('Normalize room connections', False):
+            print('Normalize room connections')
             for stage_name in normalizer.stages:
+                print('', stage_name)
                 for room_name in normalizer.stages[stage_name]:
+                    print('  ', room_name)
                     changes['Stages'][stage_name]['Rooms'][room_name]['Tilemap'] = normalizer.normalize(room_name)
         # ...
         shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)

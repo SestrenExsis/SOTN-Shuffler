@@ -115,15 +115,15 @@ stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
 # Foreground
 source = get_empty_room(1, 2)
-stamp(source, 12, 18, ['......J@@'])
-stamp(source, 13, 18, ['@L....@##'])
-stamp(source, 14, 18, ['#@=...@##'])
-stamp(source, 15, 18, ['--....---'])
+stamp(source, 12, 17, ['.......J @'])
+stamp(source, 13, 17, ['@OL....@##'])
+stamp(source, 14, 17, ['##@=...@##'])
+stamp(source, 15, 17, ['---....---'])
 target = get_empty_room(1, 2)
-stamp(target, 12, 18, ['      .. '])
-stamp(target, 13, 18, ['@@@L ...@'])
-stamp(target, 14, 18, ['###@....@'])
-stamp(target, 15, 18, ['----....-'])
+stamp(target, 12, 17, ['       .. '])
+stamp(target, 13, 17, ['@@@OL ...@'])
+stamp(target, 14, 17, ['####@....@'])
+stamp(target, 15, 17, ['-----....-'])
 edit = {
     'Layer': 'Foreground',
     'Source': source,
@@ -172,6 +172,42 @@ edit = {
 }
 rooms[room_name].append(edit)
 
+room_name = 'Underground Caverns, Ice Floe Room'
+stages['Underground Caverns'].add(room_name)
+rooms[room_name] = []
+source = get_empty_room(2, 9)
+stamp(source, 0, 8 * 16 + 6, ['-..-'])
+stamp(source, 1, 8 * 16 + 6, ['@..@'])
+target = get_empty_room(2, 9)
+stamp(target, 0, 8 * 16 + 6, ['....'])
+stamp(target, 1, 8 * 16 + 6, ['....'])
+edit = {
+    'Layer': 'Foreground',
+    'Source': source,
+    'Target': target,
+}
+rooms[room_name].append(edit)
+
+room_name = 'Underground Caverns, Left Ferryman Route'
+stages['Underground Caverns'].add(room_name)
+rooms[room_name] = []
+source = get_empty_room(2, 13)
+stamp(source, 0, 8 * 16, ['----....----'])
+stamp(source, 1, 8 * 16, ['###@....@###'])
+stamp(source, 2, 8 * 16, ['@@@@...=@@@@'])
+stamp(source, 3, 8 * 16, ['****....****'])
+target = get_empty_room(2, 13)
+stamp(target, 0, 8 * 16, ['------....--'])
+stamp(target, 1, 8 * 16, ['#####@....@#'])
+stamp(target, 2, 8 * 16, ['@@@@@@...=@@'])
+stamp(target, 3, 8 * 16, ['******....**'])
+edit = {
+    'Layer': 'Foreground and Background',
+    'Source': source,
+    'Target': target,
+}
+rooms[room_name].append(edit)
+
 room_name = 'Underground Caverns, Long Drop'
 stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
@@ -209,7 +245,7 @@ stamp(target, 13, 0, ['      ....      '])
 stamp(target, 14, 0, ['      ....@@@@  '])
 stamp(target, 15, 0, ['      ....----  '])
 edit = {
-    'Layer': 'Foreground and Background',
+    'Layer': 'Foreground',
     'Source': source,
     'Target': target,
 }
@@ -255,14 +291,17 @@ edit = {
 rooms[room_name].append(edit)
 
 room_name = 'Underground Caverns, Small Stairwell'
+# NOTE(sestren): This room's background layer might be shared with another room? Can't seem to update it
 stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
 source = get_empty_room(2, 1)
-stamp(source, 0, 0, ['----------...---'])
-stamp(source, 1, 0, ['#########@...@##'])
+stamp(source, 0, 0, ['     -----...-  '])
+stamp(source, 1, 0, ['     ####@...@  '])
+stamp(source, 2, 0, ['                '])
 target = get_empty_room(2, 1)
-stamp(target, 0, 0, ['------....------'])
-stamp(target, 1, 0, ['#####@....@#####'])
+stamp(target, 0, 0, ['     -....----  '])
+stamp(target, 1, 0, ['     @....@###  '])
+stamp(target, 2, 0, ['     @@         '])
 edit = {
     'Layer': 'Foreground',
     'Source': source,
