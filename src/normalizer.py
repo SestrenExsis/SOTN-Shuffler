@@ -14,166 +14,63 @@ def stamp(room, top, left, grid):
         room[room_row] = room[room_row][:left] + grid[grid_row] + room[room_row][left + cols:]
 
 stages = {
-    'Underground Caverns': {
-        'Underground Caverns, Crystal Bend',
-        'Underground Caverns, DK Bridge',
-        'Underground Caverns, Exit to Abandoned Mine',
-        'Underground Caverns, Hidden Crystal Entrance',
-        'Underground Caverns, Long Drop',
-        'Underground Caverns, Plaque Room With Life Max-Up',
-        'Underground Caverns, Tall Stairwell',
-    },
+    'Underground Caverns': set(),
 }
+rooms = {}
 
-rooms = {
-    'Underground Caverns, Crystal Bend': [
-        {
-            'Layer': 'Foreground',
-            'Source': [
-                r'----..----------', # r'----..----------',
-                r'###@..@#########', # r'###@..@#########',
-                r'###@..@#########', # r'###@..@#########',
-                r'##@r.=@#########', # r'##@r.=@#########',
-                r'##@...7@@#######', # r'##@...7@@#######',
-                r'##@.....7@@#####', # r'##@.....7@@#####',
-                r'##@.......@#####', # r'##@.......@#####',
-                r'##@==.....@#####', # r'##@==.....@#####',
-                r'                ', # r'##@.......@#####',
-                r'                ', # r'##@L.....J@#####',
-                r'                ', # r'###@L....@######',
-                r'                ', # r'####@=...@######',
-                r'                ', # r'####@....@######',
-                r'                ', # r'###@r....@######',
-                r'                ', # r'###@.....@######',
-                r'                ', # r'##@r....=@######',
-                r'                ', # r'##@......7@#####',
-                r'                ', # r'##@.......@#####',
-                r'                ', # r'##@.......@#####',
-                r'                ', # r'##@===....7@####',
-                r'                ', # r'##@........7@###',
-                r'                ', # r'##@L........7@@@',
-                r'                ', # r'###@.........vvv',
-                r'                ', # r'###@L...=.......',
-                r'                ', # r'####@L..|.......',
-                r'                ', # r'#####@@L^.o..o..',
-                r'                ', # r'#######@@@@@@@@@',
-                r'                ', # r'################',
-                r'                ', # r'################',
-                r'                ', # r'################',
-                r'                ', # r'################',
-                r'                ', # r'                ',
-            ],
-            'Target': [
-                r'------....------',
-                r'####@r....@#####',
-                r'###@r.....@#####',
-                r'##@r..====@#####',
-                r'##@.......@#####',
-                r'##@.......@#####',
-                r'##@.......@#####',
-                r'##@===....@#####',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-                r'                ',
-            ],
-        },
-        {
-            'Layer': 'Background',
-            'Source': [
-                r'                ', # r'----..----------',
-                r'                ', # r'###@..@#########',
-                r'                ', # r'###@..@#########',
-                r'     =          ', # r'##@r.=@#########',
-                r'                ', # r'##@...7@@#######',
-                r'                ', # r'##@.....7@@#####',
-                r'                ', # r'##@.......@#####',
-                r'   ==           ', # r'##@==.....@#####',
-                r'                ', # r'##@.......@#####',
-                r'                ', # r'##@L.....J@#####',
-                r'                ', # r'###@L....@######',
-                r'     =          ', # r'####@=...@######',
-                r'                ', # r'####@....@######',
-                r'                ', # r'###@r....@######',
-                r'                ', # r'###@.....@######',
-                r'        =       ', # r'##@r....=@######',
-                r'                ', # r'##@......7@#####',
-                r'      0123      ', # r'##@.......@#####',
-                r'      4567      ', # r'##@.......@#####',
-                r'   ===89AB      ', # r'##@===....7@####',
-                r'      CDEF      ', # r'##@........7@###',
-                r'                ', # r'##@L........7@@@',
-                r'                ', # r'###@.........vvv',
-                r'                ', # r'###@L...=.......',
-                r'                ', # r'####@L..|.......',
-                r'                ', # r'#####@@L^.o..o..',
-                r'                ', # r'#######@@@@@@@@@',
-                r'                ', # r'################',
-                r'                ', # r'################',
-                r'                ', # r'################',
-                r'                ', # r'################',
-                r'                ', # r'                ',
-            ],
-            'Target': [
-                r'                ', # r'------....------',
-                r'    230123      ', # r'####@r....@#####',
-                r'    674567      ', # r'###@r.....@#####',
-                r'    AB====      ', # r'##@r..====@#####',
-                r'    EFCDEF      ', # r'##@.......@#####',
-                r'    230123      ', # r'##@.......@#####',
-                r'                ', # r'##@.......@#####',
-                r'   ===          ', # r'##@===....@#####',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-                r'                ', # r'                ',
-            ],
-        },
-    ],
+room_name = 'Underground Caverns, Crystal Bend'
+stages['Underground Caverns'].add(room_name)
+rooms[room_name] = []
+# Foreground
+source = get_empty_room(2, 1)
+stamp(source, 0, 0, ['----..----------'])
+stamp(source, 1, 0, ['###@..@#########'])
+stamp(source, 2, 0, ['###@..@#########'])
+stamp(source, 3, 0, ['##@r.=@#########'])
+stamp(source, 4, 0, ['##@...7@@#######'])
+stamp(source, 5, 0, ['##@.....7@@#####'])
+stamp(source, 6, 0, ['##@.......@#####'])
+stamp(source, 7, 0, ['##@==.....@#####'])
+target = get_empty_room(2, 1)
+stamp(target, 0, 0, ['------....------'])
+stamp(target, 1, 0, ['####@r....@#####'])
+stamp(target, 2, 0, ['###@r.....@#####'])
+stamp(target, 3, 0, ['##@r..====@#####'])
+stamp(target, 4, 0, ['##@.......@#####'])
+stamp(target, 5, 0, ['##@.......@#####'])
+stamp(target, 6, 0, ['##@.......@#####'])
+stamp(target, 7, 0, ['##@===....@#####'])
+edit = {
+    'Layer': 'Foreground',
+    'Source': source,
+    'Target': target,
 }
+rooms[room_name].append(edit)
+# Background
+source = get_empty_room(2, 1)
+stamp(source, 17, 0, ['      0123      '])
+stamp(source, 18, 0, ['      4567      '])
+stamp(source, 19, 0, ['   ===89AB      '])
+stamp(source, 20, 0, ['      CDEF      '])
+target = get_empty_room(2, 1)
+stamp(target, 0, 0, ['                '])
+stamp(target, 1, 0, ['    230123      '])
+stamp(target, 2, 0, ['    674567      '])
+stamp(target, 3, 0, ['    AB====      '])
+stamp(target, 4, 0, ['    EFCDEF      '])
+stamp(target, 5, 0, ['    230123      '])
+stamp(target, 6, 0, ['                '])
+stamp(target, 7, 0, ['   ===          '])
+edit = {
+    'Layer': 'Background',
+    'Source': source,
+    'Target': target,
+}
+rooms[room_name].append(edit)
 
-# Underground Caverns, DK Bridge
-edits = []
+room_name = 'Underground Caverns, DK Bridge'
+stages['Underground Caverns'].add(room_name)
+rooms[room_name] = []
 source = get_empty_room(1, 4)
 stamp(source, 14, 3 * 16 + 0, ['######@...@#####'])
 stamp(source, 15, 3 * 16 + 0, ['-------...------'])
@@ -185,11 +82,11 @@ edit = {
     'Source': source,
     'Target': target,
 }
-edits.append(edit)
-rooms['Underground Caverns, DK Bridge'] = edits
+rooms[room_name].append(edit)
 
-# Underground Caverns, Exit to Abandoned Mine
-edits = []
+room_name = 'Underground Caverns, Exit to Abandoned Mine'
+stages['Underground Caverns'].add(room_name)
+rooms[room_name] = []
 source = get_empty_room(1, 1)
 stamp(source, 0, 0, ['   ----.        '])
 stamp(source, 1, 0, ['   ###@.        '])
@@ -211,11 +108,11 @@ edit = {
     'Source': source,
     'Target': target,
 }
-edits.append(edit)
-rooms['Underground Caverns, Exit to Abandoned Mine'] = edits
+rooms[room_name].append(edit)
 
-# Underground Caverns, Hidden Crystal Entrance
-edits = []
+room_name = 'Underground Caverns, Hidden Crystal Entrance'
+stages['Underground Caverns'].add(room_name)
+rooms[room_name] = []
 source = get_empty_room(3, 1)
 stamp(source,  0, 0, ['-----.......----'])
 stamp(source,  1, 0, ['####@.......@###'])
@@ -235,11 +132,11 @@ edit = {
     'Source': source,
     'Target': target,
 }
-edits.append(edit)
-rooms['Underground Caverns, Hidden Crystal Entrance'] = edits
+rooms[room_name].append(edit)
 
-# Underground Caverns, Long Drop
-edits = []
+room_name = 'Underground Caverns, Long Drop'
+stages['Underground Caverns'].add(room_name)
+rooms[room_name] = []
 source = get_empty_room(11, 1)
 stamp(source, 10 * 16 + 11, 0, ['###@L.......J@##'])
 stamp(source, 10 * 16 + 12, 0, ['###@@.......@@##'])
@@ -256,12 +153,11 @@ edit = {
     'Source': source,
     'Target': target,
 }
-edits.append(edit)
-rooms['Underground Caverns, Long Drop'] = edits
+rooms[room_name].append(edit)
 
-
-# Underground Caverns, Plaque Room With Life Max-Up
-edits = []
+room_name = 'Underground Caverns, Plaque Room With Life Max-Up'
+stages['Underground Caverns'].add(room_name)
+rooms[room_name] = []
 source = get_empty_room(1, 1)
 stamp(source, 11, 0, ['@@@@@L.......@@@'])
 stamp(source, 12, 0, ['##@.7#L......@##'])
@@ -279,11 +175,27 @@ edit = {
     'Source': source,
     'Target': target,
 }
-edits.append(edit)
-rooms['Underground Caverns, Plaque Room With Life Max-Up'] = edits
+rooms[room_name].append(edit)
 
-# Underground Caverns, Tall Stairwell
-edits = []
+room_name = 'Underground Caverns, Small Stairwell'
+stages['Underground Caverns'].add(room_name)
+rooms[room_name] = []
+source = get_empty_room(2, 1)
+stamp(source, 0, 0, ['----------...---'])
+stamp(source, 1, 0, ['#########@...@##'])
+target = get_empty_room(2, 1)
+stamp(target, 0, 0, ['------....------'])
+stamp(target, 1, 0, ['#####@....@#####'])
+edit = {
+    'Layer': 'Foreground',
+    'Source': source,
+    'Target': target,
+}
+rooms[room_name].append(edit)
+
+room_name = 'Underground Caverns, Tall Stairwell'
+stages['Underground Caverns'].add(room_name)
+rooms[room_name] = []
 source = get_empty_room(9, 1)
 stamp(source, 8 * 16 + 10, 3, ['@L.++++...'])
 stamp(source, 8 * 16 + 11, 3, ['#@L,,,,J@@'])
@@ -303,8 +215,28 @@ edit = {
     'Source': source,
     'Target': target,
 }
-edits.append(edit)
-rooms['Underground Caverns, Tall Stairwell'] = edits
+rooms[room_name].append(edit)
+
+other_stages = {
+    # 'Abandoned Mine': ('Cave', True),
+    # 'Alchemy Laboratory': ('Necromancy Laboratory', True),
+    # 'Castle Entrance': ('Castle Entrance Revisited', False),
+    # 'Castle Entrance Revisited': ('Reverse Entrance', True),
+    # 'Castle Keep': ('Reverse Keep', True),
+    # 'Catacombs': ('Floating Catacombs', True),
+    # 'Clock Tower': ('Reverse Clock Tower', True),
+    # 'Colosseum': ('Reverse Colosseum', True),
+    # 'Long Library': ('Forbidden Library', True),
+    # 'Marble Gallery': ('Black Marble Gallery', True),
+    # "Olrox's Quarters": ("Death Wing's Lair", True),
+    # 'Outer Wall': ('Reverse Outer Wall', True),
+    # 'Royal Chapel': ('Anti-Chapel', True),
+    'Underground Caverns': ('Reverse Caverns', True),
+}
+for (stage_name, (other_stage_name, flip_ind)) in other_stages.items():
+    for room_name in stages[stage_name]:
+        other_room_name = room_name.replace(stage_name, other_stage_name, 1)
+        rooms[room_name]
 
 def normalize(room_name: str):
     edits = []
