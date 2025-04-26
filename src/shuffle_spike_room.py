@@ -35,9 +35,7 @@ def get_obstacles(seed, obstacle_count: int=4):
                         break
             if current_lane != lanes[-1]:
                 lanes.append(current_lane)
-        if len(lanes) > 2 and lanes[1] == 'LOW':
-            # NOTE(sestren): Force initial lane change to be low for now
-            # TODO(sestren): Remove later
+        if len(lanes) > 2: # NOTE(sestren): Require at least one lane change
             break
     result = obstacles
     return result
