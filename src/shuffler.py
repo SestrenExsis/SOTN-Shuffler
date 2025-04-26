@@ -405,7 +405,7 @@ if __name__ == '__main__':
             options[option_key] = option_value
     invalid_stage_files = set()
     while True:
-        print('...')
+        print('.', end='', flush=True)
         shuffler['Stages'] = {}
         # Randomize
         stages = {
@@ -853,9 +853,23 @@ if __name__ == '__main__':
                 'Room Y': source_room['Top'] + offset_top,
                 'Room X': source_room['Left'] + offset_left,
             }
-        # Show softlock warning and build number on file select screen
+        # Show seed hint and build number on file select screen
+        chars = []
+        string_size = 0
+        for char in initial_seed:
+            if char in '0123456789 ."?\' abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ':
+                chars.append(char)
+                string_size += 1
+                if char in '."?\' 0123456789':
+                    string_size += 1
+            if string_size >= 29:
+                break
+        while string_size < 29:
+            chars.append(' ')
+            string_size += 1
+        seed_hint = ''.join(chars)
         changes['Strings'] = {
-            '10': 'Press L2 if softlocked.     ',
+            '10': seed_hint, # 'Press L2 if softlocked.     ',
             '11': 'Alpha Build 74      ',
         }
         # Normalize room connections

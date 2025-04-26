@@ -27,6 +27,7 @@ def validate_logic(mapper_core, changes) -> bool:
     map_solver.cycle_limit = 199_999
     valid_ind = True
     final_goal_ind = False
+    print('')
     while True:
         print(len(map_solver.current_game.goals_remaining), map_solver.current_game.current_state['Room'], map_solver.current_game.progression)
         prev_game = map_solver.current_game.clone()
