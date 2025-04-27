@@ -670,6 +670,25 @@ Catacombs:
                 Rooms Visited:
                     All:
                         Catacombs, Pitch Black Spike Maze: false
+    (Rule) Force Left-to-Right Spike Maze:
+        Solver:
+            Approach: Steps
+            Attempts: 1
+            Limit: 99
+            Initial Seed: 1
+            Debug: False
+            Wins:
+                Maximum: 0
+        State:
+            Room: Catacombs, Loading Room to Abandoned Mine
+            Section: Main
+            Progression - Bat Transformation: true
+        Goals:
+            Try to find Right Side of Spike Maze without also finding Left Side:
+                Sections Visited:
+                    All:
+                        Catacombs, Pitch Black Spike Maze (Right Side): true
+                        Catacombs, Pitch Black Spike Maze (Left Side): false
     (Entry) Abandoned Mine -> Hub:
         Solver: *solve-within-99-steps
         State:
@@ -1335,7 +1354,7 @@ Outer Wall:
                 Room: Outer Wall, Loading Room to Warp Rooms
                 Section: Main
 Royal Chapel:
-    (Rule) Silver Ring Locked Behind Spike Hallway:
+    (Rule) Silver Ring Locked Behind Spike Hallway - Alchemy Laboratory:
         Solver:
             Approach: Steps
             Attempts: 1
@@ -1345,7 +1364,73 @@ Royal Chapel:
             Wins:
                 Maximum: 0
         State:
-            Room: Royal Chapel, Hippogryph Room
+            Room: Royal Chapel, Loading Room to Alchemy Laboratory
+            Section: Main
+            Progression - Bat Transformation: true
+            Progression - Mist Transformation: true
+            Progression - Unlock Blue Doors: true
+            Item - Spike Breaker: 1
+        Goals:
+            Find Silver Ring without Going Through Spike Hallway:
+                Item - Silver Ring: 1
+                Rooms Visited:
+                    All:
+                        Royal Chapel, Spike Hallway: false
+    (Rule) Silver Ring Locked Behind Spike Hallway - Castle Keep:
+        Solver:
+            Approach: Steps
+            Attempts: 1
+            Limit: 99
+            Initial Seed: 1
+            Debug: False
+            Wins:
+                Maximum: 0
+        State:
+            Room: Royal Chapel, Loading Room to Castle Keep
+            Section: Main
+            Progression - Bat Transformation: true
+            Progression - Mist Transformation: true
+            Progression - Unlock Blue Doors: true
+            Item - Spike Breaker: 1
+        Goals:
+            Find Silver Ring without Going Through Spike Hallway:
+                Item - Silver Ring: 1
+                Rooms Visited:
+                    All:
+                        Royal Chapel, Spike Hallway: false
+    (Rule) Silver Ring Locked Behind Spike Hallway - Colosseum:
+        Solver:
+            Approach: Steps
+            Attempts: 1
+            Limit: 99
+            Initial Seed: 1
+            Debug: False
+            Wins:
+                Maximum: 0
+        State:
+            Room: Royal Chapel, Loading Room to Colosseum
+            Section: Main
+            Progression - Bat Transformation: true
+            Progression - Mist Transformation: true
+            Progression - Unlock Blue Doors: true
+            Item - Spike Breaker: 1
+        Goals:
+            Find Silver Ring without Going Through Spike Hallway:
+                Item - Silver Ring: 1
+                Rooms Visited:
+                    All:
+                        Royal Chapel, Spike Hallway: false
+    (Rule) Silver Ring Locked Behind Spike Hallway - Olrox's Quarters:
+        Solver:
+            Approach: Steps
+            Attempts: 1
+            Limit: 99
+            Initial Seed: 1
+            Debug: False
+            Wins:
+                Maximum: 0
+        State:
+            Room: Royal Chapel, Loading Room to Olrox's Quarters
             Section: Main
             Progression - Bat Transformation: true
             Progression - Mist Transformation: true
