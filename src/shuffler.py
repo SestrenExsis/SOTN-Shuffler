@@ -391,7 +391,7 @@ if __name__ == '__main__':
         'Start Time': datetime.datetime.now(datetime.timezone.utc),
         'Stages': {},
     }
-    # Some settings are Shuffler-specific, while the rest get passed down to the Patcher as options
+    # Some settings are Shuffler-specific, while some get passed down to the Patcher as patche
     options = {}
     for (option_key, option_value) in settings['Options'].items():
         if option_key in (
@@ -399,6 +399,7 @@ if __name__ == '__main__':
             'Clock hands show minutes and seconds instead of hours and minutes',
             'Disable clipping on screen edge of Demon Switch Wall',
             'Enable debug mode',
+            'Normalize room connections',
             'Shuffle Pitch Black Spike Maze',
             'Skip Maria cutscene in Alchemy Laboratory',
         ):
@@ -873,7 +874,7 @@ if __name__ == '__main__':
             '11': 'Alpha Build 74      ',
         }
         # Normalize room connections
-        if settings.get('Room shuffler', {}).get('Normalize room connections', False):
+        if settings.get('Normalize room connections', False):
             print('Normalize room connections')
             for stage_name in normalizer.stages:
                 print('', stage_name)
@@ -891,19 +892,19 @@ if __name__ == '__main__':
             logic_core = mapper.LogicCore(mapper_core, changes).get_core()
             current_seed['Logic Core'] = logic_core
             # current_seed['Solver'] = solution
-        filepath = None
-        if args.output is not None:
-            filepath = os.path.normpath(args.output)
-        else:
-            filename = ' '.join((
-                shuffler['End Time'].strftime('%Y-%m-%d %H-%M-%S'),
-                'SOTN Shuffler',
-                changes['Strings']['11'].strip(),
-                '(' + str(shuffler['Initial Seed']) + ')',
-            ))
-            filepath = os.path.join('build', 'shuffler', filename + '.json')
+        filename = ' '.join((
+            shuffler['End Time'].strftime('%Y-%m-%d %H-%M-%S'),
+            'SOTN Shuffler',
+            changes['Strings']['11'].strip(),
+            '(' + str(shuffler['Initial Seed']) + ')',
+        ))
+        filepath = os.path.join('build', 'shuffler', filename + '.json')
         with open(filepath, 'w') as current_seed_json:
             json.dump(current_seed, current_seed_json, indent='    ', sort_keys=True, default=str)
+        # If an output path is specified, make another copy to that path
+        if args.output is not None:
+            with open(os.path.normpath(args.output), 'w') as current_seed_json:
+                json.dump(current_seed, current_seed_json, indent='    ', sort_keys=True, default=str)
         # while True:
         #     winning_game.play()
         break
