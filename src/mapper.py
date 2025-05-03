@@ -45,8 +45,8 @@ class RoomNode:
                 '#######..#######',
             ),
             (
-                '####..##########',
-                '#######..#######',
+                '####..##########', # Underground Caverns, Crystal Bend (Top Passage), Underground Caverns, Hidden Crystal Entrance (Bottom Passage)
+                '#######..#######', # Underground Caverns, Ice Floe Room (Top Passage), Underground Caverns, Tall Stairwell (Bottom Passage)
             ),
             (
                 '#####..#########',
@@ -61,8 +61,8 @@ class RoomNode:
                 '#######\\........',
             ),
             (
-                '#######..#######',
-                '#########....###',
+                '#######..#######', # Underground Caverns, Ice Floe Room (Top Passage), Underground Caverns, Tall Stairwell (Bottom Passage)
+                '#########....###', # Underground Caverns, Room ID 09 (Bottom Passage), Underground Caverns, Room ID 10 (Top Passage)
             ),
             (
                 '#######..#######',
@@ -77,16 +77,16 @@ class RoomNode:
                 '######\\.........',
             ),
             (
-                '####..##########',
-                '#########....###',
+                '####..##########', # Underground Caverns, Crystal Bend (Top Passage), Underground Caverns, Hidden Crystal Entrance (Bottom Passage)
+                '#########....###', # Underground Caverns, Room ID 09 (Bottom Passage), Underground Caverns, Room ID 10 (Top Passage)
             ),
             (
-                '####....########',
-                '##########...###',
+                '####....########', # Underground Caverns, Exit to Castle Entrance (Bottom Passage), Underground Caverns, Left Ferryman Route (Top Passage)
+                '##########...###', # Underground Caverns, Plaque Room With Life Max-Up (Bottom Passage), Underground Caverns, Small Stairwell (Top Passage)
             ),
             (
-                '####....########',
-                '#########....###',
+                '####....########', # Underground Caverns, Exit to Castle Entrance (Bottom Passage), Underground Caverns, Left Ferryman Route (Top Passage)
+                '#########....###', # Underground Caverns, Room ID 09 (Bottom Passage), Underground Caverns, Room ID 10 (Top Passage)
             ),
             # (
             #     "#####......#####"
