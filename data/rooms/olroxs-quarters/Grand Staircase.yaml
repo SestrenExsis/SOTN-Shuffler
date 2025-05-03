@@ -38,7 +38,7 @@ Nodes:
         Entry Section: Broken Wall
         Exit Section: Broken Wall
     Middle-Bottom Passage:
-        Type: "#/....../#######"
+        Type: "##/....../######"
         Row: 1
         Column: 1
         Edge: Bottom

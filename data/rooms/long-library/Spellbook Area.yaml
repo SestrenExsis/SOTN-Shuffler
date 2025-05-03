@@ -56,7 +56,7 @@ Nodes:
         Entry Section: Main
         Exit Section: Main
     Middle-Bottom Passage:
-        Type: "###........../##"
+        Type: "###.........../#"
         Row: 2
         Column: 2
         Edge: Bottom

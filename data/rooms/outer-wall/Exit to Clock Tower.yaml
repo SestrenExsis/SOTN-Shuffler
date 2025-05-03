@@ -13,7 +13,7 @@ Map:
     - "00100    "
 Nodes:
     Top Passage:
-        Type: "######\\........."
+        Type: "#######\\........"
         Row: 0
         Column: 0
         Edge: Top
@@ -27,7 +27,7 @@ Nodes:
         Entry Section: Main
         Exit Section: Main
     Bottom Passage:
-        Type: "###......./#####"
+        Type: "###......../####"
         Row: 0
         Column: 0
         Edge: Bottom
