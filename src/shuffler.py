@@ -874,7 +874,7 @@ if __name__ == '__main__':
             '11': 'Alpha Build 74      ',
         }
         # Normalize room connections
-        if settings.get('Normalize room connections', False):
+        if settings.get('Options', {}).get('Normalize room connections', False):
             print('Normalize room connections')
             for stage_name in normalizer.stages:
                 print('', stage_name)
