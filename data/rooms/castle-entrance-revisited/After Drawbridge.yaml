@@ -21,14 +21,14 @@ Map:
     - "001000000"
 Nodes:
     Lower-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 2
         Column: 1
         Edge: Right
         Entry Section: Ground
         Exit Section: Ground
     Bottom Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 2
         Column: 0
         Edge: Bottom
