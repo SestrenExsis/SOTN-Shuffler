@@ -60,6 +60,7 @@ Abandoned Mine:
             Progression - Double Jump: true
             Progression - Summon Demon Familiar: true
             Status - Snake Column Wall Broken: true
+            Status - Stairwell Near Demon Switch Dislodged: true
             Status - Switch in Abandoned Mine Pressed: true
         Goals:
             Reach Cerberus Room:
@@ -73,6 +74,7 @@ Abandoned Mine:
             Progression - Double Jump: true
             Progression - Summon Demon Familiar: true
             Status - Snake Column Wall Broken: true
+            Status - Stairwell Near Demon Switch Dislodged: true
             Status - Switch in Abandoned Mine Pressed: true
         Goals:
             Reach Cerberus Room:
@@ -86,6 +88,7 @@ Abandoned Mine:
             Progression - Double Jump: true
             Progression - Summon Demon Familiar: true
             Status - Snake Column Wall Broken: true
+            Status - Stairwell Near Demon Switch Dislodged: true
             Status - Switch in Abandoned Mine Pressed: true
         Goals:
             Reach Cerberus Room:
@@ -148,6 +151,7 @@ Abandoned Mine:
             Progression - Double Jump: true
             Progression - Summon Demon Familiar: true
             Status - Snake Column Wall Broken: true
+            Status - Stairwell Near Demon Switch Dislodged: true
             Status - Switch in Abandoned Mine Pressed: true
         Goals:
             Reach Catacombs:
@@ -161,6 +165,7 @@ Abandoned Mine:
             Progression - Double Jump: true
             Progression - Summon Demon Familiar: true
             Status - Snake Column Wall Broken: true
+            Status - Stairwell Near Demon Switch Dislodged: true
             Status - Switch in Abandoned Mine Pressed: true
         Goals:
             Reach Underground Caverns:
@@ -174,6 +179,7 @@ Abandoned Mine:
             Progression - Double Jump: true
             Progression - Summon Demon Familiar: true
             Status - Snake Column Wall Broken: true
+            Status - Stairwell Near Demon Switch Dislodged: true
             Status - Switch in Abandoned Mine Pressed: true
         Goals:
             Reach Warp Rooms:

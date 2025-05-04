@@ -17,7 +17,9 @@ stages = {
     'Underground Caverns': set(),
 }
 rooms = {}
+nodes = {}
 
+stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Crystal Bend'
 stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
@@ -67,7 +69,9 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
+nodes[(stage_name, room_name, 'Top Passage')] = '######....######'
 
+stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, DK Bridge'
 stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
@@ -83,7 +87,9 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
+nodes[(stage_name, room_name, 'Bottom Passage')] = '######....######'
 
+stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Exit to Abandoned Mine'
 stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
@@ -109,7 +115,9 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
+nodes[(stage_name, room_name, 'Top Passage')] = '######....######'
 
+stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Exit to Castle Entrance'
 stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
@@ -147,7 +155,9 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
+nodes[(stage_name, room_name, 'Bottom Passage')] = '######....######'
 
+stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Hidden Crystal Entrance'
 stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
@@ -161,7 +171,7 @@ stamp(source,  5, 0, ['@@@r........7@@@'])
 # TODO(sestren): Fix this passageway using the breakable floor entity in addition to using direct tilemap editing
 # stamp(source, 2 * 16 + 13, 0, ['      @@@@      '])
 # stamp(source, 2 * 16 + 14, 0, ['      @###      '])
-stamp(source, 2 * 16 + 15, 0, ['    ..----      '])
+# stamp(source, 2 * 16 + 15, 0, ['    ..----      '])
 target = get_empty_room(3, 1)
 stamp(target,  0, 0, ['------....------'])
 stamp(target,  1, 0, ['#####@....@#####'])
@@ -172,14 +182,16 @@ stamp(target,  5, 0, ['@@@r........7@@@'])
 # TODO(sestren): Fix this passageway using the breakable floor entity in addition to using direct tilemap editing
 # stamp(source, 2 * 16 + 13, 0, ['      ....      '])
 # stamp(source, 2 * 16 + 14, 0, ['      ....      '])
-stamp(target, 2 * 16 + 15, 0, ['    --....      '])
+# stamp(target, 2 * 16 + 15, 0, ['    --....      '])
 edit = {
     'Layer': 'Foreground',
     'Source': source,
     'Target': target,
 }
 rooms[room_name].append(edit)
+nodes[(stage_name, room_name, 'Top Passage')] = '######....######'
 
+stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Ice Floe Room'
 stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
@@ -195,7 +207,9 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
+nodes[(stage_name, room_name, 'Top Passage')] = '######....######'
 
+stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Left Ferryman Route'
 stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
@@ -215,7 +229,9 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
+nodes[(stage_name, room_name, 'Top Passage')] = '######....######'
 
+stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Long Drop'
 stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
@@ -236,7 +252,9 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
+nodes[(stage_name, room_name, 'Bottom Passage')] = '######....######'
 
+stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Plaque Room With Life Max-Up'
 stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
@@ -258,7 +276,9 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
+nodes[(stage_name, room_name, 'Bottom Passage')] = '######....######'
 
+stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Room ID 09'
 stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
@@ -281,7 +301,9 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
+nodes[(stage_name, room_name, 'Bottom Passage')] = '######....######'
 
+stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Room ID 10'
 stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
@@ -297,7 +319,9 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
+nodes[(stage_name, room_name, 'Top Passage')] = '######....######'
 
+stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Small Stairwell'
 # NOTE(sestren): This room's background layer might be shared with another room? Can't seem to update it
 stages['Underground Caverns'].add(room_name)
@@ -316,7 +340,9 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
+nodes[(stage_name, room_name, 'Top Passage')] = '######....######'
 
+stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Tall Stairwell'
 stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
@@ -340,6 +366,7 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
+nodes[(stage_name, room_name, 'Bottom Passage')] = '######....######'
 
 other_stages = {
     # 'Abandoned Mine': ('Cave', True),
@@ -377,7 +404,7 @@ for (stage_name, (alt_stage_name, flip_ind)) in other_stages.items():
             rooms[alt_room_name].append(alt_edit)
         stages[alt_stage_name].add(alt_room_name)
 
-def normalize(room_name: str):
+def normalize_room_tilemap(room_name: str):
     edits = []
     if room_name in rooms:
         edits = rooms[room_name]
@@ -395,7 +422,7 @@ if __name__ == '__main__':
         print('', stage_name)
         for room_name in stages[stage_name]:
             print('  ', room_name)
-            for edit in normalize(room_name):
+            for edit in normalize_room_tilemap(room_name):
                 print(edit['Layer'])
                 for layer in (
                     'Source',

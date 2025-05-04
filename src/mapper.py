@@ -38,73 +38,19 @@ class RoomNode:
         )
         return result
     
-    def matches(self, node=None) -> bool:
-        incompatible_types = {
-            (
-                '####...--...####',
-                '#######..#######',
-            ),
-            (
-                '####..##########', # Underground Caverns, Crystal Bend (Top Passage), Underground Caverns, Hidden Crystal Entrance (Bottom Passage)
-                '#######..#######', # Underground Caverns, Ice Floe Room (Top Passage), Underground Caverns, Tall Stairwell (Bottom Passage)
-            ),
-            (
-                '#####..#########',
-                '#######..#######',
-            ),
-            (
-                '#####..#########',
-                '#########..#####',
-            ),
-            (
-                '#####\\..........',
-                '#######\\........',
-            ),
-            (
-                '#######..#######', # Underground Caverns, Ice Floe Room (Top Passage), Underground Caverns, Tall Stairwell (Bottom Passage)
-                '#########....###', # Underground Caverns, Room ID 09 (Bottom Passage), Underground Caverns, Room ID 10 (Top Passage)
-            ),
-            (
-                '#######..#######',
-                '#########..#####',
-            ),
-            (
-                '####\\...........',
-                '########\\.......',
-            ),
-            (
-                '#####\\..........',
-                '######\\.........',
-            ),
-            (
-                '####..##########', # Underground Caverns, Crystal Bend (Top Passage), Underground Caverns, Hidden Crystal Entrance (Bottom Passage)
-                '#########....###', # Underground Caverns, Room ID 09 (Bottom Passage), Underground Caverns, Room ID 10 (Top Passage)
-            ),
-            (
-                '####....########', # Underground Caverns, Exit to Castle Entrance (Bottom Passage), Underground Caverns, Left Ferryman Route (Top Passage)
-                '##########...###', # Underground Caverns, Plaque Room With Life Max-Up (Bottom Passage), Underground Caverns, Small Stairwell (Top Passage)
-            ),
-            (
-                '####....########', # Underground Caverns, Exit to Castle Entrance (Bottom Passage), Underground Caverns, Left Ferryman Route (Top Passage)
-                '#########....###', # Underground Caverns, Room ID 09 (Bottom Passage), Underground Caverns, Room ID 10 (Top Passage)
-            ),
-            # (
-            #     "#####......#####"
-            #     "######....######"
-            # ),
-            # (
-            #     '#####..#########',
-            #     '#########....###',
-            # ),
-        }
+    def matches_direction_and_edge(self, node=None) -> bool:
         result = True
         if node is not None:
             result = (
                 self.direction == node.direction and
-                self.edge != node.edge and
-                (self.type, node.type) not in incompatible_types and
-                (node.type, self.type) not in incompatible_types
+                self.edge != node.edge
             )
+        return result
+    
+    def matches_type(self, node=None) -> bool:
+        result = True
+        if node is not None:
+            result = (self.type == node.type)
         return result
     
     def get_facing_cell(self) -> set[int, int]:
@@ -171,7 +117,7 @@ class RoomSet:
         result = (top, left, bottom, right)
         return result
     
-    def normalize(self):
+    def normalize_bounds(self):
         (stage_top, stage_left, _, _) = self.get_bounds()
         for room_name in self.rooms:
             self.rooms[room_name].top -= stage_top
@@ -201,7 +147,7 @@ class RoomSet:
             if len(sides) == 1:
                 side = list(sides)[0]
                 node = sides[side][0]
-                if node.matches(matching_node):
+                if node.matches_direction_and_edge(matching_node):
                     result.append(node)
         result.sort()
         return result
@@ -372,12 +318,15 @@ stages = {
         { 'Castle Entrance, Attic Hallway': (0, 0) },
         { 'Castle Entrance, Attic Staircase': (0, 0) },
         { 'Castle Entrance, Drop Under Portcullis': (0, 0) },
-        { 'Castle Entrance, Gargoyle Room': (0, 0) },
+        {
+            # NOTE(sestren): Force connection between Gargoyle Room and Meeting Room With Death to be vanilla for now
+            'Castle Entrance, Gargoyle Room': (0, 0),
+            'Castle Entrance, Meeting Room With Death': (1, 0),
+        },
         { 'Castle Entrance, Heart Max-Up Room': (0, 0) },
         { 'Castle Entrance, Holy Mail Room': (0, 0) },
         { 'Castle Entrance, Jewel Sword Room': (0, 0) },
         { 'Castle Entrance, Life Max-Up Room': (0, 0) },
-        { 'Castle Entrance, Meeting Room With Death': (0, 0) },
         { 'Castle Entrance, Merman Room': (0, 0) },
         { 'Castle Entrance, Save Room A': (0, 0) },
         { 'Castle Entrance, Save Room B': (0, 0) },
@@ -1211,7 +1160,7 @@ class Mapper:
         self.attempts += 1
         self.end_time = datetime.datetime.now(datetime.timezone.utc)
 
-    def validate(self) -> bool:
+    def validate(self, require_matching_node_types: bool) -> bool:
         result = False
         if self.stage is not None:
             excluded_room_names = {
@@ -1239,9 +1188,10 @@ class Mapper:
                     for target_room_name in room_names_left:
                         target_room = self.stage.rooms[target_room_name]
                         for (target_node_name, target_node) in target_room.nodes.items():
-                            if target_node.matches(source_node):
-                                work.appendleft(target_room_name)
-                                break
+                            if target_node.matches_direction_and_edge(source_node):
+                                if not require_matching_node_types or target_node.matches_type(source_node):
+                                    work.appendleft(target_room_name)
+                                    break
             all_rooms_connected = len(room_names_visited) >= (len(set(self.rooms) - excluded_room_names))
             result = (
                 all_rooms_used and
@@ -1368,8 +1318,8 @@ if __name__ == '__main__':
         stage_map = Mapper(mapper_core, args.stage_name, seed)
         while True:
             stage_map.generate()
-            if stage_map.validate():
-                stage_map.stage.normalize()
+            if stage_map.validate(False):
+                stage_map.stage.normalize_bounds()
                 break
         changes = stage_map.stage.get_changes()
         hash_of_rooms = hashlib.sha256(json.dumps(changes['Rooms'], sort_keys=True).encode()).hexdigest()

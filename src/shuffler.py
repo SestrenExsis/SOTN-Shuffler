@@ -466,6 +466,7 @@ if __name__ == '__main__':
             # print('', stage_name, stages[stage_name]['Initial Seed'])
         # print('Randomize stages with starting seeds')
         for stage_name in sorted(stages.keys()):
+            print('', stage_name)
             directory_listing = os.listdir(os.path.join('build', 'shuffler', stage_name))
             file_listing = list(
                 name for name in directory_listing if
@@ -485,12 +486,21 @@ if __name__ == '__main__':
                     mapper_data_json.close()
                 stages[stage_name]['Mapper'] = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
                 stages[stage_name]['Mapper'].generate()
-                stages[stage_name]['Mapper'].stage.normalize()
+                stages[stage_name]['Mapper'].stage.normalize_bounds()
+                # Normalize room connections (optional)
+                if settings.get('Options', {}).get('Normalize room connections', False):
+                    # Normalize node type
+                    for room_name in normalizer.stages.get(stage_name, {}):
+                        for node_name in stages[stage_name]['Mapper'].stage.rooms[room_name].nodes.keys():
+                            if (stage_name, room_name, node_name) in normalizer.nodes:
+                                stages[stage_name]['Mapper'].stage.rooms[room_name].nodes[node_name].type = normalizer.nodes[(stage_name, room_name, node_name)]
                 stage_changes = stages[stage_name]['Mapper'].stage.get_changes()
-                assert stages[stage_name]['Mapper'].validate()
+                if not stages[stage_name]['Mapper'].validate(False):
+                    print('!', end='', flush=True)
+                    continue
                 hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
                 assert hash_of_rooms == mapper_data['Hash of Rooms']
-                # print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), len(list(b for (a, b) in invalid_stage_files if a == stage_name)), max_unique_pass_count)
+                print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), len(list(b for (a, b) in invalid_stage_files if a == stage_name)), max_unique_pass_count)
                 changes = {
                     'Options': options,
                     'Stages': {
@@ -528,11 +538,11 @@ if __name__ == '__main__':
                         )
                     validation_result = validation_results[stage_name][hash_of_rooms][hash_of_validation]
                     if validation_result:
-                        # print('   ', '✅ ...', validation_name)
+                        print('   ', '✅ ...', validation_name)
                         unique_passes.add(validation_name)
                         max_unique_pass_count = max(max_unique_pass_count, len(unique_passes))
                     else:
-                        # print('   ', '❌ ...', validation_name)
+                        print('   ', '❌ ...', validation_name)
                         all_valid_ind = False
                         break
                 if all_valid_ind:
@@ -880,7 +890,7 @@ if __name__ == '__main__':
                 print('', stage_name)
                 for room_name in normalizer.stages[stage_name]:
                     print('  ', room_name)
-                    changes['Stages'][stage_name]['Rooms'][room_name]['Tilemap'] = normalizer.normalize(room_name)
+                    changes['Stages'][stage_name]['Rooms'][room_name]['Tilemap'] = normalizer.normalize_room_tilemap(room_name)
         # ...
         shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)
         current_seed = {
