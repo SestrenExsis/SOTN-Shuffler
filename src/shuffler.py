@@ -391,7 +391,7 @@ if __name__ == '__main__':
         'Start Time': datetime.datetime.now(datetime.timezone.utc),
         'Stages': {},
     }
-    # Some settings are Shuffler-specific, while some get passed down to the Patcher as patche
+    # Some settings are Shuffler-specific, while some get passed down to the Patcher as patches
     options = {}
     for (option_key, option_value) in settings['Options'].items():
         if option_key in (
@@ -495,10 +495,10 @@ if __name__ == '__main__':
                             if (stage_name, room_name, node_name) in normalizer.nodes:
                                 stages[stage_name]['Mapper'].stage.rooms[room_name].nodes[node_name].type = normalizer.nodes[(stage_name, room_name, node_name)]
                 stage_changes = stages[stage_name]['Mapper'].stage.get_changes()
-                if not stages[stage_name]['Mapper'].validate(False):
-                    print('!', end='', flush=True)
-                    continue
                 hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
+                if not stages[stage_name]['Mapper'].validate_connections(True):
+                    print(hash_of_rooms)
+                    continue
                 assert hash_of_rooms == mapper_data['Hash of Rooms']
                 print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), len(list(b for (a, b) in invalid_stage_files if a == stage_name)), max_unique_pass_count)
                 changes = {
