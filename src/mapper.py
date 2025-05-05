@@ -1181,6 +1181,7 @@ class Mapper:
                 'Castle Entrance Revisited, Unknown Room 19',
                 'Castle Entrance Revisited, Unknown Room 20',
             }
+            mismatched_node_types = set()
             all_rooms_used = len(self.stage.rooms) >= len(self.rooms)
             no_nodes_unused = len(self.stage.get_open_nodes()) < 1
             room_names_left = set(self.stage.rooms.keys()) - excluded_room_names
@@ -1201,33 +1202,37 @@ class Mapper:
                             matches_direction_and_edge_ind = target_node.matches_direction_and_edge(source_node)
                             matches_position_ind = target_node.matches_position(source_node)
                             if matches_direction_and_edge_ind and matches_position_ind:
-                                matches_type_ind = target_node.matches_type(source_node)
-                                if (not require_matching_node_types) or matches_type_ind:
-                                    work.appendleft(target_room_name)
-                                    continue
+                                if not target_node.matches_type(source_node):
+                                    mismatched_node_types.add((source_room_name, source_node_name, target_room_name, target_node_name))
+                                work.appendleft(target_room_name)
+                                continue
             all_rooms_connected = len(room_names_visited) >= (len(set(self.rooms) - excluded_room_names))
             result = (
                 all_rooms_used and
                 no_nodes_unused and
-                (all_rooms_connected or self.stage_name in ('Warp Rooms', 'Castle Center', 'Underground Caverns'))
+                (all_rooms_connected or self.stage_name in ('Warp Rooms', 'Castle Center', 'Underground Caverns')) and
+                (not require_matching_node_types or len(mismatched_node_types) < 1)
             )
             if self.debug:
                 errors = []
                 if not all_rooms_used:
-                    errors.append(('Not all rooms used', tuple(sorted(set(self.stage.rooms) - set(self.rooms)))))
+                    errors.append(('Not all rooms used', tuple(sorted(set(self.rooms) - set(self.stage.rooms)))))
                 if not no_nodes_unused:
                     errors.append(('Not all nodes used', tuple(sorted(self.stage.get_open_nodes()))))
                 if not all_rooms_connected:
                     if self.stage_name not in ('Warp Rooms', 'Castle Center', 'Underground Caverns'):
                         rooms_needed = set(self.rooms) - set(excluded_room_names)
                         errors.append(('Not all rooms connected', tuple(sorted(rooms_needed - room_names_visited))))
-                print(errors)
+                print('', 'Errors:', errors)
+                print('', 'Mismatched node types:', len(mismatched_node_types))
+                for mismatched_node_type in mismatched_node_types:
+                    print('  ', '-', mismatched_node_type)
         return result
 
     def get_spoiler(self, stage_name: str) -> list[str]:
-        node_type_codes = '*~!@#$%^&*()-+=??????????????????????'
+        node_type_codes = '~!@#$%^&*()-+=??????????????????????'
         node_type_lookups = {
-            '######....######': '*',
+            '######....######': '~',
         }
         codes = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+. '
         legend = []
@@ -1346,7 +1351,10 @@ if __name__ == '__main__':
             'Seed': stage_map.current_seed,
             'Stage': args.stage_name,
         }
-        print(mapper_data)
+        stage_map.debug = True
+        print()
+        print(stage_map.validate_connections(True), mapper_data)
+        stage_map.debug = False
         mapper_data['Rooms'] = changes['Rooms']
         mapper_data['Spoiler'] = stage_map.get_spoiler(args.stage_name)
         # spoiler = stage_map.get_spoiler(args.stage_name)

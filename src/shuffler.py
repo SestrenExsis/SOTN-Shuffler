@@ -492,12 +492,12 @@ if __name__ == '__main__':
                     # Normalize node type
                     for room_name in normalizer.stages.get(stage_name, {}):
                         for node_name in stages[stage_name]['Mapper'].stage.rooms[room_name].nodes.keys():
-                            if (stage_name, room_name, node_name) in normalizer.nodes:
-                                stages[stage_name]['Mapper'].stage.rooms[room_name].nodes[node_name].type = normalizer.nodes[(stage_name, room_name, node_name)]
+                            if (room_name, node_name) in normalizer.nodes:
+                                stages[stage_name]['Mapper'].stage.rooms[room_name].nodes[node_name].type = normalizer.nodes[(room_name, node_name)]
                 stage_changes = stages[stage_name]['Mapper'].stage.get_changes()
                 hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
                 if not stages[stage_name]['Mapper'].validate_connections(True):
-                    print(hash_of_rooms)
+                    # print(hash_of_rooms)
                     continue
                 assert hash_of_rooms == mapper_data['Hash of Rooms']
                 print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), len(list(b for (a, b) in invalid_stage_files if a == stage_name)), max_unique_pass_count)

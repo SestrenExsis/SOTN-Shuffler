@@ -13,15 +13,42 @@ def stamp(room, top, left, grid):
         room_row = top + grid_row
         room[room_row] = room[room_row][:left] + grid[grid_row] + room[room_row][left + cols:]
 
+# NOTE(sestren): Disable normalizing of Crystal Bend (Top Passage) for now, until Hidden Crystal Entrance (Bottom Passage) is also normalized
 stages = {
-    'Underground Caverns': set(),
+    'Underground Caverns': {
+        # 'Underground Caverns, Crystal Bend',
+        'Underground Caverns, DK Bridge',
+        'Underground Caverns, Exit to Abandoned Mine',
+        'Underground Caverns, Exit to Castle Entrance',
+        'Underground Caverns, Hidden Crystal Entrance',
+        'Underground Caverns, Ice Floe Room',
+        'Underground Caverns, Left Ferryman Route',
+        'Underground Caverns, Long Drop',
+        'Underground Caverns, Plaque Room With Life Max-Up',
+        'Underground Caverns, Room ID 09',
+        'Underground Caverns, Room ID 10',
+        'Underground Caverns, Small Stairwell',
+        'Underground Caverns, Tall Stairwell',
+    },
 }
-rooms = {}
-nodes = {}
+nodes = {
+    # ('Underground Caverns, Crystal Bend', 'Top Passage'): '######....######',
+    ('Underground Caverns, DK Bridge', 'Bottom Passage'): '######....######',
+    ('Underground Caverns, Exit to Abandoned Mine', 'Top Passage'): '######....######',
+    ('Underground Caverns, Exit to Castle Entrance', 'Bottom Passage'): '######....######',
+    ('Underground Caverns, Hidden Crystal Entrance', 'Top Passage'): '######....######',
+    ('Underground Caverns, Ice Floe Room', 'Top Passage'): '######....######',
+    ('Underground Caverns, Left Ferryman Route', 'Top Passage'): '######....######',
+    ('Underground Caverns, Long Drop', 'Bottom Passage'): '######....######',
+    ('Underground Caverns, Plaque Room With Life Max-Up', 'Bottom Passage'): '######....######',
+    ('Underground Caverns, Room ID 09', 'Bottom Passage'): '######....######',
+    ('Underground Caverns, Room ID 10', 'Top Passage'): '######....######',
+    ('Underground Caverns, Small Stairwell', 'Top Passage'): '######....######',
+    ('Underground Caverns, Tall Stairwell', 'Bottom Passage'): '######....######',
+}
 
-stage_name = 'Underground Caverns'
+rooms = {}
 room_name = 'Underground Caverns, Crystal Bend'
-stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
 # Foreground
 source = get_empty_room(2, 1)
@@ -69,11 +96,8 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
-nodes[(stage_name, room_name, 'Top Passage')] = '######....######'
 
-stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, DK Bridge'
-stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
 source = get_empty_room(1, 4)
 stamp(source, 14, 3 * 16 + 0, ['######@...@#####'])
@@ -87,11 +111,8 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
-nodes[(stage_name, room_name, 'Bottom Passage')] = '######....######'
 
-stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Exit to Abandoned Mine'
-stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
 source = get_empty_room(1, 1)
 stamp(source, 0, 0, ['   ----.        '])
@@ -115,11 +136,8 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
-nodes[(stage_name, room_name, 'Top Passage')] = '######....######'
 
-stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Exit to Castle Entrance'
-stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
 # Foreground
 source = get_empty_room(1, 2)
@@ -155,11 +173,8 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
-nodes[(stage_name, room_name, 'Bottom Passage')] = '######....######'
 
-stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Hidden Crystal Entrance'
-stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
 source = get_empty_room(3, 1)
 stamp(source,  0, 0, ['-----.......----'])
@@ -168,7 +183,7 @@ stamp(source,  2, 0, ['####@.......@###'])
 stamp(source,  3, 0, ['####@.......@###'])
 stamp(source,  4, 0, ['###@r.......@###'])
 stamp(source,  5, 0, ['@@@r........7@@@'])
-# TODO(sestren): Fix this passageway using the breakable floor entity in addition to using direct tilemap editing
+# TODO(sestren): Fix the bottom passageway using the breakable floor entity in addition to using direct tilemap editing
 # stamp(source, 2 * 16 + 13, 0, ['      @@@@      '])
 # stamp(source, 2 * 16 + 14, 0, ['      @###      '])
 # stamp(source, 2 * 16 + 15, 0, ['    ..----      '])
@@ -179,7 +194,7 @@ stamp(target,  2, 0, ['#####@....@#####'])
 stamp(target,  3, 0, ['####@r....7@####'])
 stamp(target,  4, 0, ['###@r......7@###'])
 stamp(target,  5, 0, ['@@@r........7@@@'])
-# TODO(sestren): Fix this passageway using the breakable floor entity in addition to using direct tilemap editing
+# TODO(sestren): Fix the bottom passageway using the breakable floor entity in addition to using direct tilemap editing
 # stamp(source, 2 * 16 + 13, 0, ['      ....      '])
 # stamp(source, 2 * 16 + 14, 0, ['      ....      '])
 # stamp(target, 2 * 16 + 15, 0, ['    --....      '])
@@ -189,11 +204,8 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
-nodes[(stage_name, room_name, 'Top Passage')] = '######....######'
 
-stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Ice Floe Room'
-stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
 source = get_empty_room(2, 9)
 stamp(source, 0, 8 * 16 + 6, ['-..-'])
@@ -207,11 +219,8 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
-nodes[(stage_name, room_name, 'Top Passage')] = '######....######'
 
-stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Left Ferryman Route'
-stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
 source = get_empty_room(2, 13)
 stamp(source, 0, 8 * 16, ['----....----'])
@@ -229,11 +238,8 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
-nodes[(stage_name, room_name, 'Top Passage')] = '######....######'
 
-stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Long Drop'
-stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
 source = get_empty_room(11, 1)
 stamp(source, 10 * 16 + 11, 0, ['###@L.......J@##'])
@@ -252,11 +258,8 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
-nodes[(stage_name, room_name, 'Bottom Passage')] = '######....######'
 
-stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Plaque Room With Life Max-Up'
-stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
 source = get_empty_room(1, 1)
 stamp(source, 11, 0, ['@@@@@L.......@@@'])
@@ -276,11 +279,8 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
-nodes[(stage_name, room_name, 'Bottom Passage')] = '######....######'
 
-stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Room ID 09'
-stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
 source = get_empty_room(1, 2)
 stamp(source, 10, 6, ['....    '])
@@ -301,11 +301,8 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
-nodes[(stage_name, room_name, 'Bottom Passage')] = '######....######'
 
-stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Room ID 10'
-stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
 source = get_empty_room(1, 1)
 stamp(source, 0, 6, ['---....'])
@@ -319,12 +316,9 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
-nodes[(stage_name, room_name, 'Top Passage')] = '######....######'
 
-stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Small Stairwell'
 # NOTE(sestren): This room's background layer might be shared with another room? Can't seem to update it
-stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
 source = get_empty_room(2, 1)
 stamp(source, 0, 0, ['     -----...-  '])
@@ -340,11 +334,8 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
-nodes[(stage_name, room_name, 'Top Passage')] = '######....######'
 
-stage_name = 'Underground Caverns'
 room_name = 'Underground Caverns, Tall Stairwell'
-stages['Underground Caverns'].add(room_name)
 rooms[room_name] = []
 source = get_empty_room(9, 1)
 stamp(source, 8 * 16 + 10, 3, ['@L.++++...'])
@@ -366,7 +357,6 @@ edit = {
     'Target': target,
 }
 rooms[room_name].append(edit)
-nodes[(stage_name, room_name, 'Bottom Passage')] = '######....######'
 
 other_stages = {
     # 'Abandoned Mine': ('Cave', True),
