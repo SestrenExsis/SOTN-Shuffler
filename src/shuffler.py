@@ -380,9 +380,11 @@ if __name__ == '__main__':
     MAX_MAP_ROW = 55
     MIN_MAP_COL = 0
     MAX_MAP_COL = 63
+    MIN_SEED = 0
+    MAX_SEED = 2 ** 64 - 1
     initial_seed = args.seed
     if initial_seed is None:
-        initial_seed = str(random.randint(0, 2 ** 64))
+        initial_seed = str(random.randint(MIN_SEED, MAX_SEED))
     # Keep randomizing until a solution is found
     global_rng = random.Random(initial_seed)
     shuffler = {
@@ -430,7 +432,7 @@ if __name__ == '__main__':
         # Calculate teleporter changes
         teleporters = {}
         # Generate the seed regardless, so RNG can be independent of the setting
-        stage_randomizer_seed = global_rng.randint(0, 2 ** 64)
+        stage_randomizer_seed = global_rng.randint(MIN_SEED, MAX_SEED)
         if settings.get('Stage shuffler', {}).get('Shuffle connections between stages', False):
             shuffle_teleporters(mapper_core['Teleporters'], stage_randomizer_seed)
             for (source_name, source) in mapper_core['Teleporters']['Sources'].items():
@@ -450,7 +452,7 @@ if __name__ == '__main__':
                     'Stage': target['Stage'],
                 }
         # Shuffle quest rewards (such as Relics)
-        quest_randomizer_seed = global_rng.randint(0, 2 ** 64)
+        quest_randomizer_seed = global_rng.randint(MIN_SEED, MAX_SEED)
         object_layouts = None
         if settings.get('Quest shuffler', {}).get('Shuffle quest rewards', False):
             shuffle_quests(mapper_core['Quests'], quest_randomizer_seed)
@@ -460,13 +462,13 @@ if __name__ == '__main__':
                 object_layouts[quest_name] = quest['Target Reward']
         # print('Set starting seeds for each stage')
         for stage_name in sorted(stages.keys()):
-            next_seed = global_rng.randint(0, 2 ** 64)
+            next_seed = global_rng.randint(MIN_SEED, MAX_SEED)
             stages[stage_name]['Initial Seed'] = next_seed
             stages[stage_name]['RNG'] = random.Random(stages[stage_name]['Initial Seed'])
             # print('', stage_name, stages[stage_name]['Initial Seed'])
         # print('Randomize stages with starting seeds')
         for stage_name in sorted(stages.keys()):
-            print('', stage_name)
+            # print('', stage_name)
             directory_listing = os.listdir(os.path.join('build', 'shuffler', stage_name))
             file_listing = list(
                 name for name in directory_listing if
@@ -500,7 +502,7 @@ if __name__ == '__main__':
                     # print(hash_of_rooms)
                     continue
                 assert hash_of_rooms == mapper_data['Hash of Rooms']
-                print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), len(list(b for (a, b) in invalid_stage_files if a == stage_name)), max_unique_pass_count)
+                # print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), len(list(b for (a, b) in invalid_stage_files if a == stage_name)), max_unique_pass_count)
                 changes = {
                     'Options': options,
                     'Stages': {
@@ -538,11 +540,11 @@ if __name__ == '__main__':
                         )
                     validation_result = validation_results[stage_name][hash_of_rooms][hash_of_validation]
                     if validation_result:
-                        print('   ', '✅ ...', validation_name)
+                        # print('   ', '✅ ...', validation_name)
                         unique_passes.add(validation_name)
                         max_unique_pass_count = max(max_unique_pass_count, len(unique_passes))
                     else:
-                        print('   ', '❌ ...', validation_name)
+                        # print('   ', '❌ ...', validation_name)
                         all_valid_ind = False
                         break
                 if all_valid_ind:
@@ -758,7 +760,7 @@ if __name__ == '__main__':
             elif label_method == 'Stage':
                 instructions = get_loading_room_labels_by_stage(mapper_core, stages, stage_names)
             draw_labels_on_castle_map(castle_map, instructions)
-        spike_room_seed = global_rng.randint(0, 2 ** 64)
+        spike_room_seed = global_rng.randint(MIN_SEED, MAX_SEED)
         if settings.get('Options', {}).get('Shuffle Pitch Black Spike Maze', False):
             changes['Stages']['Catacombs']['Rooms']['Catacombs, Pitch Black Spike Maze']['Tilemap'] = shuffle_spike_room.main(spike_room_seed)
         # Apply castle map drawing grid to changes
