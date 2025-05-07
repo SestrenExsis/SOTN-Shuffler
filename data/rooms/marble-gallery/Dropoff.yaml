@@ -21,7 +21,7 @@ Nodes:
         Entry Section: Rising
         Exit Section: Falling
     Right-Bottom Passage:
-        Type: "./##############"
+        Type: ".../############"
         Row: 0
         Column: 2
         Edge: Bottom

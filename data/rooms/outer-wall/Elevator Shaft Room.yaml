@@ -47,7 +47,7 @@ Map:
     - "000000100    "
 Nodes:
     Right-Top Passage:
-        Type: "###........./###"
+        Type: "###......../####"
         Row: 0
         Column: 1
         Edge: Top

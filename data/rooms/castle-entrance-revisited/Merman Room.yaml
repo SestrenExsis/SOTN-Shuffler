@@ -17,35 +17,35 @@ Map:
     - "0000000000000"
 Nodes:
     Top Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Top
         Entry Section: Air
         Exit Section: Air
     Upper-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left
         Entry Section: Ground
         Exit Section: Ground
     Upper-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 0
         Column: 2
         Edge: Right
         Entry Section: Ground
         Exit Section: Ground
     Lower-Left Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 1
         Column: 0
         Edge: Left
         Entry Section: Secret Wall
         Exit Section: Secret Wall
     Lower-Right Passage:
-        Type: Passage
+        Type: "######....######"
         Row: 1
         Column: 2
         Edge: Right

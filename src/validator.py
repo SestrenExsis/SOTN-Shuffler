@@ -27,6 +27,7 @@ def validate_logic(mapper_core, changes) -> bool:
     map_solver.cycle_limit = 199_999
     valid_ind = True
     final_goal_ind = False
+    print('')
     while True:
         print(len(map_solver.current_game.goals_remaining), map_solver.current_game.current_state['Room'], map_solver.current_game.progression)
         prev_game = map_solver.current_game.clone()
@@ -71,7 +72,7 @@ def validate_logic(mapper_core, changes) -> bool:
 def validate_stage(mapper_core, mapper_data, stage_name, validation) -> bool:
     current_mapper = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
     current_mapper.generate()
-    current_mapper.stage.normalize()
+    current_mapper.stage.normalize_bounds()
     current_mapper__stage_changes = current_mapper.stage.get_changes()
     hash_of_rooms = hashlib.sha256(
         json.dumps(current_mapper__stage_changes['Rooms'], sort_keys=True).encode()
@@ -164,7 +165,7 @@ if __name__ == '__main__':
                 mapper_data_json.close()
             current_mapper = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
             current_mapper.generate()
-            current_mapper.stage.normalize()
+            current_mapper.stage.normalize_bounds()
             current_mapper__stage_changes = current_mapper.stage.get_changes()
             hash_of_rooms = hashlib.sha256(
                 json.dumps(current_mapper__stage_changes['Rooms'], sort_keys=True).encode()

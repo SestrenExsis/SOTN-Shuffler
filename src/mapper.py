@@ -38,73 +38,28 @@ class RoomNode:
         )
         return result
     
-    def matches(self, node=None) -> bool:
-        incompatible_types = {
-            (
-                '####...--...####',
-                '#######..#######',
-            ),
-            (
-                '####..##########',
-                '#######..#######',
-            ),
-            (
-                '#####..#########',
-                '#######..#######',
-            ),
-            (
-                '#####..#########',
-                '#########..#####',
-            ),
-            (
-                '#####\\..........',
-                '#######\\........',
-            ),
-            (
-                '#######..#######',
-                '#########....###',
-            ),
-            (
-                '#######..#######',
-                '#########..#####',
-            ),
-            (
-                '####\\...........',
-                '########\\.......',
-            ),
-            (
-                '#####\\..........',
-                '######\\.........',
-            ),
-            (
-                '####..##########',
-                '#########....###',
-            ),
-            (
-                '####....########',
-                '##########...###',
-            ),
-            (
-                '####....########',
-                '#########....###',
-            ),
-            # (
-            #     "#####......#####"
-            #     "######....######"
-            # ),
-            # (
-            #     '#####..#########',
-            #     '#########....###',
-            # ),
-        }
+    def matches_direction_and_edge(self, node=None) -> bool:
         result = True
         if node is not None:
             result = (
                 self.direction == node.direction and
-                self.edge != node.edge and
-                (self.type, node.type) not in incompatible_types and
-                (node.type, self.type) not in incompatible_types
+                self.edge != node.edge
             )
+        return result
+    
+    def matches_position(self, node=None) -> bool:
+        result = True
+        if node is not None:
+            result = (
+                (self.room.top + self.top) == (node.room.top + node.top) and
+                (self.room.left + self.left) == (node.room.left + node.left)
+            )
+        return result
+    
+    def matches_type(self, node=None) -> bool:
+        result = True
+        if node is not None:
+            result = (self.type == node.type)
         return result
     
     def get_facing_cell(self) -> set[int, int]:
@@ -171,7 +126,7 @@ class RoomSet:
         result = (top, left, bottom, right)
         return result
     
-    def normalize(self):
+    def normalize_bounds(self):
         (stage_top, stage_left, _, _) = self.get_bounds()
         for room_name in self.rooms:
             self.rooms[room_name].top -= stage_top
@@ -201,7 +156,7 @@ class RoomSet:
             if len(sides) == 1:
                 side = list(sides)[0]
                 node = sides[side][0]
-                if node.matches(matching_node):
+                if node.matches_direction_and_edge(matching_node):
                     result.append(node)
         result.sort()
         return result
@@ -372,12 +327,15 @@ stages = {
         { 'Castle Entrance, Attic Hallway': (0, 0) },
         { 'Castle Entrance, Attic Staircase': (0, 0) },
         { 'Castle Entrance, Drop Under Portcullis': (0, 0) },
-        { 'Castle Entrance, Gargoyle Room': (0, 0) },
+        {
+            # NOTE(sestren): Force connection between Gargoyle Room and Meeting Room With Death to be vanilla for now
+            'Castle Entrance, Gargoyle Room': (0, 0),
+            'Castle Entrance, Meeting Room With Death': (1, 0),
+        },
         { 'Castle Entrance, Heart Max-Up Room': (0, 0) },
         { 'Castle Entrance, Holy Mail Room': (0, 0) },
         { 'Castle Entrance, Jewel Sword Room': (0, 0) },
         { 'Castle Entrance, Life Max-Up Room': (0, 0) },
-        { 'Castle Entrance, Meeting Room With Death': (0, 0) },
         { 'Castle Entrance, Merman Room': (0, 0) },
         { 'Castle Entrance, Save Room A': (0, 0) },
         { 'Castle Entrance, Save Room B': (0, 0) },
@@ -1145,6 +1103,7 @@ class LogicCore:
 
 class Mapper:
     def __init__(self, mapper_data, stage_name: str, seed: int):
+        self.debug = False
         self.stage_name = stage_name
         self.attempts = 0
         self.start_time = None
@@ -1211,7 +1170,7 @@ class Mapper:
         self.attempts += 1
         self.end_time = datetime.datetime.now(datetime.timezone.utc)
 
-    def validate(self) -> bool:
+    def validate_connections(self, require_matching_node_types: bool) -> bool:
         result = False
         if self.stage is not None:
             excluded_room_names = {
@@ -1222,12 +1181,13 @@ class Mapper:
                 'Castle Entrance Revisited, Unknown Room 19',
                 'Castle Entrance Revisited, Unknown Room 20',
             }
+            mismatched_node_types = set()
             all_rooms_used = len(self.stage.rooms) >= len(self.rooms)
             no_nodes_unused = len(self.stage.get_open_nodes()) < 1
             room_names_left = set(self.stage.rooms.keys()) - excluded_room_names
             room_names_visited = set()
             work = collections.deque()
-            work.append(next(iter(room_names_left)))
+            work.append(next(iter(sorted(room_names_left))))
             while len(work) > 0:
                 source_room_name = work.pop()
                 room_names_visited.add(source_room_name)
@@ -1239,33 +1199,41 @@ class Mapper:
                     for target_room_name in room_names_left:
                         target_room = self.stage.rooms[target_room_name]
                         for (target_node_name, target_node) in target_room.nodes.items():
-                            if target_node.matches(source_node):
+                            matches_direction_and_edge_ind = target_node.matches_direction_and_edge(source_node)
+                            matches_position_ind = target_node.matches_position(source_node)
+                            if matches_direction_and_edge_ind and matches_position_ind:
+                                if not target_node.matches_type(source_node):
+                                    mismatched_node_types.add((source_room_name, source_node_name, target_room_name, target_node_name))
                                 work.appendleft(target_room_name)
-                                break
+                                continue
             all_rooms_connected = len(room_names_visited) >= (len(set(self.rooms) - excluded_room_names))
             result = (
                 all_rooms_used and
                 no_nodes_unused and
-                (all_rooms_connected or self.stage_name in ('Warp Rooms', 'Castle Center', 'Underground Caverns'))
+                (all_rooms_connected or self.stage_name in ('Warp Rooms', 'Castle Center', 'Underground Caverns')) and
+                (not require_matching_node_types or len(mismatched_node_types) < 1)
             )
-            # if (
-            #     self.stage_name == 'Clock Tower' and
-            #     len(self.stage.rooms) > 16
-            # ):
-            #     print(all_rooms_used, no_nodes_unused, all_rooms_connected, len(self.stage.rooms), len(self.rooms))
-            #     for line in self.get_spoiler('Clock Tower'):
-            #         print(line)
-            #     print(len(self.steps))
-            #     for step in self.steps:
-            #         print(step)
-            #     print(set(self.rooms) - set(self.stage.rooms.keys()))
-            #     print('open nodes:', len(self.stage.get_open_nodes()))
-            #     for node in self.stage.get_open_nodes():
-            #         print(node)
-            #     print(self.stage.get_open_nodes())
+            if self.debug:
+                errors = []
+                if not all_rooms_used:
+                    errors.append(('Not all rooms used', tuple(sorted(set(self.rooms) - set(self.stage.rooms)))))
+                if not no_nodes_unused:
+                    errors.append(('Not all nodes used', tuple(sorted(self.stage.get_open_nodes()))))
+                if not all_rooms_connected:
+                    if self.stage_name not in ('Warp Rooms', 'Castle Center', 'Underground Caverns'):
+                        rooms_needed = set(self.rooms) - set(excluded_room_names)
+                        errors.append(('Not all rooms connected', tuple(sorted(rooms_needed - room_names_visited))))
+                print('', 'Errors:', errors)
+                print('', 'Mismatched node types:', len(mismatched_node_types))
+                for mismatched_node_type in mismatched_node_types:
+                    print('  ', '-', mismatched_node_type)
         return result
 
     def get_spoiler(self, stage_name: str) -> list[str]:
+        node_type_codes = '~!@#$%^&*()-+=??????????????????????'
+        node_type_lookups = {
+            '######....######': '~',
+        }
         codes = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+. '
         legend = []
         (stage_top, stage_left, stage_bottom, stage_right) = (float('inf'), float('inf'), float('-inf'), float('-inf'))
@@ -1304,8 +1272,9 @@ class Mapper:
                                 grid[row][col] = code
             for node in room.nodes.values():
                 code = '?'
-                if node.type == '######....######':
-                    code = '*'
+                if node.type not in node_type_lookups:
+                    node_type_lookups[node.type] = node_type_codes[len(node_type_lookups)]
+                code = node_type_lookups[node.type]
                 (exit_row, exit_col, exit_edge) = (node.row, node.column, node.edge)
                 row = 2 + 5 * (room.top - stage_top + exit_row)
                 col = 2 + 5 * (room.left - stage_left + exit_col)
@@ -1368,8 +1337,8 @@ if __name__ == '__main__':
         stage_map = Mapper(mapper_core, args.stage_name, seed)
         while True:
             stage_map.generate()
-            if stage_map.validate():
-                stage_map.stage.normalize()
+            if stage_map.validate_connections(False):
+                stage_map.stage.normalize_bounds()
                 break
         changes = stage_map.stage.get_changes()
         hash_of_rooms = hashlib.sha256(json.dumps(changes['Rooms'], sort_keys=True).encode()).hexdigest()
@@ -1382,7 +1351,10 @@ if __name__ == '__main__':
             'Seed': stage_map.current_seed,
             'Stage': args.stage_name,
         }
-        print(mapper_data)
+        stage_map.debug = True
+        print()
+        print(stage_map.validate_connections(True), mapper_data)
+        stage_map.debug = False
         mapper_data['Rooms'] = changes['Rooms']
         mapper_data['Spoiler'] = stage_map.get_spoiler(args.stage_name)
         # spoiler = stage_map.get_spoiler(args.stage_name)

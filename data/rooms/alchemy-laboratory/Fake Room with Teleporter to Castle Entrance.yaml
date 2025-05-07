@@ -13,7 +13,7 @@ Map:
     - "     "
 Nodes:
     Left Node:
-        Type: "................"
+        Type: "######....######"
         Row: 0
         Column: 0
         Edge: Left

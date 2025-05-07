@@ -380,9 +380,11 @@ if __name__ == '__main__':
     MAX_MAP_ROW = 55
     MIN_MAP_COL = 0
     MAX_MAP_COL = 63
+    MIN_SEED = 0
+    MAX_SEED = 2 ** 64 - 1
     initial_seed = args.seed
     if initial_seed is None:
-        initial_seed = str(random.randint(0, 2 ** 64))
+        initial_seed = str(random.randint(MIN_SEED, MAX_SEED))
     # Keep randomizing until a solution is found
     global_rng = random.Random(initial_seed)
     shuffler = {
@@ -391,7 +393,7 @@ if __name__ == '__main__':
         'Start Time': datetime.datetime.now(datetime.timezone.utc),
         'Stages': {},
     }
-    # Some settings are Shuffler-specific, while the rest get passed down to the Patcher as options
+    # Some settings are Shuffler-specific, while some get passed down to the Patcher as patches
     options = {}
     for (option_key, option_value) in settings['Options'].items():
         if option_key in (
@@ -399,13 +401,14 @@ if __name__ == '__main__':
             'Clock hands show minutes and seconds instead of hours and minutes',
             'Disable clipping on screen edge of Demon Switch Wall',
             'Enable debug mode',
+            'Normalize room connections',
             'Shuffle Pitch Black Spike Maze',
             'Skip Maria cutscene in Alchemy Laboratory',
         ):
             options[option_key] = option_value
     invalid_stage_files = set()
     while True:
-        print('...')
+        print('.', end='', flush=True)
         shuffler['Stages'] = {}
         # Randomize
         stages = {
@@ -429,7 +432,7 @@ if __name__ == '__main__':
         # Calculate teleporter changes
         teleporters = {}
         # Generate the seed regardless, so RNG can be independent of the setting
-        stage_randomizer_seed = global_rng.randint(0, 2 ** 64)
+        stage_randomizer_seed = global_rng.randint(MIN_SEED, MAX_SEED)
         if settings.get('Stage shuffler', {}).get('Shuffle connections between stages', False):
             shuffle_teleporters(mapper_core['Teleporters'], stage_randomizer_seed)
             for (source_name, source) in mapper_core['Teleporters']['Sources'].items():
@@ -449,7 +452,7 @@ if __name__ == '__main__':
                     'Stage': target['Stage'],
                 }
         # Shuffle quest rewards (such as Relics)
-        quest_randomizer_seed = global_rng.randint(0, 2 ** 64)
+        quest_randomizer_seed = global_rng.randint(MIN_SEED, MAX_SEED)
         object_layouts = None
         if settings.get('Quest shuffler', {}).get('Shuffle quest rewards', False):
             shuffle_quests(mapper_core['Quests'], quest_randomizer_seed)
@@ -459,12 +462,13 @@ if __name__ == '__main__':
                 object_layouts[quest_name] = quest['Target Reward']
         # print('Set starting seeds for each stage')
         for stage_name in sorted(stages.keys()):
-            next_seed = global_rng.randint(0, 2 ** 64)
+            next_seed = global_rng.randint(MIN_SEED, MAX_SEED)
             stages[stage_name]['Initial Seed'] = next_seed
             stages[stage_name]['RNG'] = random.Random(stages[stage_name]['Initial Seed'])
             # print('', stage_name, stages[stage_name]['Initial Seed'])
         # print('Randomize stages with starting seeds')
         for stage_name in sorted(stages.keys()):
+            # print('', stage_name)
             directory_listing = os.listdir(os.path.join('build', 'shuffler', stage_name))
             file_listing = list(
                 name for name in directory_listing if
@@ -484,10 +488,19 @@ if __name__ == '__main__':
                     mapper_data_json.close()
                 stages[stage_name]['Mapper'] = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
                 stages[stage_name]['Mapper'].generate()
-                stages[stage_name]['Mapper'].stage.normalize()
+                stages[stage_name]['Mapper'].stage.normalize_bounds()
+                # Normalize room connections (optional)
+                if settings.get('Options', {}).get('Normalize room connections', False):
+                    # Normalize node type
+                    for room_name in normalizer.stages.get(stage_name, {}):
+                        for node_name in stages[stage_name]['Mapper'].stage.rooms[room_name].nodes.keys():
+                            if (room_name, node_name) in normalizer.nodes:
+                                stages[stage_name]['Mapper'].stage.rooms[room_name].nodes[node_name].type = normalizer.nodes[(room_name, node_name)]
                 stage_changes = stages[stage_name]['Mapper'].stage.get_changes()
-                assert stages[stage_name]['Mapper'].validate()
                 hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
+                if not stages[stage_name]['Mapper'].validate_connections(True):
+                    # print(hash_of_rooms)
+                    continue
                 assert hash_of_rooms == mapper_data['Hash of Rooms']
                 # print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), len(list(b for (a, b) in invalid_stage_files if a == stage_name)), max_unique_pass_count)
                 changes = {
@@ -747,7 +760,7 @@ if __name__ == '__main__':
             elif label_method == 'Stage':
                 instructions = get_loading_room_labels_by_stage(mapper_core, stages, stage_names)
             draw_labels_on_castle_map(castle_map, instructions)
-        spike_room_seed = global_rng.randint(0, 2 ** 64)
+        spike_room_seed = global_rng.randint(MIN_SEED, MAX_SEED)
         if settings.get('Options', {}).get('Shuffle Pitch Black Spike Maze', False):
             changes['Stages']['Catacombs']['Rooms']['Catacombs, Pitch Black Spike Maze']['Tilemap'] = shuffle_spike_room.main(spike_room_seed)
         # Apply castle map drawing grid to changes
@@ -853,19 +866,33 @@ if __name__ == '__main__':
                 'Room Y': source_room['Top'] + offset_top,
                 'Room X': source_room['Left'] + offset_left,
             }
-        # Show softlock warning and build number on file select screen
+        # Show seed hint and build number on file select screen
+        chars = []
+        string_size = 0
+        for char in initial_seed:
+            if char in '0123456789 ."?\' abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ':
+                chars.append(char)
+                string_size += 1
+                if char in '."?\' 0123456789':
+                    string_size += 1
+            if string_size >= 29:
+                break
+        while string_size < 29:
+            chars.append(' ')
+            string_size += 1
+        seed_hint = ''.join(chars)
         changes['Strings'] = {
-            '10': 'Press L2 if softlocked.     ',
+            '10': seed_hint, # 'Press L2 if softlocked.     ',
             '11': 'Alpha Build 74      ',
         }
         # Normalize room connections
-        if settings.get('Room shuffler', {}).get('Normalize room connections', False):
+        if settings.get('Options', {}).get('Normalize room connections', False):
             print('Normalize room connections')
             for stage_name in normalizer.stages:
                 print('', stage_name)
                 for room_name in normalizer.stages[stage_name]:
                     print('  ', room_name)
-                    changes['Stages'][stage_name]['Rooms'][room_name]['Tilemap'] = normalizer.normalize(room_name)
+                    changes['Stages'][stage_name]['Rooms'][room_name]['Tilemap'] = normalizer.normalize_room_tilemap(room_name)
         # ...
         shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)
         current_seed = {
@@ -877,19 +904,19 @@ if __name__ == '__main__':
             logic_core = mapper.LogicCore(mapper_core, changes).get_core()
             current_seed['Logic Core'] = logic_core
             # current_seed['Solver'] = solution
-        filepath = None
-        if args.output is not None:
-            filepath = os.path.normpath(args.output)
-        else:
-            filename = ' '.join((
-                shuffler['End Time'].strftime('%Y-%m-%d %H-%M-%S'),
-                'SOTN Shuffler',
-                changes['Strings']['11'].strip(),
-                '(' + str(shuffler['Initial Seed']) + ')',
-            ))
-            filepath = os.path.join('build', 'shuffler', filename + '.json')
+        filename = ' '.join((
+            shuffler['End Time'].strftime('%Y-%m-%d %H-%M-%S'),
+            'SOTN Shuffler',
+            changes['Strings']['11'].strip(),
+            '(' + str(shuffler['Initial Seed']) + ')',
+        ))
+        filepath = os.path.join('build', 'shuffler', filename + '.json')
         with open(filepath, 'w') as current_seed_json:
             json.dump(current_seed, current_seed_json, indent='    ', sort_keys=True, default=str)
+        # If an output path is specified, make another copy to that path
+        if args.output is not None:
+            with open(os.path.normpath(args.output), 'w') as current_seed_json:
+                json.dump(current_seed, current_seed_json, indent='    ', sort_keys=True, default=str)
         # while True:
         #     winning_game.play()
         break

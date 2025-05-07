@@ -202,7 +202,7 @@ class Game:
                         break
                 # Requirements for a dictionary value
                 if 'All' in requirement_value:
-                    if not self.validate(requirement_value, requirement_key):
+                    if not self.validate_requirements(requirement_value, requirement_key):
                         valid_ind = False
                         break
                 # TODO(sestren): Consider adding 'None' dictionary requirement
@@ -213,7 +213,7 @@ class Game:
         result = valid_ind
         return result
     
-    def validate(self, requirements, state_scope_key: str=None):
+    def validate_requirements(self, requirements, state_scope_key: str=None):
         scoped_state = self.current_state
         if state_scope_key is not None:
             scoped_state = self.current_state[state_scope_key]
@@ -294,7 +294,7 @@ class Game:
         for (command_name, command_info) in self.commands['Global'].items():
             command_data[command_name] = command_info
         for (command_name, command_info) in command_data.items():
-            if not require_validation or self.validate(command_info['Requirements']):
+            if not require_validation or self.validate_requirements(command_info['Requirements']):
                 result.add(command_name)
         result = list(reversed(sorted(result)))
         return result
