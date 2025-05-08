@@ -15,6 +15,9 @@ def stamp(room, top, left, grid):
 
 # NOTE(sestren): Disable normalizing of Crystal Bend (Top Passage) for now, until Hidden Crystal Entrance (Bottom Passage) is also normalized
 stages = {
+    'Castle Entrance': {
+        'Castle Entrance, Merman Room',
+    },
     'Underground Caverns': {
         # 'Underground Caverns, Crystal Bend',
         'Underground Caverns, DK Bridge',
@@ -48,6 +51,30 @@ nodes = {
 }
 
 rooms = {}
+room_name = 'Castle Entrance, Merman Room'
+rooms[room_name] = []
+# Foreground
+source = get_empty_room(2, 3)
+stamp(source, 1 * 16 +  5, 0, ['##@..'])
+stamp(source, 1 * 16 +  6, 0, ['##@..'])
+stamp(source, 1 * 16 +  7, 0, ['##@..'])
+stamp(source, 1 * 16 +  8, 0, ['##@..'])
+stamp(source, 1 * 16 +  9, 0, ['##@..'])
+stamp(source, 1 * 16 + 10, 0, ['##@%%'])
+target = get_empty_room(2, 3)
+stamp(target, 1 * 16 +  5, 0, ['     '])
+stamp(target, 1 * 16 +  6, 0, ['.#@  '])
+stamp(target, 1 * 16 +  7, 0, ['.#@  '])
+stamp(target, 1 * 16 +  8, 0, ['.#@  '])
+stamp(target, 1 * 16 +  9, 0, ['.#@  '])
+stamp(target, 1 * 16 + 10, 0, ['     '])
+edit = {
+    'Layer': 'Foreground and Background',
+    'Source': source,
+    'Target': target,
+}
+rooms[room_name].append(edit)
+
 room_name = 'Underground Caverns, Crystal Bend'
 rooms[room_name] = []
 # Foreground
@@ -361,8 +388,8 @@ rooms[room_name].append(edit)
 other_stages = {
     # 'Abandoned Mine': ('Cave', True),
     # 'Alchemy Laboratory': ('Necromancy Laboratory', True),
-    # 'Castle Entrance': ('Castle Entrance Revisited', False),
-    # 'Castle Entrance Revisited': ('Reverse Entrance', True),
+    'Castle Entrance': ('Castle Entrance Revisited', False),
+    'Castle Entrance Revisited': ('Reverse Entrance', True),
     # 'Castle Keep': ('Reverse Keep', True),
     # 'Catacombs': ('Floating Catacombs', True),
     # 'Clock Tower': ('Reverse Clock Tower', True),
@@ -380,12 +407,15 @@ for (stage_name, (alt_stage_name, flip_ind)) in other_stages.items():
         alt_room_name = room_name.replace(stage_name, alt_stage_name, 1)
         rooms[alt_room_name] = []
         for edit in rooms[room_name]:
-            source = list(reversed(edit['Source']))
-            for row in range(len(source)):
-                source[row] = source[row][::-1]
-            target = list(reversed(edit['Target']))
-            for row in range(len(target)):
-                target[row] = target[row][::-1]
+            source = list(edit['Source'])
+            target = list(edit['Target'])
+            if flip_ind:
+                source = list(reversed(edit['Source']))
+                for row in range(len(source)):
+                    source[row] = source[row][::-1]
+                target = list(reversed(edit['Target']))
+                for row in range(len(target)):
+                    target[row] = target[row][::-1]
             alt_edit = {
                 'Layer': edit['Layer'],
                 'Source': source,
