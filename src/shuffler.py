@@ -400,6 +400,7 @@ if __name__ == '__main__':
             'Assign Power of Wolf relic a unique ID',
             'Clock hands show minutes and seconds instead of hours and minutes',
             'Disable clipping on screen edge of Demon Switch Wall',
+            'Disable clipping on screen edge of Snake Column Wall',
             'Enable debug mode',
             'Normalize room connections',
             'Shuffle Pitch Black Spike Maze',

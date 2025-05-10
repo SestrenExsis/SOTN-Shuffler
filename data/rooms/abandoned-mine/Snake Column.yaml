@@ -28,8 +28,8 @@ Nodes:
         Row: 1
         Column: 0
         Edge: Left
-        Entry Section: Broken Wall
-        Exit Section: Broken Wall
+        Entry Section: Secret Wall
+        Exit Section: Secret Wall
 Commands:
     Action - Break Wall:
         Outcomes:
@@ -38,9 +38,13 @@ Commands:
             Main - Default:
                 Section: Main
                 Status - Snake Column Wall Broken: false
+            Secret Wall (Normalized) - Default:
+                Section: Secret Wall
+                Status - Snake Column Wall Broken: false
+                Option - Disable clipping on screen edge of Snake Column Wall: true
     Move - Broken Wall:
         Outcomes:
-            Section: Broken Wall
+            Section: Secret Wall
         Requirements:
             Main - Wall Broken:
                 Section: Main
@@ -50,5 +54,5 @@ Commands:
             Section: Main
         Requirements:
             Main - Wall Broken:
-                Section: Broken Wall
+                Section: Secret Wall
                 Status - Snake Column Wall Broken: true
