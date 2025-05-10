@@ -950,6 +950,7 @@ class LogicCore:
         for option_name in (
             'Disable clipping on screen edge of Demon Switch Wall',
             'Disable clipping on screen edge of Snake Column Wall',
+            'Disable clipping on screen edge of Tall Zig Zag Room Wall',
         ):
             if changes.get('Options', {}).get(option_name, False):
                 self.state['Option - ' + option_name] = True

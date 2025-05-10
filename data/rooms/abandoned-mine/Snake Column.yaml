@@ -42,7 +42,7 @@ Commands:
                 Section: Secret Wall
                 Status - Snake Column Wall Broken: false
                 Option - Disable clipping on screen edge of Snake Column Wall: true
-    Move - Broken Wall:
+    Move - Secret Wall:
         Outcomes:
             Section: Secret Wall
         Requirements:
