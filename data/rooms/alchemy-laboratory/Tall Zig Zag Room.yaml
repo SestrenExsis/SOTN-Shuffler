@@ -33,8 +33,8 @@ Nodes:
         Row: 2
         Column: 0
         Edge: Left
-        Entry Section: Broken Wall
-        Exit Section: Broken Wall
+        Entry Section: Secret Wall
+        Exit Section: Secret Wall
     Lower-Right Passage:
         Type: "######....######"
         Row: 2
@@ -54,9 +54,13 @@ Commands:
         Outcomes:
             Status - Breakable Floor in Tall Zig Zag Room Broken: true
         Requirements:
-            Default:
+            Main - Default:
                 Section: Main
                 Status - Breakable Floor in Tall Zig Zag Room Broken: false
+            Secret Wall (Normalized) - Default:
+                Section: Secret Wall
+                Status - Breakable Floor in Tall Zig Zag Room Broken: false
+                Option - Disable clipping on screen edge of Tall Zig Zag Room Wall: true
     Action - Break Wall:
         Outcomes:
             Status - Breakable Wall in Tall Zig Zag Room Broken: true
@@ -72,9 +76,9 @@ Commands:
                 Room: Alchemy Laboratory, Tall Zig Zag Room
                 Section: Main
                 Status - Breakable Floor in Tall Zig Zag Room Broken: true
-    Move - Broken Wall:
+    Move - Secret Wall:
         Outcomes:
-            Section: Broken Wall
+            Section: Secret Wall
         Requirements:
             Main:
                 Room: Alchemy Laboratory, Tall Zig Zag Room
@@ -88,7 +92,7 @@ Commands:
                 Room: Alchemy Laboratory, Tall Zig Zag Room
                 Section: Broken Floor
                 Status - Breakable Floor in Tall Zig Zag Room Broken: true
-            Broken Wall:
+            Secret Wall:
                 Room: Alchemy Laboratory, Tall Zig Zag Room
-                Section: Broken Wall
+                Section: Secret Wall
                 Status - Breakable Wall in Tall Zig Zag Room Broken: true
