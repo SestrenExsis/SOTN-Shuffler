@@ -11,8 +11,8 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Left
-        Entry Section: Broken Wall
-        Exit Section: Broken Wall
+        Entry Section: Secret Wall
+        Exit Section: Secret Wall
     Right Passage:
         Type: "######....######"
         Row: 0
@@ -25,12 +25,16 @@ Commands:
         Outcomes:
             Status - Breakable Wall in Plaque Room Broken: true
         Requirements:
-            Default:
+            Main - Default:
                 Section: Main
                 Status - Breakable Wall in Plaque Room Broken: false
-    Move - Broken Wall:
+            Secret Wall (Normalized) - Default:
+                Section: Secret Wall
+                Status - Breakable Wall in Plaque Room Broken: false
+                Option - Shift wall in Plaque Room With Breakable Wall away from screen edge: true
+    Move - Secret Wall:
         Outcomes:
-            Section: Broken Wall
+            Section: Secret Wall
         Requirements:
             Default:
                 Section: Main
@@ -40,5 +44,5 @@ Commands:
             Section: Main
         Requirements:
             Default:
-                Section: Broken Wall
+                Section: Secret Wall
                 Status - Breakable Wall in Plaque Room Broken: true
