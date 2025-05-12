@@ -949,6 +949,7 @@ class LogicCore:
         }
         for option_name in (
             'Disable clipping on screen edge of Demon Switch Wall',
+            'Shift wall in Plaque Room With Breakable Wall away from screen edge',
             'Disable clipping on screen edge of Snake Column Wall',
             'Disable clipping on screen edge of Tall Zig Zag Room Wall',
         ):
