@@ -35,8 +35,8 @@ Nodes:
         Row: 1
         Column: 2
         Edge: Right
-        Entry Section: Broken Wall
-        Exit Section: Broken Wall
+        Entry Section: Secret Wall
+        Exit Section: Secret Wall
     Middle-Bottom Passage:
         Type: "##/....../######"
         Row: 1
@@ -49,20 +49,24 @@ Commands:
         Outcomes:
             Status - Breakable Wall in Grand Staircase Broken: true
         Requirements:
-            Default:
+            Main - Default:
                 Section: Main
                 Status - Breakable Wall in Grand Staircase Broken: false
-    Move - Broken Wall:
+            Secret Wall (Normalized) - Default:
+                Section: Secret Wall
+                Status - Breakable Wall in Grand Staircase Broken: false
+                Option - Normalize room connections: true
+    Move - Secret Wall:
         Outcomes:
-            Section: Broken Wall
+            Section: Secret Wall
         Requirements:
             Main:
                 Section: Main
-                Status - Breakable Wall in Tall Zig Zag Room Broken: true
+                Status - Breakable Wall in Grand Staircase Broken: true
     Move - Main:
         Outcomes:
             Section: Main
         Requirements:
-            Broken Wall:
-                Section: Broken Wall
-                Status - Breakable Wall in Tall Zig Zag Room Broken: true
+            Secret Wall:
+                Section: Secret Wall
+                Status - Breakable Wall in Grand Staircase Broken: true
