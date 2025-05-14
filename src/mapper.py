@@ -424,10 +424,12 @@ stages = {
             'Clock Tower, Path to Karasuman': (0, 0),
             'Clock Tower, Pendulum Room': (0, 2),
         },
+        {
+            'Clock Tower, Left Gear Room': (0, 1),
+            'Clock Tower, Hidden Armory': (3, 0),
+        },
         { 'Clock Tower, Healing Mail Room': (0, 0) },
         { 'Clock Tower, Spire': (0, 0) },
-        { 'Clock Tower, Hidden Armory': (0, 0) },
-        { 'Clock Tower, Left Gear Room': (0, 0) },
         { 'Clock Tower, Right Gear Room': (0, 0) },
         { 'Clock Tower, Exit to Courtyard': (0, 0) },
         { 'Clock Tower, Open Courtyard': (0, 0) },
@@ -949,9 +951,10 @@ class LogicCore:
         }
         for option_name in (
             'Disable clipping on screen edge of Demon Switch Wall',
-            'Shift wall in Plaque Room With Breakable Wall away from screen edge',
+            'Disable clipping on screen edge of Left Gear Room Wall',
             'Disable clipping on screen edge of Snake Column Wall',
             'Disable clipping on screen edge of Tall Zig Zag Room Wall',
+            'Shift wall in Plaque Room With Breakable Wall away from screen edge',
         ):
             if changes.get('Options', {}).get(option_name, False):
                 self.state['Option - ' + option_name] = True
