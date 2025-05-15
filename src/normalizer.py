@@ -18,6 +18,9 @@ stages = {
     'Castle Entrance': {
         'Castle Entrance, Merman Room',
     },
+    "Olrox's Quarters": {
+        "Olrox's Quarters, Grand Staircase",
+    },
     'Underground Caverns': {
         # 'Underground Caverns, Crystal Bend',
         'Underground Caverns, DK Bridge',
@@ -68,6 +71,26 @@ stamp(target, 1 * 16 +  7, 0, ['.#@  '])
 stamp(target, 1 * 16 +  8, 0, ['.#@  '])
 stamp(target, 1 * 16 +  9, 0, ['.#@  '])
 stamp(target, 1 * 16 + 10, 0, ['     '])
+edit = {
+    'Layer': 'Foreground and Background',
+    'Source': source,
+    'Target': target,
+}
+rooms[room_name].append(edit)
+
+room_name = "Olrox's Quarters, Grand Staircase"
+rooms[room_name] = []
+# Foreground and Background
+source = get_empty_room(2, 3)
+stamp(source, 1 * 16 +  6, 2 * 16 + 13, ['.@#'])
+stamp(source, 1 * 16 +  7, 2 * 16 + 13, ['.@#'])
+stamp(source, 1 * 16 +  8, 2 * 16 + 13, ['.@#'])
+stamp(source, 1 * 16 +  9, 2 * 16 + 13, ['.@#'])
+target = get_empty_room(2, 3)
+stamp(target, 1 * 16 +  6, 2 * 16 + 13, ['.@.'])
+stamp(target, 1 * 16 +  7, 2 * 16 + 13, ['.@.'])
+stamp(target, 1 * 16 +  8, 2 * 16 + 13, ['.@.'])
+stamp(target, 1 * 16 +  9, 2 * 16 + 13, ['.@.'])
 edit = {
     'Layer': 'Foreground and Background',
     'Source': source,
@@ -396,7 +419,7 @@ other_stages = {
     # 'Colosseum': ('Reverse Colosseum', True),
     # 'Long Library': ('Forbidden Library', True),
     # 'Marble Gallery': ('Black Marble Gallery', True),
-    # "Olrox's Quarters": ("Death Wing's Lair", True),
+    "Olrox's Quarters": ("Death Wing's Lair", True),
     # 'Outer Wall': ('Reverse Outer Wall', True),
     # 'Royal Chapel': ('Anti-Chapel', True),
     'Underground Caverns': ('Reverse Caverns', True),
