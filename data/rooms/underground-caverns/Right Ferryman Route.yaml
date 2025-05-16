@@ -4,15 +4,7 @@ Room: Right Ferryman Route
 Index: 23
 Columns: 13
 Rows: 2
-Empty Cells:
-    - Row: 1
-      Column: 3
-    - Row: 1
-      Column: 4
-    - Row: 1
-      Column: 5
-    - Row: 1
-      Column: 8
+Empty Cells: {}
 Map:
     - "00000000000000000000000000000000000000000000000000000"
     - "01111111111111111111111111111111111111111111111111110"
