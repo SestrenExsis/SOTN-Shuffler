@@ -309,6 +309,24 @@ def get_loading_room_labels_by_connection(mapper_core, stages, stage_names):
     result = instructions
     return result
 
+stage_colors = {
+    'Abandoned Mine': '8',
+    'Alchemy Laboratory': 'A',
+    'Castle Center': 'D',
+    'Castle Keep': 'A',
+    'Castle Entrance': 'B',
+    'Catacombs': '9',
+    'Clock Tower': 'B',
+    'Colosseum': '6',
+    'Long Library': '6',
+    'Marble Gallery': 'D',
+    "Olrox's Quarters": 'F',
+    'Outer Wall': '9',
+    'Royal Chapel': '7',
+    'Underground Caverns': '1',
+    'Warp Rooms': '5',
+}
+
 def get_loading_room_labels_by_stage(mapper_core, stages, stage_names):
     stage_codes = {
         'Abandoned Mine': 'D',
@@ -751,7 +769,10 @@ if __name__ == '__main__':
                         if char == ' ':
                             continue
                         if (0 <= row < 256) and (0 <= col < 256):
-                            castle_map[row][col] = char
+                            if char == '1' and settings.get('Options', {}).get('Color-code each stage on the map', False):
+                                castle_map[row][col] = stage_colors[stage_name]
+                            else:
+                                castle_map[row][col] = char
                         else:
                             # print('Tried to draw pixel out of bounds of map:', room_name, (room_top, room_left), (row, col))
                             pass

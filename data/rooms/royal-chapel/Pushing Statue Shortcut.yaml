@@ -8,7 +8,7 @@ Empty Cells: {}
 Map:
     - "00000"
     - "01110"
-    - "11114"
+    - "11014"
     - "01110"
     - "00000"
 Nodes:
@@ -17,13 +17,34 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Left
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Left Side
+        Exit Section: Left Side
     Right Red Door:
         Type: "######....######"
         Row: 0
         Column: 0
         Edge: Right
-        Entry Section: Main
-        Exit Section: Main
-Commands: {}
+        Entry Section: Right Side
+        Exit Section: Right Side
+Commands:
+    Move - Left Side:
+        Outcomes:
+            Section: Left Side
+        Requirements:
+            Default:
+                Section: Right Side
+                Status - Pushing Statue Destroyed : true
+    Move - Right Side:
+        Outcomes:
+            Section: Right Side
+        Requirements:
+            Default:
+                Section: Left Side
+                Status - Pushing Statue Destroyed: true
+    Action - Destroy Pushing Statue:
+        Outcomes:
+            Status - Pushing Statue Destroyed: true
+        Requirements:
+            Default:
+                Section: Right Side
+                Status - Pushing Statue Destroyed: false
