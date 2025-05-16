@@ -2,6 +2,7 @@
 Options:
     Assign Power of Wolf relic a unique ID: true
     Clock hands show minutes and seconds instead of hours and minutes: true
+    Color-code each stage on the map: true
     Disable clipping on screen edge of Demon Switch Wall: true
     Disable clipping on screen edge of Left Gear Room Wall: true
     Disable clipping on screen edge of Snake Column Wall: true
@@ -15,4 +16,4 @@ Quest shuffler:
     Shuffle quest rewards: true
 Stage shuffler:
     Shuffle connections between stages: true
-    Loading room labels: Stage
+    Loading room labels: Connection
