@@ -30,8 +30,8 @@ Nodes:
         Row: 1
         Column: 0
         Edge: Left
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Secret Wall
+        Exit Section: Secret Wall
     Right Passage:
         Type: "######....######"
         Row: 1
@@ -39,4 +39,29 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands: {}
+Commands:
+    Action - Break Wall:
+        Outcomes:
+            Status - Pendulum Room Wall Broken: true
+        Requirements:
+            Main - Default:
+                Section: Main
+                Status - Pendulum Room Wall Broken: false
+            Secret Wall (Normalized) - Default:
+                Section: Secret Wall
+                Status - Pendulum Room Wall Broken: false
+                Option - Disable clipping on screen edge of Pendulum Room Wall: true
+    Move - Secret Wall:
+        Outcomes:
+            Section: Secret Wall
+        Requirements:
+            Main - Wall Broken:
+                Section: Main
+                Status - Pendulum Room Wall Broken: true
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Main - Wall Broken:
+                Section: Secret Wall
+                Status - Pendulum Room Wall Broken: true
