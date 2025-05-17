@@ -304,7 +304,7 @@ def get_loading_room_labels_by_connection(mapper_core, stages, stage_names):
     instructions = []
     links = {}
     for (index, stage_name) in enumerate(stage_names):
-        if stage_name.startswith('Warp Rooms, '):
+        if stage_name == 'Warp Rooms':
             continue
         stage = stages[stage_name]
         stage_changes = stage['Mapper'].stage.get_changes()
