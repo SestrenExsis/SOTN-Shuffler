@@ -60,7 +60,7 @@ skills = {
 # NOTE(sestren): There is only one boss teleporter in the game data for the following bosses,
 # NOTE(sestren): despite there being multiple entrances, so not all entrances will be covered:
 # NOTE(sestren): Granfaloon, Akmodan II, Olrox, Galamoth
-# Ideally, there would need to be 4 addtional boss teleporter entries added to the list to cover all entrances
+# Ideally, there would need to be 4 additional boss teleporter entries added to the list to cover all entrances
 # Since each boss teleporter takes up 20 bytes, that is a total of 80 bytes that would have to be found or taken from somewhere else
 boss_teleporters = {
     '0': ('Marble Gallery', 'Marble Gallery, Clock Room', 0, 0), # Cutscene - Meeting Maria in Clock Room
@@ -96,9 +96,8 @@ boss_teleporters = {
 # Shuffle connections between stages
 def shuffle_teleporters(teleporters, seed: int) -> dict:
     rng = random.Random(seed)
-    # print('Shuffle teleporters')
     MAX_LAYER = 5
-    exclusions = (
+    excluded_sources = {
         'Castle Center, Fake Room with Teleporter to Marble Gallery',
         'Castle Entrance Revisited, Fake Room with Teleporter to Alchemy Laboratory',
         'Castle Entrance Revisited, Fake Room with Teleporter to Marble Gallery',
@@ -107,7 +106,30 @@ def shuffle_teleporters(teleporters, seed: int) -> dict:
         'Marble Gallery, Fake Room with Teleporter to Castle Center',
         'Special, Succubus Defeated',
         'Underground Caverns, Fake Room with Teleporter to Boss - Succubus',
-    )
+    }
+    forbidden_links = {
+        # NOTE(sestren): Disallow linking the exit to the left of Cube of Zoe to deadends
+        ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Warp Rooms, Fake Room with Teleporter to Castle Entrance'),
+        ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Long Library, Fake Room with Teleporter to Outer Wall'),
+        ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Catacombs, Fake Room with Teleporter to Abandoned Mine'),
+        # NOTE(sestren): Disallow exit left of Cube of Zoe from linking to Warp Rooms
+        ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Warp Rooms, Fake Room with Teleporter to Abandoned Mine'),
+        ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Warp Rooms, Fake Room with Teleporter to Castle Keep'),
+        ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', "Warp Rooms, Fake Room with Teleporter to Olrox's Quarters"),
+        ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Warp Rooms, Fake Room with Teleporter to Outer Wall'),
+    }
+    # NOTE(sestren): Stages are considered "highly-linkable" if they have 3 or more Red Doors
+    highly_linkable_stages = {
+        'Abandoned Mine',
+        'Alchemy Laboratory',
+        'Castle Entrance',
+        'Castle Keep',
+        'Marble Gallery',
+        "Olrox's Quarters",
+        'Outer Wall',
+        'Royal Chapel',
+        'Underground Caverns',
+    }
     layers = {
         'Alchemy Laboratory': 0,
         'Castle Entrance': 0,
@@ -117,19 +139,19 @@ def shuffle_teleporters(teleporters, seed: int) -> dict:
         'Outer Wall': 0,
         'Warp Rooms': 0,
         'Abandoned Mine': 1,
-        'Marble Gallery': 1,
-        'Royal Chapel': 1,
+        'Marble Gallery': 0,
+        'Royal Chapel': 0,
         'Underground Caverns': 1,
-        'Catacombs': 2,
-        'Clock Tower': 2,
-        'Olrox\'s Quarters': 2,
+        'Catacombs': 1,
+        'Clock Tower': 1,
+        'Olrox\'s Quarters': 1,
     }
     connections = set()
     while True:
         sources = {}
         targets = {}
         for (source_key, source) in teleporters['Sources'].items():
-            if source_key in exclusions:
+            if source_key in excluded_sources:
                 continue
             source_stage = source['Stage']
             target_key = source['Target']
@@ -172,22 +194,30 @@ def shuffle_teleporters(teleporters, seed: int) -> dict:
                 stages[source_a['Stage']] = set()
             source_b_candidates = set()
             for (candidate_source_b_key, candidate_source_b) in sources.items():
-                if source_a_key == 'Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory':
-                    if candidate_source_b_key == 'Warp Rooms, Fake Room with Teleporter to Castle Entrance':
-                        # First stage connection in the game is not allowed to connect to the root Warp Room
-                        continue
+                if tuple(sorted((source_a_key, candidate_source_b_key))) in forbidden_links:
+                    continue
                 if candidate_source_b['Stage'] == source_a['Stage']:
-                    # A stage may not connect to itself
+                    # NOTE(sestren): A stage may not link to itself
                     continue
                 if candidate_source_b['Direction'] == source_a['Direction']:
-                    # A Left Passage must connect to a Right Passage, and vice versa
+                    # NOTE(sestren): A Left Passage must link to a Right Passage, and vice versa
                     continue
                 if candidate_source_b['Stage'] in stages[source_a['Stage']]:
-                    # A stage may not connect to the same stage more than once
+                    # NOTE(sestren): A stage may not link to the same stage more than once
+                    continue
+                if (
+                    'Warp Rooms' in (candidate_source_b['Stage'], source_a['Stage']) and
+                    candidate_source_b['Stage'] not in highly_linkable_stages and
+                    source_a['Stage'] not in highly_linkable_stages
+                ):
+                    # NOTE(sestren): Only highly-linkable stages may connect to Warp Rooms
+                    continue
+                if candidate_source_b['Stage'] in stages.get('Warp Rooms', {}) and source_a['Stage'] in stages.get('Warp Rooms', {}):
+                    # NOTE(sestren): Warp Room-linked stages may not link to one another
                     continue
                 candidate_stage = candidate_source_b_key.split(', ')[0]
                 if layers[candidate_stage] > current_layer:
-                    # A stage may not connect to a stage beyond the current layer
+                    # NOTE(sestren): A stage may not link to a stage beyond the current layer of discovery
                     continue
                 source_b_candidates.add(candidate_source_b_key)
             if len(source_b_candidates) < 1:
@@ -908,7 +938,7 @@ if __name__ == '__main__':
         seed_hint = ''.join(chars)
         changes['Strings'] = {
             '10': seed_hint, # 'Press L2 if softlocked.     ',
-            '11': 'Alpha Build 74      ',
+            '11': 'Alpha Build 75      ',
         }
         # Normalize room connections
         if settings.get('Options', {}).get('Normalize room connections', False):
