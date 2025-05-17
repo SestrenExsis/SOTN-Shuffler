@@ -449,6 +449,7 @@ if __name__ == '__main__':
             'Clock hands show minutes and seconds instead of hours and minutes',
             'Disable clipping on screen edge of Demon Switch Wall',
             'Disable clipping on screen edge of Left Gear Room Wall',
+            'Disable clipping on screen edge of Pendulum Room Wall',
             'Disable clipping on screen edge of Snake Column Wall',
             'Disable clipping on screen edge of Tall Zig Zag Room Wall',
             'Enable debug mode',

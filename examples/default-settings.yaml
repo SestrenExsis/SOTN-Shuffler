@@ -5,6 +5,7 @@ Options:
     Color-code each stage on the map: true
     Disable clipping on screen edge of Demon Switch Wall: true
     Disable clipping on screen edge of Left Gear Room Wall: true
+    Disable clipping on screen edge of Pendulum Room Wall: true
     Disable clipping on screen edge of Snake Column Wall: true
     Disable clipping on screen edge of Tall Zig Zag Room Wall: true
     Enable debug mode: true
