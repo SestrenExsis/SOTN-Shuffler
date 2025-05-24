@@ -2,6 +2,7 @@
 Sources:
   Location - Cube of Zoe:
     Description: Action - Check Cube of Zoe Location
+    Logic Level: Required
     Outcomes:
       Check - Cube of Zoe Location: true
     Requirements:
@@ -15,9 +16,11 @@ Sources:
         Room: Castle Entrance Revisited, Cube of Zoe Room
         Section: Main
         Stage: Castle Entrance Revisited
+    Reward Class: Relic
     Target Reward: Relic - Cube of Zoe
   Location - Demon Card:
     Description: Action - Check Demon Card Location
+    Logic Level: Required
     Outcomes:
       Check - Demon Card Location: true
     Requirements:
@@ -26,9 +29,11 @@ Sources:
         Room: Abandoned Mine, Demon Card Room
         Section: Main
         Stage: Abandoned Mine
+    Reward Class: Relic
     Target Reward: Relic - Demon Card
   Location - Echo of Bat:
     Description: Action - Check Echo of Bat Location
+    Logic Level: Required
     Outcomes:
       Check - Echo of Bat Location: true
     Requirements:
@@ -37,6 +42,7 @@ Sources:
         Room: Olrox's Quarters, Echo of Bat Room
         Section: Main
         Stage: Olrox's Quarters
+    Reward Class: Relic
     Target Reward: Relic - Echo of Bat
   Location - Fire of Bat:
     Description: Action - Check Fire of Bat Location
@@ -48,9 +54,11 @@ Sources:
         Room: Clock Tower, Fire of Bat Room
         Section: Main
         Stage: Clock Tower
+    Reward Class: Relic
     Target Reward: Relic - Fire of Bat
   Location - Form of Mist:
     Description: Action - Check Form of Mist Location
+    Logic Level: Required
     Outcomes:
       Check - Form of Mist Location: true
     Requirements:
@@ -59,6 +67,7 @@ Sources:
         Room: Colosseum, Top of Elevator Shaft
         Section: Left Side
         Stage: Colosseum
+    Reward Class: Relic
     Target Reward: Relic - Form of Mist
   Location - Ghost Card:
     Description: Action - Check Ghost Card Location
@@ -70,9 +79,11 @@ Sources:
         Room: Castle Keep, Ghost Card Room
         Section: Ground
         Stage: Castle Keep
+    Reward Class: Relic
     Target Reward: Relic - Ghost Card
   Location - Power of Mist:
     Description: Action - Check Power of Mist Location
+    Logic Level: Required
     Outcomes:
       Check - Power of Mist Location: true
     Requirements:
@@ -81,9 +92,11 @@ Sources:
         Room: Castle Keep, Keep Area
         Section: Middle-Left Ledge
         Stage: Castle Keep
+    Reward Class: Relic
     Target Reward: Relic - Power of Mist
   Location - Gravity Boots:
     Description: Action - Check Gravity Boots Location
+    Logic Level: Required
     Outcomes:
       Check - Gravity Boots Location: true
     Requirements:
@@ -92,9 +105,11 @@ Sources:
         Room: Marble Gallery, Gravity Boots Room
         Section: Main
         Stage: Marble Gallery
+    Reward Class: Relic
     Target Reward: Relic - Gravity Boots
   Location - Holy Symbol:
     Description: Action - Check Holy Symbol Location
+    Logic Level: Required
     Outcomes:
       Check - Holy Symbol Location: true
     Requirements:
@@ -103,9 +118,11 @@ Sources:
         Room: Underground Caverns, Holy Symbol Room
         Section: Main
         Stage: Underground Caverns
+    Reward Class: Relic
     Target Reward: Relic - Holy Symbol
   Location - Leap Stone:
     Description: Action - Check Leap Stone Location
+    Logic Level: Required
     Outcomes:
       Check - Leap Stone Location: true
     Requirements:
@@ -114,9 +131,11 @@ Sources:
         Room: Castle Keep, Keep Area
         Section: Ground
         Stage: Castle Keep
+    Reward Class: Relic
     Target Reward: Relic - Leap Stone
   Location - Merman Statue:
     Description: Action - Check Merman Statue Location
+    Logic Level: Required
     Outcomes:
       Check - Merman Statue Location: true
     Requirements:
@@ -125,6 +144,7 @@ Sources:
         Room: Underground Caverns, Merman Statue Room
         Section: Main
         Stage: Underground Caverns
+    Reward Class: Relic
     Target Reward: Relic - Merman Statue
   Location - Power of Wolf:
     Description: Action - Check Power of Wolf Location
@@ -141,9 +161,11 @@ Sources:
         Room: Castle Entrance Revisited, After Drawbridge
         Section: Parapet
         Stage: Castle Entrance Revisited
+    Reward Class: Relic
     Target Reward: Relic - Power of Wolf
   Location - Soul of Bat:
     Description: Action - Check Soul of Bat Location
+    Logic Level: Required
     Outcomes:
       Check - Soul of Bat Location: true
     Requirements:
@@ -152,6 +174,7 @@ Sources:
         Room: Long Library, Lesser Demon Area
         Section: Behind Mist Gate
         Stage: Long Library
+    Reward Class: Relic
     Target Reward: Relic - Soul of Bat
   Location - Soul of Wolf:
     Description: Action - Check Soul of Wolf Location
@@ -163,6 +186,7 @@ Sources:
         Room: Outer Wall, Elevator Shaft Room
         Section: Elevator Shaft
         Stage: Outer Wall
+    Reward Class: Relic
     Target Reward: Relic - Soul of Wolf
   Location - Spirit Orb:
     Description: Action - Check Spirit Orb Location
@@ -174,6 +198,7 @@ Sources:
         Room: Marble Gallery, Spirit Orb Room
         Section: Main
         Stage: Marble Gallery
+    Reward Class: Relic
     Target Reward: Relic - Spirit Orb
   Location - Sword Card:
     Description: Action - Check Sword Card Location
@@ -185,6 +210,7 @@ Sources:
         Room: Olrox's Quarters, Sword Card Room
         Section: Main
         Stage: Olrox's Quarters
+    Reward Class: Relic
     Target Reward: Relic - Sword Card
   Location - Faerie Card:
     Description: Action - Check Faerie Card Location
@@ -196,6 +222,7 @@ Sources:
         Room: Long Library, Faerie Card Room
         Section: Main
         Stage: Long Library
+    Reward Class: Relic
     Target Reward: Relic - Faerie Card
   Location - Faerie Scroll:
     Description: Action - Check Faerie Scroll Location
@@ -207,8 +234,1170 @@ Sources:
         Room: Long Library, Spellbook Area
         Section: Main
         Stage: Long Library
+    Reward Class: Relic
     Target Reward: Relic - Faerie Scroll
+  Location - Alchemy Laboratory, Red Skeleton Lift Room (Leather Shield):
+    Description: Action - Check Leather Shield Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Alchemy Laboratory Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Alchemy Laboratory Item Drop 8 Location: false
+        Room: Alchemy Laboratory, Red Skeleton Lift Room
+        Section: Ground
+        Stage: Alchemy Laboratory
+    Reward Class: Item
+    Target Reward: Item - Leather Shield
+  Location - Castle Entrance, Heart Max-Up Room (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Castle Entrance Item Drop 0 Location: true
+    Requirements:
+      Castle Entrance:
+        Check - Castle Entrance Item Drop 0 Location: false
+        Room: Castle Entrance, Heart Max-Up Room
+        Section: Main
+        Stage: Castle Entrance
+      Castle Entrance Revisited:
+        Check - Castle Entrance Item Drop 0 Location: false
+        Room: Castle Entrance Revisited, Heart Max-Up Room
+        Section: Main
+        Stage: Castle Entrance Revisited
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Castle Entrance, Life Max-Up Room (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Castle Entrance Item Drop 1 Location: true
+    Requirements:
+      Castle Entrance:
+        Check - Castle Entrance Item Drop 1 Location: false
+        Room: Castle Entrance, Life Max-Up Room
+        Section: Main
+        Stage: Castle Entrance
+      Castle Entrance Revisited:
+        Check - Castle Entrance Item Drop 1 Location: false
+        Room: Castle Entrance Revisited, Life Max-Up Room
+        Section: Main
+        Stage: Castle Entrance Revisited
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Castle Entrance, Jewel Sword Room (Life Apple):
+    Description: Action - Check Life Apple Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Castle Entrance Item Drop 2 Location: true
+    Requirements:
+      Castle Entrance:
+        Check - Castle Entrance Item Drop 2 Location: false
+        Room: Castle Entrance, Jewel Sword Room
+        Section: Main
+        Stage: Castle Entrance
+      Castle Entrance Revisited:
+        Check - Castle Entrance Item Drop 2 Location: false
+        Room: Castle Entrance Revisited, Jewel Sword Room
+        Section: Main
+        Stage: Castle Entrance Revisited
+    Reward Class: Item
+    Target Reward: Item - Life Apple
+  Location - Castle Entrance, Cube of Zoe Room (Shield Potion):
+    Description: Action - Check Shield Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Castle Entrance Item Drop 4 Location: true
+    Requirements:
+      Castle Entrance:
+        Check - Castle Entrance Item Drop 4 Location: false
+        Room: Castle Entrance, Cube of Zoe Room
+        Section: Main
+        Stage: Castle Entrance
+      Castle Entrance Revisited:
+        Check - Castle Entrance Item Drop 4 Location: false
+        Room: Castle Entrance Revisited, Cube of Zoe Room
+        Section: Main
+        Stage: Castle Entrance Revisited
+    Reward Class: Item
+    Target Reward: Item - Shield Potion
+  Location - Castle Entrance, Holy Mail Room (Holy Mail):
+    Description: Action - Check Holy Mail Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Castle Entrance Item Drop 5 Location: true
+    Requirements:
+      Castle Entrance:
+        Check - Castle Entrance Item Drop 5 Location: false
+        Room: Castle Entrance, Holy Mail Room
+        Section: Ledge
+        Stage: Castle Entrance
+      Castle Entrance Revisited:
+        Check - Castle Entrance Item Drop 5 Location: false
+        Room: Castle Entrance Revisited, Holy Mail Room
+        Section: Ledge
+        Stage: Castle Entrance Revisited
+    Reward Class: Item
+    Target Reward: Item - Holy Mail
+  Location - Castle Entrance, Shortcut to Underground Caverns (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Castle Entrance Item Drop 6 Location: true
+    Requirements:
+      Castle Entrance:
+        Check - Castle Entrance Item Drop 6 Location: false
+        Room: Castle Entrance, Shortcut to Underground Caverns
+        Section: Main
+        Stage: Castle Entrance
+      Castle Entrance Revisited:
+        Check - Castle Entrance Item Drop 6 Location: false
+        Room: Castle Entrance Revisited, Shortcut to Underground Caverns
+        Section: Main
+        Stage: Castle Entrance Revisited
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Castle Entrance, Shortcut to Warp Rooms (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Castle Entrance Item Drop 7 Location: true
+    Requirements:
+      Castle Entrance:
+        Check - Castle Entrance Item Drop 7 Location: false
+        Room: Castle Entrance, Shortcut to Warp Rooms
+        Section: Left Side
+        Stage: Castle Entrance
+      Castle Entrance Revisited:
+        Check - Castle Entrance Item Drop 7 Location: false
+        Room: Castle Entrance Revisited, Shortcut to Warp Rooms
+        Section: Left Side
+        Stage: Castle Entrance Revisited
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Castle Entrance, After Drawbridge (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Castle Entrance Item Drop 8 Location: true
+    Requirements:
+      Castle Entrance:
+        Check - Castle Entrance Item Drop 8 Location: false
+        Room: Castle Entrance, After Drawbridge
+        Section: Parapet
+        Stage: Castle Entrance
+      Castle Entrance Revisited:
+        Check - Castle Entrance Item Drop 8 Location: false
+        Room: Castle Entrance Revisited, After Drawbridge
+        Section: Parapet
+        Stage: Castle Entrance Revisited
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Castle Entrance, Jewel Sword Room (Jewel Sword):
+    Description: Action - Check Jewel Sword Room Location
+    Logic Level: Hidden
+    Notes:
+      - The Jewel Sword only shows up in Castle Entrance Revisited
+    Outcomes:
+      Check - Castle Entrance Item Drop 9 Location: true
+    Requirements:
+      Castle Entrance Revisited:
+        Check - Castle Entrance Item Drop 9 Location: false
+        Room: Castle Entrance Revisited, Jewel Sword Room
+        Section: Main
+        Stage: Castle Entrance Revisited
+    Reward Class: Item
+    Target Reward: Item - Jewel Sword
+  Location - Marble Gallery, Pathway After Left Statue (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Marble Gallery Item Drop 0 Location: true
+    Requirements:
+      Default:
+        Check - Marble Gallery Item Drop 0 Location: false
+        Room: Marble Gallery, Pathway After Left Statue
+        Section: Main
+        Stage: Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Marble Gallery, Pathway After Right Statue (Alucart Shield):
+    Description: Action - Check Alucart Shield Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Marble Gallery Item Drop 1 Location: true
+    Requirements:
+      Default:
+        Check - Marble Gallery Item Drop 1 Location: false
+        Room: Marble Gallery, Pathway After Right Statue
+        Section: Main
+        Stage: Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Alucart Shield
+  Location - Marble Gallery, Pathway After Right Statue (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Marble Gallery Item Drop 2 Location: true
+    Requirements:
+      Default:
+        Check - Marble Gallery Item Drop 2 Location: false
+        Room: Marble Gallery, Pathway After Right Statue
+        Section: Main
+        Stage: Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Marble Gallery, Gravity Boots Room (Life Apple):
+    Description: Action - Check Life Apple Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Marble Gallery Item Drop 3 Location: true
+    Requirements:
+      Default:
+        Check - Marble Gallery Item Drop 3 Location: false
+        Room: Marble Gallery, Gravity Boots Room
+        Section: Main
+        Stage: Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Life Apple
+  Location - Marble Gallery, Gravity Boots Room (Hammer):
+    Description: Action - Check Hammer Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Marble Gallery Item Drop 4 Location: true
+    Requirements:
+      Default:
+        Check - Marble Gallery Item Drop 4 Location: false
+        Room: Marble Gallery, Gravity Boots Room
+        Section: Main
+        Stage: Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Hammer
+  Location - Marble Gallery, Gravity Boots Room (Potion):
+    Description: Action - Check Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Marble Gallery Item Drop 5 Location: true
+    Requirements:
+      Default:
+        Check - Marble Gallery Item Drop 5 Location: false
+        Room: Marble Gallery, Gravity Boots Room
+        Section: Main
+        Stage: Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Potion
+  Location - Marble Gallery, Alucart Room (Alucart Mail):
+    Description: Action - Check Alucart Mail Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Marble Gallery Item Drop 6 Location: true
+    Requirements:
+      Default:
+        Check - Marble Gallery Item Drop 6 Location: false
+        Room: Marble Gallery, Alucart Room
+        Section: Main
+        Stage: Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Alucart Mail
+  Location - Marble Gallery, Alucart Room (Alucart Sword):
+    Description: Action - Check Alucart Sword Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Marble Gallery Item Drop 7 Location: true
+    Requirements:
+      Default:
+        Check - Marble Gallery Item Drop 7 Location: false
+        Room: Marble Gallery, Alucart Room
+        Section: Main
+        Stage: Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Alucart Sword
+  Location - Marble Gallery, Power-Up Room (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Marble Gallery Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Marble Gallery Item Drop 8 Location: false
+        Room: Marble Gallery, Power-Up Room
+        Section: Main
+        Stage: Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Marble Gallery, Power-Up Room (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Marble Gallery Item Drop 9 Location: true
+    Requirements:
+      Default:
+        Check - Marble Gallery Item Drop 9 Location: false
+        Room: Marble Gallery, Power-Up Room
+        Section: Main
+        Stage: Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Marble Gallery, Beneath Right Trapdoor (Library Card):
+    Description: Action - Check Library Card Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Marble Gallery Item Drop Index 10 Location: true
+    Requirements:
+      Default:
+        Check - Marble Gallery Item Drop Index 10 Location: false
+        Room: Marble Gallery, Beneath Right Trapdoor
+        Section: Main
+        Stage: Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Library Card
+  Location - Marble Gallery, Beneath Right Trapdoor (Attack Potion):
+    Description: Action - Check Attack Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Marble Gallery Item Drop 11 Location: true
+    Requirements:
+      Default:
+        Check - Marble Gallery Item Drop 11 Location: false
+        Room: Marble Gallery, Beneath Right Trapdoor
+        Section: Main
+        Stage: Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Attack Potion
+  Location - Marble Gallery, Spirit Orb Room (Hammer):
+    Description: Action - Check Hammer Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Marble Gallery Item Drop 12 Location: true
+    Requirements:
+      Default:
+        Check - Marble Gallery Item Drop 12 Location: false
+        Room: Marble Gallery, Spirit Orb Room
+        Section: Cubbies
+        Stage: Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Hammer
+  Location - Marble Gallery, Spirit Orb Room (Strength Potion):
+    Description: Action - Check Strength Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Marble Gallery Item Drop 13 Location: true
+    Requirements:
+      Default:
+        Check - Marble Gallery Item Drop 13 Location: false
+        Room: Marble Gallery, Spirit Orb Room
+        Section: Cubbies
+        Stage: Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Strength Potion
+  Location - Olrox's Quarters, Catwalk Crypt (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Olrox's Quarters Item Drop 1 Location: true
+    Requirements:
+      Default:
+        Check - Olrox's Quarters Item Drop 1 Location: false
+        Room: Olrox's Quarters, Catwalk Crypt
+        Section: Main
+        Stage: Olrox's Quarters
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Olrox's Quarters, Secret Onyx Room (Broadsword):
+    Description: Action - Check Broadsword Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Olrox's Quarters Item Drop 4 Location: true
+    Requirements:
+      Default:
+        Check - Olrox's Quarters Item Drop 4 Location: false
+        Room: Olrox's Quarters, Secret Onyx Room
+        Section: Main
+        Stage: Olrox's Quarters
+    Reward Class: Item
+    Target Reward: Item - Broadsword
+  Location - Olrox's Quarters, Secret Onyx Room (Onyx):
+    Description: Action - Check Onyx Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Olrox's Quarters Item Drop 5 Location: true
+    Requirements:
+      Default:
+        Check - Olrox's Quarters Item Drop 5 Location: false
+        Room: Olrox's Quarters, Secret Onyx Room
+        Section: Main
+        Stage: Olrox's Quarters
+    Reward Class: Item
+    Target Reward: Item - Onyx
+  Location - Olrox's Quarters, Secret Onyx Room (Cheese):
+    Description: Action - Check Cheese Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Olrox's Quarters Item Drop 6 Location: true
+    Requirements:
+      Default:
+        Check - Olrox's Quarters Item Drop 6 Location: false
+        Room: Olrox's Quarters, Secret Onyx Room
+        Section: Main
+        Stage: Olrox's Quarters
+    Reward Class: Item
+    Target Reward: Item - Cheese
+  Location - Olrox's Quarters, Tall Shaft (Manna Prism):
+    Description: Action - Check Manna Prism Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Olrox's Quarters Item Drop 7 Location: true
+    Requirements:
+      Default:
+        Check - Olrox's Quarters Item Drop 7 Location: false
+        Room: Olrox's Quarters, Tall Shaft
+        Section: Main
+        Stage: Olrox's Quarters
+    Reward Class: Item
+    Target Reward: Item - Manna Prism
+  Location - Olrox's Quarters, Tall Shaft (Resist Fire):
+    Description: Action - Check Resist Fire Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Olrox's Quarters Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Olrox's Quarters Item Drop 8 Location: false
+        Room: Olrox's Quarters, Tall Shaft
+        Section: Main
+        Stage: Olrox's Quarters
+    Reward Class: Item
+    Target Reward: Item - Resist Fire
+  Location - Olrox's Quarters, Tall Shaft (Luck Potion):
+    Description: Action - Check Luck Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Olrox's Quarters Item Drop 9 Location: true
+    Requirements:
+      Default:
+        Check - Olrox's Quarters Item Drop 9 Location: false
+        Room: Olrox's Quarters, Tall Shaft
+        Section: Main
+        Stage: Olrox's Quarters
+    Reward Class: Item
+    Target Reward: Item - Luck Potion
+  Location - Olrox's Quarters, Prison (Estoc):
+    Description: Action - Check Estoc Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Olrox's Quarters Item Drop 10 Location: true
+    Requirements:
+      Default:
+        Check - Olrox's Quarters Item Drop 10 Location: false
+        Room: Olrox's Quarters, Prison
+        Section: Main
+        Stage: Olrox's Quarters
+    Reward Class: Item
+    Target Reward: Item - Estoc
+  Location - Olrox's Quarters, Narrow Hallway to Olrox (Iron Ball):
+    Description: Action - Check Iron Ball Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Olrox's Quarters Item Drop 11 Location: true
+    Requirements:
+      Default:
+        Check - Olrox's Quarters Item Drop 11 Location: false
+        Room: Olrox's Quarters, Narrow Hallway to Olrox
+        Section: Main
+        Stage: Olrox's Quarters
+    Reward Class: Item
+    Target Reward: Item - Iron Ball
+  Location - Olrox's Quarters, Garnet Room (Garnet):
+    Description: Action - Check Garnet Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Olrox's Quarters Item Drop 12 Location: true
+    Requirements:
+      Default:
+        Check - Olrox's Quarters Item Drop 12 Location: false
+        Room: Olrox's Quarters, Garnet Room 
+        Section: Main
+        Stage: Olrox's Quarters
+    Reward Class: Item
+    Target Reward: Item - Garnet
+  Location - Outer Wall, Jewel Knuckles Room (Jewel Knuckles):
+    Description: Action - Check Jewel Knuckles Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Outer Wall Item Drop 0 Location: true
+    Requirements:
+      Default:
+        Check - Outer Wall Item Drop 0 Location: false
+        Room: Outer Wall, Jewel Knuckles Room
+        Section: Main
+        Stage: Outer Wall
+    Reward Class: Item
+    Target Reward: Item - Jewel Knuckles
+  Location - Outer Wall, Jewel Knuckles Room (Mirror Cuirass):
+    Description: Action - Check Mirror Cuirass Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Outer Wall Item Drop 1 Location: true
+    Requirements:
+      Default:
+        Check - Outer Wall Item Drop 1 Location: false
+        Room: Outer Wall, Jewel Knuckles Room
+        Section: Main
+        Stage: Outer Wall
+    Reward Class: Item
+    Target Reward: Item - Mirror Cuirass
+  Location - Outer Wall, Elevator Shaft Room (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Outer Wall Item Drop 2 Location: true
+    Requirements:
+      Default:
+        Check - Outer Wall Item Drop 2 Location: false
+        Room: Outer Wall, Elevator Shaft Room
+        Section: Main
+        Stage: Outer Wall
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Outer Wall, Garnet Vase Room (Garnet):
+    Description: Action - Check Garnet Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Outer Wall Item Drop 3 Location: true
+    Requirements:
+      Default:
+        Check - Outer Wall Item Drop 3 Location: false
+        Room: Outer Wall, Garnet Vase Room
+        Section: Ledge
+        Stage: Outer Wall
+    Reward Class: Item
+    Target Reward: Item - Garnet
+  Location - Outer Wall, Gladius Room (Gladius):
+    Description: Action - Check Gladius Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Outer Wall Item Drop 4 Location: true
+    Requirements:
+      Default:
+        Check - Outer Wall Item Drop 4 Location: false
+        Room: Outer Wall, Gladius Room
+        Section: Main
+        Stage: Outer Wall
+    Reward Class: Item
+    Target Reward: Item - Gladius
+  Location - Outer Wall, Elevator Shaft Room (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Outer Wall Item Drop 5 Location: true
+    Requirements:
+      Default:
+        Check - Outer Wall Item Drop 5 Location: false
+        Room: Outer Wall, Elevator Shaft Room
+        Section: Main
+        Stage: Outer Wall
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Outer Wall, Exit to Marble Gallery (Zircon):
+    Description: Action - Check Zircon Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Outer Wall Item Drop 6 Location: true
+    Requirements:
+      Default:
+        Check - Outer Wall Item Drop 6 Location: false
+        Room: Outer Wall, Exit to Marble Gallery
+        Section: Main
+        Stage: Outer Wall
+    Reward Class: Item
+    Target Reward: Item - Zircon
+  Location - Underground Caverns, Plaque Room With Breakable Wall and Left Ferryman Route (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Notes: Likely due to a bug in the vanilla game, two rooms share the same item drop, meaning only one of them can be collected
+    Outcomes:
+      Check - Underground Caverns Item Drop 0 Location: true
+    Requirements:
+      Plaque Room With Breakable Wall:
+        Check - Underground Caverns Item Drop 0 Location: false
+        Room: Underground Caverns, Plaque Room With Breakable Wall
+        Section: Main
+        Stage: Underground Caverns
+      Left Ferryman Route:
+        Check - Underground Caverns Item Drop 0 Location: false
+        Room: Underground Caverns, Left Ferryman Route
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Underground Caverns, Plaque Room With Life Max-Up (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 1 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 1 Location: false
+        Room: Underground Caverns, Plaque Room With Life Max-Up
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Underground Caverns, Crystal Cloak Room (Crystal Cloak):
+    Description: Action - Check Crystal Cloak Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 2 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 2 Location: false
+        Room: Underground Caverns, Crystal Cloak Room
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Crystal Cloak
+  Location - Underground Caverns, Ice Floe Room (Antivenom):
+    Description: Action - Check Antivenom Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 4 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 4 Location: false
+        Room: Underground Caverns, Ice Floe Room
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Antivenom
+  Location - Underground Caverns, Ice Floe Room (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 5 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 5 Location: false
+        Room: Underground Caverns, Ice Floe Room
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Underground Caverns, Room ID 18 (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 6 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 6 Location: false
+        Room: Underground Caverns, Room ID 18
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Underground Caverns, DK Button (Herald Shield):
+    Description: Action - Check Herald Shield Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 7 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 7 Location: false
+        Room: Underground Caverns, DK Button
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Herald Shield
+  Location - Underground Caverns, Long Drop (Zircon):
+    Description: Action - Check Zircon Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 9 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 9 Location: false
+        Room: Underground Caverns, Long Drop
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Zircon
+  Location - Underground Caverns, False Save Room (Gold Ring):
+    Description: Action - Check Gold Ring Location
+    Logic Level: Required
+    Outcomes:
+      Check - Underground Caverns Item Drop 10 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 10 Location: false
+        Room: Underground Caverns, False Save Room
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Fixed Item
+    Target Reward: Item - Gold Ring
+  Location - Underground Caverns, Bandanna Room (Bandanna):
+    Description: Action - Check Bandanna Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 11 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 11 Location: false
+        Room: Underground Caverns, Bandanna Room
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Bandanna
+  Location - Underground Caverns, Tall Stairwell (Shiitake):
+    Description: Action - Check Shiitake Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 12 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 12 Location: false
+        Room: Underground Caverns, Tall Stairwell
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Shiitake
+  Location - Underground Caverns, Claymore Stairwell (Claymore):
+    Description: Action - Check Claymore Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 13 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 13 Location: false
+        Room: Underground Caverns, Claymore Stairwell
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Claymore
+  Location - Underground Caverns, Meal Tickets and Moonstone Room (Meal Ticket 1):
+    Description: Action - Check Meal Ticket 1 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 14 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 14 Location: false
+        Room: Underground Caverns, Meal Tickets and Moonstone Room
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Meal Ticket
+  Location - Underground Caverns, Meal Tickets and Moonstone Room (Meal Ticket 2):
+    Description: Action - Check Meal Ticket 2 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 15 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 15 Location: false
+        Room: Underground Caverns, Meal Tickets and Moonstone Room
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Meal Ticket
+  Location - Underground Caverns, Meal Tickets and Moonstone Room (Meal Ticket 3):
+    Description: Action - Check Meal Ticket 3 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 16 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 16 Location: false
+        Room: Underground Caverns, Meal Tickets and Moonstone Room
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Meal Ticket
+  Location - Underground Caverns, Meal Tickets and Moonstone Room (Meal Ticket 4):
+    Description: Action - Check Meal Ticket 4 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 17 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 17 Location: false
+        Room: Underground Caverns, Meal Tickets and Moonstone Room
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Meal Ticket
+  Location - Underground Caverns, Meal Tickets and Moonstone Room (Moonstone):
+    Description: Action - Check Moonstone Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 18 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 18 Location: false
+        Room: Underground Caverns, Meal Tickets and Moonstone Room
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Moonstone
+  Location - Underground Caverns, Rising Water Room (Scimitar):
+    Description: Action - Check Scimitar Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 19 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 19 Location: false
+        Room: Underground Caverns, Rising Water Room
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Scimitar
+  Location - Underground Caverns, Rising Water Room (Resist Ice):
+    Description: Action - Check Resist Ice Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 20 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 20 Location: false
+        Room: Underground Caverns, Rising Water Room
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Resist Ice
+  Location - Underground Caverns, Scylla Room (Pot Roast):
+    Description: Action - Check Pot Roast Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 21 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 21 Location: false
+        Room: Underground Caverns, Scylla Room
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Pot Roast
+  Location - Underground Caverns, Right Ferryman Route (Onyx):
+    Description: Action - Check Onyx Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 22 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 22 Location: false
+        Room: Underground Caverns, Right Ferryman Route
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Onyx
+  Location - Underground Caverns, Right Ferryman Route (Knuckle Duster):
+    Description: Action - Check Knuckle Duster Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 23 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 23 Location: false
+        Room: Underground Caverns, Right Ferryman Route
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Knuckle Duster
+  Location - Underground Caverns, Right Ferryman Route (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 24 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 24 Location: false
+        Room: Underground Caverns, Right Ferryman Route
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Underground Caverns, Right Ferryman Route (Elixir):
+    Description: Action - Check Elixir Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 25 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 25 Location: false
+        Room: Underground Caverns, Right Ferryman Route
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Elixir
+  Location - Underground Caverns, Ice Floe Room (Shiitake):
+    Description: Action - Check Shiitake Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 26 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 26 Location: false
+        Room: Underground Caverns, Ice Floe Room
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Shiitake
+  Location - Underground Caverns, Ice Floe Room (Toadstool):
+    Description: Action - Check Toadstool Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 27 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 27 Location: false
+        Room: Underground Caverns, Ice Floe Room
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Toadstool
+  Location - Underground Caverns, DK Bridge (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 28 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 28 Location: false
+        Room: Underground Caverns, DK Bridge
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Underground Caverns, DK Bridge (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 29 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 29 Location: false
+        Room: Underground Caverns, DK Bridge
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Underground Caverns, Pentagram Room (Pentagram):
+    Description: Action - Check Pentagram Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 30 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 30 Location: false
+        Room: Underground Caverns, Pentagram Room
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Pentagram
+  Location - Underground Caverns, Waterfall (Secret Boots):
+    Description: Action - Check Secret Boots Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 31 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 31 Location: false
+        Room: Underground Caverns, Waterfall
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Secret Boots
+  Location - Underground Caverns, Waterfall (Toadstool):
+    Description: Action - Check Toadstool Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 32 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 32 Location: false
+        Room: Underground Caverns, Waterfall
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Toadstool
+  Location - Underground Caverns, Waterfall (Shiitake):
+    Description: Action - Check Shiitake Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 33 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 33 Location: false
+        Room: Underground Caverns, Waterfall
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Shiitake
+  Location - Underground Caverns, Exit to Castle Entrance (Shiitake):
+    Description: Action - Check Shiitake Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 35 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 35 Location: false
+        Room: Underground Caverns, Exit to Castle Entrance
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Shiitake
+  Location - Underground Caverns, Ice Floe Room (Nunchaku):
+    Description: Action - Check Nunchaku Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Underground Caverns Item Drop 36 Location: true
+    Requirements:
+      Default:
+        Check - Underground Caverns Item Drop 36 Location: false
+        Room: Underground Caverns, Ice Floe Room
+        Section: Main
+        Stage: Underground Caverns
+    Reward Class: Item
+    Target Reward: Item - Nunchaku
 Targets:
+  Item - Alucart Mail:
+    Outcomes:
+      Item - Alucart Mail: 1
+  Item - Alucart Shield:
+    Outcomes:
+      Item - Alucart Shield: 1
+  Item - Alucart Sword:
+    Outcomes:
+      Item - Alucart Sword: 1
+  Item - Antivenom:
+    Outcomes:
+      Item - Antivenom: 1
+  Item - Attack Potion:
+    Outcomes:
+      Item - Attack Potion: 1
+  Item - Bandanna:
+    Outcomes:
+      Item - Bandanna: 1
+  Item - Broadsword:
+    Outcomes:
+      Item - Broadsword: 1
+  Item - Cheese:
+    Outcomes:
+      Item - Cheese: 1
+  Item - Claymore:
+    Outcomes:
+      Item - Claymore: 1
+  Item - Crystal Cloak:
+    Outcomes:
+      Item - Crystal Cloak: 1
+  Item - Elixir:
+    Outcomes:
+      Item - Elixir: 1
+  Item - Estoc:
+    Outcomes:
+      Item - Estoc: 1
+  Item - Garnet:
+    Outcomes:
+      Item - Garnet: 1
+  Item - Gladius:
+    Outcomes:
+      Item - Gladius: 1
+  Item - Gold Ring:
+    Outcomes:
+      Item - Gold Ring: 1
+  Item - Hammer:
+    Outcomes:
+      Item - Hammer: 1
+  Item - Herald Shield:
+    Outcomes:
+      Item - Herald Shield: 1
+  Item - Heart Max-Up:
+    Outcomes:
+      Item - Heart Max-Up: 1
+  Item - Holy Mail:
+    Outcomes:
+      Item - Holy Mail: 1
+  Item - Iron Ball:
+    Outcomes:
+      Item - Iron Ball: 1
+  Item - Jewel Knuckles:
+    Outcomes:
+      Item - Jewel Knuckles: 1
+  Item - Jewel Sword:
+    Outcomes:
+      Item - Jewel Sword: 1
+  Item - Knuckle Duster:
+    Outcomes:
+      Item - Knuckle Duster: 1
+  Item - Leather Shield:
+    Outcomes:
+      Item - Leather Shield: 1
+  Item - Library Card:
+    Outcomes:
+      Item - Library Card: 1
+  Item - Life Apple:
+    Outcomes:
+      Item - Life Apple: 1
+  Item - Life Max-Up:
+    Outcomes:
+      Item - Life Max-Up: 1
+  Item - Luck Potion:
+    Outcomes:
+      Item - Luck Potion: 1
+  Item - Manna Prism:
+    Outcomes:
+      Item - Manna Prism: 1
+  Item - Meal Ticket:
+    Outcomes:
+      Item - Meal Ticket: 1
+  Item - Mirror Cuirass:
+    Outcomes:
+      Item - Mirror Cuirass: 1
+  Item - Moonstone:
+    Outcomes:
+      Item - Moonstone: 1
+  Item - Nunchaku:
+    Outcomes:
+      Item - Nunchaku: 1
+  Item - Onyx:
+    Outcomes:
+      Item - Onyx: 1
+  Item - Pentagram:
+    Outcomes:
+      Item - Pentagram: 1
+  Item - Pot Roast:
+    Outcomes:
+      Item - Pot Roast: 1
+  Item - Potion:
+    Outcomes:
+      Item - Potion: 1
+  Item - Resist Fire:
+    Outcomes:
+      Item - Resist Fire: 1
+  Item - Resist Ice:
+    Outcomes:
+      Item - Resist Ice: 1
+  Item - Scimitar:
+    Outcomes:
+      Item - Scimitar: 1
+  Item - Secret Boots:
+    Outcomes:
+      Item - Secret Boots: 1
+  Item - Shield Potion:
+    Outcomes:
+      Item - Shield Potion: 1
+  Item - Shiitake:
+    Outcomes:
+      Item - Shiitake: 1
+  Item - Strength Potion:
+    Outcomes:
+      Item - Strength Potion: 1
+  Item - Toadstool:
+    Outcomes:
+      Item - Toadstool: 1
+  Item - Zircon:
+    Outcomes:
+      Item - Zircon: 1
   Relic - Cube of Zoe:
     Outcomes:
       Progression - Item Materialization: true

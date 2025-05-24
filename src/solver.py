@@ -378,6 +378,8 @@ class Solver():
                 break
             commands = {}
             for command_name in game__solver.get_valid_command_names():
+                if game__solver.commands[game__solver.room][command_name].get('Logic Level', 'Optional') == 'Hidden':
+                    continue
                 next_game__solver = game__solver.clone()
                 next_game__solver.process_command(command_name)
                 if restrict_to_stage is not None:
@@ -438,6 +440,8 @@ class Solver():
                 continue
             memo[hashed_state__solver] = step__solver
             for command in game__solver.get_valid_command_names():
+                if game__solver.commands[game__solver.room][command].get('Logic Level', 'Optional') == 'Hidden':
+                    continue
                 next_game__solver = game__solver.clone()
                 next_game__solver.process_command(command)
                 if restrict_to_stage is not None:
@@ -481,6 +485,8 @@ class Solver():
                 continue
             memo[hashed_state__solver] = step__solver
             for command in game__solver.get_valid_command_names():
+                if game__solver.commands[game__solver.room][command].get('Logic Level', 'Optional') == 'Hidden':
+                    continue
                 next_game__solver = game__solver.clone()
                 next_game__solver.process_command(command)
                 if restrict_to_stage is not None:
@@ -553,6 +559,8 @@ class Solver():
                 reflexive_command_names = set()
                 work__reflexive = collections.deque()
                 for command in game__bonded.get_valid_command_names(require_validation):
+                    if game__bonded.commands[game__solver.room][command].get('Logic Level', 'Optional') == 'Hidden':
+                        continue
                     work__reflexive.appendleft((0, command, command, game__bonded.clone()))
                     bonded_locations[game__bonded.location][1].add(command)
                 while len(work__reflexive) > 0:

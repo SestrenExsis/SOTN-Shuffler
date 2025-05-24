@@ -935,6 +935,7 @@ class LogicCore:
                         'Default': simplified_requirement,
                     },
                     'Outcomes': outcomes,
+                    'Logic Level': quest.get('Logic Level', 'Optional'),
                 }
         self.state = {
             'Character': 'Alucard',

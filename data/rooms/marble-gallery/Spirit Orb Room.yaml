@@ -20,4 +20,24 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands: {}
+Commands:
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Cubbies - Default:
+                Section: Cubbies
+    Move - Cubbies:
+        Outcomes:
+            Section: Cubbies
+        Requirements:
+            Main - Bat Form:
+                Section: Main
+                Progression - Bat Transformation: true
+            Main - Gravity Jump:
+                Section: Main
+                Progression - Gravity Jump: true
+            Main - Powered Mist:
+                Section: Main
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
