@@ -249,6 +249,266 @@ Sources:
         Stage: Alchemy Laboratory
     Reward Class: Item
     Target Reward: Item - Leather Shield
+  Location - Catacombs, Cat-Eye Circlet Room (Cat-Eye Circlet):
+    Description: Action - Check Cat-Eye Circlet Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 0 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 0 Location: false
+        Room: Catacombs, Cat-Eye Circlet Room
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Cat-Eye Circlet
+  Location - Catacombs, Icebrand Room (Icebrand):
+    Description: Action - Check Icebrand Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 1 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 1 Location: false
+        Room: Catacombs, Icebrand Room
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Icebrand
+  Location - Catacombs, Walk Armor Room (Walk Armor):
+    Description: Action - Check Walk Armor Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 2 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 2 Location: false
+        Room: Catacombs, Walk Armor Room
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Walk Armor
+  Location - Catacombs, Mormegil Room (Mormegil):
+    Description: Action - Check Mormegil Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 3 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 3 Location: false
+        Room: Catacombs, Mormegil Room
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Mormegil
+  Location - Catacombs, Spike Breaker Room (Library Card):
+    Description: Action - Check Library Card Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 4 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 4 Location: false
+        Room: Catacombs, Spike Breaker Room
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Library Card
+  Location - Catacombs, Ballroom Mask Room (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 6 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 6 Location: false
+        Room: Catacombs, Ballroom Mask Room
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Catacombs, Ballroom Mask Room (Ballroom Mask):
+    Description: Action - Check Ballroom Mask Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 7 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 7 Location: false
+        Room: Catacombs, Ballroom Mask Room
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Ballroom Mask
+  Location - Catacombs, Cat-Eye Circlet Room (Bloodstone):
+    Description: Action - Check Bloodstone Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 8 Location: false
+        Room: Catacombs, Cat-Eye Circlet Room
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Bloodstone
+  Location - Catacombs, Room ID 19 (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 9 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 9 Location: false
+        Room: Catacombs, Room ID 19
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Catacombs, Room ID 19 (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 10 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 10 Location: false
+        Room: Catacombs, Room ID 19
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Catacombs, Room ID 25 (Cross Shuriken 1):
+    Description: Action - Check Cross Shuriken 1 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 11 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 11 Location: false
+        Room: Catacombs, Room ID 25
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Cross Shuriken
+  Location - Catacombs, Room ID 25 (Cross Shuriken 2):
+    Description: Action - Check Cross Shuriken 2 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 12 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 12 Location: false
+        Room: Catacombs, Room ID 25
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Cross Shuriken
+  Location - Catacombs, Room ID 25 (Karma Coin 1):
+    Description: Action - Check Karma Coin 1 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 13 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 13 Location: false
+        Room: Catacombs, Room ID 25
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Karma Coin
+  Location - Catacombs, Room ID 25 (Karma Coin 2):
+    Description: Action - Check Karma Coin 2 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 14 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 14 Location: false
+        Room: Catacombs, Room ID 25
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Karma Coin
+  Location - Catacombs, Room ID 26 (Pork Bun):
+    Description: Action - Check Pork Bun Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 15 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 15 Location: false
+        Room: Catacombs, Room ID 26
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Pork Bun
+  Location - Catacombs, Spike Breaker Room (Spike Breaker):
+    Description: Action - Check Spike Breaker Location
+    Logic Level: Required
+    Outcomes:
+      Check - Catacombs Item Drop 16 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 16 Location: false
+        Room: Catacombs, Spike Breaker Room
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Required Item
+    Target Reward: Item - Spike Breaker
+  Location - Catacombs, Room ID 20 (Monster Vial 3 1):
+    Description: Action - Check Monster Vial 3 1 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 17 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 17 Location: false
+        Room: Catacombs, Room ID 20
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Monster Vial 3
+  Location - Catacombs, Room ID 20 (Monster Vial 3 2):
+    Description: Action - Check YYY Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 18 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 18 Location: false
+        Room: Catacombs, Room ID 20
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Monster Vial 3
+  Location - Catacombs, Room ID 20 (Monster Vial 3 3):
+    Description: Action - Check YYY Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 19 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 19 Location: false
+        Room: Catacombs, Room ID 20
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Monster Vial 3
+  Location - Catacombs, Room ID 20 (Monster Vial 3 4):
+    Description: Action - Check YYY Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Catacombs Item Drop 20 Location: true
+    Requirements:
+      Default:
+        Check - Catacombs Item Drop 20 Location: false
+        Room: Catacombs, Room ID 20
+        Section: Main
+        Stage: Catacombs
+    Reward Class: Item
+    Target Reward: Item - Monster Vial 3
   Location - Castle Entrance, Heart Max-Up Room (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
     Logic Level: Hidden
@@ -928,6 +1188,214 @@ Sources:
         Stage: Outer Wall
     Reward Class: Item
     Target Reward: Item - Zircon
+  Location - Royal Chapel, Chapel Staircase (Ankh of Life):
+    Description: Action - Check Ankh of Life Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Royal Chapel Item Drop 0 Location: true
+    Requirements:
+      Default:
+        Check - Royal Chapel Item Drop 0 Location: false
+        Room: Royal Chapel, Chapel Staircase
+        Section: Main
+        Stage: Royal Chapel
+    Reward Class: Item
+    Target Reward: Item - Ankh of Life
+  Location - Royal Chapel, Chapel Staircase (Morningstar):
+    Description: Action - Check Morningstar Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Royal Chapel Item Drop 1 Location: true
+    Requirements:
+      Default:
+        Check - Royal Chapel Item Drop 1 Location: false
+        Room: Royal Chapel, Chapel Staircase
+        Section: Main
+        Stage: Royal Chapel
+    Reward Class: Item
+    Target Reward: Item - Morningstar
+  Location - Royal Chapel, Silver Ring Room (Silver Ring):
+    Description: Action - Check Silver Ring Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Royal Chapel Item Drop 2 Location: true
+    Requirements:
+      Default:
+        Check - Royal Chapel Item Drop 2 Location: false
+        Room: Royal Chapel, Silver Ring Room
+        Section: Main
+        Stage: Royal Chapel
+    Reward Class: Required Item
+    Target Reward: Item - Silver Ring
+  Location - Royal Chapel, Chapel Staircase (Aquamarine):
+    Description: Action - Check Aquamarine Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Royal Chapel Item Drop 3 Location: true
+    Requirements:
+      Default:
+        Check - Royal Chapel Item Drop 3 Location: false
+        Room: Royal Chapel, Chapel Staircase
+        Section: Main
+        Stage: Royal Chapel
+    Reward Class: Item
+    Target Reward: Item - Aquamarine
+  Location - Royal Chapel, Chapel Staircase (Mystic Pendant):
+    Description: Action - Check Mystic Pendant Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Royal Chapel Item Drop 4 Location: true
+    Requirements:
+      Default:
+        Check - Royal Chapel Item Drop 4 Location: false
+        Room: Royal Chapel, Chapel Staircase
+        Section: Main
+        Stage: Royal Chapel
+    Reward Class: Item
+    Target Reward: Item - Mystic Pendant
+  Location - Royal Chapel, Chapel Staircase (Magic Missile):
+    Description: Action - Check Magic Missile Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Royal Chapel Item Drop 5 Location: true
+    Requirements:
+      Default:
+        Check - Royal Chapel Item Drop 5 Location: false
+        Room: Royal Chapel, Chapel Staircase
+        Section: Main
+        Stage: Royal Chapel
+    Reward Class: Item
+    Target Reward: Item - Magic Missile
+  Location - Royal Chapel, Chapel Staircase (Shuriken):
+    Description: Action - Check Shuriken Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Royal Chapel Item Drop 6 Location: true
+    Requirements:
+      Default:
+        Check - Royal Chapel Item Drop 6 Location: false
+        Room: Royal Chapel, Chapel Staircase
+        Section: Main
+        Stage: Royal Chapel
+    Reward Class: Item
+    Target Reward: Item - Shuriken
+  Location - Royal Chapel, Chapel Staircase (TNT):
+    Description: Action - Check TNT Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Royal Chapel Item Drop 7 Location: true
+    Requirements:
+      Default:
+        Check - Royal Chapel Item Drop 7 Location: false
+        Room: Royal Chapel, Chapel Staircase
+        Section: Main
+        Stage: Royal Chapel
+    Reward Class: Item
+    Target Reward: Item - TNT
+  Location - Royal Chapel, Chapel Staircase (Boomerang):
+    Description: Action - Check Boomerang Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Royal Chapel Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Royal Chapel Item Drop 8 Location: false
+        Room: Royal Chapel, Chapel Staircase
+        Section: Main
+        Stage: Royal Chapel
+    Reward Class: Item
+    Target Reward: Item - Boomerang
+  Location - Royal Chapel, Goggles Room (Goggles):
+    Description: Action - Check Goggles Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Royal Chapel Item Drop 9 Location: true
+    Requirements:
+      Default:
+        Check - Royal Chapel Item Drop 9 Location: false
+        Room: Royal Chapel, Goggles Room
+        Section: Main
+        Stage: Royal Chapel
+    Reward Class: Item
+    Target Reward: Item - Goggles
+  Location - Royal Chapel, Left Tower (Silver Plate):
+    Description: Action - Check Silver Plate Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Royal Chapel Item Drop 10 Location: true
+    Requirements:
+      Default:
+        Check - Royal Chapel Item Drop 10 Location: false
+        Room: Royal Chapel, Left Tower
+        Section: Main
+        Stage: Royal Chapel
+    Reward Class: Item
+    Target Reward: Item - Silver Plate
+  Location - Royal Chapel, Left Tower (Strength Potion):
+    Description: Action - Check Strength Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Royal Chapel Item Drop 11 Location: true
+    Requirements:
+      Default:
+        Check - Royal Chapel Item Drop 11 Location: false
+        Room: Royal Chapel, Left Tower
+        Section: Main
+        Stage: Royal Chapel
+    Reward Class: Item
+    Target Reward: Item - Strength Potion
+  Location - Royal Chapel, Left Tower (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Royal Chapel Item Drop 12 Location: true
+    Requirements:
+      Default:
+        Check - Royal Chapel Item Drop 12 Location: false
+        Room: Royal Chapel, Left Tower
+        Section: Main
+        Stage: Royal Chapel
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Royal Chapel, Middle Tower (Zircon):
+    Description: Action - Check Zircon Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Royal Chapel Item Drop 13 Location: true
+    Requirements:
+      Default:
+        Check - Royal Chapel Item Drop 13 Location: false
+        Room: Royal Chapel, Middle Tower
+        Section: Main
+        Stage: Royal Chapel
+    Reward Class: Item
+    Target Reward: Item - Zircon
+  Location - Royal Chapel, Right Tower (Cutlass):
+    Description: Action - Check Cutlass Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Royal Chapel Item Drop 14 Location: true
+    Requirements:
+      Default:
+        Check - Royal Chapel Item Drop 14 Location: false
+        Room: Royal Chapel, Right Tower
+        Section: Main
+        Stage: Royal Chapel
+    Reward Class: Item
+    Target Reward: Item - Cutlass
+  Location - Royal Chapel, Right Tower (Potion):
+    Description: Action - Check Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Royal Chapel Item Drop 15 Location: true
+    Requirements:
+      Default:
+        Check - Royal Chapel Item Drop 15 Location: false
+        Room: Royal Chapel, Right Tower
+        Section: Main
+        Stage: Royal Chapel
+    Reward Class: Item
+    Target Reward: Item - Potion
   Location - Underground Caverns, Plaque Room With Breakable Wall and Left Ferryman Route (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
     Logic Level: Hidden
@@ -1392,27 +1860,48 @@ Targets:
   Item - Antivenom:
     Outcomes:
       Item - Antivenom: 1
+  Item - Aquamarine:
+    Outcomes:
+      Item - Aquamarine: 1
   Item - Attack Potion:
     Outcomes:
       Item - Attack Potion: 1
+  Item - Ballroom Mask:
+    Outcomes:
+      Item - Ballroom Mask: 1
   Item - Bandanna:
     Outcomes:
       Item - Bandanna: 1
+  Item - Bloodstone:
+    Outcomes:
+      Item - Bloodstone: 1
+  Item - Boomerang:
+    Outcomes:
+      Item - Boomerang: 1
   Item - Broadsword:
     Outcomes:
       Item - Broadsword: 1
   Item - Bronze Cuirass:
     Outcomes:
       Item - Bronze Cuirass: 1
+  Item - Cat-Eye Circlet:
+    Outcomes:
+      Item - Cat-Eye Circlet: 1
   Item - Cheese:
     Outcomes:
       Item - Cheese: 1
   Item - Claymore:
     Outcomes:
       Item - Claymore: 1
+  Item - Cross Shuriken:
+    Outcomes:
+      Item - Cross Shuriken: 1
   Item - Crystal Cloak:
     Outcomes:
       Item - Crystal Cloak: 1
+  Item - Cutlass:
+    Outcomes:
+      Item - Cutlass: 1
   Item - Elixir:
     Outcomes:
       Item - Elixir: 1
@@ -1428,6 +1917,9 @@ Targets:
   Item - Gladius:
     Outcomes:
       Item - Gladius: 1
+  Item - Goggles:
+    Outcomes:
+      Item - Goggles: 1
   Item - Gold Ring:
     Outcomes:
       Item - Gold Ring: 1
@@ -1446,6 +1938,9 @@ Targets:
   Item - Holy Rod:
     Outcomes:
       Item - Holy Rod: 1
+  Item - Icebrand:
+    Outcomes:
+      Item - Icebrand: 1
   Item - Iron Ball:
     Outcomes:
       Item - Iron Ball: 1
@@ -1455,6 +1950,9 @@ Targets:
   Item - Jewel Sword:
     Outcomes:
       Item - Jewel Sword: 1
+  Item - Karma Coin:
+    Outcomes:
+      Item - Karma Coin: 1
   Item - Knuckle Duster:
     Outcomes:
       Item - Knuckle Duster: 1
@@ -1473,6 +1971,9 @@ Targets:
   Item - Luck Potion:
     Outcomes:
       Item - Luck Potion: 1
+  Item - Magic Missile:
+    Outcomes:
+      Item - Magic Missile: 1
   Item - Manna Prism:
     Outcomes:
       Item - Manna Prism: 1
@@ -1482,9 +1983,27 @@ Targets:
   Item - Mirror Cuirass:
     Outcomes:
       Item - Mirror Cuirass: 1
+  Item - Monster Vial 1:
+    Outcomes:
+      Item - Monster Vial 1: 1
+  Item - Monster Vial 2:
+    Outcomes:
+      Item - Monster Vial 2: 1
+  Item - Monster Vial 3:
+    Outcomes:
+      Item - Monster Vial 3: 1
   Item - Moonstone:
     Outcomes:
       Item - Moonstone: 1
+  Item - Mormegil:
+    Outcomes:
+      Item - Mormegil: 1
+  Item - Morningstar:
+    Outcomes:
+      Item - Morningstar: 1
+  Item - Mystic Pendant:
+    Outcomes:
+      Item - Mystic Pendant: 1
   Item - Nunchaku:
     Outcomes:
       Item - Nunchaku: 1
@@ -1494,6 +2013,9 @@ Targets:
   Item - Pentagram:
     Outcomes:
       Item - Pentagram: 1
+  Item - Pork Bun:
+    Outcomes:
+      Item - Pork Bun: 1
   Item - Pot Roast:
     Outcomes:
       Item - Pot Roast: 1
@@ -1518,6 +2040,18 @@ Targets:
   Item - Shiitake:
     Outcomes:
       Item - Shiitake: 1
+  Item - Shuriken:
+    Outcomes:
+      Item - Shuriken: 1
+  Item - Silver Plate:
+    Outcomes:
+      Item - Silver Plate: 1
+  Item - Silver Ring:
+    Outcomes:
+      Item - Silver Ring: 1
+  Item - Spike Breaker:
+    Outcomes:
+      Item - Spike Breaker: 1
   Item - Stone Mask:
     Outcomes:
       Item - Stone Mask: 1
@@ -1527,12 +2061,18 @@ Targets:
   Item - Takemitsu:
     Outcomes:
       Item - Takemitsu: 1
+  Item - TNT:
+    Outcomes:
+      Item - TNT: 1
   Item - Toadstool:
     Outcomes:
       Item - Toadstool: 1
   Item - Topaz Circlet:
     Outcomes:
       Item - Topaz Circlet: 1
+  Item - Walk Armor:
+    Outcomes:
+      Item - Walk Armor: 1
   Item - Zircon:
     Outcomes:
       Item - Zircon: 1

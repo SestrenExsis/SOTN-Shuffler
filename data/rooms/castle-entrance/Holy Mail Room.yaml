@@ -53,5 +53,5 @@ Commands:
         Outcomes:
             Section: Ground
         Requirements:
-            Use Shortcut:
+            Default:
                 Section: Ledge
