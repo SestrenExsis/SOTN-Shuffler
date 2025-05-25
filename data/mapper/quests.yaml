@@ -408,6 +408,123 @@ Sources:
         Stage: Castle Entrance Revisited
     Reward Class: Item
     Target Reward: Item - Jewel Sword
+  Location - Long Library, Secret Bookcase Room (Stone Mask):
+    Description: Action - Check Stone Mask Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Long Library Item Drop 1 Location: true
+    Requirements:
+      Long Library:
+        Check - Long Library Item Drop 1 Location: false
+        Room: Long Library, Secret Bookcase Room
+        Section: Main
+        Stage: Long Library
+    Reward Class: Item
+    Target Reward: Item - Stone Mask
+  Location - Long Library, Holy Rod Room (Holy Rod):
+    Description: Action - Check Holy Rod Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Long Library Item Drop 2 Location: true
+    Requirements:
+      Long Library:
+        Check - Long Library Item Drop 2 Location: false
+        Room: Long Library, Holy Rod Room
+        Section: Main
+        Stage: Long Library
+    Reward Class: Item
+    Target Reward: Item - Holy Rod
+  Location - Long Library, Shop (Bronze Cuirass):
+    Description: Action - Check Bronze Cuirass Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Long Library Item Drop 4 Location: true
+    Requirements:
+      Long Library:
+        Check - Long Library Item Drop 4 Location: false
+        Room: Long Library, Shop
+        Section: Main
+        Stage: Long Library
+    Reward Class: Item
+    Target Reward: Item - Bronze Cuirass
+  Location - Long Library, Lesser Demon Area (Takemitsu):
+    Description: Action - Check Takemitsu Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Long Library Item Drop 5 Location: true
+    Requirements:
+      Long Library:
+        Check - Long Library Item Drop 5 Location: false
+        Room: Long Library, Lesser Demon Area
+        Section: Main
+        Stage: Long Library
+    Reward Class: Item
+    Target Reward: Item - Takemitsu
+  Location - Long Library, Lesser Demon Area (Onyx):
+    Description: Action - Check Onyx Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Long Library Item Drop 6 Location: true
+    Requirements:
+      Long Library:
+        Check - Long Library Item Drop 6 Location: false
+        Room: Long Library, Lesser Demon Area
+        Section: Main
+        Stage: Long Library
+    Reward Class: Item
+    Target Reward: Item - Onyx
+  Location - Long Library, Lesser Demon Area (Frankfurter):
+    Description: Action - Check Frankfurter Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Long Library Item Drop 7 Location: true
+    Requirements:
+      Long Library:
+        Check - Long Library Item Drop 7 Location: false
+        Room: Long Library, Lesser Demon Area
+        Section: Main
+        Stage: Long Library
+    Reward Class: Item
+    Target Reward: Item - Frankfurter
+  Location - Long Library, Faerie Card Room (Potion):
+    Description: Action - Check Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Long Library Item Drop 8 Location: true
+    Requirements:
+      Long Library:
+        Check - Long Library Item Drop 8 Location: false
+        Room: Long Library, Faerie Card Room
+        Section: Main
+        Stage: Long Library
+    Reward Class: Item
+    Target Reward: Item - Potion
+  Location - Long Library, Faerie Card Room (Antivenom):
+    Description: Action - Check Antivenom Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Long Library Item Drop 9 Location: true
+    Requirements:
+      Long Library:
+        Check - Long Library Item Drop 9 Location: false
+        Room: Long Library, Faerie Card Room
+        Section: Main
+        Stage: Long Library
+    Reward Class: Item
+    Target Reward: Item - Antivenom
+  Location - Long Library, Holy Rod Room (Topaz Circlet):
+    Description: Action - Check Topaz Circlet Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Long Library Item Drop 10 Location: true
+    Requirements:
+      Long Library:
+        Check - Long Library Item Drop 10 Location: false
+        Room: Long Library, Holy Rod Room
+        Section: Main
+        Stage: Long Library
+    Reward Class: Item
+    Target Reward: Item - Topaz Circlet
   Location - Marble Gallery, Pathway After Left Statue (Life Max-Up):
     Description: Action - Check Life Max-Up Location
     Logic Level: Hidden
@@ -932,7 +1049,7 @@ Sources:
         Room: Underground Caverns, False Save Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Fixed Item
+    Reward Class: Required Item
     Target Reward: Item - Gold Ring
   Location - Underground Caverns, Bandanna Room (Bandanna):
     Description: Action - Check Bandanna Location
@@ -1269,6 +1386,9 @@ Targets:
   Item - Alucart Sword:
     Outcomes:
       Item - Alucart Sword: 1
+  Item - Ankh of Life:
+    Outcomes:
+      Item - Ankh of Life: 1
   Item - Antivenom:
     Outcomes:
       Item - Antivenom: 1
@@ -1281,6 +1401,9 @@ Targets:
   Item - Broadsword:
     Outcomes:
       Item - Broadsword: 1
+  Item - Bronze Cuirass:
+    Outcomes:
+      Item - Bronze Cuirass: 1
   Item - Cheese:
     Outcomes:
       Item - Cheese: 1
@@ -1296,6 +1419,9 @@ Targets:
   Item - Estoc:
     Outcomes:
       Item - Estoc: 1
+  Item - Frankfurter:
+    Outcomes:
+      Item - Frankfurter: 1
   Item - Garnet:
     Outcomes:
       Item - Garnet: 1
@@ -1317,6 +1443,9 @@ Targets:
   Item - Holy Mail:
     Outcomes:
       Item - Holy Mail: 1
+  Item - Holy Rod:
+    Outcomes:
+      Item - Holy Rod: 1
   Item - Iron Ball:
     Outcomes:
       Item - Iron Ball: 1
@@ -1389,12 +1518,21 @@ Targets:
   Item - Shiitake:
     Outcomes:
       Item - Shiitake: 1
+  Item - Stone Mask:
+    Outcomes:
+      Item - Stone Mask: 1
   Item - Strength Potion:
     Outcomes:
       Item - Strength Potion: 1
+  Item - Takemitsu:
+    Outcomes:
+      Item - Takemitsu: 1
   Item - Toadstool:
     Outcomes:
       Item - Toadstool: 1
+  Item - Topaz Circlet:
+    Outcomes:
+      Item - Topaz Circlet: 1
   Item - Zircon:
     Outcomes:
       Item - Zircon: 1
