@@ -1053,12 +1053,6 @@ class LogicCore:
                 'Room': "Castle Keep, Keep Area",
                 'Section': 'Anteroom',
             },
-            'Check Library Card Location in Catacombs': {
-                'Check - Library Card Location in Catacombs': True,
-            },
-            'Check Colosseum Library Card Location': {
-                'Check - Colosseum Library Card': True,
-            },
             'Purchase Jewel of Open': {
                 'Relic - Jewel of Open': True,
             },
