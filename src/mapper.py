@@ -927,6 +927,10 @@ class LogicCore:
                 target_reward = quest['Target Reward']
                 for (outcome_key, outcome_value) in mapper_data['Quests']['Targets'][target_reward]['Outcomes'].items():
                     outcomes[outcome_key] = outcome_value
+                if room_name not in self.commands:
+                    # NOTE(sestren): Because Inverted Castle is being ignored for now, skip adding this quest to logic
+                    print('Room', room_name, 'not in commands')
+                    continue
                 simplified_requirement = copy.deepcopy(requirement)
                 simplified_requirement.pop('Stage')
                 simplified_requirement.pop('Room')

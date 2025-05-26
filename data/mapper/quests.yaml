@@ -509,6 +509,162 @@ Sources:
         Stage: Alchemy Laboratory
     Reward Class: Item
     Target Reward: Item - Potion
+  Location - Black Marble Gallery, S-Shaped Hallways (Library Card):
+    Description: Action - Check Library Card Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Black Marble Gallery Item Drop 0 Location: true
+    Requirements:
+      Default:
+        Check - Black Marble Gallery Item Drop 0 Location: false
+        Room: Black Marble Gallery, S-Shaped Hallways
+        Section: Main
+        Stage: Black Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Library Card
+  Location - Black Marble Gallery, Spirit Orb Room (Potion):
+    Description: Action - Check Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Black Marble Gallery Item Drop 1 Location: true
+    Requirements:
+      Default:
+        Check - Black Marble Gallery Item Drop 1 Location: false
+        Room: Black Marble Gallery, Spirit Orb Room
+        Section: Main
+        Stage: Black Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Potion
+  Location - Black Marble Gallery, Spirit Orb Room (Antivenom):
+    Description: Action - Check Antivenom Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Black Marble Gallery Item Drop 2 Location: true
+    Requirements:
+      Default:
+        Check - Black Marble Gallery Item Drop 2 Location: false
+        Room: Black Marble Gallery, Spirit Orb Room
+        Section: Main
+        Stage: Black Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Antivenom
+  Location - Black Marble Gallery, Gravity Boots Room (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Black Marble Gallery Item Drop 3 Location: true
+    Requirements:
+      Default:
+        Check - Black Marble Gallery Item Drop 3 Location: false
+        Room: Black Marble Gallery, Gravity Boots Room
+        Section: Main
+        Stage: Black Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Black Marble Gallery, Gravity Boots Room (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Black Marble Gallery Item Drop 4 Location: true
+    Requirements:
+      Default:
+        Check - Black Marble Gallery Item Drop 4 Location: false
+        Room: Black Marble Gallery, Gravity Boots Room
+        Section: Main
+        Stage: Black Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Black Marble Gallery, Alucart Room (Resist Dark):
+    Description: Action - Check Resist Dark Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Black Marble Gallery Item Drop 5 Location: true
+    Requirements:
+      Default:
+        Check - Black Marble Gallery Item Drop 5 Location: false
+        Room: Black Marble Gallery, Alucart Room
+        Section: Main
+        Stage: Black Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Resist Dark
+  Location - Black Marble Gallery, Alucart Room (Resist Holy):
+    Description: Action - Check Resist Holy Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Black Marble Gallery Item Drop 6 Location: true
+    Requirements:
+      Default:
+        Check - Black Marble Gallery Item Drop 6 Location: false
+        Room: Black Marble Gallery, Alucart Room
+        Section: Main
+        Stage: Black Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Resist Holy
+  Location - Black Marble Gallery, Pathway After Right Statue (Resist Thunder):
+    Description: Action - Check Resist Thunder Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Black Marble Gallery Item Drop 7 Location: true
+    Requirements:
+      Default:
+        Check - Black Marble Gallery Item Drop 7 Location: false
+        Room: Black Marble Gallery, Pathway After Right Statue
+        Section: Main
+        Stage: Black Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Resist Thunder
+  Location - Black Marble Gallery, Pathway After Right Statue (Resist Fire):
+    Description: Action - Check Resist Fire Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Black Marble Gallery Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Black Marble Gallery Item Drop 8 Location: false
+        Room: Black Marble Gallery, Pathway After Right Statue
+        Section: Main
+        Stage: Black Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Resist Fire
+  Location - Black Marble Gallery, Blue Door Room (Meal Ticket):
+    Description: Action - Check Meal Ticket Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Black Marble Gallery Item Drop 9 Location: true
+    Requirements:
+      Default:
+        Check - Black Marble Gallery Item Drop 9 Location: false
+        Room: Black Marble Gallery, Blue Door Room
+        Section: Main
+        Stage: Black Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Meal Ticket
+  Location - Black Marble Gallery, Beneath Right Trapdoor (Iron Ball):
+    Description: Action - Check Iron Ball Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Black Marble Gallery Item Drop 10 Location: true
+    Requirements:
+      Default:
+        Check - Black Marble Gallery Item Drop 10 Location: false
+        Room: Black Marble Gallery, Beneath Right Trapdoor
+        Section: Main
+        Stage: Black Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Iron Ball
+  Location - Black Marble Gallery, Pathway After Left Statue (Heart Refresh):
+    Description: Action - Check Heart Refresh Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Black Marble Gallery Item Drop 11 Location: true
+    Requirements:
+      Default:
+        Check - Black Marble Gallery Item Drop 11 Location: false
+        Room: Black Marble Gallery, Pathway After Left Statue
+        Section: Main
+        Stage: Black Marble Gallery
+    Reward Class: Item
+    Target Reward: Item - Heart Refresh
   Location - Catacombs, Cat-Eye Circlet Room (Cat-Eye Circlet):
     Description: Action - Check Cat-Eye Circlet Location
     Logic Level: Hidden
@@ -731,7 +887,7 @@ Sources:
     Reward Class: Item
     Target Reward: Item - Monster Vial 3
   Location - Catacombs, Room ID 20 (Monster Vial 3 2):
-    Description: Action - Check YYY Location
+    Description: Action - Check Monster Vial 3 2 Location
     Logic Level: Hidden
     Outcomes:
       Check - Catacombs Item Drop 18 Location: true
@@ -744,7 +900,7 @@ Sources:
     Reward Class: Item
     Target Reward: Item - Monster Vial 3
   Location - Catacombs, Room ID 20 (Monster Vial 3 3):
-    Description: Action - Check YYY Location
+    Description: Action - Check Monster Vial 3 3 Location
     Logic Level: Hidden
     Outcomes:
       Check - Catacombs Item Drop 19 Location: true
@@ -757,7 +913,7 @@ Sources:
     Reward Class: Item
     Target Reward: Item - Monster Vial 3
   Location - Catacombs, Room ID 20 (Monster Vial 3 4):
-    Description: Action - Check YYY Location
+    Description: Action - Check Monster Vial 3 4 Location
     Logic Level: Hidden
     Outcomes:
       Check - Catacombs Item Drop 20 Location: true
@@ -1267,7 +1423,7 @@ Sources:
     Reward Class: Item
     Target Reward: Item - Life Max-Up
   Location - Clock Tower, Spire (Heart Max-Up):
-    Description: Action - Check YYY Location
+    Description: Action - Check Heart Max-Up Location
     Logic Level: Hidden
     Outcomes:
       Check - Clock Tower Item Drop 11 Location: true
@@ -1370,6 +1526,162 @@ Sources:
         Stage: Colosseum
     Reward Class: Item
     Target Reward: Item - Holy Sword
+  Location - Death Wing's Lair, Secret Onyx Room (Opal):
+    Description: Action - Check Opal Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Death Wing's Lair Item Drop 0 Location: true
+    Requirements:
+      Death Wing's Lair:
+        Check - Death Wing's Lair Item Drop 0 Location: false
+        Room: Death Wing's Lair, Secret Onyx Room
+        Section: Main
+        Stage: Death Wing's Lair
+    Reward Class: Item
+    Target Reward: Item - Opal
+  Location - Death Wing's Lair, Secret Onyx Room (Sword of Hador):
+    Description: Action - Check Sword of Hador Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Death Wing's Lair Item Drop 1 Location: true
+    Requirements:
+      Death Wing's Lair:
+        Check - Death Wing's Lair Item Drop 1 Location: false
+        Room: Death Wing's Lair, Secret Onyx Room
+        Section: Main
+        Stage: Death Wing's Lair
+    Reward Class: Item
+    Target Reward: Item - Sword of Hador
+  Location - Death Wing's Lair, Secret Onyx Room (High Potion):
+    Description: Action - Check High Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Death Wing's Lair Item Drop 2 Location: true
+    Requirements:
+      Death Wing's Lair:
+        Check - Death Wing's Lair Item Drop 2 Location: false
+        Room: Death Wing's Lair, Secret Onyx Room
+        Section: Main
+        Stage: Death Wing's Lair
+    Reward Class: Item
+    Target Reward: Item - High Potion
+  Location - Death Wing's Lair, Tall Shaft (Shield Potion):
+    Description: Action - Check Shield Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Death Wing's Lair Item Drop 3 Location: true
+    Requirements:
+      Death Wing's Lair:
+        Check - Death Wing's Lair Item Drop 3 Location: false
+        Room: Death Wing's Lair, Tall Shaft
+        Section: Main
+        Stage: Death Wing's Lair
+    Reward Class: Item
+    Target Reward: Item - Shield Potion
+  Location - Death Wing's Lair, Tall Shaft (Luck Potion):
+    Description: Action - Check Luck Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Death Wing's Lair Item Drop 4 Location: true
+    Requirements:
+      Death Wing's Lair:
+        Check - Death Wing's Lair Item Drop 4 Location: false
+        Room: Death Wing's Lair, Tall Shaft
+        Section: Main
+        Stage: Death Wing's Lair
+    Reward Class: Item
+    Target Reward: Item - Luck Potion
+  Location - Death Wing's Lair, Tall Shaft (Manna Prism):
+    Description: Action - Check Manna Prism Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Death Wing's Lair Item Drop 5 Location: true
+    Requirements:
+      Death Wing's Lair:
+        Check - Death Wing's Lair Item Drop 5 Location: false
+        Room: Death Wing's Lair, Tall Shaft
+        Section: Main
+        Stage: Death Wing's Lair
+    Reward Class: Item
+    Target Reward: Item - Manna Prism
+  Location - Death Wing's Lair, Prison (Aquamarine):
+    Description: Action - Check Aquamarine Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Death Wing's Lair Item Drop 6 Location: true
+    Requirements:
+      Death Wing's Lair:
+        Check - Death Wing's Lair Item Drop 6 Location: false
+        Room: Death Wing's Lair, Prison
+        Section: Main
+        Stage: Death Wing's Lair
+    Reward Class: Item
+    Target Reward: Item - Aquamarine
+  Location - Death Wing's Lair, Garnet Room (Alucard Mail):
+    Description: Action - Check Alucard Mail Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Death Wing's Lair Item Drop 7 Location: true
+    Requirements:
+      Death Wing's Lair:
+        Check - Death Wing's Lair Item Drop 7 Location: false
+        Room: Death Wing's Lair, Garnet Room
+        Section: Main
+        Stage: Death Wing's Lair
+    Reward Class: Item
+    Target Reward: Item - Alucard Mail
+  Location - Death Wing's Lair, Catwalk Crypt (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Death Wing's Lair Item Drop 8 Location: true
+    Requirements:
+      Death Wing's Lair:
+        Check - Death Wing's Lair Item Drop 8 Location: false
+        Room: Death Wing's Lair, Catwalk Crypt
+        Section: Main
+        Stage: Death Wing's Lair
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Death Wing's Lair, Sword Card Room (Heart Refresh):
+    Description: Action - Check Heart Refresh Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Death Wing's Lair Item Drop 9 Location: true
+    Requirements:
+      Death Wing's Lair:
+        Check - Death Wing's Lair Item Drop 9 Location: false
+        Room: Death Wing's Lair, Sword Card Room
+        Section: Main
+        Stage: Death Wing's Lair
+    Reward Class: Item
+    Target Reward: Item - Heart Refresh
+  Location - Death Wing's Lair, Narrow Hallway to Olrox (Shuriken):
+    Description: Action - Check Shuriken Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Death Wing's Lair Item Drop 10 Location: true
+    Requirements:
+      Death Wing's Lair:
+        Check - Death Wing's Lair Item Drop 10 Location: false
+        Room: Death Wing's Lair, Narrow Hallway to Olrox
+        Section: Main
+        Stage: Death Wing's Lair
+    Reward Class: Item
+    Target Reward: Item - Shuriken
+  Location - Death Wing's Lair, Echo of Bat Room (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Death Wing's Lair Item Drop 11 Location: true
+    Requirements:
+      Death Wing's Lair:
+        Check - Death Wing's Lair Item Drop 11 Location: false
+        Room: Death Wing's Lair, Echo of Bat Room
+        Section: Main
+        Stage: Death Wing's Lair
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
   Location - Long Library, Secret Bookcase Room (Stone Mask):
     Description: Action - Check Stone Mask Location
     Logic Level: Hidden
@@ -1890,6 +2202,110 @@ Sources:
         Stage: Outer Wall
     Reward Class: Item
     Target Reward: Item - Zircon
+  Location - Reverse Outer Wall, Lower Medusa Room (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Outer Wall Item Drop 0 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Outer Wall Item Drop 0 Location: false
+        Room: Reverse Outer Wall, Lower Medusa Room
+        Section: Main
+        Stage: Reverse Outer Wall
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Reverse Outer Wall, Jewel Knuckles Room (Shotel):
+    Description: Action - Check Shotel Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Outer Wall Item Drop 1 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Outer Wall Item Drop 1 Location: false
+        Room: Reverse Outer Wall, Jewel Knuckles Room
+        Section: Main
+        Stage: Reverse Outer Wall
+    Reward Class: Item
+    Target Reward: Item - Shotel
+  Location - Reverse Outer Wall, Jewel Knuckles Room (Hammer):
+    Description: Action - Check Hammer Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Outer Wall Item Drop 2 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Outer Wall Item Drop 2 Location: false
+        Room: Reverse Outer Wall, Jewel Knuckles Room
+        Section: Main
+        Stage: Reverse Outer Wall
+    Reward Class: Item
+    Target Reward: Item - Hammer
+  Location - Reverse Outer Wall, Exit to Marble Gallery (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Outer Wall Item Drop 3 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Outer Wall Item Drop 3 Location: false
+        Room: Reverse Outer Wall, Exit to Marble Gallery
+        Section: Main
+        Stage: Reverse Outer Wall
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Reverse Outer Wall, Garnet Vase Room (Luck Potion):
+    Description: Action - Check Luck Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Outer Wall Item Drop 4 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Outer Wall Item Drop 4 Location: false
+        Room: Reverse Outer Wall, Garnet Vase Room
+        Section: Main
+        Stage: Reverse Outer Wall
+    Reward Class: Item
+    Target Reward: Item - Luck Potion
+  Location - Reverse Outer Wall, Gladius Room (Shield Potion):
+    Description: Action - Check Shield Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Outer Wall Item Drop 5 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Outer Wall Item Drop 5 Location: false
+        Room: Reverse Outer Wall, Gladius Room
+        Section: Main
+        Stage: Reverse Outer Wall
+    Reward Class: Item
+    Target Reward: Item - Shield Potion
+  Location - Reverse Outer Wall, Elevator Shaft Room (High Potion):
+    Description: Action - Check High Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Outer Wall Item Drop 6 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Outer Wall Item Drop 6 Location: false
+        Room: Reverse Outer Wall, Elevator Shaft Room
+        Section: Main
+        Stage: Reverse Outer Wall
+    Reward Class: Item
+    Target Reward: Item - High Potion
+  Location - Reverse Outer Wall, Elevator Shaft Room (Garnet):
+    Description: Action - Check Garnet Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Outer Wall Item Drop 7 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Outer Wall Item Drop 7 Location: false
+        Room: Reverse Outer Wall, Elevator Shaft Room
+        Section: Main
+        Stage: Reverse Outer Wall
+    Reward Class: Item
+    Target Reward: Item - Garnet
   Location - Royal Chapel, Chapel Staircase (Ankh of Life):
     Description: Action - Check Ankh of Life Location
     Logic Level: Hidden
@@ -2547,6 +2963,15 @@ Sources:
     Reward Class: Item
     Target Reward: Item - Nunchaku
 Targets:
+  Item - Alucard Mail:
+    Outcomes:
+      Item - Alucard Mail: 1
+  Item - Alucard Shield:
+    Outcomes:
+      Item - Alucard Shield: 1
+  Item - Alucard Sword:
+    Outcomes:
+      Item - Alucard Sword: 1
   Item - Alucart Mail:
     Outcomes:
       Item - Alucart Mail: 1
@@ -2664,6 +3089,9 @@ Targets:
   Item - Healing Mail:
     Outcomes:
       Item - Healing Mail: 1
+  Item - Heart Refresh:
+    Outcomes:
+      Item - Heart Refresh: 1
   Item - Herald Shield:
     Outcomes:
       Item - Herald Shield: 1
@@ -2673,6 +3101,9 @@ Targets:
   Item - Hide Cuirass:
     Outcomes:
       Item - Hide Cuirass: 1
+  Item - High Potion:
+    Outcomes:
+      Item - High Potion: 1
   Item - Holy Mail:
     Outcomes:
       Item - Holy Mail: 1
@@ -2760,6 +3191,9 @@ Targets:
   Item - Onyx:
     Outcomes:
       Item - Onyx: 1
+  Item - Opal:
+    Outcomes:
+      Item - Opal: 1
   Item - Peanuts:
     Outcomes:
       Item - Peanuts: 1
@@ -2820,6 +3254,9 @@ Targets:
   Item - Shiitake:
     Outcomes:
       Item - Shiitake: 1
+  Item - Shotel:
+    Outcomes:
+      Item - Shotel: 1
   Item - Shuriken:
     Outcomes:
       Item - Shuriken: 1
@@ -2853,6 +3290,9 @@ Targets:
   Item - Sunglasses:
     Outcomes:
       Item - Sunglasses: 1
+  Item - Sword of Hador:
+    Outcomes:
+      Item - Sword of Hador: 1
   Item - Takemitsu:
     Outcomes:
       Item - Takemitsu: 1
