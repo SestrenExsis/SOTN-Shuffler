@@ -392,6 +392,84 @@ Sources:
         Stage: Abandoned Mine
     Reward Class: Item
     Target Reward: Item - Peanuts
+  Location - Alchemy Laboratory, Entryway (Hide Cuirass):
+    Description: Action - Check Hide Cuirass Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Alchemy Laboratory Item Drop 0 Location: true
+    Requirements:
+      Default:
+        Check - Alchemy Laboratory Item Drop 0 Location: false
+        Room: Alchemy Laboratory, Entryway
+        Section: Main
+        Stage: Alchemy Laboratory
+    Reward Class: Item
+    Target Reward: Item - Hide Cuirass
+  Location - Alchemy Laboratory, Heart Max-Up Room (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Alchemy Laboratory Item Drop 1 Location: true
+    Requirements:
+      Default:
+        Check - Alchemy Laboratory Item Drop 1 Location: false
+        Room: Alchemy Laboratory, Heart Max-Up Room
+        Section: Main
+        Stage: Alchemy Laboratory
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Alchemy Laboratory, Cloth Cape Room (Cloth Cape):
+    Description: Action - Check Cloth Cape Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Alchemy Laboratory Item Drop 2 Location: true
+    Requirements:
+      Default:
+        Check - Alchemy Laboratory Item Drop 2 Location: false
+        Room: Alchemy Laboratory, Cloth Cape Room
+        Section: Main
+        Stage: Alchemy Laboratory
+    Reward Class: Item
+    Target Reward: Item - Cloth Cape
+  Location - Alchemy Laboratory, Secret Life Max-Up Room (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Alchemy Laboratory Item Drop 3 Location: true
+    Requirements:
+      Default:
+        Check - Alchemy Laboratory Item Drop 3 Location: false
+        Room: Alchemy Laboratory, Secret Life Max-Up Room
+        Section: Main
+        Stage: Alchemy Laboratory
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Alchemy Laboratory, Sunglasses Room (Sunglasses):
+    Description: Action - Check Sunglasses Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Alchemy Laboratory Item Drop 6 Location: true
+    Requirements:
+      Default:
+        Check - Alchemy Laboratory Item Drop 6 Location: false
+        Room: Alchemy Laboratory, Sunglasses Room
+        Section: Main
+        Stage: Alchemy Laboratory
+    Reward Class: Item
+    Target Reward: Item - Sunglasses
+  Location - Alchemy Laboratory, Short Zig Zag Room (Resist Thunder):
+    Description: Action - Check Resist Thunder Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Alchemy Laboratory Item Drop 7 Location: true
+    Requirements:
+      Default:
+        Check - Alchemy Laboratory Item Drop 7 Location: false
+        Room: Alchemy Laboratory, Short Zig Zag Room
+        Section: Main
+        Stage: Alchemy Laboratory
+    Reward Class: Item
+    Target Reward: Item - Resist Thunder
   Location - Alchemy Laboratory, Red Skeleton Lift Room (Leather Shield):
     Description: Action - Check Leather Shield Location
     Logic Level: Hidden
@@ -405,6 +483,32 @@ Sources:
         Stage: Alchemy Laboratory
     Reward Class: Item
     Target Reward: Item - Leather Shield
+  Location - Alchemy Laboratory, Cannon Room (Basilard):
+    Description: Action - Check Basilard Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Alchemy Laboratory Item Drop 9 Location: true
+    Requirements:
+      Default:
+        Check - Alchemy Laboratory Item Drop 9 Location: false
+        Room: Alchemy Laboratory, Cannon Room
+        Section: Main
+        Stage: Alchemy Laboratory
+    Reward Class: Item
+    Target Reward: Item - Basilard
+  Location - Alchemy Laboratory, Exit to Marble Gallery (Potion):
+    Description: Action - Check Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Alchemy Laboratory Item Drop 10 Location: true
+    Requirements:
+      Default:
+        Check - Alchemy Laboratory Item Drop 10 Location: false
+        Room: Alchemy Laboratory, Exit to Marble Gallery
+        Section: Main
+        Stage: Alchemy Laboratory
+    Reward Class: Item
+    Target Reward: Item - Potion
   Location - Catacombs, Cat-Eye Circlet Room (Cat-Eye Circlet):
     Description: Action - Check Cat-Eye Circlet Location
     Logic Level: Hidden
@@ -1030,6 +1134,149 @@ Sources:
         Room: Castle Keep, Keep Area
         Section: Main
         Stage: Castle Keep
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Clock Tower, Open Courtyard (Magic Missile):
+    Description: Action - Check Magic Missile Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Clock Tower Item Drop 0 Location: true
+    Requirements:
+      Clock Tower:
+        Check - Clock Tower Item Drop 0 Location: false
+        Room: Clock Tower, Open Courtyard
+        Section: Main
+        Stage: Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Magic Missile
+  Location - Clock Tower, Open Courtyard (Pentagram):
+    Description: Action - Check Pentagram Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Clock Tower Item Drop 1 Location: true
+    Requirements:
+      Clock Tower:
+        Check - Clock Tower Item Drop 1 Location: false
+        Room: Clock Tower, Open Courtyard
+        Section: Main
+        Stage: Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Pentagram
+  Location - Clock Tower, Hidden Armory (Star Flail):
+    Description: Action - Check Star Flail Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Clock Tower Item Drop 3 Location: true
+    Requirements:
+      Clock Tower:
+        Check - Clock Tower Item Drop 3 Location: false
+        Room: Clock Tower, Hidden Armory
+        Section: Main
+        Stage: Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Star Flail
+  Location - Clock Tower, Hidden Armory (Gold Plate):
+    Description: Action - Check Gold Plate Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Clock Tower Item Drop 4 Location: true
+    Requirements:
+      Clock Tower:
+        Check - Clock Tower Item Drop 4 Location: false
+        Room: Clock Tower, Hidden Armory
+        Section: Main
+        Stage: Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Gold Plate
+  Location - Clock Tower, Hidden Armory (Steel Helm):
+    Description: Action - Check Steel Helm Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Clock Tower Item Drop 5 Location: true
+    Requirements:
+      Clock Tower:
+        Check - Clock Tower Item Drop 5 Location: false
+        Room: Clock Tower, Hidden Armory
+        Section: Main
+        Stage: Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Steel Helm
+  Location - Clock Tower, Healing Mail Room (Healing Mail):
+    Description: Action - Check Healing Mail Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Clock Tower Item Drop 6 Location: true
+    Requirements:
+      Clock Tower:
+        Check - Clock Tower Item Drop 6 Location: false
+        Room: Clock Tower, Healing Mail Room
+        Section: Main
+        Stage: Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Healing Mail
+  Location - Clock Tower, Open Courtyard (Bekatowa):
+    Description: Action - Check Bekatowa Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Clock Tower Item Drop 7 Location: true
+    Requirements:
+      Clock Tower:
+        Check - Clock Tower Item Drop 7 Location: false
+        Room: Clock Tower, Open Courtyard
+        Section: Main
+        Stage: Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Bekatowa
+  Location - Clock Tower, Open Courtyard (Shaman Shield):
+    Description: Action - Check Shaman Shield Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Clock Tower Item Drop 8 Location: true
+    Requirements:
+      Clock Tower:
+        Check - Clock Tower Item Drop 8 Location: false
+        Room: Clock Tower, Open Courtyard
+        Section: Main
+        Stage: Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Shaman Shield
+  Location - Clock Tower, Open Courtyard (Ice Mail):
+    Description: Action - Check Ice Mail Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Clock Tower Item Drop 9 Location: true
+    Requirements:
+      Clock Tower:
+        Check - Clock Tower Item Drop 9 Location: false
+        Room: Clock Tower, Open Courtyard
+        Section: Main
+        Stage: Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Ice Mail
+  Location - Clock Tower, Spire (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Clock Tower Item Drop 10 Location: true
+    Requirements:
+      Clock Tower:
+        Check - Clock Tower Item Drop 10 Location: false
+        Room: Clock Tower, Spire
+        Section: Main
+        Stage: Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Clock Tower, Spire (Heart Max-Up):
+    Description: Action - Check YYY Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Clock Tower Item Drop 11 Location: true
+    Requirements:
+      Clock Tower:
+        Check - Clock Tower Item Drop 11 Location: false
+        Room: Clock Tower, Spire
+        Section: Main
+        Stage: Clock Tower
     Reward Class: Item
     Target Reward: Item - Heart Max-Up
   Location - Colosseum, Right-Side Armory (Heart Max-Up):
@@ -2330,6 +2577,12 @@ Targets:
   Item - Barley Tea:
     Outcomes:
       Item - Barley Tea: 1
+  Item - Basilard:
+    Outcomes:
+      Item - Basilard: 1
+  Item - Bekatowa:
+    Outcomes:
+      Item - Bekatowa: 1
   Item - Blood Cloak:
     Outcomes:
       Item - Blood Cloak: 1
@@ -2354,6 +2607,9 @@ Targets:
   Item - Claymore:
     Outcomes:
       Item - Claymore: 1
+  Item - Cloth Cape:
+    Outcomes:
+      Item - Cloth Cape: 1
   Item - Combat Knife:
     Outcomes:
       Item - Combat Knife: 1
@@ -2378,6 +2634,9 @@ Targets:
   Item - Fire Mail:
     Outcomes:
       Item - Fire Mail: 1
+  Item - Flamberge:
+    Outcomes:
+      Item - Flamberge: 1
   Item - Frankfurter:
     Outcomes:
       Item - Frankfurter: 1
@@ -2390,6 +2649,9 @@ Targets:
   Item - Goggles:
     Outcomes:
       Item - Goggles: 1
+  Item - Gold Plate:
+    Outcomes:
+      Item - Gold Plate: 1
   Item - Gold Ring:
     Outcomes:
       Item - Gold Ring: 1
@@ -2399,12 +2661,18 @@ Targets:
   Item - Hammer:
     Outcomes:
       Item - Hammer: 1
+  Item - Healing Mail:
+    Outcomes:
+      Item - Healing Mail: 1
   Item - Herald Shield:
     Outcomes:
       Item - Herald Shield: 1
   Item - Heart Max-Up:
     Outcomes:
       Item - Heart Max-Up: 1
+  Item - Hide Cuirass:
+    Outcomes:
+      Item - Hide Cuirass: 1
   Item - Holy Mail:
     Outcomes:
       Item - Holy Mail: 1
@@ -2414,6 +2682,9 @@ Targets:
   Item - Holy Sword:
     Outcomes:
       Item - Holy Sword: 1
+  Item - Ice Mail:
+    Outcomes:
+      Item - Ice Mail: 1
   Item - Icebrand:
     Outcomes:
       Item - Icebrand: 1
@@ -2525,6 +2796,9 @@ Targets:
   Item - Resist Stone:
     Outcomes:
       Item - Resist Stone: 1
+  Item - Resist Thunder:
+    Outcomes:
+      Item - Resist Thunder: 1
   Item - Ring of Ares:
     Outcomes:
       Item - Ring of Ares: 1
@@ -2534,6 +2808,9 @@ Targets:
   Item - Secret Boots:
     Outcomes:
       Item - Secret Boots: 1
+  Item - Shaman Shield:
+    Outcomes:
+      Item - Shaman Shield: 1
   Item - Shield Potion:
     Outcomes:
       Item - Shield Potion: 1
@@ -2558,6 +2835,12 @@ Targets:
   Item - Spike Breaker:
     Outcomes:
       Item - Spike Breaker: 1
+  Item - Star Flail:
+    Outcomes:
+      Item - Star Flail: 1
+  Item - Steel Helm:
+    Outcomes:
+      Item - Steel Helm: 1
   Item - Stone Mask:
     Outcomes:
       Item - Stone Mask: 1
@@ -2567,6 +2850,9 @@ Targets:
   Item - Strength Potion:
     Outcomes:
       Item - Strength Potion: 1
+  Item - Sunglasses:
+    Outcomes:
+      Item - Sunglasses: 1
   Item - Takemitsu:
     Outcomes:
       Item - Takemitsu: 1
