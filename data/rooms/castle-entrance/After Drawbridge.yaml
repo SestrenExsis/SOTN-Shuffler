@@ -75,7 +75,7 @@ Commands:
                 Section: Ground
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-            Ground - Gravity Jump with Mist:
+            Ground - Multiple Gravity Jumps with Mist:
                 Section: Ground
                 Progression - Gravity Jump: true
                 Progression - Mist Transformation: true

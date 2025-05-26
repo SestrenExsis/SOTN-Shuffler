@@ -236,6 +236,162 @@ Sources:
         Stage: Long Library
     Reward Class: Relic
     Target Reward: Relic - Faerie Scroll
+  Location - Abandoned Mine, Peanuts Room (Power of Sire):
+    Description: Action - Check Power of Sire Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Abandoned Mine Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Abandoned Mine Item Drop 8 Location: false
+        Room: Abandoned Mine, Peanuts Room
+        Section: Main
+        Stage: Abandoned Mine
+    Reward Class: Item
+    Target Reward: Item - Power of Sire
+  Location - Abandoned Mine, Karma Coin Room (Karma Coin):
+    Description: Action - Check Karma Coin Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Abandoned Mine Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Abandoned Mine Item Drop 8 Location: false
+        Room: Abandoned Mine, Karma Coin Room
+        Section: Main
+        Stage: Abandoned Mine
+    Reward Class: Item
+    Target Reward: Item - Karma Coin
+  Location - Abandoned Mine, Snake Column (Turkey):
+    Description: Action - Check Turkey Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Abandoned Mine Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Abandoned Mine Item Drop 8 Location: false
+        Room: Abandoned Mine, Snake Column
+        Section: Main
+        Stage: Abandoned Mine
+    Reward Class: Item
+    Target Reward: Item - Turkey
+  Location - Abandoned Mine, Snake Column (Ring of Ares):
+    Description: Action - Check Ring of Ares Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Abandoned Mine Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Abandoned Mine Item Drop 8 Location: false
+        Room: Abandoned Mine, Snake Column
+        Section: Main
+        Stage: Abandoned Mine
+    Reward Class: Item
+    Target Reward: Item - Ring of Ares
+  Location - Abandoned Mine, Karma Coin Room (Combat Knife):
+    Description: Action - Check Combat Knife Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Abandoned Mine Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Abandoned Mine Item Drop 8 Location: false
+        Room: Abandoned Mine, Karma Coin Room
+        Section: Main
+        Stage: Abandoned Mine
+    Reward Class: Item
+    Target Reward: Item - Combat Knife
+  Location - Abandoned Mine, Crumbling Stairwells With Mushrooms (Shiitake 1):
+    Description: Action - Check Shiitake 1 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Abandoned Mine Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Abandoned Mine Item Drop 8 Location: false
+        Room: Abandoned Mine, Crumbling Stairwells With Mushrooms
+        Section: Main
+        Stage: Abandoned Mine
+    Reward Class: Item
+    Target Reward: Item - Shiitake
+  Location - Abandoned Mine, Crumbling Stairwells With Mushrooms (Shiitake 2):
+    Description: Action - Check Shiitake 2 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Abandoned Mine Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Abandoned Mine Item Drop 8 Location: false
+        Room: Abandoned Mine, Crumbling Stairwells With Mushrooms
+        Section: Main
+        Stage: Abandoned Mine
+    Reward Class: Item
+    Target Reward: Item - Shiitake
+  Location - Abandoned Mine, Peanuts Room (Barley Tea):
+    Description: Action - Check Barley Tea Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Abandoned Mine Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Abandoned Mine Item Drop 8 Location: false
+        Room: Abandoned Mine, Peanuts Room
+        Section: Main
+        Stage: Abandoned Mine
+    Reward Class: Item
+    Target Reward: Item - Barley Tea
+  Location - Abandoned Mine, Peanuts Room (Peanuts 1):
+    Description: Action - Check Peanuts 1 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Abandoned Mine Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Abandoned Mine Item Drop 8 Location: false
+        Room: Abandoned Mine, Peanuts Room
+        Section: Main
+        Stage: Abandoned Mine
+    Reward Class: Item
+    Target Reward: Item - Peanuts
+  Location - Abandoned Mine, Peanuts Room (Peanuts 2):
+    Description: Action - Check Peanuts 2 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Abandoned Mine Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Abandoned Mine Item Drop 8 Location: false
+        Room: Abandoned Mine, Peanuts Room
+        Section: Main
+        Stage: Abandoned Mine
+    Reward Class: Item
+    Target Reward: Item - Peanuts
+  Location - Abandoned Mine, Peanuts Room (Peanuts 3):
+    Description: Action - Check Peanuts 3 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Abandoned Mine Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Abandoned Mine Item Drop 8 Location: false
+        Room: Abandoned Mine, Peanuts Room
+        Section: Main
+        Stage: Abandoned Mine
+    Reward Class: Item
+    Target Reward: Item - Peanuts
+  Location - Abandoned Mine, Peanuts Room (Peanuts 4):
+    Description: Action - Check Peanuts 4 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Abandoned Mine Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Abandoned Mine Item Drop 8 Location: false
+        Room: Abandoned Mine, Peanuts Room
+        Section: Main
+        Stage: Abandoned Mine
+    Reward Class: Item
+    Target Reward: Item - Peanuts
   Location - Alchemy Laboratory, Red Skeleton Lift Room (Leather Shield):
     Description: Action - Check Leather Shield Location
     Logic Level: Hidden
@@ -1872,6 +2028,9 @@ Targets:
   Item - Bandanna:
     Outcomes:
       Item - Bandanna: 1
+  Item - Barley Tea:
+    Outcomes:
+      Item - Barley Tea: 1
   Item - Bloodstone:
     Outcomes:
       Item - Bloodstone: 1
@@ -1893,6 +2052,9 @@ Targets:
   Item - Claymore:
     Outcomes:
       Item - Claymore: 1
+  Item - Combat Knife:
+    Outcomes:
+      Item - Combat Knife: 1
   Item - Cross Shuriken:
     Outcomes:
       Item - Cross Shuriken: 1
@@ -2010,6 +2172,9 @@ Targets:
   Item - Onyx:
     Outcomes:
       Item - Onyx: 1
+  Item - Peanuts:
+    Outcomes:
+      Item - Peanuts: 1
   Item - Pentagram:
     Outcomes:
       Item - Pentagram: 1
@@ -2022,12 +2187,18 @@ Targets:
   Item - Potion:
     Outcomes:
       Item - Potion: 1
+  Item - Power of Sire:
+    Outcomes:
+      Item - Power of Sire: 1
   Item - Resist Fire:
     Outcomes:
       Item - Resist Fire: 1
   Item - Resist Ice:
     Outcomes:
       Item - Resist Ice: 1
+  Item - Ring of Ares:
+    Outcomes:
+      Item - Ring of Ares: 1
   Item - Scimitar:
     Outcomes:
       Item - Scimitar: 1
@@ -2055,6 +2226,9 @@ Targets:
   Item - Stone Mask:
     Outcomes:
       Item - Stone Mask: 1
+  Item - Stone Sword:
+    Outcomes:
+      Item - Stone Sword: 1
   Item - Strength Potion:
     Outcomes:
       Item - Strength Potion: 1
@@ -2070,6 +2244,9 @@ Targets:
   Item - Topaz Circlet:
     Outcomes:
       Item - Topaz Circlet: 1
+  Item - Turkey:
+    Outcomes:
+      Item - Turkey: 1
   Item - Walk Armor:
     Outcomes:
       Item - Walk Armor: 1
