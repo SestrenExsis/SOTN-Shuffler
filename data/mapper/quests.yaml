@@ -509,6 +509,214 @@ Sources:
         Stage: Alchemy Laboratory
     Reward Class: Item
     Target Reward: Item - Potion
+  Location - Anti-Chapel, XXX (Fire Boomerang):
+    Description: Action - Check Fire Boomerang Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Anti-Chapel Item Drop 2 Location: true
+    Requirements:
+      Default:
+        Check - Anti-Chapel Item Drop 2 Location: false
+        Room: Anti-Chapel, XXX
+        Section: Main
+        Stage: Anti-Chapel
+    Reward Class: Item
+    Target Reward: Item - Fire Boomerang
+  Location - Anti-Chapel, XXX (Diamond):
+    Description: Action - Check Diamond Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Anti-Chapel Item Drop 3 Location: true
+    Requirements:
+      Default:
+        Check - Anti-Chapel Item Drop 3 Location: false
+        Room: Anti-Chapel, XXX
+        Section: Main
+        Stage: Anti-Chapel
+    Reward Class: Item
+    Target Reward: Item - Diamond
+  Location - Anti-Chapel, XXX (Zircon):
+    Description: Action - Check Zircon Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Anti-Chapel Item Drop 4 Location: true
+    Requirements:
+      Default:
+        Check - Anti-Chapel Item Drop 4 Location: false
+        Room: Anti-Chapel, XXX
+        Section: Main
+        Stage: Anti-Chapel
+    Reward Class: Item
+    Target Reward: Item - Zircon
+  Location - Anti-Chapel, XXX (Heart Max-Up 1):
+    Description: Action - Check Heart Max-Up 1 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Anti-Chapel Item Drop 5 Location: true
+    Requirements:
+      Default:
+        Check - Anti-Chapel Item Drop 5 Location: false
+        Room: Anti-Chapel, XXX
+        Section: Main
+        Stage: Anti-Chapel
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Anti-Chapel, XXX (Shuriken):
+    Description: Action - Check Shuriken Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Anti-Chapel Item Drop 6 Location: true
+    Requirements:
+      Default:
+        Check - Anti-Chapel Item Drop 6 Location: false
+        Room: Anti-Chapel, XXX
+        Section: Main
+        Stage: Anti-Chapel
+    Reward Class: Item
+    Target Reward: Item - Shuriken
+  Location - Anti-Chapel, XXX (TNT):
+    Description: Action - Check TNT Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Anti-Chapel Item Drop 7 Location: true
+    Requirements:
+      Default:
+        Check - Anti-Chapel Item Drop 7 Location: false
+        Room: Anti-Chapel, XXX
+        Section: Main
+        Stage: Anti-Chapel
+    Reward Class: Item
+    Target Reward: Item - TNT
+  Location - Anti-Chapel, XXX (Boomerang):
+    Description: Action - Check Boomerang Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Anti-Chapel Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Anti-Chapel Item Drop 8 Location: false
+        Room: Anti-Chapel, XXX
+        Section: Main
+        Stage: Anti-Chapel
+    Reward Class: Item
+    Target Reward: Item - Boomerang
+  Location - Anti-Chapel, XXX (Javelin):
+    Description: Action - Check Javelin Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Anti-Chapel Item Drop 9 Location: true
+    Requirements:
+      Default:
+        Check - Anti-Chapel Item Drop 9 Location: false
+        Room: Anti-Chapel, XXX
+        Section: Main
+        Stage: Anti-Chapel
+    Reward Class: Item
+    Target Reward: Item - Javelin
+  Location - Anti-Chapel, XXX (Manna Prism):
+    Description: Action - Check Manna Prism Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Anti-Chapel Item Drop 10 Location: true
+    Requirements:
+      Default:
+        Check - Anti-Chapel Item Drop 10 Location: false
+        Room: Anti-Chapel, XXX
+        Section: Main
+        Stage: Anti-Chapel
+    Reward Class: Item
+    Target Reward: Item - Manna Prism
+  Location - Anti-Chapel, XXX (Smart Potion):
+    Description: Action - Check Smart Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Anti-Chapel Item Drop 11 Location: true
+    Requirements:
+      Default:
+        Check - Anti-Chapel Item Drop 11 Location: false
+        Room: Anti-Chapel, XXX
+        Section: Main
+        Stage: Anti-Chapel
+    Reward Class: Item
+    Target Reward: Item - Smart Potion
+  Location - Anti-Chapel, XXX (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Anti-Chapel Item Drop 12 Location: true
+    Requirements:
+      Default:
+        Check - Anti-Chapel Item Drop 12 Location: false
+        Room: Anti-Chapel, XXX
+        Section: Main
+        Stage: Anti-Chapel
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Anti-Chapel, XXX (Talwar):
+    Description: Action - Check Talwar Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Anti-Chapel Item Drop 13 Location: true
+    Requirements:
+      Default:
+        Check - Anti-Chapel Item Drop 13 Location: false
+        Room: Anti-Chapel, XXX
+        Section: Main
+        Stage: Anti-Chapel
+    Reward Class: Item
+    Target Reward: Item - Talwar
+  Location - Anti-Chapel, XXX (Bwaka Knife):
+    Description: Action - Check Bwaka Knife Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Anti-Chapel Item Drop 14 Location: true
+    Requirements:
+      Default:
+        Check - Anti-Chapel Item Drop 14 Location: false
+        Room: Anti-Chapel, XXX
+        Section: Main
+        Stage: Anti-Chapel
+    Reward Class: Item
+    Target Reward: Item - Bwaka Knife
+  Location - Anti-Chapel, XXX (Magic Missile):
+    Description: Action - Check Magic Missile Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Anti-Chapel Item Drop 15 Location: true
+    Requirements:
+      Default:
+        Check - Anti-Chapel Item Drop 15 Location: false
+        Room: Anti-Chapel, XXX
+        Section: Main
+        Stage: Anti-Chapel
+    Reward Class: Item
+    Target Reward: Item - Magic Missile
+  Location - Anti-Chapel, XXX (Twilight Cloak):
+    Description: Action - Check Twilight Cloak Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Anti-Chapel Item Drop 16 Location: true
+    Requirements:
+      Default:
+        Check - Anti-Chapel Item Drop 16 Location: false
+        Room: Anti-Chapel, XXX
+        Section: Main
+        Stage: Anti-Chapel
+    Reward Class: Item
+    Target Reward: Item - Twilight Cloak
+  Location - Anti-Chapel, XXX (Heart Max-Up 2):
+    Description: Action - Check Heart Max-Up 2 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Anti-Chapel Item Drop 17 Location: true
+    Requirements:
+      Default:
+        Check - Anti-Chapel Item Drop 17 Location: false
+        Room: Anti-Chapel, XXX
+        Section: Main
+        Stage: Anti-Chapel
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
   Location - Black Marble Gallery, S-Shaped Hallways (Library Card):
     Description: Action - Check Library Card Location
     Logic Level: Hidden
@@ -3867,6 +4075,9 @@ Targets:
   Item - Buffalo Star:
     Outcomes:
       Item - Buffalo Star: 1
+  Item - Bwaka Knife:
+    Outcomes:
+      Item - Bwaka Knife: 1
   Item - Cat-Eye Circlet:
     Outcomes:
       Item - Cat-Eye Circlet: 1
@@ -3975,6 +4186,9 @@ Targets:
   Item - Iron Ball:
     Outcomes:
       Item - Iron Ball: 1
+  Item - Javelin:
+    Outcomes:
+      Item - Javelin: 1
   Item - Jewel Knuckles:
     Outcomes:
       Item - Jewel Knuckles: 1
@@ -4140,6 +4354,9 @@ Targets:
   Item - Sirloin:
     Outcomes:
       Item - Sirloin: 1
+  Item - Smart Potion:
+    Outcomes:
+      Item - Smart Potion: 1
   Item - Spike Breaker:
     Outcomes:
       Item - Spike Breaker: 1
@@ -4173,6 +4390,9 @@ Targets:
   Item - Talisman:
     Outcomes:
       Item - Talisman: 1
+  Item - Talwar:
+    Outcomes:
+      Item - Talwar: 1
   Item - TNT:
     Outcomes:
       Item - TNT: 1
@@ -4188,6 +4408,9 @@ Targets:
   Item - Turquoise:
     Outcomes:
       Item - Turquoise: 1
+  Item - Twilight Cloak:
+    Outcomes:
+      Item - Twilight Cloak: 1
   Item - Tyrfing:
     Outcomes:
       Item - Tyrfing: 1
