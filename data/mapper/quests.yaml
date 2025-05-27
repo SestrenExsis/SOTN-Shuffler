@@ -2202,6 +2202,487 @@ Sources:
         Stage: Outer Wall
     Reward Class: Item
     Target Reward: Item - Zircon
+  Location - Reverse Caverns, XXX (Alucard Shield):
+    Description: Action - Check Alucard Shield Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 0 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 0 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Alucard Shield
+  Location - Reverse Caverns, Item Drop 1 (Shiitake):
+    Description: Action - Check Shiitake Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 1 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 1 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Shiitake
+  Location - Reverse Caverns, XXX (Toadstool):
+    Description: Action - Check Toadstool Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 2 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 2 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Toadstool
+  Location - Reverse Caverns, Item Drop 3 (Shiitake):
+    Description: Action - Check Shiitake Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 3 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 3 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Shiitake
+  Location - Reverse Caverns, XXX (Garnet):
+    Description: Action - Check Garnet Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 4 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 4 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Garnet
+  Location - Reverse Caverns, XXX (Bat Pentagram):
+    Description: Action - Check Bat Pentagram Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 5 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 5 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Bat Pentagram
+  Location - Reverse Caverns, Item Drop 6 (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 6 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 6 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Reverse Caverns, Item Drop 7 (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 7 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 7 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Reverse Caverns, XXX (Potion):
+    Description: Action - Check Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 8 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 8 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Potion
+  Location - Reverse Caverns, Item Drop 9 (Shiitake):
+    Description: Action - Check Shiitake Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 9 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 9 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Shiitake
+  Location - Reverse Caverns, Item Drop 10 (Shiitake):
+    Description: Action - Check Shiitake Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 10 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 10 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Shiitake
+  Location - Reverse Caverns, XXX (Opal):
+    Description: Action - Check Opal Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 11 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 11 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Opal
+  Location - Reverse Caverns, Item Drop 12 (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 12 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 12 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Reverse Caverns, XXX (Diamond):
+    Description: Action - Check Diamond Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 13 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 13 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Diamond
+  Location - Reverse Caverns, Item Drop 14 (Zircon):
+    Description: Action - Check Zircon Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 14 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 14 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Zircon
+  Location - Reverse Caverns, Item Drop 15 (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 15 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 15 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Reverse Caverns, Item Drop 16 (Meal Ticket):
+    Description: Action - Check Meal Ticket Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 16 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 16 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Meal Ticket
+  Location - Reverse Caverns, Item Drop 17 (Meal Ticket):
+    Description: Action - Check Meal Ticket Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 17 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 17 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Meal Ticket
+  Location - Reverse Caverns, Item Drop 18 (Meal Ticket):
+    Description: Action - Check Meal Ticket Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 18 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 18 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Meal Ticket
+  Location - Reverse Caverns, Item Drop 19 (Meal Ticket):
+    Description: Action - Check Meal Ticket Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 19 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 19 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Meal Ticket
+  Location - Reverse Caverns, Item Drop 20 (Meal Ticket):
+    Description: Action - Check Meal Ticket Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 20 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 20 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Meal Ticket
+  Location - Reverse Caverns, Item Drop 21 (Zircon):
+    Description: Action - Check Zircon Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 21 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 21 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Zircon
+  Location - Reverse Caverns, XXX (Pot Roast):
+    Description: Action - Check Pot Roast Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 22 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 22 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Pot Roast
+  Location - Reverse Caverns, XXX (Dark Blade):
+    Description: Action - Check Dark Blade Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 23 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 23 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Dark Blade
+  Location - Reverse Caverns, XXX (Manna Prism):
+    Description: Action - Check Manna Prism Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 24 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 24 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Manna Prism
+  Location - Reverse Caverns, XXX (Elixir):
+    Description: Action - Check Elixir Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 25 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 25 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Elixir
+  Location - Reverse Caverns, XXX (Osafune Katana):
+    Description: Action - Check Osafune Katana Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 26 Location: true
+    Requirements:
+      Reverse Caverns:
+        Check - Reverse Caverns Item Drop 26 Location: false
+        Room: Reverse Caverns, XXX
+        Section: Main
+        Stage: Reverse Caverns
+    Reward Class: Item
+    Target Reward: Item - Osafune Katana
+  Location - Reverse Entrance, After Drawbridge (Hammer):
+    Description: Action - Check Hammer Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Entrance Item Drop 0 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Entrance Item Drop 0 Location: false
+        Room: Reverse Entrance, After Drawbridge
+        Section: Main
+        Stage: Reverse Entrance
+    Reward Class: Item
+    Target Reward: Item - Hammer
+  Location - Reverse Entrance, After Drawbridge (Antivenom):
+    Description: Action - Check Antivenom Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Entrance Item Drop 1 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Entrance Item Drop 1 Location: false
+        Room: Reverse Entrance, After Drawbridge
+        Section: Main
+        Stage: Reverse Entrance
+    Reward Class: Item
+    Target Reward: Item - Antivenom
+  Location - Reverse Entrance, Warg Hallway (High Potion):
+    Description: Action - Check High Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Entrance Item Drop 2 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Entrance Item Drop 2 Location: false
+        Room: Reverse Entrance, Warg Hallway
+        Section: Main
+        Stage: Reverse Entrance
+    Reward Class: Item
+    Target Reward: Item - High Potion
+  Location - Reverse Entrance, Cube of Zoe Room (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Entrance Item Drop 3 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Entrance Item Drop 3 Location: false
+        Room: Reverse Entrance, Cube of Zoe Room
+        Section: Main
+        Stage: Reverse Entrance
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Reverse Entrance, Jewel Sword Room (Zircon):
+    Description: Action - Check Zircon Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Entrance Item Drop 4 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Entrance Item Drop 4 Location: false
+        Room: Reverse Entrance, Jewel Sword Room
+        Section: Main
+        Stage: Reverse Entrance
+    Reward Class: Item
+    Target Reward: Item - Zircon
+  Location - Reverse Entrance, Jewel Sword Room (Opal):
+    Description: Action - Check Opal Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Entrance Item Drop 5 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Entrance Item Drop 5 Location: false
+        Room: Reverse Entrance, Jewel Sword Room
+        Section: Main
+        Stage: Reverse Entrance
+    Reward Class: Item
+    Target Reward: Item - Opal
+  Location - Reverse Entrance, Jewel Sword Room (Beryl Circlet):
+    Description: Action - Check Beryl Circlet Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Entrance Item Drop 6 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Entrance Item Drop 6 Location: false
+        Room: Reverse Entrance, Jewel Sword Room
+        Section: Main
+        Stage: Reverse Entrance
+    Reward Class: Item
+    Target Reward: Item - Beryl Circlet
+  Location - Reverse Entrance, Holy Mail Room (Fire Boomerang):
+    Description: Action - Check Fire Boomerang Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Entrance Item Drop 7 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Entrance Item Drop 7 Location: false
+        Room: Reverse Entrance, Holy Mail Room
+        Section: Main
+        Stage: Reverse Entrance
+    Reward Class: Item
+    Target Reward: Item - Fire Boomerang
+  Location - Reverse Entrance, Heart Max-Up Room (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Entrance Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Entrance Item Drop 8 Location: false
+        Room: Reverse Entrance, Heart Max-Up Room
+        Section: Main
+        Stage: Reverse Entrance
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Reverse Entrance, Life Max-Up Room (Talisman):
+    Description: Action - Check Talisman Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Entrance Item Drop 9 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Entrance Item Drop 9 Location: false
+        Room: Reverse Entrance, Life Max-Up Room
+        Section: Main
+        Stage: Reverse Entrance
+    Reward Class: Item
+    Target Reward: Item - Talisman
   Location - Reverse Outer Wall, Lower Medusa Room (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
     Logic Level: Hidden
@@ -3005,9 +3486,15 @@ Targets:
   Item - Basilard:
     Outcomes:
       Item - Basilard: 1
+  Item - Bat Pentagram:
+    Outcomes:
+      Item - Bat Pentagram: 1
   Item - Bekatowa:
     Outcomes:
       Item - Bekatowa: 1
+  Item - Beryl Circlet:
+    Outcomes:
+      Item - Beryl Circlet: 1
   Item - Blood Cloak:
     Outcomes:
       Item - Blood Cloak: 1
@@ -3047,6 +3534,12 @@ Targets:
   Item - Cutlass:
     Outcomes:
       Item - Cutlass: 1
+  Item - Dark Blade:
+    Outcomes:
+      Item - Dark Blade: 1
+  Item - Diamond:
+    Outcomes:
+      Item - Diamond: 1
   Item - Elixir:
     Outcomes:
       Item - Elixir: 1
@@ -3056,6 +3549,9 @@ Targets:
   Item - Falchion:
     Outcomes:
       Item - Falchion: 1
+  Item - Fire Boomerang:
+    Outcomes:
+      Item - Fire Boomerang: 1
   Item - Fire Mail:
     Outcomes:
       Item - Fire Mail: 1
@@ -3194,6 +3690,9 @@ Targets:
   Item - Opal:
     Outcomes:
       Item - Opal: 1
+  Item - Osafune Katana:
+    Outcomes:
+      Item - Osafune Katana: 1
   Item - Peanuts:
     Outcomes:
       Item - Peanuts: 1
@@ -3296,6 +3795,9 @@ Targets:
   Item - Takemitsu:
     Outcomes:
       Item - Takemitsu: 1
+  Item - Talisman:
+    Outcomes:
+      Item - Talisman: 1
   Item - TNT:
     Outcomes:
       Item - TNT: 1

@@ -1314,7 +1314,7 @@ if __name__ == '__main__':
         pathlib.Path(
             os.path.join('build', 'shuffler', stage_name)
         ).mkdir(parents=True, exist_ok=True)
-    GENERATION_VERSION = 'Alpha Build 75'
+    GENERATION_VERSION = 'Alpha Build 76'
     mapper_core = MapperData().get_core()
     with (
         open(os.path.join('build', 'shuffler', 'mapper-core.json'), 'w') as mapper_core_json,
