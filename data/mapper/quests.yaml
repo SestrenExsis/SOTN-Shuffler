@@ -1682,6 +1682,240 @@ Sources:
         Stage: Death Wing's Lair
     Reward Class: Item
     Target Reward: Item - Heart Max-Up
+  Location - Floating Catacombs, XXX (Magic Missile):
+    Description: Action - Check Magic Missile Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Floating Catacombs Item Drop 0 Location: true
+    Requirements:
+      Floating Catacombs:
+        Check - Floating Catacombs Item Drop 0 Location: false
+        Room: Floating Catacombs, XXX
+        Section: Main
+        Stage: Floating Catacombs
+    Reward Class: Item
+    Target Reward: Item - Magic Missile
+  Location - Floating Catacombs, XXX (Buffalo Star):
+    Description: Action - Check Buffalo Star Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Floating Catacombs Item Drop 1 Location: true
+    Requirements:
+      Floating Catacombs:
+        Check - Floating Catacombs Item Drop 1 Location: false
+        Room: Floating Catacombs, XXX
+        Section: Main
+        Stage: Floating Catacombs
+    Reward Class: Item
+    Target Reward: Item - Buffalo Star
+  Location - Floating Catacombs, XXX (Resist Thunder):
+    Description: Action - Check Resist Thunder Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Floating Catacombs Item Drop 2 Location: true
+    Requirements:
+      Floating Catacombs:
+        Check - Floating Catacombs Item Drop 2 Location: false
+        Room: Floating Catacombs, XXX
+        Section: Main
+        Stage: Floating Catacombs
+    Reward Class: Item
+    Target Reward: Item - Resist Thunder
+  Location - Floating Catacombs, XXX (Resist Fire):
+    Description: Action - Check Resist Fire Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Floating Catacombs Item Drop 3 Location: true
+    Requirements:
+      Floating Catacombs:
+        Check - Floating Catacombs Item Drop 3 Location: false
+        Room: Floating Catacombs, XXX
+        Section: Main
+        Stage: Floating Catacombs
+    Reward Class: Item
+    Target Reward: Item - Resist Fire
+  Location - Floating Catacombs, XXX (Karma Coin 1):
+    Description: Action - Check Karma Coin 1 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Floating Catacombs Item Drop 4 Location: true
+    Requirements:
+      Floating Catacombs:
+        Check - Floating Catacombs Item Drop 4 Location: false
+        Room: Floating Catacombs, XXX
+        Section: Main
+        Stage: Floating Catacombs
+    Reward Class: Item
+    Target Reward: Item - Karma Coin
+  Location - Floating Catacombs, XXX (Karma Coin 2):
+    Description: Action - Check Karma Coin 2 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Floating Catacombs Item Drop 5 Location: true
+    Requirements:
+      Floating Catacombs:
+        Check - Floating Catacombs Item Drop 5 Location: false
+        Room: Floating Catacombs, XXX
+        Section: Main
+        Stage: Floating Catacombs
+    Reward Class: Item
+    Target Reward: Item - Karma Coin
+  Location - Floating Catacombs, XXX (Red Bean Bun):
+    Description: Action - Check Red Bean Bun Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Floating Catacombs Item Drop 6 Location: true
+    Requirements:
+      Floating Catacombs:
+        Check - Floating Catacombs Item Drop 6 Location: false
+        Room: Floating Catacombs, XXX
+        Section: Main
+        Stage: Floating Catacombs
+    Reward Class: Item
+    Target Reward: Item - Red Bean Bun
+  Location - Floating Catacombs, XXX (Elixir):
+    Description: Action - Check Elixir Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Floating Catacombs Item Drop 7 Location: true
+    Requirements:
+      Floating Catacombs:
+        Check - Floating Catacombs Item Drop 7 Location: false
+        Room: Floating Catacombs, XXX
+        Section: Main
+        Stage: Floating Catacombs
+    Reward Class: Item
+    Target Reward: Item - Elixir
+  Location - Floating Catacombs, XXX (Library Card):
+    Description: Action - Check Library Card Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Floating Catacombs Item Drop 8 Location: true
+    Requirements:
+      Floating Catacombs:
+        Check - Floating Catacombs Item Drop 8 Location: false
+        Room: Floating Catacombs, XXX
+        Section: Main
+        Stage: Floating Catacombs
+    Reward Class: Item
+    Target Reward: Item - Library Card
+  Location - Floating Catacombs, XXX (Life Max-Up 1):
+    Description: Action - Check Life Max-Up 1 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Floating Catacombs Item Drop 9 Location: true
+    Requirements:
+      Floating Catacombs:
+        Check - Floating Catacombs Item Drop 9 Location: false
+        Room: Floating Catacombs, XXX
+        Section: Main
+        Stage: Floating Catacombs
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Floating Catacombs, XXX (Heart Max-Up 1):
+    Description: Action - Check Heart Max-Up 1 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Floating Catacombs Item Drop 10 Location: true
+    Requirements:
+      Floating Catacombs:
+        Check - Floating Catacombs Item Drop 10 Location: false
+        Room: Floating Catacombs, XXX
+        Section: Main
+        Stage: Floating Catacombs
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Floating Catacombs, XXX (Shield Potion):
+    Description: Action - Check Shield Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Floating Catacombs Item Drop 11 Location: true
+    Requirements:
+      Floating Catacombs:
+        Check - Floating Catacombs Item Drop 11 Location: false
+        Room: Floating Catacombs, XXX
+        Section: Main
+        Stage: Floating Catacombs
+    Reward Class: Item
+    Target Reward: Item - Shield Potion
+  Location - Floating Catacombs, XXX (Attack Potion):
+    Description: Action - Check Attack Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Floating Catacombs Item Drop 12 Location: true
+    Requirements:
+      Floating Catacombs:
+        Check - Floating Catacombs Item Drop 12 Location: false
+        Room: Floating Catacombs, XXX
+        Section: Main
+        Stage: Floating Catacombs
+    Reward Class: Item
+    Target Reward: Item - Attack Potion
+  Location - Floating Catacombs, XXX (Necklace of J):
+    Description: Action - Check Necklace of J Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Floating Catacombs Item Drop 13 Location: true
+    Requirements:
+      Floating Catacombs:
+        Check - Floating Catacombs Item Drop 13 Location: false
+        Room: Floating Catacombs, XXX
+        Section: Main
+        Stage: Floating Catacombs
+    Reward Class: Item
+    Target Reward: Item - Necklace of J
+  Location - Floating Catacombs, XXX (Diamond):
+    Description: Action - Check Diamond Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Floating Catacombs Item Drop 14 Location: true
+    Requirements:
+      Floating Catacombs:
+        Check - Floating Catacombs Item Drop 14 Location: false
+        Room: Floating Catacombs, XXX
+        Section: Main
+        Stage: Floating Catacombs
+    Reward Class: Item
+    Target Reward: Item - Diamond
+  Location - Floating Catacombs, XXX (Heart Max-Up 2):
+    Description: Action - Check Heart Max-Up 2 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Floating Catacombs Item Drop 15 Location: true
+    Requirements:
+      Floating Catacombs:
+        Check - Floating Catacombs Item Drop 15 Location: false
+        Room: Floating Catacombs, XXX
+        Section: Main
+        Stage: Floating Catacombs
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Floating Catacombs, XXX (Life Max-Up 2):
+    Description: Action - Check Life Max-Up 2 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Floating Catacombs Item Drop 16 Location: true
+    Requirements:
+      Floating Catacombs:
+        Check - Floating Catacombs Item Drop 16 Location: false
+        Room: Floating Catacombs, XXX
+        Section: Main
+        Stage: Floating Catacombs
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Floating Catacombs, XXX (Ruby Circlet):
+    Description: Action - Check Ruby Circlet Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Floating Catacombs Item Drop 17 Location: true
+    Requirements:
+      Floating Catacombs:
+        Check - Floating Catacombs Item Drop 17 Location: false
+        Room: Floating Catacombs, XXX
+        Section: Main
+        Stage: Floating Catacombs
+    Reward Class: Item
+    Target Reward: Item - Ruby Circlet
   Location - Forbidden Library, XXX (Turquoise):
     Description: Action - Check Turquoise Location
     Logic Level: Hidden
@@ -3630,6 +3864,9 @@ Targets:
   Item - Bronze Cuirass:
     Outcomes:
       Item - Bronze Cuirass: 1
+  Item - Buffalo Star:
+    Outcomes:
+      Item - Buffalo Star: 1
   Item - Cat-Eye Circlet:
     Outcomes:
       Item - Cat-Eye Circlet: 1
@@ -3801,6 +4038,9 @@ Targets:
   Item - Mystic Pendant:
     Outcomes:
       Item - Mystic Pendant: 1
+  Item - Necklace of J:
+    Outcomes:
+      Item - Necklace of J: 1
   Item - Neutron Bomb:
     Outcomes:
       Item - Neutron Bomb: 1
@@ -3840,6 +4080,9 @@ Targets:
   Item - Power of Sire:
     Outcomes:
       Item - Power of Sire: 1
+  Item - Red Bean Bun:
+    Outcomes:
+      Item - Red Bean Bun: 1
   Item - Resist Dark:
     Outcomes:
       Item - Resist Dark: 1
@@ -3861,6 +4104,9 @@ Targets:
   Item - Ring of Ares:
     Outcomes:
       Item - Ring of Ares: 1
+  Item - Ruby Circlet:
+    Outcomes:
+      Item - Ruby Circlet: 1
   Item - Scimitar:
     Outcomes:
       Item - Scimitar: 1
