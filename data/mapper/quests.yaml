@@ -1500,6 +1500,97 @@ Sources:
         Stage: Castle Keep
     Reward Class: Item
     Target Reward: Item - Heart Max-Up
+  Location - Cave, XXX (Power of Sire 1):
+    Description: Action - Check Power of Sire 1 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Cave Item Drop 0 Location: true
+    Requirements:
+      Cave:
+        Check - Cave Item Drop 0 Location: false
+        Room: Cave, XXX
+        Section: Main
+        Stage: Cave
+    Reward Class: Item
+    Target Reward: Item - Power of Sire
+  Location - Cave, XXX (Life Apple):
+    Description: Action - Check Life Apple Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Cave Item Drop 1 Location: true
+    Requirements:
+      Cave:
+        Check - Cave Item Drop 1 Location: false
+        Room: Cave, XXX
+        Section: Main
+        Stage: Cave
+    Reward Class: Item
+    Target Reward: Item - Life Apple
+  Location - Cave, XXX (Alucard Sword):
+    Description: Action - Check Alucard Sword Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Cave Item Drop 2 Location: true
+    Requirements:
+      Cave:
+        Check - Cave Item Drop 2 Location: false
+        Room: Cave, XXX
+        Section: Main
+        Stage: Cave
+    Reward Class: Item
+    Target Reward: Item - Alucard Sword
+  Location - Cave, XXX (Green Tea):
+    Description: Action - Check Green Tea Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Cave Item Drop 3 Location: true
+    Requirements:
+      Cave:
+        Check - Cave Item Drop 3 Location: false
+        Room: Cave, XXX
+        Section: Main
+        Stage: Cave
+    Reward Class: Item
+    Target Reward: Item - Green Tea
+  Location - Cave, XXX (Power of Sire 2):
+    Description: Action - Check Power of Sire 2 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Cave Item Drop 4 Location: true
+    Requirements:
+      Cave:
+        Check - Cave Item Drop 4 Location: false
+        Room: Cave, XXX
+        Section: Main
+        Stage: Cave
+    Reward Class: Item
+    Target Reward: Item - Power of Sire
+  Location - Cave, XXX (Shiitake 1):
+    Description: Action - Check Shiitake 1 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Cave Item Drop 6 Location: true
+    Requirements:
+      Cave:
+        Check - Cave Item Drop 6 Location: false
+        Room: Cave, XXX
+        Section: Main
+        Stage: Cave
+    Reward Class: Item
+    Target Reward: Item - Shiitake
+  Location - Cave, XXX (Shiitake 2):
+    Description: Action - Check Shiitake 2 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Cave Item Drop 7 Location: true
+    Requirements:
+      Cave:
+        Check - Cave Item Drop 7 Location: false
+        Room: Cave, XXX
+        Section: Main
+        Stage: Cave
+    Reward Class: Item
+    Target Reward: Item - Shiitake
   Location - Clock Tower, Open Courtyard (Magic Missile):
     Description: Action - Check Magic Missile Location
     Logic Level: Hidden
@@ -3112,6 +3203,110 @@ Sources:
         Stage: Reverse Caverns
     Reward Class: Item
     Target Reward: Item - Osafune Katana
+  Location - Reverse Colosseum, XXX (Fury Plate):
+    Description: Action - Check Fury Plate Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 0 Location: true
+    Requirements:
+      Reverse Colosseum:
+        Check - Reverse Colosseum Item Drop 0 Location: false
+        Room: Reverse Colosseum, XXX
+        Section: Main
+        Stage: Reverse Colosseum
+    Reward Class: Item
+    Target Reward: Item - Fury Plate
+  Location - Reverse Colosseum, XXX (Zircon):
+    Description: Action - Check Zircon Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 1 Location: true
+    Requirements:
+      Reverse Colosseum:
+        Check - Reverse Colosseum Item Drop 1 Location: false
+        Room: Reverse Colosseum, XXX
+        Section: Main
+        Stage: Reverse Colosseum
+    Reward Class: Item
+    Target Reward: Item - Zircon
+  Location - Reverse Colosseum, XXX (Buffalo Star):
+    Description: Action - Check Buffalo Star Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 2 Location: true
+    Requirements:
+      Reverse Colosseum:
+        Check - Reverse Colosseum Item Drop 2 Location: false
+        Room: Reverse Colosseum, XXX
+        Section: Main
+        Stage: Reverse Colosseum
+    Reward Class: Item
+    Target Reward: Item - Buffalo Star
+  Location - Reverse Colosseum, XXX (Gram):
+    Description: Action - Check Gram Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 3 Location: true
+    Requirements:
+      Reverse Colosseum:
+        Check - Reverse Colosseum Item Drop 3 Location: false
+        Room: Reverse Colosseum, XXX
+        Section: Main
+        Stage: Reverse Colosseum
+    Reward Class: Item
+    Target Reward: Item - Gram
+  Location - Reverse Colosseum, XXX (Aquamarine):
+    Description: Action - Check Aquamarine Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 4 Location: true
+    Requirements:
+      Reverse Colosseum:
+        Check - Reverse Colosseum Item Drop 4 Location: false
+        Room: Reverse Colosseum, XXX
+        Section: Main
+        Stage: Reverse Colosseum
+    Reward Class: Item
+    Target Reward: Item - Aquamarine
+  Location - Reverse Colosseum, XXX (Heart Max-Up 1):
+    Description: Action - Check Heart Max-Up 1 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 5 Location: true
+    Requirements:
+      Reverse Colosseum:
+        Check - Reverse Colosseum Item Drop 5 Location: false
+        Room: Reverse Colosseum, XXX
+        Section: Main
+        Stage: Reverse Colosseum
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Reverse Colosseum, XXX (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 6 Location: true
+    Requirements:
+      Reverse Colosseum:
+        Check - Reverse Colosseum Item Drop 6 Location: false
+        Room: Reverse Colosseum, XXX
+        Section: Main
+        Stage: Reverse Colosseum
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Reverse Colosseum, XXX (Heart Max-Up 2):
+    Description: Action - Check Heart Max-Up 2 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Caverns Item Drop 7 Location: true
+    Requirements:
+      Reverse Colosseum:
+        Check - Reverse Colosseum Item Drop 7 Location: false
+        Room: Reverse Colosseum, XXX
+        Section: Main
+        Stage: Reverse Colosseum
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
   Location - Reverse Entrance, After Drawbridge (Hammer):
     Description: Action - Check Hammer Location
     Logic Level: Hidden
@@ -3242,6 +3437,253 @@ Sources:
         Stage: Reverse Entrance
     Reward Class: Item
     Target Reward: Item - Talisman
+  Location - Reverse Keep, XXX (Sword of Dawn):
+    Description: Action - Check Sword of Dawn Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 0 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 0 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - Sword of Dawn
+  Location - Reverse Keep, XXX (Iron Ball):
+    Description: Action - Check Iron Ball Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 1 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 1 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - Iron Ball
+  Location - Reverse Keep, XXX (Zircon):
+    Description: Action - Check Zircon Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 2 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 2 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - Zircon
+  Location - Reverse Keep, XXX (Bastard Sword):
+    Description: Action - Check Bastard Sword Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 4 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 4 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - Bastard Sword
+  Location - Reverse Keep, XXX (Life Max-Up 1):
+    Description: Action - Check Life Max-Up 1 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 5 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 5 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Reverse Keep, XXX (Heart Max-Up 1):
+    Description: Action - Check Heart Max-Up 1 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 6 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 6 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Reverse Keep, XXX (Life Max-Up 2):
+    Description: Action - Check Life Max-Up 2 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 7 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 7 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Reverse Keep, XXX (Heart Max-Up 2):
+    Description: Action - Check Heart Max-Up 2 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 8 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 8 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Reverse Keep, XXX (Life Max-Up 3):
+    Description: Action - Check Life Max-Up 3 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 9 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 9 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Reverse Keep, XXX (Heart Max-Up 3):
+    Description: Action - Check Heart Max-Up 3 Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 10 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 10 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Reverse Keep, XXX (Royal Cloak):
+    Description: Action - Check Royal Cloak Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 11 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 11 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - Royal Cloak
+  Location - Reverse Keep, XXX (Resist Fire):
+    Description: Action - Check Resist Fire Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 17 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 17 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - Resist Fire
+  Location - Reverse Keep, XXX (Resist Ice):
+    Description: Action - Check Resist Ice Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 18 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 18 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - Resist Ice
+  Location - Reverse Keep, XXX (Resist Thunder):
+    Description: Action - Check Resist Thunder Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 19 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 19 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - Resist Thunder
+  Location - Reverse Keep, XXX (Resist Stone):
+    Description: Action - Check Resist Stone Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 20 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 20 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - Resist Stone
+  Location - Reverse Keep, XXX (High Potion):
+    Description: Action - Check High Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 21 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 21 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - High Potion
+  Location - Reverse Keep, XXX (Garnet):
+    Description: Action - Check Garnet Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 22 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 22 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - Garnet
+  Location - Reverse Keep, XXX (Lightning Mail):
+    Description: Action - Check Lightning Mail Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 23 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 23 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - Lightning Mail
+  Location - Reverse Keep, XXX (Library Card):
+    Description: Action - Check Library Card Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Keep Item Drop 24 Location: true
+    Requirements:
+      Default:
+        Check - Reverse Keep Item Drop 24 Location: false
+        Room: Reverse Keep, XXX
+        Section: Main
+        Stage: Reverse Keep
+    Reward Class: Item
+    Target Reward: Item - Library Card
   Location - Reverse Outer Wall, Lower Medusa Room (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
     Logic Level: Hidden
@@ -4048,6 +4490,9 @@ Targets:
   Item - Basilard:
     Outcomes:
       Item - Basilard: 1
+  Item - Bastard Sword:
+    Outcomes:
+      Item - Bastard Sword: 1
   Item - Bat Pentagram:
     Outcomes:
       Item - Bat Pentagram: 1
@@ -4129,6 +4574,9 @@ Targets:
   Item - Frankfurter:
     Outcomes:
       Item - Frankfurter: 1
+  Item - Fury Plate:
+    Outcomes:
+      Item - Fury Plate: 1
   Item - Garnet:
     Outcomes:
       Item - Garnet: 1
@@ -4144,6 +4592,9 @@ Targets:
   Item - Gold Ring:
     Outcomes:
       Item - Gold Ring: 1
+  Item - Gram:
+    Outcomes:
+      Item - Gram: 1
   Item - Green Tea:
     Outcomes:
       Item - Green Tea: 1
@@ -4216,6 +4667,9 @@ Targets:
   Item - Life Max-Up:
     Outcomes:
       Item - Life Max-Up: 1
+  Item - Lightning Mail:
+    Outcomes:
+      Item - Lightning Mail: 1
   Item - Luck Potion:
     Outcomes:
       Item - Luck Potion: 1
@@ -4318,6 +4772,9 @@ Targets:
   Item - Ring of Ares:
     Outcomes:
       Item - Ring of Ares: 1
+  Item - Royal Cloak:
+    Outcomes:
+      Item - Royal Cloak: 1
   Item - Ruby Circlet:
     Outcomes:
       Item - Ruby Circlet: 1
@@ -4384,6 +4841,9 @@ Targets:
   Item - Sword of Hador:
     Outcomes:
       Item - Sword of Hador: 1
+  Item - Sword of Dawn:
+    Outcomes:
+      Item - Sword of Dawn: 1
   Item - Takemitsu:
     Outcomes:
       Item - Takemitsu: 1
