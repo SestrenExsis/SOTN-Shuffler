@@ -1682,6 +1682,123 @@ Sources:
         Stage: Death Wing's Lair
     Reward Class: Item
     Target Reward: Item - Heart Max-Up
+  Location - Forbidden Library, XXX (Turquoise):
+    Description: Action - Check Turquoise Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Forbidden Library Item Drop 0 Location: true
+    Requirements:
+      Forbidden Library:
+        Check - Forbidden Library Item Drop 0 Location: false
+        Room: Forbidden Library, XXX
+        Section: Main
+        Stage: Forbidden Library
+    Reward Class: Item
+    Target Reward: Item - Turquoise
+  Location - Forbidden Library, XXX (Opal):
+    Description: Action - Check Opal Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Forbidden Library Item Drop 1 Location: true
+    Requirements:
+      Forbidden Library:
+        Check - Forbidden Library Item Drop 1 Location: false
+        Room: Forbidden Library, XXX
+        Section: Main
+        Stage: Forbidden Library
+    Reward Class: Item
+    Target Reward: Item - Opal
+  Location - Forbidden Library, XXX (Library Card):
+    Description: Action - Check Library Card Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Forbidden Library Item Drop 2 Location: true
+    Requirements:
+      Forbidden Library:
+        Check - Forbidden Library Item Drop 2 Location: false
+        Room: Forbidden Library, XXX
+        Section: Main
+        Stage: Forbidden Library
+    Reward Class: Item
+    Target Reward: Item - Library Card
+  Location - Forbidden Library, XXX (Resist Fire):
+    Description: Action - Check Resist Fire Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Forbidden Library Item Drop 3 Location: true
+    Requirements:
+      Forbidden Library:
+        Check - Forbidden Library Item Drop 3 Location: false
+        Room: Forbidden Library, XXX
+        Section: Main
+        Stage: Forbidden Library
+    Reward Class: Item
+    Target Reward: Item - Resist Fire
+  Location - Forbidden Library, XXX (Resist Ice):
+    Description: Action - Check Resist Ice Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Forbidden Library Item Drop 4 Location: true
+    Requirements:
+      Forbidden Library:
+        Check - Forbidden Library Item Drop 4 Location: false
+        Room: Forbidden Library, XXX
+        Section: Main
+        Stage: Forbidden Library
+    Reward Class: Item
+    Target Reward: Item - Resist Ice
+  Location - Forbidden Library, XXX (Resist Stone):
+    Description: Action - Check Resist Stone Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Forbidden Library Item Drop 5 Location: true
+    Requirements:
+      Forbidden Library:
+        Check - Forbidden Library Item Drop 5 Location: false
+        Room: Forbidden Library, XXX
+        Section: Main
+        Stage: Forbidden Library
+    Reward Class: Item
+    Target Reward: Item - Resist Stone
+  Location - Forbidden Library, XXX (Neutron Bomb):
+    Description: Action - Check Neutron Bomb Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Forbidden Library Item Drop 6 Location: true
+    Requirements:
+      Forbidden Library:
+        Check - Forbidden Library Item Drop 6 Location: false
+        Room: Forbidden Library, XXX
+        Section: Main
+        Stage: Forbidden Library
+    Reward Class: Item
+    Target Reward: Item - Neutron Bomb
+  Location - Forbidden Library, XXX (Badelaire):
+    Description: Action - Check Badelaire Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Forbidden Library Item Drop 7 Location: true
+    Requirements:
+      Forbidden Library:
+        Check - Forbidden Library Item Drop 7 Location: false
+        Room: Forbidden Library, XXX
+        Section: Main
+        Stage: Forbidden Library
+    Reward Class: Item
+    Target Reward: Item - Badelaire
+  Location - Forbidden Library, XXX (Staurolite):
+    Description: Action - Check Staurolite Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Forbidden Library Item Drop 8 Location: true
+    Requirements:
+      Forbidden Library:
+        Check - Forbidden Library Item Drop 8 Location: false
+        Room: Forbidden Library, XXX
+        Section: Main
+        Stage: Forbidden Library
+    Reward Class: Item
+    Target Reward: Item - Staurolite
   Location - Long Library, Secret Bookcase Room (Stone Mask):
     Description: Action - Check Stone Mask Location
     Logic Level: Hidden
@@ -3474,6 +3591,9 @@ Targets:
   Item - Attack Potion:
     Outcomes:
       Item - Attack Potion: 1
+  Item - Badelaire:
+    Outcomes:
+      Item - Badelaire: 1
   Item - Ballroom Mask:
     Outcomes:
       Item - Ballroom Mask: 1
@@ -3681,6 +3801,9 @@ Targets:
   Item - Mystic Pendant:
     Outcomes:
       Item - Mystic Pendant: 1
+  Item - Neutron Bomb:
+    Outcomes:
+      Item - Neutron Bomb: 1
   Item - Nunchaku:
     Outcomes:
       Item - Nunchaku: 1
@@ -3708,6 +3831,9 @@ Targets:
   Item - Pot Roast:
     Outcomes:
       Item - Pot Roast: 1
+    Tags:
+      - Food
+      - High Quality
   Item - Potion:
     Outcomes:
       Item - Potion: 1
@@ -3774,6 +3900,9 @@ Targets:
   Item - Star Flail:
     Outcomes:
       Item - Star Flail: 1
+  Item - Staurolite:
+    Outcomes:
+      Item - Staurolite: 1
   Item - Steel Helm:
     Outcomes:
       Item - Steel Helm: 1
