@@ -793,21 +793,21 @@ class LogicCore:
     def __init__(self, mapper_data, changes):
         self.commands = {
             'Global': {
-                # NOTE(sestren): Disable using Library Card for now, so that it's not ever considered "in logic"
-                # 'Use Library Card': {
-                #     'Outcomes': {
-                #         'Room': 'Long Library, Outside Shop',
-                #         'Section': 'Main',
-                #         'Item - Library Card': -1,
-                #     },
-                #     'Requirements': {
-                #         'Default': {
-                #             'Item - Library Card': {
-                #                 'Minimum': 1,
-                #             },
-                #         },
-                #     },
-                # },
+                # NOTE(sestren): Consider disabling use of Library Card, so that it's never considered "in logic"
+                'Use Library Card': {
+                    'Outcomes': {
+                        'Room': 'Long Library, Outside Shop',
+                        'Section': 'Main',
+                        'Item - Library Card': -1,
+                    },
+                    'Requirements': {
+                        'Default': {
+                            'Item - Library Card': {
+                                'Minimum': 1,
+                            },
+                        },
+                    },
+                },
             },
         }
         for stage_name in (
@@ -1023,13 +1023,13 @@ class LogicCore:
                 'Check - Faerie Scroll Location': True,
             },
             'Check Spike Breaker Location': {
-                'Check - Spike Breaker Location': True,
+                'Check Location - Catacombs, Spike Breaker Room (Spike Breaker)': True,
             },
             'Check Silver Ring Location': {
-                'Check - Silver Ring Location': True,
+                'Check Location - Royal Chapel, Silver Ring Room (Silver Ring)': True,
             },
             'Check Gold Ring Location': {
-                'Check - Gold Ring': True,
+                'Check Location - Underground Caverns, False Save Room (Gold Ring)': True,
             },
             'Check Holy Glasses Location': {
                 'Check - Holy Glasses Location': True,
@@ -1085,9 +1085,9 @@ class LogicCore:
                 'Check - Power of Mist Location': True,
                 'Check - Faerie Card Location': True,
                 'Check - Faerie Scroll Location': True,
-                'Check - Spike Breaker Location': True,
-                'Check - Silver Ring Location': True,
-                'Check - Gold Ring': True,
+                'Check Location - Catacombs, Spike Breaker Room (Spike Breaker)': True,
+                'Check Location - Royal Chapel, Silver Ring Room (Silver Ring)': True,
+                'Check Location - Underground Caverns, False Save Room (Gold Ring)': True,
                 'Check - Holy Glasses Location': True,
                 'Relic - Jewel of Open': True,
                 'Sections Visited': {

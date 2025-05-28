@@ -1072,10 +1072,10 @@ Sources:
     Description: Action - Check Spike Breaker Location
     Logic Level: Required
     Outcomes:
-      Check - Catacombs Item Drop 16 Location: true
+      Check Location - Catacombs, Spike Breaker Room (Spike Breaker): true
     Requirements:
       Default:
-        Check - Catacombs Item Drop 16 Location: false
+        Check Location - Catacombs, Spike Breaker Room (Spike Breaker): false
         Room: Catacombs, Spike Breaker Room
         Section: Main
         Stage: Catacombs
@@ -4089,12 +4089,12 @@ Sources:
     Target Reward: Item - Morningstar
   Location - Royal Chapel, Silver Ring Room (Silver Ring):
     Description: Action - Check Silver Ring Location
-    Logic Level: Hidden
+    Logic Level: Required
     Outcomes:
-      Check - Royal Chapel Item Drop 2 Location: true
+      Check Location - Royal Chapel, Silver Ring Room (Silver Ring): true
     Requirements:
       Default:
-        Check - Royal Chapel Item Drop 2 Location: false
+        Check Location - Royal Chapel, Silver Ring Room (Silver Ring): false
         Room: Royal Chapel, Silver Ring Room
         Section: Main
         Stage: Royal Chapel
@@ -4383,10 +4383,10 @@ Sources:
     Description: Action - Check Gold Ring Location
     Logic Level: Required
     Outcomes:
-      Check - Underground Caverns Item Drop 10 Location: true
+      Check Location - Underground Caverns, False Save Room (Gold Ring): true
     Requirements:
       Default:
-        Check - Underground Caverns Item Drop 10 Location: false
+        Check Location - Underground Caverns, False Save Room (Gold Ring): false
         Room: Underground Caverns, False Save Room
         Section: Main
         Stage: Underground Caverns
@@ -5209,6 +5209,7 @@ Targets:
   Relic - Leap Stone:
     Outcomes:
       Progression - Double Jump: true
+      Progression - Mid-Air Reset: true
       Relic - Leap Stone: true
   Relic - Merman Statue:
     Outcomes:

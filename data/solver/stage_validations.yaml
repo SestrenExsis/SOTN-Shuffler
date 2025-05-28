@@ -892,7 +892,7 @@ Long Library:
         State:
             Room: Long Library, Loading Room to Outer Wall
             Section: Main
-            Progression - Bat Transformation: true
+            Progression - Double Jump: true
             Progression - Mist Transformation: true
         Goals:
             Reach Hub:
@@ -912,7 +912,8 @@ Long Library:
         State:
             Room: Long Library, Outside Shop
             Section: Main
-            Progression - Bat Transformation: true
+            Progression - Double Jump: true
+            Progression - Mist Transformation: true
         Goals:
             Reach Progression Area:
                 Room: Long Library, Shop
@@ -922,7 +923,8 @@ Long Library:
         State:
             Room: Long Library, Outside Shop
             Section: Main
-            Progression - Bat Transformation: true
+            Progression - Double Jump: true
+            Progression - Mist Transformation: true
         Goals:
             Reach Progression Area:
                 Room: Long Library, Three Layer Room
@@ -932,7 +934,8 @@ Long Library:
         State:
             Room: Long Library, Outside Shop
             Section: Main
-            Progression - Bat Transformation: true
+            Progression - Double Jump: true
+            Progression - Mist Transformation: true
         Goals:
             Reach Progression Area:
                 Room: Long Library, Faerie Card Room
@@ -942,7 +945,8 @@ Long Library:
         State:
             Room: Long Library, Outside Shop
             Section: Main
-            Progression - Bat Transformation: true
+            Progression - Double Jump: true
+            Progression - Mist Transformation: true
         Goals:
             Reach Progression Area:
                 Room: Long Library, Lesser Demon Area
@@ -952,7 +956,8 @@ Long Library:
         State:
             Room: Long Library, Outside Shop
             Section: Main
-            Progression - Bat Transformation: true
+            Progression - Double Jump: true
+            Progression - Mist Transformation: true
         Goals:
             Reach Exit:
                 Room: Long Library, Loading Room to Outer Wall

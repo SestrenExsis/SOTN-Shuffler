@@ -29,7 +29,7 @@ def validate_logic(mapper_core, changes) -> bool:
     final_goal_ind = False
     print('')
     while True:
-        print(len(map_solver.current_game.goals_remaining), map_solver.current_game.current_state['Room'], map_solver.current_game.progression)
+        print(len(map_solver.current_game.goals_remaining), map_solver.current_game.current_state['Room'], map_solver.current_game.progression, map_solver.current_game.get_progression())
         prev_game = map_solver.current_game.clone()
         # Guard against softlocks
         map_solver.debug = False
@@ -52,6 +52,9 @@ def validate_logic(mapper_core, changes) -> bool:
         print(' ', '✅ ... Require some form of nearby progression')
         (step__solver, game__solver) = map_solver.results['Wins'][-1]
         while len(game__solver.goals_achieved) > 0:
+            if len(game__solver.goals_achieved) > 1:
+                print(game__solver.goals_achieved)
+            assert len(game__solver.goals_achieved) < 2
             goal_achieved = game__solver.goals_achieved.pop()
             if goal_achieved == 'END':
                 final_goal_ind = True

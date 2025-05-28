@@ -70,10 +70,20 @@ Commands:
             Main - Bat:
                 Section: Main
                 Progression - Bat Transformation: true
-            Main - Book Jump:
+            Main - Book Jump with Double Jump and Mist:
+                Section: Main
+                Progression - Double Jump: true
+                Progression - Mid-Air Reset: true
+                Progression - Mist Transformation: true
+            Main - Book Jump without Double Jump:
                 Section: Main
                 Progression - Mid-Air Reset: true
-                Execution - Book Jump: true
+                Progression - Mist Transformation: true
+                Execution - Book Jump without Double Jump: true
+            Main - Book Jump without Double Jump or Mist:
+                Section: Main
+                Progression - Mid-Air Reset: true
+                Execution - Book Jump without Double Jump or Mist: true
             Main - Gravity Jump:
                 Section: Main
                 Progression - Gravity Jump: true

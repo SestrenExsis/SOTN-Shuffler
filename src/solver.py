@@ -135,16 +135,19 @@ class Game:
     
     def get_progression(self) -> str:
         chars = {
-            'cz': 'Relic - Cube of Zoe',
             'B': 'Relic - Soul of Bat',
             'Be': 'Relic - Echo of Bat',
-            'gb': 'Relic - Gravity Boots',
-            'jo': 'Relic - Jewel of Open',
-            'ls': 'Relic - Leap Stone',
             'M': 'Relic - Form of Mist',
             'Mp': 'Relic - Power of Mist',
-            'sb': 'Item - Spike Breaker',
             'W': 'Relic - Soul of Wolf',
+            'cz': 'Relic - Cube of Zoe',
+            'gb': 'Relic - Gravity Boots',
+            'hg': 'Item - Holy Glasses',
+            'jo': 'Relic - Jewel of Open',
+            'ls': 'Relic - Leap Stone',
+            'rg': 'Item - Gold Ring',
+            'rs': 'Item - Silver Ring',
+            'sb': 'Item - Spike Breaker',
         }
         progressions = []
         for progression_code in sorted(chars):
@@ -159,7 +162,7 @@ class Game:
                     progressions.append('-' * len(progression_code) + ' ')
             else:
                 progressions.append('-' * len(progression_code) + ' ')
-        result = ''.join(progressions) + ' > ' + self.location
+        result = ''.join(progressions)
         return result
     
     def get_key(self, ignore_location: bool=False) -> int:
