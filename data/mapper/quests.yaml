@@ -3320,6 +3320,162 @@ Sources:
         Stage: Reverse Caverns
     Reward Class: Item
     Target Reward: Item - Osafune Katana
+  Location - Reverse Clock Tower, XXX (Magic Missile):
+    Description: Action - Check Magic Missile Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Clock Tower Item Drop 0 Location: true
+    Requirements:
+      Reverse Clock Tower:
+        Check - Reverse Clock Tower Item Drop 0 Location: false
+        Room: Reverse Clock Tower, XXX
+        Section: Main
+        Stage: Reverse Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Magic Missile
+  Location - Reverse Clock Tower, XXX (Karma Coin):
+    Description: Action - Check Karma Coin Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Clock Tower Item Drop 1 Location: true
+    Requirements:
+      Reverse Clock Tower:
+        Check - Reverse Clock Tower Item Drop 1 Location: false
+        Room: Reverse Clock Tower, XXX
+        Section: Main
+        Stage: Reverse Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Karma Coin
+  Location - Reverse Clock Tower, XXX (Strength Potion):
+    Description: Action - Check Strength Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Clock Tower Item Drop 2 Location: true
+    Requirements:
+      Reverse Clock Tower:
+        Check - Reverse Clock Tower Item Drop 2 Location: false
+        Room: Reverse Clock Tower, XXX
+        Section: Main
+        Stage: Reverse Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Strength Potion
+  Location - Reverse Clock Tower, XXX (Luminus):
+    Description: Action - Check Luminus Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Clock Tower Item Drop 3 Location: true
+    Requirements:
+      Reverse Clock Tower:
+        Check - Reverse Clock Tower Item Drop 3 Location: false
+        Room: Reverse Clock Tower, XXX
+        Section: Main
+        Stage: Reverse Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Luminus
+  Location - Reverse Clock Tower, XXX (Smart Potion):
+    Description: Action - Check Smart Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Clock Tower Item Drop 4 Location: true
+    Requirements:
+      Reverse Clock Tower:
+        Check - Reverse Clock Tower Item Drop 4 Location: false
+        Room: Reverse Clock Tower, XXX
+        Section: Main
+        Stage: Reverse Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Smart Potion
+  Location - Reverse Clock Tower, XXX (Dragon Helm):
+    Description: Action - Check Dragon Helm Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Clock Tower Item Drop 5 Location: true
+    Requirements:
+      Reverse Clock Tower:
+        Check - Reverse Clock Tower Item Drop 5 Location: false
+        Room: Reverse Clock Tower, XXX
+        Section: Main
+        Stage: Reverse Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Dragon Helm
+  Location - Reverse Clock Tower, XXX (Diamond):
+    Description: Action - Check Diamond Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Clock Tower Item Drop 6 Location: true
+    Requirements:
+      Reverse Clock Tower:
+        Check - Reverse Clock Tower Item Drop 6 Location: false
+        Room: Reverse Clock Tower, XXX
+        Section: Main
+        Stage: Reverse Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Diamond
+  Location - Reverse Clock Tower, XXX (Life Apple):
+    Description: Action - Check Life Apple Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Clock Tower Item Drop 7 Location: true
+    Requirements:
+      Reverse Clock Tower:
+        Check - Reverse Clock Tower Item Drop 7 Location: false
+        Room: Reverse Clock Tower, XXX
+        Section: Main
+        Stage: Reverse Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Life Apple
+  Location - Reverse Clock Tower, XXX (Sunstone):
+    Description: Action - Check Sunstone Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Clock Tower Item Drop 8 Location: true
+    Requirements:
+      Reverse Clock Tower:
+        Check - Reverse Clock Tower Item Drop 8 Location: false
+        Room: Reverse Clock Tower, XXX
+        Section: Main
+        Stage: Reverse Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Sunstone
+  Location - Reverse Clock Tower, XXX (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Clock Tower Item Drop 9 Location: true
+    Requirements:
+      Reverse Clock Tower:
+        Check - Reverse Clock Tower Item Drop 9 Location: false
+        Room: Reverse Clock Tower, XXX
+        Section: Main
+        Stage: Reverse Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Reverse Clock Tower, XXX (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Clock Tower Item Drop 10 Location: true
+    Requirements:
+      Reverse Clock Tower:
+        Check - Reverse Clock Tower Item Drop 10 Location: false
+        Room: Reverse Clock Tower, XXX
+        Section: Main
+        Stage: Reverse Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Reverse Clock Tower, XXX (Moon Rod):
+    Description: Action - Check Moon Rod Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Reverse Clock Tower Item Drop 11 Location: true
+    Requirements:
+      Reverse Clock Tower:
+        Check - Reverse Clock Tower Item Drop 11 Location: false
+        Room: Reverse Clock Tower, XXX
+        Section: Main
+        Stage: Reverse Clock Tower
+    Reward Class: Item
+    Target Reward: Item - Moon Rod
   Location - Reverse Colosseum, XXX (Fury Plate):
     Description: Action - Check Fury Plate Location
     Logic Level: Hidden
@@ -4670,6 +4826,9 @@ Targets:
   Item - Diamond:
     Outcomes:
       Item - Diamond: 1
+  Item - Dragon Helm:
+    Outcomes:
+      Item - Dragon Helm: 1
   Item - Elixir:
     Outcomes:
       Item - Elixir: 1
@@ -4796,6 +4955,9 @@ Targets:
   Item - Luck Potion:
     Outcomes:
       Item - Luck Potion: 1
+  Item - Luminus:
+    Outcomes:
+      Item - Luminus: 1
   Item - Magic Missile:
     Outcomes:
       Item - Magic Missile: 1
@@ -4817,6 +4979,9 @@ Targets:
   Item - Monster Vial 3:
     Outcomes:
       Item - Monster Vial 3: 1
+  Item - Moon Rod:
+    Outcomes:
+      Item - Moon Rod: 1
   Item - Moonstone:
     Outcomes:
       Item - Moonstone: 1
@@ -4961,6 +5126,9 @@ Targets:
   Item - Strength Potion:
     Outcomes:
       Item - Strength Potion: 1
+  Item - Sunstone:
+    Outcomes:
+      Item - Sunstone: 1
   Item - Sunglasses:
     Outcomes:
       Item - Sunglasses: 1
