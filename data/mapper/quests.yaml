@@ -2631,6 +2631,123 @@ Sources:
         Stage: Marble Gallery
     Reward Class: Item
     Target Reward: Item - Strength Potion
+  Location - Necromancy Laboratory, XXX (Heart Max-Up):
+    Description: Action - Check Heart Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Necromancy Laboratory Item Drop 1 Location: true
+    Requirements:
+      Necromancy Laboratory:
+        Check - Necromancy Laboratory Item Drop 1 Location: false
+        Room: Necromancy Laboratory, XXX
+        Section: Main
+        Stage: Necromancy Laboratory
+    Reward Class: Item
+    Target Reward: Item - Heart Max-Up
+  Location - Necromancy Laboratory, XXX (Life Max-Up):
+    Description: Action - Check Life Max-Up Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Necromancy Laboratory Item Drop 2 Location: true
+    Requirements:
+      Necromancy Laboratory:
+        Check - Necromancy Laboratory Item Drop 2 Location: false
+        Room: Necromancy Laboratory, XXX
+        Section: Main
+        Stage: Necromancy Laboratory
+    Reward Class: Item
+    Target Reward: Item - Life Max-Up
+  Location - Necromancy Laboratory, XXX (Goddess Shield):
+    Description: Action - Check Goddess Shield Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Necromancy Laboratory Item Drop 3 Location: true
+    Requirements:
+      Necromancy Laboratory:
+        Check - Necromancy Laboratory Item Drop 3 Location: false
+        Room: Necromancy Laboratory, XXX
+        Section: Main
+        Stage: Necromancy Laboratory
+    Reward Class: Item
+    Target Reward: Item - Goddess Shield
+  Location - Necromancy Laboratory, XXX (Manna Prism):
+    Description: Action - Check Manna Prism Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Necromancy Laboratory Item Drop 4 Location: true
+    Requirements:
+      Necromancy Laboratory:
+        Check - Necromancy Laboratory Item Drop 4 Location: false
+        Room: Necromancy Laboratory, XXX
+        Section: Main
+        Stage: Necromancy Laboratory
+    Reward Class: Item
+    Target Reward: Item - Manna Prism
+  Location - Necromancy Laboratory, XXX (Katana):
+    Description: Action - Check Katana Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Necromancy Laboratory Item Drop 5 Location: true
+    Requirements:
+      Necromancy Laboratory:
+        Check - Necromancy Laboratory Item Drop 5 Location: false
+        Room: Necromancy Laboratory, XXX
+        Section: Main
+        Stage: Necromancy Laboratory
+    Reward Class: Item
+    Target Reward: Item - Katana
+  Location - Necromancy Laboratory, XXX (High Potion):
+    Description: Action - Check High Potion Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Necromancy Laboratory Item Drop 6 Location: true
+    Requirements:
+      Necromancy Laboratory:
+        Check - Necromancy Laboratory Item Drop 6 Location: false
+        Room: Necromancy Laboratory, XXX
+        Section: Main
+        Stage: Necromancy Laboratory
+    Reward Class: Item
+    Target Reward: Item - High Potion
+  Location - Necromancy Laboratory, XXX (Turquoise):
+    Description: Action - Check Turquoise Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Necromancy Laboratory Item Drop 7 Location: true
+    Requirements:
+      Necromancy Laboratory:
+        Check - Necromancy Laboratory Item Drop 7 Location: false
+        Room: Necromancy Laboratory, XXX
+        Section: Main
+        Stage: Necromancy Laboratory
+    Reward Class: Item
+    Target Reward: Item - Turquoise
+  Location - Necromancy Laboratory, XXX (Ring of Arcana):
+    Description: Action - Check Ring of Arcana Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Necromancy Laboratory Item Drop 8 Location: true
+    Requirements:
+      Necromancy Laboratory:
+        Check - Necromancy Laboratory Item Drop 8 Location: false
+        Room: Necromancy Laboratory, XXX
+        Section: Main
+        Stage: Necromancy Laboratory
+    Reward Class: Item
+    Target Reward: Item - Ring of Arcana
+  Location - Necromancy Laboratory, XXX (Resist Dark):
+    Description: Action - Check Resist Dark Location
+    Logic Level: Hidden
+    Outcomes:
+      Check - Necromancy Laboratory Item Drop 9 Location: true
+    Requirements:
+      Necromancy Laboratory:
+        Check - Necromancy Laboratory Item Drop 9 Location: false
+        Room: Necromancy Laboratory, XXX
+        Section: Main
+        Stage: Necromancy Laboratory
+    Reward Class: Item
+    Target Reward: Item - Resist Dark
   Location - Olrox's Quarters, Catwalk Crypt (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
     Logic Level: Hidden
@@ -4583,6 +4700,9 @@ Targets:
   Item - Gladius:
     Outcomes:
       Item - Gladius: 1
+  Item - Goddess Shield:
+    Outcomes:
+      Item - Goddess Shield: 1
   Item - Goggles:
     Outcomes:
       Item - Goggles: 1
@@ -4649,6 +4769,9 @@ Targets:
   Item - Karma Coin:
     Outcomes:
       Item - Karma Coin: 1
+  Item - Katana:
+    Outcomes:
+      Item - Katana: 1
   Item - Knight Shield:
     Outcomes:
       Item - Knight Shield: 1
@@ -4769,6 +4892,9 @@ Targets:
   Item - Resist Thunder:
     Outcomes:
       Item - Resist Thunder: 1
+  Item - Ring of Arcana:
+    Outcomes:
+      Item - Ring of Arcana: 1
   Item - Ring of Ares:
     Outcomes:
       Item - Ring of Ares: 1
