@@ -55,14 +55,6 @@ Commands:
             Left Side - Shortcut:
                 Section: Left Side
                 Status - Shortcut Between Royal Chapel and Colosseum Unlocked: true
-    Action - Collect Library Card:
-        Outcomes:
-            Item - Library Card: 1
-            Check - Colosseum Library Card: true
-        Requirements:
-            Default:
-                Section: Right Side
-                Check - Colosseum Library Card: false
     Action - Unlock Shortcut Between Royal Chapel and Colosseum:
         Outcomes:
             Status - Shortcut Between Royal Chapel and Colosseum Unlocked: true

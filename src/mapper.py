@@ -793,20 +793,21 @@ class LogicCore:
     def __init__(self, mapper_data, changes):
         self.commands = {
             'Global': {
-                'Use Library Card': {
-                    'Outcomes': {
-                        'Room': 'Long Library, Outside Shop',
-                        'Section': 'Main',
-                        'Item - Library Card': -1,
-                    },
-                    'Requirements': {
-                        'Default': {
-                            'Item - Library Card': {
-                                'Minimum': 1,
-                            },
-                        },
-                    },
-                },
+                # NOTE(sestren): Disable using Library Card for now, so that it's not ever considered "in logic"
+                # 'Use Library Card': {
+                #     'Outcomes': {
+                #         'Room': 'Long Library, Outside Shop',
+                #         'Section': 'Main',
+                #         'Item - Library Card': -1,
+                #     },
+                #     'Requirements': {
+                #         'Default': {
+                #             'Item - Library Card': {
+                #                 'Minimum': 1,
+                #             },
+                #         },
+                #     },
+                # },
             },
         }
         for stage_name in (
