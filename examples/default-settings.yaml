@@ -14,7 +14,8 @@ Options:
     Shuffle Pitch Black Spike Maze: true
     Skip Maria cutscene in Alchemy Laboratory: true
 Quest shuffler:
-    Shuffle quest rewards: true
+    Shuffle relics: true
+    Shuffle items: true
 Stage shuffler:
     Shuffle connections between stages: true
     Loading room labels: Connection

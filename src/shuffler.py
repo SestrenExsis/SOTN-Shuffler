@@ -94,8 +94,7 @@ boss_teleporters = {
 }
 
 # Shuffle connections between stages
-def shuffle_teleporters(teleporters, seed: int) -> dict:
-    rng = random.Random(seed)
+def shuffle_teleporters(teleporters, rng) -> dict:
     MAX_LAYER = 5
     excluded_sources = {
         'Castle Center, Fake Room with Teleporter to Marble Gallery',
@@ -252,14 +251,31 @@ def shuffle_teleporters(teleporters, seed: int) -> dict:
             alt_source_key = 'Castle Entrance Revisited' + source_b_key[len('Castle Entrance'):]
             teleporters['Sources'][alt_source_key]['Target'] = teleporters['Sources'][source_a_key]['Return']
 
-def shuffle_quests(quests, seed):
-    rng = random.Random(seed)
+def shuffle_relics(quests, rng):
     quest_targets = []
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        if quests['Sources'][quest_source_name]['Reward Class'] != 'Relic':
+            continue
         quest_target = quests['Sources'][quest_source_name]['Target Reward']
         quest_targets.append(quest_target)
     rng.shuffle(quest_targets)
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        if quests['Sources'][quest_source_name]['Reward Class'] != 'Relic':
+            continue
+        quest_target = quest_targets.pop()
+        quests['Sources'][quest_source_name]['Target Reward'] = quest_target
+
+def shuffle_items(quests, rng):
+    quest_targets = []
+    for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        if quests['Sources'][quest_source_name]['Reward Class'] != 'Item':
+            continue
+        quest_target = quests['Sources'][quest_source_name]['Target Reward']
+        quest_targets.append(quest_target)
+    rng.shuffle(quest_targets)
+    for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        if quests['Sources'][quest_source_name]['Reward Class'] != 'Item':
+            continue
         quest_target = quest_targets.pop()
         quests['Sources'][quest_source_name]['Target Reward'] = quest_target
 
@@ -434,7 +450,6 @@ if __name__ == '__main__':
     if initial_seed is None:
         initial_seed = str(random.randint(MIN_SEED, MAX_SEED))
     # Keep randomizing until a solution is found
-    global_rng = random.Random(initial_seed)
     shuffler = {
         'Initial Seed': initial_seed,
         'Settings': settings,
@@ -460,7 +475,25 @@ if __name__ == '__main__':
         ):
             options[option_key] = option_value
     invalid_stage_files = set()
+    # seeds.append(global_rng.randint(MIN_SEED, MAX_SEED))
+    rng = {}
+    # (initial_seed, rng, children)
+    rng['Global'] = random.Random(initial_seed)
     while True:
+        local_seed = rng['Global'].randint(MIN_SEED, MAX_SEED)
+        rng['Local'] = random.Random(local_seed)
+        seeds = []
+        # NOTE(sestren): Generate a bunch of seeds at once for RNG-consistency
+        for _ in range(256):
+            seed = rng['Local'].randint(MIN_SEED, MAX_SEED)
+            seeds.append(seed)
+        rng['Teleporters'] = random.Random(seeds[0])
+        rng['Relics'] = random.Random(seeds[1])
+        rng['Items'] = random.Random(seeds[2])
+        rng['Stages'] = random.Random(seeds[3])
+        rng['Castle Map'] = random.Random(seeds[4])
+        rng['Spike Room'] = random.Random(seeds[5])
+        # NOTE(sestren): Access another pre-generated seed instead of generating more
         print('.', end='', flush=True)
         shuffler['Stages'] = {}
         # Randomize
@@ -485,9 +518,8 @@ if __name__ == '__main__':
         # Calculate teleporter changes
         teleporters = {}
         # Generate the seed regardless, so RNG can be independent of the setting
-        stage_randomizer_seed = global_rng.randint(MIN_SEED, MAX_SEED)
         if settings.get('Stage shuffler', {}).get('Shuffle connections between stages', False):
-            shuffle_teleporters(mapper_core['Teleporters'], stage_randomizer_seed)
+            shuffle_teleporters(mapper_core['Teleporters'], rng['Teleporters'])
             for (source_name, source) in mapper_core['Teleporters']['Sources'].items():
                 if source_name in (
                     'Castle Center, Fake Room with Teleporter to Marble Gallery',
@@ -505,17 +537,22 @@ if __name__ == '__main__':
                     'Stage': target['Stage'],
                 }
         # Shuffle quest rewards (such as Relics)
-        quest_randomizer_seed = global_rng.randint(MIN_SEED, MAX_SEED)
-        object_layouts = None
-        if settings.get('Quest shuffler', {}).get('Shuffle quest rewards', False):
-            shuffle_quests(mapper_core['Quests'], quest_randomizer_seed)
-            object_layouts = {}
+        quest_rewards = None
+        if settings.get('Quest shuffler', {}).get('Shuffle relics', False):
+            shuffle_relics(mapper_core['Quests'], rng['Relics'])
+            if quest_rewards is None:
+                quest_rewards = {}
+        if settings.get('Quest shuffler', {}).get('Shuffle items', False):
+            shuffle_items(mapper_core['Quests'], rng['Items'])
+            if quest_rewards is None:
+                quest_rewards = {}
+        if quest_rewards is not None:
             for (quest_name, quest) in mapper_core['Quests']['Sources'].items():
                 target_name = quest['Target Reward']
-                object_layouts[quest_name] = quest['Target Reward']
+                quest_rewards[quest_name] = quest['Target Reward']
         # print('Set starting seeds for each stage')
         for stage_name in sorted(stages.keys()):
-            next_seed = global_rng.randint(MIN_SEED, MAX_SEED)
+            next_seed = rng['Stages'].randint(MIN_SEED, MAX_SEED)
             stages[stage_name]['Initial Seed'] = next_seed
             stages[stage_name]['RNG'] = random.Random(stages[stage_name]['Initial Seed'])
             # print('', stage_name, stages[stage_name]['Initial Seed'])
@@ -616,7 +653,7 @@ if __name__ == '__main__':
             }
         # Randomly place down stages one at a time
         stage_names = list(sorted(stages.keys() - {'Warp Rooms', 'Castle Center'}))
-        global_rng.shuffle(stage_names)
+        rng['Castle Map'].shuffle(stage_names)
         stage_names.insert(stage_names.index('Marble Gallery') + 1, 'Castle Center')
         valid_ind = False
         for (index, stage_name) in enumerate(stage_names):
@@ -666,7 +703,7 @@ if __name__ == '__main__':
             if best_area >= float('inf'):
                 # print('Could not find a suitable spot on the map for', stage_name)
                 break
-            (stage_top, stage_left) = global_rng.choice(list(sorted(best_stage_offsets)))
+            (stage_top, stage_left) = rng['Castle Map'].choice(list(sorted(best_stage_offsets)))
             # cells = current_stage.get_cells(stage_top, stage_left)
             # prev_cells.union(cells)
             (top, left, bottom, right) = current_stage.get_bounds()
@@ -697,8 +734,8 @@ if __name__ == '__main__':
             'Stages': {},
             'Teleporters': teleporters,
         }
-        if object_layouts is not None:
-            changes['Object Layouts'] = object_layouts
+        if quest_rewards is not None:
+            changes['Quest Rewards'] = quest_rewards
         stages['Warp Rooms']['Stage Top'] = 0
         stages['Warp Rooms']['Stage Left'] = 0
         # Initialize the castle map drawing grid
@@ -816,7 +853,7 @@ if __name__ == '__main__':
             elif label_method == 'Stage':
                 instructions = get_loading_room_labels_by_stage(mapper_core, stages, stage_names)
             draw_labels_on_castle_map(castle_map, instructions)
-        spike_room_seed = global_rng.randint(MIN_SEED, MAX_SEED)
+        spike_room_seed = rng['Spike Room'].randint(MIN_SEED, MAX_SEED)
         if settings.get('Options', {}).get('Shuffle Pitch Black Spike Maze', False):
             changes['Stages']['Catacombs']['Rooms']['Catacombs, Pitch Black Spike Maze']['Tilemap'] = shuffle_spike_room.main(spike_room_seed)
         # Apply castle map drawing grid to changes
@@ -943,11 +980,8 @@ if __name__ == '__main__':
         }
         # Normalize room connections
         if settings.get('Options', {}).get('Normalize room connections', False):
-            print('Normalize room connections')
             for stage_name in normalizer.stages:
-                print('', stage_name)
                 for room_name in normalizer.stages[stage_name]:
-                    print('  ', room_name)
                     changes['Stages'][stage_name]['Rooms'][room_name]['Tilemap'] = normalizer.normalize_room_tilemap(room_name)
         # ...
         shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)

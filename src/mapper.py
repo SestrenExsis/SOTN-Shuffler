@@ -793,6 +793,7 @@ class LogicCore:
     def __init__(self, mapper_data, changes):
         self.commands = {
             'Global': {
+                # NOTE(sestren): Consider disabling use of Library Card, so that it's never considered "in logic"
                 'Use Library Card': {
                     'Outcomes': {
                         'Room': 'Long Library, Outside Shop',
@@ -927,6 +928,10 @@ class LogicCore:
                 target_reward = quest['Target Reward']
                 for (outcome_key, outcome_value) in mapper_data['Quests']['Targets'][target_reward]['Outcomes'].items():
                     outcomes[outcome_key] = outcome_value
+                if room_name not in self.commands:
+                    # NOTE(sestren): Because Inverted Castle is being ignored for now, skip adding this quest to logic
+                    print('Room', room_name, 'not in commands')
+                    continue
                 simplified_requirement = copy.deepcopy(requirement)
                 simplified_requirement.pop('Stage')
                 simplified_requirement.pop('Room')
@@ -935,6 +940,7 @@ class LogicCore:
                         'Default': simplified_requirement,
                     },
                     'Outcomes': outcomes,
+                    'Logic Level': quest.get('Logic Level', 'Optional'),
                 }
         self.state = {
             'Character': 'Alucard',
@@ -1017,13 +1023,13 @@ class LogicCore:
                 'Check - Faerie Scroll Location': True,
             },
             'Check Spike Breaker Location': {
-                'Check - Spike Breaker Location': True,
+                'Check Location - Catacombs, Spike Breaker Room (Spike Breaker)': True,
             },
             'Check Silver Ring Location': {
-                'Check - Silver Ring Location': True,
+                'Check Location - Royal Chapel, Silver Ring Room (Silver Ring)': True,
             },
             'Check Gold Ring Location': {
-                'Check - Gold Ring': True,
+                'Check Location - Underground Caverns, False Save Room (Gold Ring)': True,
             },
             'Check Holy Glasses Location': {
                 'Check - Holy Glasses Location': True,
@@ -1052,12 +1058,6 @@ class LogicCore:
                 'Room': "Castle Keep, Keep Area",
                 'Section': 'Anteroom',
             },
-            'Check Library Card Location in Catacombs': {
-                'Check - Library Card Location in Catacombs': True,
-            },
-            'Check Colosseum Library Card Location': {
-                'Check - Colosseum Library Card': True,
-            },
             'Purchase Jewel of Open': {
                 'Relic - Jewel of Open': True,
             },
@@ -1085,9 +1085,9 @@ class LogicCore:
                 'Check - Power of Mist Location': True,
                 'Check - Faerie Card Location': True,
                 'Check - Faerie Scroll Location': True,
-                'Check - Spike Breaker Location': True,
-                'Check - Silver Ring Location': True,
-                'Check - Gold Ring': True,
+                'Check Location - Catacombs, Spike Breaker Room (Spike Breaker)': True,
+                'Check Location - Royal Chapel, Silver Ring Room (Silver Ring)': True,
+                'Check Location - Underground Caverns, False Save Room (Gold Ring)': True,
                 'Check - Holy Glasses Location': True,
                 'Relic - Jewel of Open': True,
                 'Sections Visited': {
@@ -1315,7 +1315,7 @@ if __name__ == '__main__':
         pathlib.Path(
             os.path.join('build', 'shuffler', stage_name)
         ).mkdir(parents=True, exist_ok=True)
-    GENERATION_VERSION = 'Alpha Build 75'
+    GENERATION_VERSION = 'Alpha Build 76'
     mapper_core = MapperData().get_core()
     with (
         open(os.path.join('build', 'shuffler', 'mapper-core.json'), 'w') as mapper_core_json,

@@ -35,27 +35,27 @@ Commands:
             Upper-Left Ledge - Logical Blunder:
                 Section: Upper-Left Ledge
                 Option - Permit Logical Blunders: true
-            Upper-Left Ledge - Bat:
+            Upper-Left Ledge - Return With Bat:
                 Section: Upper-Left Ledge
                 Progression - Bat Transformation: true
-            Upper-Left Ledge - Gravity Jump:
-                Section: Ground
+            Upper-Left Ledge - Return With Gravity Jump:
+                Section: Upper-Left Ledge
                 Progression - Gravity Jump: true
-            Upper-Left Ledge - Powered Mist:
-                Section: Ground
+            Upper-Left Ledge - Return With Powered Mist:
+                Section: Upper-Left Ledge
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
             Upper-Right Ledge - Logical Blunder:
                 Section: Upper-Right Ledge
                 Option - Permit Logical Blunders: true
-            Upper-Right Ledge - Bat:
+            Upper-Right Ledge - Return With Bat:
                 Section: Upper-Right Ledge
                 Progression - Bat Transformation: true
-            Upper-Right Ledge - Gravity Jump:
-                Section: Ground
+            Upper-Right Ledge - Return With Gravity Jump:
+                Section: Upper-Right Ledge
                 Progression - Gravity Jump: true
-            Upper-Right Ledge - Powered Mist:
-                Section: Ground
+            Upper-Right Ledge - Return With Powered Mist:
+                Section: Upper-Right Ledge
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
     Move - Upper-Left Ledge:

@@ -135,16 +135,19 @@ class Game:
     
     def get_progression(self) -> str:
         chars = {
-            'cz': 'Relic - Cube of Zoe',
             'B': 'Relic - Soul of Bat',
             'Be': 'Relic - Echo of Bat',
-            'gb': 'Relic - Gravity Boots',
-            'jo': 'Relic - Jewel of Open',
-            'ls': 'Relic - Leap Stone',
             'M': 'Relic - Form of Mist',
             'Mp': 'Relic - Power of Mist',
-            'sb': 'Item - Spike Breaker',
             'W': 'Relic - Soul of Wolf',
+            'cz': 'Relic - Cube of Zoe',
+            'gb': 'Relic - Gravity Boots',
+            'hg': 'Item - Holy Glasses',
+            'jo': 'Relic - Jewel of Open',
+            'ls': 'Relic - Leap Stone',
+            'rg': 'Item - Gold Ring',
+            'rs': 'Item - Silver Ring',
+            'sb': 'Item - Spike Breaker',
         }
         progressions = []
         for progression_code in sorted(chars):
@@ -159,7 +162,7 @@ class Game:
                     progressions.append('-' * len(progression_code) + ' ')
             else:
                 progressions.append('-' * len(progression_code) + ' ')
-        result = ''.join(progressions) + ' > ' + self.location
+        result = ''.join(progressions)
         return result
     
     def get_key(self, ignore_location: bool=False) -> int:
@@ -378,6 +381,8 @@ class Solver():
                 break
             commands = {}
             for command_name in game__solver.get_valid_command_names():
+                if game__solver.commands[game__solver.room][command_name].get('Logic Level', 'Optional') == 'Hidden':
+                    continue
                 next_game__solver = game__solver.clone()
                 next_game__solver.process_command(command_name)
                 if restrict_to_stage is not None:
@@ -438,6 +443,8 @@ class Solver():
                 continue
             memo[hashed_state__solver] = step__solver
             for command in game__solver.get_valid_command_names():
+                if game__solver.commands[game__solver.room][command].get('Logic Level', 'Optional') == 'Hidden':
+                    continue
                 next_game__solver = game__solver.clone()
                 next_game__solver.process_command(command)
                 if restrict_to_stage is not None:
@@ -481,6 +488,8 @@ class Solver():
                 continue
             memo[hashed_state__solver] = step__solver
             for command in game__solver.get_valid_command_names():
+                if game__solver.commands[game__solver.room][command].get('Logic Level', 'Optional') == 'Hidden':
+                    continue
                 next_game__solver = game__solver.clone()
                 next_game__solver.process_command(command)
                 if restrict_to_stage is not None:
@@ -553,6 +562,8 @@ class Solver():
                 reflexive_command_names = set()
                 work__reflexive = collections.deque()
                 for command in game__bonded.get_valid_command_names(require_validation):
+                    if game__bonded.commands[game__solver.room][command].get('Logic Level', 'Optional') == 'Hidden':
+                        continue
                     work__reflexive.appendleft((0, command, command, game__bonded.clone()))
                     bonded_locations[game__bonded.location][1].add(command)
                 while len(work__reflexive) > 0:
