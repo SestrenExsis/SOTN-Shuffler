@@ -111,8 +111,27 @@ Commands:
         Outcomes:
             Section: Falling
         Requirements:
-            Left Side:
+            Left Side - Logical Risk:
                 Section: Left Side
+                Option - Permit Logical Risks: true
+            Left Side - Return with Bat Form:
+                Section: Left Side
+                Progression - Bat Transformation: true
+            Left Side - Return with Gravity Jump:
+                Section: Left Side
+                Progression - Gravity Jump: true
+            Left Side - Return with Powered Mist:
+                Section: Left Side
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Left Side - Return with Double Jump and Mist:
+                Section: Left Side
+                Progression - Double Jump: true
+                Progression - Mist Transformation: true
+            Left Side - Return with Double Jump and Candle Dive Kick:
+                Section: Left Side
+                Progression - Double Jump: true
+                Technique - Candle Dive Kick: true
             Right Side:
                 Section: Right Side
             Rising:

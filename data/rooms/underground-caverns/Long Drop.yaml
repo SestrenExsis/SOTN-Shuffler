@@ -102,8 +102,21 @@ Commands:
         Outcomes:
             Section: Lower Ledges
         Requirements:
-            Middle-Right Ledge - Default:
+            Middle-Right Ledge - Logical Risk:
                 Section: Middle-Right Ledge
+                Option - Permit Logical Risks: true
+            Middle-Right Ledge - Return with Bat Form:
+                Section: Middle-Right Ledge
+                Progression - Bat Transformation: true
+            Middle-Right Ledge - Return with Multiple Gravity Jumps:
+                Section: Middle-Right Ledge
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Middle-Right Ledge - Return with Powered Mist:
+                Section: Middle-Right Ledge
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Technique - Very Long Mist Travel: true
             Rising - Bat Form:
                 Section: Rising
                 Progression - Bat Transformation: true
@@ -114,8 +127,21 @@ Commands:
                 Section: Rising
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-            Upper Stairwell - Default:
+            Upper Stairwell - Logical Risk:
                 Section: Upper Stairwell
+                Option - Permit Logical Risks: true
+            Upper Stairwell - Return with Bat Form:
+                Section: Upper Stairwell
+                Progression - Bat Transformation: true
+            Upper Stairwell - Return with Multiple Gravity Jumps:
+                Section: Upper Stairwell
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Upper Stairwell - Return with Powered Mist:
+                Section: Upper Stairwell
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Technique - Very Long Mist Travel: true
     Move - Middle-Right Ledge:
         Outcomes:
             Section: Middle-Right Ledge
@@ -131,6 +157,7 @@ Commands:
                 Section: Lower Ledges
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Very Long Mist Travel: true
             Upper Stairwell - Bat Form:
                 Section: Upper Stairwell
                 Progression - Bat Transformation: true
