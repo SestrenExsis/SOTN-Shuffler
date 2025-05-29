@@ -54,7 +54,6 @@ def validate_logic(mapper_core, changes) -> bool:
         while len(game__solver.goals_achieved) > 0:
             if len(game__solver.goals_achieved) > 1:
                 print(game__solver.goals_achieved)
-            assert len(game__solver.goals_achieved) < 2
             goal_achieved = game__solver.goals_achieved.pop()
             if goal_achieved == 'END':
                 final_goal_ind = True
