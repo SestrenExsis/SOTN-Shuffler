@@ -254,25 +254,75 @@ def shuffle_teleporters(teleporters, rng) -> dict:
 def shuffle_relics(quests, rng):
     quest_targets = []
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
-        if quests['Sources'][quest_source_name]['Reward Class'] != 'Relic':
+        if not quests['Sources'][quest_source_name]['Reward Class'].startswith('Relic'):
             continue
         quest_target = quests['Sources'][quest_source_name]['Target Reward']
         quest_targets.append(quest_target)
     rng.shuffle(quest_targets)
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
-        if quests['Sources'][quest_source_name]['Reward Class'] != 'Relic':
+        if not quests['Sources'][quest_source_name]['Reward Class'].startswith('Relic'):
             continue
         quest_target = quest_targets.pop()
         quests['Sources'][quest_source_name]['Target Reward'] = quest_target
 
-def shuffle_items(quests, rng):
+def shuffle_items(quests, rng, item_pool: str='Vanilla'):
     quest_targets = []
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
         if quests['Sources'][quest_source_name]['Reward Class'] != 'Item':
             continue
-        quest_target = quests['Sources'][quest_source_name]['Target Reward']
-        quest_targets.append(quest_target)
-    rng.shuffle(quest_targets)
+        quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
+        quest_targets.append(quest_target_name)
+    if item_pool == 'Racing':
+        rng.shuffle(quest_targets)
+        item_bin_counts = {
+            'Bomb': 1,
+            'Thrown': 2,
+            'Food': 3,
+            'Buff': 3,
+            'Healing': 1,
+        }
+        # Assign each placeholder an arbitrary item from the item bin
+        placeholders = {}
+        for item_bin_name in sorted(item_bin_counts.keys()):
+            for bin_id in range(1, item_bin_counts[item_bin_name] + 1):
+                placeholder_name = 'Placeholder - ' + item_bin_name + ' ' + str(bin_id)
+                placeholders[placeholder_name] = (item_bin_name, None)
+        chosen_items = set()
+        for placeholder_name in sorted(placeholders.keys()):
+            (item_bin_name, chosen_item) = placeholders[placeholder_name]
+            if chosen_item is not None:
+                continue
+            for i in range(len(quest_targets)):
+                quest_target_name = quest_targets[i]
+                if item_bin_name not in quests['Targets'][quest_target_name]['Tags']:
+                    continue
+                if quest_targets[i] in chosen_items:
+                    continue
+                placeholders[placeholder_name] = (item_bin_name, quest_targets[i])
+                chosen_items.add(quest_targets[i])
+                break
+        for i in range(len(quest_targets)):
+            quest_target_name = quest_targets[i]
+            # 50% chance a Toadstool is replaced with a Library Card
+            if quest_target_name == 'Item - Toadstool':
+                if rng.random() < 0.5:
+                    quest_targets[i] = 'Item - Library Card'
+            # 50% chance a Familiar item is replaced with a Manna Prism
+            elif 'Familiar' in quests['Targets'][quest_target_name]['Tags']:
+                if rng.random() < 0.5:
+                    quest_targets[i] = 'Item - Manna Prism'
+            # 75% chance an Upgrade item is replaced with a random binned item
+            elif 'Upgrade' in quests['Targets'][quest_target_name]['Tags']:
+                if rng.random() < 0.75:
+                    quest_targets[i] = rng.choice(list(sorted(placeholders.values())))[1]
+            else:
+                # Override items found in a placeholder bin to the binned item
+                for (item_bin_name, assigned_quest_target) in placeholders.values():
+                    if item_bin_name in quests['Targets'][quest_target_name]['Tags']:
+                        quest_targets[i] = assigned_quest_target
+                        break
+    else:
+        rng.shuffle(quest_targets)
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
         if quests['Sources'][quest_source_name]['Reward Class'] != 'Item':
             continue
@@ -543,7 +593,8 @@ if __name__ == '__main__':
             if quest_rewards is None:
                 quest_rewards = {}
         if settings.get('Quest shuffler', {}).get('Shuffle items', False):
-            shuffle_items(mapper_core['Quests'], rng['Items'])
+            item_pool = settings.get('Quest shuffler', {}).get('Item pool', 'Vanilla')
+            shuffle_items(mapper_core['Quests'], rng['Items'], item_pool)
             if quest_rewards is None:
                 quest_rewards = {}
         if quest_rewards is not None:

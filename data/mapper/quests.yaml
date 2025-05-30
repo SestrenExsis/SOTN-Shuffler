@@ -4721,459 +4721,849 @@ Targets:
   Item - Alucard Mail:
     Outcomes:
       Item - Alucard Mail: 1
+    Tags:
+      - Armor
+      - Body
   Item - Alucard Shield:
     Outcomes:
       Item - Alucard Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Alucard Sword:
     Outcomes:
       Item - Alucard Sword: 1
+    Tags:
+      - One-Handed Weapon
   Item - Alucart Mail:
     Outcomes:
       Item - Alucart Mail: 1
+    Tags:
+      - Armor
+      - Body
   Item - Alucart Shield:
     Outcomes:
       Item - Alucart Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Alucart Sword:
     Outcomes:
       Item - Alucart Sword: 1
+    Tags:
+      - One-Handed Weapon
   Item - Ankh of Life:
     Outcomes:
       Item - Ankh of Life: 1
+    Tags:
+      - Accessory
   Item - Antivenom:
     Outcomes:
       Item - Antivenom: 1
+    Tags:
+      - Consumable
+      - Buff
   Item - Aquamarine:
     Outcomes:
       Item - Aquamarine: 1
+    Tags:
+      - Gem
   Item - Attack Potion:
     Outcomes:
       Item - Attack Potion: 1
+    Tags:
+      - Consumable
+      - Buff
   Item - Badelaire:
     Outcomes:
       Item - Badelaire: 1
+    Tags:
+      - One-Handed Weapon
   Item - Ballroom Mask:
     Outcomes:
       Item - Ballroom Mask: 1
+    Tags:
+      - Armor
+      - Head
   Item - Bandanna:
     Outcomes:
       Item - Bandanna: 1
+    Tags:
+      - Armor
+      - Head
   Item - Barley Tea:
     Outcomes:
       Item - Barley Tea: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Basilard:
     Outcomes:
       Item - Basilard: 1
+    Tags:
+      - One-Handed Weapon
   Item - Bastard Sword:
     Outcomes:
       Item - Bastard Sword: 1
+    Tags:
+      - One-Handed Weapon
   Item - Bat Pentagram:
     Outcomes:
       Item - Bat Pentagram: 1
+    Tags:
+      - Consumable
+      - Bomb
   Item - Bekatowa:
     Outcomes:
       Item - Bekatowa: 1
+    Tags:
+      - One-Handed Weapon
   Item - Beryl Circlet:
     Outcomes:
       Item - Beryl Circlet: 1
+    Tags:
+      - Armor
+      - Head
   Item - Blood Cloak:
     Outcomes:
       Item - Blood Cloak: 1
+    Tags:
+      - Armor
+      - Cloak
   Item - Bloodstone:
     Outcomes:
       Item - Bloodstone: 1
+    Tags:
+      - Accessory
   Item - Boomerang:
     Outcomes:
       Item - Boomerang: 1
+    Tags:
+      - Consumable
+      - Thrown
   Item - Broadsword:
     Outcomes:
       Item - Broadsword: 1
+    Tags:
+      - One-Handed Weapon
   Item - Bronze Cuirass:
     Outcomes:
       Item - Bronze Cuirass: 1
+    Tags:
+      - Armor
+      - Body
   Item - Buffalo Star:
     Outcomes:
       Item - Buffalo Star: 1
+    Tags:
+      - Consumable
+      - Thrown
   Item - Bwaka Knife:
     Outcomes:
       Item - Bwaka Knife: 1
+    Tags:
+      - Consumable
+      - Thrown
   Item - Cat-Eye Circlet:
     Outcomes:
       Item - Cat-Eye Circlet: 1
+    Tags:
+      - Armor
+      - Head
   Item - Cheese:
     Outcomes:
       Item - Cheese: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Claymore:
     Outcomes:
       Item - Claymore: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Cloth Cape:
     Outcomes:
       Item - Cloth Cape: 1
+    Tags:
+      - Armor
+      - Cloak
   Item - Combat Knife:
     Outcomes:
       Item - Combat Knife: 1
+    Tags:
+      - One-Handed Weapon
   Item - Cross Shuriken:
     Outcomes:
       Item - Cross Shuriken: 1
+    Tags:
+      - Consumable
+      - Thrown
   Item - Crystal Cloak:
     Outcomes:
       Item - Crystal Cloak: 1
+    Tags:
+      - Armor
+      - Cloak
   Item - Cutlass:
     Outcomes:
       Item - Cutlass: 1
+    Tags:
+      - One-Handed Weapon
   Item - Dark Blade:
     Outcomes:
       Item - Dark Blade: 1
+    Tags:
+      - One-Handed Weapon
   Item - Diamond:
     Outcomes:
       Item - Diamond: 1
+    Tags:
+      - Gem
   Item - Dragon Helm:
     Outcomes:
       Item - Dragon Helm: 1
+    Tags:
+      - Armor
+      - Head
   Item - Elixir:
     Outcomes:
       Item - Elixir: 1
+    Tags:
+      - Consumable
+      - Healing
   Item - Estoc:
     Outcomes:
       Item - Estoc: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Falchion:
     Outcomes:
       Item - Falchion: 1
+    Tags:
+      - One-Handed Weapon
   Item - Fire Boomerang:
     Outcomes:
       Item - Fire Boomerang: 1
+    Tags:
+      - Consumable
+      - Thrown
   Item - Fire Mail:
     Outcomes:
       Item - Fire Mail: 1
+    Tags:
+      - Armor
+      - Body
   Item - Flamberge:
     Outcomes:
       Item - Flamberge: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Frankfurter:
     Outcomes:
       Item - Frankfurter: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Fury Plate:
     Outcomes:
       Item - Fury Plate: 1
+    Tags:
+      - Armor
+      - Body
   Item - Garnet:
     Outcomes:
       Item - Garnet: 1
+    Tags:
+      - Gem
   Item - Gladius:
     Outcomes:
       Item - Gladius: 1
+    Tags:
+      - One-Handed Weapon
   Item - Goddess Shield:
     Outcomes:
       Item - Goddess Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Goggles:
     Outcomes:
       Item - Goggles: 1
+    Tags:
+      - Armor
+      - Head
   Item - Gold Plate:
     Outcomes:
       Item - Gold Plate: 1
+    Tags:
+      - Armor
+      - Body
   Item - Gold Ring:
     Outcomes:
       Item - Gold Ring: 1
+    Tags:
+      - Accessory
   Item - Gram:
     Outcomes:
       Item - Gram: 1
+    Tags:
+      - One-Handed Weapon
   Item - Green Tea:
     Outcomes:
       Item - Green Tea: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Hammer:
     Outcomes:
       Item - Hammer: 1
+    Tags:
+      - Consumable
+      - Familiar
   Item - Healing Mail:
     Outcomes:
       Item - Healing Mail: 1
+    Tags:
+      - Armor
+      - Body
   Item - Heart Refresh:
     Outcomes:
       Item - Heart Refresh: 1
+    Tags:
+      - Consumable
+      - Heart
   Item - Herald Shield:
     Outcomes:
       Item - Herald Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Heart Max-Up:
     Outcomes:
       Item - Heart Max-Up: 1
+    Tags:
+      - Upgrade
   Item - Hide Cuirass:
     Outcomes:
       Item - Hide Cuirass: 1
+    Tags:
+      - Armor
+      - Body
   Item - High Potion:
     Outcomes:
       Item - High Potion: 1
+    Tags:
+      - Consumable
+      - Healing
   Item - Holy Mail:
     Outcomes:
       Item - Holy Mail: 1
+    Tags:
+      - Armor
+      - Body
   Item - Holy Rod:
     Outcomes:
       Item - Holy Rod: 1
+    Tags:
+      - One-Handed Weapon
   Item - Holy Sword:
     Outcomes:
       Item - Holy Sword: 1
+    Tags:
+      - One-Handed Weapon
   Item - Ice Mail:
     Outcomes:
       Item - Ice Mail: 1
+    Tags:
+      - Armor
+      - Body
   Item - Icebrand:
     Outcomes:
       Item - Icebrand: 1
+    Tags:
+      - One-Handed Weapon
   Item - Iron Ball:
     Outcomes:
       Item - Iron Ball: 1
+    Tags:
+      - Consumable
+      - Thrown
   Item - Javelin:
     Outcomes:
       Item - Javelin: 1
+    Tags:
+      - Consumable
+      - Thrown
   Item - Jewel Knuckles:
     Outcomes:
       Item - Jewel Knuckles: 1
+    Tags:
+      - One-Handed Weapon
   Item - Jewel Sword:
     Outcomes:
       Item - Jewel Sword: 1
+    Tags:
+      - One-Handed Weapon
   Item - Karma Coin:
     Outcomes:
       Item - Karma Coin: 1
+    Tags:
+      - Consumable
+      - Bomb
   Item - Katana:
     Outcomes:
       Item - Katana: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Knight Shield:
     Outcomes:
       Item - Knight Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Knuckle Duster:
     Outcomes:
       Item - Knuckle Duster: 1
+    Tags:
+      - One-Handed Weapon
   Item - Leather Shield:
     Outcomes:
       Item - Leather Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Library Card:
     Outcomes:
       Item - Library Card: 1
+    Tags:
+      - Consumable
+      - Travel
   Item - Life Apple:
     Outcomes:
       Item - Life Apple: 1
+    Tags:
+      - Consumable
+      - Familiar
   Item - Life Max-Up:
     Outcomes:
       Item - Life Max-Up: 1
+    Tags:
+      - Upgrade
   Item - Lightning Mail:
     Outcomes:
       Item - Lightning Mail: 1
+    Tags:
+      - Armor
+      - Body
   Item - Luck Potion:
     Outcomes:
       Item - Luck Potion: 1
+    Tags:
+      - Consumable
+      - Buff
   Item - Luminus:
     Outcomes:
       Item - Luminus: 1
+    Tags:
+      - One-Handed Weapon
   Item - Magic Missile:
     Outcomes:
       Item - Magic Missile: 1
+    Tags:
+      - Consumable
+      - Thrown
   Item - Manna Prism:
     Outcomes:
       Item - Manna Prism: 1
+    Tags:
+      - Consumable
+      - Manna
   Item - Meal Ticket:
     Outcomes:
       Item - Meal Ticket: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Mirror Cuirass:
     Outcomes:
       Item - Mirror Cuirass: 1
+    Tags:
+      - Armor
+      - Body
   Item - Monster Vial 1:
     Outcomes:
       Item - Monster Vial 1: 1
+    Tags:
+      - Consumable
+      - Thrown
   Item - Monster Vial 2:
     Outcomes:
       Item - Monster Vial 2: 1
+    Tags:
+      - Consumable
+      - Thrown
   Item - Monster Vial 3:
     Outcomes:
       Item - Monster Vial 3: 1
+    Tags:
+      - Consumable
+      - Thrown
   Item - Moon Rod:
     Outcomes:
       Item - Moon Rod: 1
+    Tags:
+      - One-Handed Weapon
   Item - Moonstone:
     Outcomes:
       Item - Moonstone: 1
+    Tags:
+      - Accessory
   Item - Mormegil:
     Outcomes:
       Item - Mormegil: 1
+    Tags:
+      - One-Handed Weapon
   Item - Morningstar:
     Outcomes:
       Item - Morningstar: 1
+    Tags:
+      - One-Handed Weapon
   Item - Mystic Pendant:
     Outcomes:
       Item - Mystic Pendant: 1
+    Tags:
+      - Accessory
   Item - Necklace of J:
     Outcomes:
       Item - Necklace of J: 1
+    Tags:
+      - Accessory
   Item - Neutron Bomb:
     Outcomes:
       Item - Neutron Bomb: 1
+    Tags:
+      - Consumable
+      - Bomb
   Item - Nunchaku:
     Outcomes:
       Item - Nunchaku: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Onyx:
     Outcomes:
       Item - Onyx: 1
+    Tags:
+      - Gem
   Item - Opal:
     Outcomes:
       Item - Opal: 1
+    Tags:
+      - Gem
   Item - Osafune Katana:
     Outcomes:
       Item - Osafune Katana: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Peanuts:
     Outcomes:
       Item - Peanuts: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Pentagram:
     Outcomes:
       Item - Pentagram: 1
+    Tags:
+      - Consumable
+      - Bomb
   Item - Platinum Mail:
     Outcomes:
       Item - Platinum Mail: 1
+    Tags:
+      - Armor
+      - Body
   Item - Pork Bun:
     Outcomes:
       Item - Pork Bun: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Pot Roast:
     Outcomes:
       Item - Pot Roast: 1
     Tags:
+      - Consumable
       - Food
       - High Quality
   Item - Potion:
     Outcomes:
       Item - Potion: 1
+    Tags:
+      - Consumable
+      - Healing
   Item - Power of Sire:
     Outcomes:
       Item - Power of Sire: 1
+    Tags:
+      - Consumable
+      - Bomb
   Item - Red Bean Bun:
     Outcomes:
       Item - Red Bean Bun: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Resist Dark:
     Outcomes:
       Item - Resist Dark: 1
+    Tags:
+      - Consumable
+      - Buff
   Item - Resist Fire:
     Outcomes:
       Item - Resist Fire: 1
+    Tags:
+      - Consumable
+      - Buff
   Item - Resist Holy:
     Outcomes:
       Item - Resist Holy: 1
+    Tags:
+      - Consumable
+      - Buff
   Item - Resist Ice:
     Outcomes:
       Item - Resist Ice: 1
+    Tags:
+      - Consumable
+      - Buff
   Item - Resist Stone:
     Outcomes:
       Item - Resist Stone: 1
+    Tags:
+      - Consumable
+      - Buff
   Item - Resist Thunder:
     Outcomes:
       Item - Resist Thunder: 1
+    Tags:
+      - Consumable
+      - Buff
   Item - Ring of Arcana:
     Outcomes:
       Item - Ring of Arcana: 1
+    Tags:
+      - Accessory
   Item - Ring of Ares:
     Outcomes:
       Item - Ring of Ares: 1
+    Tags:
+      - Accessory
   Item - Royal Cloak:
     Outcomes:
       Item - Royal Cloak: 1
+    Tags:
+      - Armor
+      - Cloak
   Item - Ruby Circlet:
     Outcomes:
       Item - Ruby Circlet: 1
+    Tags:
+      - Armor
+      - Head
   Item - Scimitar:
     Outcomes:
       Item - Scimitar: 1
+    Tags:
+      - One-Handed Weapon
   Item - Secret Boots:
     Outcomes:
       Item - Secret Boots: 1
+    Tags:
+      - Accessory
   Item - Shaman Shield:
     Outcomes:
       Item - Shaman Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Shield Potion:
     Outcomes:
       Item - Shield Potion: 1
+    Tags:
+      - Consumable
+      - Buff
   Item - Shield Rod:
     Outcomes:
       Item - Shield Rod: 1
+    Tags:
+      - One-Handed Weapon
   Item - Shiitake:
     Outcomes:
       Item - Shiitake: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Shotel:
     Outcomes:
       Item - Shotel: 1
+    Tags:
+      - One-Handed Weapon
   Item - Shuriken:
     Outcomes:
       Item - Shuriken: 1
+    Tags:
+      - Consumable
+      - Thrown
   Item - Silver Plate:
     Outcomes:
       Item - Silver Plate: 1
+    Tags:
+      - Armor
+      - Body
   Item - Silver Ring:
     Outcomes:
       Item - Silver Ring: 1
+    Tags:
+      - Accessory
   Item - Sirloin:
     Outcomes:
       Item - Sirloin: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Smart Potion:
     Outcomes:
       Item - Smart Potion: 1
+    Tags:
+      - Consumable
+      - Buff
   Item - Spike Breaker:
     Outcomes:
       Item - Spike Breaker: 1
+    Tags:
+      - Armor
+      - Body
   Item - Star Flail:
     Outcomes:
       Item - Star Flail: 1
+    Tags:
+      - One-Handed Weapon
   Item - Staurolite:
     Outcomes:
       Item - Staurolite: 1
+    Tags:
+      - Accessory
   Item - Steel Helm:
     Outcomes:
       Item - Steel Helm: 1
+    Tags:
+      - Armor
+      - Head
   Item - Stone Mask:
     Outcomes:
       Item - Stone Mask: 1
+    Tags:
+      - Armor
+      - Head
   Item - Stone Sword:
     Outcomes:
       Item - Stone Sword: 1
+    Tags:
+      - One-Handed Weapon
   Item - Strength Potion:
     Outcomes:
       Item - Strength Potion: 1
+    Tags:
+      - Consumable
+      - Buff
   Item - Sunstone:
     Outcomes:
       Item - Sunstone: 1
+    Tags:
+      - Accessory
   Item - Sunglasses:
     Outcomes:
       Item - Sunglasses: 1
-  Item - Sword of Hador:
-    Outcomes:
-      Item - Sword of Hador: 1
+    Tags:
+      - Armor
+      - Head
   Item - Sword of Dawn:
     Outcomes:
       Item - Sword of Dawn: 1
+    Tags:
+      - Two-Handed Weapon
+  Item - Sword of Hador:
+    Outcomes:
+      Item - Sword of Hador: 1
+    Tags:
+      - One-Handed Weapon
   Item - Takemitsu:
     Outcomes:
       Item - Takemitsu: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Talisman:
     Outcomes:
       Item - Talisman: 1
+    Tags:
+      - Accessory
   Item - Talwar:
     Outcomes:
       Item - Talwar: 1
+    Tags:
+      - One-Handed Weapon
   Item - TNT:
     Outcomes:
       Item - TNT: 1
+    Tags:
+      - Consumable
+      - Thrown
   Item - Toadstool:
     Outcomes:
       Item - Toadstool: 1
+    Tags:
+      - Consumable
+      - Low Quality
   Item - Topaz Circlet:
     Outcomes:
       Item - Topaz Circlet: 1
+    Tags:
+      - Armor
+      - Head
   Item - Turkey:
     Outcomes:
       Item - Turkey: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Turquoise:
     Outcomes:
       Item - Turquoise: 1
+    Tags:
+      - Gem
   Item - Twilight Cloak:
     Outcomes:
       Item - Twilight Cloak: 1
+    Tags:
+      - Armor
+      - Cloak
   Item - Tyrfing:
     Outcomes:
       Item - Tyrfing: 1
+    Tags:
+      - One-Handed Weapon
   Item - Walk Armor:
     Outcomes:
       Item - Walk Armor: 1
+    Tags:
+      - Armor
+      - Body
   Item - Zircon:
     Outcomes:
       Item - Zircon: 1
+    Tags:
+      - Gem
   Relic - Cube of Zoe:
     Outcomes:
       Progression - Item Materialization: true
