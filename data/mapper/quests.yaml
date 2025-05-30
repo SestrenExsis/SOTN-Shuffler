@@ -5020,6 +5020,7 @@ Targets:
     Tags:
       - Consumable
       - Familiar
+      - Low Priority - Racing
   Item - Healing Mail:
     Outcomes:
       Item - Healing Mail: 1
@@ -5043,6 +5044,7 @@ Targets:
       Item - Heart Max-Up: 1
     Tags:
       - Upgrade
+      - Low Priority - Racing
   Item - Hide Cuirass:
     Outcomes:
       Item - Hide Cuirass: 1
@@ -5138,17 +5140,20 @@ Targets:
     Tags:
       - Consumable
       - Travel
+      - High Priority - Racing
   Item - Life Apple:
     Outcomes:
       Item - Life Apple: 1
     Tags:
       - Consumable
       - Familiar
+      - Low Priority - Racing
   Item - Life Max-Up:
     Outcomes:
       Item - Life Max-Up: 1
     Tags:
       - Upgrade
+      - Low Priority - Racing
   Item - Lightning Mail:
     Outcomes:
       Item - Lightning Mail: 1
@@ -5178,12 +5183,14 @@ Targets:
     Tags:
       - Consumable
       - Manna
+      - High Priority - Racing
   Item - Meal Ticket:
     Outcomes:
       Item - Meal Ticket: 1
     Tags:
       - Consumable
       - Food
+      - Low Priority - Racing
   Item - Mirror Cuirass:
     Outcomes:
       Item - Mirror Cuirass: 1
@@ -5524,7 +5531,7 @@ Targets:
       Item - Toadstool: 1
     Tags:
       - Consumable
-      - Low Quality
+      - Low Priority - Racing
   Item - Topaz Circlet:
     Outcomes:
       Item - Topaz Circlet: 1
@@ -5579,6 +5586,8 @@ Targets:
   Relic - Fire of Bat:
     Outcomes:
       Relic - Fire of Bat: true
+    Tags:
+      - Low Priority - Racing
   Relic - Form of Mist:
     Outcomes:
       Progression - Mid-Air Reset: true
@@ -5588,6 +5597,8 @@ Targets:
     Outcomes:
       Progression - Summon Ghost Familiar: true
       Relic - Ghost Card: true
+    Tags:
+      - Low Priority - Racing
   Relic - Gravity Boots:
     Outcomes:
       Progression - Gravity Jump: true
@@ -5622,10 +5633,14 @@ Targets:
   Relic - Spirit Orb:
     Outcomes:
       Relic - Spirit Orb: true
+    Tags:
+      - Low Priority - Racing
   Relic - Sword Card:
     Outcomes:
       Progression - Summon Sword Familiar: true
       Relic - Sword Card: true
+    Tags:
+      - Low Priority - Racing
   Relic - Power of Mist:
     Outcomes:
       Progression - Longer Mist Duration: true
@@ -5634,6 +5649,10 @@ Targets:
     Outcomes:
       Progression - Summon Faerie Familiar: true
       Relic - Faerie Card: true
+    Tags:
+      - Low Priority - Racing
   Relic - Faerie Scroll:
     Outcomes:
       Relic - Faerie Scroll: true
+    Tags:
+      - Low Priority - Racing
