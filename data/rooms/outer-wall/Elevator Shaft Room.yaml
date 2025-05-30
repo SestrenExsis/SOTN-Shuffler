@@ -82,9 +82,31 @@ Nodes:
         Row: 8
         Column: 1
         Edge: Bottom
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Bottom, Rising
+        Exit Section: Bottom, Falling
 Commands:
+    Move - Bottom, Falling:
+        Outcomes:
+            Section: Bottom, Falling
+        Requirements:
+            Main - Logical Risk:
+                Section: Main
+                Option - Permit Logical Risks: true
+            Main - Return With Bat:
+                Section: Main
+                Progression - Bat Transformation: true
+            Main - Return With Gravity Jump:
+                Section: Main
+                Progression - Gravity Jump: true
+            Main - Return With Powered Mist:
+                Section: Main
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Main - Return With Wolf-Mist Rise:
+                Section: Main
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
     Move - Main:
         Outcomes:
             Section: Main
@@ -92,6 +114,21 @@ Commands:
             Elevator Shaft - Default:
                 Section: Elevator Shaft
                 Status - Elevator in Outer Wall Activated: true
+            Bottom, Rising - Bat:
+                Section: Bottom, Rising
+                Progression - Bat Transformation: true
+            Bottom, Rising - Gravity Jump:
+                Section: Bottom, Rising
+                Progression - Gravity Jump: true
+            Bottom, Rising - Powered Mist:
+                Section: Bottom, Rising
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+            Bottom, Rising - Wolf-Mist Rise:
+                Section: Bottom, Rising
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
     Move - Elevator Shaft:
         Outcomes:
             Section: Elevator Shaft
