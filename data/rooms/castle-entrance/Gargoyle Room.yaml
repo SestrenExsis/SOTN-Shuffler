@@ -1,6 +1,8 @@
 
 Stage: Castle Entrance
 Room: Gargoyle Room
+Notes:
+    - Add Logical Risk for moving downward without flight
 Index: 13
 Columns: 1
 Rows: 1

@@ -141,6 +141,7 @@ class Game:
             'Mp': 'Relic - Power of Mist',
             'W': 'Relic - Soul of Wolf',
             'cz': 'Relic - Cube of Zoe',
+            'dc': 'Relic - Demon Card',
             'gb': 'Relic - Gravity Boots',
             'hg': 'Item - Holy Glasses',
             'jo': 'Relic - Jewel of Open',

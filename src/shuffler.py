@@ -251,28 +251,89 @@ def shuffle_teleporters(teleporters, rng) -> dict:
             alt_source_key = 'Castle Entrance Revisited' + source_b_key[len('Castle Entrance'):]
             teleporters['Sources'][alt_source_key]['Target'] = teleporters['Sources'][source_a_key]['Return']
 
-def shuffle_relics(quests, rng):
+def shuffle_relics(quests, rng, relic_pool: str='Vanilla'):
+    duplicate_relics = []
+    for quest_target_name in list(sorted(quests.get('Targets', {}))):
+        if not quest_target_name.startswith('Relic'):
+            continue
+        if 'Low Priority - Racing' in quests.get('Targets', {}).get(quest_target_name, {}).get('Tags', {}):
+            continue
+        duplicate_relics.append(quest_target_name)
+    rng.shuffle(duplicate_relics)
     quest_targets = []
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
-        if quests['Sources'][quest_source_name]['Reward Class'] != 'Relic':
+        if not quests['Sources'][quest_source_name]['Reward Class'].startswith('Relic'):
             continue
-        quest_target = quests['Sources'][quest_source_name]['Target Reward']
-        quest_targets.append(quest_target)
+        quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
+        # If Racing Relic pool is enabled, replace low priority relics with a random duplicate of a better one
+        if relic_pool == 'Racing' and 'Low Priority - Racing' in quests['Targets'][quest_target_name].get('Tags', {}):
+            quest_target_name = duplicate_relics.pop()
+        quest_targets.append(quest_target_name)
     rng.shuffle(quest_targets)
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
-        if quests['Sources'][quest_source_name]['Reward Class'] != 'Relic':
+        if not quests['Sources'][quest_source_name]['Reward Class'].startswith('Relic'):
             continue
-        quest_target = quest_targets.pop()
-        quests['Sources'][quest_source_name]['Target Reward'] = quest_target
+        quest_target_name = quest_targets.pop()
+        quests['Sources'][quest_source_name]['Target Reward'] = quest_target_name
 
-def shuffle_items(quests, rng):
+def shuffle_items(quests, rng, item_pool: str='Vanilla'):
     quest_targets = []
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
         if quests['Sources'][quest_source_name]['Reward Class'] != 'Item':
             continue
-        quest_target = quests['Sources'][quest_source_name]['Target Reward']
-        quest_targets.append(quest_target)
-    rng.shuffle(quest_targets)
+        quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
+        quest_targets.append(quest_target_name)
+    if item_pool == 'Racing':
+        rng.shuffle(quest_targets)
+        item_bin_counts = {
+            'Bomb': 2,
+            'Thrown': 2,
+            'Food': 2,
+            'Buff': 2,
+            'Healing': 1,
+        }
+        # Assign each placeholder an arbitrary item from the item bin
+        placeholders = {}
+        for item_bin_name in sorted(item_bin_counts.keys()):
+            for bin_id in range(1, item_bin_counts[item_bin_name] + 1):
+                placeholder_name = 'Placeholder - ' + item_bin_name + ' ' + str(bin_id)
+                placeholders[placeholder_name] = (item_bin_name, None)
+        chosen_items = set()
+        for placeholder_name in sorted(placeholders.keys()):
+            (item_bin_name, chosen_item) = placeholders[placeholder_name]
+            if chosen_item is not None:
+                continue
+            for i in range(len(quest_targets)):
+                quest_target_name = quest_targets[i]
+                if 'Low Priority - Racing' in quests['Targets'][quest_target_name]['Tags']:
+                    continue
+                if item_bin_name not in quests['Targets'][quest_target_name]['Tags']:
+                    continue
+                if quest_targets[i] in chosen_items:
+                    continue
+                placeholders[placeholder_name] = (item_bin_name, quest_targets[i])
+                chosen_items.add(quest_targets[i])
+                break
+        for i in range(len(quest_targets)):
+            quest_target_name = quest_targets[i]
+            # Chance of replacing a Low Priority - Racing item with something else
+            if 'Low Priority - Racing' in quests['Targets'][quest_target_name]['Tags']:
+                chance = rng.random()
+                if chance < 0.025:
+                    quest_targets[i] = 'Item - Library Card'
+                elif chance < 0.05:
+                    quest_targets[i] = 'Item - Manna Prism'
+                elif chance < 0.80:
+                    (item_bin_name, assigned_quest_target) = rng.choice(list(sorted(placeholders.values())))
+                    quest_targets[i] = assigned_quest_target
+            else:
+                # Override items found in a placeholder bin to the binned item
+                for (item_bin_name, assigned_quest_target) in placeholders.values():
+                    if item_bin_name in quests['Targets'][quest_target_name]['Tags']:
+                        quest_targets[i] = assigned_quest_target
+                        break
+    else:
+        rng.shuffle(quest_targets)
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
         if quests['Sources'][quest_source_name]['Reward Class'] != 'Item':
             continue
@@ -539,13 +600,20 @@ if __name__ == '__main__':
         # Shuffle quest rewards (such as Relics)
         quest_rewards = None
         if settings.get('Quest shuffler', {}).get('Shuffle relics', False):
-            shuffle_relics(mapper_core['Quests'], rng['Relics'])
+            relic_pool = settings.get('Quest shuffler', {}).get('Relic pool', 'Vanilla')
+            shuffle_relics(mapper_core['Quests'], rng['Relics'], relic_pool)
             if quest_rewards is None:
                 quest_rewards = {}
         if settings.get('Quest shuffler', {}).get('Shuffle items', False):
-            shuffle_items(mapper_core['Quests'], rng['Items'])
+            item_pool = settings.get('Quest shuffler', {}).get('Item pool', 'Vanilla')
+            shuffle_items(mapper_core['Quests'], rng['Items'], item_pool)
             if quest_rewards is None:
                 quest_rewards = {}
+        if settings.get('Quest shuffler', {}).get('Item pool', 'Vanilla') == 'Racing':
+            if quest_rewards is None:
+                quest_rewards = {}
+            quest_rewards['Location - Castle Entrance, Cube of Zoe Room (Short Sword)'] = 'Item - Manna Prism'
+            quest_rewards['Location - Castle Entrance, Cube of Zoe Room (Red Rust)'] = 'Item - Leather Shield'
         if quest_rewards is not None:
             for (quest_name, quest) in mapper_core['Quests']['Sources'].items():
                 target_name = quest['Target Reward']
@@ -976,7 +1044,7 @@ if __name__ == '__main__':
         seed_hint = ''.join(chars)
         changes['Strings'] = {
             '10': seed_hint, # 'Press L2 if softlocked.     ',
-            '11': 'Alpha Build 75      ',
+            '11': 'Alpha Build 76      ',
         }
         # Normalize room connections
         if settings.get('Options', {}).get('Normalize room connections', False):

@@ -8,14 +8,18 @@ Options:
     Disable clipping on screen edge of Pendulum Room Wall: true
     Disable clipping on screen edge of Snake Column Wall: true
     Disable clipping on screen edge of Tall Zig Zag Room Wall: true
-    Enable debug mode: true
+    Enable debug mode: false
     Normalize room connections: true
     Shift wall in Plaque Room With Breakable Wall away from screen edge: true
     Shuffle Pitch Black Spike Maze: true
     Skip Maria cutscene in Alchemy Laboratory: true
 Quest shuffler:
-    Shuffle relics: true
+    Item pool: Racing
+    Relic pool: Racing
     Shuffle items: true
+    Shuffle relics: true
+Room shuffler:
+    Shuffle rooms within stages: true
 Stage shuffler:
     Shuffle connections between stages: true
     Loading room labels: Connection
