@@ -8,7 +8,7 @@ Options:
     Disable clipping on screen edge of Pendulum Room Wall: true
     Disable clipping on screen edge of Snake Column Wall: true
     Disable clipping on screen edge of Tall Zig Zag Room Wall: true
-    Enable debug mode: true
+    Enable debug mode: false
     Normalize room connections: true
     Shift wall in Plaque Room With Breakable Wall away from screen edge: true
     Shuffle Pitch Black Spike Maze: true

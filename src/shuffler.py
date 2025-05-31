@@ -266,7 +266,7 @@ def shuffle_relics(quests, rng, relic_pool: str='Vanilla'):
             continue
         quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
         # If Racing Relic pool is enabled, replace low priority relics with a random duplicate of a better one
-        if relic_pool == 'Racing' and 'Low Priority - Racing' in quests['Targets'][quest_target_name]['Tags']:
+        if relic_pool == 'Racing' and 'Low Priority - Racing' in quests['Targets'][quest_target_name].get('Tags', {}):
             quest_target_name = duplicate_relics.pop()
         quest_targets.append(quest_target_name)
     rng.shuffle(quest_targets)
@@ -286,10 +286,10 @@ def shuffle_items(quests, rng, item_pool: str='Vanilla'):
     if item_pool == 'Racing':
         rng.shuffle(quest_targets)
         item_bin_counts = {
-            'Bomb': 1,
+            'Bomb': 2,
             'Thrown': 2,
-            'Food': 3,
-            'Buff': 3,
+            'Food': 2,
+            'Buff': 2,
             'Healing': 1,
         }
         # Assign each placeholder an arbitrary item from the item bin
@@ -1044,7 +1044,7 @@ if __name__ == '__main__':
         seed_hint = ''.join(chars)
         changes['Strings'] = {
             '10': seed_hint, # 'Press L2 if softlocked.     ',
-            '11': 'Alpha Build 75      ',
+            '11': 'Alpha Build 76      ',
         }
         # Normalize room connections
         if settings.get('Options', {}).get('Normalize room connections', False):
