@@ -52,6 +52,12 @@ Nodes:
         Entry Section: Ground
         Exit Section: Ground
 Commands:
+    Action - Collect Stopwatch Subweapon:
+        Outcomes:
+            Subweapon: Stopwatch
+        Requirements:
+            Default:
+                Section: Ground
     Move - Air:
         Outcomes:
             Section: Air

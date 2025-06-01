@@ -43,6 +43,12 @@ Nodes:
         Entry Section: Layer 3
         Exit Section: Layer 3
 Commands:
+    Action - Collect Stopwatch Subweapon:
+        Outcomes:
+            Subweapon: Stopwatch
+        Requirements:
+            Default:
+                Section: Layer 1
     Move - Layer 4:
         Outcomes:
             Section: Layer 4

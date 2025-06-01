@@ -27,4 +27,10 @@ Nodes:
         Edge: Right
         Entry Section: Main
         Exit Section: Main
-Commands: {}
+Commands:
+    Action - Collect Stopwatch Subweapon:
+        Outcomes:
+            Subweapon: Stopwatch
+        Requirements:
+            Default:
+                Section: Main

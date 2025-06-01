@@ -45,6 +45,12 @@ Nodes:
         Entry Section: Main
         Exit Section: Main
 Commands:
+    Action - Collect Stopwatch Subweapon:
+        Outcomes:
+            Subweapon: Stopwatch
+        Requirements:
+            Default:
+                Section: Main
     Action - Break Wall:
         Outcomes:
             Status - Breakable Wall in Grand Staircase Broken: true

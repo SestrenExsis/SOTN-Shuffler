@@ -1058,6 +1058,26 @@ class LogicCore:
                 'Room': "Castle Keep, Keep Area",
                 'Section': 'Anteroom',
             },
+            'Find Warp Room to Abandoned Mine in Warp Rooms': {
+                'Room': "Warp Rooms, Warp Room to Abandoned Mine",
+                'Section': 'Main',
+            },
+            'Find Warp Room to Castle Entrance in Warp Rooms': {
+                'Room': "Warp Rooms, Warp Room to Castle Entrance",
+                'Section': 'Main',
+            },
+            'Find Warp Room to Castle Keep in Warp Rooms': {
+                'Room': "Warp Rooms, Warp Room to Castle Keep",
+                'Section': 'Main',
+            },
+            "Find Warp Room to Olrox's Quarters in Warp Rooms": {
+                'Room': "Warp Rooms, Warp Room to Olrox's Quarters",
+                'Section': 'Main',
+            },
+            'Find Warp Room to Outer Wall in Warp Rooms': {
+                'Room': "Warp Rooms, Warp Room to Outer Wall",
+                'Section': 'Main',
+            },
             'Purchase Jewel of Open': {
                 'Relic - Jewel of Open': True,
             },
@@ -1099,6 +1119,11 @@ class LogicCore:
                         "Olrox's Quarters, Olrox's Room (Ground)": True,
                         'Outer Wall, Doppelganger Room (Main)': True,
                         'Royal Chapel, Hippogryph Room (Main)': True,
+                        'Warp Rooms, Warp Room to Abandoned Mine (Main)': True,
+                        'Warp Rooms, Warp Room to Castle Entrance (Main)': True,
+                        'Warp Rooms, Warp Room to Castle Keep (Main)': True,
+                        "Warp Rooms, Warp Room to Olrox's Quarters (Main)": True,
+                        'Warp Rooms, Warp Room to Outer Wall (Main)': True,
                     },
                 },
             },
@@ -1315,7 +1340,7 @@ if __name__ == '__main__':
         pathlib.Path(
             os.path.join('build', 'shuffler', stage_name)
         ).mkdir(parents=True, exist_ok=True)
-    GENERATION_VERSION = 'Alpha Build 76'
+    GENERATION_VERSION = 'Alpha Build 77'
     mapper_core = MapperData().get_core()
     with (
         open(os.path.join('build', 'shuffler', 'mapper-core.json'), 'w') as mapper_core_json,

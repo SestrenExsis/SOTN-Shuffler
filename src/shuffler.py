@@ -1044,7 +1044,7 @@ if __name__ == '__main__':
         seed_hint = ''.join(chars)
         changes['Strings'] = {
             '10': seed_hint, # 'Press L2 if softlocked.     ',
-            '11': 'Alpha Build 76      ',
+            '11': 'Alpha Build 77      ',
         }
         # Normalize room connections
         if settings.get('Options', {}).get('Normalize room connections', False):
