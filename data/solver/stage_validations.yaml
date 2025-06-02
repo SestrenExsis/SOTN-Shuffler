@@ -52,141 +52,222 @@ Template:
             Status - Switch in Abandoned Mine Pressed: true
         Goals: {}
 Abandoned Mine:
-    (Entry) Catacombs -> Cerberus Room:
+    (Entry) Catacombs -> Hub:
         Solver: *solve-within-99-steps
         State:
             Room: Abandoned Mine, Loading Room to Catacombs
             Section: Main
+            Option - Disable clipping on screen edge of Demon Switch Wall: true
+            Option - Disable clipping on screen edge of Snake Column Wall: true
             Progression - Double Jump: true
             Progression - Summon Demon Familiar: true
             Status - Snake Column Wall Broken: true
             Status - Stairwell Near Demon Switch Dislodged: true
             Status - Switch in Abandoned Mine Pressed: true
         Goals:
-            Reach Cerberus Room:
+            Reach Hub:
                 Room: Abandoned Mine, Cerberus Room
                 Section: Main
-    (Entry) Underground Caverns -> Cerberus Room:
+    (Entry) Underground Caverns -> Hub:
         Solver: *solve-within-99-steps
         State:
             Room: Abandoned Mine, Loading Room to Underground Caverns
             Section: Main
+            Option - Disable clipping on screen edge of Demon Switch Wall: true
+            Option - Disable clipping on screen edge of Snake Column Wall: true
             Progression - Double Jump: true
             Progression - Summon Demon Familiar: true
             Status - Snake Column Wall Broken: true
             Status - Stairwell Near Demon Switch Dislodged: true
             Status - Switch in Abandoned Mine Pressed: true
         Goals:
-            Reach Cerberus Room:
+            Reach Hub:
                 Room: Abandoned Mine, Cerberus Room
                 Section: Main
-    (Entry) Warp Rooms -> Cerberus Room:
+    (Entry) Warp Rooms -> Hub:
         Solver: *solve-within-99-steps
         State:
             Room: Abandoned Mine, Loading Room to Warp Rooms
             Section: Main
+            Option - Disable clipping on screen edge of Demon Switch Wall: true
+            Option - Disable clipping on screen edge of Snake Column Wall: true
             Progression - Double Jump: true
             Progression - Summon Demon Familiar: true
             Status - Snake Column Wall Broken: true
             Status - Stairwell Near Demon Switch Dislodged: true
             Status - Switch in Abandoned Mine Pressed: true
         Goals:
-            Reach Cerberus Room:
+            Reach Hub:
                 Room: Abandoned Mine, Cerberus Room
                 Section: Main
-    SKIP - (Abandon) Cerberus Room -> Any Loading Room:
-        Solver: *guard-against-softlocks
+    (Check) Hub -> Demon Card Location:
+        Solver: *solve-within-99-steps
         State:
             Room: Abandoned Mine, Cerberus Room
             Section: Main
+            Option - Disable clipping on screen edge of Demon Switch Wall: true
+            Option - Disable clipping on screen edge of Snake Column Wall: true
+            Progression - Double Jump: true
+            Progression - Summon Demon Familiar: true
+            Status - Snake Column Wall Broken: true
+            Status - Stairwell Near Demon Switch Dislodged: true
+            Status - Switch in Abandoned Mine Pressed: true
+        Goals:
+            Reach Check:
+                Check - Demon Card Location: true
+    (Status) Hub -> Layer 0 to Layer 1:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Abandoned Mine, Cerberus Room
+            Section: Main
+            Option - Disable clipping on screen edge of Demon Switch Wall: true
+            Option - Disable clipping on screen edge of Snake Column Wall: true
+            Progression - Double Jump: true
+            Progression - Summon Demon Familiar: true
+        Goals:
+            Status A:
+                Status - Snake Column Wall Broken: true
+            Status B:
+                Status - Stairwell Near Demon Switch Dislodged: true
+            Status C:
+                Status - Switch in Abandoned Mine Pressed: true
+    (Status) Hub -> Layer 1A to Layer 2:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Abandoned Mine, Cerberus Room
+            Section: Main
+            Option - Disable clipping on screen edge of Demon Switch Wall: true
+            Option - Disable clipping on screen edge of Snake Column Wall: true
+            Progression - Double Jump: true
+            Progression - Summon Demon Familiar: true
+            Status - Snake Column Wall Broken: true
+        Goals:
+            Status B:
+                Status - Stairwell Near Demon Switch Dislodged: true
+            Status C:
+                Status - Switch in Abandoned Mine Pressed: true
+    (Status) Hub -> Layer 1B to Layer 2:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Abandoned Mine, Cerberus Room
+            Section: Main
+            Option - Disable clipping on screen edge of Demon Switch Wall: true
+            Option - Disable clipping on screen edge of Snake Column Wall: true
+            Progression - Double Jump: true
+            Progression - Summon Demon Familiar: true
+            Status - Stairwell Near Demon Switch Dislodged: true
+        Goals:
+            Status A:
+                Status - Snake Column Wall Broken: true
+            Status C:
+                Status - Switch in Abandoned Mine Pressed: true
+    (Status) Hub -> Layer 1C to Layer 2:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Abandoned Mine, Cerberus Room
+            Section: Main
+            Option - Disable clipping on screen edge of Demon Switch Wall: true
+            Option - Disable clipping on screen edge of Snake Column Wall: true
+            Progression - Double Jump: true
+            Progression - Summon Demon Familiar: true
+            Status - Switch in Abandoned Mine Pressed: true
+        Goals:
+            Status A:
+                Status - Snake Column Wall Broken: true
+            Status B:
+                Status - Stairwell Near Demon Switch Dislodged: true
+    (Status) Hub -> Layer 2AB to Layer 3:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Abandoned Mine, Cerberus Room
+            Section: Main
+            Option - Disable clipping on screen edge of Demon Switch Wall: true
+            Option - Disable clipping on screen edge of Snake Column Wall: true
+            Progression - Double Jump: true
+            Progression - Summon Demon Familiar: true
+            Status - Snake Column Wall Broken: true
+            Status - Stairwell Near Demon Switch Dislodged: true
+        Goals:
+            Status C:
+                Status - Switch in Abandoned Mine Pressed: true
+    (Status) Hub -> Layer 2AC to Layer 3:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Abandoned Mine, Cerberus Room
+            Section: Main
+            Option - Disable clipping on screen edge of Demon Switch Wall: true
+            Option - Disable clipping on screen edge of Snake Column Wall: true
             Progression - Double Jump: true
             Progression - Summon Demon Familiar: true
             Status - Snake Column Wall Broken: true
             Status - Switch in Abandoned Mine Pressed: true
         Goals:
-            Reach Catacombs:
+            Status B:
+                Status - Stairwell Near Demon Switch Dislodged: true
+    (Status) Hub -> Layer 2BC to Layer 3:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Abandoned Mine, Cerberus Room
+            Section: Main
+            Option - Disable clipping on screen edge of Demon Switch Wall: true
+            Option - Disable clipping on screen edge of Snake Column Wall: true
+            Progression - Double Jump: true
+            Progression - Summon Demon Familiar: true
+            Status - Stairwell Near Demon Switch Dislodged: true
+            Status - Switch in Abandoned Mine Pressed: true
+        Goals:
+            Status A:
+                Status - Snake Column Wall Broken: true
+    (Exit) Hub -> Catacombs:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Abandoned Mine, Cerberus Room
+            Section: Main
+            Option - Disable clipping on screen edge of Demon Switch Wall: true
+            Option - Disable clipping on screen edge of Snake Column Wall: true
+            Progression - Double Jump: true
+            Progression - Summon Demon Familiar: true
+            Status - Snake Column Wall Broken: true
+            Status - Stairwell Near Demon Switch Dislodged: true
+            Status - Switch in Abandoned Mine Pressed: true
+        Goals:
+            Reach Exit:
                 Room: Abandoned Mine, Loading Room to Catacombs
                 Section: Main
-            Reach Underground Caverns:
+    (Exit) Hub -> Underground Caverns:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Abandoned Mine, Cerberus Room
+            Section: Main
+            Option - Disable clipping on screen edge of Demon Switch Wall: true
+            Option - Disable clipping on screen edge of Snake Column Wall: true
+            Progression - Double Jump: true
+            Progression - Summon Demon Familiar: true
+            Status - Snake Column Wall Broken: true
+            Status - Stairwell Near Demon Switch Dislodged: true
+            Status - Switch in Abandoned Mine Pressed: true
+        Goals:
+            Reach Exit:
                 Room: Abandoned Mine, Loading Room to Underground Caverns
                 Section: Main
-            Reach Warp Rooms:
-                Room: Abandoned Mine, Loading Room to Warp Rooms
-                Section: Main
-    SKIP - (Progress) Cerberus Room -> Crumbling Stairwells With Demon Switch:
-        Solver: *guard-against-softlocks
-        State:
-            Room: Abandoned Mine, Cerberus Room
-            Section: Main
-            Progression - Double Jump: true
-        Goals:
-            Press Switch:
-                Room: Abandoned Mine, Crumbling Stairwells With Demon Switch
-                Section: Upper-Left Ledge
-    SKIP - (Progress) Cerberus Room -> Demon Card Room:
-        Solver: *guard-against-softlocks
-        State:
-            Room: Abandoned Mine, Cerberus Room
-            Section: Main
-            Progression - Double Jump: true
-        Goals:
-            Reach Demon Card Room:
-                Room: Abandoned Mine, Demon Card Room
-                Section: Main
-    SKIP - (Progress) Cerberus Room -> Snake Column:
-        Solver: *guard-against-softlocks
-        State:
-            Room: Abandoned Mine, Cerberus Room
-            Section: Main
-            Progression - Double Jump: true
-        Goals:
-            Press Switch:
-                Room: Abandoned Mine, Snake Column
-                Section: Main
-    (Exit) Cerberus Room -> Catacombs:
+    (Exit) Hub -> Warp Rooms:
         Solver: *solve-within-99-steps
         State:
             Room: Abandoned Mine, Cerberus Room
             Section: Main
+            Option - Disable clipping on screen edge of Demon Switch Wall: true
+            Option - Disable clipping on screen edge of Snake Column Wall: true
             Progression - Double Jump: true
             Progression - Summon Demon Familiar: true
             Status - Snake Column Wall Broken: true
             Status - Stairwell Near Demon Switch Dislodged: true
             Status - Switch in Abandoned Mine Pressed: true
         Goals:
-            Reach Catacombs:
-                Room: Abandoned Mine, Loading Room to Catacombs
-                Section: Main
-    (Exit) Cerberus Room -> Underground Caverns:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Abandoned Mine, Cerberus Room
-            Section: Main
-            Progression - Double Jump: true
-            Progression - Summon Demon Familiar: true
-            Status - Snake Column Wall Broken: true
-            Status - Stairwell Near Demon Switch Dislodged: true
-            Status - Switch in Abandoned Mine Pressed: true
-        Goals:
-            Reach Underground Caverns:
-                Room: Abandoned Mine, Loading Room to Underground Caverns
-                Section: Main
-    (Exit) Cerberus Room -> Warp Rooms:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Abandoned Mine, Cerberus Room
-            Section: Main
-            Progression - Double Jump: true
-            Progression - Summon Demon Familiar: true
-            Status - Snake Column Wall Broken: true
-            Status - Stairwell Near Demon Switch Dislodged: true
-            Status - Switch in Abandoned Mine Pressed: true
-        Goals:
-            Reach Warp Rooms:
+            Reach Exit:
                 Room: Abandoned Mine, Loading Room to Warp Rooms
                 Section: Main
 Alchemy Laboratory:
-    (Entry) Castle Entrance -> Slogra and Gaibon Room:
+    (Entry) Castle Entrance -> Hub:
         Solver: *solve-within-99-steps
         State:
             Room: Alchemy Laboratory, Loading Room to Castle Entrance
@@ -197,10 +278,10 @@ Alchemy Laboratory:
             Status - Breakable Floor in Tall Zig Zag Room Broken: true
             Status - Breakable Wall in Tall Zig Zag Room Broken: true
         Goals:
-            Reach Slogra and Gaibon Room:
+            Reach Hub:
                 Room: Alchemy Laboratory, Slogra and Gaibon Room
                 Section: Main
-    (Entry) Marble Gallery -> Slogra and Gaibon Room:
+    (Entry) Marble Gallery -> Hub:
         Solver: *solve-within-99-steps
         State:
             Room: Alchemy Laboratory, Loading Room to Marble Gallery
@@ -211,10 +292,10 @@ Alchemy Laboratory:
             Status - Breakable Floor in Tall Zig Zag Room Broken: true
             Status - Breakable Wall in Tall Zig Zag Room Broken: true
         Goals:
-            Reach Slogra and Gaibon Room:
+            Reach Hub:
                 Room: Alchemy Laboratory, Slogra and Gaibon Room
                 Section: Main
-    (Entry) Royal Chapel -> Slogra and Gaibon Room:
+    (Entry) Royal Chapel -> Hub:
         Solver: *solve-within-99-steps
         State:
             Room: Alchemy Laboratory, Loading Room to Royal Chapel
@@ -225,26 +306,11 @@ Alchemy Laboratory:
             Status - Breakable Floor in Tall Zig Zag Room Broken: true
             Status - Breakable Wall in Tall Zig Zag Room Broken: true
         Goals:
-            Reach Slogra and Gaibon Room:
+            Reach Hub:
                 Room: Alchemy Laboratory, Slogra and Gaibon Room
                 Section: Main
-    SKIP - (Abandon) Slogra and Gaibon Room -> Any Loading Room:
-        Solver: *guard-against-softlocks
-        State:
-            Room: Alchemy Laboratory, Slogra and Gaibon Room
-            Section: Main
-        Goals:
-            Reach Castle Entrance:
-                Room: Alchemy Laboratory, Loading Room to Castle Entrance
-                Section: Main
-            Reach Marble Gallery:
-                Room: Alchemy Laboratory, Loading Room to Marble Gallery
-                Section: Main
-            Reach Royal Chapel:
-                Room: Alchemy Laboratory, Loading Room to Royal Chapel
-                Section: Main
-    SKIP - (Progress) Slogra and Gaibon Room -> Bat Card Room:
-        Solver: *guard-against-softlocks
+    (Check) Hub -> Bat Card Location:
+        Solver: *solve-within-99-steps
         State:
             Room: Alchemy Laboratory, Slogra and Gaibon Room
             Section: Main
@@ -254,36 +320,11 @@ Alchemy Laboratory:
             Status - Breakable Floor in Tall Zig Zag Room Broken: true
             Status - Breakable Wall in Tall Zig Zag Room Broken: true
         Goals:
-            Reach Progression Area:
+            Reach Check:
                 Room: Alchemy Laboratory, Tetromino Room
                 Section: Bat Card Room Duplicate
-    SKIP - (Progress) Slogra and Gaibon Room -> Cannon Room:
-        Solver: *guard-against-softlocks
-        State:
-            Room: Alchemy Laboratory, Slogra and Gaibon Room
-            Section: Main
-            Progression - Gravity Jump: true
-            Progression - Unlock Blue Doors: true
-            Status - Breakable Floor in Tall Zig Zag Room Broken: true
-            Status - Breakable Wall in Tall Zig Zag Room Broken: true
-        Goals:
-            Reach Progression Area:
-                Room: Alchemy Laboratory, Cannon Room
-                Section: Right Side
-    SKIP - (Progress) Slogra and Gaibon Room -> Tall Zig Zag Room:
-        Solver: *guard-against-softlocks
-        State:
-            Room: Alchemy Laboratory, Slogra and Gaibon Room
-            Section: Main
-            Progression - Gravity Jump: true
-            Progression - Unlock Blue Doors: true
-            Status - Cannon Activated: true
-        Goals:
-            Reach Progression Area:
-                Room: Alchemy Laboratory, Tall Zig Zag Room
-                Section: Main
-    SKIP - (Progress) Slogra and Gaibon Room -> Skill of Wolf Room:
-        Solver: *guard-against-softlocks
+    (Check) Hub -> Skill of Wolf Location:
+        Solver: *solve-within-99-steps
         State:
             Room: Alchemy Laboratory, Slogra and Gaibon Room
             Section: Main
@@ -293,10 +334,10 @@ Alchemy Laboratory:
             Status - Breakable Floor in Tall Zig Zag Room Broken: true
             Status - Breakable Wall in Tall Zig Zag Room Broken: true
         Goals:
-            Reach Progression Area:
+            Reach Check:
                 Room: Alchemy Laboratory, Skill of Wolf Room
                 Section: Main
-    (Exit) Slogra and Gaibon Room -> Castle Entrance:
+    (Exit) Hub -> Castle Entrance:
         Solver: *solve-within-99-steps
         State:
             Room: Alchemy Laboratory, Slogra and Gaibon Room
@@ -307,10 +348,10 @@ Alchemy Laboratory:
             Status - Breakable Floor in Tall Zig Zag Room Broken: true
             Status - Breakable Wall in Tall Zig Zag Room Broken: true
         Goals:
-            Reach Castle Entrance:
+            Reach Exit:
                 Room: Alchemy Laboratory, Loading Room to Castle Entrance
                 Section: Main
-    (Exit) Slogra and Gaibon Room -> Marble Gallery:
+    (Exit) Hub -> Marble Gallery:
         Solver: *solve-within-99-steps
         State:
             Room: Alchemy Laboratory, Slogra and Gaibon Room
@@ -321,10 +362,10 @@ Alchemy Laboratory:
             Status - Breakable Floor in Tall Zig Zag Room Broken: true
             Status - Breakable Wall in Tall Zig Zag Room Broken: true
         Goals:
-            Reach Marble Gallery:
+            Reach Exit:
                 Room: Alchemy Laboratory, Loading Room to Marble Gallery
                 Section: Main
-    (Exit) Slogra and Gaibon Room -> Royal Chapel:
+    (Exit) Hub -> Royal Chapel:
         Solver: *solve-within-99-steps
         State:
             Room: Alchemy Laboratory, Slogra and Gaibon Room
@@ -335,7 +376,7 @@ Alchemy Laboratory:
             Status - Breakable Floor in Tall Zig Zag Room Broken: true
             Status - Breakable Wall in Tall Zig Zag Room Broken: true
         Goals:
-            Reach Royal Chapel:
+            Reach Exit:
                 Room: Alchemy Laboratory, Loading Room to Royal Chapel
                 Section: Main
 Castle Center: {}
@@ -356,7 +397,7 @@ Castle Entrance:
             Death Skip:
                 Room: Castle Entrance, Cube of Zoe Room
                 Section: Main
-                Check - Meet Death in Castle Entrance: false
+                Status - Meet Death in Castle Entrance: false
     SKIP - (Rule) Meeting Death Required:
         Solver:
             Approach: Random Exploration
@@ -373,7 +414,7 @@ Castle Entrance:
             Meet Death on the Way to Cube of Zoe Room:
                 Room: Castle Entrance, Cube of Zoe Room
                 Section: Main
-                Check - Meet Death in Castle Entrance: true
+                Status - Meet Death in Castle Entrance: true
     (Entry) START -> Hub:
         Solver: *solve-within-99-steps
         State:
@@ -383,13 +424,13 @@ Castle Entrance:
             Reach Hub:
                 Room: Castle Entrance, Cube of Zoe Room
                 Section: Main
-                Check - Meet Death in Castle Entrance: true
+                Status - Meet Death in Castle Entrance: true
     (Entry) Alchemy Laboratory -> Hub:
-        Solver: *solve-within-30-steps
+        Solver: *solve-within-99-steps
         State:
             Room: Castle Entrance, Loading Room to Alchemy Laboratory
             Section: Main
-            Check - Meet Death in Castle Entrance: true
+            Status - Meet Death in Castle Entrance: true
             Progression - Item Materialization: true
             Progression - Bat Transformation: true
             Progression - Wolf Transformation: true
@@ -402,11 +443,11 @@ Castle Entrance:
                 Room: Castle Entrance, Cube of Zoe Room
                 Section: Main
     (Entry) Marble Gallery -> Hub:
-        Solver: *solve-within-30-steps
+        Solver: *solve-within-99-steps
         State:
             Room: Castle Entrance, Loading Room to Marble Gallery
             Section: Main
-            Check - Meet Death in Castle Entrance: true
+            Status - Meet Death in Castle Entrance: true
             Progression - Item Materialization: true
             Progression - Bat Transformation: true
             Progression - Wolf Transformation: true
@@ -423,7 +464,7 @@ Castle Entrance:
         State:
             Room: Castle Entrance, Loading Room to Underground Caverns
             Section: Main
-            Check - Meet Death in Castle Entrance: true
+            Status - Meet Death in Castle Entrance: true
             Progression - Item Materialization: true
             Progression - Bat Transformation: true
             Progression - Wolf Transformation: true
@@ -440,7 +481,7 @@ Castle Entrance:
         State:
             Room: Castle Entrance, Loading Room to Warp Rooms
             Section: Main
-            Check - Meet Death in Castle Entrance: true
+            Status - Meet Death in Castle Entrance: true
             Progression - Item Materialization: true
             Progression - Bat Transformation: true
             Progression - Wolf Transformation: true
@@ -452,43 +493,44 @@ Castle Entrance:
             Reach Hub:
                 Room: Castle Entrance, Cube of Zoe Room
                 Section: Main
-    SKIP - (Abandon) Hub -> Any Loading Room:
-        Solver: *solve-within-30-steps
-        State:
-            Room: Castle Entrance, Cube of Zoe Room
-            Section: Main
-            Check - Meet Death in Castle Entrance: true
-        Goals:
-            Reach Alchemy Laboratory:
-                Room: Castle Entrance, Loading Room to Alchemy Laboratory
-                Section: Main
-            Reach Marble Gallery:
-                Room: Castle Entrance, Loading Room to Marble Gallery
-                Section: Main
-            Reach Underground Caverns:
-                Room: Castle Entrance, Loading Room to Underground Caverns
-                Section: Main
-            Reach Warp Rooms:
-                Room: Castle Entrance, Loading Room to Warp Rooms
-                Section: Main
-    SKIP - (Progress) Hub -> After Drawbridge:
+    (Check) Hub -> Cube of Zoe Location:
         Solver: *solve-within-99-steps
         State:
             Room: Castle Entrance, Cube of Zoe Room
             Section: Main
-            Check - Meet Death in Castle Entrance: true
+            Status - Meet Death in Castle Entrance: true
+            Progression - Item Materialization: true
             Progression - Bat Transformation: true
             Progression - Wolf Transformation: true
+            Status - Shortcut in Cube of Zoe Room Activated: true
+            Status - Secret Wall in Merman Room Opened: true
+            Status - Shortcut to Underground Caverns Activated: true
+            Status - Shortcut to Warp Rooms Activated: true
         Goals:
-            Reach Progression Area:
-                Room: Castle Entrance, After Drawbridge
-                Section: Ground
-    (Exit) Hub -> Alchemy Laboratory:
-        Solver: *solve-within-30-steps
+            Reach Check:
+                Check - Cube of Zoe Location: true
+    (Check) Hub -> Power of Wolf Location:
+        Solver: *solve-within-99-steps
         State:
             Room: Castle Entrance, Cube of Zoe Room
             Section: Main
-            Check - Meet Death in Castle Entrance: true
+            Status - Meet Death in Castle Entrance: true
+            Progression - Item Materialization: true
+            Progression - Bat Transformation: true
+            Progression - Wolf Transformation: true
+            Status - Shortcut in Cube of Zoe Room Activated: true
+            Status - Secret Wall in Merman Room Opened: true
+            Status - Shortcut to Underground Caverns Activated: true
+            Status - Shortcut to Warp Rooms Activated: true
+        Goals:
+            Reach Check:
+                Check - Power of Wolf Location: true
+    (Exit) Hub -> Alchemy Laboratory:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Castle Entrance, Cube of Zoe Room
+            Section: Main
+            Status - Meet Death in Castle Entrance: true
             Progression - Item Materialization: true
             Progression - Bat Transformation: true
             Progression - Wolf Transformation: true
@@ -501,11 +543,11 @@ Castle Entrance:
                 Room: Castle Entrance, Loading Room to Alchemy Laboratory
                 Section: Main
     (Exit) Hub -> Marble Gallery:
-        Solver: *solve-within-30-steps
+        Solver: *solve-within-99-steps
         State:
             Room: Castle Entrance, Cube of Zoe Room
             Section: Main
-            Check - Meet Death in Castle Entrance: true
+            Status - Meet Death in Castle Entrance: true
             Progression - Item Materialization: true
             Progression - Bat Transformation: true
             Progression - Wolf Transformation: true
@@ -522,7 +564,7 @@ Castle Entrance:
         State:
             Room: Castle Entrance, Cube of Zoe Room
             Section: Main
-            Check - Meet Death in Castle Entrance: true
+            Status - Meet Death in Castle Entrance: true
             Progression - Item Materialization: true
             Progression - Bat Transformation: true
             Progression - Wolf Transformation: true
@@ -539,7 +581,7 @@ Castle Entrance:
         State:
             Room: Castle Entrance, Cube of Zoe Room
             Section: Main
-            Check - Meet Death in Castle Entrance: true
+            Status - Meet Death in Castle Entrance: true
             Progression - Item Materialization: true
             Progression - Bat Transformation: true
             Progression - Wolf Transformation: true
@@ -582,50 +624,33 @@ Castle Keep:
             Reach Hub:
                 Room: Castle Keep, Keep Area
                 Section: Ground
-    SKIP - (Abandon) Hub -> Any Loading Room:
-        Solver: *guard-against-softlocks
-        State:
-            Room: Castle Keep, Keep Area
-            Section: Ground
-        Goals:
-            Reach Clock Tower:
-                Room: Castle Keep, Loading Room to Clock Tower
-                Section: Main
-            Reach Royal Chapel:
-                Room: Castle Keep, Loading Room to Royal Chapel
-                Section: Main
-            Reach Warp Rooms:
-                Room: Castle Keep, Loading Room to Warp Rooms
-                Section: Main
-    SKIP - (Progress) Hub -> Keep Area (Ground):
-        Solver: *guard-against-softlocks
-        State:
-            Room: Castle Keep, Keep Area
-            Section: Ground
-        Goals:
-            Reach Progression Area:
-                Room: Castle Keep, Keep Area
-                Section: Ground
-    SKIP - (Progress) Hub -> Keep Area (Middle-Left):
-        Solver: *guard-against-softlocks
+    (Check) Hub -> Ghost Card Location:
+        Solver: *solve-within-99-steps
         State:
             Room: Castle Keep, Keep Area
             Section: Ground
             Progression - Bat Transformation: true
         Goals:
-            Reach Progression Area:
-                Room: Castle Keep, Keep Area
-                Section: Middle-Left Ledge
-    SKIP - (Progress) Hub -> Ghost Card Room:
-        Solver: *guard-against-softlocks
+            Reach Check:
+                Check - Ghost Card Location: true
+    (Check) Hub -> Power of Mist Location:
+        Solver: *solve-within-99-steps
         State:
             Room: Castle Keep, Keep Area
             Section: Ground
             Progression - Bat Transformation: true
         Goals:
-            Reach Progression Area:
-                Room: Castle Keep, Ghost Card Room
-                Section: Ground
+            Reach Check:
+                Check - Power of Mist Location: true
+    (Check) Hub -> Leap Stone Location:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Castle Keep, Keep Area
+            Section: Ground
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Check:
+                Check - Leap Stone Location: true
     (Exit) Hub -> Clock Tower:
         Solver: *solve-within-99-steps
         State:
@@ -707,27 +732,16 @@ Catacombs:
             Reach Hub:
                 Room: Catacombs, Pitch Black Spike Maze
                 Section: Left Side
-    SKIP - (Abandon) Hub -> Any Loading Room:
-        Solver: *guard-against-softlocks
-        State:
-            Room: Catacombs, Pitch Black Spike Maze
-            Section: Left Side
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Abandoned Mine:
-                Room: Catacombs, Loading Room to Abandoned Mine
-                Section: Main
-    SKIP - (Progress) Hub -> Spike Breaker Room:
-        Solver: *guard-against-softlocks
+    (Check) Hub -> Spike Breaker Location:
+        Solver: *solve-within-99-steps
         State:
             Room: Catacombs, Pitch Black Spike Maze
             Section: Left Side
             Progression - Bat Transformation: true
             Progression - Echolocation: true
         Goals:
-            Reach Progression Area:
-                Room: Catacombs, Spike Breaker Room
-                Section: Main
+            Reach Check:
+                Check Location - Catacombs, Spike Breaker Room (Spike Breaker): true
     (Exit) Hub -> Abandoned Mine:
         Solver: *solve-within-99-steps
         State:
@@ -747,6 +761,11 @@ Clock Tower:
             Room: Clock Tower, Loading Room to Castle Keep
             Section: Main
             Progression - Bat Transformation: true
+            Status - Breakable Wall in Left Gear Room Broken: true
+            Status - Upper-Left Gear in Clock Tower Set: true
+            Status - Upper-Right Gear in Clock Tower Set: true
+            Status - Lower-Left Gear in Clock Tower Set: true
+            Status - Lower-Right Gear in Clock Tower Set: true
         Goals:
             Reach Hub:
                 Room: Clock Tower, Open Courtyard
@@ -757,60 +776,42 @@ Clock Tower:
             Room: Clock Tower, Loading Room to Outer Wall
             Section: Main
             Progression - Bat Transformation: true
+            Status - Breakable Wall in Left Gear Room Broken: true
+            Status - Upper-Left Gear in Clock Tower Set: true
+            Status - Upper-Right Gear in Clock Tower Set: true
+            Status - Lower-Left Gear in Clock Tower Set: true
+            Status - Lower-Right Gear in Clock Tower Set: true
         Goals:
             Reach Hub:
                 Room: Clock Tower, Open Courtyard
                 Section: Ground
-    SKIP - (Abandon) Hub -> Any Loading Room:
-        Solver: *guard-against-softlocks
-        State:
-            Room: Clock Tower, Open Courtyard
-            Section: Ground
-        Goals:
-            Reach Castle Keep:
-                Room: Clock Tower, Loading Room to Castle Keep
-                Section: Main
-            Reach Outer Wall:
-                Room: Clock Tower, Loading Room to Outer Wall
-                Section: Main
-    SKIP - (Progress) Hub -> Left Gear Room:
-        Solver: *guard-against-softlocks
-        State:
-            Room: Clock Tower, Open Courtyard
-            Section: Ground
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Progression Area:
-                Room: Clock Tower, Left Gear Room
-                Section: Main
-    SKIP - (Progress) Hub -> Right Gear Room:
-        Solver: *guard-against-softlocks
-        State:
-            Room: Clock Tower, Open Courtyard
-            Section: Ground
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Progression Area:
-                Room: Clock Tower, Right Gear Room
-                Section: Main
-    (Progress) Hub -> Fire of Bat Room:
+    (Check) Hub -> Fire of Bat:
         Solver: *solve-within-99-steps
         State:
             Room: Clock Tower, Open Courtyard
             Section: Ground
             Progression - Bat Transformation: true
+            Status - Breakable Wall in Left Gear Room Broken: true
+            Status - Upper-Left Gear in Clock Tower Set: true
+            Status - Upper-Right Gear in Clock Tower Set: true
+            Status - Lower-Left Gear in Clock Tower Set: true
+            Status - Lower-Right Gear in Clock Tower Set: true
         Goals:
-            Reach Progression Area:
-                Room: Clock Tower, Fire of Bat Room
-                Section: Main
+            Reach Check:
+                Check - Fire of Bat Location: true
     (Exit) Hub -> Castle Keep:
         Solver: *solve-within-99-steps
         State:
             Room: Clock Tower, Open Courtyard
             Section: Ground
             Progression - Bat Transformation: true
+            Status - Breakable Wall in Left Gear Room Broken: true
+            Status - Upper-Left Gear in Clock Tower Set: true
+            Status - Upper-Right Gear in Clock Tower Set: true
+            Status - Lower-Left Gear in Clock Tower Set: true
+            Status - Lower-Right Gear in Clock Tower Set: true
         Goals:
-            Reach Castle Keep:
+            Reach Exit:
                 Room: Clock Tower, Loading Room to Castle Keep
                 Section: Main
     (Exit) Hub -> Outer Wall:
@@ -819,8 +820,13 @@ Clock Tower:
             Room: Clock Tower, Open Courtyard
             Section: Ground
             Progression - Bat Transformation: true
+            Status - Breakable Wall in Left Gear Room Broken: true
+            Status - Upper-Left Gear in Clock Tower Set: true
+            Status - Upper-Right Gear in Clock Tower Set: true
+            Status - Lower-Left Gear in Clock Tower Set: true
+            Status - Lower-Right Gear in Clock Tower Set: true
         Goals:
-            Reach Outer Wall:
+            Reach Exit:
                 Room: Clock Tower, Loading Room to Outer Wall
                 Section: Main
 Colosseum:
@@ -844,28 +850,14 @@ Colosseum:
             Reach Hub:
                 Room: Colosseum, Arena
                 Section: Main
-    SKIP - (Abandon) Hub -> Any Loading Room:
-        Solver: *guard-against-softlocks
-        State:
-            Room: Colosseum, Arena
-            Section: Main
-            Status - Shortcut Between Royal Chapel and Colosseum Unlocked: true
-        Goals:
-            Reach Royal Chapel:
-                Room: Colosseum, Loading Room to Royal Chapel
-                Section: Main
-            Reach Olrox's Quarters:
-                Room: Colosseum, Loading Room to Olrox's Quarters
-                Section: Main
-    SKIP - (Progress) Hub -> Top of Elevator Shaft:
-        Solver: *guard-against-softlocks
+    (Check) Hub -> Form of Mist Location:
+        Solver: *solve-within-99-steps
         State:
             Room: Colosseum, Arena
             Section: Main
         Goals:
-            Reach Progression Area:
-                Room: Colosseum, Top of Elevator Shaft
-                Section: Left Side
+            Reach Check:
+                Check - Form of Mist Location: true
     (Exit) Hub -> Royal Chapel:
         Solver: *solve-within-99-steps
         State:
@@ -888,7 +880,7 @@ Colosseum:
                 Section: Main
 Long Library:
     (Entry) Outer Wall -> Hub:
-        Solver: *solve-within-30-steps
+        Solver: *solve-within-99-steps
         State:
             Room: Long Library, Loading Room to Outer Wall
             Section: Main
@@ -899,7 +891,7 @@ Long Library:
                 Room: Long Library, Outside Shop
                 Section: Main
     (Abandon) Hub -> Any Loading Room:
-        Solver: *solve-within-30-steps
+        Solver: *solve-within-99-steps
         State:
             Room: Long Library, Outside Shop
             Section: Main
@@ -907,19 +899,49 @@ Long Library:
             Reach Outer Wall:
                 Room: Long Library, Loading Room to Outer Wall
                 Section: Main
-    (Progress) Hub -> Shop:
-        Solver: *guard-against-softlocks
+    (Check) Hub -> Jewel of Open Location:
+        Solver: *solve-within-99-steps
         State:
             Room: Long Library, Outside Shop
             Section: Main
             Progression - Double Jump: true
             Progression - Mist Transformation: true
         Goals:
-            Reach Progression Area:
+            Reach Check:
                 Room: Long Library, Shop
                 Section: Main
-    (Progress) Hub -> Three Layer Room:
-        Solver: *solve-within-30-steps
+    (Check) Hub -> Faerie Card Location:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Long Library, Outside Shop
+            Section: Main
+            Progression - Double Jump: true
+            Progression - Mist Transformation: true
+        Goals:
+            Reach Check:
+                Check - Faerie Card Location: true
+    (Check) Hub -> Soul of Bat Location:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Long Library, Outside Shop
+            Section: Main
+            Progression - Double Jump: true
+            Progression - Mist Transformation: true
+        Goals:
+            Reach Check:
+                Check - Soul of Bat Location: true
+    (Check) Hub -> Faerie Scroll Location:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Long Library, Outside Shop
+            Section: Main
+            Progression - Double Jump: true
+            Progression - Mist Transformation: true
+        Goals:
+            Reach Check:
+                Check - Faerie Scroll Location: true
+    (Rule) Hub -> Three Layer Room:
+        Solver: *solve-within-99-steps
         State:
             Room: Long Library, Outside Shop
             Section: Main
@@ -929,30 +951,8 @@ Long Library:
             Reach Progression Area:
                 Room: Long Library, Three Layer Room
                 Section: Upper Layer
-    (Progress) Hub -> Faerie Card Room:
-        Solver: *solve-within-30-steps
-        State:
-            Room: Long Library, Outside Shop
-            Section: Main
-            Progression - Double Jump: true
-            Progression - Mist Transformation: true
-        Goals:
-            Reach Progression Area:
-                Room: Long Library, Faerie Card Room
-                Section: Main
-    (Progress) Hub -> Lesser Demon Area:
-        Solver: *solve-within-30-steps
-        State:
-            Room: Long Library, Outside Shop
-            Section: Main
-            Progression - Double Jump: true
-            Progression - Mist Transformation: true
-        Goals:
-            Reach Progression Area:
-                Room: Long Library, Lesser Demon Area
-                Section: Layer 1
     (Exit) Hub -> Outer Wall:
-        Solver: *solve-within-30-steps
+        Solver: *solve-within-99-steps
         State:
             Room: Long Library, Outside Shop
             Section: Main
@@ -1028,29 +1028,8 @@ Marble Gallery:
             Reach Hub:
                 Room: Marble Gallery, Clock Room
                 Section: Main
-    SKIP - (Abandon) Hub -> Any Loading Room:
-        Solver: *guard-against-softlocks
-        State:
-            Room: Marble Gallery, Clock Room
-            Section: Main
-        Goals:
-            Reach Alchemy Laboratory:
-                Room: Marble Gallery, Loading Room to Alchemy Laboratory
-                Section: Main
-            Reach Castle Entrance:
-                Room: Marble Gallery, Loading Room to Castle Entrance
-                Section: Main
-            Reach Olrox's Quarters:
-                Room: Marble Gallery, Loading Room to Olrox's Quarters
-                Section: Main
-            Reach Outer Wall:
-                Room: Marble Gallery, Loading Room to Outer Wall
-                Section: Main
-            Reach Underground Caverns:
-                Room: Marble Gallery, Loading Room to Underground Caverns
-                Section: Main
-    SKIP - (Progress) Hub -> Spirit Orb Room:
-        Solver: *solve-within-30-steps
+    (Check) Hub -> Gravity Boots Location:
+        Solver: *solve-within-99-steps
         State:
             Room: Marble Gallery, Clock Room
             Section: Main
@@ -1059,33 +1038,20 @@ Marble Gallery:
             Status - Pressure Plate in Marble Gallery Activated: true
             Subweapon: Stopwatch
         Goals:
-            Reach Progression Area:
-                Room: Marble Gallery, Spirit Orb Room
-                Section: Main
-    SKIP - (Progress) Hub -> Stopwatch Room:
-        Solver: *solve-within-30-steps
+            Reach Check:
+                Check - Gravity Boots Location: true
+    (Check) Hub -> Spirit Orb Location:
+        Solver: *solve-within-99-steps
         State:
             Room: Marble Gallery, Clock Room
             Section: Main
             Progression - Bat Transformation: true
             Progression - Unlock Blue Doors: true
             Status - Pressure Plate in Marble Gallery Activated: true
-        Goals:
-            Reach Progression Area:
-                Room: Marble Gallery, Stopwatch Room
-                Section: Main
-    SKIP - (Progress) Hub -> Blue Door Room:
-        Solver: *solve-within-30-steps
-        State:
-            Room: Marble Gallery, Clock Room
-            Section: Main
-            Progression - Double Jump: true
-            Progression - Unlock Blue Doors: true
             Subweapon: Stopwatch
         Goals:
-            Reach Progression Area:
-                Room: Marble Gallery, Blue Door Room
-                Section: Left Side
+            Reach Check:
+                Check - Spirit Orb Location: true
     (Exit) Hub -> Alchemy Laboratory:
         Solver: *solve-within-99-steps
         State:
@@ -1159,7 +1125,7 @@ Olrox's Quarters:
             Section: Main
             Progression - Bat Transformation: true
             Status - Breakable Ceiling in Catwalk Crypt Broken: true
-            Status - Breakable Wall in Grand Staircase Broken: false
+            Status - Breakable Wall in Grand Staircase Broken: true
         Goals:
             Reach Hub:
                 Room: Olrox's Quarters, Grand Staircase
@@ -1171,7 +1137,7 @@ Olrox's Quarters:
             Section: Main
             Progression - Bat Transformation: true
             Status - Breakable Ceiling in Catwalk Crypt Broken: true
-            Status - Breakable Wall in Grand Staircase Broken: false
+            Status - Breakable Wall in Grand Staircase Broken: true
         Goals:
             Reach Hub:
                 Room: Olrox's Quarters, Grand Staircase
@@ -1183,39 +1149,29 @@ Olrox's Quarters:
             Section: Main
             Progression - Bat Transformation: true
             Status - Breakable Ceiling in Catwalk Crypt Broken: true
-            Status - Breakable Wall in Grand Staircase Broken: false
+            Status - Breakable Wall in Grand Staircase Broken: true
         Goals:
             Reach Hub:
                 Room: Olrox's Quarters, Grand Staircase
                 Section: Main
-    SKIP - (Abandon) Hub -> Any Loading Room:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Olrox's Quarters, Grand Staircase
-            Section: Main
-        Goals:
-            Reach Colosseum:
-                Room: Olrox's Quarters, Loading Room to Colosseum
-                Section: Main
-            Reach Marble Gallery:
-                Room: Olrox's Quarters, Loading Room to Marble Gallery
-                Section: Main
-            Reach Royal Chapel:
-                Room: Olrox's Quarters, Loading Room to Royal Chapel
-                Section: Main
-            Reach Warp Rooms:
-                Room: Olrox's Quarters, Loading Room to Warp Rooms
-                Section: Main
-    SKIP - (Progress) Hub -> Echo of Bat Room:
+    (Check) Hub -> Echo of Bat Location:
         Solver: *solve-within-99-steps
         State:
             Room: Olrox's Quarters, Grand Staircase
             Section: Main
             Progression - Bat Transformation: true
         Goals:
-            Reach Progression Area:
-                Room: Olrox's Quarters, Echo of Bat Room
-                Section: Main
+            Reach Check:
+                Check - Echo of Bat Location: true
+    (Check) Hub -> Sword Card Location:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Olrox's Quarters, Grand Staircase
+            Section: Main
+            Progression - Bat Transformation: true
+        Goals:
+            Reach Check:
+                Check - Sword Card Location: true
     (Exit) Hub -> Colosseum:
         Solver: *solve-within-99-steps
         State:
@@ -1223,7 +1179,7 @@ Olrox's Quarters:
             Section: Main
             Progression - Bat Transformation: true
             Status - Breakable Ceiling in Catwalk Crypt Broken: true
-            Status - Breakable Wall in Grand Staircase Broken: false
+            Status - Breakable Wall in Grand Staircase Broken: true
         Goals:
             Reach Exit:
                 Room: Olrox's Quarters, Loading Room to Colosseum
@@ -1235,7 +1191,7 @@ Olrox's Quarters:
             Section: Main
             Progression - Bat Transformation: true
             Status - Breakable Ceiling in Catwalk Crypt Broken: true
-            Status - Breakable Wall in Grand Staircase Broken: false
+            Status - Breakable Wall in Grand Staircase Broken: true
         Goals:
             Reach Exit:
                 Room: Olrox's Quarters, Loading Room to Marble Gallery
@@ -1247,7 +1203,7 @@ Olrox's Quarters:
             Section: Main
             Progression - Bat Transformation: true
             Status - Breakable Ceiling in Catwalk Crypt Broken: true
-            Status - Breakable Wall in Grand Staircase Broken: false
+            Status - Breakable Wall in Grand Staircase Broken: true
         Goals:
             Reach Exit:
                 Room: Olrox's Quarters, Loading Room to Royal Chapel
@@ -1259,7 +1215,7 @@ Olrox's Quarters:
             Section: Main
             Progression - Bat Transformation: true
             Status - Breakable Ceiling in Catwalk Crypt Broken: true
-            Status - Breakable Wall in Grand Staircase Broken: false
+            Status - Breakable Wall in Grand Staircase Broken: true
         Goals:
             Reach Exit:
                 Room: Olrox's Quarters, Loading Room to Warp Rooms
@@ -1301,33 +1257,14 @@ Outer Wall:
             Reach Hub:
                 Room: Outer Wall, Doppelganger Room
                 Section: Main
-    SKIP - (Abandon) Hub -> Any Loading Room:
-        Solver: *guard-against-softlocks
+    (Check) Hub -> Soul of Wolf Location:
+        Solver: *solve-within-99-steps
         State:
             Room: Outer Wall, Doppelganger Room
             Section: Main
         Goals:
-            Reach Clock Tower:
-                Room: Outer Wall, Loading Room to Clock Tower
-                Section: Main
-            Reach Long Library:
-                Room: Outer Wall, Loading Room to Long Library
-                Section: Main
-            Reach Marble Gallery:
-                Room: Outer Wall, Loading Room to Marble Gallery
-                Section: Main
-            Reach Warp Rooms:
-                Room: Outer Wall, Loading Room to Warp Rooms
-                Section: Main
-    SKIP - (Progress) Hub -> Elevator Shaft Room:
-        Solver: *guard-against-softlocks
-        State:
-            Room: Outer Wall, Doppelganger Room
-            Section: Main
-        Goals:
-            Reach Progression Area:
-                Room: Outer Wall, Elevator Shaft Room
-                Section: Main
+            Reach Check:
+                Check - Soul of Wolf Location: true
     (Exit) Hub -> Clock Tower:
         Solver: *solve-within-99-steps
         State:
@@ -1505,26 +1442,8 @@ Royal Chapel:
             Reach Hub:
                 Room: Royal Chapel, Hippogryph Room
                 Section: Main
-    SKIP - (Abandon) Hub -> Any Loading Room:
-        Solver: *guard-against-softlocks
-        State:
-            Room: Royal Chapel, Hippogryph Room
-            Section: Main
-        Goals:
-            Reach Alchemy Laboratory:
-                Room: Royal Chapel, Loading Room to Alchemy Laboratory
-                Section: Main
-            Reach Castle Keep:
-                Room: Royal Chapel, Loading Room to Castle Keep
-                Section: Main
-            Reach Colosseum:
-                Room: Royal Chapel, Loading Room to Colosseum
-                Section: Main
-            Reach Olrox's Quarters:
-                Room: Royal Chapel, Loading Room to Olrox's Quarters
-                Section: Main
-    SKIP - (Progress) Hub -> Silver Ring Room:
-        Solver: *guard-against-softlocks
+    (Check) Hub -> Silver Ring Location:
+        Solver: *solve-within-99-steps
         State:
             Room: Royal Chapel, Hippogryph Room
             Section: Main
@@ -1533,9 +1452,8 @@ Royal Chapel:
             Progression - Unlock Blue Doors: true
             Item - Spike Breaker: 1
         Goals:
-            Reach Progression Area:
-                Room: Royal Chapel, Silver Ring Room
-                Section: Main
+            Reach Check:
+                Check Location - Royal Chapel, Silver Ring Room (Silver Ring): true
     (Exit) Hub -> Alchemy Laboratory:
         Solver: *solve-within-99-steps
         State:
@@ -1597,13 +1515,12 @@ Underground Caverns:
             Progression - Bat Transformation: true
             Progression - Protection From Water: true
             Progression - Summon Ferryman: true
-            Status - Breakable Floor in Hidden Crystal Entrance Broken: true
             Status - DK Bridge Broken: true
             Status - DK Button Pressed: true
         Goals:
             Reach Hub:
-                Room: Underground Caverns, Waterfall
-                Section: Ground
+                Room: Underground Caverns, Hidden Crystal Entrance
+                Section: Main
     (Entry) Castle Entrance -> Hub:
         Solver: *solve-within-99-steps
         State:
@@ -1612,13 +1529,12 @@ Underground Caverns:
             Progression - Bat Transformation: true
             Progression - Protection From Water: true
             Progression - Summon Ferryman: true
-            Status - Breakable Floor in Hidden Crystal Entrance Broken: true
             Status - DK Bridge Broken: true
             Status - DK Button Pressed: true
         Goals:
             Reach Hub:
-                Room: Underground Caverns, Waterfall
-                Section: Ground
+                Room: Underground Caverns, Hidden Crystal Entrance
+                Section: Main
     (Entry) Marble Gallery -> Hub:
         Solver: *solve-within-99-steps
         State:
@@ -1627,98 +1543,13 @@ Underground Caverns:
             Progression - Bat Transformation: true
             Progression - Protection From Water: true
             Progression - Summon Ferryman: true
-            Status - Breakable Floor in Hidden Crystal Entrance Broken: true
             Status - DK Bridge Broken: true
             Status - DK Button Pressed: true
         Goals:
             Reach Hub:
-                Room: Underground Caverns, Waterfall
-                Section: Ground
-    SKIP - (Abandon) Hub -> Any Loading Room:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Underground Caverns, Waterfall
-            Section: Ground
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Abandoned Mine:
-                Room: Underground Caverns, Loading Room to Abandoned Mine
-                Section: Main
-            Reach Castle Entrance:
-                Room: Underground Caverns, Loading Room to Castle Entrance
-                Section: Main
-            Reach Marble Gallery:
-                Room: Underground Caverns, Loading Room to Marble Gallery
-                Section: Main
-    SKIP - (Progress) Hub -> Holy Symbol Room:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Underground Caverns, Waterfall
-            Section: Ground
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Progression Area:
-                Room: Underground Caverns, Holy Symbol Room
-                Section: Main
-    SKIP - (Progress) Hub -> Merman Statue Room:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Underground Caverns, Waterfall
-            Section: Ground
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Progression Area:
-                Room: Underground Caverns, Merman Statue Room
-                Section: Main
-    SKIP - (Progress) Hub -> DK Bridge:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Underground Caverns, Waterfall
-            Section: Ground
-            Progression - Bat Transformation: true
-            Progression - Protection From Water: true
-            Progression - Summon Ferryman: true
-        Goals:
-            Reach Progression Area:
-                Room: Underground Caverns, DK Bridge
-                Section: Main
-    SKIP - (Progress) Hub -> DK Button:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Underground Caverns, Waterfall
-            Section: Ground
-            Progression - Bat Transformation: true
-            Progression - Protection From Water: true
-            Progression - Summon Ferryman: true
-        Goals:
-            Reach Progression Area:
-                Room: Underground Caverns, DK Button
-                Section: Main
-    SKIP - (Progress) Hub -> False Save Room:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Underground Caverns, Waterfall
-            Section: Ground
-            Progression - Bat Transformation: true
-            Progression - Protection From Water: true
-            Progression - Summon Ferryman: true
-        Goals:
-            Reach Progression Area:
-                Room: Underground Caverns, False Save Room
-                Section: Main
-    SKIP - (Progress) Hub -> Hidden Crystal Entrance:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Underground Caverns, Waterfall
-            Section: Ground
-            Progression - Bat Transformation: true
-            Progression - Protection From Water: true
-            Progression - Summon Ferryman: true
-        Goals:
-            Reach Progression Area:
                 Room: Underground Caverns, Hidden Crystal Entrance
                 Section: Main
-    SKIP - (Progress) Hub -> Plaque Room With Breakable Wall:
+    (Check) Hub -> Gold Ring Location:
         Solver: *solve-within-99-steps
         State:
             Room: Underground Caverns, Waterfall
@@ -1726,27 +1557,44 @@ Underground Caverns:
             Progression - Bat Transformation: true
             Progression - Protection From Water: true
             Progression - Summon Ferryman: true
+            Status - DK Bridge Broken: true
+            Status - DK Button Pressed: true
         Goals:
-            Reach Progression Area:
-                Room: Underground Caverns, Plaque Room With Breakable Wall
-                Section: Main
-    SKIP - (Progress) Hub -> Right Ferryman Route (Left Side):
+            Reach Check:
+                Check Location - Underground Caverns, False Save Room (Gold Ring): true
+    (Check) Hub -> Holy Symbol Location:
         Solver: *solve-within-99-steps
         State:
-            Room: Underground Caverns, Waterfall
-            Section: Ground
+            Room: Underground Caverns, Hidden Crystal Entrance
+            Section: Main
             Progression - Bat Transformation: true
             Progression - Protection From Water: true
             Progression - Summon Ferryman: true
+            Status - Breakable Floor in Hidden Crystal Entrance Broken: true
+            Status - DK Bridge Broken: true
+            Status - DK Button Pressed: true
         Goals:
-            Reach Progression Area:
-                Room: Underground Caverns, Right Ferryman Route
-                Section: Left Side
+            Reach Check:
+                Check - Holy Symbol Location: true
+    (Check) Hub -> Merman Statue Location:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Underground Caverns, Hidden Crystal Entrance
+            Section: Main
+            Progression - Bat Transformation: true
+            Progression - Protection From Water: true
+            Progression - Summon Ferryman: true
+            Status - Breakable Floor in Hidden Crystal Entrance Broken: true
+            Status - DK Bridge Broken: true
+            Status - DK Button Pressed: true
+        Goals:
+            Reach Check:
+                Check - Merman Statue Location: true
     (Exit) Hub -> Abandoned Mine:
         Solver: *solve-within-99-steps
         State:
-            Room: Underground Caverns, Waterfall
-            Section: Ground
+            Room: Underground Caverns, Hidden Crystal Entrance
+            Section: Main
             Progression - Bat Transformation: true
             Progression - Protection From Water: true
             Progression - Summon Ferryman: true
@@ -1760,8 +1608,8 @@ Underground Caverns:
     (Exit) Hub -> Castle Entrance:
         Solver: *solve-within-99-steps
         State:
-            Room: Underground Caverns, Waterfall
-            Section: Ground
+            Room: Underground Caverns, Hidden Crystal Entrance
+            Section: Main
             Progression - Bat Transformation: true
             Progression - Protection From Water: true
             Progression - Summon Ferryman: true
@@ -1775,8 +1623,8 @@ Underground Caverns:
     (Exit) Hub -> Marble Gallery:
         Solver: *solve-within-99-steps
         State:
-            Room: Underground Caverns, Waterfall
-            Section: Ground
+            Room: Underground Caverns, Hidden Crystal Entrance
+            Section: Main
             Progression - Bat Transformation: true
             Progression - Protection From Water: true
             Progression - Summon Ferryman: true
