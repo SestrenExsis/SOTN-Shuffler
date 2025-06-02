@@ -18,12 +18,12 @@ def validate_logic(mapper_core, changes) -> bool:
     SOFTLOCK_CHECK__CYCLE_LIMIT = 199
     SOFTLOCK_CHECK__MAX_SOFTLOCKS = 0
     SOFTLOCK_CHECK__ATTEMPT_COUNT = 10
-    PROGRESSION_CHECK__STEP_LIMIT = 50 # 46 highest observed successful, 49 lowest observed failed
+    PROGRESSION_CHECK__STEP_LIMIT = 96 # 46 highest observed successful, 49 lowest observed failed
     logic_core = mapper.LogicCore(mapper_core, changes).get_core()
     map_solver = solver.Solver(logic_core, skills)
     map_solver.debug = True
     map_solver.initial_seed = 1
-    map_solver.decay_start = 99_999
+    map_solver.decay_start = 49_999
     map_solver.cycle_limit = 199_999
     valid_ind = True
     final_goal_ind = False
@@ -44,7 +44,7 @@ def validate_logic(mapper_core, changes) -> bool:
         map_solver.debug = True
         map_solver.clear()
         map_solver.current_game = prev_game
-        map_solver.solve_via_strict_steps(PROGRESSION_CHECK__STEP_LIMIT)
+        map_solver.solve_via_strict_steps(PROGRESSION_CHECK__STEP_LIMIT - len(map_solver.current_game.goals_remaining))
         if len(map_solver.results['Wins']) < 1:
             valid_ind = False
             print(' ', '❌ ... Require some form of nearby progression')
@@ -52,8 +52,6 @@ def validate_logic(mapper_core, changes) -> bool:
         print(' ', '✅ ... Require some form of nearby progression')
         (step__solver, game__solver) = map_solver.results['Wins'][-1]
         while len(game__solver.goals_achieved) > 0:
-            if len(game__solver.goals_achieved) > 1:
-                print(game__solver.goals_achieved)
             goal_achieved = game__solver.goals_achieved.pop()
             if goal_achieved == 'END':
                 final_goal_ind = True
@@ -65,7 +63,7 @@ def validate_logic(mapper_core, changes) -> bool:
         if final_goal_ind:
             break
     result = valid_ind
-    if 0 < len(map_solver.current_game.goals_remaining) < 5:
+    if 0 < len(map_solver.current_game.goals_remaining) < 10:
         print('Goals not obtained')
         for goal in sorted(map_solver.current_game.goals_remaining.keys()):
             print(' -', goal)
