@@ -111,11 +111,24 @@ def shuffle_teleporters(teleporters, rng) -> dict:
         ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Warp Rooms, Fake Room with Teleporter to Castle Entrance'),
         ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Long Library, Fake Room with Teleporter to Outer Wall'),
         ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Catacombs, Fake Room with Teleporter to Abandoned Mine'),
-        # NOTE(sestren): Disallow exit left of Cube of Zoe from linking to Warp Rooms
+        # NOTE(sestren): Disallow left exit in Cube of Zoe Room from leading to Warp Rooms
         ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Warp Rooms, Fake Room with Teleporter to Abandoned Mine'),
         ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Warp Rooms, Fake Room with Teleporter to Castle Keep'),
         ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', "Warp Rooms, Fake Room with Teleporter to Olrox's Quarters"),
         ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Warp Rooms, Fake Room with Teleporter to Outer Wall'),
+        # NOTE(sestren): Disallow non-base Warp Rooms in areas that will result in them being "orphaned"
+        ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', 'Warp Rooms, Fake Room with Teleporter to Abandoned Mine'),
+        ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', 'Warp Rooms, Fake Room with Teleporter to Castle Keep'),
+        ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', "Warp Rooms, Fake Room with Teleporter to Olrox's Quarters"),
+        ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', 'Warp Rooms, Fake Room with Teleporter to Outer Wall'),
+        ('Castle Entrance, Fake Room with Teleporter to Underground Caverns', 'Warp Rooms, Fake Room with Teleporter to Abandoned Mine'),
+        ('Castle Entrance, Fake Room with Teleporter to Underground Caverns', 'Warp Rooms, Fake Room with Teleporter to Castle Keep'),
+        ('Castle Entrance, Fake Room with Teleporter to Underground Caverns', "Warp Rooms, Fake Room with Teleporter to Olrox's Quarters"),
+        ('Castle Entrance, Fake Room with Teleporter to Underground Caverns', 'Warp Rooms, Fake Room with Teleporter to Outer Wall'),
+        # ('Colosseum, Fake Room with Teleporter to Royal Chapel', 'Warp Rooms, Fake Room with Teleporter to Abandoned Mine'),
+        # ('Colosseum, Fake Room with Teleporter to Royal Chapel', 'Warp Rooms, Fake Room with Teleporter to Castle Keep'),
+        # ('Colosseum, Fake Room with Teleporter to Royal Chapel', "Warp Rooms, Fake Room with Teleporter to Olrox's Quarters"),
+        # ('Colosseum, Fake Room with Teleporter to Royal Chapel', 'Warp Rooms, Fake Room with Teleporter to Outer Wall'),
     }
     # NOTE(sestren): Stages are considered "highly-linkable" if they have 3 or more Red Doors
     highly_linkable_stages = {
@@ -980,6 +993,8 @@ if __name__ == '__main__':
         if validator.validate_logic(mapper_core, changes):
             pass
         else:
+            for stage_name in sorted(shuffler['Stages']):
+                print(shuffler['Stages'][stage_name]['Hash of Rooms'], stage_name)
             continue
         # print('*********')
         # Flip normal castle changes and apply them to inverted castle
@@ -1043,7 +1058,7 @@ if __name__ == '__main__':
             string_size += 1
         seed_hint = ''.join(chars)
         changes['Strings'] = {
-            '10': seed_hint, # 'Press L2 if softlocked.     ',
+            '10': seed_hint,
             '11': 'Alpha Build 77      ',
         }
         # Normalize room connections
