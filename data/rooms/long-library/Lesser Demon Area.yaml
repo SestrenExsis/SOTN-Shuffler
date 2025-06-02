@@ -49,6 +49,7 @@ Commands:
         Requirements:
             Default:
                 Section: Layer 1
+                Progression - Item Materialization: true
     Move - Layer 4:
         Outcomes:
             Section: Layer 4

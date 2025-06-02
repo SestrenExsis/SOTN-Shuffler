@@ -34,3 +34,4 @@ Commands:
         Requirements:
             Default:
                 Section: Main
+                Progression - Item Materialization: true

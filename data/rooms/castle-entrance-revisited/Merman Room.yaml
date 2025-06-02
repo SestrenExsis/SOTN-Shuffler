@@ -58,6 +58,7 @@ Commands:
         Requirements:
             Default:
                 Section: Ground
+                Progression - Item Materialization: true
     Move - Air:
         Outcomes:
             Section: Air
