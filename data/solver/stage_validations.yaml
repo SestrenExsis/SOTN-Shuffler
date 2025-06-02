@@ -1507,6 +1507,19 @@ Royal Chapel:
                 Room: Royal Chapel, Loading Room to Olrox's Quarters
                 Section: Main
 Underground Caverns:
+    (Elsewhere) With All Extrinsic Progression -> Acquire All Intrinsic Progression:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Elsewhere
+            Section: Elsewhere
+            Progression - Bat Transformation: true
+            Progression - Protection From Water: true
+            Progression - Summon Ferryman: true
+        Goals:
+            All Intrinsic Progression:
+                Status - DK Button Pressed: true
+                Status - DK Bridge Broken: true
+                Status - Breakable Floor in Hidden Crystal Entrance Broken: true
     (Entry) Abandoned Mine -> Hub:
         Solver: *solve-within-99-steps
         State:

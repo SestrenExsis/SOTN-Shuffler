@@ -84,6 +84,29 @@ def validate_stage(mapper_core, mapper_data, stage_name, validation) -> bool:
         },
     }
     logic_core = mapper.LogicCore(mapper_core, changes).get_core()
+    if validation['State'].get('Room', None) == 'Elsewhere':
+        logic_core['Commands']['Elsewhere'] = {}
+        for room_name in logic_core['Commands']:
+            if ', Loading Room to ' not in room_name:
+                continue
+            for command_name in logic_core['Commands'][room_name]:
+                target_room_name = logic_core['Commands'][room_name][command_name]['Outcomes']['Room']
+                if target_room_name.startswith(stage_name):
+                    logic_core['Commands']['Elsewhere']['Exit - ' + target_room_name] = {
+                        'Outcomes': {
+                            'Room': target_room_name,
+                            'Section': 'Main',
+                        },
+                        'Requirements': {
+                            'Default': {
+                                'Room': 'Elsewhere',
+                                'Section': 'Elsewhere',
+                            },
+                        },
+                    }
+                else:
+                    logic_core['Commands'][room_name][command_name]['Outcomes']['Room'] = 'Elsewhere'
+                    logic_core['Commands'][room_name][command_name]['Outcomes']['Section'] = 'Elsewhere'
     for (state_key, state_value) in validation['State'].items():
         logic_core['State'][state_key] = state_value
     logic_core['Goals'] = validation['Goals']
