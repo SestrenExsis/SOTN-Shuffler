@@ -267,6 +267,15 @@ Abandoned Mine:
                 Room: Abandoned Mine, Loading Room to Warp Rooms
                 Section: Main
 Alchemy Laboratory:
+    (Progression) Layer 0 -> Any Progression:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Elsewhere
+            Section: Elsewhere
+            Progression - Unlock Blue Doors: true
+        Goals:
+            Cannon Activated:
+                Status - Cannon Activated: true
     (Entry) Castle Entrance -> Hub:
         Solver: *solve-within-99-steps
         State:
@@ -381,6 +390,21 @@ Alchemy Laboratory:
                 Section: Main
 Castle Center: {}
 Castle Entrance:
+    (Progression) Layer 0 -> Any Progression:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Elsewhere
+            Section: Elsewhere
+            Status - Meet Death in Castle Entrance: true
+            Progression - Item Materialization: true
+            Progression - Bat Transformation: true
+            Progression - Wolf Transformation: true
+            Status - Shortcut in Cube of Zoe Room Activated: true
+            Status - Shortcut to Underground Caverns Activated: true
+            Status - Shortcut to Warp Rooms Activated: true
+        Goals:
+            Secret Wall in Merman Room Opened:
+                Status - Secret Wall in Merman Room Opened: true
     (Rule) Death Skip Forbidden:
         Solver:
             Approach: Steps
@@ -1302,7 +1326,7 @@ Outer Wall:
                 Room: Outer Wall, Loading Room to Warp Rooms
                 Section: Main
 Royal Chapel:
-    (Rule) Silver Ring Locked Behind Spike Hallway - Alchemy Laboratory:
+    (Rule) Silver Ring Locked Behind Spike Hallway:
         Solver:
             Approach: Steps
             Attempts: 1
@@ -1312,8 +1336,8 @@ Royal Chapel:
             Wins:
                 Maximum: 0
         State:
-            Room: Royal Chapel, Loading Room to Alchemy Laboratory
-            Section: Main
+            Room: Elsewhere
+            Section: Elsewhere
             Progression - Bat Transformation: true
             Progression - Mist Transformation: true
             Progression - Unlock Blue Doors: true
@@ -1324,190 +1348,71 @@ Royal Chapel:
                 Rooms Visited:
                     All:
                         Royal Chapel, Spike Hallway: false
-    (Rule) Silver Ring Locked Behind Spike Hallway - Castle Keep:
-        Solver:
-            Approach: Steps
-            Attempts: 1
-            Limit: 99
-            Initial Seed: 1
-            Debug: False
-            Wins:
-                Maximum: 0
-        State:
-            Room: Royal Chapel, Loading Room to Castle Keep
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Mist Transformation: true
-            Progression - Unlock Blue Doors: true
-            Item - Spike Breaker: 1
-        Goals:
-            Find Silver Ring without Going Through Spike Hallway:
-                Item - Silver Ring: 1
-                Rooms Visited:
-                    All:
-                        Royal Chapel, Spike Hallway: false
-    (Rule) Silver Ring Locked Behind Spike Hallway - Colosseum:
-        Solver:
-            Approach: Steps
-            Attempts: 1
-            Limit: 99
-            Initial Seed: 1
-            Debug: False
-            Wins:
-                Maximum: 0
-        State:
-            Room: Royal Chapel, Loading Room to Colosseum
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Mist Transformation: true
-            Progression - Unlock Blue Doors: true
-            Item - Spike Breaker: 1
-        Goals:
-            Find Silver Ring without Going Through Spike Hallway:
-                Item - Silver Ring: 1
-                Rooms Visited:
-                    All:
-                        Royal Chapel, Spike Hallway: false
-    (Rule) Silver Ring Locked Behind Spike Hallway - Olrox's Quarters:
-        Solver:
-            Approach: Steps
-            Attempts: 1
-            Limit: 99
-            Initial Seed: 1
-            Debug: False
-            Wins:
-                Maximum: 0
-        State:
-            Room: Royal Chapel, Loading Room to Olrox's Quarters
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Mist Transformation: true
-            Progression - Unlock Blue Doors: true
-            Item - Spike Breaker: 1
-        Goals:
-            Find Silver Ring without Going Through Spike Hallway:
-                Item - Silver Ring: 1
-                Rooms Visited:
-                    All:
-                        Royal Chapel, Spike Hallway: false
-    (Entry) Alchemy Laboratory -> Hub:
+    SKIP - (Progression) Layer 0 -> Any Progression:
         Solver: *solve-within-99-steps
         State:
-            Room: Royal Chapel, Loading Room to Alchemy Laboratory
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Mist Transformation: true
-            Progression - Unlock Blue Doors: true
-            Item - Spike Breaker: 1
+            Room: Elsewhere
+            Section: Elsewhere
         Goals:
-            Reach Hub:
-                Room: Royal Chapel, Hippogryph Room
-                Section: Main
-    (Entry) Castle Keep -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Royal Chapel, Loading Room to Castle Keep
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Mist Transformation: true
-            Progression - Unlock Blue Doors: true
-            Item - Spike Breaker: 1
-        Goals:
-            Reach Hub:
-                Room: Royal Chapel, Hippogryph Room
-                Section: Main
-    (Entry) Colosseum -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Royal Chapel, Loading Room to Colosseum
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Mist Transformation: true
-            Progression - Unlock Blue Doors: true
-            Item - Spike Breaker: 1
-        Goals:
-            Reach Hub:
-                Room: Royal Chapel, Hippogryph Room
-                Section: Main
-    (Entry) Olrox's Quarters -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Royal Chapel, Loading Room to Olrox's Quarters
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Mist Transformation: true
-            Progression - Unlock Blue Doors: true
-            Item - Spike Breaker: 1
-        Goals:
-            Reach Hub:
-                Room: Royal Chapel, Hippogryph Room
-                Section: Main
-    (Check) Hub -> Silver Ring Location:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Royal Chapel, Hippogryph Room
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Mist Transformation: true
-            Progression - Unlock Blue Doors: true
-            Item - Spike Breaker: 1
-        Goals:
-            Reach Check:
+            Royal Chapel, Silver Ring Room (Silver Ring):
                 Check Location - Royal Chapel, Silver Ring Room (Silver Ring): true
-    (Exit) Hub -> Alchemy Laboratory:
+            Pushing Statue Destroyed:
+                Status - Pushing Statue Destroyed: true
+            Pushing Statue Destroyed:
+                Royal Chapel, Hippogryph Room: true
+            Find Equivalent Room for Medusa:
+                Sections Visited:
+                    All:
+                        Royal Chapel, Hippogryph Room (Main): true
+    SKIP - (Progression) Layer 1 -> Layer 2:
         Solver: *solve-within-99-steps
         State:
-            Room: Royal Chapel, Hippogryph Room
-            Section: Main
+            Room: Elsewhere
+            Section: Elsewhere
             Progression - Bat Transformation: true
             Progression - Mist Transformation: true
             Progression - Unlock Blue Doors: true
             Item - Spike Breaker: 1
         Goals:
-            Reach Exit:
-                Room: Royal Chapel, Loading Room to Alchemy Laboratory
-                Section: Main
-    (Exit) Hub -> Castle Keep:
+            Layer 2:
+                Status - Pushing Statue Destroyed: true
+    (Progression) Layer 2 -> Layer 3:
         Solver: *solve-within-99-steps
         State:
-            Room: Royal Chapel, Hippogryph Room
-            Section: Main
+            Room: Elsewhere
+            Section: Elsewhere
             Progression - Bat Transformation: true
             Progression - Mist Transformation: true
             Progression - Unlock Blue Doors: true
             Item - Spike Breaker: 1
+            Status - Pushing Statue Destroyed: true
         Goals:
-            Reach Exit:
-                Room: Royal Chapel, Loading Room to Castle Keep
-                Section: Main
-    (Exit) Hub -> Colosseum:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Royal Chapel, Hippogryph Room
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Mist Transformation: true
-            Progression - Unlock Blue Doors: true
-            Item - Spike Breaker: 1
-        Goals:
-            Reach Exit:
-                Room: Royal Chapel, Loading Room to Colosseum
-                Section: Main
-    (Exit) Hub -> Olrox's Quarters:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Royal Chapel, Hippogryph Room
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Mist Transformation: true
-            Progression - Unlock Blue Doors: true
-            Item - Spike Breaker: 1
-        Goals:
-            Reach Exit:
-                Room: Royal Chapel, Loading Room to Olrox's Quarters
-                Section: Main
+            Layer 3:
+                Check Location - Royal Chapel, Silver Ring Room (Silver Ring): true
+                Sections Visited:
+                    All:
+                        Royal Chapel, Hippogryph Room (Main): true
 Underground Caverns:
-    (Elsewhere) With All Extrinsic Progression -> Acquire All Intrinsic Progression:
+    SKIP - (Progression) Layer 0 -> Any Progression:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Elsewhere
+            Section: Elsewhere
+            Progression - Bat Transformation: true
+        Goals:
+            DK Button Pressed:
+                Status - DK Button Pressed: true
+            DK Bridge Broken:
+                Status - DK Bridge Broken: true
+            Breakable Floor in Hidden Crystal Entrance Broken:
+                Status - Breakable Floor in Hidden Crystal Entrance Broken: true
+            Underground Caverns, False Save Room (Gold Ring):
+                Check Location - Underground Caverns, False Save Room (Gold Ring): true
+            Holy Symbol Location:
+                Check - Holy Symbol Location: true
+            Merman Statue Location:
+                Check - Merman Statue Location: true
+    (Progression) Layer 1 -> Layer 2:
         Solver: *solve-within-99-steps
         State:
             Room: Elsewhere
@@ -1516,136 +1421,24 @@ Underground Caverns:
             Progression - Protection From Water: true
             Progression - Summon Ferryman: true
         Goals:
-            All Intrinsic Progression:
+            Layer 2:
                 Status - DK Button Pressed: true
                 Status - DK Bridge Broken: true
                 Status - Breakable Floor in Hidden Crystal Entrance Broken: true
-    (Entry) Abandoned Mine -> Hub:
+    (Progression) Layer 2 -> Layer 3:
         Solver: *solve-within-99-steps
         State:
-            Room: Underground Caverns, Loading Room to Abandoned Mine
-            Section: Main
+            Room: Elsewhere
+            Section: Elsewhere
             Progression - Bat Transformation: true
             Progression - Protection From Water: true
             Progression - Summon Ferryman: true
-            Status - DK Bridge Broken: true
             Status - DK Button Pressed: true
-        Goals:
-            Reach Hub:
-                Room: Underground Caverns, Hidden Crystal Entrance
-                Section: Main
-    (Entry) Castle Entrance -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Underground Caverns, Loading Room to Castle Entrance
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Protection From Water: true
-            Progression - Summon Ferryman: true
             Status - DK Bridge Broken: true
-            Status - DK Button Pressed: true
+            Status - Breakable Floor in Hidden Crystal Entrance Broken: true
         Goals:
-            Reach Hub:
-                Room: Underground Caverns, Hidden Crystal Entrance
-                Section: Main
-    (Entry) Marble Gallery -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Underground Caverns, Loading Room to Marble Gallery
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Protection From Water: true
-            Progression - Summon Ferryman: true
-            Status - DK Bridge Broken: true
-            Status - DK Button Pressed: true
-        Goals:
-            Reach Hub:
-                Room: Underground Caverns, Hidden Crystal Entrance
-                Section: Main
-    (Check) Hub -> Gold Ring Location:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Underground Caverns, Waterfall
-            Section: Ground
-            Progression - Bat Transformation: true
-            Progression - Protection From Water: true
-            Progression - Summon Ferryman: true
-            Status - DK Bridge Broken: true
-            Status - DK Button Pressed: true
-        Goals:
-            Reach Check:
+            Layer 3:
                 Check Location - Underground Caverns, False Save Room (Gold Ring): true
-    (Check) Hub -> Holy Symbol Location:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Underground Caverns, Hidden Crystal Entrance
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Protection From Water: true
-            Progression - Summon Ferryman: true
-            Status - Breakable Floor in Hidden Crystal Entrance Broken: true
-            Status - DK Bridge Broken: true
-            Status - DK Button Pressed: true
-        Goals:
-            Reach Check:
                 Check - Holy Symbol Location: true
-    (Check) Hub -> Merman Statue Location:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Underground Caverns, Hidden Crystal Entrance
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Protection From Water: true
-            Progression - Summon Ferryman: true
-            Status - Breakable Floor in Hidden Crystal Entrance Broken: true
-            Status - DK Bridge Broken: true
-            Status - DK Button Pressed: true
-        Goals:
-            Reach Check:
                 Check - Merman Statue Location: true
-    (Exit) Hub -> Abandoned Mine:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Underground Caverns, Hidden Crystal Entrance
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Protection From Water: true
-            Progression - Summon Ferryman: true
-            Status - Breakable Floor in Hidden Crystal Entrance Broken: true
-            Status - DK Bridge Broken: true
-            Status - DK Button Pressed: true
-        Goals:
-            Reach Exit:
-                Room: Underground Caverns, Loading Room to Abandoned Mine
-                Section: Main
-    (Exit) Hub -> Castle Entrance:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Underground Caverns, Hidden Crystal Entrance
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Protection From Water: true
-            Progression - Summon Ferryman: true
-            Status - Breakable Floor in Hidden Crystal Entrance Broken: true
-            Status - DK Bridge Broken: true
-            Status - DK Button Pressed: true
-        Goals:
-            Reach Exit:
-                Room: Underground Caverns, Loading Room to Castle Entrance
-                Section: Main
-    (Exit) Hub -> Marble Gallery:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Underground Caverns, Hidden Crystal Entrance
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Protection From Water: true
-            Progression - Summon Ferryman: true
-            Status - Breakable Floor in Hidden Crystal Entrance Broken: true
-            Status - DK Bridge Broken: true
-            Status - DK Button Pressed: true
-        Goals:
-            Reach Exit:
-                Room: Underground Caverns, Loading Room to Marble Gallery
-                Section: Main
 Warp Rooms: {}
