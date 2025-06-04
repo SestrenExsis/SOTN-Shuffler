@@ -52,8 +52,21 @@ Commands:
         Outcomes:
             Section: Ground
         Requirements:
-            Middle-Right Ledge - Default:
+            Middle-Right Ledge - Logical Risk:
                 Section: Middle-Right Ledge
+                Option - Permit Logical Risks: true
+            Middle-Right Ledge - Return With Bat:
+                Section: Middle-Right Ledge
+                Progression - Bat Transformation: true
+            Middle-Right Ledge - Return With Double Jump:
+                Section: Middle-Right Ledge
+                Progression - Double Jump: true
+            Middle-Right Ledge - Return With Gravity Jump:
+                Section: Middle-Right Ledge
+                Progression - Gravity Jump: true
+            Middle-Right Ledge - Return With Mist:
+                Section: Middle-Right Ledge
+                Progression - Mist Transformation: true
     Move - Middle-Right Ledge:
         Outcomes:
             Section: Middle-Right Ledge
@@ -73,8 +86,22 @@ Commands:
             Ground - Mist:
                 Section: Ground
                 Progression - Mist Transformation: true
-            Upper-Right Ledge - Default:
+            Upper-Right Ledge - Logical Risk:
                 Section: Upper-Right Ledge
+                Option - Permit Logical Risks: true
+            Upper-Right Ledge - Return With Bat:
+                Section: Upper-Right Ledge
+                Progression - Bat Transformation: true
+            Upper-Right Ledge - Return With Double Jump:
+                Section: Upper-Right Ledge
+                Progression - Double Jump: true
+            Upper-Right Ledge - Return With Gravity Jump:
+                Section: Upper-Right Ledge
+                Progression - Gravity Jump: true
+            Upper-Right Ledge - Return With Powered Mist:
+                Section: Upper-Right Ledge
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
     Move - Upper-Right Ledge:
         Outcomes:
             Section: Upper-Right Ledge
