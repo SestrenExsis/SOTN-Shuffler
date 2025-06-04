@@ -38,5 +38,18 @@ Commands:
         Outcomes:
             Section: Ground
         Requirements:
-            Use Shortcut:
+            Ledge - Logical Risk:
                 Section: Ledge
+                Option - Permit Logical Risks: true
+            Ledge - Return with Bat Form:
+                Section: Ledge
+                Progression - Bat Transformation: true
+            Ledge - Return with Multiple Gravity Jumps:
+                Section: Ledge
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Ledge - Return with Powered Mist:
+                Section: Ledge
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Technique - Very Long Mist Travel: true
