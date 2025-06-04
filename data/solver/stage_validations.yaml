@@ -52,11 +52,25 @@ Template:
             Status - Switch in Abandoned Mine Pressed: true
         Goals: {}
 Abandoned Mine:
-    (Entry) Catacombs -> Hub:
+    (Progression) Layer 1 -> Layer 2:
         Solver: *solve-within-99-steps
         State:
-            Room: Abandoned Mine, Loading Room to Catacombs
-            Section: Main
+            Room: Elsewhere
+            Section: Elsewhere
+            Option - Disable clipping on screen edge of Demon Switch Wall: true
+            Option - Disable clipping on screen edge of Snake Column Wall: true
+            Progression - Double Jump: true
+            Progression - Summon Demon Familiar: true
+        Goals:
+            Layer 2:
+                Status - Snake Column Wall Broken: true
+                Status - Stairwell Near Demon Switch Dislodged: true
+                Status - Switch in Abandoned Mine Pressed: true
+    (Progression) Layer 2 -> Layer 3:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Elsewhere
+            Section: Elsewhere
             Option - Disable clipping on screen edge of Demon Switch Wall: true
             Option - Disable clipping on screen edge of Snake Column Wall: true
             Progression - Double Jump: true
@@ -65,207 +79,11 @@ Abandoned Mine:
             Status - Stairwell Near Demon Switch Dislodged: true
             Status - Switch in Abandoned Mine Pressed: true
         Goals:
-            Reach Hub:
-                Room: Abandoned Mine, Cerberus Room
-                Section: Main
-    (Entry) Underground Caverns -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Abandoned Mine, Loading Room to Underground Caverns
-            Section: Main
-            Option - Disable clipping on screen edge of Demon Switch Wall: true
-            Option - Disable clipping on screen edge of Snake Column Wall: true
-            Progression - Double Jump: true
-            Progression - Summon Demon Familiar: true
-            Status - Snake Column Wall Broken: true
-            Status - Stairwell Near Demon Switch Dislodged: true
-            Status - Switch in Abandoned Mine Pressed: true
-        Goals:
-            Reach Hub:
-                Room: Abandoned Mine, Cerberus Room
-                Section: Main
-    (Entry) Warp Rooms -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Abandoned Mine, Loading Room to Warp Rooms
-            Section: Main
-            Option - Disable clipping on screen edge of Demon Switch Wall: true
-            Option - Disable clipping on screen edge of Snake Column Wall: true
-            Progression - Double Jump: true
-            Progression - Summon Demon Familiar: true
-            Status - Snake Column Wall Broken: true
-            Status - Stairwell Near Demon Switch Dislodged: true
-            Status - Switch in Abandoned Mine Pressed: true
-        Goals:
-            Reach Hub:
-                Room: Abandoned Mine, Cerberus Room
-                Section: Main
-    (Check) Hub -> Demon Card Location:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Abandoned Mine, Cerberus Room
-            Section: Main
-            Option - Disable clipping on screen edge of Demon Switch Wall: true
-            Option - Disable clipping on screen edge of Snake Column Wall: true
-            Progression - Double Jump: true
-            Progression - Summon Demon Familiar: true
-            Status - Snake Column Wall Broken: true
-            Status - Stairwell Near Demon Switch Dislodged: true
-            Status - Switch in Abandoned Mine Pressed: true
-        Goals:
-            Reach Check:
+            Layer 3:
+                Sections Visited:
+                    All:
+                        Abandoned Mine, Cerberus Room (Main): true
                 Check - Demon Card Location: true
-    (Status) Hub -> Layer 0 to Layer 1:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Abandoned Mine, Cerberus Room
-            Section: Main
-            Option - Disable clipping on screen edge of Demon Switch Wall: true
-            Option - Disable clipping on screen edge of Snake Column Wall: true
-            Progression - Double Jump: true
-            Progression - Summon Demon Familiar: true
-        Goals:
-            Status A:
-                Status - Snake Column Wall Broken: true
-            Status B:
-                Status - Stairwell Near Demon Switch Dislodged: true
-            Status C:
-                Status - Switch in Abandoned Mine Pressed: true
-    (Status) Hub -> Layer 1A to Layer 2:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Abandoned Mine, Cerberus Room
-            Section: Main
-            Option - Disable clipping on screen edge of Demon Switch Wall: true
-            Option - Disable clipping on screen edge of Snake Column Wall: true
-            Progression - Double Jump: true
-            Progression - Summon Demon Familiar: true
-            Status - Snake Column Wall Broken: true
-        Goals:
-            Status B:
-                Status - Stairwell Near Demon Switch Dislodged: true
-            Status C:
-                Status - Switch in Abandoned Mine Pressed: true
-    (Status) Hub -> Layer 1B to Layer 2:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Abandoned Mine, Cerberus Room
-            Section: Main
-            Option - Disable clipping on screen edge of Demon Switch Wall: true
-            Option - Disable clipping on screen edge of Snake Column Wall: true
-            Progression - Double Jump: true
-            Progression - Summon Demon Familiar: true
-            Status - Stairwell Near Demon Switch Dislodged: true
-        Goals:
-            Status A:
-                Status - Snake Column Wall Broken: true
-            Status C:
-                Status - Switch in Abandoned Mine Pressed: true
-    (Status) Hub -> Layer 1C to Layer 2:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Abandoned Mine, Cerberus Room
-            Section: Main
-            Option - Disable clipping on screen edge of Demon Switch Wall: true
-            Option - Disable clipping on screen edge of Snake Column Wall: true
-            Progression - Double Jump: true
-            Progression - Summon Demon Familiar: true
-            Status - Switch in Abandoned Mine Pressed: true
-        Goals:
-            Status A:
-                Status - Snake Column Wall Broken: true
-            Status B:
-                Status - Stairwell Near Demon Switch Dislodged: true
-    (Status) Hub -> Layer 2AB to Layer 3:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Abandoned Mine, Cerberus Room
-            Section: Main
-            Option - Disable clipping on screen edge of Demon Switch Wall: true
-            Option - Disable clipping on screen edge of Snake Column Wall: true
-            Progression - Double Jump: true
-            Progression - Summon Demon Familiar: true
-            Status - Snake Column Wall Broken: true
-            Status - Stairwell Near Demon Switch Dislodged: true
-        Goals:
-            Status C:
-                Status - Switch in Abandoned Mine Pressed: true
-    (Status) Hub -> Layer 2AC to Layer 3:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Abandoned Mine, Cerberus Room
-            Section: Main
-            Option - Disable clipping on screen edge of Demon Switch Wall: true
-            Option - Disable clipping on screen edge of Snake Column Wall: true
-            Progression - Double Jump: true
-            Progression - Summon Demon Familiar: true
-            Status - Snake Column Wall Broken: true
-            Status - Switch in Abandoned Mine Pressed: true
-        Goals:
-            Status B:
-                Status - Stairwell Near Demon Switch Dislodged: true
-    (Status) Hub -> Layer 2BC to Layer 3:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Abandoned Mine, Cerberus Room
-            Section: Main
-            Option - Disable clipping on screen edge of Demon Switch Wall: true
-            Option - Disable clipping on screen edge of Snake Column Wall: true
-            Progression - Double Jump: true
-            Progression - Summon Demon Familiar: true
-            Status - Stairwell Near Demon Switch Dislodged: true
-            Status - Switch in Abandoned Mine Pressed: true
-        Goals:
-            Status A:
-                Status - Snake Column Wall Broken: true
-    (Exit) Hub -> Catacombs:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Abandoned Mine, Cerberus Room
-            Section: Main
-            Option - Disable clipping on screen edge of Demon Switch Wall: true
-            Option - Disable clipping on screen edge of Snake Column Wall: true
-            Progression - Double Jump: true
-            Progression - Summon Demon Familiar: true
-            Status - Snake Column Wall Broken: true
-            Status - Stairwell Near Demon Switch Dislodged: true
-            Status - Switch in Abandoned Mine Pressed: true
-        Goals:
-            Reach Exit:
-                Room: Abandoned Mine, Loading Room to Catacombs
-                Section: Main
-    (Exit) Hub -> Underground Caverns:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Abandoned Mine, Cerberus Room
-            Section: Main
-            Option - Disable clipping on screen edge of Demon Switch Wall: true
-            Option - Disable clipping on screen edge of Snake Column Wall: true
-            Progression - Double Jump: true
-            Progression - Summon Demon Familiar: true
-            Status - Snake Column Wall Broken: true
-            Status - Stairwell Near Demon Switch Dislodged: true
-            Status - Switch in Abandoned Mine Pressed: true
-        Goals:
-            Reach Exit:
-                Room: Abandoned Mine, Loading Room to Underground Caverns
-                Section: Main
-    (Exit) Hub -> Warp Rooms:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Abandoned Mine, Cerberus Room
-            Section: Main
-            Option - Disable clipping on screen edge of Demon Switch Wall: true
-            Option - Disable clipping on screen edge of Snake Column Wall: true
-            Progression - Double Jump: true
-            Progression - Summon Demon Familiar: true
-            Status - Snake Column Wall Broken: true
-            Status - Stairwell Near Demon Switch Dislodged: true
-            Status - Switch in Abandoned Mine Pressed: true
-        Goals:
-            Reach Exit:
-                Room: Abandoned Mine, Loading Room to Warp Rooms
-                Section: Main
 Alchemy Laboratory:
     (Progression) Layer 0 -> Any Progression:
         Solver: *solve-within-99-steps
