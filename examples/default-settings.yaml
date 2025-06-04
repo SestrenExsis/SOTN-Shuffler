@@ -14,8 +14,8 @@ Options:
     Shuffle Pitch Black Spike Maze: true
     Skip Maria cutscene in Alchemy Laboratory: true
 Quest shuffler:
-    Item pool: Racing
-    Relic pool: Racing
+    Item pool: Vanilla
+    Relic pool: Vanilla
     Shuffle items: true
     Shuffle relics: true
 Room shuffler:

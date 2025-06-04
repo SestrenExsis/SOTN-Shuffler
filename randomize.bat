@@ -1,6 +1,6 @@
 
 set SEED=%1
-set BUILD=AlphaBuild76
+set BUILD=AlphaBuild77
 
 python lib/SOTN-Patcher/src/sotn_extractor.py "build/patcher/Castlevania - Symphony of the Night (Track 1).bin" "build/patcher/extraction.json" || goto :error
 python lib/SOTN-Patcher/src/sotn_patcher.py "build/patcher/extraction.json" || goto :error

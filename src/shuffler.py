@@ -95,7 +95,6 @@ boss_teleporters = {
 
 # Shuffle connections between stages
 def shuffle_teleporters(teleporters, rng) -> dict:
-    MAX_LAYER = 5
     excluded_sources = {
         'Castle Center, Fake Room with Teleporter to Marble Gallery',
         'Castle Entrance Revisited, Fake Room with Teleporter to Alchemy Laboratory',
@@ -107,15 +106,28 @@ def shuffle_teleporters(teleporters, rng) -> dict:
         'Underground Caverns, Fake Room with Teleporter to Boss - Succubus',
     }
     forbidden_links = {
-        # NOTE(sestren): Disallow linking the exit to the left of Cube of Zoe to deadends
+        # NOTE(sestren): Disallow left Red Door in Cube of Zoe Room from leading to Warp Rooms
         ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Warp Rooms, Fake Room with Teleporter to Castle Entrance'),
-        ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Long Library, Fake Room with Teleporter to Outer Wall'),
-        ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Catacombs, Fake Room with Teleporter to Abandoned Mine'),
-        # NOTE(sestren): Disallow exit left of Cube of Zoe from linking to Warp Rooms
         ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Warp Rooms, Fake Room with Teleporter to Abandoned Mine'),
         ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Warp Rooms, Fake Room with Teleporter to Castle Keep'),
         ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', "Warp Rooms, Fake Room with Teleporter to Olrox's Quarters"),
         ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Warp Rooms, Fake Room with Teleporter to Outer Wall'),
+        # NOTE(sestren): Disallow left Red Door in Cube of Zoe Room from leading to deadends
+        ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Long Library, Fake Room with Teleporter to Outer Wall'),
+        ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Catacombs, Fake Room with Teleporter to Abandoned Mine'),
+        # NOTE(sestren): Disallow non-base Warp Rooms in areas that will result in them being "orphaned" by one-way paths
+        ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', 'Warp Rooms, Fake Room with Teleporter to Abandoned Mine'),
+        ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', 'Warp Rooms, Fake Room with Teleporter to Castle Keep'),
+        ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', "Warp Rooms, Fake Room with Teleporter to Olrox's Quarters"),
+        ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', 'Warp Rooms, Fake Room with Teleporter to Outer Wall'),
+        ('Castle Entrance, Fake Room with Teleporter to Underground Caverns', 'Warp Rooms, Fake Room with Teleporter to Abandoned Mine'),
+        ('Castle Entrance, Fake Room with Teleporter to Underground Caverns', 'Warp Rooms, Fake Room with Teleporter to Castle Keep'),
+        ('Castle Entrance, Fake Room with Teleporter to Underground Caverns', "Warp Rooms, Fake Room with Teleporter to Olrox's Quarters"),
+        ('Castle Entrance, Fake Room with Teleporter to Underground Caverns', 'Warp Rooms, Fake Room with Teleporter to Outer Wall'),
+        ("Royal Chapel, Fake Room with Teleporter to Olrox's Quarters", 'Warp Rooms, Fake Room with Teleporter to Abandoned Mine'),
+        ("Royal Chapel, Fake Room with Teleporter to Olrox's Quarters", 'Warp Rooms, Fake Room with Teleporter to Castle Keep'),
+        ("Royal Chapel, Fake Room with Teleporter to Olrox's Quarters", "Warp Rooms, Fake Room with Teleporter to Olrox's Quarters"),
+        ("Royal Chapel, Fake Room with Teleporter to Olrox's Quarters", 'Warp Rooms, Fake Room with Teleporter to Outer Wall'),
     }
     # NOTE(sestren): Stages are considered "highly-linkable" if they have 3 or more Red Doors
     highly_linkable_stages = {
@@ -129,24 +141,11 @@ def shuffle_teleporters(teleporters, rng) -> dict:
         'Royal Chapel',
         'Underground Caverns',
     }
-    layers = {
-        'Alchemy Laboratory': 0,
-        'Castle Entrance': 0,
-        'Castle Keep': 0,
-        'Colosseum': 0,
-        'Long Library': 0,
-        'Outer Wall': 0,
-        'Warp Rooms': 0,
-        'Abandoned Mine': 1,
-        'Marble Gallery': 0,
-        'Royal Chapel': 0,
-        'Underground Caverns': 1,
-        'Catacombs': 1,
-        'Clock Tower': 1,
-        'Olrox\'s Quarters': 1,
-    }
     connections = set()
     while True:
+        warp_room_connected_stages = list(sorted(highly_linkable_stages))
+        rng.shuffle(warp_room_connected_stages)
+        warp_room_connected_stages = warp_room_connected_stages[:5]
         sources = {}
         targets = {}
         for (source_key, source) in teleporters['Sources'].items():
@@ -168,24 +167,12 @@ def shuffle_teleporters(teleporters, rng) -> dict:
                 'Stage': target_stage,
                 'Direction': target_direction,
             }
-        current_layer = 0
         stages = {}
         connections = set()
         work = set()
         work.add('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory')
         while len(work) > 0:
             possible_choices = set(work)
-            for choice in work:
-                choice_stage = choice.split(', ')[0]
-                if layers[choice_stage] > current_layer:
-                    possible_choices.remove(choice)
-            if len(possible_choices) < 1:
-                current_layer += 1
-                if current_layer > MAX_LAYER:
-                    break
-                else:
-                    pass
-                continue
             source_a_key = rng.choice(list(sorted(possible_choices)))
             work.remove(source_a_key)
             source_a = sources[source_a_key]
@@ -194,6 +181,7 @@ def shuffle_teleporters(teleporters, rng) -> dict:
             source_b_candidates = set()
             for (candidate_source_b_key, candidate_source_b) in sources.items():
                 if tuple(sorted((source_a_key, candidate_source_b_key))) in forbidden_links:
+                    # NOTE(sestren): Certain links are forbidden (see above)
                     continue
                 if candidate_source_b['Stage'] == source_a['Stage']:
                     # NOTE(sestren): A stage may not link to itself
@@ -205,24 +193,17 @@ def shuffle_teleporters(teleporters, rng) -> dict:
                     # NOTE(sestren): A stage may not link to the same stage more than once
                     continue
                 if (
-                    'Warp Rooms' in (candidate_source_b['Stage'], source_a['Stage']) and
-                    candidate_source_b['Stage'] not in highly_linkable_stages and
-                    source_a['Stage'] not in highly_linkable_stages
+                    'Warp Rooms' in (source_a['Stage'], candidate_source_b['Stage']) and
+                    source_a['Stage'] not in warp_room_connected_stages and
+                    candidate_source_b['Stage'] not in warp_room_connected_stages
                 ):
-                    # NOTE(sestren): Only highly-linkable stages may connect to Warp Rooms
+                    # NOTE(sestren): In order to connect to Warp Rooms, the stage must have been pre-selected during the earlier phase
                     continue
-                if candidate_source_b['Stage'] in stages.get('Warp Rooms', {}) and source_a['Stage'] in stages.get('Warp Rooms', {}):
+                if candidate_source_b['Stage'] in warp_room_connected_stages and source_a['Stage'] in warp_room_connected_stages:
                     # NOTE(sestren): Warp Room-linked stages may not link to one another
-                    continue
-                candidate_stage = candidate_source_b_key.split(', ')[0]
-                if layers[candidate_stage] > current_layer:
-                    # NOTE(sestren): A stage may not link to a stage beyond the current layer of discovery
                     continue
                 source_b_candidates.add(candidate_source_b_key)
             if len(source_b_candidates) < 1:
-                current_layer += 1
-                if current_layer > MAX_LAYER:
-                    break
                 continue
             source_b_key = rng.choice(list(sorted(source_b_candidates)))
             source_b = sources[source_b_key]
@@ -591,7 +572,7 @@ if __name__ == '__main__':
                     continue
                 target_name = source['Target']
                 target = mapper_core['Teleporters']['Targets'][target_name]
-                teleporters[source['Index']] = {
+                teleporters[source_name] = {
                     'Player X': target['Player X'],
                     'Player Y': target['Player Y'],
                     'Room': target['Stage'] + ', ' + target['Room'],
@@ -980,6 +961,8 @@ if __name__ == '__main__':
         if validator.validate_logic(mapper_core, changes):
             pass
         else:
+            for stage_name in sorted(shuffler['Stages']):
+                print(shuffler['Stages'][stage_name]['Hash of Rooms'], stage_name)
             continue
         # print('*********')
         # Flip normal castle changes and apply them to inverted castle
@@ -1043,8 +1026,8 @@ if __name__ == '__main__':
             string_size += 1
         seed_hint = ''.join(chars)
         changes['Strings'] = {
-            '10': seed_hint, # 'Press L2 if softlocked.     ',
-            '11': 'Alpha Build 76      ',
+            '10': seed_hint,
+            '11': 'Alpha Build 77      ',
         }
         # Normalize room connections
         if settings.get('Options', {}).get('Normalize room connections', False):

@@ -54,27 +54,27 @@ Commands:
             Ground - Chained Rising Uppercuts:
                 Section: Ground
                 Progression - Rising Uppercut: true
-                Check - Meet Death in Castle Entrance: true
+                Status - Meet Death in Castle Entrance: true
             Ledge - Rising Uppercut:
                 Section: Ground
                 Progression - Rising Uppercut: true
-                Check - Meet Death in Castle Entrance: true
+                Status - Meet Death in Castle Entrance: true
             Ground - Bat Form:
                 Section: Ground
-                Check - Meet Death in Castle Entrance: true
+                Status - Meet Death in Castle Entrance: true
                 Progression - Bat Transformation: true
             Ledge - Bat Form:
                 Section: Ledge
-                Check - Meet Death in Castle Entrance: true
+                Status - Meet Death in Castle Entrance: true
                 Progression - Bat Transformation: true
             Ledge - Pixel-Perfect Diagonal Gravity Jump Through Narrow Gap:
                 Section: Ledge
-                Check - Meet Death in Castle Entrance: true
+                Status - Meet Death in Castle Entrance: true
                 Progression - Gravity Jump: true
                 Technique - Pixel-Perfect Diagonal Gravity Jump Through Narrow Gap: true
             Special - Bat Form:
                 Section: Ground
-                Check - Meet Death in Castle Entrance: true
+                Status - Meet Death in Castle Entrance: true
                 Progression - Bat Transformation: true
     Move - Ledge:
         Outcomes:
@@ -83,25 +83,25 @@ Commands:
             Ground - Rising Uppercut:
                 Section: Ground
                 Progression - Rising Uppercut: true
-                Check - Meet Death in Castle Entrance: true
+                Status - Meet Death in Castle Entrance: true
             Air:
                 Section: Air
-                Check - Meet Death in Castle Entrance: true
+                Status - Meet Death in Castle Entrance: true
             Ground - Bat Form:
                 Section: Ground
-                Check - Meet Death in Castle Entrance: true
+                Status - Meet Death in Castle Entrance: true
                 Progression - Bat Transformation: true
             Ground - Gravity Jump:
                 Section: Ground
-                Check - Meet Death in Castle Entrance: true
+                Status - Meet Death in Castle Entrance: true
                 Progression - Gravity Jump: true
             Special - Bat Form:
                 Section: Special
-                Check - Meet Death in Castle Entrance: true
+                Status - Meet Death in Castle Entrance: true
                 Progression - Bat Transformation: true
             Special - Gravity Jump:
                 Section: Special
-                Check - Meet Death in Castle Entrance: true
+                Status - Meet Death in Castle Entrance: true
                 Progression - Gravity Jump: true
     Move - Ground:
         Outcomes:
@@ -109,17 +109,17 @@ Commands:
         Requirements:
             Air:
                 Section: Air
-                Check - Meet Death in Castle Entrance: true
+                Status - Meet Death in Castle Entrance: true
             Ledge:
                 Section: Ledge
-                Check - Meet Death in Castle Entrance: true
+                Status - Meet Death in Castle Entrance: true
             Special:
                 Section: Special
-                Check - Meet Death in Castle Entrance: true
+                Status - Meet Death in Castle Entrance: true
     Trigger - Cutscene with Death:
         Outcomes:
             Section: Ground
-            Check - Meet Death in Castle Entrance: true
+            Status - Meet Death in Castle Entrance: true
             Item - Alucard Sword: -1
             Item - Alucard Shield: -1
             Item - Dragon Helm: -1
@@ -129,4 +129,4 @@ Commands:
         Requirements:
             Default:
                 Section: Special
-                Check - Meet Death in Castle Entrance: false
+                Status - Meet Death in Castle Entrance: false

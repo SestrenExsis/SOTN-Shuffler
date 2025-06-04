@@ -968,6 +968,54 @@ class LogicCore:
                 self.state['Option - ' + option_name] = True
         self.goals = {
             # Forms of progression
+            'Able to Open Secret Wall in Merman Room': {
+                'Progression - Bat Transformation': True,
+                'Progression - Wolf Transformation': True,
+                'Sections Visited': {
+                    'All': {
+                        'Castle Entrance Revisted, Merman Room (Ground)': True,
+                    },
+                },
+            },
+            'Activate Cannon': {
+                'Status - Cannon Activated': True,
+            },
+            'Activate Pressure Plate in Marble Gallery': {
+                'Status - Pressure Plate in Marble Gallery Activated': True,
+            },
+            'Activate Shortcut in Cube of Zoe Room': {
+                'Status - Shortcut in Cube of Zoe Room Activated': True,
+            },
+            'Activate Shortcut to Underground Caverns': {
+                'Status - Shortcut to Underground Caverns Activated': True,
+            },
+            'Activate Shortcut to Warp Rooms': {
+                'Status - Shortcut to Warp Rooms Activated': True,
+            },
+            'Break Ceiling in Catwalk Crypt': {
+                'Status - Breakable Ceiling in Catwalk Crypt Broken': True,
+            },
+            'Break DK Bridge': {
+                'Status - DK Bridge Broken': True,
+            },
+            'Break Floor in Hidden Crystal Entrance': {
+                'Status - Breakable Floor in Hidden Crystal Entrance Broken': True,
+            },
+            'Break Floor in Tall Zig Zag Room': {
+                'Status - Breakable Floor in Tall Zig Zag Room Broken': True,
+            },
+            'Break Snake Column Wall': {
+                'Status - Snake Column Wall Broken': True,
+            },
+            'Break Wall in Grand Staircase': {
+                'Status - Breakable Wall in Grand Staircase Broken': True,
+            },
+            'Break Wall in Left Gear Room': {
+                'Status - Breakable Wall in Left Gear Room Broken': True,
+            },
+            'Break Wall in Tall Zig Zag Room': {
+                'Status - Breakable Wall in Tall Zig Zag Room Broken': True,
+            },
             'Check Cube of Zoe Location': {
                 'Check - Cube of Zoe Location': True,
             },
@@ -1034,71 +1082,140 @@ class LogicCore:
             'Check Holy Glasses Location': {
                 'Check - Holy Glasses Location': True,
             },
+            'Dislodge Stairwell Near Demon Switch': {
+                'Status - Stairwell Near Demon Switch Dislodged': True,
+            },
+            'Find Anteroom in Castle Keep': {
+                'Room': "Castle Keep, Keep Area",
+                'Section': 'Anteroom',
+            },
+            'Find Equivalent Room for Akmodan II': {
+                'Room': "Olrox's Quarters, Olrox's Room",
+                'Section': 'Ground',
+            },
             'Find Equivalent Room for Creature': {
                 'Room': 'Outer Wall, Doppelganger Room',
-                'Section': 'Main',
-            },
-            'Find Equivalent Room for Death': {
-                'Room': 'Abandoned Mine, Cerberus Room',
-                'Section': 'Main',
-            },
-            'Find Equivalent Room for Medusa': {
-                'Room': 'Royal Chapel, Hippogryph Room',
                 'Section': 'Main',
             },
             'Find Equivalent Room for Darkwing Bat': {
                 'Room': "Clock Tower, Karasuman's Room",
                 'Section': 'Main',
             },
-            'Find Equivalent Room for Akmodan II': {
-                'Room': "Olrox's Quarters, Olrox's Room",
-                'Section': 'Ground',
-            },
-            'Find Anteroom in Castle Keep': {
-                'Room': "Castle Keep, Keep Area",
-                'Section': 'Anteroom',
-            },
-            'Purchase Jewel of Open': {
-                'Relic - Jewel of Open': True,
+            'Find Equivalent Room for Death': {
+                'Room': 'Abandoned Mine, Cerberus Room',
+                'Section': 'Main',
             },
             'Find Equivalent Room for Gas Cloud': {
                 'Room': 'Catacombs, Mormegil Room',
                 'Section': 'Main',
             },
+            'Find Equivalent Room for Medusa': {
+                'Room': 'Royal Chapel, Hippogryph Room',
+                'Section': 'Main',
+            },
+            'Find Warp Room to Abandoned Mine in Warp Rooms': {
+                'Room': "Warp Rooms, Warp Room to Abandoned Mine",
+                'Section': 'Main',
+            },
+            'Find Warp Room to Castle Entrance in Warp Rooms': {
+                'Room': "Warp Rooms, Warp Room to Castle Entrance",
+                'Section': 'Main',
+            },
+            'Find Warp Room to Castle Keep in Warp Rooms': {
+                'Room': "Warp Rooms, Warp Room to Castle Keep",
+                'Section': 'Main',
+            },
+            "Find Warp Room to Olrox's Quarters in Warp Rooms": {
+                'Room': "Warp Rooms, Warp Room to Olrox's Quarters",
+                'Section': 'Main',
+            },
+            'Find Warp Room to Outer Wall in Warp Rooms': {
+                'Room': "Warp Rooms, Warp Room to Outer Wall",
+                'Section': 'Main',
+            },
+            'Get Stopwatch Subweapon': {
+                'Subweapon': 'Stopwatch',
+            },
+            'Press DK Button': {
+                'Status - DK Button Pressed': True,
+            },
+            'Press Switch in Abandoned Mine': {
+                'Status - Switch in Abandoned Mine Pressed': True,
+            },
+            'Purchase Jewel of Open': {
+                'Relic - Jewel of Open': True,
+            },
+            'Set Lower-Left Gear in Clock Tower': {
+                'Status - Lower-Left Gear in Clock Tower Set': True,
+            },
+            'Set Lower-Right Gear in Clock Tower': {
+                'Status - Lower-Right Gear in Clock Tower Set': True,
+            },
+            'Set Upper-Left Gear in Clock Tower': {
+                'Status - Upper-Left Gear in Clock Tower Set': True,
+            },
+            'Set Upper-Right Gear in Clock Tower': {
+                'Status - Upper-Right Gear in Clock Tower Set': True,
+            },
+            'Unlock Shortcut Between Royal Chapel and Colosseum': {
+                'Status - Shortcut Between Royal Chapel and Colosseum Unlocked': True,
+            },
             # Final goal
             'END': {
-                'Check - Cube of Zoe Location': True,
-                'Check - Demon Card Location': True,
-                'Check - Echo of Bat Location': True,
-                'Check - Fire of Bat Location': True,
-                'Check - Form of Mist Location': True,
-                'Check - Ghost Card Location': True,
-                'Check - Gravity Boots Location': True,
-                'Check - Holy Symbol Location': True,
-                'Check - Leap Stone Location': True,
-                'Check - Merman Statue Location': True,
-                'Check - Power of Wolf Location': True,
-                'Check - Soul of Bat Location': True,
-                'Check - Soul of Wolf Location': True,
-                'Check - Spirit Orb Location': True,
-                'Check - Sword Card Location': True,
-                'Check - Power of Mist Location': True,
-                'Check - Faerie Card Location': True,
-                'Check - Faerie Scroll Location': True,
-                'Check Location - Catacombs, Spike Breaker Room (Spike Breaker)': True,
-                'Check Location - Royal Chapel, Silver Ring Room (Silver Ring)': True,
-                'Check Location - Underground Caverns, False Save Room (Gold Ring)': True,
-                'Check - Holy Glasses Location': True,
-                'Relic - Jewel of Open': True,
+                'Status - Breakable Wall in Grand Staircase Broken': True,
+                'Status - Meet Death in Castle Entrance': True,
+                'Status - Switch in Abandoned Mine Pressed': True,
                 'Sections Visited': {
                     'All': {
-                        'Abandoned Mine, Cerberus Room (Main)': True,
+                        "Abandoned Mine, Cerberus Room (Main)": True,
+                        "Abandoned Mine, Crumbling Stairwells With Demon Switch (Upper-Left Ledge)": True,
+                        "Abandoned Mine, Demon Card Room (Main)": True,
+                        "Abandoned Mine, Snake Column (Secret Wall)": True,
+                        "Alchemy Laboratory, Cannon Room (Right Side)": True,
+                        "Alchemy Laboratory, Tall Zig Zag Room (Main)": True,
+                        "Castle Entrance, Cube of Zoe Room (Main)": True,
+                        "Castle Entrance Revisited, After Drawbridge (Parapet)": True,
+                        "Castle Entrance Revisited, Cube of Zoe Room (Pressure Plate Ledge)": True,
+                        "Castle Entrance Revisited, Shortcut to Underground Caverns (Right Side)": True,
+                        "Castle Entrance Revisited, Shortcut to Warp Rooms (Left Side)": True,
+                        "Castle Keep, Ghost Card Room (Ground)": True,
                         "Castle Keep, Keep Area (Anteroom)": True,
+                        "Castle Keep, Keep Area (Ground)": True,
+                        "Castle Keep, Keep Area (Middle-Left Ledge)": True,
                         "Catacombs, Mormegil Room (Main)": True,
+                        "Catacombs, Spike Breaker Room (Main)": True,
+                        "Clock Tower, Fire of Bat Room (Main)": True,
                         "Clock Tower, Karasuman's Room (Main)": True,
+                        "Clock Tower, Left Gear Room (Main)": True,
+                        "Clock Tower, Right Gear Room (Main)": True,
+                        "Colosseum, Passageway Between Arena and Royal Chapel (Right Side)": True,
+                        "Colosseum, Top of Elevator Shaft (Left Side)": True,
+                        "Long Library, Faerie Card Room (Main)": True,
+                        "Long Library, Lesser Demon Area (Behind Mist Gate)": True,
+                        "Long Library, Shop (Main)": True,
+                        "Long Library, Spellbook Area (Main)": True,
+                        "Marble Gallery, Blue Door Room (Right Side)": True,
+                        "Marble Gallery, Gravity Boots Room (Main)": True,
+                        "Marble Gallery, Spirit Orb Room (Main)": True,
+                        "Olrox's Quarters, Catwalk Crypt (Main)": True,
+                        "Olrox's Quarters, Echo of Bat Room (Main)": True,
                         "Olrox's Quarters, Olrox's Room (Ground)": True,
-                        'Outer Wall, Doppelganger Room (Main)': True,
-                        'Royal Chapel, Hippogryph Room (Main)': True,
+                        "Olrox's Quarters, Sword Card Room (Main)": True,
+                        "Outer Wall, Elevator Shaft Room (Elevator Shaft)": True,
+                        "Outer Wall, Doppelganger Room (Main)": True,
+                        "Royal Chapel, Hippogryph Room (Main)": True,
+                        "Royal Chapel, Silver Ring Room (Main)": True,
+                        "Underground Caverns, DK Bridge (Main)": True,
+                        "Underground Caverns, DK Button (Main)": True,
+                        "Underground Caverns, False Save Room (Main)": True,
+                        "Underground Caverns, Hidden Crystal Entrance (Main)": True,
+                        "Underground Caverns, Holy Symbol Room (Main)": True,
+                        "Underground Caverns, Merman Statue Room (Main)": True,
+                        "Warp Rooms, Warp Room to Abandoned Mine (Main)": True,
+                        "Warp Rooms, Warp Room to Castle Entrance (Main)": True,
+                        "Warp Rooms, Warp Room to Castle Keep (Main)": True,
+                        "Warp Rooms, Warp Room to Olrox's Quarters (Main)": True,
+                        "Warp Rooms, Warp Room to Outer Wall (Main)": True,
                     },
                 },
             },
@@ -1315,7 +1432,7 @@ if __name__ == '__main__':
         pathlib.Path(
             os.path.join('build', 'shuffler', stage_name)
         ).mkdir(parents=True, exist_ok=True)
-    GENERATION_VERSION = 'Alpha Build 76'
+    GENERATION_VERSION = 'Alpha Build 77'
     mapper_core = MapperData().get_core()
     with (
         open(os.path.join('build', 'shuffler', 'mapper-core.json'), 'w') as mapper_core_json,

@@ -46,12 +46,48 @@ Commands:
         Outcomes:
             Section: Ground
         Requirements:
-            Lower Right Ledge - Default:
+            Lower Right Ledge - Logical Risk:
                 Section: Lower Right Ledge
-            Middle Right Ledge - Default:
+                Option - Permit Logical Risks: true
+            Lower Right Ledge - Return with Bat Form:
+                Section: Lower Right Ledge
+                Progression - Bat Transformation: true
+            Lower Right Ledge - Return with Gravity Jump:
+                Section: Lower Right Ledge
+                Progression - Gravity Jump: true
+            Lower Right Ledge - Return with Powered Mist:
+                Section: Lower Right Ledge
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Middle Right Ledge - Logical Risk:
                 Section: Middle Right Ledge
-            Upper Ledges - Default:
+                Option - Permit Logical Risks: true
+            Middle Right Ledge - Return with Bat Form:
+                Section: Middle Right Ledge
+                Progression - Bat Transformation: true
+            Middle Right Ledge - Return with Multiple Gravity Jumps:
+                Section: Middle Right Ledge
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Middle Right Ledge - Return with Powered Mist:
+                Section: Middle Right Ledge
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Upper Ledges - Logical Risk:
                 Section: Upper Ledges
+                Option - Permit Logical Risks: true
+            Upper Ledges - Return with Bat Form:
+                Section: Upper Ledges
+                Progression - Bat Transformation: true
+            Upper Ledges - Return with Multiple Gravity Jumps:
+                Section: Upper Ledges
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Upper Ledges - Return with Powered Mist:
+                Section: Upper Ledges
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Technique - Very Long Mist Travel: true
     Move - Lower Right Ledge:
         Outcomes:
             Section: Lower Right Ledge

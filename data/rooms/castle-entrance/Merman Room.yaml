@@ -52,6 +52,13 @@ Nodes:
         Entry Section: Ground
         Exit Section: Ground
 Commands:
+    Action - Collect Stopwatch Subweapon:
+        Outcomes:
+            Subweapon: Stopwatch
+        Requirements:
+            Default:
+                Section: Ground
+                Progression - Item Materialization: true
     Move - Air:
         Outcomes:
             Section: Air
@@ -99,4 +106,3 @@ Commands:
                 Progression - Bat Transformation: true
                 Progression - Wolf Transformation: true
                 Status - Secret Wall in Merman Room Opened: false
-                Skill - Open Secret Wall in Merman Room: true

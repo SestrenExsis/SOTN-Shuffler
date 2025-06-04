@@ -494,7 +494,10 @@ class Solver():
                 next_game__solver = game__solver.clone()
                 next_game__solver.process_command(command)
                 if restrict_to_stage is not None:
-                    if not next_game__solver.current_state['Room'].startswith(restrict_to_stage):
+                    if (
+                        not next_game__solver.current_state['Room'].startswith(restrict_to_stage) and
+                        not next_game__solver.current_state['Room'] == 'Elsewhere'
+                    ):
                         continue
                 next_step__solver = step__solver + 1
                 next_hashed_state__solver = next_game__solver.get_key(True)
