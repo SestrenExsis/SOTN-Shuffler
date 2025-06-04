@@ -52,9 +52,8 @@ Commands:
             Lower Right Ledge - Return with Bat Form:
                 Section: Lower Right Ledge
                 Progression - Bat Transformation: true
-            Lower Right Ledge - Return with Multiple Gravity Jumps:
+            Lower Right Ledge - Return with Gravity Jump:
                 Section: Lower Right Ledge
-                Progression - Double Jump: true
                 Progression - Gravity Jump: true
             Lower Right Ledge - Return with Powered Mist:
                 Section: Lower Right Ledge
