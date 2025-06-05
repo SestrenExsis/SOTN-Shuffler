@@ -90,122 +90,49 @@ Alchemy Laboratory:
         State:
             Room: Elsewhere
             Section: Elsewhere
-            Progression - Unlock Blue Doors: true
+            Option - Disable clipping on screen edge of Tall Zig Zag Room Wall: true
         Goals:
             Cannon Activated:
                 Status - Cannon Activated: true
-    (Entry) Castle Entrance -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Alchemy Laboratory, Loading Room to Castle Entrance
-            Section: Main
-            Progression - Gravity Jump: true
-            Progression - Unlock Blue Doors: true
-            Status - Cannon Activated: true
-            Status - Breakable Floor in Tall Zig Zag Room Broken: true
-            Status - Breakable Wall in Tall Zig Zag Room Broken: true
-        Goals:
-            Reach Hub:
-                Room: Alchemy Laboratory, Slogra and Gaibon Room
-                Section: Main
-    (Entry) Marble Gallery -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Alchemy Laboratory, Loading Room to Marble Gallery
-            Section: Main
-            Progression - Gravity Jump: true
-            Progression - Unlock Blue Doors: true
-            Status - Cannon Activated: true
-            Status - Breakable Floor in Tall Zig Zag Room Broken: true
-            Status - Breakable Wall in Tall Zig Zag Room Broken: true
-        Goals:
-            Reach Hub:
-                Room: Alchemy Laboratory, Slogra and Gaibon Room
-                Section: Main
-    (Entry) Royal Chapel -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Alchemy Laboratory, Loading Room to Royal Chapel
-            Section: Main
-            Progression - Gravity Jump: true
-            Progression - Unlock Blue Doors: true
-            Status - Cannon Activated: true
-            Status - Breakable Floor in Tall Zig Zag Room Broken: true
-            Status - Breakable Wall in Tall Zig Zag Room Broken: true
-        Goals:
-            Reach Hub:
-                Room: Alchemy Laboratory, Slogra and Gaibon Room
-                Section: Main
-    (Check) Hub -> Bat Card Location:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Alchemy Laboratory, Slogra and Gaibon Room
-            Section: Main
-            Progression - Gravity Jump: true
-            Progression - Unlock Blue Doors: true
-            Status - Cannon Activated: true
-            Status - Breakable Floor in Tall Zig Zag Room Broken: true
-            Status - Breakable Wall in Tall Zig Zag Room Broken: true
-        Goals:
-            Reach Check:
-                Room: Alchemy Laboratory, Tetromino Room
-                Section: Bat Card Room Duplicate
-    (Check) Hub -> Skill of Wolf Location:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Alchemy Laboratory, Slogra and Gaibon Room
-            Section: Main
-            Progression - Gravity Jump: true
-            Progression - Unlock Blue Doors: true
-            Status - Cannon Activated: true
-            Status - Breakable Floor in Tall Zig Zag Room Broken: true
-            Status - Breakable Wall in Tall Zig Zag Room Broken: true
-        Goals:
-            Reach Check:
+            Breakable Floor in Tall Zig Zag Room Broken:
+                Status - Breakable Floor in Tall Zig Zag Room Broken: true
+            Breakable Wall in Tall Zig Zag Room Broken:
+                Status - Breakable Wall in Tall Zig Zag Room Broken: true
+            Skill of Wolf Room:
                 Room: Alchemy Laboratory, Skill of Wolf Room
                 Section: Main
-    (Exit) Hub -> Castle Entrance:
+            Bat Card Room:
+                Room: Alchemy Laboratory, Tetromino Room
+                Section: Bat Card Room Duplicate
+    (Progression) Layer 1 -> Layer 2:
         Solver: *solve-within-99-steps
         State:
-            Room: Alchemy Laboratory, Slogra and Gaibon Room
-            Section: Main
+            Room: Elsewhere
+            Section: Elsewhere
+            Option - Disable clipping on screen edge of Tall Zig Zag Room Wall: true
+            Progression - Gravity Jump: true
+            Progression - Unlock Blue Doors: true
+        Goals:
+            Layer 2:
+                Status - Cannon Activated: true
+                Status - Breakable Floor in Tall Zig Zag Room Broken: true
+                Status - Breakable Wall in Tall Zig Zag Room Broken: true
+    (Progression) Layer 2 -> Layer 3:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Elsewhere
+            Section: Elsewhere
+            Option - Disable clipping on screen edge of Tall Zig Zag Room Wall: true
             Progression - Gravity Jump: true
             Progression - Unlock Blue Doors: true
             Status - Cannon Activated: true
             Status - Breakable Floor in Tall Zig Zag Room Broken: true
             Status - Breakable Wall in Tall Zig Zag Room Broken: true
         Goals:
-            Reach Exit:
-                Room: Alchemy Laboratory, Loading Room to Castle Entrance
-                Section: Main
-    (Exit) Hub -> Marble Gallery:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Alchemy Laboratory, Slogra and Gaibon Room
-            Section: Main
-            Progression - Gravity Jump: true
-            Progression - Unlock Blue Doors: true
-            Status - Cannon Activated: true
-            Status - Breakable Floor in Tall Zig Zag Room Broken: true
-            Status - Breakable Wall in Tall Zig Zag Room Broken: true
-        Goals:
-            Reach Exit:
-                Room: Alchemy Laboratory, Loading Room to Marble Gallery
-                Section: Main
-    (Exit) Hub -> Royal Chapel:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Alchemy Laboratory, Slogra and Gaibon Room
-            Section: Main
-            Progression - Gravity Jump: true
-            Progression - Unlock Blue Doors: true
-            Status - Cannon Activated: true
-            Status - Breakable Floor in Tall Zig Zag Room Broken: true
-            Status - Breakable Wall in Tall Zig Zag Room Broken: true
-        Goals:
-            Reach Exit:
-                Room: Alchemy Laboratory, Loading Room to Royal Chapel
-                Section: Main
+            Layer 3:
+                Sections Visited:
+                    All:
+                        Alchemy Laboratory, Skill of Wolf Room (Main): true
 Castle Center: {}
 Castle Entrance:
     (Progression) Layer 0 -> Any Progression:
