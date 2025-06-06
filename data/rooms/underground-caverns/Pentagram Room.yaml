@@ -5,6 +5,8 @@ Index: 14
 Columns: 1
 Rows: 1
 Empty Cells: {}
+Attributes:
+    - Waterfall Sound Entity
 Nodes:
     Left Passage:
         Type: "######....######"
