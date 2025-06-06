@@ -681,6 +681,15 @@ stages = {
             'Underground Caverns, Scylla Wyrm Room': (2, 1),
             'Underground Caverns, Rising Water Room': (2, 2),
         },
+        {
+            # NOTE(sestren): Each of these rooms can turn on or off the waterfall sound, and shuffling them around allows the sound to "escape"
+            # NOTE(sestren): These rooms must be connected for now until entities can be moved around rooms arbitrarily
+            'Underground Caverns, DK Button': (0, 0),
+            'Underground Caverns, Waterfall': (0, 1),
+            'Underground Caverns, Pentagram Room': (0, 3),
+            'Underground Caverns, Room ID 19': (5, 0),
+            'Underground Caverns, Room ID 18': (5, 3),
+        },
         { 'Underground Caverns, Save Room A': (0, 0) },
         { 'Underground Caverns, Save Room B': (0, 0) },
         { 'Underground Caverns, Save Room C': (0, 0) },
@@ -696,16 +705,11 @@ stages = {
         { 'Underground Caverns, Room ID 11': (0, 0) },
         { 'Underground Caverns, Room ID 12': (0, 0) },
         { 'Underground Caverns, Holy Symbol Room': (0, 0) },
-        { 'Underground Caverns, Pentagram Room': (0, 0) },
         { 'Underground Caverns, DK Bridge': (0, 0) },
-        { 'Underground Caverns, DK Button': (0, 0) },
-        { 'Underground Caverns, Room ID 18': (0, 0) },
-        { 'Underground Caverns, Room ID 19': (0, 0) },
         { 'Underground Caverns, Merman Statue Room': (0, 0) },
         { 'Underground Caverns, Ice Floe Room': (0, 0) },
         { 'Underground Caverns, Right Ferryman Route': (0, 0) },
         { 'Underground Caverns, Left Ferryman Route': (0, 0) },
-        { 'Underground Caverns, Waterfall': (0, 0) },
         { 'Underground Caverns, Bandanna Room': (0, 0) },
     ],
     'Warp Rooms': [
