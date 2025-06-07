@@ -5653,8 +5653,7 @@ Targets:
   Relic - Skill of Wolf:
     Outcomes:
       Relic - Skill of Wolf: true
-    Tags:
-      - Low Priority - Racing
+      Progression - Wolf Charge Attack: true
   Relic - Soul of Bat:
     Outcomes:
       Progression - Bat Transformation: true

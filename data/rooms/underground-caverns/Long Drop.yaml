@@ -102,6 +102,21 @@ Commands:
         Outcomes:
             Section: Lower Ledges
         Requirements:
+            Middle-Left Ledge - Logical Risk:
+                Section: Middle-Left Ledge
+                Option - Permit Logical Risks: true
+            Middle-Left Ledge - Return with Bat Form:
+                Section: Middle-Left Ledge
+                Progression - Bat Transformation: true
+            Middle-Left Ledge - Return with Multiple Gravity Jumps:
+                Section: Middle-Left Ledge
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Middle-Left Ledge - Return with Powered Mist:
+                Section: Middle-Left Ledge
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Technique - Very Long Mist Travel: true
             Middle-Right Ledge - Logical Risk:
                 Section: Middle-Right Ledge
                 Option - Permit Logical Risks: true
@@ -142,10 +157,54 @@ Commands:
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
                 Technique - Very Long Mist Travel: true
+    Move - Middle-Left Ledge:
+        Outcomes:
+            Section: Middle-Left Ledge
+        Requirements:
+            Lower Ledges - Bat Form:
+                Section: Lower Ledges
+                Progression - Bat Transformation: true
+            Lower Ledges - Multiple Gravity Jumps:
+                Section: Lower Ledges
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Lower Ledges - Powered Mist:
+                Section: Lower Ledges
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Technique - Very Long Mist Travel: true
+            Middle-Right Ledge - Bat Form:
+                Section: Middle-Right Ledge
+                Progression - Bat Transformation: true
+            Middle-Right Ledge - Wolf Charge Attack With Early Untransform:
+                Section: Middle-Right Ledge
+                Progression - Wolf Charge Attack: true
+                Progression - Wolf Transformation: true
+                Technique - Wolf Charge Across Gap With Early Untransform: true
+            Middle-Right Ledge - Powered Mist:
+                Section: Middle-Right Ledge
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Technique - Very Long Mist Travel: true
+            Upper Stairwell - Default:
+                Section: Upper Stairwell
     Move - Middle-Right Ledge:
         Outcomes:
             Section: Middle-Right Ledge
         Requirements:
+            Middle-Left Ledge - Bat Form:
+                Section: Middle-Left Ledge
+                Progression - Bat Transformation: true
+            Middle-Left Ledge - Wolf Charge Attack:
+                Section: Middle-Left Ledge
+                Progression - Wolf Charge Attack: true
+                Progression - Wolf Transformation: true
+                Technique - Wolf Charge Across Gap: true
+            Middle-Left Ledge - Powered Mist:
+                Section: Middle-Left Ledge
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Technique - Very Long Mist Travel: true
             Lower Ledges - Bat Form:
                 Section: Lower Ledges
                 Progression - Bat Transformation: true
@@ -182,6 +241,17 @@ Commands:
                 Progression - Gravity Jump: true
             Lower Ledges - Powered Mist:
                 Section: Lower Ledges
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Middle-Left Ledge - Bat Form:
+                Section: Middle-Left Ledge
+                Progression - Bat Transformation: true
+            Middle-Left Ledge - Multiple Gravity Jumps:
+                Section: Middle-Left Ledge
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Middle-Left Ledge - Powered Mist:
+                Section: Middle-Left Ledge
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
             Middle-Right Ledge - Bat Form:
