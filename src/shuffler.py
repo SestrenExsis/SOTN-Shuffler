@@ -128,6 +128,7 @@ def shuffle_teleporters(teleporters, rng) -> dict:
         ("Royal Chapel, Fake Room with Teleporter to Olrox's Quarters", 'Warp Rooms, Fake Room with Teleporter to Castle Keep'),
         ("Royal Chapel, Fake Room with Teleporter to Olrox's Quarters", "Warp Rooms, Fake Room with Teleporter to Olrox's Quarters"),
         ("Royal Chapel, Fake Room with Teleporter to Olrox's Quarters", 'Warp Rooms, Fake Room with Teleporter to Outer Wall'),
+        # TODO(sestren): Disallow Long Library and Catacombs from connecting to Colosseum or Clock Tower
     }
     # NOTE(sestren): Stages are considered "highly-linkable" if they have 3 or more Red Doors
     highly_linkable_stages = {
@@ -358,6 +359,24 @@ def draw_labels_on_castle_map(castle_map, instructions):
                     color = bg_color
                 castle_map[top + row][left + col] = str(color)
 
+stage_colors = {
+    'Abandoned Mine': '8',
+    'Alchemy Laboratory': 'A',
+    'Castle Center': 'D',
+    'Castle Keep': 'A',
+    'Castle Entrance': 'B',
+    'Catacombs': '9',
+    'Clock Tower': 'B',
+    'Colosseum': '6',
+    'Long Library': '6',
+    'Marble Gallery': 'D',
+    "Olrox's Quarters": 'F',
+    'Outer Wall': '9',
+    'Royal Chapel': '7',
+    'Underground Caverns': '1',
+    'Warp Rooms': '5',
+}
+
 def get_loading_room_labels_by_connection(mapper_core, stages, stage_names):
     instructions = []
     links = {}
@@ -387,33 +406,15 @@ def get_loading_room_labels_by_connection(mapper_core, stages, stage_names):
                     continue
                 room_a = changes['Stages'][stage_name]['Rooms'][room_name]
                 room_b = changes['Stages'][source_room_stage]['Rooms'][source_loading_room]
-                for room_pos in (
-                    room_a,
-                    room_b,
+                for (room_pos, other_stage_name) in (
+                    (room_a, source_room_stage),
+                    (room_b, stage_name),
                 ):
-                    instructions.append((code, room_pos['Top'], room_pos['Left'], 'C', 'E'))
+                    instructions.append((code, room_pos['Top'], room_pos['Left'], stage_colors[other_stage_name], 'E'))
                 links[rooms] = code
                 break
     result = instructions
     return result
-
-stage_colors = {
-    'Abandoned Mine': '8',
-    'Alchemy Laboratory': 'A',
-    'Castle Center': 'D',
-    'Castle Keep': 'A',
-    'Castle Entrance': 'B',
-    'Catacombs': '9',
-    'Clock Tower': 'B',
-    'Colosseum': '6',
-    'Long Library': '6',
-    'Marble Gallery': 'D',
-    "Olrox's Quarters": 'F',
-    'Outer Wall': '9',
-    'Royal Chapel': '7',
-    'Underground Caverns': '1',
-    'Warp Rooms': '5',
-}
 
 def get_loading_room_labels_by_stage(mapper_core, stages, stage_names):
     stage_codes = {
@@ -453,7 +454,7 @@ def get_loading_room_labels_by_stage(mapper_core, stages, stage_names):
                 source_loading_room = source_room_name.replace('Fake Room with Teleporter', 'Loading Room').replace('Castle Entrance Revisited', 'Castle Entrance')
                 room_pos = changes['Stages'][source_room_stage]['Rooms'][source_loading_room]
                 code = stage_codes.get(stage_name, '#')
-                instructions.append((code, room_pos['Top'], room_pos['Left'], 'C', 'E'))
+                instructions.append((code, room_pos['Top'], room_pos['Left'], stage_colors[stage_name], 'E'))
                 break
     result = instructions
     return result
@@ -901,6 +902,11 @@ if __name__ == '__main__':
                 instructions = get_loading_room_labels_by_connection(mapper_core, stages, stage_names)
             elif label_method == 'Stage':
                 instructions = get_loading_room_labels_by_stage(mapper_core, stages, stage_names)
+            if not settings.get('Options', {}).get('Color-code each stage on the map', False):
+                for i in range(len(instructions)):
+                    (label, map_row, map_col, label_color, bg_color) = instructions[i]
+                    label_color = 'C'
+                    instructions[i] = (label, map_row, map_col, label_color, bg_color)
             draw_labels_on_castle_map(castle_map, instructions)
         spike_room_seed = rng['Spike Room'].randint(MIN_SEED, MAX_SEED)
         if settings.get('Options', {}).get('Shuffle Pitch Black Spike Maze', False):
