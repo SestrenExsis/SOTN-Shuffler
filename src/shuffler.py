@@ -1027,7 +1027,7 @@ if __name__ == '__main__':
         seed_hint = ''.join(chars)
         changes['Strings'] = {
             '10': seed_hint,
-            '11': 'Alpha Build 77      ',
+            '11': 'Beta Release 1      ',
         }
         # Normalize room connections
         if settings.get('Options', {}).get('Normalize room connections', False):
