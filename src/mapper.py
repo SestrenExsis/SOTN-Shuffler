@@ -1020,6 +1020,9 @@ class LogicCore:
             'Break Wall in Tall Zig Zag Room': {
                 'Status - Breakable Wall in Tall Zig Zag Room Broken': True,
             },
+            'Check Bat Card Location': {
+                'Check - Bat Card Location': True,
+            },
             'Check Cube of Zoe Location': {
                 'Check - Cube of Zoe Location': True,
             },
@@ -1052,6 +1055,9 @@ class LogicCore:
             },
             'Check Power of Wolf Location': {
                 'Check - Power of Wolf Location': True,
+            },
+            'Check Skill of Wolf Location': {
+                'Check - Skill of Wolf Location': True,
             },
             'Check Soul of Bat Location': {
                 'Check - Soul of Bat Location': True,
@@ -1176,7 +1182,9 @@ class LogicCore:
                         "Abandoned Mine, Demon Card Room (Main)": True,
                         "Abandoned Mine, Snake Column (Secret Wall)": True,
                         "Alchemy Laboratory, Cannon Room (Right Side)": True,
+                        "Alchemy Laboratory, Skill of Wolf Room (Main)": True,
                         "Alchemy Laboratory, Tall Zig Zag Room (Main)": True,
+                        "Alchemy Laboratory, Tetromino Room (Bat Card Room Duplicate)": True,
                         "Castle Entrance, Cube of Zoe Room (Main)": True,
                         "Castle Entrance Revisited, After Drawbridge (Parapet)": True,
                         "Castle Entrance Revisited, Cube of Zoe Room (Pressure Plate Ledge)": True,
