@@ -419,17 +419,14 @@ stages = {
         {
             'Clock Tower, Spire': (0, 0),
             'Clock Tower, Belfry': (2, 1),
+            'Clock Tower, Left Gear Room': (3, 1),
+            'Clock Tower, Hidden Armory': (6, 0),
         },
         {
             'Clock Tower, Path to Karasuman': (0, 0),
             'Clock Tower, Pendulum Room': (0, 2),
         },
-        {
-            'Clock Tower, Left Gear Room': (0, 1),
-            'Clock Tower, Hidden Armory': (3, 0),
-        },
         { 'Clock Tower, Healing Mail Room': (0, 0) },
-        { 'Clock Tower, Spire': (0, 0) },
         { 'Clock Tower, Right Gear Room': (0, 0) },
         { 'Clock Tower, Exit to Courtyard': (0, 0) },
         { 'Clock Tower, Open Courtyard': (0, 0) },
