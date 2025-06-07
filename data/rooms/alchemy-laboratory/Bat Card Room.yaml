@@ -19,12 +19,4 @@ Nodes:
         Edge: Left
         Entry Section: Main
         Exit Section: Main
-Commands:
-    Action - Collect Bat Card Relic:
-        Outcomes:
-            Relic - Bat Card: true
-            Progression - Summon Bat Familiar: true
-        Requirements:
-            Default:
-                Section: Main
-                Relic - Bat Card: false
+Commands: {}

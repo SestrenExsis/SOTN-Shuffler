@@ -19,11 +19,4 @@ Nodes:
         Edge: Left
         Entry Section: Main
         Exit Section: Main
-Commands:
-    Action - Collect Skill of Wolf Relic:
-        Outcomes:
-            Relic - Skill of Wolf: true
-        Requirements:
-            Default:
-                Section: Main
-                Relic - Skill of Wolf: false
+Commands: {}

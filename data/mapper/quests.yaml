@@ -1,5 +1,18 @@
 ---
 Sources:
+  Location - Bat Card:
+    Description: Action - Check Bat Card Location
+    Logic Level: Required
+    Outcomes:
+      Check - Bat Card Location: true
+    Requirements:
+      Default:
+        Check - Bat Card Location: false
+        Room: Alchemy Laboratory, Tetromino Room
+        Section: Bat Card Room Duplicate
+        Stage: Alchemy Laboratory
+    Reward Class: Relic
+    Target Reward: Relic - Bat Card
   Location - Cube of Zoe:
     Description: Action - Check Cube of Zoe Location
     Logic Level: Required
@@ -163,6 +176,18 @@ Sources:
         Stage: Castle Entrance Revisited
     Reward Class: Relic
     Target Reward: Relic - Power of Wolf
+  Location - Skill of Wolf:
+    Description: Action - Check Skill of Wolf Location
+    Outcomes:
+      Check - Skill of Wolf Location: true
+    Requirements:
+      Alchemy Laboratory:
+        Check - Skill of Wolf Location: false
+        Room: Alchemy Laboratory, Skill of Wolf Room
+        Section: Main
+        Stage: Alchemy Laboratory
+    Reward Class: Relic
+    Target Reward: Relic - Skill of Wolf
   Location - Soul of Bat:
     Description: Action - Check Soul of Bat Location
     Logic Level: Required
@@ -5571,6 +5596,11 @@ Targets:
       Item - Zircon: 1
     Tags:
       - Gem
+  Relic - Bat Card:
+    Outcomes:
+      Relic - Bat Card: true
+    Tags:
+      - Low Priority - Racing
   Relic - Cube of Zoe:
     Outcomes:
       Progression - Item Materialization: true
@@ -5620,6 +5650,11 @@ Targets:
     Outcomes:
       Progression - Faster Wolf Run Speed: true
       Relic - Power of Wolf: true
+  Relic - Skill of Wolf:
+    Outcomes:
+      Relic - Skill of Wolf: true
+    Tags:
+      - Low Priority - Racing
   Relic - Soul of Bat:
     Outcomes:
       Progression - Bat Transformation: true
