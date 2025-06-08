@@ -1138,25 +1138,6 @@ Royal Chapel:
                     All:
                         Royal Chapel, Hippogryph Room (Main): true
 Underground Caverns:
-    SKIP - (Progression) Layer 0 -> Any Progression:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Elsewhere
-            Section: Elsewhere
-            Progression - Bat Transformation: true
-        Goals:
-            DK Button Pressed:
-                Status - DK Button Pressed: true
-            DK Bridge Broken:
-                Status - DK Bridge Broken: true
-            Breakable Floor in Hidden Crystal Entrance Broken:
-                Status - Breakable Floor in Hidden Crystal Entrance Broken: true
-            Underground Caverns, False Save Room (Gold Ring):
-                Check Location - Underground Caverns, False Save Room (Gold Ring): true
-            Holy Symbol Location:
-                Check - Holy Symbol Location: true
-            Merman Statue Location:
-                Check - Merman Statue Location: true
     (Progression) Layer 1 -> Layer 2:
         Solver: *solve-within-99-steps
         State:
@@ -1167,9 +1148,10 @@ Underground Caverns:
             Progression - Summon Ferryman: true
         Goals:
             Layer 2:
-                Status - DK Button Pressed: true
-                Status - DK Bridge Broken: true
+                Status - Barrier in Right Ferryman Route Lifted: true
                 Status - Breakable Floor in Hidden Crystal Entrance Broken: true
+                Status - DK Bridge Broken: true
+                Status - DK Button Pressed: true
     (Progression) Layer 2 -> Layer 3:
         Solver: *solve-within-99-steps
         State:
@@ -1178,9 +1160,10 @@ Underground Caverns:
             Progression - Bat Transformation: true
             Progression - Protection From Water: true
             Progression - Summon Ferryman: true
-            Status - DK Button Pressed: true
-            Status - DK Bridge Broken: true
+            Status - Barrier in Right Ferryman Route Lifted: true
             Status - Breakable Floor in Hidden Crystal Entrance Broken: true
+            Status - DK Bridge Broken: true
+            Status - DK Button Pressed: true
         Goals:
             Layer 3:
                 Check Location - Underground Caverns, False Save Room (Gold Ring): true

@@ -18,8 +18,8 @@ Nodes:
         Row: 0
         Column: 3
         Edge: Bottom
-        Entry Section: Broken Bridge
-        Exit Section: Broken Bridge
+        Entry Section: Bottom, Rising
+        Exit Section: Bottom, Falling
     Right Passage:
         Type: "######....######"
         Row: 0
@@ -36,9 +36,9 @@ Commands:
                 Section: Main
                 Status - DK Bridge Broken: false
                 Status - DK Button Pressed: true
-    Move - Broken Bridge:
+    Move - Bottom, Falling:
         Outcomes:
-            Section: Broken Bridge
+            Section: Bottom, Falling
         Requirements:
             Default:
                 Section: Main
@@ -48,5 +48,5 @@ Commands:
             Section: Main
         Requirements:
             Default:
-                Section: Broken Bridge
+                Section: Bottom, Rising
                 Status - DK Bridge Broken: true

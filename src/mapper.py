@@ -537,7 +537,7 @@ stages = {
         { 'Marble Gallery, Beneath Left Trapdoor': (0, 0) },
         { 'Marble Gallery, Save Room B': (0, 0) },
     ],
-    'Olrox\'s Quarters': [
+    "Olrox's Quarters": [
         {
             'Olrox\'s Quarters, Skelerang Room': (32 + 0, 32 + 0),
             'Olrox\'s Quarters, Loading Room to Marble Gallery': (32 + 2, 32 + 1),
@@ -931,7 +931,7 @@ class LogicCore:
                     outcomes[outcome_key] = outcome_value
                 if room_name not in self.commands:
                     # NOTE(sestren): Because Inverted Castle is being ignored for now, skip adding this quest to logic
-                    print('Room', room_name, 'not in commands')
+                    # print('Room', room_name, 'not in commands')
                     continue
                 simplified_requirement = copy.deepcopy(requirement)
                 simplified_requirement.pop('Stage')

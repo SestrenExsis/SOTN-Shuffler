@@ -2,7 +2,6 @@
 Stage: Abandoned Mine
 Room: Crumbling Stairwells With Demon Switch
 Notes:
-    - Add Logical Risk for moving downward without Double Jump or better
     - Traversing upward through this room without crumbling some of the stairwells first is impossible with only Double Jump
 Index: 3
 Columns: 1
@@ -81,6 +80,23 @@ Commands:
         Requirements:
             Bottom, Rising - Default:
                 Section: Bottom, Rising
+            Block Area - Logical Blunder:
+                Section: Block Area
+                Status - Switch in Abandoned Mine Pressed: true
+                Option - Permit Logical Blunders: true
+            Block Area - Return With Double Jump Using Dislodged Stairwell:
+                Status - Switch in Abandoned Mine Pressed: true
+                Section: Block Area
+                Progression - Double Jump: true
+                Status - Stairwell Near Demon Switch Dislodged: true
+                Status - Switch in Abandoned Mine Pressed: true
+            Upper-Left Ledge - Logical Blunder:
+                Section: Upper-Left Ledge
+                Option - Permit Logical Blunders: true
+            Upper-Left Ledge - Return With Double Jump Using Dislodged Stairwell:
+                Section: Upper-Left Ledge
+                Progression - Double Jump: true
+                Status - Stairwell Near Demon Switch Dislodged: true
     Move - Lower Ledges (Dislodging Stairwell):
         Outcomes:
             Section: Lower Ledges
@@ -89,8 +105,35 @@ Commands:
             Block Area - Default:
                 Section: Block Area
                 Status - Switch in Abandoned Mine Pressed: true
-            Upper-Left Ledge - Default:
+            Upper-Left Ledge - Logical Risk:
                 Section: Upper-Left Ledge
+                Option - Permit Logical Risks: true
+            Upper-Left Ledge - Return With Bat Form:
+                Section: Upper-Left Ledge
+                Progression - Bat Transformation: true
+            Upper-Left Ledge - Return With Gravity Jump:
+                Section: Upper-Left Ledge
+                Progression - Gravity Jump: true
+            Upper-Left Ledge - Return With Powered Mist:
+                Section: Upper-Left Ledge
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Block Area - Logical Risk:
+                Section: Block Area
+                Option - Permit Logical Risks: true
+                Status - Switch in Abandoned Mine Pressed: true
+            Block Area - Return With Bat Form:
+                Section: Block Area
+                Progression - Bat Transformation: true
+            Block Area - Return With Gravity Jump:
+                Section: Block Area
+                Progression - Gravity Jump: true
+                Status - Switch in Abandoned Mine Pressed: true
+            Block Area - Return With Powered Mist:
+                Section: Block Area
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Status - Switch in Abandoned Mine Pressed: true
     Move - Upper-Left Ledge:
         Outcomes:
             Section: Upper-Left Ledge
