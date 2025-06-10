@@ -969,15 +969,6 @@ class LogicCore:
                 self.state['Option - ' + option_name] = True
         self.goals = {
             # Forms of progression
-            'Able to Open Secret Wall in Merman Room': {
-                'Progression - Bat Transformation': True,
-                'Progression - Wolf Transformation': True,
-                'Sections Visited': {
-                    'All': {
-                        'Castle Entrance Revisted, Merman Room (Ground)': True,
-                    },
-                },
-            },
             'Activate Cannon': {
                 'Status - Cannon Activated': True,
             },
@@ -1086,11 +1077,16 @@ class LogicCore:
             'Check Gold Ring Location': {
                 'Check Location - Underground Caverns, False Save Room (Gold Ring)': True,
             },
-            'Check Holy Glasses Location': {
-                'Check - Holy Glasses Location': True,
-            },
             'Dislodge Stairwell Near Demon Switch': {
                 'Status - Stairwell Near Demon Switch Dislodged': True,
+            },
+            'Find Clock Room in Marble Gallery': {
+                'Room': "Marble Gallery, Clock Room",
+                'Section': 'Main',
+            },
+            'Find Shop in Long Library': {
+                'Room': "Long Library, Shop",
+                'Section': 'Main',
             },
             'Find Anteroom in Castle Keep': {
                 'Room': "Castle Keep, Keep Area",
@@ -1140,8 +1136,21 @@ class LogicCore:
                 'Room': "Warp Rooms, Warp Room to Outer Wall",
                 'Section': 'Main',
             },
+            'Get A Library Card': {
+                'Tracker - Library Cards': {
+                    'Minimum': 1,
+                },
+            },
+            'Get Multiple Library Cards': {
+                'Tracker - Library Cards': {
+                    'Minimum': 2,
+                },
+            },
             'Get Stopwatch Subweapon': {
                 'Subweapon': 'Stopwatch',
+            },
+            'Open Secret Wall in Merman Room': {
+                'Status - Secret Wall in Merman Room Opened': True,
             },
             'Press DK Button': {
                 'Status - DK Button Pressed': True,
@@ -1204,6 +1213,7 @@ class LogicCore:
                         "Long Library, Shop (Main)": True,
                         "Long Library, Spellbook Area (Main)": True,
                         "Marble Gallery, Blue Door Room (Right Side)": True,
+                        "Marble Gallery, Clock Room (Main)": True,
                         "Marble Gallery, Gravity Boots Room (Main)": True,
                         "Marble Gallery, Spirit Orb Room (Main)": True,
                         "Olrox's Quarters, Catwalk Crypt (Main)": True,
