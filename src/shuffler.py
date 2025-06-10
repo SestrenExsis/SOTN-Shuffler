@@ -378,21 +378,37 @@ def draw_labels_on_castle_map(castle_map, instructions):
                 castle_map[top + row][left + col] = str(color)
 
 stage_colors = {
-    'Abandoned Mine': '8',
-    'Alchemy Laboratory': 'A',
-    'Castle Center': 'D',
-    'Castle Keep': 'A',
-    'Castle Entrance': 'B',
-    'Catacombs': '9',
-    'Clock Tower': 'B',
-    'Colosseum': '6',
-    'Long Library': '6',
-    'Marble Gallery': 'D',
-    "Olrox's Quarters": 'F',
-    'Outer Wall': '9',
-    'Royal Chapel': '7',
+    # Color Index 0 is reserved by the game for transparency
+    # Color Index 1 is available
+    'Abandoned Mine': '1',
     'Underground Caverns': '1',
+    # Color Index 2 is unusable because the game converts them to Index 1 before rendering
+    # Color Index 3 is reserved by the game for fills of unexplored rooms (revealed when purchasing the Castle Map)
+    # Color Index 4 is intentionally being reserved for Save Rooms, for now
+    # Color Index 5 is available
+    'Clock Tower': '5',
+    'Long Library': '5',
     'Warp Rooms': '5',
+    # Color index 6 is available
+    'Alchemy Laboratory': '6',
+    # Color index 7 is available
+    'Castle Entrance': '7',
+    # Color index 8 is available
+    'Catacombs': '8',
+    # Color index 9 is available
+    'Colosseum': '9',
+    # Color index A is available
+    'Castle Center': 'A',
+    'Marble Gallery': 'A',
+    # Color index B is available
+    "Olrox's Quarters": 'B',
+    # Color index C is available
+    'Royal Chapel': 'C',
+    # Color Index D is reserved by the game for borders of unexplored rooms (revealed when purchasing the Castle Map)
+    # Color Index E is reserved by the game for borders of explored rooms
+    # Color index F is available
+    'Castle Keep': 'F',
+    'Outer Wall': 'F',
 }
 
 def get_loading_room_labels_by_connection(mapper_core, stages, stage_names):
@@ -934,6 +950,26 @@ if __name__ == '__main__':
         for row in range(len(castle_map)):
             row_data = ''.join(castle_map[row])
             changes['Castle Map'].append(row_data)
+        # Castle Map Color Palette
+        if settings.get('Options', {}).get('Color-code each stage on the map', False):
+            changes['Castle Map Color Palette'] = [
+                "#7F000000",
+                "#FF0000FF",
+                "#FF002858",
+                "#FF101810",
+                "#FFF80000",
+                "#FFF88000",
+                "#FFCC7400",
+                "#FFFF1A57",
+                "#FFE600B8",
+                "#FF008099",
+                "#FFF25D0D",
+                "#FF00b300",
+                "#FF666666",
+                "#FF036333",
+                "#FFC0C0C0",
+                "#FF009DFF",
+            ]
         # Calculate which cells on the map buying the Castle Map in the Shop will reveal
         cells_to_reveal = set()
         for (row, row_data) in enumerate(castle_map):
