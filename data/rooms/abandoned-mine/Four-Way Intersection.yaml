@@ -2,7 +2,7 @@
 Stage: Abandoned Mine
 Room: Four-Way Intersection
 Notes:
-    - Add Logical Risk for moving downward without Double Jump or better
+    - There is no need to add a Logical Risk for moving downward without Double Jump or better, because there is only one other room in this stage with a Top Node
 Index: 7
 Columns: 3
 Rows: 1

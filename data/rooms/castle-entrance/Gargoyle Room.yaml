@@ -2,7 +2,8 @@
 Stage: Castle Entrance
 Room: Gargoyle Room
 Notes:
-    - Add Logical Risk for moving downward without flight
+    - Meeting Room with Death is guaranteed to be below Gargoyle Room, so potential softlocks can result from dropping down without meeting Death
+    - Gargoyle Room does not check for Logical Risks, because early pathing may require it
 Index: 13
 Columns: 1
 Rows: 1
@@ -40,21 +41,26 @@ Commands:
         Outcomes:
             Section: Bottom, Falling
         Requirements:
-            Default - Main:
+            Main - Default:
                 Section: Main
+                Status - Meet Death in Castle Entrance: true
+            Main - Logical Blunder:
+                Section: Main
+                Status - Meet Death in Castle Entrance: false
+                Option - Permit Logical Blunders: true
             Default - Bottom, Rising:
                 Section: Bottom, Rising
     Move - Main:
         Outcomes:
             Section: Main
         Requirements:
-            Lower - Bat Form:
+            Bottom, Rising - Bat Form:
                 Section: Bottom, Rising
                 Progression - Bat Transformation: true
-            Lower - Powered Mist:
+            Bottom, Rising - Powered Mist:
                 Section: Bottom, Rising
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-            Lower - Gravity Jump:
+            Bottom, Rising - Gravity Jump:
                 Section: Bottom, Rising
                 Progression - Gravity Jump: true

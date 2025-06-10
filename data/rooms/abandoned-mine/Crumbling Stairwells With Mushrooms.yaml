@@ -1,8 +1,6 @@
 
 Stage: Abandoned Mine
 Room: Crumbling Stairwells With Mushrooms
-Notes:
-    - Add Logical Risk for moving downward without Double Jump or better
 Index: 8
 Columns: 1
 Rows: 4
@@ -52,8 +50,21 @@ Commands:
         Outcomes:
             Section: Lower Area
         Requirements:
-            Upper Area - Default:
+            Upper Area - Logical Risk:
                 Section: Upper Area
+                Option - Permit Logical Risks: true
+            Upper Area - Return With Bat:
+                Section: Upper Area
+                Progression - Bat Transformation: true
+            Upper Area - Return With Double Jump:
+                Section: Upper Area
+                Progression - Double Jump: true
+            Upper Area - Return With Gravity Jump:
+                Section: Upper Area
+                Progression - Gravity Jump: true
+            Upper Area - Return With Mist:
+                Section: Upper Area
+                Progression - Mist Transformation: true
     Move - Top, Rising:
         Outcomes:
             Section: Top, Rising

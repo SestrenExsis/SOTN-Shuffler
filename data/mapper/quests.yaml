@@ -5162,6 +5162,7 @@ Targets:
   Item - Library Card:
     Outcomes:
       Item - Library Card: 1
+      Tracker - Library Cards: 1
     Tags:
       - Consumable
       - Travel
@@ -5653,8 +5654,7 @@ Targets:
   Relic - Skill of Wolf:
     Outcomes:
       Relic - Skill of Wolf: true
-    Tags:
-      - Low Priority - Racing
+      Progression - Wolf Charge Attack: true
   Relic - Soul of Bat:
     Outcomes:
       Progression - Bat Transformation: true

@@ -105,6 +105,8 @@ def shuffle_teleporters(teleporters, rng) -> dict:
         'Special, Succubus Defeated',
         'Underground Caverns, Fake Room with Teleporter to Boss - Succubus',
     }
+    for source in excluded_sources:
+        assert source in teleporters['Sources']
     forbidden_links = {
         # NOTE(sestren): Disallow left Red Door in Cube of Zoe Room from leading to Warp Rooms
         ('Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory', 'Warp Rooms, Fake Room with Teleporter to Castle Entrance'),
@@ -128,8 +130,24 @@ def shuffle_teleporters(teleporters, rng) -> dict:
         ("Royal Chapel, Fake Room with Teleporter to Olrox's Quarters", 'Warp Rooms, Fake Room with Teleporter to Castle Keep'),
         ("Royal Chapel, Fake Room with Teleporter to Olrox's Quarters", "Warp Rooms, Fake Room with Teleporter to Olrox's Quarters"),
         ("Royal Chapel, Fake Room with Teleporter to Olrox's Quarters", 'Warp Rooms, Fake Room with Teleporter to Outer Wall'),
-        # TODO(sestren): Disallow Long Library and Catacombs from connecting to Colosseum or Clock Tower
+        # NOTE(sestren): Disallow long, isolated "chains" of stage connections (i.e, 1- and 2-Red Door stages must not link to one another)
+        ('Colosseum, Fake Room with Teleporter to Royal Chapel', 'Long Library, Fake Room with Teleporter to Outer Wall'),
+        ("Colosseum, Fake Room with Teleporter to Olrox's Quarters", 'Long Library, Fake Room with Teleporter to Outer Wall'),
+        ('Clock Tower, Fake Room with Teleporter to Castle Keep', 'Colosseum, Fake Room with Teleporter to Royal Chapel'),
+        ('Clock Tower, Fake Room with Teleporter to Castle Keep', "Colosseum, Fake Room with Teleporter to Olrox's Quarters"),
+        ('Clock Tower, Fake Room with Teleporter to Castle Keep', 'Long Library, Fake Room with Teleporter to Outer Wall'),
+        ('Clock Tower, Fake Room with Teleporter to Outer Wall', 'Colosseum, Fake Room with Teleporter to Royal Chapel'),
+        ('Clock Tower, Fake Room with Teleporter to Outer Wall', "Colosseum, Fake Room with Teleporter to Olrox's Quarters"),
+        ('Clock Tower, Fake Room with Teleporter to Outer Wall', 'Long Library, Fake Room with Teleporter to Outer Wall'),
+        ('Catacombs, Fake Room with Teleporter to Abandoned Mine', 'Clock Tower, Fake Room with Teleporter to Castle Keep'),
+        ('Catacombs, Fake Room with Teleporter to Abandoned Mine', 'Clock Tower, Fake Room with Teleporter to Outer Wall'),
+        ('Catacombs, Fake Room with Teleporter to Abandoned Mine', "Colosseum, Fake Room with Teleporter to Olrox's Quarters"),
+        ('Catacombs, Fake Room with Teleporter to Abandoned Mine', 'Colosseum, Fake Room with Teleporter to Royal Chapel'),
     }
+    for (source_a, source_b) in forbidden_links:
+        # print((source_a, source_b))
+        assert source_a in teleporters['Sources']
+        assert source_b in teleporters['Sources']
     # NOTE(sestren): Stages are considered "highly-linkable" if they have 3 or more Red Doors
     highly_linkable_stages = {
         'Abandoned Mine',

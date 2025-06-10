@@ -61,10 +61,34 @@ Commands:
             Behind Waterfall - Protection From Water:
                 Section: Behind Waterfall
                 Progression - Protection From Water: true
-            Upper-Left Ledge - Default:
+            Upper-Left Ledge - Logical Risk:
                 Section: Upper-Left Ledge
-            Upper-Right Ledge - Default:
+                Option - Permit Logical Risks: true
+            Upper-Left Ledge - Return With Bat Form:
+                Section: Upper-Left Ledge
+                Progression - Bat Transformation: true
+            Upper-Left Ledge - Return With Multiple Gravity Jumps:
+                Section: Upper-Left Ledge
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Upper-Left Ledge - Return With Powered Mist:
+                Section: Upper-Left Ledge
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Upper-Right Ledge - Logical Risk:
                 Section: Upper-Right Ledge
+                Option - Permit Logical Risks: true
+            Upper-Right Ledge - Return With Bat Form:
+                Section: Upper-Right Ledge
+                Progression - Bat Transformation: true
+            Upper-Right Ledge - Return With Multiple Gravity Jumps:
+                Section: Upper-Right Ledge
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Upper-Right Ledge - Return With Powered Mist:
+                Section: Upper-Right Ledge
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
     Move - Upper-Left Ledge:
         Outcomes:
             Section: Upper-Left Ledge

@@ -42,10 +42,11 @@ Commands:
     Action - Purchase Library Card:
         Outcomes:
             Item - Library Card: 1
+            Tracker - Library Cards: 1
         Requirements:
             Item Materialization:
                 Section: Main
                 Progression - Item Materialization: true
                 Item - Library Card:
-                    Maximum: 0
+                    Maximum: 1
 

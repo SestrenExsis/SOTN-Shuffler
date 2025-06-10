@@ -1,6 +1,8 @@
 
 Stage: Castle Entrance Revisited
 Room: Cube of Zoe Room
+Notes:
+    - It is assumed that the player activates the shortcut in this room if they move from Pressure Plate Ledge to Main
 Index: 15
 Columns: 2
 Rows: 3
@@ -69,8 +71,14 @@ Commands:
         Requirements:
             Right Ledge:
                 Section: Right Ledge
-            Pressure Plate Ledge:
+    Move - Main (Activating Shortcut):
+        Outcomes:
+            Section: Main
+            Status - Shortcut in Cube of Zoe Room Activated: true
+        Requirements:
+            Pressure Plate Ledge - Default:
                 Section: Pressure Plate Ledge
+                Status - Shortcut in Cube of Zoe Room Activated: false
     Move - Right Ledge:
         Outcomes:
             Section: Right Ledge
