@@ -32,8 +32,27 @@ Commands:
         Outcomes:
             Section: Ground
         Requirements:
-            Platforms - Default:
+            Platforms - Logical Blunder:
                 Section: Platforms
+                Option - Permit Logical Blunders: true
+            Platforms - Return With Bat Form:
+                Section: Platforms
+                Progression - Bat Transformation: true
+            Platforms - Return With Double Jump:
+                Section: Platforms
+                Progression - Double Jump: true
+            Platforms - Return With Gravity Jump:
+                Section: Platforms
+                Progression - Gravity Jump: true
+            Platforms - Return With Powered Mist:
+                Section: Platforms
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+            Platforms - Return With Wolf-Mist Rise:
+                Section: Platforms
+                Execution - Wolf-Mist Rise: true
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
     Move - Platforms:
         Outcomes:
             Section: Platforms

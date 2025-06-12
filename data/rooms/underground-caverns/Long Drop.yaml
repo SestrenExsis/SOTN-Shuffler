@@ -186,8 +186,20 @@ Commands:
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
                 Technique - Very Long Mist Travel: true
-            Upper Stairwell - Default:
+            Upper Stairwell - Logical Risk:
                 Section: Upper Stairwell
+                Option - Permit Logical Risks: true
+            Upper Stairwell - Return With Bat Form:
+                Section: Upper Stairwell
+                Progression - Bat Transformation: true
+            Upper Stairwell - Return With Multiple Gravity Jumps:
+                Section: Upper Stairwell
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+            Upper Stairwell - Return With Powered Mist:
+                Section: Upper Stairwell
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
     Move - Middle-Right Ledge:
         Outcomes:
             Section: Middle-Right Ledge

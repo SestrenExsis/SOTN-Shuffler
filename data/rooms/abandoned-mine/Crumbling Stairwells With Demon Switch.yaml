@@ -85,7 +85,6 @@ Commands:
                 Status - Switch in Abandoned Mine Pressed: true
                 Option - Permit Logical Blunders: true
             Block Area - Return With Double Jump Using Dislodged Stairwell:
-                Status - Switch in Abandoned Mine Pressed: true
                 Section: Block Area
                 Progression - Double Jump: true
                 Status - Stairwell Near Demon Switch Dislodged: true

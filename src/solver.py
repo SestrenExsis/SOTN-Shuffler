@@ -461,6 +461,8 @@ class Solver():
     def solve_via_relaxed_steps(self, step_limit: int=100, restrict_to_stage: str=None):
         self.rng = random.Random(self.initial_seed)
         initial_game = self.current_game
+        # while True:
+        #     self.current_game.play()
         memo = {}
         solution_found = False
         current_work_key = 0
@@ -472,7 +474,7 @@ class Solver():
             chosen_work_key = self.rng.choice(list(work__solver.keys()))
             (step__solver, game__solver) = work__solver.pop(chosen_work_key)
             if self.debug and self.cycle_count % 10_000 == 0:
-                print((step__solver, len(work__solver)), (self.cycle_count, chosen_work_key), game__solver.current_state['Room'])
+                print((step__solver, len(work__solver)), (self.cycle_count, chosen_work_key), game__solver.location)
             if step__solver >= step_limit:
                 continue
             self.cycle_count += 1

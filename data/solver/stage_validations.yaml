@@ -133,28 +133,14 @@ Alchemy Laboratory:
                 Sections Visited:
                     All:
                         Alchemy Laboratory, Skill of Wolf Room (Main): true
+                        Alchemy Laboratory, Tetromino Room (Bat Card Room Duplicate): true
 Castle Center: {}
 Castle Entrance:
-    (Progression) Layer 0 -> Any Progression:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Elsewhere
-            Section: Elsewhere
-            Status - Meet Death in Castle Entrance: true
-            Progression - Item Materialization: true
-            Progression - Bat Transformation: true
-            Progression - Wolf Transformation: true
-            Status - Shortcut in Cube of Zoe Room Activated: true
-            Status - Shortcut to Underground Caverns Activated: true
-            Status - Shortcut to Warp Rooms Activated: true
-        Goals:
-            Secret Wall in Merman Room Opened:
-                Status - Secret Wall in Merman Room Opened: true
     (Rule) Death Skip Forbidden:
         Solver:
             Approach: Steps
             Attempts: 1
-            Limit: 30
+            Limit: 50
             Initial Seed: 1
             Debug: False
             Wins:
@@ -162,294 +148,88 @@ Castle Entrance:
         State:
             Room: Castle Entrance, After Drawbridge
             Section: Ground
+            Option - Normalize room connections: true
         Goals:
-            Death Skip:
-                Room: Castle Entrance, Cube of Zoe Room
-                Section: Main
-                Status - Meet Death in Castle Entrance: false
-    SKIP - (Rule) Meeting Death Required:
-        Solver:
-            Approach: Random Exploration
-            Attempts: 8
-            Limit: 3999
-            Initial Seed: 1
-            Debug: False
-            Wins:
-                Minimum: 8
-        State:
-            Room: Castle Entrance, After Drawbridge
-            Section: Ground
-        Goals:
-            Meet Death on the Way to Cube of Zoe Room:
-                Room: Castle Entrance, Cube of Zoe Room
-                Section: Main
-                Status - Meet Death in Castle Entrance: true
-    (Entry) START -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Entrance, After Drawbridge
-            Section: Ground
-        Goals:
-            Reach Hub:
-                Room: Castle Entrance, Cube of Zoe Room
-                Section: Main
-                Status - Meet Death in Castle Entrance: true
-    (Entry) Alchemy Laboratory -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Entrance, Loading Room to Alchemy Laboratory
-            Section: Main
-            Status - Meet Death in Castle Entrance: true
-            Progression - Item Materialization: true
-            Progression - Bat Transformation: true
-            Progression - Wolf Transformation: true
-            Status - Shortcut in Cube of Zoe Room Activated: true
-            Status - Secret Wall in Merman Room Opened: true
-            Status - Shortcut to Underground Caverns Activated: true
-            Status - Shortcut to Warp Rooms Activated: true
-        Goals:
-            Reach Hub:
-                Room: Castle Entrance, Cube of Zoe Room
-                Section: Main
-    (Entry) Marble Gallery -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Entrance, Loading Room to Marble Gallery
-            Section: Main
-            Status - Meet Death in Castle Entrance: true
-            Progression - Item Materialization: true
-            Progression - Bat Transformation: true
-            Progression - Wolf Transformation: true
-            Status - Shortcut in Cube of Zoe Room Activated: true
-            Status - Secret Wall in Merman Room Opened: true
-            Status - Shortcut to Underground Caverns Activated: true
-            Status - Shortcut to Warp Rooms Activated: true
-        Goals:
-            Reach Hub:
-                Room: Castle Entrance, Cube of Zoe Room
-                Section: Main
-    (Entry) Underground Caverns -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Entrance, Loading Room to Underground Caverns
-            Section: Main
-            Status - Meet Death in Castle Entrance: true
-            Progression - Item Materialization: true
-            Progression - Bat Transformation: true
-            Progression - Wolf Transformation: true
-            Status - Shortcut in Cube of Zoe Room Activated: true
-            Status - Secret Wall in Merman Room Opened: true
-            Status - Shortcut to Underground Caverns Activated: true
-            Status - Shortcut to Warp Rooms Activated: true
-        Goals:
-            Reach Hub:
-                Room: Castle Entrance, Cube of Zoe Room
-                Section: Main
-    (Entry) Warp Rooms -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Entrance, Loading Room to Warp Rooms
-            Section: Main
-            Status - Meet Death in Castle Entrance: true
-            Progression - Item Materialization: true
-            Progression - Bat Transformation: true
-            Progression - Wolf Transformation: true
-            Status - Shortcut in Cube of Zoe Room Activated: true
-            Status - Secret Wall in Merman Room Opened: true
-            Status - Shortcut to Underground Caverns Activated: true
-            Status - Shortcut to Warp Rooms Activated: true
-        Goals:
-            Reach Hub:
-                Room: Castle Entrance, Cube of Zoe Room
-                Section: Main
-    (Check) Hub -> Cube of Zoe Location:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Entrance, Cube of Zoe Room
-            Section: Main
-            Status - Meet Death in Castle Entrance: true
-            Progression - Item Materialization: true
-            Progression - Bat Transformation: true
-            Progression - Wolf Transformation: true
-            Status - Shortcut in Cube of Zoe Room Activated: true
-            Status - Secret Wall in Merman Room Opened: true
-            Status - Shortcut to Underground Caverns Activated: true
-            Status - Shortcut to Warp Rooms Activated: true
-        Goals:
-            Reach Check:
-                Check - Cube of Zoe Location: true
-    (Check) Hub -> Power of Wolf Location:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Entrance, Cube of Zoe Room
-            Section: Main
-            Status - Meet Death in Castle Entrance: true
-            Progression - Item Materialization: true
-            Progression - Bat Transformation: true
-            Progression - Wolf Transformation: true
-            Status - Shortcut in Cube of Zoe Room Activated: true
-            Status - Secret Wall in Merman Room Opened: true
-            Status - Shortcut to Underground Caverns Activated: true
-            Status - Shortcut to Warp Rooms Activated: true
-        Goals:
-            Reach Check:
-                Check - Power of Wolf Location: true
-    (Exit) Hub -> Alchemy Laboratory:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Entrance, Cube of Zoe Room
-            Section: Main
-            Status - Meet Death in Castle Entrance: true
-            Progression - Item Materialization: true
-            Progression - Bat Transformation: true
-            Progression - Wolf Transformation: true
-            Status - Shortcut in Cube of Zoe Room Activated: true
-            Status - Secret Wall in Merman Room Opened: true
-            Status - Shortcut to Underground Caverns Activated: true
-            Status - Shortcut to Warp Rooms Activated: true
-        Goals:
-            Reach Exit:
+            Reach Alchemy Laboratory:
                 Room: Castle Entrance, Loading Room to Alchemy Laboratory
                 Section: Main
-    (Exit) Hub -> Marble Gallery:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Entrance, Cube of Zoe Room
-            Section: Main
-            Status - Meet Death in Castle Entrance: true
-            Progression - Item Materialization: true
-            Progression - Bat Transformation: true
-            Progression - Wolf Transformation: true
-            Status - Shortcut in Cube of Zoe Room Activated: true
-            Status - Secret Wall in Merman Room Opened: true
-            Status - Shortcut to Underground Caverns Activated: true
-            Status - Shortcut to Warp Rooms Activated: true
-        Goals:
-            Reach Exit:
+                Status - Meet Death in Castle Entrance: false
+            Reach Marble Gallery:
                 Room: Castle Entrance, Loading Room to Marble Gallery
                 Section: Main
-    (Exit) Hub -> Underground Caverns:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Entrance, Cube of Zoe Room
-            Section: Main
-            Status - Meet Death in Castle Entrance: true
-            Progression - Item Materialization: true
-            Progression - Bat Transformation: true
-            Progression - Wolf Transformation: true
-            Status - Shortcut in Cube of Zoe Room Activated: true
-            Status - Secret Wall in Merman Room Opened: true
-            Status - Shortcut to Underground Caverns Activated: true
-            Status - Shortcut to Warp Rooms Activated: true
-        Goals:
-            Reach Exit:
+                Status - Meet Death in Castle Entrance: false
+            Reach Underground Caverns:
                 Room: Castle Entrance, Loading Room to Underground Caverns
                 Section: Main
-    (Exit) Hub -> Warp Rooms:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Entrance, Cube of Zoe Room
-            Section: Main
-            Status - Meet Death in Castle Entrance: true
-            Progression - Item Materialization: true
-            Progression - Bat Transformation: true
-            Progression - Wolf Transformation: true
-            Status - Shortcut in Cube of Zoe Room Activated: true
-            Status - Secret Wall in Merman Room Opened: true
-            Status - Shortcut to Underground Caverns Activated: true
-            Status - Shortcut to Warp Rooms Activated: true
-        Goals:
-            Reach Exit:
+                Status - Meet Death in Castle Entrance: false
+            Reach Warp Rooms:
                 Room: Castle Entrance, Loading Room to Warp Rooms
                 Section: Main
+                Status - Meet Death in Castle Entrance: false
+    (Entry) START -> Any Exit:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Castle Entrance, After Drawbridge
+            Section: Ground
+            Option - Normalize room connections: true
+        Goals:
+            Reach Alchemy Laboratory:
+                Room: Castle Entrance, Loading Room to Alchemy Laboratory
+                Section: Main
+            Reach Marble Gallery:
+                Room: Castle Entrance, Loading Room to Marble Gallery
+                Section: Main
+            Reach Underground Caverns:
+                Room: Castle Entrance, Loading Room to Underground Caverns
+                Section: Main
+            Reach Warp Rooms:
+                Room: Castle Entrance, Loading Room to Warp Rooms
+                Section: Main
+    (Progression) Layer 1 -> Layer 2:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Elsewhere
+            Section: Elsewhere
+            Option - Normalize room connections: true
+            Progression - Bat Transformation: true
+            Progression - Wolf Transformation: true
+            Skill - Open Secret Wall in Merman Room: true
+        Goals:
+            Layer 2:
+                Status - Secret Wall in Merman Room Opened: true
+                Status - Shortcut in Cube of Zoe Room Activated: true
+                Status - Shortcut to Underground Caverns Activated: true
+                Status - Shortcut to Warp Rooms Activated: true
+    (Progression) Layer 2 -> Layer 3:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Elsewhere
+            Section: Elsewhere
+            Option - Normalize room connections: true
+            Progression - Bat Transformation: true
+            Progression - Wolf Transformation: true
+            Status - Secret Wall in Merman Room Opened: true
+            Status - Shortcut in Cube of Zoe Room Activated: true
+            Status - Shortcut to Underground Caverns Activated: true
+            Status - Shortcut to Warp Rooms Activated: true
+            Skill - Open Secret Wall in Merman Room: true
+        Goals:
+            Layer 3:
+                Check - Cube of Zoe Location: true
+                Check - Power of Wolf Location: true
 Castle Keep:
-    (Entry) Clock Tower -> Hub:
+    (Progression) Layer 1 -> Layer 3:
         Solver: *solve-within-99-steps
         State:
-            Room: Castle Keep, Loading Room to Clock Tower
-            Section: Main
+            Room: Elsewhere
+            Section: Elsewhere
+            Option - Normalize room connections: true
             Progression - Bat Transformation: true
         Goals:
-            Reach Hub:
-                Room: Castle Keep, Keep Area
-                Section: Ground
-    (Entry) Royal Chapel -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Keep, Loading Room to Royal Chapel
-            Section: Main
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Hub:
-                Room: Castle Keep, Keep Area
-                Section: Ground
-    (Entry) Warp Rooms -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Keep, Loading Room to Warp Rooms
-            Section: Main
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Hub:
-                Room: Castle Keep, Keep Area
-                Section: Ground
-    (Check) Hub -> Ghost Card Location:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Keep, Keep Area
-            Section: Ground
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Check:
+            Layer 3:
                 Check - Ghost Card Location: true
-    (Check) Hub -> Power of Mist Location:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Keep, Keep Area
-            Section: Ground
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Check:
-                Check - Power of Mist Location: true
-    (Check) Hub -> Leap Stone Location:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Keep, Keep Area
-            Section: Ground
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Check:
                 Check - Leap Stone Location: true
-    (Exit) Hub -> Clock Tower:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Keep, Keep Area
-            Section: Ground
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Exit:
-                Room: Castle Keep, Loading Room to Clock Tower
-                Section: Main
-    (Exit) Hub -> Royal Chapel:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Keep, Keep Area
-            Section: Ground
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Exit:
-                Room: Castle Keep, Loading Room to Royal Chapel
-                Section: Main
-    (Exit) Hub -> Warp Rooms:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Castle Keep, Keep Area
-            Section: Ground
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Exit:
-                Room: Castle Keep, Loading Room to Warp Rooms
-                Section: Main
+                Check - Power of Mist Location: true
 Catacombs:
     (Rule) Spikebreaker Locked Behind Spike Maze:
         Solver:
@@ -732,263 +512,63 @@ Long Library:
                 Room: Long Library, Loading Room to Outer Wall
                 Section: Main
 Marble Gallery:
-    (Entry) Alchemy Laboratory -> Hub:
+    (Progression) Layer 1 -> Layer 2:
         Solver: *solve-within-99-steps
         State:
-            Room: Marble Gallery, Loading Room to Alchemy Laboratory
-            Section: Main
+            Room: Elsewhere
+            Section: Elsewhere
             Progression - Bat Transformation: true
+            Progression - Item Materialization: true
+            Progression - Unlock Blue Doors: true
+        Goals:
+            Layer 2:
+                Status - Pressure Plate in Marble Gallery Activated: true
+                Subweapon: Stopwatch
+    (Progression) Layer 2 -> Layer 3:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Elsewhere
+            Section: Elsewhere
+            Progression - Bat Transformation: true
+            Progression - Item Materialization: true
             Progression - Unlock Blue Doors: true
             Status - Pressure Plate in Marble Gallery Activated: true
             Subweapon: Stopwatch
         Goals:
-            Reach Hub:
-                Room: Marble Gallery, Clock Room
-                Section: Main
-    (Entry) Castle Entrance -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Marble Gallery, Loading Room to Castle Entrance
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Unlock Blue Doors: true
-            Status - Pressure Plate in Marble Gallery Activated: true
-            Subweapon: Stopwatch
-        Goals:
-            Reach Hub:
-                Room: Marble Gallery, Clock Room
-                Section: Main
-    (Entry) Olrox's Quarters -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Marble Gallery, Loading Room to Olrox's Quarters
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Unlock Blue Doors: true
-            Status - Pressure Plate in Marble Gallery Activated: true
-            Subweapon: Stopwatch
-        Goals:
-            Reach Hub:
-                Room: Marble Gallery, Clock Room
-                Section: Main
-    (Entry) Outer Wall -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Marble Gallery, Loading Room to Outer Wall
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Unlock Blue Doors: true
-            Status - Pressure Plate in Marble Gallery Activated: true
-            Subweapon: Stopwatch
-        Goals:
-            Reach Hub:
-                Room: Marble Gallery, Clock Room
-                Section: Main
-    (Entry) Underground Caverns -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Marble Gallery, Loading Room to Underground Caverns
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Unlock Blue Doors: true
-            Status - Pressure Plate in Marble Gallery Activated: true
-            Subweapon: Stopwatch
-        Goals:
-            Reach Hub:
-                Room: Marble Gallery, Clock Room
-                Section: Main
-    (Check) Hub -> Gravity Boots Location:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Marble Gallery, Clock Room
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Unlock Blue Doors: true
-            Status - Pressure Plate in Marble Gallery Activated: true
-            Subweapon: Stopwatch
-        Goals:
-            Reach Check:
+            Layer 3:
                 Check - Gravity Boots Location: true
-    (Check) Hub -> Spirit Orb Location:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Marble Gallery, Clock Room
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Unlock Blue Doors: true
-            Status - Pressure Plate in Marble Gallery Activated: true
-            Subweapon: Stopwatch
-        Goals:
-            Reach Check:
                 Check - Spirit Orb Location: true
-    (Exit) Hub -> Alchemy Laboratory:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Marble Gallery, Clock Room
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Unlock Blue Doors: true
-            Status - Pressure Plate in Marble Gallery Activated: true
-            Subweapon: Stopwatch
-        Goals:
-            Reach Exit:
-                Room: Marble Gallery, Loading Room to Alchemy Laboratory
-                Section: Main
-    (Exit) Hub -> Castle Entrance:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Marble Gallery, Clock Room
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Unlock Blue Doors: true
-            Status - Pressure Plate in Marble Gallery Activated: true
-            Subweapon: Stopwatch
-        Goals:
-            Reach Exit:
-                Room: Marble Gallery, Loading Room to Castle Entrance
-                Section: Main
-    (Exit) Hub -> Olrox's Quarters:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Marble Gallery, Clock Room
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Unlock Blue Doors: true
-            Status - Pressure Plate in Marble Gallery Activated: true
-            Subweapon: Stopwatch
-        Goals:
-            Reach Exit:
-                Room: Marble Gallery, Loading Room to Olrox's Quarters
-                Section: Main
-    (Exit) Hub -> Outer Wall:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Marble Gallery, Clock Room
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Unlock Blue Doors: true
-            Status - Pressure Plate in Marble Gallery Activated: true
-            Subweapon: Stopwatch
-        Goals:
-            Reach Exit:
-                Room: Marble Gallery, Loading Room to Outer Wall
-                Section: Main
-    (Exit) Hub -> Underground Caverns:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Marble Gallery, Clock Room
-            Section: Main
-            Progression - Bat Transformation: true
-            Progression - Unlock Blue Doors: true
-            Status - Pressure Plate in Marble Gallery Activated: true
-            Subweapon: Stopwatch
-        Goals:
-            Reach Exit:
-                Room: Marble Gallery, Loading Room to Underground Caverns
-                Section: Main
+                Sections Visited:
+                    All:
+                        Marble Gallery, Clock Room (Main): true
 Olrox's Quarters:
-    (Entry) Colosseum -> Hub:
+    (Progression) Layer 1 -> Layer 2:
         Solver: *solve-within-99-steps
         State:
-            Room: Olrox's Quarters, Loading Room to Colosseum
-            Section: Main
+            Room: Elsewhere
+            Section: Elsewhere
+            Option - Normalize room connections: true
+            Progression - Bat Transformation: true
+        Goals:
+            Layer 2:
+                Status - Breakable Ceiling in Catwalk Crypt Broken: true
+                Status - Breakable Wall in Grand Staircase Broken: true
+    (Progression) Layer 2 -> Layer 3:
+        Solver: *solve-within-99-steps
+        State:
+            Room: Elsewhere
+            Section: Elsewhere
+            Option - Normalize room connections: true
             Progression - Bat Transformation: true
             Status - Breakable Ceiling in Catwalk Crypt Broken: true
             Status - Breakable Wall in Grand Staircase Broken: true
         Goals:
-            Reach Hub:
-                Room: Olrox's Quarters, Grand Staircase
-                Section: Main
-    (Entry) Marble Gallery -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Olrox's Quarters, Loading Room to Marble Gallery
-            Section: Main
-            Progression - Bat Transformation: true
-            Status - Breakable Ceiling in Catwalk Crypt Broken: true
-            Status - Breakable Wall in Grand Staircase Broken: true
-        Goals:
-            Reach Hub:
-                Room: Olrox's Quarters, Grand Staircase
-                Section: Main
-    (Entry) Royal Chapel -> Hub:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Olrox's Quarters, Loading Room to Royal Chapel
-            Section: Main
-            Progression - Bat Transformation: true
-            Status - Breakable Ceiling in Catwalk Crypt Broken: true
-            Status - Breakable Wall in Grand Staircase Broken: true
-        Goals:
-            Reach Hub:
-                Room: Olrox's Quarters, Grand Staircase
-                Section: Main
-    (Check) Hub -> Echo of Bat Location:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Olrox's Quarters, Grand Staircase
-            Section: Main
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Check:
+            Layer 3:
                 Check - Echo of Bat Location: true
-    (Check) Hub -> Sword Card Location:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Olrox's Quarters, Grand Staircase
-            Section: Main
-            Progression - Bat Transformation: true
-        Goals:
-            Reach Check:
                 Check - Sword Card Location: true
-    (Exit) Hub -> Colosseum:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Olrox's Quarters, Grand Staircase
-            Section: Main
-            Progression - Bat Transformation: true
-            Status - Breakable Ceiling in Catwalk Crypt Broken: true
-            Status - Breakable Wall in Grand Staircase Broken: true
-        Goals:
-            Reach Exit:
-                Room: Olrox's Quarters, Loading Room to Colosseum
-                Section: Main
-    (Exit) Hub -> Marble Gallery:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Olrox's Quarters, Grand Staircase
-            Section: Main
-            Progression - Bat Transformation: true
-            Status - Breakable Ceiling in Catwalk Crypt Broken: true
-            Status - Breakable Wall in Grand Staircase Broken: true
-        Goals:
-            Reach Exit:
-                Room: Olrox's Quarters, Loading Room to Marble Gallery
-                Section: Main
-    (Exit) Hub -> Royal Chapel:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Olrox's Quarters, Grand Staircase
-            Section: Main
-            Progression - Bat Transformation: true
-            Status - Breakable Ceiling in Catwalk Crypt Broken: true
-            Status - Breakable Wall in Grand Staircase Broken: true
-        Goals:
-            Reach Exit:
-                Room: Olrox's Quarters, Loading Room to Royal Chapel
-                Section: Main
-    (Exit) Hub -> Warp Rooms:
-        Solver: *solve-within-99-steps
-        State:
-            Room: Olrox's Quarters, Grand Staircase
-            Section: Main
-            Progression - Bat Transformation: true
-            Status - Breakable Ceiling in Catwalk Crypt Broken: true
-            Status - Breakable Wall in Grand Staircase Broken: true
-        Goals:
-            Reach Exit:
-                Room: Olrox's Quarters, Loading Room to Warp Rooms
-                Section: Main
+                Sections Visited:
+                    All:
+                        Olrox's Quarters, Olrox's Room (Ground): true
 Outer Wall:
     (Entry) Clock Tower -> Hub:
         Solver: *solve-within-99-steps
@@ -1109,7 +689,7 @@ Royal Chapel:
                 Sections Visited:
                     All:
                         Royal Chapel, Hippogryph Room (Main): true
-    SKIP - (Progression) Layer 1 -> Layer 2:
+    (Progression) Layer 1 -> Layer 2:
         Solver: *solve-within-99-steps
         State:
             Room: Elsewhere
