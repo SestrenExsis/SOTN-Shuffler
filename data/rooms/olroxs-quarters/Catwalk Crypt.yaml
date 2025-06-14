@@ -53,17 +53,19 @@ Commands:
                 Section: Main
                 Progression - Gravity Jump: true
                 Status - Breakable Ceiling in Catwalk Crypt Broken: true
+                Technique - Gravity Jump: true
             Main - Powered Mist, Broken Ceiling:
                 Section: Main
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
                 Status - Breakable Ceiling in Catwalk Crypt Broken: true
+                Technique - Powered Mist Travel (Short): true
             Main - Wolf-Mist Rise, Broken Ceiling:
                 Section: Main
-                Execution - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
                 Status - Breakable Ceiling in Catwalk Crypt Broken: true
+                Technique - Wolf-Mist Rise (Long): true
     Move - Main:
         Outcomes:
             Section: Main

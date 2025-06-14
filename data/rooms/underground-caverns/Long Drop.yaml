@@ -112,11 +112,12 @@ Commands:
                 Section: Middle-Left Ledge
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Middle-Left Ledge - Return with Powered Mist:
                 Section: Middle-Left Ledge
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-                Technique - Very Long Mist Travel: true
+                Technique - Powered Mist Travel (Very Long): true
             Middle-Right Ledge - Logical Risk:
                 Section: Middle-Right Ledge
                 Option - Permit Logical Risks: true
@@ -127,21 +128,24 @@ Commands:
                 Section: Middle-Right Ledge
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Middle-Right Ledge - Return with Powered Mist:
                 Section: Middle-Right Ledge
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-                Technique - Very Long Mist Travel: true
+                Technique - Powered Mist Travel (Very Long): true
             Rising - Bat Form:
                 Section: Rising
                 Progression - Bat Transformation: true
             Rising - Gravity Jump:
                 Section: Rising
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Rising - Powered Mist:
                 Section: Rising
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
             Upper Stairwell - Logical Risk:
                 Section: Upper Stairwell
                 Option - Permit Logical Risks: true
@@ -152,11 +156,12 @@ Commands:
                 Section: Upper Stairwell
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Upper Stairwell - Return with Powered Mist:
                 Section: Upper Stairwell
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-                Technique - Very Long Mist Travel: true
+                Technique - Powered Mist Travel (Very Long): true
     Move - Middle-Left Ledge:
         Outcomes:
             Section: Middle-Left Ledge
@@ -168,11 +173,12 @@ Commands:
                 Section: Lower Ledges
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Lower Ledges - Powered Mist:
                 Section: Lower Ledges
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-                Technique - Very Long Mist Travel: true
+                Technique - Powered Mist Travel (Very Long): true
             Middle-Right Ledge - Bat Form:
                 Section: Middle-Right Ledge
                 Progression - Bat Transformation: true
@@ -185,7 +191,7 @@ Commands:
                 Section: Middle-Right Ledge
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-                Technique - Very Long Mist Travel: true
+                Technique - Powered Mist Travel (Very Long): true
             Upper Stairwell - Logical Risk:
                 Section: Upper Stairwell
                 Option - Permit Logical Risks: true
@@ -196,10 +202,12 @@ Commands:
                 Section: Upper Stairwell
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Upper Stairwell - Return With Powered Mist:
                 Section: Upper Stairwell
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
     Move - Middle-Right Ledge:
         Outcomes:
             Section: Middle-Right Ledge
@@ -216,7 +224,7 @@ Commands:
                 Section: Middle-Left Ledge
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-                Technique - Very Long Mist Travel: true
+                Technique - Powered Mist Travel (Very Long): true
             Lower Ledges - Bat Form:
                 Section: Lower Ledges
                 Progression - Bat Transformation: true
@@ -224,11 +232,12 @@ Commands:
                 Section: Lower Ledges
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Lower Ledges - Powered Mist:
                 Section: Lower Ledges
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-                Technique - Very Long Mist Travel: true
+                Technique - Powered Mist Travel (Very Long): true
             Upper Stairwell - Bat Form:
                 Section: Upper Stairwell
                 Progression - Bat Transformation: true
@@ -236,10 +245,12 @@ Commands:
                 Section: Upper Stairwell
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Upper Stairwell - Powered Mist:
                 Section: Upper Stairwell
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Long): true
     Move - Upper Stairwell:
         Outcomes:
             Section: Upper Stairwell
@@ -251,10 +262,12 @@ Commands:
                 Section: Lower Ledges
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Lower Ledges - Powered Mist:
                 Section: Lower Ledges
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Very Long): true
             Middle-Left Ledge - Bat Form:
                 Section: Middle-Left Ledge
                 Progression - Bat Transformation: true
@@ -262,10 +275,12 @@ Commands:
                 Section: Middle-Left Ledge
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Middle-Left Ledge - Powered Mist:
                 Section: Middle-Left Ledge
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
             Middle-Right Ledge - Bat Form:
                 Section: Middle-Right Ledge
                 Progression - Bat Transformation: true
@@ -273,7 +288,9 @@ Commands:
                 Section: Middle-Right Ledge
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Middle-Right Ledge - Powered Mist:
                 Section: Middle-Right Ledge
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Long): true

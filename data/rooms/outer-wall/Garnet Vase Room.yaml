@@ -44,15 +44,17 @@ Commands:
             Main - Gravity Jump:
                 Section: Main
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Main - Powered Mist:
                 Section: Main
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Short): true
             Main - Wolf-Mist Rise:
                 Section: Main
-                Execution - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Very Long): true
     Move - Main:
         Outcomes:
             Section: Main
@@ -74,9 +76,11 @@ Commands:
             Main - Gravity Jump:
                 Section: Main
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Main - Mist:
                 Section: Main
                 Progression - Mist Transformation: true
-            Main - Wolf:
+            Main - Wolf Slop Jump:
                 Section: Main
                 Progression - Wolf Transformation: true
+                Technique - Wolf Slope Jump: true

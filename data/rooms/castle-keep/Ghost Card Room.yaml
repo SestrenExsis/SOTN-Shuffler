@@ -44,15 +44,17 @@ Commands:
             Platforms - Return With Gravity Jump:
                 Section: Platforms
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Platforms - Return With Powered Mist:
                 Section: Platforms
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
             Platforms - Return With Wolf-Mist Rise:
                 Section: Platforms
-                Execution - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Long): true
     Move - Platforms:
         Outcomes:
             Section: Platforms
@@ -66,12 +68,15 @@ Commands:
             Ground - Gravity Jump:
                 Section: Ground
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Ground - Powered Mist:
                 Section: Ground
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
             Ground - Wolf-Mist Rise:
                 Section: Ground
-                Execution - Wolf-Mist Rise: true
+                Technique - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Long): true

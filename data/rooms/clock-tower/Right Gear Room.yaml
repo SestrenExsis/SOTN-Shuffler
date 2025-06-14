@@ -28,6 +28,7 @@ Commands:
             Default:
                 Section: Main
                 Status - Upper-Right Gear in Clock Tower Set: false
+                Technique - Gear Puzzle: true
     Action - Set Lower-Right Gear:
         Outcomes:
             Status - Lower-Right Gear in Clock Tower Set: true
@@ -35,3 +36,4 @@ Commands:
             Default:
                 Section: Main
                 Status - Lower-Right Gear in Clock Tower Set: false
+                Technique - Gear Puzzle: true

@@ -62,6 +62,7 @@ Commands:
             Middle-Right Ledge - Return With Gravity Jump:
                 Section: Middle-Right Ledge
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Middle-Right Ledge - Return With Mist:
                 Section: Middle-Right Ledge
                 Progression - Mist Transformation: true
@@ -81,9 +82,15 @@ Commands:
             Ground - Gravity Jump:
                 Section: Ground
                 Progression - Gravity Jump: true
-            Ground - Mist:
+                Technique - Gravity Jump: true
+            Ground - Corner Mist:
                 Section: Ground
                 Progression - Mist Transformation: true
+                Technique - Corner Mist (Forgiving): true
+            Ground - Candle Dive Kick:
+                Section: Ground
+                Progression - Mid-Air Reset: true
+                Technique - Candle Dive Kick: true
             Upper-Right Ledge - Logical Risk:
                 Section: Upper-Right Ledge
                 Option - Permit Logical Risks: true
@@ -93,13 +100,16 @@ Commands:
             Upper-Right Ledge - Return With Double Jump:
                 Section: Upper-Right Ledge
                 Progression - Double Jump: true
-            Upper-Right Ledge - Return With Gravity Jump:
+            Upper-Right Ledge - Return With Diagonal Gravity Jump:
                 Section: Upper-Right Ledge
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
+                Technique - Diagonal Gravity Jump: true
             Upper-Right Ledge - Return With Powered Mist:
                 Section: Upper-Right Ledge
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Short): true
     Move - Upper-Right Ledge:
         Outcomes:
             Section: Upper-Right Ledge
@@ -113,10 +123,13 @@ Commands:
             Middle-Right Ledge - Double Jump:
                 Section: Middle-Right Ledge
                 Progression - Double Jump: true
-            Middle-Right Ledge - Gravity Jump:
+            Middle-Right Ledge - Diagonal Gravity Jumps:
                 Section: Middle-Right Ledge
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
+                Technique - Diagonal Gravity Jump: true
             Middle-Right Ledge - Powered Mist:
                 Section: Middle-Right Ledge
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Short): true

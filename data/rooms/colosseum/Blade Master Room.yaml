@@ -40,17 +40,19 @@ Commands:
                 Section: Main
                 Progression - Gravity Jump: true
                 Status - Breakable Ceiling in Blade Master Room Broken: true
+                Technique - Gravity Jump: true
             Main - Powered Mist:
                 Section: Main
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
                 Status - Breakable Ceiling in Blade Master Room Broken: true
+                Technique - Powered Mist Travel (Short): true
             Main - Wolf-Mist Rise:
                 Section: Main
-                Execution - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
                 Status - Breakable Ceiling in Blade Master Room Broken: true
+                Technique - Wolf-Mist Rise (Very Long): true
     Move - Main:
         Outcomes:
             Section: Main

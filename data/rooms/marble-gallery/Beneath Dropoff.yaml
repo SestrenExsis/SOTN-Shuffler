@@ -48,18 +48,26 @@ Commands:
             Main - Bat:
                 Section: Main
                 Progression - Bat Transformation: true
-            Main - Double Jump:
+            Main - Candle Dive Kick and Double Jump:
                 Section: Main
                 Progression - Double Jump: true
+                Technique - Candle Dive Kick: true
+            Main - Double Jump and Corner Mist:
+                Section: Main
+                Progression - Double Jump: true
+                Progression - Mist Transformation: true
+                Technique - Corner Mist (Precise): true
             Main - Gravity Jump:
                 Section: Main
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Main - Powered Mist:
                 Section: Main
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Short): true
             Main - Wolf-Mist Rise:
                 Section: Main
-                Execution - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Long): true

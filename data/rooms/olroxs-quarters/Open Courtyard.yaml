@@ -55,10 +55,12 @@ Commands:
             Lower Right Ledge - Return with Gravity Jump:
                 Section: Lower Right Ledge
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Lower Right Ledge - Return with Powered Mist:
                 Section: Lower Right Ledge
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
             Middle Right Ledge - Logical Risk:
                 Section: Middle Right Ledge
                 Option - Permit Logical Risks: true
@@ -69,10 +71,12 @@ Commands:
                 Section: Middle Right Ledge
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Middle Right Ledge - Return with Powered Mist:
                 Section: Middle Right Ledge
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Very Long): true
             Upper Ledges - Logical Risk:
                 Section: Upper Ledges
                 Option - Permit Logical Risks: true
@@ -83,11 +87,12 @@ Commands:
                 Section: Upper Ledges
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Upper Ledges - Return with Powered Mist:
                 Section: Upper Ledges
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-                Technique - Very Long Mist Travel: true
+                Technique - Powered Mist Travel (Very Long): true
     Move - Lower Right Ledge:
         Outcomes:
             Section: Lower Right Ledge
@@ -95,6 +100,7 @@ Commands:
             Ground - Gravity Jump:
                 Section: Ground
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Ground - Bat:
                 Section: Ground
                 Progression - Bat Transformation: true
@@ -111,10 +117,12 @@ Commands:
                 Section: Ground
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Ground - Powered Mist:
                 Section: Ground
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Long): true
     Move - Rising:
         Outcomes:
             Section: Rising
@@ -125,10 +133,12 @@ Commands:
             Upper Ledges - Gravity Jump:
                 Section: Upper Ledges
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Upper Ledges - Powered Mist:
                 Section: Upper Ledges
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Short): true
     Move - Upper Ledges:
         Outcomes:
             Section: Upper Ledges
@@ -142,10 +152,12 @@ Commands:
                 Section: Ground
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Ground - Powered Mist:
                 Section: Ground
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Very Long): true
             Middle Right Ledge - Bat:
                 Section: Middle Right Ledge
                 Progression - Bat Transformation: true
@@ -153,10 +165,12 @@ Commands:
                 Section: Middle Right Ledge
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Middle Right Ledge - Powered Mist:
                 Section: Middle Right Ledge
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Long): true
             Lower Right Ledge - Bat:
                 Section: Lower Right Ledge
                 Progression - Bat Transformation: true
@@ -164,7 +178,9 @@ Commands:
                 Section: Lower Right Ledge
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Lower Right Ledge - Powered Mist:
                 Section: Lower Right Ledge
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Long): true

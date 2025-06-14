@@ -193,7 +193,7 @@ Castle Entrance:
             Option - Normalize room connections: true
             Progression - Bat Transformation: true
             Progression - Wolf Transformation: true
-            Skill - Open Secret Wall in Merman Room: true
+            Technique - Open Secret Wall in Merman Room: true
         Goals:
             Layer 2:
                 Status - Secret Wall in Merman Room Opened: true
@@ -212,7 +212,7 @@ Castle Entrance:
             Status - Shortcut in Cube of Zoe Room Activated: true
             Status - Shortcut to Underground Caverns Activated: true
             Status - Shortcut to Warp Rooms Activated: true
-            Skill - Open Secret Wall in Merman Room: true
+            Technique - Open Secret Wall in Merman Room: true
         Goals:
             Layer 3:
                 Check - Cube of Zoe Location: true

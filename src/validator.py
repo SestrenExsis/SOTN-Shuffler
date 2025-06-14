@@ -9,12 +9,7 @@ import yaml
 import mapper
 import solver
 
-rules = {}
-skills = {
-    "Technique - Pixel-Perfect Diagonal Gravity Jump Through Narrow Gap": True,
-}
-
-def validate_logic(mapper_core, changes) -> bool:
+def validate_logic(mapper_core, changes, skills) -> bool:
     SOFTLOCK_CHECK__CYCLE_LIMIT = 199
     SOFTLOCK_CHECK__MAX_SOFTLOCKS = 0
     SOFTLOCK_CHECK__ATTEMPT_COUNT = 10
@@ -29,7 +24,7 @@ def validate_logic(mapper_core, changes) -> bool:
     final_goal_ind = False
     print('')
     while True:
-        print(len(map_solver.current_game.goals_remaining), map_solver.current_game.current_state['Room'], map_solver.current_game.progression, map_solver.current_game.get_progression())
+        print(len(map_solver.current_game.goals_remaining), map_solver.current_game.get_progression(), map_solver.current_game.current_state['Room'], map_solver.current_game.progression)
         prev_game = map_solver.current_game.clone()
         # Guard against softlocks
         map_solver.debug = False

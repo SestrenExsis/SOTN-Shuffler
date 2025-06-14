@@ -67,11 +67,13 @@ Commands:
                 Section: Bottom, Rising
                 Progression - Gravity Jump: true
                 Status - Breakable Floor in Hidden Crystal Entrance Broken: true
+                Technique - Gravity Jump: true
             Bottom, Rising - Powered Mist:
                 Section: Bottom, Rising
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
                 Status - Breakable Floor in Hidden Crystal Entrance Broken: true
+                Technique - Powered Mist Travel (Short): true
             Top, Falling - Default:
                 Section: Top, Falling
     Move - Top, Rising:
@@ -84,10 +86,12 @@ Commands:
             Main - Gravity Jump:
                 Section: Main
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Main - Powered Mist:
                 Section: Main
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
     Action - Break Floor:
         Outcomes:
             Status - Breakable Floor in Hidden Crystal Entrance Broken: true

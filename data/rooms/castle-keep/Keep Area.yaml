@@ -140,13 +140,16 @@ Commands:
                 Section: Bottom of Stairwell
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Bottom of Stairwell - Diagonal Gravity Jump:
                 Section: Bottom of Stairwell
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Bottom of Stairwell - Powered Mist:
                 Section: Bottom of Stairwell
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
             Falling - Default:
                 Section: Falling
             Ground - Bat Form:
@@ -156,10 +159,12 @@ Commands:
                 Section: Ground
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Ground - Powered Mist:
                 Section: Ground
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Very Long): true
             Throne Room - Richter Saved:
                 Section: Throne Room
                 Status - Richter Saved: true
@@ -170,10 +175,12 @@ Commands:
                 Section: Upper-Right Ledge
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Upper-Right Ledge - Powered Mist:
                 Section: Upper-Right Ledge
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Long): true
     Move - Bottom of Stairwell:
         Outcomes:
             Section: Bottom of Stairwell
@@ -187,10 +194,12 @@ Commands:
                 Section: Ground
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Ground - Powered Mist:
                 Section: Ground
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Long): true
             Middle-Left Ledge - Bat Form:
                 Section: Middle-Left Ledge
                 Progression - Bat Transformation: true
@@ -198,10 +207,12 @@ Commands:
                 Section: Middle-Left Ledge
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Middle-Left Ledge - Powered Mist:
                 Section: Middle-Left Ledge
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
             Upper-Right Ledge - Default:
                 Section: Upper-Right Ledge
     Move - Ground:
@@ -225,10 +236,12 @@ Commands:
                 Section: Bottom of Stairwell
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Bottom of Stairwell - Powered Mist:
                 Section: Bottom of Stairwell
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Very Long): true
             Ground - Bat Form:
                 Section: Ground
                 Progression - Bat Transformation: true
@@ -236,10 +249,12 @@ Commands:
                 Section: Ground
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Ground - Powered Mist:
                 Section: Ground
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Very Long): true
     Move - Rising:
         Outcomes:
             Section: Rising
@@ -251,7 +266,7 @@ Commands:
             Section: Teleporter
         Requirements:
             Throne Room - Richter Saved:
-                Section: Anteroom
+                Section: Throne Room
                 Status - Richter Saved: true
     Move - Throne Room:
         Outcomes:
@@ -259,6 +274,7 @@ Commands:
         Requirements:
             Anteroom - Default:
                 Section: Anteroom
+                Status - Richter Saved: true
             Teleporter - Default:
                 Section: Teleporter
     Move - Upper-Right Ledge:
@@ -272,10 +288,12 @@ Commands:
                 Section: Anteroom
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Anteroom - Powered Mist:
                 Section: Anteroom
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Long): true
             Bottom of Stairwell - Bat Form:
                 Section: Bottom of Stairwell
                 Progression - Bat Transformation: true
@@ -283,21 +301,18 @@ Commands:
                 Section: Bottom of Stairwell
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Bottom of Stairwell - Powered Mist:
                 Section: Bottom of Stairwell
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-    Action - Defeat Richter:
-        Outcomes:
-            Status - Richter Defeated: true
-        Requirements:
-            Default:
-                Section: Throne Room
+                Technique - Powered Mist Travel (Long): true
     Action - Save Richter:
         Outcomes:
             Status - Richter Saved: true
         Requirements:
             Default:
                 Section: Throne Room
+                Status - Richter Defeated: false
                 Item - Holy Glasses:
                     Minimum: 1

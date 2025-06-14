@@ -52,10 +52,12 @@ Commands:
             Ground - Gravity Jump:
                 Section: Ground
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Ground - Powered Mist:
                 Section: Ground
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Long): true
             Lower-Left Ledge - Bat:
                 Section: Lower-Left Ledge
                 Progression - Bat Transformation: true
@@ -65,13 +67,16 @@ Commands:
             Lower-Left Ledge - Gravity Jump:
                 Section: Lower-Left Ledge
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Lower-Left Ledge - Powered Mist:
                 Section: Lower-Left Ledge
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Long): true
             Lower-Left Ledge - Wolf:
                 Section: Lower-Left Ledge
                 Progression - Wolf Transformation: true
+                Technique - Wolf Through Clock Tower Courtyard: true
             Middle-Right Ledge - Bat:
                 Section: Middle-Right Ledge
                 Progression - Bat Transformation: true
@@ -81,13 +86,16 @@ Commands:
             Middle-Right Ledge - Gravity Jump:
                 Section: Middle-Right Ledge
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Middle-Right Ledge - Powered Mist:
                 Section: Middle-Right Ledge
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Long): true
             Middle-Right Ledge - Wolf:
                 Section: Middle-Right Ledge
                 Progression - Wolf Transformation: true
+                Technique - Wolf Through Clock Tower Courtyard: true
             Upper-Left Ledge - Default:
                 Section: Upper-Left Ledge
             Upper-Right Ledge - Default:
@@ -113,23 +121,28 @@ Commands:
             Center Area - Gravity Jump:
                 Section: Center Area
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Center Area - Powered Mist:
                 Section: Center Area
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Long): true
             Center Area - Wolf:
                 Section: Center Area
                 Progression - Wolf Transformation: true
+                Technique - Wolf Through Clock Tower Courtyard: true
             Ground - Bat:
                 Section: Ground
                 Progression - Bat Transformation: true
             Ground - Gravity Jump:
                 Section: Ground
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Ground - Powered Mist:
                 Section: Ground
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Long): true
     Move - Middle-Right Ledge:
         Outcomes:
             Section: Middle-Right Ledge
@@ -143,13 +156,16 @@ Commands:
             Center Area - Gravity Jump:
                 Section: Center Area
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Center Area - Powered Mist:
                 Section: Center Area
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Long): true
             Center Area - Wolf:
                 Section: Center Area
                 Progression - Wolf Transformation: true
+                Technique - Wolf Through Clock Tower Courtyard: true
     Move - Upper-Left Ledge:
         Outcomes:
             Section: Upper-Left Ledge
@@ -161,10 +177,12 @@ Commands:
                 Section: Center Area
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Center Area - Powered Mist:
                 Section: Center Area
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Long): true
     Move - Upper-Right Ledge:
         Outcomes:
             Section: Upper-Right Ledge
@@ -176,7 +194,9 @@ Commands:
                 Section: Center Area
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Center Area - Powered Mist:
                 Section: Center Area
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Long): true

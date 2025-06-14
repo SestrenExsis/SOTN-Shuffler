@@ -41,10 +41,12 @@ Commands:
             Upper-Left Ledge - Return With Gravity Jump:
                 Section: Upper-Left Ledge
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Upper-Left Ledge - Return With Powered Mist:
                 Section: Upper-Left Ledge
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Long): true
             Upper-Right Ledge - Logical Blunder:
                 Section: Upper-Right Ledge
                 Option - Permit Logical Blunders: true
@@ -54,10 +56,12 @@ Commands:
             Upper-Right Ledge - Return With Gravity Jump:
                 Section: Upper-Right Ledge
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Upper-Right Ledge - Return With Powered Mist:
                 Section: Upper-Right Ledge
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Long): true
     Move - Upper-Left Ledge:
         Outcomes:
             Section: Upper-Left Ledge
@@ -70,11 +74,13 @@ Commands:
                 Section: Ground
                 Progression - Gravity Jump: true
                 Progression - Olrox Defeated: true
+                Technique - Gravity Jump: true
             Ground - Powered Mist, Boss Defeated:
                 Section: Ground
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
                 Progression - Olrox Defeated: true
+                Technique - Powered Mist Travel (Long): true
     Move - Upper-Right Ledge:
         Outcomes:
             Section: Upper-Right Ledge
@@ -87,8 +93,10 @@ Commands:
                 Section: Ground
                 Progression - Gravity Jump: true
                 Progression - Olrox Defeated: true
+                Technique - Gravity Jump: true
             Ground - Powered Mist, Boss Defeated:
                 Section: Ground
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
                 Progression - Olrox Defeated: true
+                Technique - Powered Mist Travel (Long): true

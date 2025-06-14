@@ -51,12 +51,6 @@ def get_room_drawing(mapper_core, room_name) -> list[str]:
         result.append(''.join(grid[row]))
     return result
 
-rules = {}
-
-skills = {
-    "Technique - Pixel-Perfect Diagonal Gravity Jump Through Narrow Gap": True,
-}
-
 # NOTE(sestren): There is only one boss teleporter in the game data for the following bosses,
 # NOTE(sestren): despite there being multiple entrances, so not all entrances will be covered:
 # NOTE(sestren): Granfaloon, Akmodan II, Olrox, Galamoth
@@ -504,7 +498,9 @@ if __name__ == '__main__':
     parser.add_argument('--seed', help='Input an optional starting seed', type=str)
     parser.add_argument('--output', help='Input an optional filename for the output JSON', type=str)
     parser.add_argument('--no-metadata', help='Remove all metadata from the output JSON', dest='metadata', action='store_false')
+    parser.add_argument('--skillset', help='The assumed skillset to use when validating', type=str, default='Casual')
     settings = {}
+    skills = {}
     stage_validations = {}
     validation_results = {}
     validation_results_filepath = os.path.join('build', 'shuffler', 'validation_results.json')
@@ -513,10 +509,14 @@ if __name__ == '__main__':
         open(args.settings) as settings_file,
         open(args.stage_validations) as stage_validations_file,
         open(validation_results_filepath) as validation_results_json,
+        open(os.path.join('examples', 'skillsets.yaml')) as skillsets_file,
     ):
         settings = yaml.safe_load(settings_file)
         stage_validations = yaml.safe_load(stage_validations_file)
         validation_results = json.load(validation_results_json)
+        skillsets = yaml.safe_load(skillsets_file)
+        for skill in skillsets[args.skillset]:
+            skills[skill] = True
     MIN_MAP_ROW = 5
     MAX_MAP_ROW = 55
     MIN_MAP_COL = 0
@@ -1018,7 +1018,7 @@ if __name__ == '__main__':
             }
         # print('*********')
         # Validate First Castle to ensure it is solvable
-        if validator.validate_logic(mapper_core, changes):
+        if validator.validate_logic(mapper_core, changes, skills):
             pass
         else:
             for stage_name in sorted(shuffler['Stages']):

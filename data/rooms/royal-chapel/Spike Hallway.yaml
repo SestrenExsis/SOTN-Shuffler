@@ -37,8 +37,7 @@ Commands:
                 Section: Middle
                 Progression - Unlock Blue Doors: true
                 Progression - Bat Transformation: true
-                Item - Potion:
-                    Minimum: 1
+                Technique - Invincibility Frame Abuse: true
             Middle - Blue Door with Spike Breaker:
                 Section: Middle
                 Progression - Unlock Blue Doors: true

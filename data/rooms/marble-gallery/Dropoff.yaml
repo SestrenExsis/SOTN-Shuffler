@@ -46,15 +46,17 @@ Commands:
                 Section: Rising
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Rising - Powered Mist:
                 Section: Rising
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Short): true
             Rising - Wolf-Mist Rise:
                 Section: Rising
-                Execution - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Long): true
             Right Side - Bat:
                 Section: Right Side
                 Progression - Bat Transformation: true
@@ -62,15 +64,12 @@ Commands:
                 Section: Right Side
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Right Side - Powered Mist:
                 Section: Right Side
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
-            Right Side - Wolf-Mist Rise:
-                Section: Right Side
-                Execution - Wolf-Mist Rise: true
-                Progression - Mist Transformation: true
-                Progression - Wolf Transformation: true
+                Technique - Powered Mist Travel (Short): true
     Move - Right Side:
         Outcomes:
             Section: Right Side
@@ -82,15 +81,17 @@ Commands:
                 Section: Rising
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Rising - Powered Mist:
                 Section: Rising
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Short): true
             Rising - Wolf-Mist Rise:
                 Section: Rising
-                Execution - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Long): true
             Left Side - Bat:
                 Section: Left Side
                 Progression - Bat Transformation: true
@@ -98,15 +99,12 @@ Commands:
                 Section: Left Side
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Left Side - Powered Mist:
                 Section: Left Side
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
-            Left Side - Wolf-Mist Rise:
-                Section: Left Side
-                Execution - Wolf-Mist Rise: true
-                Progression - Mist Transformation: true
-                Progression - Wolf Transformation: true
+                Technique - Powered Mist Travel (Short): true
     Move - Falling:
         Outcomes:
             Section: Falling
@@ -120,14 +118,17 @@ Commands:
             Left Side - Return with Gravity Jump:
                 Section: Left Side
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Left Side - Return with Powered Mist:
                 Section: Left Side
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-            Left Side - Return with Double Jump and Mist:
+                Technique - Powered Mist Travel (Short): true
+            Left Side - Return with Double Jump and Corner Mist:
                 Section: Left Side
                 Progression - Double Jump: true
                 Progression - Mist Transformation: true
+                Technique - Corner Mist (Precise): true
             Left Side - Return with Double Jump and Candle Dive Kick:
                 Section: Left Side
                 Progression - Double Jump: true

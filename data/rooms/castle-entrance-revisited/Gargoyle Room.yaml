@@ -38,7 +38,7 @@ Commands:
         Outcomes:
             Section: Bottom, Falling
         Requirements:
-            Default - Main:
+            Main - Default:
                 Section: Main
             Default - Bottom, Rising:
                 Section: Bottom, Rising
@@ -46,13 +46,15 @@ Commands:
         Outcomes:
             Section: Main
         Requirements:
-            Lower - Bat Form:
+            Bottom, Rising - Bat Form:
                 Section: Bottom, Rising
                 Progression - Bat Transformation: true
-            Lower - Powered Mist:
+            Bottom, Rising - Powered Mist:
                 Section: Bottom, Rising
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-            Lower - Gravity Jump:
+                Technique - Powered Mist Travel (Long): true
+            Bottom, Rising - Gravity Jump:
                 Section: Bottom, Rising
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true

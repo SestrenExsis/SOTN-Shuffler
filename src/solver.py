@@ -6,6 +6,7 @@ import heapq
 import json
 import os
 import random
+import yaml
 
 # Local libraries
 import mapper
@@ -604,10 +605,6 @@ class Solver():
                         continue
                     heapq.heappush(work__solver, (-next_game__solver.get_score(), next_step__solver, next_game__solver))
 
-skills = {
-    "Technique - Pixel-Perfect Diagonal Gravity Jump Through Narrow Gap": True,
-}
-
 if __name__ == '__main__':
     '''
     Usage
@@ -619,10 +616,13 @@ if __name__ == '__main__':
     args = parser.parse_args()
     SOLVER_VERSION = '0.0.0'
     mapper_core = mapper.MapperData().get_core()
-    with open(os.path.join('build', 'solver', 'mapper-data.json'), 'w') as debug_mapper_data_json:
+    with (
+        open(os.path.join('build', 'solver', 'mapper-data.json'), 'w') as debug_mapper_data_json,
+    ):
         json.dump(mapper_core, debug_mapper_data_json, indent='    ', sort_keys=True, default=str)
     with (
         open(args.changes) as changes_json,
+        open(os.path.join('examples', 'skillsets.yaml')) as skillsets_file,
     ):
         changes = json.load(changes_json)
         changes_json.close()
@@ -632,6 +632,10 @@ if __name__ == '__main__':
         with open(os.path.join('build', 'solver', 'logic-core.json'), 'w') as debug_logic_core_json:
             json.dump(logic_core, debug_logic_core_json, indent='    ', sort_keys=True, default=str)
         print('Solving')
+        skillsets = yaml.safe_load(skillsets_file)
+        skills = {}
+        for skill in skillsets['Casual']:
+            skills[skill] = True
         SOFTLOCK_CHECK__CYCLE_LIMIT = 99
         SOFTLOCK_CHECK__MAX_SOFTLOCKS = 0
         SOFTLOCK_CHECK__ATTEMPT_COUNT = 5

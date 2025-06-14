@@ -62,9 +62,16 @@ Commands:
             Upper Area - Return With Gravity Jump:
                 Section: Upper Area
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Upper Area - Return With Mist:
                 Section: Upper Area
                 Progression - Mist Transformation: true
+                Technique - Corner Mist (Precise): true
+            Upper Area - Return With Powered Mist:
+                Section: Upper Area
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
     Move - Top, Rising:
         Outcomes:
             Section: Top, Rising
@@ -86,6 +93,13 @@ Commands:
             Lower Area - Gravity Jump:
                 Section: Lower Area
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Lower Area - Mist:
                 Section: Lower Area
                 Progression - Mist Transformation: true
+                Technique - Corner Mist (Precise): true
+            Lower Area - Powered Mist:
+                Section: Upper Area
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true

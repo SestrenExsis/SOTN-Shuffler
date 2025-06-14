@@ -44,6 +44,7 @@ Commands:
         Requirements:
             Ground - Box Puzzle:
                 Section: Ground
+                Technique - Box Puzzle: true
             Ground - Bat:
                 Section: Ground
                 Progression - Bat Transformation: true
@@ -53,18 +54,44 @@ Commands:
             Ground - Gravity Jump:
                 Section: Ground
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Ground - Powered Mist:
                 Section: Ground
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Short): true
             Ground - Wolf-Mist Rise:
                 Section: Ground
-                Execution - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Short): true
     Move - Ground:
         Outcomes:
             Section: Ground
         Requirements:
-            Default:
+            Ledge - Logical Risk:
                 Section: Ledge
+                Option - Permit Logical Risks: true
+            Ledge - Return With Box Puzzle:
+                Section: Ledge
+                Technique - Box Puzzle: true
+            Ledge - Return With Bat:
+                Section: Ledge
+                Progression - Bat Transformation: true
+            Ledge - Return With Double Jump:
+                Section: Ledge
+                Progression - Double Jump: true
+            Ledge - Return With Gravity Jump:
+                Section: Ledge
+                Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
+            Ledge - Return With Powered Mist:
+                Section: Ledge
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Short): true
+            Ledge - Return With Wolf-Mist Rise:
+                Section: Ledge
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Short): true

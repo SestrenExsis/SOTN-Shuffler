@@ -63,15 +63,17 @@ Commands:
             Layer 3 - Gravity Jump:
                 Section: Layer 3
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Layer 3 - Powered Mist:
                 Section: Layer 3
                 Progression - Mist Transformation: true
                 Progression - Extended Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
             Layer 3 - Wolf-Mist Rise:
                 Section: Layer 3
-                Execution - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Long): true
     Move - Layer 3:
         Outcomes:
             Section: Layer 3
@@ -87,37 +89,41 @@ Commands:
             Layer 2 - Gravity Jump:
                 Section: Layer 2
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Layer 2 - Powered Mist:
                 Section: Layer 2
                 Progression - Mist Transformation: true
                 Progression - Extended Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
             Layer 2 - Wolf-Mist Rise:
                 Section: Layer 2
-                Execution - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Long): true
     Move - Layer 2:
         Outcomes:
             Section: Layer 2
         Requirements:
-            Layer 3 - Bat Form:
+            Layer 3 - Return With Bat Form:
                 Section: Layer 3
                 Progression - Bat Transformation: true
-            Layer 3 - Double Jump:
+            Layer 3 - Return With Double Jump:
                 Section: Layer 3
                 Progression - Double Jump: true
-            Layer 3 - Gravity Jump:
+            Layer 3 - Return With Gravity Jump:
                 Section: Layer 3
                 Progression - Gravity Jump: true
-            Layer 3 - Powered Mist:
+                Technique - Gravity Jump: true
+            Layer 3 - Return With Powered Mist:
                 Section: Layer 3
                 Progression - Mist Transformation: true
                 Progression - Extended Mist Duration: true
-            Layer 3 - Wolf-Mist Rise:
+                Technique - Powered Mist Travel (Short): true
+            Layer 3 - Return With Wolf-Mist Rise:
                 Section: Layer 3
-                Execution - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Long): true
             Layer 3 - Logical Blunder:
                 Section: Layer 3
                 Option - Permit Logical Blunders: true
@@ -134,6 +140,7 @@ Commands:
             Layer 1 - Gravity Jump:
                 Section: Layer 1
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Layer 1 - Mist:
                 Section: Layer 1
                 Progression - Mist Transformation: true
@@ -141,16 +148,17 @@ Commands:
         Outcomes:
             Section: Layer 1
         Requirements:
-            Layer 2 - Bat Form:
+            Layer 2 - Return With Bat Form:
                 Section: Layer 2
                 Progression - Bat Transformation: true
-            Layer 2 - Double Jump:
+            Layer 2 - Return With Double Jump:
                 Section: Layer 2
                 Progression - Double Jump: true
-            Layer 2 - Gravity Jump:
+            Layer 2 - Return With Gravity Jump:
                 Section: Layer 2
                 Progression - Gravity Jump: true
-            Layer 2 - Mist:
+                Technique - Gravity Jump: true
+            Layer 2 - Return With Mist:
                 Section: Layer 2
                 Progression - Mist Transformation: true
             Layer 2 - Logical Blunder:
