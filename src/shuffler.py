@@ -505,6 +505,9 @@ if __name__ == '__main__':
     validation_results = {}
     validation_results_filepath = os.path.join('build', 'shuffler', 'validation_results.json')
     args = parser.parse_args()
+    skillset = args.skillset
+    if skillset is None:
+        skillset = 'Casual'
     with (
         open(args.settings) as settings_file,
         open(args.stage_validations) as stage_validations_file,

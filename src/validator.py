@@ -71,7 +71,7 @@ def validate_logic(mapper_core, changes, skills) -> bool:
                 json.dump(debug_state, debug_json, indent='    ', sort_keys=True, default=str)
     return result
 
-def validate_stage(mapper_core, mapper_data, stage_name, validation) -> bool:
+def validate_stage(mapper_core, mapper_data, stage_name, validation, skills) -> bool:
     current_mapper = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
     current_mapper.generate()
     current_mapper.stage.normalize_bounds()
@@ -156,12 +156,21 @@ if __name__ == '__main__':
     print('Validate all generated maps')
     parser = argparse.ArgumentParser()
     parser.add_argument('stage_validations', help='Input a filepath to the stage validations YAML file', type=str)
-    stage_validations = {}
+    parser.add_argument('--skillset', help='The assumed skillset to use when validating', type=str, default='Casual')
     args = parser.parse_args()
+    stage_validations = {}
+    skills = {}
+    skillset = args.skillset
+    if skillset is None:
+        skillset = 'Casual'
     with (
         open(args.stage_validations) as stage_validations_file,
+        open(os.path.join('examples', 'skillsets.yaml')) as skillsets_file,
     ):
         stage_validations = yaml.safe_load(stage_validations_file)
+        skillsets = yaml.safe_load(skillsets_file)
+        for skill in skillsets[args.skillset]:
+            skills[skill] = True
     results = {}
     results_filepath = os.path.join('build', 'shuffler', 'validation_results.json')
     if os.path.exists(results_filepath):
@@ -215,7 +224,7 @@ if __name__ == '__main__':
                 if hash_of_validation not in results[stage_name][hash_of_rooms]:
                     should_validate_ind = True
                 if should_validate_ind:
-                    valid_ind = validate_stage(mapper_core, mapper_data, stage_name, validation)
+                    valid_ind = validate_stage(mapper_core, mapper_data, stage_name, validation, skills)
                     results[stage_name][hash_of_rooms][hash_of_validation] = valid_ind
                     if stage_name != prev_stage:
                         print('', stage_name)
