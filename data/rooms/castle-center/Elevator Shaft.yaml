@@ -21,13 +21,72 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Top
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Top
+        Exit Section: Top
     Bottom Passage:
         Type: "#####......#####"
         Row: 1
         Column: 0
         Edge: Bottom
-        Entry Section: Main
-        Exit Section: Main
-Commands: {}
+        Entry Section: Bottom
+        Exit Section: Bottom
+Commands:
+    Move - Bottom:
+        Outcomes:
+            Section: Bottom
+        Requirements:
+            Top - Logical Blunder:
+                Section: Top
+                Option - Permit Logical Blunders: true
+            Top - Return With Bat Form:
+                Section: Top
+                Progression - Bat Transformation: true
+            Top - Return With Powered Mist:
+                Section: Top
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Long): true
+            Top - Return With Gravity Jump And Corner Mist:
+                Section: Top
+                Progression - Gravity Jump: true
+                Progression - Mist Transformation: true
+                Technique - Corner Mist (Forgiving): true
+                Technique - Gravity Jump: true
+            Top - Return With Gravity Jump And Double Jump:
+                Section: Top
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
+            Top - Return With Wolf-Mist Rise:
+                Section: Top
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Very Long): true
+    Move - Top:
+        Outcomes:
+            Section: Top
+        Requirements:
+            Bottom - Bat Form:
+                Section: Bottom
+                Progression - Bat Transformation: true
+            Bottom - Powered Mist:
+                Section: Bottom
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Long): true
+            Bottom - Gravity Jump And Corner Mist:
+                Section: Bottom
+                Progression - Gravity Jump: true
+                Progression - Mist Transformation: true
+                Technique - Corner Mist (Forgiving): true
+                Technique - Gravity Jump: true
+            Bottom - Gravity Jump And Double Jump:
+                Section: Bottom
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
+            Bottom - Wolf-Mist Rise:
+                Section: Bottom
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Very Long): true

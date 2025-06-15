@@ -25,8 +25,8 @@ Nodes:
         Row: 0
         Column: 1
         Edge: Top
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Top
+        Exit Section: Top
 Commands:
     Action - Collect Holy Glasses:
         Outcomes:
@@ -34,5 +34,62 @@ Commands:
             Item - Holy Glasses: 1
         Requirements:
             Main, Default:
-                Section: Main
+                Section: Bottom
                 Check - Holy Glasses Location: false
+    Move - Bottom:
+        Outcomes:
+            Section: Bottom
+        Requirements:
+            Top - Logical Blunder:
+                Section: Top
+                Option - Permit Logical Blunders: true
+            Top - Return With Bat Form:
+                Section: Top
+                Progression - Bat Transformation: true
+            Top - Return With Powered Mist:
+                Section: Top
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Long): true
+            Top - Return With Diagonal Gravity Jump:
+                Section: Top
+                Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
+                Technique - Diagonal Gravity Jump: true
+            Top - Return With Double Jump and Gravity Jump:
+                Section: Top
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
+            Top - Return With Wolf-Mist Rise:
+                Section: Top
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Very Long): true
+    Move - Top:
+        Outcomes:
+            Section: Top
+        Requirements:
+            Bottom - Bat Form:
+                Section: Bottom
+                Progression - Bat Transformation: true
+            Bottom - Powered Mist:
+                Section: Bottom
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Long): true
+            Bottom - Diagonal Gravity Jump:
+                Section: Bottom
+                Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
+                Technique - Diagonal Gravity Jump: true
+            Bottom - Double Jump and Gravity Jump:
+                Section: Bottom
+                Progression - Double Jump: true
+                Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
+            Bottom - Wolf-Mist Rise:
+                Section: Bottom
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Very Long): true

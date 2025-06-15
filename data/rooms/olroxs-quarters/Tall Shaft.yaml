@@ -73,15 +73,13 @@ Commands:
             Main - Bat:
                 Section: Main
                 Progression - Bat Transformation: true
-            Main - Gravity Jump:
+            Main - Multiple Gravity Jumps:
                 Section: Main
+                Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                TechTechnique - Multiple Gravity Jumps (Double Jump Reset): true
             Main - Powered Mist:
                 Section: Main
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
-            Main - Wolf-Mist Rise:
-                Section: Main
-                Execution - Wolf-Mist Rise: true
-                Progression - Mist Transformation: true
-                Progression - Wolf Transformation: true
+                Technique - Powered Mist Travel (Very Long): true

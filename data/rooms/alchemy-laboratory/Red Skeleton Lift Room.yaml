@@ -58,6 +58,7 @@ Commands:
         Requirements:
             Ground - Red Skeleton Lift Puzzle:
                 Section: Ground
+                Technique - Red Skeleton Lift Puzzle: true
             Ground - Bat:
                 Section: Ground
                 Progression - Bat Transformation: true
@@ -67,15 +68,17 @@ Commands:
             Ground - Gravity Jump:
                 Section: Ground
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Ground - Powered Mist:
                 Section: Ground
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Short): true
             Ground - Wolf-Mist Rise:
                 Section: Ground
-                Execution - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Short): true
     Move - Rising:
         Outcomes:
             Section: Rising
@@ -86,20 +89,43 @@ Commands:
             Ground - Gravity Jump:
                 Section: Ground
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Ground - Powered Mist:
                 Section: Ground
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Short): true
             Ground - Wolf-Mist Rise:
                 Section: Ground
-                Execution - Wolf-Mist Rise: true
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Short): true
     Move - Ground:
         Outcomes:
             Section: Ground
         Requirements:
-            Alcove:
+            Alcove - Return With Red Skeleton Lift Puzzle:
                 Section: Alcove
+                Technique - Red Skeleton Lift Puzzle: true
+            Alcove - Return With Bat:
+                Section: Alcove
+                Progression - Bat Transformation: true
+            Alcove - Return With Double Jump:
+                Section: Alcove
+                Progression - Double Jump: true
+            Alcove - Return With Gravity Jump:
+                Section: Alcove
+                Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
+            Alcove - Return With Powered Mist:
+                Section: Alcove
+                Progression - Longer Mist Duration: true
+                Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Short): true
+            Alcove - Return With Wolf-Mist Rise:
+                Section: Alcove
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Short): true
             Falling:
                 Section: Falling

@@ -9,12 +9,7 @@ import yaml
 import mapper
 import solver
 
-rules = {}
-skills = {
-    "Technique - Pixel-Perfect Diagonal Gravity Jump Through Narrow Gap": True,
-}
-
-def validate_logic(mapper_core, changes) -> bool:
+def validate_logic(mapper_core, changes, skills) -> bool:
     SOFTLOCK_CHECK__CYCLE_LIMIT = 199
     SOFTLOCK_CHECK__MAX_SOFTLOCKS = 0
     SOFTLOCK_CHECK__ATTEMPT_COUNT = 10
@@ -29,7 +24,7 @@ def validate_logic(mapper_core, changes) -> bool:
     final_goal_ind = False
     print('')
     while True:
-        print(len(map_solver.current_game.goals_remaining), map_solver.current_game.current_state['Room'], map_solver.current_game.progression, map_solver.current_game.get_progression())
+        print(len(map_solver.current_game.goals_remaining), map_solver.current_game.get_progression(), map_solver.current_game.current_state['Room'], map_solver.current_game.progression)
         prev_game = map_solver.current_game.clone()
         # Guard against softlocks
         map_solver.debug = False
@@ -63,13 +58,20 @@ def validate_logic(mapper_core, changes) -> bool:
         if final_goal_ind:
             break
     result = valid_ind
-    if 0 < len(map_solver.current_game.goals_remaining) < 10:
+    if 0 < len(map_solver.current_game.goals_remaining) < 16:
         print('Goals not obtained')
         for goal in sorted(map_solver.current_game.goals_remaining.keys()):
             print(' -', goal)
+        if 'END' in map_solver.current_game.goals_remaining.keys():
+            print('debug-state Location:', map_solver.current_game.location)
+            with (
+                open(os.path.join('build', 'shuffler', 'debug-state.json'), 'w') as debug_json,
+            ):
+                debug_state = map_solver.current_game.current_state
+                json.dump(debug_state, debug_json, indent='    ', sort_keys=True, default=str)
     return result
 
-def validate_stage(mapper_core, mapper_data, stage_name, validation) -> bool:
+def validate_stage(mapper_core, mapper_data, stage_name, validation, skills) -> bool:
     current_mapper = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
     current_mapper.generate()
     current_mapper.stage.normalize_bounds()
@@ -85,28 +87,29 @@ def validate_stage(mapper_core, mapper_data, stage_name, validation) -> bool:
     }
     logic_core = mapper.LogicCore(mapper_core, changes).get_core()
     if validation['State'].get('Room', None) == 'Elsewhere':
-        logic_core['Commands']['Elsewhere'] = {}
+        elsewhere = {}
         for room_name in logic_core['Commands']:
             if ', Loading Room to ' not in room_name:
                 continue
             for command_name in logic_core['Commands'][room_name]:
                 target_room_name = logic_core['Commands'][room_name][command_name]['Outcomes']['Room']
-                if target_room_name.startswith(stage_name):
-                    logic_core['Commands']['Elsewhere']['Exit - ' + target_room_name] = {
-                        'Outcomes': {
-                            'Room': target_room_name,
-                            'Section': 'Main',
+                if target_room_name.startswith(stage_name + ', '):
+                    continue
+                elsewhere['Exit - ' + room_name] = {
+                    'Outcomes': {
+                        'Room': room_name,
+                        'Section': 'Main',
+                    },
+                    'Requirements': {
+                        'Default': {
+                            'Room': 'Elsewhere',
+                            'Section': 'Elsewhere',
                         },
-                        'Requirements': {
-                            'Default': {
-                                'Room': 'Elsewhere',
-                                'Section': 'Elsewhere',
-                            },
-                        },
-                    }
-                else:
-                    logic_core['Commands'][room_name][command_name]['Outcomes']['Room'] = 'Elsewhere'
-                    logic_core['Commands'][room_name][command_name]['Outcomes']['Section'] = 'Elsewhere'
+                    },
+                }
+                logic_core['Commands'][room_name][command_name]['Outcomes']['Room'] = 'Elsewhere'
+                logic_core['Commands'][room_name][command_name]['Outcomes']['Section'] = 'Elsewhere'
+        logic_core['Commands']['Elsewhere'] = elsewhere
     for (state_key, state_value) in validation['State'].items():
         logic_core['State'][state_key] = state_value
     logic_core['Goals'] = validation['Goals']
@@ -153,12 +156,21 @@ if __name__ == '__main__':
     print('Validate all generated maps')
     parser = argparse.ArgumentParser()
     parser.add_argument('stage_validations', help='Input a filepath to the stage validations YAML file', type=str)
-    stage_validations = {}
+    parser.add_argument('--skillset', help='The assumed skillset to use when validating', type=str, default='Casual')
     args = parser.parse_args()
+    stage_validations = {}
+    skills = {}
+    skillset = args.skillset
+    if skillset is None:
+        skillset = 'Casual'
     with (
         open(args.stage_validations) as stage_validations_file,
+        open(os.path.join('examples', 'skillsets.yaml')) as skillsets_file,
     ):
         stage_validations = yaml.safe_load(stage_validations_file)
+        skillsets = yaml.safe_load(skillsets_file)
+        for skill in skillsets[args.skillset]:
+            skills[skill] = True
     results = {}
     results_filepath = os.path.join('build', 'shuffler', 'validation_results.json')
     if os.path.exists(results_filepath):
@@ -172,9 +184,11 @@ if __name__ == '__main__':
     file_read_count = 0
     prev_stage = None
     prev_file_name = None
+    fully_validated_stages = {}
     for stage_name in stage_validations:
         if stage_name == 'Template':
             continue
+        fully_validated_stages[stage_name] = set()
         should_validate_ind = False
         directory_listing = os.listdir(os.path.join('build', 'shuffler', stage_name))
         file_listing = list(
@@ -182,7 +196,6 @@ if __name__ == '__main__':
             name.endswith('.json')
         )
         for current_file_name in file_listing:
-            add_to_pool = False
             with open(os.path.join('build', 'shuffler', stage_name, current_file_name)) as mapper_data_json:
                 mapper_data = json.load(mapper_data_json)
                 mapper_data_json.close()
@@ -194,8 +207,7 @@ if __name__ == '__main__':
                 json.dumps(current_mapper__stage_changes['Rooms'], sort_keys=True).encode()
             ).hexdigest()
             assert hash_of_rooms == mapper_data['Hash of Rooms']
-            if hash_of_rooms not in results.get(stage_name, {}):
-                add_to_pool = True
+            fully_validated_stages[stage_name].add(hash_of_rooms)
             for (validation_name, validation) in stage_validations[stage_name].items():
                 if validation_name.startswith('SKIP '):
                     continue
@@ -212,15 +224,15 @@ if __name__ == '__main__':
                 if hash_of_validation not in results[stage_name][hash_of_rooms]:
                     should_validate_ind = True
                 if should_validate_ind:
-                    validation_result = validate_stage(mapper_core, mapper_data, stage_name, validation)
-                    results[stage_name][hash_of_rooms][hash_of_validation] = validation_result
+                    valid_ind = validate_stage(mapper_core, mapper_data, stage_name, validation, skills)
+                    results[stage_name][hash_of_rooms][hash_of_validation] = valid_ind
                     if stage_name != prev_stage:
                         print('', stage_name)
                     prev_stage = stage_name
                     if current_file_name != prev_file_name:
                         print('  ', current_file_name[:-5])
                     prev_file_name = current_file_name
-                    if validation_result:
+                    if valid_ind:
                         print('    ', '✅', '...', validation_name)
                     else:
                         print('    ', '❌', '...', validation_name)
@@ -231,7 +243,14 @@ if __name__ == '__main__':
                         ):
                             json.dump(results, results_json, indent='    ', sort_keys=True, default=str)
                         file_read_count = 0
+                else:
+                    valid_ind = results[stage_name][hash_of_rooms][hash_of_validation]
+                if not valid_ind and hash_of_rooms in fully_validated_stages[stage_name]:
+                    fully_validated_stages[stage_name].remove(hash_of_rooms)
     with (
         open(results_filepath, 'w') as results_json,
     ):
         json.dump(results, results_json, indent='    ', sort_keys=True, default=str)
+    print('Validation summary')
+    for stage_name in fully_validated_stages:
+        print(f'{stage_name}: {len(fully_validated_stages[stage_name])}')

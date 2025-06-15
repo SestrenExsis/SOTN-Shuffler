@@ -51,12 +51,6 @@ def get_room_drawing(mapper_core, room_name) -> list[str]:
         result.append(''.join(grid[row]))
     return result
 
-rules = {}
-
-skills = {
-    "Technique - Pixel-Perfect Diagonal Gravity Jump Through Narrow Gap": True,
-}
-
 # NOTE(sestren): There is only one boss teleporter in the game data for the following bosses,
 # NOTE(sestren): despite there being multiple entrances, so not all entrances will be covered:
 # NOTE(sestren): Granfaloon, Akmodan II, Olrox, Galamoth
@@ -504,19 +498,28 @@ if __name__ == '__main__':
     parser.add_argument('--seed', help='Input an optional starting seed', type=str)
     parser.add_argument('--output', help='Input an optional filename for the output JSON', type=str)
     parser.add_argument('--no-metadata', help='Remove all metadata from the output JSON', dest='metadata', action='store_false')
+    parser.add_argument('--skillset', help='The assumed skillset to use when validating', type=str, default='Casual')
     settings = {}
+    skills = {}
     stage_validations = {}
     validation_results = {}
     validation_results_filepath = os.path.join('build', 'shuffler', 'validation_results.json')
     args = parser.parse_args()
+    skillset = args.skillset
+    if skillset is None:
+        skillset = 'Casual'
     with (
         open(args.settings) as settings_file,
         open(args.stage_validations) as stage_validations_file,
         open(validation_results_filepath) as validation_results_json,
+        open(os.path.join('examples', 'skillsets.yaml')) as skillsets_file,
     ):
         settings = yaml.safe_load(settings_file)
         stage_validations = yaml.safe_load(stage_validations_file)
         validation_results = json.load(validation_results_json)
+        skillsets = yaml.safe_load(skillsets_file)
+        for skill in skillsets[args.skillset]:
+            skills[skill] = True
     MIN_MAP_ROW = 5
     MAX_MAP_ROW = 55
     MIN_MAP_COL = 0
@@ -824,6 +827,14 @@ if __name__ == '__main__':
         stages['Warp Rooms']['Stage Left'] = 0
         # Initialize the castle map drawing grid
         castle_map = [['0' for col in range(256)] for row in range(256)]
+        prev_cells = set()
+        for prev_stage_name in stage_names:
+            cells = stages[prev_stage_name]['Mapper'].stage.get_cells(
+                stages[prev_stage_name]['Stage Top'],
+                stages[prev_stage_name]['Stage Left'],
+                True
+            )
+            prev_cells = prev_cells.union(cells)
         # Process each stage, with Warp Rooms being processed last
         stage_names = list(sorted(stages.keys() - {'Warp Rooms'}))
         stage_names += ['Warp Rooms']
@@ -850,6 +861,7 @@ if __name__ == '__main__':
                     'Rooms': {},
                 }
             elif stage_name == 'Warp Rooms':
+                warp_room_cells = set()
                 for warp_room_name in (
                     'Castle Keep',
                     'Olrox\'s Quarters',
@@ -872,6 +884,7 @@ if __name__ == '__main__':
                                 'Top': source_room['Top'],
                                 'Left': source_room['Left'],
                             }
+                            warp_room_cells.add((source_room['Top'], source_room['Left']))
                             break
                 for warp_room_name in (
                     'Outer Wall',
@@ -886,6 +899,7 @@ if __name__ == '__main__':
                                 'Top': source_room['Top'],
                                 'Left': source_room['Left'],
                             }
+                            warp_room_cells.add((source_room['Top'], source_room['Left']))
                             overrides['Warp Rooms, Loading Room to ' + warp_room_name] = {
                                 'Top': source_room['Top'],
                                 'Left': source_room['Left'] + 1,
@@ -895,6 +909,11 @@ if __name__ == '__main__':
                                 'Left': source_room['Left'] + 2,
                             }
                             break
+                if len(warp_room_cells.intersection(prev_cells)) > 0:
+                    print()
+                    print('Warp Room could not be placed without overlapping with another stage')
+                    valid_ind = False
+                    break
             for room_name in stage_changes['Rooms']:
                 room_top = stage_top + stage_changes['Rooms'][room_name]['Top']
                 room_left = stage_left + stage_changes['Rooms'][room_name]['Left']
@@ -928,6 +947,8 @@ if __name__ == '__main__':
                         else:
                             # print('Tried to draw pixel out of bounds of map:', room_name, (room_top, room_left), (row, col))
                             pass
+        if not valid_ind:
+            continue
         # Draw connection labels onto the loading rooms of the map
         if settings.get('Stage shuffler', {}).get('Loading room labels', 'None') != 'None':
             instructions = []
@@ -1018,7 +1039,7 @@ if __name__ == '__main__':
             }
         # print('*********')
         # Validate First Castle to ensure it is solvable
-        if validator.validate_logic(mapper_core, changes):
+        if validator.validate_logic(mapper_core, changes, skills):
             pass
         else:
             for stage_name in sorted(shuffler['Stages']):

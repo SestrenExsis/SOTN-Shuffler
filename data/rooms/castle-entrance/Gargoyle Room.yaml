@@ -61,6 +61,8 @@ Commands:
                 Section: Bottom, Rising
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Long): true
             Bottom, Rising - Gravity Jump:
                 Section: Bottom, Rising
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true

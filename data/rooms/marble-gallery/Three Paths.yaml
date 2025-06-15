@@ -76,11 +76,13 @@ Commands:
                 Helper: Middle Path
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Bottom, Rising - Powered Mist:
                 Section: Bottom, Rising
                 Helper: Middle Path
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Short): true
             Top, Falling - Bat:
                 Section: Top, Falling
                 Progression - Bat Transformation: true
@@ -88,10 +90,12 @@ Commands:
                 Section: Top, Falling
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Top, Falling - Powered Mist:
                 Section: Top, Falling
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Short): true
     Move - Right Side:
         Outcomes:
             Section: Right Side

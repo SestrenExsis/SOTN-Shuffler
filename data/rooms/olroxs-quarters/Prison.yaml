@@ -35,11 +35,12 @@ Commands:
                 Section: Main
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Main - Return with Powered Mist:
                 Section: Main
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-                Technique - Very Long Mist Travel: true
+                Technique - Powered Mist Travel (Very Long): true
     Move - Right-Bottom, Falling:
         Outcomes:
             Section: Right-Bottom, Falling
@@ -54,11 +55,12 @@ Commands:
                 Section: Main
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Main - Return with Powered Mist:
                 Section: Main
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-                Technique - Very Long Mist Travel: true
+                Technique - Powered Mist Travel (Very Long): true
     Move - Main:
         Outcomes:
             Section: Main
@@ -73,10 +75,12 @@ Commands:
                 Section: Left-Bottom, Rising
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Left-Bottom, Rising - Powered Mist:
                 Section: Left-Bottom, Rising
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
             Right-Bottom, Rising - Double Jump:
                 Section: Right-Bottom, Rising
                 Progression - Double Jump: true
@@ -87,7 +91,9 @@ Commands:
                 Section: Right-Bottom, Rising
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Right-Bottom, Rising - Powered Mist:
                 Section: Right-Bottom, Rising
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true

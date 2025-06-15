@@ -41,8 +41,6 @@ Commands:
         Outcomes:
             Section: Upper
         Requirements:
-            Default:
-                Section: Lower
             Lower - Bat Form:
                 Section: Lower
                 Progression - Bat Transformation: true
@@ -53,12 +51,13 @@ Commands:
                 Section: Lower
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
             Lower - Gravity Jump:
                 Section: Lower
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Lower - Wolf-Mist Rise:
                 Section: Lower
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
-                Skill - Wolf-Mist Rise: true
-                Skill - Extended Wolf-Mist Rise: true
+                Technique - Wolf-Mist Rise (Long): true

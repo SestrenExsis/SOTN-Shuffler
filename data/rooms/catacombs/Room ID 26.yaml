@@ -37,7 +37,9 @@ Commands:
             Main - Gravity Jump:
                 Section: Main
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Main - Powered Mist:
                 Section: Main
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true

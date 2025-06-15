@@ -40,9 +40,11 @@ Commands:
         Outcomes:
             Section: Bottom, Falling
         Requirements:
-            Default:
+            Main - Bridge Broken:
                 Section: Main
                 Status - DK Bridge Broken: true
+            Bottom, Rising - Default:
+                Section: Bottom, Rising
     Move - Main:
         Outcomes:
             Section: Main

@@ -75,22 +75,25 @@ Commands:
                 Progression - Double Jump: true
                 Progression - Mid-Air Reset: true
                 Progression - Mist Transformation: true
+                Technique - Book Jump (Forgiving): true
             Main - Book Jump without Double Jump:
                 Section: Main
                 Progression - Mid-Air Reset: true
                 Progression - Mist Transformation: true
-                Execution - Book Jump without Double Jump: true
+                Technique - Book Jump (Precise): true
             Main - Book Jump without Double Jump or Mist:
                 Section: Main
                 Progression - Mid-Air Reset: true
-                Execution - Book Jump without Double Jump or Mist: true
+                Technique - Book Jump (Precise): true
             Main - Gravity Jump:
                 Section: Main
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Main - Powered Mist:
                 Section: Main
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
     Move - Lower Ledge:
         Outcomes:
             Section: Lower Ledge
@@ -101,17 +104,19 @@ Commands:
             Main - Book Jump:
                 Section: Main
                 Progression - Mid-Air Reset: true
-                Execution - Book Jump: true
+                Technique - Book Jump (Forgiving): true
             Main - Double Jump:
                 Section: Main
                 Progression - Double Jump: true
             Main - Gravity Jump:
                 Section: Main
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Main - Powered Mist:
                 Section: Main
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
     Move - Main:
         Outcomes:
             Section: Main

@@ -85,7 +85,6 @@ Commands:
                 Status - Switch in Abandoned Mine Pressed: true
                 Option - Permit Logical Blunders: true
             Block Area - Return With Double Jump Using Dislodged Stairwell:
-                Status - Switch in Abandoned Mine Pressed: true
                 Section: Block Area
                 Progression - Double Jump: true
                 Status - Stairwell Near Demon Switch Dislodged: true
@@ -111,13 +110,16 @@ Commands:
             Upper-Left Ledge - Return With Bat Form:
                 Section: Upper-Left Ledge
                 Progression - Bat Transformation: true
-            Upper-Left Ledge - Return With Gravity Jump:
+            Upper-Left Ledge - Return With Diagonal Gravity Jumps:
                 Section: Upper-Left Ledge
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
+                Technique - Diagonal Gravity Jump: true
             Upper-Left Ledge - Return With Powered Mist:
                 Section: Upper-Left Ledge
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
             Block Area - Logical Risk:
                 Section: Block Area
                 Option - Permit Logical Risks: true
@@ -125,15 +127,19 @@ Commands:
             Block Area - Return With Bat Form:
                 Section: Block Area
                 Progression - Bat Transformation: true
-            Block Area - Return With Gravity Jump:
+                Status - Switch in Abandoned Mine Pressed: true
+            Block Area - Return With Diagonal Gravity Jumps:
                 Section: Block Area
                 Progression - Gravity Jump: true
                 Status - Switch in Abandoned Mine Pressed: true
+                Technique - Gravity Jump: true
+                Technique - Diagonal Gravity Jump: true
             Block Area - Return With Powered Mist:
                 Section: Block Area
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
                 Status - Switch in Abandoned Mine Pressed: true
+                Technique - Powered Mist Travel (Short): true
     Move - Upper-Left Ledge:
         Outcomes:
             Section: Upper-Left Ledge
@@ -141,17 +147,35 @@ Commands:
             Lower Ledges - Bat Form:
                 Section: Lower Ledges
                 Progression - Bat Transformation: true
-            Lower Ledges - Double Jump:
+            Lower Ledges - Double Jump Using Dislodged Stairwell:
                 Section: Lower Ledges
                 Progression - Double Jump: true
                 Status - Stairwell Near Demon Switch Dislodged: true
-            Lower Ledges - Gravity Jump:
+            Lower Ledges - Diagonal Gravity Jumps:
                 Section: Lower Ledges
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
+                Technique - Diagonal Gravity Jump: true
             Lower Ledges - Powered Mist:
                 Section: Lower Ledges
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
             Block Area - Default:
                 Section: Block Area
                 Status - Switch in Abandoned Mine Pressed: true
+    Move - Dislodge Stairwell From Below:
+        Outcomes:
+            Status - Stairwell Near Demon Switch Dislodged: true
+        Requirements:
+            Lower Ledges - Double Jump Reset:
+                Section: Lower Ledges
+                Progression - Double Jump: true
+                Progression - Wolf Transformation: true
+                Status - Stairwell Near Demon Switch Dislodged: false
+                Technique - Double Jump Reset: true
+            Lower Ledges - Double Jump With Damage Boost:
+                Section: Lower Ledges
+                Progression - Double Jump: true
+                Status - Stairwell Near Demon Switch Dislodged: false
+                Technique - Damage Boost (Precise): true

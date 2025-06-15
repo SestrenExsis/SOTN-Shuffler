@@ -49,16 +49,19 @@ Commands:
             Beneath Trapdoor - Rising Uppercut:
                 Section: Beneath Trapdoor
                 Progression - Rising Uppercut: true
+                Technique - Rising Uppercut: true
             Beneath Trapdoor - Powered Mist:
                 Section: Beneath Trapdoor
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
             Beneath Trapdoor - Bat Form:
                 Section: Beneath Trapdoor
                 Progression - Bat Transformation: true
             Beneath Trapdoor - Gravity Jump:
                 Section: Beneath Trapdoor
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Parapet - Basic:
                 Section: Parapet
     Move - Parapet:
@@ -68,6 +71,8 @@ Commands:
             Ground - Chained Rising Uppercuts:
                 Section: Ground
                 Progression - Rising Uppercut: true
+                Technique - Rising Uppercut: true
+                Technique - Chained Rising Uppercuts: true
             Ground - Bat Form:
                 Section: Ground
                 Progression - Bat Transformation: true
@@ -75,16 +80,21 @@ Commands:
                 Section: Ground
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-            Ground - Multiple Gravity Jumps with Mist:
+                Technique - Powered Mist Travel (Long): true
+            Ground - Multiple Gravity Jumps (Mist Only):
                 Section: Ground
                 Progression - Gravity Jump: true
                 Progression - Mist Transformation: true
+                Technique - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Transformation Reset): true
             Ground - Multiple Gravity Jumps:
                 Section: Ground
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Ground - Wolf-Mist Rise:
                 Section: Ground
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
-                Skill - Wolf-Mist Rise: true
+                Technique - Wolf-Mist Rise (Very Long): true

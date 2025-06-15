@@ -76,13 +76,16 @@ Commands:
             Main - Gravity Jump:
                 Section: Main
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Main - Powered Mist:
                 Section: Main
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Short): true
             Main - Candle Dive Kick:
                 Section: Main
                 Progression - Mid-Air Reset: true
+                Technique - Candle Dive Kick: true
     Move - Top, Rising, Middle Path:
         Outcomes:
             Section: Top, Rising
@@ -95,10 +98,12 @@ Commands:
                 Section: Main
                 Progression - Double Jump: true
                 Progression - Gravity Jump: true
+                Technique - Multiple Gravity Jumps (Double Jump Reset): true
             Main - Powered Mist:
                 Section: Main
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Very Long): true
     Move - Top, Rising, Right Path:
         Outcomes:
             Section: Top, Rising
@@ -119,15 +124,18 @@ Commands:
                 Section: Main
                 Progression - Gravity Jump: true
                 Subweapon: Stopwatch
+                Technique - Gravity Jump: true
             Main - Powered Mist + Stopwatch:
                 Section: Main
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
                 Subweapon: Stopwatch
+                Technique - Powered Mist Travel (Short): true
             Main - Candle Dive Kick + Stopwatch:
                 Section: Main
-                Progression - Wolf Transformation: true
+                Progression - Mid-Air Reset: true
                 Subweapon: Stopwatch
+                Technique - Candle Dive Kick: true
     Action - Equip Both Rings:
         Outcomes:
             Status - Floor in Clock Room Opened Up: true

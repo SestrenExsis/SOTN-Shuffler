@@ -71,6 +71,15 @@ Commands:
                 Section: Right Ledge
             Pressure Plate Ledge:
                 Section: Pressure Plate Ledge
+                Status - Shortcut in Cube of Zoe Room Activated: true
+    Move - Main (Activating Pressure Plate):
+        Outcomes:
+            Section: Main
+            Status - Shortcut in Cube of Zoe Room Activated: true
+        Requirements:
+            Pressure Plate Ledge - Fall Down:
+                Section: Pressure Plate Ledge
+                Status - Shortcut in Cube of Zoe Room Activated: false
     Move - Right Ledge:
         Outcomes:
             Section: Right Ledge
@@ -78,6 +87,7 @@ Commands:
             Main - Rising Uppercut:
                 Section: Main
                 Progression - Rising Uppercut: true
+                Technique - Rising Uppercut: true
             Main - Bat Form:
                 Section: Main
                 Progression - Bat Transformation: true
@@ -85,19 +95,27 @@ Commands:
                 Section: Main
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
-            Main - Multiple Gravity Jumps:
+                Technique - Powered Mist Travel (Short): true
+            Main - Gravity Jump:
                 Section: Main
-                Progression - Mid-Air Reset: true
                 Progression - Gravity Jump: true
-                Skill - Multiple Gravity Jumps: true
+                Technique - Gravity Jump: true
             Main - Wolf-Mist Rise:
                 Section: Main
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
-                Skill - Wolf-Mist Rise: true
-                Skill - Extended Wolf-Mist Rise: true
+                Technique - Wolf-Mist Rise (Long): true
             Pressure Plate Ledge - Fall Down:
                 Section: Pressure Plate Ledge
+                Status - Shortcut in Cube of Zoe Room Activated: true
+    Move - Right Ledge (Activating Pressure Plate):
+        Outcomes:
+            Section: Right Ledge
+            Status - Shortcut in Cube of Zoe Room Activated: true
+        Requirements:
+            Pressure Plate Ledge - Fall Down:
+                Section: Pressure Plate Ledge
+                Status - Shortcut in Cube of Zoe Room Activated: false
     Move - Pressure Plate Ledge:
         Outcomes:
             Section: Pressure Plate Ledge
@@ -105,6 +123,8 @@ Commands:
             Main - Chained Rising Uppercuts:
                 Section: Main
                 Progression - Rising Uppercut: true
+                Technique - Rising Uppercut: true
+                Technique - Chained Rising Uppercuts: true
             Main - Use Shortcut:
                 Section: Main
                 Status - Shortcut in Cube of Zoe Room Activated: true
@@ -115,17 +135,18 @@ Commands:
                 Section: Right Ledge
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
             Right Ledge - Multiple Gravity Jumps:
                 Section: Right Ledge
                 Progression - Mid-Air Reset: true
                 Progression - Gravity Jump: true
-                Skill - Multiple Gravity Jumps: true
+                Technique - Multiple Gravity Jumps: true
             Right Ledge - Wolf-Mist Rise:
                 Section: Right Ledge
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
-                Skill - Wolf-Mist Rise: true
-                Skill - Extended Wolf-Mist Rise: true
+                Technique - Wolf-Mist Rise: true
+                Technique - Extended Wolf-Mist Rise: true
     Action - Activate Pressure Plate:
         Outcomes:
             Status - Shortcut in Cube of Zoe Room Activated: true

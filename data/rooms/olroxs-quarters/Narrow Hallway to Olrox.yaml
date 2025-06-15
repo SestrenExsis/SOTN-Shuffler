@@ -41,6 +41,7 @@ Commands:
                 Section: Right Side
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Short): true
     Move - Right Side:
         Outcomes:
             Section: Right Side
@@ -55,3 +56,4 @@ Commands:
                 Section: Left Side
                 Progression - Longer Mist Duration: true
                 Progression - Mist Transformation: true
+                Technique - Powered Mist Travel (Short): true

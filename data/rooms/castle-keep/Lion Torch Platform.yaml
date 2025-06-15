@@ -70,6 +70,7 @@ Commands:
             Bottom, Rising - Gravity Jump:
                 Section: Bottom, Rising
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Bottom, Rising - Double Jump:
                 Section: Bottom, Rising
                 Progression - Double Jump: true
@@ -77,6 +78,7 @@ Commands:
                 Section: Bottom, Rising
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
             Top, Falling - Default:
                 Section: Top, Falling
     Move - Top, Rising:
@@ -89,6 +91,7 @@ Commands:
             Main - Gravity Jump:
                 Section: Main
                 Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
             Main - Double Jump:
                 Section: Main
                 Progression - Double Jump: true
@@ -96,3 +99,4 @@ Commands:
                 Section: Main
                 Progression - Mist Transformation: true
                 Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
