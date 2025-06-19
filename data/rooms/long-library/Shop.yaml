@@ -31,14 +31,13 @@ Nodes:
         Entry Section: Beneath Shop
         Exit Section: Beneath Shop
 Commands:
-    Action - Purchase Jewel of Open Relic:
+    Action - View Low-Cost Items:
         Outcomes:
-            Relic - Jewel of Open: true
-            Progression - Unlock Blue Doors: true
+            Helper: Low-Cost Price Range
         Requirements:
             Default:
                 Section: Main
-                Relic - Jewel of Open: false
+                Progression - Item Materialization: true
     Action - Purchase Library Card:
         Outcomes:
             Item - Library Card: 1

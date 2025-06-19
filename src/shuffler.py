@@ -1106,9 +1106,9 @@ if __name__ == '__main__':
             chars.append(' ')
             string_size += 1
         seed_hint = ''.join(chars)
-        changes['Strings'] = {
-            '10': seed_hint,
-            '11': 'Beta Release 1      ',
+        changes['Constants'] = {
+            'Message - Richter Mode Instructions 1': seed_hint,
+            'Message - Richter Mode Instructions 2': 'Beta Release 2      ',
         }
         # Normalize room connections
         if settings.get('Options', {}).get('Normalize room connections', False):
@@ -1129,7 +1129,7 @@ if __name__ == '__main__':
         filename = ' '.join((
             shuffler['End Time'].strftime('%Y-%m-%d %H-%M-%S'),
             'SOTN Shuffler',
-            changes['Strings']['11'].strip(),
+            changes['Constants']['Message - Richter Mode Instructions 2'].strip(),
             '(' + str(shuffler['Initial Seed']) + ')',
         ))
         filepath = os.path.join('build', 'shuffler', filename + '.json')
