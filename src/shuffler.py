@@ -974,22 +974,22 @@ if __name__ == '__main__':
         # Castle Map Color Palette
         if settings.get('Options', {}).get('Color-code each stage on the map', False):
             changes['Castle Map Color Palette'] = [
-                "#7F000000",
-                "#FF0000FF",
-                "#FF002858",
-                "#FF101810",
-                "#FFF80000",
-                "#FFF88000",
-                "#FFCC7400",
-                "#FFFF1A57",
-                "#FFE600B8",
-                "#FF008099",
-                "#FFF25D0D",
-                "#FF00b300",
-                "#FF666666",
-                "#FF036333",
-                "#FFC0C0C0",
-                "#FF009DFF",
+                "#0000007F", # 0 -> Transparency
+                "#0000FFFF", # 1
+                "#002858FF", # 2 -> Unusable
+                "#101810FF", # 3 -> Fills of unexplored rooms (revealed when purchasing the Castle Map)
+                "#F80000FF", # 4 -> Fills of Save Rooms
+                "#F88000FF", # 5
+                "#CC7400FF", # 6
+                "#FF1A57FF", # 7
+                "#E600B8FF", # 8
+                "#008099FF", # 9
+                "#F25D0DFF", # A
+                "#00B300FF", # B
+                "#666666FF", # C
+                "#036333FF", # D -> Borders of unexplored rooms (revealed when purchasing the Castle Map)
+                "#C0C0C0FF", # E -> Borders of explored rooms
+                "#009DFFFF", # F
             ]
         # Calculate which cells on the map buying the Castle Map in the Shop will reveal
         cells_to_reveal = set()
