@@ -94,6 +94,20 @@ Sources:
         Stage: Castle Keep
     Reward Class: Relic
     Target Reward: Relic - Ghost Card
+  Location - Jewel of Open:
+    Description: Action - Check Jewel of Open Location
+    Logic Level: Required
+    Outcomes:
+      Check - Jewel of Open Location: true
+    Requirements:
+      Default:
+        Check - Jewel of Open Location: false
+        Room: Long Library, Shop
+        Section: Main
+        Helper: Low-Cost Price Range
+        Stage: Long Library
+    Reward Class: Relic
+    Target Reward: Relic - Jewel of Open
   Location - Power of Mist:
     Description: Action - Check Power of Mist Location
     Logic Level: Required
@@ -5638,6 +5652,10 @@ Targets:
     Outcomes:
       Progression - Protection From Water: true
       Relic - Holy Symbol: true
+  Relic - Jewel of Open:
+    Outcomes:
+      Progression - Unlock Blue Doors: true
+      Relic - Jewel of Open: true
   Relic - Leap Stone:
     Outcomes:
       Progression - Double Jump: true
