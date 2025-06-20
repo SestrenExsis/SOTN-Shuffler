@@ -1268,20 +1268,20 @@ class Mapper:
         self.rng = random.Random(self.current_seed)
         self.steps = []
     
-    def generate(self):
+    def generate(self, stage_rooms):
         self.current_seed = self.next_seed
         self.next_seed = self.rng.randint(0, 2 ** 64)
         self.rng = random.Random(self.current_seed)
         if self.attempts < 1:
             self.start_time = datetime.datetime.now(datetime.timezone.utc)
         pool = {}
-        for (roomset_id, roomset_data) in enumerate(stages[self.stage_name]):
+        for (roomset_id, roomset_data) in enumerate(stage_rooms):
             room_placements = []
             for (room_name, (top, left)) in roomset_data.items():
                 room_placements.append((self.rooms[room_name], top, left))
             pool[roomset_id] = RoomSet(roomset_id, room_placements)
         self.stage = pool.pop(0)
-        for roomset_id in range(1, len(stages[self.stage_name])):
+        for roomset_id in range(1, len(stage_rooms)):
             if len(self.stage.get_open_nodes()) < 1:
                 self.stage.add_roomset(pool.pop(roomset_id), 0, 0)
             else:
@@ -1455,7 +1455,7 @@ if __name__ == '__main__':
         pathlib.Path(
             os.path.join('build', 'shuffler', stage_name)
         ).mkdir(parents=True, exist_ok=True)
-    GENERATION_VERSION = 'Beta Release 1'
+    GENERATION_VERSION = 'Build 2025-06-19'
     mapper_core = MapperData().get_core()
     with (
         open(os.path.join('build', 'shuffler', 'mapper-core.json'), 'w') as mapper_core_json,
@@ -1486,7 +1486,7 @@ if __name__ == '__main__':
             break
         stage_map = Mapper(mapper_core, args.stage_name, seed)
         while True:
-            stage_map.generate()
+            stage_map.generate(stages[args.stage_name])
             if stage_map.validate_connections(False):
                 stage_map.stage.normalize_bounds()
                 break

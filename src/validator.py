@@ -73,7 +73,7 @@ def validate_logic(mapper_core, changes, skills) -> bool:
 
 def validate_stage(mapper_core, mapper_data, stage_name, validation, skills) -> bool:
     current_mapper = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
-    current_mapper.generate()
+    current_mapper.generate(mapper.stages[stage_name])
     current_mapper.stage.normalize_bounds()
     current_mapper__stage_changes = current_mapper.stage.get_changes()
     hash_of_rooms = hashlib.sha256(
@@ -200,7 +200,7 @@ if __name__ == '__main__':
                 mapper_data = json.load(mapper_data_json)
                 mapper_data_json.close()
             current_mapper = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
-            current_mapper.generate()
+            current_mapper.generate(mapper.stages[stage_name])
             current_mapper.stage.normalize_bounds()
             current_mapper__stage_changes = current_mapper.stage.get_changes()
             hash_of_rooms = hashlib.sha256(
