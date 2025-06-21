@@ -20,7 +20,7 @@ if __name__ == '__main__':
         mapper_data_json.close()
     mapper_core = mapper.MapperData().get_core()
     stage_mapper = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
-    stage_mapper.generate()
+    stage_mapper.generate(mapper.stages[stage_name])
     stage_mapper.stage.normalize_bounds()
     stage_mapper.debug = True
     print('Validate before normalization')

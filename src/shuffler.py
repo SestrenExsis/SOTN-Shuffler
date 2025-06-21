@@ -501,6 +501,7 @@ if __name__ == '__main__':
     parser.add_argument('--skillset', help='The assumed skillset to use when validating', type=str, default='Casual')
     settings = {}
     skills = {}
+    templates = {}
     stage_validations = {}
     validation_results = {}
     validation_results_filepath = os.path.join('build', 'shuffler', 'validation_results.json')
@@ -511,15 +512,17 @@ if __name__ == '__main__':
     with (
         open(args.settings) as settings_file,
         open(args.stage_validations) as stage_validations_file,
-        open(validation_results_filepath) as validation_results_json,
+        open(validation_results_filepath) as validation_results_file,
         open(os.path.join('examples', 'skillsets.yaml')) as skillsets_file,
+        open(os.path.join('build', 'shuffler', 'vanilla-changes.json')) as vanilla_file,
     ):
         settings = yaml.safe_load(settings_file)
         stage_validations = yaml.safe_load(stage_validations_file)
-        validation_results = json.load(validation_results_json)
+        validation_results = json.load(validation_results_file)
         skillsets = yaml.safe_load(skillsets_file)
         for skill in skillsets[args.skillset]:
             skills[skill] = True
+        templates['Vanilla'] = json.load(vanilla_file)
     MIN_MAP_ROW = 5
     MAX_MAP_ROW = 55
     MIN_MAP_COL = 0
@@ -631,8 +634,8 @@ if __name__ == '__main__':
         if settings.get('Quest shuffler', {}).get('Item pool', 'Vanilla') == 'Racing':
             if quest_rewards is None:
                 quest_rewards = {}
-            quest_rewards['Location - Castle Entrance, Cube of Zoe Room (Short Sword)'] = 'Item - Manna Prism'
-            quest_rewards['Location - Castle Entrance, Cube of Zoe Room (Red Rust)'] = 'Item - Leather Shield'
+            quest_rewards['Enemy - Bone Scimitar, Green (Short Sword)'] = 'Item - Manna Prism'
+            quest_rewards['Enemy - Bone Scimitar, Copper (Red Rust)'] = 'Item - Leather Shield'
         if quest_rewards is not None:
             for (quest_name, quest) in mapper_core['Quests']['Sources'].items():
                 target_name = quest['Target Reward']
@@ -645,26 +648,111 @@ if __name__ == '__main__':
             # print('', stage_name, stages[stage_name]['Initial Seed'])
         # print('Randomize stages with starting seeds')
         for stage_name in sorted(stages.keys()):
-            # print('', stage_name)
-            directory_listing = os.listdir(os.path.join('build', 'shuffler', stage_name))
-            file_listing = list(
-                name for name in directory_listing if
-                name.endswith('.json') and
-                (stage_name, name[:-len('.json')]) not in invalid_stage_files
-            )
-            # print('', stage_name, len(file_listing), stages[stage_name]['Initial Seed'])
-            assert len(file_listing) > 0
-            # Keep randomly choosing a shuffled stage until one that passes all its validation checks is found
-            # TODO(sestren): Allow validation of secondary stages like Castle Entrance Revisited or Reverse Keep
-            max_unique_pass_count = 0
-            while True:
-                all_valid_ind = True
-                chosen_file_name = stages[stage_name]['RNG'].choice(list(sorted(file_listing)))
-                with open(os.path.join('build', 'shuffler', stage_name, chosen_file_name)) as mapper_data_json:
-                    mapper_data = json.load(mapper_data_json)
-                    mapper_data_json.close()
-                stages[stage_name]['Mapper'] = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
-                stages[stage_name]['Mapper'].generate()
+            if settings.get('Room shuffler', {}).get('Shuffle rooms within stages', False):
+                # print('', stage_name)
+                directory_listing = os.listdir(os.path.join('build', 'shuffler', stage_name))
+                file_listing = list(
+                    name for name in directory_listing if
+                    name.endswith('.json') and
+                    (stage_name, name[:-len('.json')]) not in invalid_stage_files
+                )
+                # print('', stage_name, len(file_listing), stages[stage_name]['Initial Seed'])
+                assert len(file_listing) > 0
+                # Keep randomly choosing a shuffled stage until one that passes all its validation checks is found
+                # TODO(sestren): Allow validation of secondary stages like Castle Entrance Revisited or Reverse Keep
+                max_unique_pass_count = 0
+                while True:
+                    all_valid_ind = True
+                    chosen_file_name = stages[stage_name]['RNG'].choice(list(sorted(file_listing)))
+                    with open(os.path.join('build', 'shuffler', stage_name, chosen_file_name)) as mapper_data_json:
+                        mapper_data = json.load(mapper_data_json)
+                        mapper_data_json.close()
+                    stages[stage_name]['Mapper'] = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
+                    stages[stage_name]['Mapper'].generate(mapper.stages[stage_name])
+                    stages[stage_name]['Mapper'].stage.normalize_bounds()
+                    # Normalize room connections (optional)
+                    if settings.get('Options', {}).get('Normalize room connections', False):
+                        # Normalize node type
+                        for room_name in normalizer.stages.get(stage_name, {}):
+                            for node_name in stages[stage_name]['Mapper'].stage.rooms[room_name].nodes.keys():
+                                if (room_name, node_name) in normalizer.nodes:
+                                    stages[stage_name]['Mapper'].stage.rooms[room_name].nodes[node_name].type = normalizer.nodes[(room_name, node_name)]
+                    stage_changes = stages[stage_name]['Mapper'].stage.get_changes()
+                    hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
+                    if not stages[stage_name]['Mapper'].validate_connections(True):
+                        # print(hash_of_rooms)
+                        continue
+                    assert hash_of_rooms == mapper_data['Hash of Rooms']
+                    # print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), len(list(b for (a, b) in invalid_stage_files if a == stage_name)), max_unique_pass_count)
+                    changes = {
+                        'Options': options,
+                        'Stages': {
+                            stage_name: stage_changes,
+                        },
+                    }
+                    unique_passes = set()
+                    for (validation_name, validation) in stage_validations[stage_name].items():
+                        if validation_name.startswith('SKIP '):
+                            continue
+                        logic_core = mapper.LogicCore(mapper_core, changes).get_core()
+                        for (state_key, state_value) in validation['State'].items():
+                            logic_core['State'][state_key] = state_value
+                        logic_core['Goals'] = validation['Goals']
+                        # Validate
+                        cached_ind = True
+                        if stage_name not in validation_results:
+                            validation_results[stage_name] = {}
+                            cached_ind = False
+                        if hash_of_rooms not in validation_results[stage_name]:
+                            validation_results[stage_name][hash_of_rooms] = {}
+                            cached_ind = False
+                        hash_of_validation = hashlib.sha256(
+                            json.dumps(validation, sort_keys=True).encode()
+                        ).hexdigest()
+                        if hash_of_validation not in validation_results[stage_name][hash_of_rooms]:
+                            cached_ind = False
+                        validation_result = True
+                        if not cached_ind:
+                            validation_results[stage_name][hash_of_rooms][hash_of_validation] = validator.validate_stage(
+                                mapper_core,
+                                mapper_data,
+                                stage_name,
+                                validation
+                            )
+                        validation_result = validation_results[stage_name][hash_of_rooms][hash_of_validation]
+                        if validation_result:
+                            # print('   ', '✅ ...', validation_name)
+                            unique_passes.add(validation_name)
+                            max_unique_pass_count = max(max_unique_pass_count, len(unique_passes))
+                        else:
+                            # print('   ', '❌ ...', validation_name)
+                            all_valid_ind = False
+                            break
+                    if all_valid_ind:
+                        break
+                    else:
+                        invalid_stage_files.add((stage_name, chosen_file_name[:-len('.json')]))
+                shuffler['Stages'][stage_name] = {
+                    'Note': 'Prebaked',
+                    'Attempts': stages[stage_name]['Mapper'].attempts,
+                    'Generation Start Date': stages[stage_name]['Mapper'].start_time.isoformat(),
+                    'Generation End Date': stages[stage_name]['Mapper'].end_time.isoformat(),
+                    # 'Generation Version': GENERATION_VERSION,
+                    'Hash of Rooms': hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest(),
+                    'Seed': stages[stage_name]['Mapper'].current_seed,
+                    'Stage': stage_name,
+                }
+            else:
+                stage_rooms = [{}]
+                for (room_name, room_data) in templates['Vanilla']['Stages'][stage_name]['Rooms'].items():
+                    if room_name in (
+                        'Castle Entrance, Forest Cutscene',
+                        'Castle Entrance, Unknown Room 19',
+                    ):
+                        continue
+                    stage_rooms[-1][room_name] = (room_data['Top'], room_data['Left'])
+                stages[stage_name]['Mapper'] = mapper.Mapper(mapper_core, stage_name, 0)
+                stages[stage_name]['Mapper'].generate(stage_rooms)
                 stages[stage_name]['Mapper'].stage.normalize_bounds()
                 # Normalize room connections (optional)
                 if settings.get('Options', {}).get('Normalize room connections', False):
@@ -674,70 +762,18 @@ if __name__ == '__main__':
                             if (room_name, node_name) in normalizer.nodes:
                                 stages[stage_name]['Mapper'].stage.rooms[room_name].nodes[node_name].type = normalizer.nodes[(room_name, node_name)]
                 stage_changes = stages[stage_name]['Mapper'].stage.get_changes()
-                hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
-                if not stages[stage_name]['Mapper'].validate_connections(True):
-                    # print(hash_of_rooms)
-                    continue
-                assert hash_of_rooms == mapper_data['Hash of Rooms']
-                # print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), len(list(b for (a, b) in invalid_stage_files if a == stage_name)), max_unique_pass_count)
                 changes = {
                     'Options': options,
                     'Stages': {
                         stage_name: stage_changes,
                     },
                 }
-                unique_passes = set()
-                for (validation_name, validation) in stage_validations[stage_name].items():
-                    if validation_name.startswith('SKIP '):
-                        continue
-                    logic_core = mapper.LogicCore(mapper_core, changes).get_core()
-                    for (state_key, state_value) in validation['State'].items():
-                        logic_core['State'][state_key] = state_value
-                    logic_core['Goals'] = validation['Goals']
-                    # Validate
-                    cached_ind = True
-                    if stage_name not in validation_results:
-                        validation_results[stage_name] = {}
-                        cached_ind = False
-                    if hash_of_rooms not in validation_results[stage_name]:
-                        validation_results[stage_name][hash_of_rooms] = {}
-                        cached_ind = False
-                    hash_of_validation = hashlib.sha256(
-                        json.dumps(validation, sort_keys=True).encode()
-                    ).hexdigest()
-                    if hash_of_validation not in validation_results[stage_name][hash_of_rooms]:
-                        cached_ind = False
-                    validation_result = True
-                    if not cached_ind:
-                        validation_results[stage_name][hash_of_rooms][hash_of_validation] = validator.validate_stage(
-                            mapper_core,
-                            mapper_data,
-                            stage_name,
-                            validation
-                        )
-                    validation_result = validation_results[stage_name][hash_of_rooms][hash_of_validation]
-                    if validation_result:
-                        # print('   ', '✅ ...', validation_name)
-                        unique_passes.add(validation_name)
-                        max_unique_pass_count = max(max_unique_pass_count, len(unique_passes))
-                    else:
-                        # print('   ', '❌ ...', validation_name)
-                        all_valid_ind = False
-                        break
-                if all_valid_ind:
-                    break
-                else:
-                    invalid_stage_files.add((stage_name, chosen_file_name[:-len('.json')]))
-            shuffler['Stages'][stage_name] = {
-                'Note': 'Prebaked',
-                'Attempts': stages[stage_name]['Mapper'].attempts,
-                'Generation Start Date': stages[stage_name]['Mapper'].start_time.isoformat(),
-                'Generation End Date': stages[stage_name]['Mapper'].end_time.isoformat(),
-                # 'Generation Version': GENERATION_VERSION,
-                'Hash of Rooms': hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest(),
-                'Seed': stages[stage_name]['Mapper'].current_seed,
-                'Stage': stage_name,
-            }
+                shuffler['Stages'][stage_name] = {
+                    'Note': 'Template',
+                    'Template': 'Vanilla',
+                    'Hash of Rooms': hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest(),
+                    'Stage': stage_name,
+                }
         # Randomly place down stages one at a time
         stage_names = list(sorted(stages.keys() - {'Warp Rooms', 'Castle Center'}))
         rng['Castle Map'].shuffle(stage_names)
@@ -974,22 +1010,22 @@ if __name__ == '__main__':
         # Castle Map Color Palette
         if settings.get('Options', {}).get('Color-code each stage on the map', False):
             changes['Castle Map Color Palette'] = [
-                "#7F000000",
-                "#FF0000FF",
-                "#FF002858",
-                "#FF101810",
-                "#FFF80000",
-                "#FFF88000",
-                "#FFCC7400",
-                "#FFFF1A57",
-                "#FFE600B8",
-                "#FF008099",
-                "#FFF25D0D",
-                "#FF00b300",
-                "#FF666666",
-                "#FF036333",
-                "#FFC0C0C0",
-                "#FF009DFF",
+                "#0000007F", # 0 -> Transparency
+                "#0000FFFF", # 1
+                "#002858FF", # 2 -> Unusable
+                "#101810FF", # 3 -> Fills of unexplored rooms (revealed when purchasing the Castle Map)
+                "#F80000FF", # 4 -> Fills of Save Rooms
+                "#F88000FF", # 5
+                "#CC7400FF", # 6
+                "#FF1A57FF", # 7
+                "#E600B8FF", # 8
+                "#008099FF", # 9
+                "#F25D0DFF", # A
+                "#00B300FF", # B
+                "#666666FF", # C
+                "#036333FF", # D -> Borders of unexplored rooms (revealed when purchasing the Castle Map)
+                "#C0C0C0FF", # E -> Borders of explored rooms
+                "#009DFFFF", # F
             ]
         # Calculate which cells on the map buying the Castle Map in the Shop will reveal
         cells_to_reveal = set()
