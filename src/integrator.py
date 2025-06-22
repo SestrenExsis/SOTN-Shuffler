@@ -36,6 +36,21 @@ entry_points = {
     },
 }
 
+goals = {
+    'Status - Pressure Plate in Marble Gallery Activated': {
+        'Status - Pressure Plate in Marble Gallery Activated': True,
+    },
+    'Subweapon - Stopwatch': {
+        'Subweapon': 'Stopwatch',
+    },
+    'Location - Gravity Boots': {
+        'Check - Gravity Boots Location': True,
+    },
+    'Location - Spirit Orb': {
+        'Check - Spirit Orb Location': True,
+    },
+}
+
 requirements = {
     'Pressure Plate in Marble Gallery': {
         'Status - Pressure Plate in Marble Gallery Activated': True,
@@ -96,77 +111,8 @@ requirements = {
     },
 }
 
-goals = {
-    'Status - Pressure Plate in Marble Gallery Activated': {
-        'Status - Pressure Plate in Marble Gallery Activated': True,
-    },
-    'Subweapon - Stopwatch': {
-        'Subweapon': 'Stopwatch',
-    },
-    'Location - Gravity Boots': {
-        'Check - Gravity Boots Location': True,
-    },
-    'Location - Spirit Orb': {
-        'Check - Spirit Orb Location': True,
-    },
-}
-
-if __name__ == '__main__':
-    '''
-    Usage
-    python integrator.py
-    '''
-    skills = {}
-    with (
-        open(os.path.join('examples', 'skillsets.yaml')) as skillsets_file,
-    ):
-        skillsets = yaml.safe_load(skillsets_file)
-        for skill in skillsets['Casual']:
-            skills[skill] = True
-    stage_name = 'Marble Gallery'
-    mapper_core = mapper.MapperData().get_core()
-    with open(os.path.join('build', 'shuffler', stage_name, '09df8ef7d08b7c25d174908c20ed8b6368f1f973dde8e17bbe4e8fd1bfe1dc3f.json')) as mapper_data_json:
-        mapper_data = json.load(mapper_data_json)
-        mapper_data_json.close()
-    current_mapper = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
-    current_mapper.generate(mapper.stages[stage_name])
-    current_mapper.stage.normalize_bounds()
-    current_mapper__stage_changes = current_mapper.stage.get_changes()
-    hash_of_rooms = hashlib.sha256(
-        json.dumps(current_mapper__stage_changes['Rooms'], sort_keys=True).encode()
-    ).hexdigest()
-    assert hash_of_rooms == mapper_data['Hash of Rooms']
-    changes = {
-        'Stages': {
-            stage_name: current_mapper__stage_changes,
-        },
-    }
+def validate(mapper_core, changes, skills, validation):
     logic_core = mapper.LogicCore(mapper_core, changes).get_core()
-    validation = {
-        'Solver': {
-            'Approach': 'Steps',
-            'Attempts': 1,
-            'Limit': 99,
-            'Initial Seed': 1,
-            'Debug': False,
-            'Wins': {
-                'Minimum': 1,
-            },
-        },
-        'State': {
-            'Room': 'Marble Gallery, Loading Room to Alchemy Laboratory',
-            'Section': 'Main',
-            'Progression - Double Jump': True,
-            'Progression - Gravity Jump': True,
-            'Status - Pressure Plate in Marble Gallery Activated': True,
-            'Subweapon': 'Stopwatch',
-        },
-        'Goals': {
-            'Check - Gravity Boots Location': {
-                'Check - Gravity Boots Location': True,
-            },
-        },
-    }
     for (state_key, state_value) in validation['State'].items():
         logic_core['State'][state_key] = state_value
     logic_core['Goals'] = validation['Goals']
@@ -195,4 +141,79 @@ if __name__ == '__main__':
                 validation_passed = False
                 break
     result = validation_passed
+    return result
+
+def analyze_stage(stage_name, hash_of_rooms, skills):
+    mapper_core = mapper.MapperData().get_core()
+    with open(os.path.join('build', 'shuffler', stage_name, hash_of_rooms + '.json')) as mapper_data_json:
+        mapper_data = json.load(mapper_data_json)
+        mapper_data_json.close()
+    current_mapper = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
+    current_mapper.generate(mapper.stages[stage_name])
+    current_mapper.stage.normalize_bounds()
+    current_mapper__stage_changes = current_mapper.stage.get_changes()
+    hash_of_rooms = hashlib.sha256(
+        json.dumps(current_mapper__stage_changes['Rooms'], sort_keys=True).encode()
+    ).hexdigest()
+    assert hash_of_rooms == mapper_data['Hash of Rooms']
+    changes = {
+        'Stages': {
+            stage_name: current_mapper__stage_changes,
+        },
+    }
+    for (entry_point_id, entry_point) in entry_points.items():
+        for (exit_point_id, exit_point) in entry_points.items():
+            if exit_point_id == entry_point_id:
+                continue
+            validation = {
+                'Solver': {
+                    'Approach': 'Steps',
+                    'Attempts': 1,
+                    'Limit': 99,
+                    'Initial Seed': 1,
+                    'Debug': False,
+                    'Wins': {
+                        'Minimum': 1,
+                    },
+                },
+                'State': {
+                    # 'Room': 'Marble Gallery, Loading Room to Alchemy Laboratory',
+                    # 'Section': 'Main',
+                    # 'Progression - Double Jump': True,
+                    # 'Progression - Gravity Jump': True,
+                    # 'Status - Pressure Plate in Marble Gallery Activated': True,
+                    # 'Subweapon': 'Stopwatch',
+                },
+                'Goals': {
+                    # 'Check - Gravity Boots Location': {
+                    #     'Check - Gravity Boots Location': True,
+                    # },
+                },
+            }
+            for (key, value) in entry_point.items():
+                validation['State'][key] = value
+            goal = {}
+            for (key, value) in exit_point.items():
+                goal[key] = value
+            validation['Goals']['Goal'] = goal
+            result = validate(mapper_core, changes, skills, validation)
+            print((entry_point_id, exit_point_id), '=', result)
+            # progression, entry_point, exit_point
+    return result
+
+if __name__ == '__main__':
+    '''
+    Usage
+    python integrator.py
+    '''
+    skills = {}
+    with (
+        open(os.path.join('examples', 'skillsets.yaml')) as skillsets_file,
+    ):
+        skillsets = yaml.safe_load(skillsets_file)
+        for skill in skillsets['Casual']:
+            skills[skill] = True
+    stage_name = 'Marble Gallery'
+    hash_of_rooms = '09df8ef7d08b7c25d174908c20ed8b6368f1f973dde8e17bbe4e8fd1bfe1dc3f'
+    result = analyze_stage(stage_name, hash_of_rooms, skills)
     print(result)
