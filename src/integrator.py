@@ -1,6 +1,8 @@
 # External libraries
-import argparse
+import copy
+import heapq
 import hashlib
+import itertools
 import json
 import os
 import yaml
@@ -52,7 +54,8 @@ goals = {
 }
 
 requirements = {
-    'Pressure Plate in Marble Gallery': {
+    'Empty Hand': {},
+    'Marble Gallery Pressure Plate': {
         'Status - Pressure Plate in Marble Gallery Activated': True,
     },
     'Stopwatch': {
@@ -74,6 +77,10 @@ requirements = {
         'Progression - Mid-Air Reset': True,
         'Progression - Mist Transformation': True,
         'Relic - Form of Mist': True,
+    },
+    'Gold Ring + Silver Ring': {
+        'Item - Gold Ring': 1,
+        'Item - Silver Ring': 1,
     },
     'Gravity Boots': {
         'Progression - Gravity Jump': True,
@@ -161,44 +168,81 @@ def analyze_stage(stage_name, hash_of_rooms, skills):
             stage_name: current_mapper__stage_changes,
         },
     }
-    for (entry_point_id, entry_point) in entry_points.items():
-        for (exit_point_id, exit_point) in entry_points.items():
-            if exit_point_id == entry_point_id:
-                continue
-            validation = {
-                'Solver': {
-                    'Approach': 'Steps',
-                    'Attempts': 1,
-                    'Limit': 99,
-                    'Initial Seed': 1,
-                    'Debug': False,
-                    'Wins': {
-                        'Minimum': 1,
-                    },
-                },
-                'State': {
-                    # 'Room': 'Marble Gallery, Loading Room to Alchemy Laboratory',
-                    # 'Section': 'Main',
-                    # 'Progression - Double Jump': True,
-                    # 'Progression - Gravity Jump': True,
-                    # 'Status - Pressure Plate in Marble Gallery Activated': True,
-                    # 'Subweapon': 'Stopwatch',
-                },
-                'Goals': {
-                    # 'Check - Gravity Boots Location': {
-                    #     'Check - Gravity Boots Location': True,
-                    # },
-                },
-            }
-            for (key, value) in entry_point.items():
-                validation['State'][key] = value
-            goal = {}
-            for (key, value) in exit_point.items():
-                goal[key] = value
-            validation['Goals']['Goal'] = goal
-            result = validate(mapper_core, changes, skills, validation)
-            print((entry_point_id, exit_point_id), '=', result)
-            # progression, entry_point, exit_point
+    validation_template = {
+        'Solver': {
+            'Approach': 'Steps',
+            'Attempts': 1,
+            'Limit': 99,
+            'Initial Seed': 1,
+            'Debug': False,
+            'Wins': {
+                'Minimum': 1,
+            },
+        },
+        'State': {},
+            # 'Room': 'Marble Gallery, Loading Room to Alchemy Laboratory',
+            # 'Section': 'Main',
+            # 'Progression - Double Jump': True,
+            # 'Progression - Gravity Jump': True,
+            # 'Status - Pressure Plate in Marble Gallery Activated': True,
+            # 'Subweapon': 'Stopwatch',
+        'Goals': {},
+            # 'Check - Gravity Boots Location': {
+            #     'Check - Gravity Boots Location': True,
+            # },
+    }
+    analysis = {}
+    # TODO(sestren): Add Enter -> Goal
+    # TODO(sestren): Add Goal -> Exit
+    requirement_ids = list(sorted(requirements.keys()))
+    for requirement_count in range(1, 4): # len(requirement_ids) + 1):
+        print('requirement_count:', requirement_count)
+        work = [] # (requirement_count, chosen_requirements*)
+        for curr_requirements in itertools.combinations(requirement_ids, requirement_count):
+            if 'Empty Hand' in curr_requirements:
+                if requirement_count == 1:
+                    heapq.heappush(work, (0, tuple(('Empty Hand', ))))
+            else:
+                heapq.heappush(work, (requirement_count, curr_requirements))
+        print('len(work):', len(work))
+        while len(work) > 0:
+            (N, curr_requirements) = heapq.heappop(work)
+            print(N, curr_requirements)
+            for (entry_point_id, entry_point) in entry_points.items():
+                for (exit_point_id, exit_point) in entry_points.items():
+                    if exit_point_id == entry_point_id:
+                        continue
+                    # TODO(sestren): If a simpler set of requirements already passed, skip it
+                    all_requirements = analysis.get((entry_point_id, exit_point_id), {})
+                    if ('Empty Hand', ) in all_requirements:
+                        continue
+                    subset_found = False
+                    set_of_curr_requirements = set(curr_requirements)
+                    for prev_requirements in all_requirements:
+                        if set_of_curr_requirements.issuperset(set(prev_requirements)):
+                            subset_found = True
+                            break
+                    if subset_found:
+                        continue
+                    validation = copy.deepcopy(validation_template)
+                    for (key, value) in entry_point.items():
+                        validation['State'][key] = value
+                    for requirement_id in curr_requirements:
+                        for (key, value) in requirements[requirement_id].items():
+                            validation['State'][key] = value
+                    goal = {}
+                    for (key, value) in exit_point.items():
+                        goal[key] = value
+                    validation['Goals']['Goal'] = goal
+                    result = validate(mapper_core, changes, skills, validation)
+                    if result:
+                        if (entry_point_id, exit_point_id) not in analysis:
+                            analysis[(entry_point_id, exit_point_id)] = set()
+                        analysis[(entry_point_id, exit_point_id)].add(curr_requirements)
+    for (entry_point_id, exit_point_id) in sorted(analysis.keys()):
+        print('', (entry_point_id, exit_point_id))
+        for requirements_key in sorted(analysis[(entry_point_id, exit_point_id)]):
+            print('  - ', requirements_key)
     return result
 
 if __name__ == '__main__':
@@ -211,7 +255,7 @@ if __name__ == '__main__':
         open(os.path.join('examples', 'skillsets.yaml')) as skillsets_file,
     ):
         skillsets = yaml.safe_load(skillsets_file)
-        for skill in skillsets['Casual']:
+        for skill in skillsets['Integration']:
             skills[skill] = True
     stage_name = 'Marble Gallery'
     hash_of_rooms = '09df8ef7d08b7c25d174908c20ed8b6368f1f973dde8e17bbe4e8fd1bfe1dc3f'

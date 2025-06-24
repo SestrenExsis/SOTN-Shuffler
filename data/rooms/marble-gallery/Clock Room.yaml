@@ -59,6 +59,7 @@ Commands:
                 Helper: Right Path
             Bottom, Rising:
                 Section: Bottom, Rising
+                Status - Floor in Clock Room Opened Up: true
     Move - Top, Rising, Left Path:
         Outcomes:
             Section: Top, Rising
