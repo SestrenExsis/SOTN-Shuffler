@@ -16,6 +16,10 @@ entry_points = {
         'Room': 'Marble Gallery, Loading Room to Alchemy Laboratory',
         'Section': 'Main',
     },
+    'Enter - Castle Center': {
+        'Room': 'Marble Gallery, Elevator Room',
+        'Section': 'Elevator',
+    },
     'Enter - Castle Entrance': {
         'Room': 'Marble Gallery, Loading Room to Castle Entrance',
         'Section': 'Main',
@@ -32,47 +36,49 @@ entry_points = {
         'Room': 'Marble Gallery, Loading Room to Underground Caverns',
         'Section': 'Main',
     },
-    'Enter - Castle Center': {
-        'Room': 'Marble Gallery, Elevator Room',
-        'Section': 'Elevator',
-    },
 }
 
 goals = {
-    'Status - Pressure Plate in Marble Gallery Activated': {
-        'Status - Pressure Plate in Marble Gallery Activated': True,
+    'Location - Blue Door Room': {
+        'Room': 'Marble Gallery, Blue Door Room',
+        'Section': 'Right Side',
     },
-    'Subweapon - Stopwatch': {
-        'Subweapon': 'Stopwatch',
+    'Location - Stopwatch Room': {
+        'Room': 'Marble Gallery, Stopwatch Room',
+        'Section': 'Main',
     },
     'Location - Gravity Boots': {
-        'Check - Gravity Boots Location': True,
+        'Room': 'Marble Gallery, Gravity Boots Room',
+        'Section': 'Main',
     },
     'Location - Spirit Orb': {
-        'Check - Spirit Orb Location': True,
+        'Room': 'Marble Gallery, Spirit Orb Room',
+        'Section': 'Main',
     },
 }
 
 requirements = {
-    'Empty Hand': {},
     'Marble Gallery Pressure Plate': {
         'Status - Pressure Plate in Marble Gallery Activated': True,
     },
-    'Stopwatch': {
-        'Subweapon': 'Stopwatch',
+    'Clock Room Floor': {
+        'Status - Floor in Clock Room Opened Up': True,
     },
     'Cube of Zoe': {
-        'Progression - Item Materialization': True,
-        'Relic - Cube of Zoe': True,
+        'Subweapon': 'Stopwatch',
     },
-    'Demon Card': {
-        'Progression - Summon Demon Familiar': True,
-        'Relic - Demon Card': True,
-    },
-    'Echo of Bat': {
-        'Progression - Echolocation': True,
-        'Relic - Echo of Bat': True,
-    },
+    # 'Cube of Zoe': {
+    #     'Progression - Item Materialization': True,
+    #     'Relic - Cube of Zoe': True,
+    # },
+    # 'Demon Card': {
+    #     'Progression - Summon Demon Familiar': True,
+    #     'Relic - Demon Card': True,
+    # },
+    # 'Echo of Bat': {
+    #     'Progression - Echolocation': True,
+    #     'Relic - Echo of Bat': True,
+    # },
     'Form of Mist': {
         'Progression - Mid-Air Reset': True,
         'Progression - Mist Transformation': True,
@@ -95,10 +101,10 @@ requirements = {
         'Progression - Mid-Air Reset': True,
         'Relic - Leap Stone': True,
     },
-    'Merman Statue': {
-        'Progression - Summon Ferryman': True,
-        'Relic - Merman Statue': True,
-    },
+    # 'Merman Statue': {
+    #     'Progression - Summon Ferryman': True,
+    #     'Relic - Merman Statue': True,
+    # },
     'Power of Mist': {
         'Progression - Longer Mist Duration': True,
         'Relic - Power of Mist': True,
@@ -113,9 +119,9 @@ requirements = {
         'Progression - Wolf Transformation': True,
         'Relic - Soul of Wolf': True,
     },
-    'Spike Breaker': {
-        'Item - Spike Breaker': 1,
-    },
+    # 'Spike Breaker': {
+    #     'Item - Spike Breaker': 1,
+    # },
 }
 
 def validate(mapper_core, changes, skills, validation):
@@ -180,41 +186,52 @@ def analyze_stage(stage_name, hash_of_rooms, skills):
             },
         },
         'State': {},
-            # 'Room': 'Marble Gallery, Loading Room to Alchemy Laboratory',
-            # 'Section': 'Main',
-            # 'Progression - Double Jump': True,
-            # 'Progression - Gravity Jump': True,
-            # 'Status - Pressure Plate in Marble Gallery Activated': True,
-            # 'Subweapon': 'Stopwatch',
         'Goals': {},
-            # 'Check - Gravity Boots Location': {
-            #     'Check - Gravity Boots Location': True,
-            # },
     }
     analysis = {}
-    # TODO(sestren): Add Enter -> Goal
-    # TODO(sestren): Add Goal -> Exit
+    work = []
+    for entry_point_id in sorted(entry_points.keys()):
+        for exit_point_id in sorted(entry_points.keys()):
+            work.append((entry_point_id, exit_point_id))
+    for entry_point_id in sorted(entry_points.keys()):
+        for goal_id in sorted(goals.keys()):
+            work.append((entry_point_id, goal_id))
+    for goal_id in sorted(goals.keys()):
+        for exit_point_id in sorted(entry_points.keys()):
+            work.append((goal_id, exit_point_id))
+    for goal_id in sorted(goals.keys()):
+        for other_goal_id in sorted(goals.keys()):
+            work.append((goal_id, other_goal_id))
     requirement_ids = list(sorted(requirements.keys()))
-    for requirement_count in range(1, 4): # len(requirement_ids) + 1):
-        print('requirement_count:', requirement_count)
-        work = [] # (requirement_count, chosen_requirements*)
-        for curr_requirements in itertools.combinations(requirement_ids, requirement_count):
-            if 'Empty Hand' in curr_requirements:
-                if requirement_count == 1:
-                    heapq.heappush(work, (0, tuple(('Empty Hand', ))))
+    while len(work) > 0:
+        (entry_point_id, exit_point_id) = work.pop()
+        if entry_point_id == exit_point_id:
+            continue
+        entry_point = entry_points.get(entry_point_id, {}) if entry_point_id in entry_points else goals.get(entry_point_id, {})
+        exit_point = entry_points.get(exit_point_id, {}) if exit_point_id in entry_points else goals.get(exit_point_id, {})
+        all_requirements = set()
+        print('', (entry_point_id, exit_point_id))
+        for requirement_count in range(10): # len(requirement_ids) + 1):
+            skip_count = 0
+            check_count = 0
+            empty_hand_count = 0
+            if requirement_count == 0:
+                check_count += 1
+                validation = copy.deepcopy(validation_template)
+                for (key, value) in entry_point.items():
+                    validation['State'][key] = value
+                goal = {}
+                for (key, value) in exit_point.items():
+                    goal[key] = value
+                validation['Goals']['Goal'] = goal
+                result = validate(mapper_core, changes, skills, validation)
+                if result:
+                    all_requirements.add(('Empty Hand', ))
             else:
-                heapq.heappush(work, (requirement_count, curr_requirements))
-        print('len(work):', len(work))
-        while len(work) > 0:
-            (N, curr_requirements) = heapq.heappop(work)
-            print(N, curr_requirements)
-            for (entry_point_id, entry_point) in entry_points.items():
-                for (exit_point_id, exit_point) in entry_points.items():
-                    if exit_point_id == entry_point_id:
-                        continue
-                    # TODO(sestren): If a simpler set of requirements already passed, skip it
-                    all_requirements = analysis.get((entry_point_id, exit_point_id), {})
+                for curr_requirements in itertools.combinations(requirement_ids, requirement_count):
+                    check_count += 1
                     if ('Empty Hand', ) in all_requirements:
+                        empty_hand_count += 1
                         continue
                     subset_found = False
                     set_of_curr_requirements = set(curr_requirements)
@@ -223,6 +240,7 @@ def analyze_stage(stage_name, hash_of_rooms, skills):
                             subset_found = True
                             break
                     if subset_found:
+                        skip_count += 1
                         continue
                     validation = copy.deepcopy(validation_template)
                     for (key, value) in entry_point.items():
@@ -238,7 +256,9 @@ def analyze_stage(stage_name, hash_of_rooms, skills):
                     if result:
                         if (entry_point_id, exit_point_id) not in analysis:
                             analysis[(entry_point_id, exit_point_id)] = set()
-                        analysis[(entry_point_id, exit_point_id)].add(curr_requirements)
+                        all_requirements.add(curr_requirements)
+            print('  ', requirement_count, check_count, skip_count, empty_hand_count)
+        analysis[(entry_point_id, exit_point_id)] = all_requirements
     for (entry_point_id, exit_point_id) in sorted(analysis.keys()):
         print('', (entry_point_id, exit_point_id))
         for requirements_key in sorted(analysis[(entry_point_id, exit_point_id)]):

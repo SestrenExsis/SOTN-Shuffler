@@ -11,20 +11,85 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Left
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Upper Area
+        Exit Section: Upper Area
     Upper-Right Passage:
         Type: "######....######"
         Row: 0
         Column: 0
         Edge: Right
-        Entry Section: Main
-        Exit Section: Main
+        Entry Section: Upper Area
+        Exit Section: Upper Area
     Lower-Right Passage:
         Type: "######....######"
         Row: 2
         Column: 0
         Edge: Right
-        Entry Section: Main
-        Exit Section: Main
-Commands: {}
+        Entry Section: Lower Area
+        Exit Section: Lower Area
+Commands:
+    Move - Lower Area:
+        Outcomes:
+            Section: Lower Area
+        Requirements:
+            Upper Area - Logical Risk:
+                Section: Upper Area
+                Option - Permit Logical Risks: true
+            Upper Area - Return With Bat Form:
+                Section: Upper Area
+                Progression - Bat Transformation: true
+            Upper Area - Return With Double Jump:
+                Section: Upper Area
+                Progression - Double Jump: true
+            Upper Area - Return With Gravity Jump:
+                Section: Upper Area
+                Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
+            Upper Area - Return With Candle Dive Kick:
+                Section: Upper Area
+                Progression - Mid-Air Reset: true
+                Technique - Candle Dive Kick: true
+            Upper Area - Return With Powered Mist:
+                Section: Upper Area
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
+            Upper Area - Return With Wolf-Mist Rise:
+                Section: Upper Area
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Short): true
+            Upper Area - Return With Damage Boost:
+                Section: Upper Area
+                Technique - Damage Boost (Precise): true
+    Move - Upper Area:
+        Outcomes:
+            Section: Upper Area
+        Requirements:
+            Lower Area - Bat Form:
+                Section: Lower Area
+                Progression - Bat Transformation: true
+            Lower Area - Double Jump:
+                Section: Lower Area
+                Progression - Double Jump: true
+            Lower Area - Gravity Jump:
+                Section: Lower Area
+                Progression - Gravity Jump: true
+                Technique - Gravity Jump: true
+            Lower Area - Powered Mist:
+                Section: Lower Area
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
+            Lower Area - Candle Dive Kick:
+                Section: Lower Area
+                Progression - Mid-Air Reset: true
+                Technique - Candle Dive Kick: true
+            Lower Area - Wolf-Mist Rise:
+                Section: Lower Area
+                Progression - Mist Transformation: true
+                Progression - Wolf Transformation: true
+                Technique - Wolf-Mist Rise (Short): true
+            Lower Area - Damage Boost:
+                Section: Lower Area
+                Technique - Damage Boost (Precise): true
