@@ -919,7 +919,7 @@ class LogicCore:
                 self.commands.pop(room_name, None)
         # Apply quests to logic
         for quest in mapper_data['Quests']['Sources'].values():
-            for requirement in quest['Requirements'].values():
+            for requirement in quest.get('Requirements', {}).values():
                 stage_name = requirement.get('Stage', 'Global')
                 if stage_name not in changes['Stages']:
                     continue

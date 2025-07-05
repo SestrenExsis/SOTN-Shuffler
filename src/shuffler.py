@@ -334,6 +334,20 @@ def shuffle_items(quests, rng, item_pool: str='Vanilla'):
         quest_target = quest_targets.pop()
         quests['Sources'][quest_source_name]['Target Reward'] = quest_target
 
+def shuffle_enemy_drops(quests, rng):
+    quest_targets = []
+    for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        if not quests['Sources'][quest_source_name]['Reward Class'].endswith('Enemy Drop'):
+            continue
+        quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
+        quest_targets.append(quest_target_name)
+    rng.shuffle(quest_targets)
+    for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        if not quests['Sources'][quest_source_name]['Reward Class'].endswith('Enemy Drop'):
+            continue
+        quest_target = quest_targets.pop()
+        quests['Sources'][quest_source_name]['Target Reward'] = quest_target
+
 def draw_labels_on_castle_map(castle_map, instructions):
     # CDHIJKLNOSTUVXYZ147+-|#
     labels = {
@@ -576,6 +590,7 @@ if __name__ == '__main__':
         rng['Stages'] = random.Random(seeds[3])
         rng['Castle Map'] = random.Random(seeds[4])
         rng['Spike Room'] = random.Random(seeds[5])
+        rng['Enemy Drops'] = random.Random(seeds[6])
         # NOTE(sestren): Access another pre-generated seed instead of generating more
         print('.', end='', flush=True)
         shuffler['Stages'] = {}
@@ -631,14 +646,17 @@ if __name__ == '__main__':
             shuffle_items(mapper_core['Quests'], rng['Items'], item_pool)
             if quest_rewards is None:
                 quest_rewards = {}
-        if settings.get('Quest shuffler', {}).get('Item pool', 'Vanilla') == 'Racing':
+        if settings.get('Quest shuffler', {}).get('Shuffle enemy drops', False):
+            shuffle_enemy_drops(mapper_core['Quests'], rng['Enemy Drops'])
             if quest_rewards is None:
                 quest_rewards = {}
-            quest_rewards['Enemy - Bone Scimitar, Green (Short Sword)'] = 'Item - Manna Prism'
-            quest_rewards['Enemy - Bone Scimitar, Copper (Red Rust)'] = 'Item - Leather Shield'
+        # if settings.get('Quest shuffler', {}).get('Item pool', 'Vanilla') == 'Racing':
+        #     if quest_rewards is None:
+        #         quest_rewards = {}
+        #     quest_rewards['Enemy - Bone Scimitar, Green (Guaranteed)'] = 'Item - Manna Prism'
+        #     quest_rewards['Enemy - Bone Scimitar, Copper (Guaranteed)'] = 'Item - Leather Shield'
         if quest_rewards is not None:
             for (quest_name, quest) in mapper_core['Quests']['Sources'].items():
-                target_name = quest['Target Reward']
                 quest_rewards[quest_name] = quest['Target Reward']
         # print('Set starting seeds for each stage')
         for stage_name in sorted(stages.keys()):

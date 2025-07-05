@@ -16,6 +16,7 @@ Options:
 Quest shuffler:
     Item pool: Vanilla
     Relic pool: Vanilla
+    Shuffle enemy drops: true
     Shuffle items: true
     Shuffle relics: true
 Room shuffler:
