@@ -327,10 +327,12 @@ class Game:
         print('')
 
 class Solver():
-    def __init__(self, logic_core, skills, seed: int=0):
+    def __init__(self, logic_core, custom_start={}, custom_end=None, seed: int=0):
         self.logic_core = logic_core
-        for (skill_key, skill_value) in skills.items():
-            self.logic_core['State'][skill_key] = skill_value
+        for (state_key, state_value) in custom_start.items():
+            self.logic_core['State'][state_key] = state_value
+        if custom_end is not None:
+            self.logic_core['Goals']['END'] = custom_end
         self.current_game = Game(self.logic_core)
         self.results = {
             'Wins': [],

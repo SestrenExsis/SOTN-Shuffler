@@ -1,5 +1,6 @@
 # External libraries
 import argparse
+import copy
 import datetime
 import hashlib
 import json
@@ -1093,9 +1094,25 @@ if __name__ == '__main__':
             }
         # print('*********')
         # Validate First Castle to ensure it is solvable
-        if validator.validate_logic(mapper_core, changes, skills):
-            pass
-        else:
+        end__revisit_castle_entrance = {
+            'Stages Visited': {
+                'All': {
+                    "Castle Entrance Revisited": True,
+                },
+            },
+        }
+        logic_valid_ind = True
+        for (start_room, start_section, custom_end) in (
+            ('Long Library, Exit to Outer Wall', 'Main', end__revisit_castle_entrance),
+            ('Castle Entrance, After Drawbridge', 'Ground', None),
+        ):
+            custom_start = copy.deepcopy(skills)
+            custom_start['Room'] = start_room
+            custom_start['Section'] = start_section
+            if not validator.validate_logic(mapper_core, changes, custom_start, custom_end):
+                logic_valid_ind = False
+                break
+        if not logic_valid_ind:
             for stage_name in sorted(shuffler['Stages']):
                 print(shuffler['Stages'][stage_name]['Hash of Rooms'], stage_name)
             continue
@@ -1162,7 +1179,7 @@ if __name__ == '__main__':
         seed_hint = ''.join(chars)
         changes['Constants'] = {
             'Message - Richter Mode Instructions 1': seed_hint,
-            'Message - Richter Mode Instructions 2': 'Beta Release 2      ',
+            'Message - Richter Mode Instructions 2': 'Beta Release 3      ',
         }
         # Normalize room connections
         if settings.get('Options', {}).get('Normalize room connections', False):
