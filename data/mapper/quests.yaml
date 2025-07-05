@@ -1,5 +1,659 @@
 ---
 Sources:
+  Enemy - Archer (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Vorpal Blade
+  Enemy - Archer (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Heart Refresh
+  Enemy - Armor Lord (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Saber
+  Enemy - Armor Lord (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Rapier
+  Enemy - Axe Knight, Type A (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Bronze Cuirass
+  Enemy - Axe Knight, Type A (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Subweapon - Axe
+  Enemy - Axe Knight, Type B (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Axe Lord Shield
+  Enemy - Axe Knight, Type B (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Subweapon - Axe
+  Enemy - Azaghal (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Mourneblade
+  Enemy - Azaghal (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Covenant Stone
+  Enemy - Bat (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Monster Vial 2
+  Enemy - Bat (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Potion
+  Enemy - Bitterfly (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Mystic Pendant
+  Enemy - Bitterfly (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Luck Potion
+  Enemy - Black Crow (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Red Bean Bun
+  Enemy - Black Crow (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Aquamarine
+  Enemy - Black Panther (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Masamune
+  Enemy - Black Panther (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Meal Ticket
+  Enemy - Blade (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Gold Plate
+  Enemy - Blade (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Hunter Sword
+  Enemy - Blade Master (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Cross Shuriken
+  Enemy - Blade Master (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Shotel
+  Enemy - Blade Soldier (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Namakura
+  Enemy - Blade Soldier (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - $400
+  Enemy - Bloody Zombie (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Basilard
+  Enemy - Bloody Zombie (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Cloth Tunic
+  Enemy - Blue Raven (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Pork Bun
+  Enemy - Blue Raven (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Zircon
+  Enemy - Blue Venus Weed (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Heart Refresh
+  Enemy - Blue Venus Weed (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Zwei Hander
+  Enemy - Bomb Knight (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Dynamite
+  Enemy - Bomb Knight (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - TNT
+  Enemy - Bone Archer (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Magic Missile
+  Enemy - Bone Archer (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - $400
+  Enemy - Bone Ark (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Skull Shield
+  Enemy - Bone Ark (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Monster Vial 3
+  Enemy - Bone Halberd (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Ham and Eggs
+  Enemy - Bone Halberd (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Javelin
+  Enemy - Bone Musket (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Talisman
+  Enemy - Bone Musket (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Magic Missile
+  Enemy - Bone Pillar (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Ballroom Mask
+  Enemy - Bone Pillar (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Antivenom
+  Enemy - Bone Scimitar, Blue (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Red Rust
+  Enemy - Bone Scimitar, Blue (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Short Sword
+  Enemy - Bone Scimitar, Copper (Guaranteed Drop):
+    Reward Class: Guaranteed Enemy Drop
+    Target Reward: Item - Red Rust
+  Enemy - Bone Scimitar, Green (Guaranteed Drop):
+    Reward Class: Guaranteed Enemy Drop
+    Target Reward: Item - Short Sword
+  Enemy - Cave Troll (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Nauglamir
+  Enemy - Cave Troll (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Neutron Bomb
+  Enemy - Cloaked Knight (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Heaven Sword
+  Enemy - Cloaked Knight (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Flamberge
+  Enemy - Corner Guard (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Damascus Sword
+  Enemy - Corner Guard (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Cutlass
+  Enemy - Corpseweed (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Potion
+  Enemy - Corpseweed (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Antivenom
+  Enemy - Ctulhu (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Bat Pentagram
+  Enemy - Ctulhu (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Pentagram
+  Enemy - Dark Octopus (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Green Tea
+  Enemy - Dark Octopus (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Sushi
+  Enemy - Dhuron (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Rapier
+  Enemy - Dhuron (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Hide Cuirass
+  Enemy - Diplocephalus (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Tart
+  Enemy - Diplocephalus (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Pentagram
+  Enemy - Discus Lord (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Jewel Sword
+  Enemy - Discus Lord (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Chakram
+  Enemy - Dodo Bird (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Runesword
+  Enemy - Dodo Bird (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Heart Broach
+  Enemy - Ectoplasm (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Manna Prism
+  Enemy - Ectoplasm (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Uncurse
+  Enemy - Fire Demon (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Marsil
+  Enemy - Fire Demon (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Fire Shield
+  Enemy - Fire Warg (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Karma Coin
+  Enemy - Fire Warg (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Turquoise
+  Enemy - Fishhead (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Icebrand
+  Enemy - Fishhead (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Resist Ice
+  Enemy - Flail Guard (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Pot Roast
+  Enemy - Flail Guard (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Morningstar
+  Enemy - Flea Armor (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Iron Cuirass
+  Enemy - Flea Armor (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - High Potion
+  Enemy - Flea Man (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Cheese
+  Enemy - Flea Man (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Takemitsu
+  Enemy - Flea Rider (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Ham and Eggs
+  Enemy - Flea Rider (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Turkey
+  Enemy - Flying Zombie (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Frankfurter
+  Enemy - Flying Zombie (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Shuriken
+  Enemy - Frog (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Pizza
+  Enemy - Frog (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Knuckle Duster
+  Enemy - Frozen Half (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Opal Circlet
+  Enemy - Frozen Half (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Necklace of J
+  Enemy - Frozen Shade (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Ice Cream
+  Enemy - Frozen Shade (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Ice Mail
+  Enemy - Ghost (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Antivenom
+  Enemy - Ghost (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - $400
+  Enemy - Ghost Dancer (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Stone Mask
+  Enemy - Ghost Dancer (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Buffalo Star
+  Enemy - Gorgon (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Stone Sword
+  Enemy - Gorgon (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Hammer
+  Enemy - Grave Keeper (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Natou
+  Enemy - Grave Keeper (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Miso Soup
+  Enemy - Gremlin (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Fire Mail
+  Enemy - Gremlin (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Resist Fire
+  Enemy - Guardian (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - God's Garb
+  Enemy - Guardian (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Great Sword
+  Enemy - Gurkha (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Gold Plate
+  Enemy - Gurkha (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Combat Knife
+  Enemy - Hammer (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Gold Plate
+  Enemy - Hammer (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Hammer
+  Enemy - Harpy (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Life Apple
+  Enemy - Harpy (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Apple
+  Enemy - Hellfire Beast (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Fire Mail
+  Enemy - Hellfire Beast (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Lightning Mail
+  Enemy - Hunting Girl (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Cheesecake
+  Enemy - Hunting Girl (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Were Bane
+  Enemy - Imp (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - King's Stone
+  Enemy - Imp (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Luck Potion
+  Enemy - Jack O'Bones (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Flame Star
+  Enemy - Jack O'Bones (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Shuriken
+  Enemy - Karasuman (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Ring of Feanor
+  Enemy - Karasuman (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Resist Dark
+  Enemy - Killer Fish (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Sushi
+  Enemy - Killer Fish (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Aquamarine
+  Enemy - Lesser Demon (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Holbein Dagger
+  Enemy - Lesser Demon (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Obsidian Sword
+  Enemy - Lion (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Fist of Tulkas
+  Enemy - Lion (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Gauntlet
+  Enemy - Lossoth (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Firebrand
+  Enemy - Lossoth (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Sirloin
+  Enemy - Magic Tome (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Saber
+  Enemy - Magic Tome (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - $2000
+  Enemy - Malachi (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Dark Armor
+  Enemy - Malachi (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Dark Shield
+  Enemy - Marionette (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Circlet
+  Enemy - Marionette (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Smart Potion
+  Enemy - Medusa Head (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Medusa Shield
+  Enemy - Medusa Head (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Resist Stone
+  Enemy - Merman (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Monster Vial 1
+  Enemy - Merman (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Zircon
+  Enemy - Minotaur (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Fury Plate
+  Enemy - Minotaur (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Sirloin
+  Enemy - Nova Skeleton (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Terminus Est
+  Enemy - Nova Skeleton (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Monster Vial 3
+  Enemy - Orobourous (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Lapis Lazuli
+  Enemy - Orobourous (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Karma Coin
+  Enemy - Ouija Table (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Morning Set
+  Enemy - Ouija Table (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Barley Tea
+  Enemy - Owl Knight (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Medal
+  Enemy - Owl Knight (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Cutlass
+  Enemy - Paranthropus (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Ring of Varda
+  Enemy - Paranthropus (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Gauntlet
+  Enemy - Phantom Skull (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Resist Dark
+  Enemy - Phantom Skull (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Felt Hat
+  Enemy - Plate Lord (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Neutron Bomb
+  Enemy - Plate Lord (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Iron Ball
+  Enemy - Poltergeist (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Bwaka Knife
+  Enemy - Puppet Sword (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Takemitsu
+  Enemy - Rock Knight (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Platinum Mail
+  Enemy - Rock Knight (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Jewel Knuckles
+  Enemy - Salem Witch (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Shortcake
+  Enemy - Salem Witch (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Gold Circlet
+  Enemy - Salome (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Manna Prism
+  Enemy - Salome (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Wizard Hat
+  Enemy - Scarecrow (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Muramasa
+  Enemy - Scarecrow (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Javelin
+  Enemy - Schmoo (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Crissaegrim
+  Enemy - Schmoo (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Ramen
+  Enemy - Shield (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Knight Shield
+  Enemy - Skelerang (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Fire Boomerang
+  Enemy - Skelerang (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Boomerang
+  Enemy - Skeleton (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Monster Vial 3
+  Enemy - Skeleton (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Shield Potion
+  Enemy - Skeleton Ape (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - TNT
+  Enemy - Skeleton Ape (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Banana
+  Enemy - Skull (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Turquoise
+  Enemy - Skull (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Iron Ball
+  Enemy - Skull Lord (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Skull Shield
+  Enemy - Skull Lord (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Scimitar
+  Enemy - Slinger (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Knight Shield
+  Enemy - Slinger (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Leather Shield
+  Enemy - Sniper of Goth (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Brilliant Mail
+  Enemy - Sniper of Goth (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Magic Missile
+  Enemy - Spear (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Javelin
+  Enemy - Spear Guard (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Iron Cuirass
+  Enemy - Spear Guard (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Javelin
+  Enemy - Spectral Sword, Type A (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Bastard Sword
+  Enemy - Spectral Sword, Type A (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Broadsword
+  Enemy - Spectral Sword, Type B (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Mablung Sword
+  Enemy - Spectral Sword, Type B (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Gurthang
+  Enemy - Spellbook (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Pentagram
+  Enemy - Spellbook (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - $1000
+  Enemy - Spiked Ball (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Axe Lord Armor
+  Enemy - Spiked Ball (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Iron Ball
+  Enemy - Stone Rose (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Meal Ticket
+  Enemy - Stone Rose (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Leather Shield
+  Enemy - Sword Lord (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Bekatowa
+  Enemy - Sword Lord (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Cutlass
+  Enemy - Thornweed (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Strawberry
+  Enemy - Thornweed (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Grapes
+  Enemy - Tin Man (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Mojo Mail
+  Enemy - Tin Man (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Lunch A
+  Enemy - Toad (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Pizza
+  Enemy - Toad (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Blue Knuckles
+  Enemy - Tombstone (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Green Tea
+  Enemy - Tombstone (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Katana
+  Enemy - Valhalla Knight (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Claymore
+  Enemy - Valhalla Knight (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Estoc
+  Enemy - Vandal Sword (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Muramasa
+  Enemy - Vandal Sword (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Holy Sword
+  Enemy - Venus Weed (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Heart Refresh
+  Enemy - Venus Weed (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Coral Circlet
+  Enemy - Wereskeleton (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Garnet
+  Enemy - Wereskeleton (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Strength Potion
+  Enemy - Werewolf (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Yasutsuna
+  Enemy - Werewolf (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Iron Fist
+  Enemy - Winged Guard (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Javelin
+  Enemy - Winged Guard (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Iron Shield
+  Enemy - Yorick (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Skull Shield
+  Enemy - Yorick (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - Monster Vial 3
+  Enemy - Zombie (Rare Drop):
+    Reward Class: Rare Enemy Drop
+    Target Reward: Item - Cloth Tunic
+  Enemy - Zombie (Uncommon Drop):
+    Reward Class: Uncommon Enemy Drop
+    Target Reward: Item - $100
   Location - Bat Card:
     Description: Action - Check Bat Card Location
     Logic Level: Required
@@ -4757,6 +5411,26 @@ Sources:
     Reward Class: Item
     Target Reward: Item - Nunchaku
 Targets:
+  Item - $100:
+    Outcomes:
+      Gold: 100
+    Tags:
+      - Gold
+  Item - $1000:
+    Outcomes:
+      Gold: 1000
+    Tags:
+      - Gold
+  Item - $2000:
+    Outcomes:
+      Gold: 2000
+    Tags:
+      - Gold
+  Item - $400:
+    Outcomes:
+      Gold: 400
+    Tags:
+      - Gold
   Item - Alucard Mail:
     Outcomes:
       Item - Alucard Mail: 1
@@ -4802,6 +5476,12 @@ Targets:
     Tags:
       - Consumable
       - Buff
+  Item - Apple:
+    Outcomes:
+      Item - Apple: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Aquamarine:
     Outcomes:
       Item - Aquamarine: 1
@@ -4813,6 +5493,18 @@ Targets:
     Tags:
       - Consumable
       - Buff
+  Item - Axe Lord Armor:
+    Outcomes:
+      Item - Axe Lord Armor: 1
+    Tags:
+      - Armor
+      - Body
+  Item - Axe Lord Shield:
+    Outcomes:
+      Item - Axe Lord Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Badelaire:
     Outcomes:
       Item - Badelaire: 1
@@ -4824,6 +5516,12 @@ Targets:
     Tags:
       - Armor
       - Head
+  Item - Banana:
+    Outcomes:
+      Item - Banana: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Bandanna:
     Outcomes:
       Item - Bandanna: 1
@@ -4874,12 +5572,23 @@ Targets:
       Item - Bloodstone: 1
     Tags:
       - Accessory
+  Item - Blue Knuckles:
+    Outcomes:
+      Item - Blue Knuckles: 1
+    Tags:
+      - One-Handed Weapon
   Item - Boomerang:
     Outcomes:
       Item - Boomerang: 1
     Tags:
       - Consumable
       - Thrown
+  Item - Brilliant Mail:
+    Outcomes:
+      Item - Brilliant Mail: 1
+    Tags:
+      - Armor
+      - Body
   Item - Broadsword:
     Outcomes:
       Item - Broadsword: 1
@@ -4909,12 +5618,29 @@ Targets:
     Tags:
       - Armor
       - Head
+  Item - Chakram:
+    Outcomes:
+      Item - Chakram: 1
+    Tags:
+      - One-Handed Weapon
   Item - Cheese:
     Outcomes:
       Item - Cheese: 1
     Tags:
       - Consumable
       - Food
+  Item - Cheesecake:
+    Outcomes:
+      Item - Cheesecake: 1
+    Tags:
+      - Consumable
+      - Food
+  Item - Circlet:
+    Outcomes:
+      Item - Circlet: 1
+    Tags:
+      - Armor
+      - Head
   Item - Claymore:
     Outcomes:
       Item - Claymore: 1
@@ -4926,9 +5652,31 @@ Targets:
     Tags:
       - Armor
       - Cloak
+  Item - Cloth Tunic:
+    Outcomes:
+      Item - Cloth Tunic: 1
+    Tags:
+      - Armor
+      - Body
   Item - Combat Knife:
     Outcomes:
       Item - Combat Knife: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Coral Circlet:
+    Outcomes:
+      Item - Coral Circlet: 1
+    Tags:
+      - Armor
+      - Head
+  Item - Covenant Stone:
+    Outcomes:
+      Item - Covenant Stone: 1
+    Tags:
+      - Accessory
+  Item - Crissaegrim:
+    Outcomes:
+      Item - Crissaegrim: 1
     Tags:
       - One-Handed Weapon
   Item - Cross Shuriken:
@@ -4948,11 +5696,28 @@ Targets:
       Item - Cutlass: 1
     Tags:
       - One-Handed Weapon
+  Item - Damascus Sword:
+    Outcomes:
+      Item - Damascus Sword: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Dark Armor:
+    Outcomes:
+      Item - Dark Armor: 1
+    Tags:
+      - Armor
+      - Body
   Item - Dark Blade:
     Outcomes:
       Item - Dark Blade: 1
     Tags:
       - One-Handed Weapon
+  Item - Dark Shield:
+    Outcomes:
+      Item - Dark Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Diamond:
     Outcomes:
       Item - Diamond: 1
@@ -4964,6 +5729,12 @@ Targets:
     Tags:
       - Armor
       - Head
+  Item - Dynamite:
+    Outcomes:
+      Item - Dynamite: 1
+    Tags:
+      - Consumable
+      - Bomb
   Item - Elixir:
     Outcomes:
       Item - Elixir: 1
@@ -4980,6 +5751,12 @@ Targets:
       Item - Falchion: 1
     Tags:
       - One-Handed Weapon
+  Item - Felt Hat:
+    Outcomes:
+      Item - Felt Hat: 1
+    Tags:
+      - Armor
+      - Head
   Item - Fire Boomerang:
     Outcomes:
       Item - Fire Boomerang: 1
@@ -4992,11 +5769,33 @@ Targets:
     Tags:
       - Armor
       - Body
+  Item - Fire Shield:
+    Outcomes:
+      Item - Fire Shield: 1
+    Tags:
+      - Armor
+      - Shield
+  Item - Firebrand:
+    Outcomes:
+      Item - Firebrand: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Fist of Tulkas:
+    Outcomes:
+      Item - Fist of Tulkas: 1
+    Tags:
+      - One-Handed Weapon
   Item - Flamberge:
     Outcomes:
       Item - Flamberge: 1
     Tags:
       - Two-Handed Weapon
+  Item - Flame Star:
+    Outcomes:
+      Item - Flame Star: 1
+    Tags:
+      - Consumable
+      - Thrown
   Item - Frankfurter:
     Outcomes:
       Item - Frankfurter: 1
@@ -5014,11 +5813,22 @@ Targets:
       Item - Garnet: 1
     Tags:
       - Gem
+  Item - Gauntlet:
+    Outcomes:
+      Item - Gauntlet: 1
+    Tags:
+      - Accessory
   Item - Gladius:
     Outcomes:
       Item - Gladius: 1
     Tags:
       - One-Handed Weapon
+  Item - God's Garb:
+    Outcomes:
+      Item - God's Garb: 1
+    Tags:
+      - Armor
+      - Body
   Item - Goddess Shield:
     Outcomes:
       Item - Goddess Shield: 1
@@ -5028,6 +5838,12 @@ Targets:
   Item - Goggles:
     Outcomes:
       Item - Goggles: 1
+    Tags:
+      - Armor
+      - Head
+  Item - Gold Circlet:
+    Outcomes:
+      Item - Gold Circlet: 1
     Tags:
       - Armor
       - Head
@@ -5047,9 +5863,31 @@ Targets:
       Item - Gram: 1
     Tags:
       - One-Handed Weapon
+  Item - Grapes:
+    Outcomes:
+      Item - Grapes: 1
+    Tags:
+      - Consumable
+      - Food
+  Item - Great Sword:
+    Outcomes:
+      Item - Great Sword: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Green Tea:
     Outcomes:
       Item - Green Tea: 1
+    Tags:
+      - Consumable
+      - Food
+  Item - Gurthang:
+    Outcomes:
+      Item - Gurthang: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Ham and Eggs:
+    Outcomes:
+      Item - Ham and Eggs: 1
     Tags:
       - Consumable
       - Food
@@ -5066,24 +5904,34 @@ Targets:
     Tags:
       - Armor
       - Body
-  Item - Heart Refresh:
+  Item - Heart Broach:
     Outcomes:
-      Item - Heart Refresh: 1
+      Item - Heart Broach: 1
     Tags:
-      - Consumable
-      - Heart
-  Item - Herald Shield:
-    Outcomes:
-      Item - Herald Shield: 1
-    Tags:
-      - Armor
-      - Shield
+      - Accessory
   Item - Heart Max-Up:
     Outcomes:
       Item - Heart Max-Up: 1
     Tags:
       - Upgrade
       - Low Priority - Racing
+  Item - Heart Refresh:
+    Outcomes:
+      Item - Heart Refresh: 1
+    Tags:
+      - Consumable
+      - Heart
+  Item - Heaven Sword:
+    Outcomes:
+      Item - Heaven Sword: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Herald Shield:
+    Outcomes:
+      Item - Herald Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Hide Cuirass:
     Outcomes:
       Item - Hide Cuirass: 1
@@ -5096,6 +5944,11 @@ Targets:
     Tags:
       - Consumable
       - Healing
+  Item - Holbein Dagger:
+    Outcomes:
+      Item - Holbein Dagger: 1
+    Tags:
+      - One-Handed Weapon
   Item - Holy Mail:
     Outcomes:
       Item - Holy Mail: 1
@@ -5112,6 +5965,17 @@ Targets:
       Item - Holy Sword: 1
     Tags:
       - One-Handed Weapon
+  Item - Hunter Sword:
+    Outcomes:
+      Item - Hunter Sword: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Ice Cream:
+    Outcomes:
+      Item - Ice Cream: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Ice Mail:
     Outcomes:
       Item - Ice Mail: 1
@@ -5129,6 +5993,23 @@ Targets:
     Tags:
       - Consumable
       - Thrown
+  Item - Iron Cuirass:
+    Outcomes:
+      Item - Iron Cuirass: 1
+    Tags:
+      - Armor
+      - Body
+  Item - Iron Fist:
+    Outcomes:
+      Item - Iron Fist: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Iron Shield:
+    Outcomes:
+      Item - Iron Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Javelin:
     Outcomes:
       Item - Javelin: 1
@@ -5156,6 +6037,11 @@ Targets:
       Item - Katana: 1
     Tags:
       - Two-Handed Weapon
+  Item - King's Stone:
+    Outcomes:
+      Item - King's Stone: 1
+    Tags:
+      - Accessory
   Item - Knight Shield:
     Outcomes:
       Item - Knight Shield: 1
@@ -5167,6 +6053,11 @@ Targets:
       Item - Knuckle Duster: 1
     Tags:
       - One-Handed Weapon
+  Item - Lapis Lazuli:
+    Outcomes:
+      Item - Lapis Lazuli: 1
+    Tags:
+      - Accessory
   Item - Leather Shield:
     Outcomes:
       Item - Leather Shield: 1
@@ -5211,6 +6102,17 @@ Targets:
       Item - Luminus: 1
     Tags:
       - One-Handed Weapon
+  Item - Lunch A:
+    Outcomes:
+      Item - Lunch A: 1
+    Tags:
+      - Consumable
+      - Food
+  Item - Mablung Sword:
+    Outcomes:
+      Item - Mablung Sword: 1
+    Tags:
+      - One-Handed Weapon
   Item - Magic Missile:
     Outcomes:
       Item - Magic Missile: 1
@@ -5224,6 +6126,16 @@ Targets:
       - Consumable
       - Manna
       - High Priority - Racing
+  Item - Marsil:
+    Outcomes:
+      Item - Marsil: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Masamune:
+    Outcomes:
+      Item - Masamune: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Meal Ticket:
     Outcomes:
       Item - Meal Ticket: 1
@@ -5231,9 +6143,32 @@ Targets:
       - Consumable
       - Food
       - Low Priority - Racing
+  Item - Medal:
+    Outcomes:
+      Item - Medal: 1
+    Tags:
+      - Accessory
+  Item - Medusa Shield:
+    Outcomes:
+      Item - Medusa Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Mirror Cuirass:
     Outcomes:
       Item - Mirror Cuirass: 1
+    Tags:
+      - Armor
+      - Body
+  Item - Miso Soup:
+    Outcomes:
+      Item - Miso Soup: 1
+    Tags:
+      - Consumable
+      - Food
+  Item - Mojo Mail:
+    Outcomes:
+      Item - Mojo Mail: 1
     Tags:
       - Armor
       - Body
@@ -5270,14 +6205,46 @@ Targets:
       Item - Mormegil: 1
     Tags:
       - One-Handed Weapon
+  Item - Morning Set:
+    Outcomes:
+      Item - Morning Set: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Morningstar:
     Outcomes:
       Item - Morningstar: 1
     Tags:
       - One-Handed Weapon
+  Item - Mourneblade:
+    Outcomes:
+      Item - Mourneblade: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Muramasa:
+    Outcomes:
+      Item - Muramasa: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Mystic Pendant:
     Outcomes:
       Item - Mystic Pendant: 1
+    Tags:
+      - Accessory
+  Item - Namakura:
+    Outcomes:
+      Item - Namakura: 1
+    Tags:
+      - Two-Handed Weapon
+  Item - Natou:
+    Outcomes:
+      Item - Natou: 1
+    Tags:
+      - Consumable
+      - Food
+  Item - Nauglamir:
+    Outcomes:
+      Item - Nauglamir: 1
     Tags:
       - Accessory
   Item - Necklace of J:
@@ -5296,6 +6263,11 @@ Targets:
       Item - Nunchaku: 1
     Tags:
       - Two-Handed Weapon
+  Item - Obsidian Sword:
+    Outcomes:
+      Item - Obsidian Sword: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Onyx:
     Outcomes:
       Item - Onyx: 1
@@ -5306,6 +6278,12 @@ Targets:
       Item - Opal: 1
     Tags:
       - Gem
+  Item - Opal Circlet:
+    Outcomes:
+      Item - Opal Circlet: 1
+    Tags:
+      - Armor
+      - Head
   Item - Osafune Katana:
     Outcomes:
       Item - Osafune Katana: 1
@@ -5323,6 +6301,12 @@ Targets:
     Tags:
       - Consumable
       - Bomb
+  Item - Pizza:
+    Outcomes:
+      Item - Pizza: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Platinum Mail:
     Outcomes:
       Item - Platinum Mail: 1
@@ -5354,12 +6338,28 @@ Targets:
     Tags:
       - Consumable
       - Bomb
+  Item - Ramen:
+    Outcomes:
+      Item - Ramen: 1
+    Tags:
+      - Consumable
+      - Food
+  Item - Rapier:
+    Outcomes:
+      Item - Rapier: 1
+    Tags:
+      - One-Handed Weapon
   Item - Red Bean Bun:
     Outcomes:
       Item - Red Bean Bun: 1
     Tags:
       - Consumable
       - Food
+  Item - Red Rust:
+    Outcomes:
+      Item - Red Rust: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Resist Dark:
     Outcomes:
       Item - Resist Dark: 1
@@ -5406,6 +6406,16 @@ Targets:
       Item - Ring of Ares: 1
     Tags:
       - Accessory
+  Item - Ring of Feanor:
+    Outcomes:
+      Item - Ring of Feanor: 1
+    Tags:
+      - Accessory
+  Item - Ring of Varda:
+    Outcomes:
+      Item - Ring of Varda: 1
+    Tags:
+      - Accessory
   Item - Royal Cloak:
     Outcomes:
       Item - Royal Cloak: 1
@@ -5418,6 +6428,16 @@ Targets:
     Tags:
       - Armor
       - Head
+  Item - Runesword:
+    Outcomes:
+      Item - Runesword: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Saber:
+    Outcomes:
+      Item - Saber: 1
+    Tags:
+      - One-Handed Weapon
   Item - Scimitar:
     Outcomes:
       Item - Scimitar: 1
@@ -5451,6 +6471,17 @@ Targets:
     Tags:
       - Consumable
       - Food
+  Item - Short Sword:
+    Outcomes:
+      Item - Short Sword: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Shortcake:
+    Outcomes:
+      Item - Shortcake: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Shotel:
     Outcomes:
       Item - Shotel: 1
@@ -5479,6 +6510,12 @@ Targets:
     Tags:
       - Consumable
       - Food
+  Item - Skull Shield:
+    Outcomes:
+      Item - Skull Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Smart Potion:
     Outcomes:
       Item - Smart Potion: 1
@@ -5518,23 +6555,35 @@ Targets:
       Item - Stone Sword: 1
     Tags:
       - One-Handed Weapon
+  Item - Strawberry:
+    Outcomes:
+      Item - Strawberry: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Strength Potion:
     Outcomes:
       Item - Strength Potion: 1
     Tags:
       - Consumable
       - Buff
-  Item - Sunstone:
-    Outcomes:
-      Item - Sunstone: 1
-    Tags:
-      - Accessory
   Item - Sunglasses:
     Outcomes:
       Item - Sunglasses: 1
     Tags:
       - Armor
       - Head
+  Item - Sunstone:
+    Outcomes:
+      Item - Sunstone: 1
+    Tags:
+      - Accessory
+  Item - Sushi:
+    Outcomes:
+      Item - Sushi: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Sword of Dawn:
     Outcomes:
       Item - Sword of Dawn: 1
@@ -5545,6 +6594,12 @@ Targets:
       Item - Sword of Hador: 1
     Tags:
       - One-Handed Weapon
+  Item - TNT:
+    Outcomes:
+      Item - TNT: 1
+    Tags:
+      - Consumable
+      - Thrown
   Item - Takemitsu:
     Outcomes:
       Item - Takemitsu: 1
@@ -5560,12 +6615,17 @@ Targets:
       Item - Talwar: 1
     Tags:
       - One-Handed Weapon
-  Item - TNT:
+  Item - Tart:
     Outcomes:
-      Item - TNT: 1
+      Item - Tart: 1
     Tags:
       - Consumable
-      - Thrown
+      - Food
+  Item - Terminus Est:
+    Outcomes:
+      Item - Terminus Est: 1
+    Tags:
+      - One-Handed Weapon
   Item - Toadstool:
     Outcomes:
       Item - Toadstool: 1
@@ -5600,17 +6660,49 @@ Targets:
       Item - Tyrfing: 1
     Tags:
       - One-Handed Weapon
+  Item - Uncurse:
+    Outcomes:
+      Item - Uncurse: 1
+    Tags:
+      - Consumable
+      - Buff
+  Item - Vorpal Blade:
+    Outcomes:
+      Item - Vorpal Blade: 1
+    Tags:
+      - One-Handed Weapon
   Item - Walk Armor:
     Outcomes:
       Item - Walk Armor: 1
     Tags:
       - Armor
       - Body
+  Item - Were Bane:
+    Outcomes:
+      Item - Were Bane: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Wizard Hat:
+    Outcomes:
+      Item - Wizard Hat: 1
+    Tags:
+      - Armor
+      - Head
+  Item - Yasutsuna:
+    Outcomes:
+      Item - Yasutsuna: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Zircon:
     Outcomes:
       Item - Zircon: 1
     Tags:
       - Gem
+  Item - Zwei Hander:
+    Outcomes:
+      Item - Zwei Hander: 1
+    Tags:
+      - Two-Handed Weapon
   Relic - Bat Card:
     Outcomes:
       Relic - Bat Card: true
@@ -5628,6 +6720,17 @@ Targets:
     Outcomes:
       Progression - Echolocation: true
       Relic - Echo of Bat: true
+  Relic - Faerie Card:
+    Outcomes:
+      Progression - Summon Faerie Familiar: true
+      Relic - Faerie Card: true
+    Tags:
+      - Low Priority - Racing
+  Relic - Faerie Scroll:
+    Outcomes:
+      Relic - Faerie Scroll: true
+    Tags:
+      - Low Priority - Racing
   Relic - Fire of Bat:
     Outcomes:
       Relic - Fire of Bat: true
@@ -5665,14 +6768,18 @@ Targets:
     Outcomes:
       Progression - Summon Ferryman: true
       Relic - Merman Statue: true
+  Relic - Power of Mist:
+    Outcomes:
+      Progression - Longer Mist Duration: true
+      Relic - Power of Mist: true
   Relic - Power of Wolf:
     Outcomes:
       Progression - Faster Wolf Run Speed: true
       Relic - Power of Wolf: true
   Relic - Skill of Wolf:
     Outcomes:
-      Relic - Skill of Wolf: true
       Progression - Wolf Charge Attack: true
+      Relic - Skill of Wolf: true
   Relic - Soul of Bat:
     Outcomes:
       Progression - Bat Transformation: true
@@ -5694,18 +6801,8 @@ Targets:
       Relic - Sword Card: true
     Tags:
       - Low Priority - Racing
-  Relic - Power of Mist:
+  Subweapon - Axe:
     Outcomes:
-      Progression - Longer Mist Duration: true
-      Relic - Power of Mist: true
-  Relic - Faerie Card:
-    Outcomes:
-      Progression - Summon Faerie Familiar: true
-      Relic - Faerie Card: true
+      Subweapon: Axe
     Tags:
-      - Low Priority - Racing
-  Relic - Faerie Scroll:
-    Outcomes:
-      Relic - Faerie Scroll: true
-    Tags:
-      - Low Priority - Racing
+      - Subweapon
