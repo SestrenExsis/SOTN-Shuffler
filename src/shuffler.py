@@ -1,5 +1,6 @@
 # External libraries
 import argparse
+import copy
 import datetime
 import hashlib
 import json
@@ -137,6 +138,8 @@ def shuffle_teleporters(teleporters, rng) -> dict:
         ('Catacombs, Fake Room with Teleporter to Abandoned Mine', 'Clock Tower, Fake Room with Teleporter to Outer Wall'),
         ('Catacombs, Fake Room with Teleporter to Abandoned Mine', "Colosseum, Fake Room with Teleporter to Olrox's Quarters"),
         ('Catacombs, Fake Room with Teleporter to Abandoned Mine', 'Colosseum, Fake Room with Teleporter to Royal Chapel'),
+        # NOTE(sestren): Disallow requiring pre-Shop Library Card to open Shortcut to Warp Rooms
+        ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', 'Long Library, Fake Room with Teleporter to Outer Wall'),
     }
     for (source_a, source_b) in forbidden_links:
         # print((source_a, source_b))
@@ -1092,12 +1095,51 @@ if __name__ == '__main__':
                 'Left': source_left,
             }
         # print('*********')
-        # Validate First Castle to ensure it is solvable
-        if validator.validate_logic(mapper_core, changes, skills):
-            pass
-        else:
+        validations = {
+            '0 - Long Library to Castle Entrance': {
+                'Start': {
+                    'Room': 'Long Library, Outside Shop',
+                    'Section': 'Main',
+                    'Progression - Double Jump': True,
+                },
+                'End': {
+                    'Stages Visited': {
+                        'All': {
+                            "Castle Entrance Revisited": True,
+                        },
+                    },
+                },
+            },
+            '1 - Start to Save Richter': {
+                'Start': {
+                    'Room': 'Castle Entrance, After Drawbridge',
+                    'Section': 'Ground',
+                },
+                'End': None,
+            },
+        }
+        logic_valid_ind = True
+        solver = None
+        for validation_name in sorted(validations.keys()):
+            validation = validations[validation_name]
+            custom_start = copy.deepcopy(skills)
+            for (key, value) in validation['Start'].items():
+                custom_start[key] = value
+            solver = validator.validate_logic(mapper_core, changes, custom_start, validation['End'])
+            if not solver.result:
+                logic_valid_ind = False
+                break
+        if not logic_valid_ind:
+            print()
             for stage_name in sorted(shuffler['Stages']):
                 print(shuffler['Stages'][stage_name]['Hash of Rooms'], stage_name)
+            print()
+            for (teleporter_source_name, teleporter_info) in teleporters.items():
+                print(teleporter_source_name, '->', teleporter_info['Room'])
+            print()
+            for goal_key in solver.logic_core['Goals']['END'].keys():
+                print(goal_key, '=', solver.current_game.current_state.get(goal_key, '-'))
+            print()
             continue
         # print('*********')
         # Flip normal castle changes and apply them to inverted castle
@@ -1162,7 +1204,7 @@ if __name__ == '__main__':
         seed_hint = ''.join(chars)
         changes['Constants'] = {
             'Message - Richter Mode Instructions 1': seed_hint,
-            'Message - Richter Mode Instructions 2': 'Beta Release 2      ',
+            'Message - Richter Mode Instructions 2': 'Beta Release 3      ',
         }
         # Normalize room connections
         if settings.get('Options', {}).get('Normalize room connections', False):
