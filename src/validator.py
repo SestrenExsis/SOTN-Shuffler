@@ -57,7 +57,7 @@ def validate_logic(mapper_core, changes, custom_start, custom_end) -> bool:
         map_solver.clear()
         if final_goal_ind:
             break
-    result = valid_ind
+    map_solver.result = valid_ind
     if 0 < len(map_solver.current_game.goals_remaining) < 16:
         print('Goals not obtained')
         for goal in sorted(map_solver.current_game.goals_remaining.keys()):
@@ -69,6 +69,7 @@ def validate_logic(mapper_core, changes, custom_start, custom_end) -> bool:
             ):
                 debug_state = map_solver.current_game.current_state
                 json.dump(debug_state, debug_json, indent='    ', sort_keys=True, default=str)
+    result = map_solver
     return result
 
 def validate_stage(mapper_core, mapper_data, stage_name, validation, custom_start) -> bool:

@@ -346,6 +346,7 @@ class Solver():
         self.solver_count = 0
         self.initial_seed = seed
         self.rng = random.Random(self.initial_seed)
+        self.result = None
     
     def clear(self):
         self.results = {
