@@ -689,7 +689,7 @@ if __name__ == '__main__':
                         mapper_data = json.load(mapper_data_json)
                         mapper_data_json.close()
                     stages[stage_name]['Mapper'] = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
-                    stages[stage_name]['Mapper'].generate(mapper.stages[stage_name])
+                    stages[stage_name]['Mapper'].generate(mapper.stages[stage_name], mapper_data.get('Settings', {}).get('Require matching node types', False))
                     stages[stage_name]['Mapper'].stage.normalize_bounds()
                     # Normalize room connections (optional)
                     if settings.get('Options', {}).get('Normalize room connections', False):
@@ -701,7 +701,6 @@ if __name__ == '__main__':
                     stage_changes = stages[stage_name]['Mapper'].stage.get_changes()
                     hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
                     if not stages[stage_name]['Mapper'].validate_connections(True):
-                        # print(hash_of_rooms)
                         continue
                     assert hash_of_rooms == mapper_data['Hash of Rooms']
                     # print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), len(list(b for (a, b) in invalid_stage_files if a == stage_name)), max_unique_pass_count)

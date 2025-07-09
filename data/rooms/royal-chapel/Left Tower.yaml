@@ -89,14 +89,14 @@ Map:
     - "    000000000    "
 Nodes:
     Upper-Right Passage:
-        Type: "######....######"
+        Type: "######~~~~######"
         Row: 2
         Column: 2
         Edge: Right
         Entry Section: Main
         Exit Section: Main
     Upper-Left Passage:
-        Type: "######....######"
+        Type: "######~~~~######"
         Row: 3
         Column: 1
         Edge: Left
