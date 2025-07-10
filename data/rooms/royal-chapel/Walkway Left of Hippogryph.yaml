@@ -15,7 +15,7 @@ Map:
     - "    000000000"
 Nodes:
     Left Passage:
-        Type: "######~~~~######"
+        Type: "######<<<<######"
         Row: 0
         Column: 1
         Edge: Left

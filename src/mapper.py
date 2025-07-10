@@ -625,6 +625,8 @@ stages = {
             'Royal Chapel, Right Tower': (0, 0),
             'Royal Chapel, Loading Room to Castle Keep': (2, 3),
             'Royal Chapel, Fake Room with Teleporter to Castle Keep': (2, 4),
+            # NOTE(sestren): The Save Room is being connected to this group for now, since it can be occluded if it is placed next to one of the "open-air" rooms
+            'Royal Chapel, Save Room B': (3, 3),
         },
         {
             'Royal Chapel, Pushing Statue Shortcut': (0, 0),
@@ -637,6 +639,8 @@ stages = {
             'Royal Chapel, Fake Room with Teleporter to Colosseum': (1, 3),
         },
         {
+            # NOTE(sestren): The Save Room is being connected to this group for now, since it can be occluded if it is placed next to one of the "open-air" rooms
+            'Royal Chapel, Save Room A': (0, 0),
             'Royal Chapel, Statue Ledge': (0, 1),
             'Royal Chapel, Loading Room to Alchemy Laboratory': (0, 2),
             'Royal Chapel, Fake Room with Teleporter to Alchemy Laboratory': (0, 3),
@@ -645,13 +649,11 @@ stages = {
         { 'Royal Chapel, Confessional Booth': (0, 0) },
         { 'Royal Chapel, Empty Room': (0, 0) },
         { 'Royal Chapel, Goggles Room': (0, 0) },
-        { 'Royal Chapel, Left Tower': (32 + 2, 32 + 3) },
-        { 'Royal Chapel, Middle Tower': (32 + 1, 32 + 8) },
-        { 'Royal Chapel, Save Room A': (0, 0) },
-        { 'Royal Chapel, Save Room B': (32 + 3, 32 + 19) },
+        { 'Royal Chapel, Left Tower': (0, 0) },
+        { 'Royal Chapel, Middle Tower': (0, 0) },
         { 'Royal Chapel, Silver Ring Room': (0, 0) },
-        { 'Royal Chapel, Spike Hallway': (32 + 5, 32 + 0) },
-        { 'Royal Chapel, Walkway Between Towers': (32 + 4, 32 + 5) },
+        { 'Royal Chapel, Spike Hallway': (0, 0) },
+        { 'Royal Chapel, Walkway Between Towers': (0, 0) },
     ],
     'Underground Caverns': [
         {

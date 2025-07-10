@@ -651,7 +651,7 @@ Outer Wall:
                 Room: Outer Wall, Loading Room to Warp Rooms
                 Section: Main
 Royal Chapel:
-    (Rule) Silver Ring Locked Behind Spike Hallway:
+    SKIP - (Rule) Silver Ring Locked Behind Spike Hallway:
         Solver:
             Approach: Steps
             Attempts: 1

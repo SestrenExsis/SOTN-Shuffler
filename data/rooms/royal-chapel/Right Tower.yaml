@@ -48,7 +48,7 @@ Nodes:
         Entry Section: Main
         Exit Section: Main
     Lower-Left Passage:
-        Type: "######~~~~######"
+        Type: "######>>>>######"
         Row: 3
         Column: 1
         Edge: Left
