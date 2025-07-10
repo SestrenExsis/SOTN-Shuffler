@@ -140,7 +140,7 @@ class RoomSet:
             result = result.union(room.get_cells(offset_top, offset_left))
         return result
 
-    def get_open_nodes(self, matching_node: RoomNode=None) -> list:
+    def get_open_nodes(self, matching_node: RoomNode=None, match_node_type: bool=False) -> list:
         edges = {}
         for (room_name, room) in self.rooms.items():
             for (node_name, node) in room.nodes.items():
@@ -156,7 +156,7 @@ class RoomSet:
             if len(sides) == 1:
                 side = list(sides)[0]
                 node = sides[side][0]
-                if node.matches_direction_and_edge(matching_node):
+                if node.matches_direction_and_edge(matching_node) and (not match_node_type or node.matches_type(matching_node)):
                     result.append(node)
         result.sort()
         return result
@@ -616,39 +616,44 @@ stages = {
     ],
     'Royal Chapel': [
         {
-            # NOTE(sestren): For now, these hallways and towers must be combined until the special behavior that controls transitions between them is better understood
             # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
-            'Royal Chapel, Spike Hallway': (32 + 5, 32 + 0),
-            'Royal Chapel, Left Tower': (32 + 2, 32 + 3),
-            'Royal Chapel, Walkway Between Towers': (32 + 4, 32 + 5),
-            'Royal Chapel, Pushing Statue Shortcut': (32 + 9, 32 + 6),
-            'Royal Chapel, Loading Room to Olrox\'s Quarters': (32 + 9, 32 + 7),
-            'Royal Chapel, Middle Tower': (32 + 1, 32 + 8),
-            'Royal Chapel, Fake Room with Teleporter to Olrox\'s Quarters': (32 + 9, 32 + 8),
-            'Royal Chapel, Walkway Left of Hippogryph': (32 + 3, 32 + 10),
-            'Royal Chapel, Hippogryph Room': (32 + 3, 32 + 13),
-            'Royal Chapel, Walkway Right of Hippogryph': (32 + 3, 32 + 15),
-            'Royal Chapel, Right Tower': (32 + 0, 32 + 16),
-            'Royal Chapel, Loading Room to Castle Keep': (32 + 2, 32 + 19),
-            'Royal Chapel, Fake Room with Teleporter to Castle Keep': (32 + 2, 32 + 20),
-            'Royal Chapel, Save Room B': (32 + 3, 32 + 19),
+            'Royal Chapel, Walkway Left of Hippogryph': (32 + 0, 32 + 0),
+            'Royal Chapel, Hippogryph Room': (32 + 0, 32 + 3),
+            'Royal Chapel, Walkway Right of Hippogryph': (32 + 0, 32 + 5),
         },
         {
-            'Royal Chapel, Nave': (0 + 0, 0 + 0),
-            'Royal Chapel, Loading Room to Colosseum': (0 + 1, 0 + 2),
-            'Royal Chapel, Fake Room with Teleporter to Colosseum': (0 + 1, 0 + 3),
+            'Royal Chapel, Right Tower': (0, 0),
+            'Royal Chapel, Loading Room to Castle Keep': (2, 3),
+            'Royal Chapel, Fake Room with Teleporter to Castle Keep': (2, 4),
+            # NOTE(sestren): The Save Room is being connected to this group for now, since it can be occluded if it is placed next to one of the "open-air" rooms
+            'Royal Chapel, Save Room B': (3, 3),
         },
         {
-            'Royal Chapel, Save Room A': (0 + 0, 0 + 0),
-            'Royal Chapel, Statue Ledge': (0 + 0, 0 + 1),
-            'Royal Chapel, Loading Room to Alchemy Laboratory': (0 + 0, 0 + 2),
-            'Royal Chapel, Fake Room with Teleporter to Alchemy Laboratory': (0 + 0, 0 + 3),
+            'Royal Chapel, Pushing Statue Shortcut': (0, 0),
+            "Royal Chapel, Loading Room to Olrox's Quarters": (0, 1),
+            "Royal Chapel, Fake Room with Teleporter to Olrox's Quarters": (0, 2),
+        },
+        {
+            'Royal Chapel, Nave': (0, 0),
+            'Royal Chapel, Loading Room to Colosseum': (1, 2),
+            'Royal Chapel, Fake Room with Teleporter to Colosseum': (1, 3),
+        },
+        {
+            # NOTE(sestren): The Save Room is being connected to this group for now, since it can be occluded if it is placed next to one of the "open-air" rooms
+            'Royal Chapel, Save Room A': (0, 0),
+            'Royal Chapel, Statue Ledge': (0, 1),
+            'Royal Chapel, Loading Room to Alchemy Laboratory': (0, 2),
+            'Royal Chapel, Fake Room with Teleporter to Alchemy Laboratory': (0, 3),
         },
         { 'Royal Chapel, Chapel Staircase': (0, 0) },
         { 'Royal Chapel, Confessional Booth': (0, 0) },
         { 'Royal Chapel, Empty Room': (0, 0) },
         { 'Royal Chapel, Goggles Room': (0, 0) },
+        { 'Royal Chapel, Left Tower': (0, 0) },
+        { 'Royal Chapel, Middle Tower': (0, 0) },
         { 'Royal Chapel, Silver Ring Room': (0, 0) },
+        { 'Royal Chapel, Spike Hallway': (0, 0) },
+        { 'Royal Chapel, Walkway Between Towers': (0, 0) },
     ],
     'Underground Caverns': [
         {
@@ -1244,7 +1249,7 @@ class Mapper:
         self.rng = random.Random(self.current_seed)
         self.steps = []
     
-    def generate(self, stage_rooms):
+    def generate(self, stage_rooms, match_node_type: bool=False):
         self.current_seed = self.next_seed
         self.next_seed = self.rng.randint(0, 2 ** 64)
         self.rng = random.Random(self.current_seed)
@@ -1273,7 +1278,7 @@ class Mapper:
             step.append('Target Node: ' + str(target_node))
             open_nodes = []
             for (roomset_id, roomset) in pool.items():
-                for open_node in roomset.get_open_nodes(matching_node=target_node):
+                for open_node in roomset.get_open_nodes(target_node, match_node_type):
                     open_nodes.append(open_node)
             if len(open_nodes) < 1:
                 step.append('ERROR: No matching source nodes for the chosen target node')
@@ -1441,6 +1446,7 @@ if __name__ == '__main__':
     parser.add_argument('stage_name', help='Input a valid stage name', type=str)
     parser.add_argument('target_stage_count', help='Input the desired number of stage instances to generate', type=int)
     parser.add_argument('max_attempts', help='Input the maximum number of attempts at generating stage instances', type=int)
+    parser.add_argument('--match-nodes', help='Require matching node types', dest='require_matching_node_types', action='store_true')
     parser.add_argument('--seed', help='Input an optional starting seed', type=str)
     args = parser.parse_args()
     initial_seed = args.seed
@@ -1461,19 +1467,27 @@ if __name__ == '__main__':
         if stage_count_remaining < 1:
             break
         stage_map = Mapper(mapper_core, args.stage_name, seed)
+        debug = 0
         while True:
-            stage_map.generate(stages[args.stage_name])
-            if stage_map.validate_connections(False):
+            if debug % 1_000 == 0:
+                print(debug)
+            stage_map.generate(stages[args.stage_name], args.require_matching_node_types)
+            if stage_map.validate_connections(args.require_matching_node_types):
                 stage_map.stage.normalize_bounds()
                 break
+            debug += 1
         changes = stage_map.stage.get_changes()
         hash_of_rooms = hashlib.sha256(json.dumps(changes['Rooms'], sort_keys=True).encode()).hexdigest()
+        settings = {
+            'Require matching node types': args.require_matching_node_types,
+        }
         mapper_data = {
             'Attempts': stage_map.attempts,
             'Generation Start Date': stage_map.start_time.isoformat(),
             'Generation End Date': stage_map.end_time.isoformat(),
             'Generation Version': GENERATION_VERSION,
             'Hash of Rooms': hash_of_rooms,
+            'Settings': settings,
             'Seed': stage_map.current_seed,
             'Stage': args.stage_name,
         }
