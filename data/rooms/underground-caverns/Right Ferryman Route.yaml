@@ -36,10 +36,15 @@ Commands:
             Section: Right Side
             Status - Barrier in Right Ferryman Route Lifted: true
         Requirements:
-            Default:
+            Left Side - Merman Statue:
                 Section: Left Side
                 Status - Barrier in Right Ferryman Route Lifted: false
                 Progression - Summon Ferryman: true
+            Right Side (Normalized) - Merman Statue:
+                Section: Right Side
+                Status - Barrier in Right Ferryman Route Lifted: false
+                Progression - Summon Ferryman: true
+                Option - Normalize Ferryman Gate: true
     Move - Left Side:
         Outcomes:
             Section: Left Side
