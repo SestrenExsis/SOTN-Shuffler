@@ -31,31 +31,33 @@ Nodes:
         Entry Section: Right Side
         Exit Section: Right Side
 Commands:
-    Action - Allow the Ferryman to Lift the Barrier:
+    Move - Left Side:
         Outcomes:
-            Section: Right Side
+            Section: Left Side
             Status - Barrier in Right Ferryman Route Lifted: true
         Requirements:
-            Left Side - Merman Statue:
-                Section: Left Side
-                Status - Barrier in Right Ferryman Route Lifted: false
+            Right Side - Holy Symbol, Barrier Lifted:
+                Section: Right Side
+                Progression - Protection from Water: true
+                Status - Barrier in Right Ferryman Route Lifted: true
+            Right Side - Merman Statue, Barrier Lifted:
+                Section: Right Side
+                Status - Barrier in Right Ferryman Route Lifted: true
                 Progression - Summon Ferryman: true
             Right Side (Normalized) - Merman Statue:
                 Section: Right Side
                 Status - Barrier in Right Ferryman Route Lifted: false
                 Progression - Summon Ferryman: true
                 Option - Normalize Ferryman Gate: true
-    Move - Left Side:
-        Outcomes:
-            Section: Left Side
-        Requirements:
-            Default:
-                Section: Right Side
-                Status - Barrier in Right Ferryman Route Lifted: true
     Move - Right Side:
         Outcomes:
             Section: Right Side
+            Status - Barrier in Right Ferryman Route Lifted: true
         Requirements:
-            Default:
+            Left Side - Holy Symbol, Barrier Lifted:
                 Section: Left Side
+                Progression - Protection from Water: true
                 Status - Barrier in Right Ferryman Route Lifted: true
+            Left Side - Merman Statue:
+                Section: Left Side
+                Progression - Summon Ferryman: true

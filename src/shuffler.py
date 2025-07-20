@@ -569,6 +569,7 @@ if __name__ == '__main__':
             'Disable clipping on screen edge of Tall Zig Zag Room Wall',
             'Enable debug mode',
             'Normalize room connections',
+            'Preserve map exploration across saves',
             'Shift wall in Plaque Room With Breakable Wall away from screen edge',
             'Shuffle Pitch Black Spike Maze',
             'Skip Maria cutscene in Alchemy Laboratory',
