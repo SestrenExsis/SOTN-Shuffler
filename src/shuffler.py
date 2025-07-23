@@ -1204,7 +1204,7 @@ if __name__ == '__main__':
         seed_hint = ''.join(chars)
         changes['Constants'] = {
             'Message - Richter Mode Instructions 1': seed_hint,
-            'Message - Richter Mode Instructions 2': 'Beta Release 4      ',
+            'Message - Richter Mode Instructions 2': 'Beta Release 5      ',
         }
         # Normalize room connections
         if settings.get('Options', {}).get('Normalize room connections', False):
