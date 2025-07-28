@@ -231,44 +231,6 @@ Castle Keep:
                 Check - Leap Stone Location: true
                 Check - Power of Mist Location: true
 Catacombs:
-    (Rule) Spikebreaker Locked Behind Spike Maze:
-        Solver:
-            Approach: Steps
-            Attempts: 1
-            Limit: 99
-            Initial Seed: 1
-            Debug: False
-            Wins:
-                Maximum: 0
-        State:
-            Room: Catacombs, Loading Room to Abandoned Mine
-            Section: Main
-            Progression - Bat Transformation: true
-        Goals:
-            Find Spikebreaker without Spike Maze:
-                Item - Spike Breaker: 1
-                Rooms Visited:
-                    All:
-                        Catacombs, Pitch Black Spike Maze: false
-    (Rule) Force Left-to-Right Spike Maze:
-        Solver:
-            Approach: Steps
-            Attempts: 1
-            Limit: 99
-            Initial Seed: 1
-            Debug: False
-            Wins:
-                Maximum: 0
-        State:
-            Room: Catacombs, Loading Room to Abandoned Mine
-            Section: Main
-            Progression - Bat Transformation: true
-        Goals:
-            Try to find Right Side of Spike Maze without also finding Left Side:
-                Sections Visited:
-                    All:
-                        Catacombs, Pitch Black Spike Maze (Right Side): true
-                        Catacombs, Pitch Black Spike Maze (Left Side): false
     (Entry) Abandoned Mine -> Hub:
         Solver: *solve-within-99-steps
         State:

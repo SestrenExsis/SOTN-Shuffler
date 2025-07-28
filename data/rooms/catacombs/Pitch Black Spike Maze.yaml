@@ -33,9 +33,16 @@ Commands:
                 Section: Middle
                 Progression - Bat Transformation: true
                 Status - Light in Spike Maze Turned On: true
-            Middle - Mist and Spike Breaker:
+            Middle - Double Jump and Spike Breaker:
+                Section: Middle
+                Progression - Double Jump: true
+                Item - Spike Breaker:
+                    Minimum: 1
+            Middle - Powered Mist and Spike Breaker:
                 Section: Middle
                 Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
                 Item - Spike Breaker:
                     Minimum: 1
     Move - Right Side:
@@ -50,9 +57,16 @@ Commands:
                 Section: Middle
                 Progression - Bat Transformation: true
                 Status - Light in Spike Maze Turned On: true
-            Middle - Mist and Spike Breaker:
+            Middle - Double Jump and Spike Breaker:
+                Section: Middle
+                Progression - Double Jump: true
+                Item - Spike Breaker:
+                    Minimum: 1
+            Middle - Powered Mist and Spike Breaker:
                 Section: Middle
                 Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
+                Technique - Powered Mist Travel (Short): true
                 Item - Spike Breaker:
                     Minimum: 1
     Move - Middle:
@@ -72,11 +86,6 @@ Commands:
                 Progression - Double Jump: true
                 Item - Spike Breaker:
                     Minimum: 1
-            Left Side - Gravity Jump and Spike Breaker:
-                Section: Left Side
-                Progression - Gravity Jump: true
-                Item - Spike Breaker:
-                    Minimum: 1
             Left Side - Powered Mist and Spike Breaker:
                 Section: Left Side
                 Progression - Mist Transformation: true
@@ -91,8 +100,15 @@ Commands:
                 Section: Right Side
                 Progression - Bat Transformation: true
                 Status - Light in Spike Maze Turned On: true
-            Right Side - Spike Breaker:
+            Right Side - Double Jump and Spike Breaker:
                 Section: Right Side
+                Progression - Double Jump: true
+                Item - Spike Breaker:
+                    Minimum: 1
+            Right Side - Powered Mist and Spike Breaker:
+                Section: Right Side
+                Progression - Mist Transformation: true
+                Progression - Longer Mist Duration: true
                 Item - Spike Breaker:
                     Minimum: 1
     Action - Activate Pressure Plate:
