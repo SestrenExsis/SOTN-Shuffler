@@ -1193,6 +1193,12 @@ class LogicCore:
                 'Item - Spike Breaker': {
                     'Minimum': 1,
                 },
+                'Item - Silver Ring': {
+                    'Minimum': 1,
+                },
+                'Item - Gold Ring': {
+                    'Minimum': 1,
+                },
                 'Progression - Bat Transformation': True,
                 'Progression - Echolocation': True,
                 'Progression - Item Materialization': True,
