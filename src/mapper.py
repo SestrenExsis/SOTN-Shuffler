@@ -1188,6 +1188,9 @@ class LogicCore:
             'Unlock Shortcut Between Royal Chapel and Colosseum': {
                 'Status - Shortcut Between Royal Chapel and Colosseum Unlocked': True,
             },
+            'Wear Both Rings in Clock Room': {
+                'Status - Floor in Clock Room Opened Up': True,
+            },
             # Final goal
             'END': {
                 'Item - Spike Breaker': {

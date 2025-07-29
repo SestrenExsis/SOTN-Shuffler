@@ -140,8 +140,9 @@ def shuffle_teleporters(teleporters, rng) -> dict:
         ('Catacombs, Fake Room with Teleporter to Abandoned Mine', 'Colosseum, Fake Room with Teleporter to Royal Chapel'),
         # NOTE(sestren): Disallow requiring pre-Shop Library Card to open Shortcut to Warp Rooms
         ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', 'Long Library, Fake Room with Teleporter to Outer Wall'),
-        # NOTE(sestren): Disallow requiring one-way path in Royal Chapel to open Shortcut to Warp Rooms
+        # NOTE(sestren): Disallow requiring one-way paths to open Shortcut to Warp Rooms
         ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', "Royal Chapel, Fake Room with Teleporter to Olrox's Quarters"),
+        ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', "Colosseum, Fake Room with Teleporter to Olrox's Quarters"),
     }
     for (source_a, source_b) in forbidden_links:
         # print((source_a, source_b))
@@ -990,8 +991,7 @@ if __name__ == '__main__':
                             }
                             break
                 if len(warp_room_cells.intersection(prev_cells)) > 0:
-                    print()
-                    print('Warp Room could not be placed without overlapping with another stage')
+                    print('W', end='', flush=True)
                     valid_ind = False
                     break
             for room_name in stage_changes['Rooms']:

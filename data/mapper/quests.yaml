@@ -35,7 +35,7 @@ Sources:
       - Enemy Drop
       - Item
       - Uncommon
-    Target Reward: Subweapon - Axe
+    Target Reward: Item - Subweapon (Axe)
   Enemy - Axe Knight, Type B (Rare Drop):
     Tags:
       - Enemy Drop
@@ -47,7 +47,7 @@ Sources:
       - Enemy Drop
       - Item
       - Uncommon
-    Target Reward: Subweapon - Axe
+    Target Reward: Item - Subweapon (Axe)
   Enemy - Azaghal (Rare Drop):
     Tags:
       - Enemy Drop
@@ -7843,7 +7843,7 @@ Targets:
       Relic - Sword Card: true
     Tags:
       - Low Priority - Racing
-  Subweapon - Axe:
+  Item - Subweapon (Axe):
     Outcomes:
       Subweapon: Axe
     Tags:
