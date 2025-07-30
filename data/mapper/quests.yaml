@@ -2536,6 +2536,7 @@ Sources:
         Stage: Catacombs
     Tags:
       - Item
+      - Relic
       - Required
     Target Reward: Item - Spike Breaker
   Location - Catacombs, Room ID 20 (Monster Vial 3 1):
@@ -5785,6 +5786,7 @@ Sources:
         Stage: Royal Chapel
     Tags:
       - Item
+      - Relic
       - Required
     Target Reward: Item - Silver Ring
   Location - Royal Chapel, Chapel Staircase (Aquamarine):
@@ -6100,6 +6102,7 @@ Sources:
         Stage: Underground Caverns
     Tags:
       - Item
+      - Relic
       - Required
     Target Reward: Item - Gold Ring
   Location - Underground Caverns, Bandanna Room (Bandanna):
