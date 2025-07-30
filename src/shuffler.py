@@ -140,6 +140,9 @@ def shuffle_teleporters(teleporters, rng) -> dict:
         ('Catacombs, Fake Room with Teleporter to Abandoned Mine', 'Colosseum, Fake Room with Teleporter to Royal Chapel'),
         # NOTE(sestren): Disallow requiring pre-Shop Library Card to open Shortcut to Warp Rooms
         ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', 'Long Library, Fake Room with Teleporter to Outer Wall'),
+        # NOTE(sestren): Disallow requiring one-way paths to open Shortcut to Warp Rooms
+        ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', "Royal Chapel, Fake Room with Teleporter to Olrox's Quarters"),
+        ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', "Colosseum, Fake Room with Teleporter to Olrox's Quarters"),
     }
     for (source_a, source_b) in forbidden_links:
         # print((source_a, source_b))
@@ -248,27 +251,44 @@ def shuffle_teleporters(teleporters, rng) -> dict:
             alt_source_key = 'Castle Entrance Revisited' + source_b_key[len('Castle Entrance'):]
             teleporters['Sources'][alt_source_key]['Target'] = teleporters['Sources'][source_a_key]['Return']
 
-def shuffle_relics(quests, rng, relic_pool: str='Vanilla'):
-    duplicate_relics = []
-    for quest_target_name in list(sorted(quests.get('Targets', {}))):
-        if not quest_target_name.startswith('Relic'):
-            continue
-        if 'Low Priority - Racing' in quests.get('Targets', {}).get(quest_target_name, {}).get('Tags', {}):
-            continue
-        duplicate_relics.append(quest_target_name)
-    rng.shuffle(duplicate_relics)
+def shuffle_relics_and_required_items(quests, rng, relic_pool: str='Vanilla'):
     quest_targets = []
+    while True:
+        duplicate_relics = []
+        for quest_source_name in list(sorted(quests['Sources'].keys())):
+            if quests['Sources'][quest_source_name].get('Logic Level', 'Optional') != 'Required':
+                continue
+            quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
+            if not quest_target_name.startswith('Relic'):
+                continue
+            if 'Low Priority - Racing' in quests['Targets'][quest_target_name].get('Tags', {}):
+                continue
+            duplicate_relics.append(quest_target_name)
+        rng.shuffle(duplicate_relics)
+        quest_targets = []
+        for quest_source_name in list(sorted(quests.get('Sources', {}))):
+            if quests['Sources'][quest_source_name].get('Logic Level', 'Optional') != 'Required':
+                continue
+            quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
+            # If Racing Relic pool is enabled, replace low priority relics with a random duplicate of a better one
+            if relic_pool == 'Racing' and 'Low Priority - Racing' in quests['Targets'][quest_target_name].get('Tags', {}):
+                quest_target_name = duplicate_relics.pop()
+            quest_targets.append(quest_target_name)
+        rng.shuffle(quest_targets)
+        valid_ind = True
+        index = 0
+        for quest_source_name in list(sorted(quests['Sources'].keys())):
+            if quests['Sources'][quest_source_name].get('Logic Level', 'Optional') != 'Required':
+                continue
+            quest_target_type = quest_targets[-index - 1].split(' - ')[0]
+            if quest_target_type not in quests['Sources'][quest_source_name].get('Tags', []):
+                valid_ind = False
+                break
+            index += 1
+        if valid_ind:
+            break
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
-        if not quests['Sources'][quest_source_name]['Reward Class'].startswith('Relic'):
-            continue
-        quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
-        # If Racing Relic pool is enabled, replace low priority relics with a random duplicate of a better one
-        if relic_pool == 'Racing' and 'Low Priority - Racing' in quests['Targets'][quest_target_name].get('Tags', {}):
-            quest_target_name = duplicate_relics.pop()
-        quest_targets.append(quest_target_name)
-    rng.shuffle(quest_targets)
-    for quest_source_name in list(sorted(quests.get('Sources', {}))):
-        if not quests['Sources'][quest_source_name]['Reward Class'].startswith('Relic'):
+        if quests['Sources'][quest_source_name].get('Logic Level', 'Optional') != 'Required':
             continue
         quest_target_name = quest_targets.pop()
         quests['Sources'][quest_source_name]['Target Reward'] = quest_target_name
@@ -276,7 +296,9 @@ def shuffle_relics(quests, rng, relic_pool: str='Vanilla'):
 def shuffle_items(quests, rng, item_pool: str='Vanilla'):
     quest_targets = []
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
-        if quests['Sources'][quest_source_name]['Reward Class'] != 'Item':
+        if 'Item' not in quests['Sources'][quest_source_name].get('Tags', {}):
+            continue
+        if quests['Sources'][quest_source_name].get('Logic Level', 'Optional') == 'Required':
             continue
         quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
         quest_targets.append(quest_target_name)
@@ -302,9 +324,9 @@ def shuffle_items(quests, rng, item_pool: str='Vanilla'):
                 continue
             for i in range(len(quest_targets)):
                 quest_target_name = quest_targets[i]
-                if 'Low Priority - Racing' in quests['Targets'][quest_target_name]['Tags']:
+                if 'Low Priority - Racing' in quests['Targets'][quest_target_name].get('Tags', {}):
                     continue
-                if item_bin_name not in quests['Targets'][quest_target_name]['Tags']:
+                if item_bin_name not in quests['Targets'][quest_target_name].get('Tags', {}):
                     continue
                 if quest_targets[i] in chosen_items:
                     continue
@@ -314,7 +336,7 @@ def shuffle_items(quests, rng, item_pool: str='Vanilla'):
         for i in range(len(quest_targets)):
             quest_target_name = quest_targets[i]
             # Chance of replacing a Low Priority - Racing item with something else
-            if 'Low Priority - Racing' in quests['Targets'][quest_target_name]['Tags']:
+            if 'Low Priority - Racing' in quests['Targets'][quest_target_name].get('Tags', {}):
                 chance = rng.random()
                 if chance < 0.025:
                     quest_targets[i] = 'Item - Library Card'
@@ -326,13 +348,15 @@ def shuffle_items(quests, rng, item_pool: str='Vanilla'):
             else:
                 # Override items found in a placeholder bin to the binned item
                 for (item_bin_name, assigned_quest_target) in placeholders.values():
-                    if item_bin_name in quests['Targets'][quest_target_name]['Tags']:
+                    if item_bin_name in quests['Targets'][quest_target_name].get('Tags', {}):
                         quest_targets[i] = assigned_quest_target
                         break
     else:
         rng.shuffle(quest_targets)
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
-        if quests['Sources'][quest_source_name]['Reward Class'] != 'Item':
+        if 'Item' not in quests['Sources'][quest_source_name].get('Tags', {}):
+            continue
+        if quests['Sources'][quest_source_name].get('Logic Level', 'Optional') == 'Required':
             continue
         quest_target = quest_targets.pop()
         quests['Sources'][quest_source_name]['Target Reward'] = quest_target
@@ -340,13 +364,13 @@ def shuffle_items(quests, rng, item_pool: str='Vanilla'):
 def shuffle_enemy_drops(quests, rng):
     quest_targets = []
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
-        if not quests['Sources'][quest_source_name]['Reward Class'].endswith('Enemy Drop'):
+        if 'Enemy Drop' not in quests['Sources'][quest_source_name].get('Tags', {}):
             continue
         quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
         quest_targets.append(quest_target_name)
     rng.shuffle(quest_targets)
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
-        if not quests['Sources'][quest_source_name]['Reward Class'].endswith('Enemy Drop'):
+        if 'Enemy Drop' not in quests['Sources'][quest_source_name].get('Tags', {}):
             continue
         quest_target = quest_targets.pop()
         quests['Sources'][quest_source_name]['Target Reward'] = quest_target
@@ -642,7 +666,7 @@ if __name__ == '__main__':
         quest_rewards = None
         if settings.get('Quest shuffler', {}).get('Shuffle relics', False):
             relic_pool = settings.get('Quest shuffler', {}).get('Relic pool', 'Vanilla')
-            shuffle_relics(mapper_core['Quests'], rng['Relics'], relic_pool)
+            shuffle_relics_and_required_items(mapper_core['Quests'], rng['Relics'], relic_pool)
             if quest_rewards is None:
                 quest_rewards = {}
         if settings.get('Quest shuffler', {}).get('Shuffle items', False):
@@ -967,8 +991,7 @@ if __name__ == '__main__':
                             }
                             break
                 if len(warp_room_cells.intersection(prev_cells)) > 0:
-                    print()
-                    print('Warp Room could not be placed without overlapping with another stage')
+                    print('W', end='', flush=True)
                     valid_ind = False
                     break
             for room_name in stage_changes['Rooms']:
@@ -1131,11 +1154,12 @@ if __name__ == '__main__':
                 break
         if not logic_valid_ind:
             print()
-            for stage_name in sorted(shuffler['Stages']):
-                print(shuffler['Stages'][stage_name]['Hash of Rooms'], stage_name)
+            for (quest_source_name, target_reward) in sorted(quest_rewards.items()):
+                if mapper_core['Quests']['Sources'][quest_source_name].get('Logic Level', 'Optional') == 'Required':
+                    print(quest_source_name, '=', target_reward)
             print()
             for (teleporter_source_name, teleporter_info) in teleporters.items():
-                print(teleporter_source_name, '->', teleporter_info['Room'])
+                print(teleporter_source_name, '=', teleporter_info['Room'])
             print()
             for goal_key in solver.logic_core['Goals']['END'].keys():
                 print(goal_key, '=', solver.current_game.current_state.get(goal_key, '-'))
