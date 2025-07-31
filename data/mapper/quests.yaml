@@ -264,18 +264,6 @@ Sources:
       - Item
       - Uncommon
     Target Reward: Item - Short Sword
-  Enemy - Bone Scimitar, Copper (Guaranteed Drop):
-    Tags:
-      - Enemy Drop
-      - Item
-      - Guaranteed
-    Target Reward: Item - Red Rust
-  Enemy - Bone Scimitar, Green (Guaranteed Drop):
-    Tags:
-      - Enemy Drop
-      - Item
-      - Guaranteed
-    Target Reward: Item - Short Sword
   Enemy - Cave Troll (Rare Drop):
     Tags:
       - Enemy Drop
@@ -6455,6 +6443,24 @@ Sources:
     Tags:
       - Item
     Target Reward: Item - Nunchaku
+  Special - Guaranteed Drop (Bone Scimitar, Copper):
+    Pool: Bone Scimitar
+    Tags:
+      - Special
+      - Accessory
+      - Armor
+      - One-Handed Weapon
+      - Two-Handed Weapon
+    Target Reward: Item - Red Rust
+  Special - Guaranteed Drop (Bone Scimitar, Green):
+    Pool: Bone Scimitar
+    Tags:
+      - Special
+      - Accessory
+      - Armor
+      - One-Handed Weapon
+      - Two-Handed Weapon
+    Target Reward: Item - Short Sword
 Targets:
   Item - $100:
     Outcomes:
@@ -6903,6 +6909,7 @@ Targets:
       Item - Gold Ring: 1
     Tags:
       - Accessory
+      - Required
   Item - Gram:
     Outcomes:
       Item - Gram: 1
@@ -7549,6 +7556,7 @@ Targets:
       Item - Silver Ring: 1
     Tags:
       - Accessory
+      - Required
   Item - Sirloin:
     Outcomes:
       Item - Sirloin: 1
@@ -7573,6 +7581,7 @@ Targets:
     Tags:
       - Armor
       - Body
+      - Required
   Item - Star Flail:
     Outcomes:
       Item - Star Flail: 1
