@@ -20,6 +20,7 @@ Quest shuffler:
     Relic pool: Vanilla
     Shuffle enemy drops: true
     Shuffle items: true
+    Shuffle special items: true
     Shuffle relics: true
 Room shuffler:
     Shuffle rooms within stages: true
