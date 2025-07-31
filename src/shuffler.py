@@ -375,6 +375,31 @@ def shuffle_enemy_drops(quests, rng):
         quest_target = quest_targets.pop()
         quests['Sources'][quest_source_name]['Target Reward'] = quest_target
 
+def replace_special_items(quests, rng):
+    pools = {}
+    for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        source_tags = set(quests['Sources'][quest_source_name].get('Tags', {}))
+        if 'Special' not in source_tags:
+            continue
+        pool_name = quests['Sources'][quest_source_name].get('Pool', 'Global')
+        if pool_name not in pools:
+            pools[pool_name] = set()
+        for quest_target_name in list(sorted(quests.get('Targets', {}))):
+            target_tags = set(quests['Targets'][quest_target_name].get('Tags', {}))
+            if 'Required' in target_tags:
+                continue
+            if len(source_tags.intersection(target_tags)) > 0:
+                if quest_target_name in pools[pool_name]:
+                    continue
+                pools[pool_name].add(quest_target_name)
+    for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        source_tags = set(quests['Sources'][quest_source_name].get('Tags', {}))
+        if 'Special' not in source_tags:
+            continue
+        quest_target_name = rng.choice(list(sorted(pools[pool_name])))
+        quests['Sources'][quest_source_name]['Target Reward'] = quest_target_name
+        pools[pool_name].remove(quest_target_name)
+
 def draw_labels_on_castle_map(castle_map, instructions):
     # CDHIJKLNOSTUVXYZ147+-|#
     labels = {
@@ -614,11 +639,12 @@ if __name__ == '__main__':
             seeds.append(seed)
         rng['Teleporters'] = random.Random(seeds[0])
         rng['Relics'] = random.Random(seeds[1])
-        rng['Items'] = random.Random(seeds[2])
+        rng['Found Items'] = random.Random(seeds[2])
         rng['Stages'] = random.Random(seeds[3])
         rng['Castle Map'] = random.Random(seeds[4])
         rng['Spike Room'] = random.Random(seeds[5])
         rng['Enemy Drops'] = random.Random(seeds[6])
+        rng['Special Items'] = random.Random(seeds[7])
         # NOTE(sestren): Access another pre-generated seed instead of generating more
         print('.', end='', flush=True)
         shuffler['Stages'] = {}
@@ -664,26 +690,23 @@ if __name__ == '__main__':
                 }
         # Shuffle quest rewards (such as Relics)
         quest_rewards = None
+        quest_reward_ind = False
         if settings.get('Quest shuffler', {}).get('Shuffle relics', False):
             relic_pool = settings.get('Quest shuffler', {}).get('Relic pool', 'Vanilla')
             shuffle_relics_and_required_items(mapper_core['Quests'], rng['Relics'], relic_pool)
-            if quest_rewards is None:
-                quest_rewards = {}
+            quest_reward_ind = True
         if settings.get('Quest shuffler', {}).get('Shuffle items', False):
             item_pool = settings.get('Quest shuffler', {}).get('Item pool', 'Vanilla')
-            shuffle_items(mapper_core['Quests'], rng['Items'], item_pool)
-            if quest_rewards is None:
-                quest_rewards = {}
+            shuffle_items(mapper_core['Quests'], rng['Found Items'], item_pool)
+            quest_reward_ind = True
         if settings.get('Quest shuffler', {}).get('Shuffle enemy drops', False):
             shuffle_enemy_drops(mapper_core['Quests'], rng['Enemy Drops'])
-            if quest_rewards is None:
-                quest_rewards = {}
-        # if settings.get('Quest shuffler', {}).get('Item pool', 'Vanilla') == 'Racing':
-        #     if quest_rewards is None:
-        #         quest_rewards = {}
-        #     quest_rewards['Enemy - Bone Scimitar, Green (Guaranteed)'] = 'Item - Manna Prism'
-        #     quest_rewards['Enemy - Bone Scimitar, Copper (Guaranteed)'] = 'Item - Leather Shield'
-        if quest_rewards is not None:
+            quest_reward_ind = True
+        if settings.get('Quest shuffler', {}).get('Shuffle special items', False):
+            replace_special_items(mapper_core['Quests'], rng['Special Items'])
+            quest_reward_ind = True
+        if quest_reward_ind:
+            quest_rewards = {}
             for (quest_name, quest) in mapper_core['Quests']['Sources'].items():
                 quest_rewards[quest_name] = quest['Target Reward']
         # print('Set starting seeds for each stage')
