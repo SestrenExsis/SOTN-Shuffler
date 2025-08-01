@@ -396,6 +396,7 @@ def replace_special_items(quests, rng):
         source_tags = set(quests['Sources'][quest_source_name].get('Tags', {}))
         if 'Special' not in source_tags:
             continue
+        pool_name = quests['Sources'][quest_source_name].get('Pool', 'Global')
         quest_target_name = rng.choice(list(sorted(pools[pool_name])))
         quests['Sources'][quest_source_name]['Target Reward'] = quest_target_name
         pools[pool_name].remove(quest_target_name)
