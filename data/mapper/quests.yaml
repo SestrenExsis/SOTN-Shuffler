@@ -6461,6 +6461,72 @@ Sources:
       - One-Handed Weapon
       - Two-Handed Weapon
     Target Reward: Item - Short Sword
+  Special - Starting Equipment (Alucard Sword):
+    Pool: Starting Gear - Weapon
+    Tags:
+      - Special
+      - One-Handed Weapon
+    Target Reward: Item - Alucard Sword
+  Special - Starting Equipment (Alucard Shield):
+    Pool: Starting Gear - Shield
+    Tags:
+      - Special
+      - Shield
+    Target Reward: Item - Alucard Shield
+  Special - Starting Equipment (Dragon Helm):
+    Pool: Starting Gear - Head
+    Tags:
+      - Special
+      - Head
+    Target Reward: Item - Dragon Helm
+  Special - Starting Equipment (Alucard Mail):
+    Pool: Starting Gear - Body
+    Tags:
+      - Special
+      - Body
+    Target Reward: Item - Alucard Mail
+  Special - Starting Equipment (Twilight Cloak):
+    Pool: Starting Gear - Cloak
+    Tags:
+      - Special
+      - Cloak
+    Target Reward: Item - Twilight Cloak
+  Special - Starting Equipment (Necklace of J):
+    Pool: Starting Gear - Accessory
+    Tags:
+      - Special
+      - Accessory
+    Target Reward: Item - Necklace of J
+  Special - Prologue Bonus Equipment (Potion):
+    Pool: Prologue Reward - Consumable
+    Tags:
+      - Special
+      - Consumable
+    Target Reward: Item - Potion
+  Special - Prologue Bonus Equipment (Heart Refresh):
+    Pool: Prologue Reward - Consumable
+    Tags:
+      - Special
+      - Consumable
+    Target Reward: Item - Heart Refresh
+  Special - Prologue Bonus Equipment (Neutron Bomb):
+    Pool: Prologue Reward - Consumable
+    Tags:
+      - Special
+      - Consumable
+    Target Reward: Item - Neutron Bomb
+  Special - Name Code Bonus Equipment (Lapis Lazuli):
+    Pool: Name Code - Accessory
+    Tags:
+      - Special
+      - Accessory
+    Target Reward: Item - Lapis Lazuli
+  Special - Name Code Bonus Equipment (Axe Lord Armor):
+    Pool: Name Code - Armor
+    Tags:
+      - Special
+      - Body
+    Target Reward: Item - Axe Lord Armor
 Targets:
   Item - $100:
     Outcomes:
