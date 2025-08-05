@@ -863,12 +863,7 @@ if __name__ == '__main__':
             best_stage_offsets = []
             (min_map_row, max_map_row) = (MIN_MAP_ROW, MAX_MAP_ROW - bottom)
             (min_map_col, max_map_col) = (MIN_MAP_COL, MAX_MAP_COL - right)
-            if stage_name == 'Castle Entrance':
-                # Castle Entrance is being restricted by where 'Unknown Room 20' and 'After Drawbridge' can be
-                min_map_row = 38 - current_stage.rooms['Castle Entrance, After Drawbridge'].top
-                max_map_row = min_map_row + 1
-                min_map_col = max(min_map_col, 1 - current_stage.rooms['Castle Entrance, Unknown Room 20'].left)
-            elif stage_name == 'Castle Center':
+            if stage_name == 'Castle Center':
                 # Castle Center is being forced to join with Marble Gallery via the Elevator Room
                 min_map_row = stages['Marble Gallery']['Stage Top'] + stages['Marble Gallery']['Mapper'].stage.rooms['Marble Gallery, Elevator Room'].top
                 max_map_row = min_map_row + 1

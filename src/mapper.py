@@ -302,9 +302,8 @@ stages = {
         # { 'Castle Entrance, Forest Cutscene': (44, 0) },
         # { 'Castle Entrance, Unknown Room 19': (44, 18) },
         {
-            # TODO(sestren): Add validation check to ensure Castle Entrance can be shifted to respect these rooms
-            'Castle Entrance, Unknown Room 20': (40, 30 + 1),
-            'Castle Entrance, After Drawbridge': (38, 30 + 2),
+            'Castle Entrance, Unknown Room 20': (32 + 2, 32 + 0),
+            'Castle Entrance, After Drawbridge': (32 + 0, 32 + 1),
         },
         {
             'Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory': (0, 0),
