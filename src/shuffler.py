@@ -628,7 +628,6 @@ if __name__ == '__main__':
     invalid_stage_files = set()
     # seeds.append(global_rng.randint(MIN_SEED, MAX_SEED))
     rng = {}
-    # (initial_seed, rng, children)
     rng['Global'] = random.Random(initial_seed)
     while True:
         local_seed = rng['Global'].randint(MIN_SEED, MAX_SEED)
@@ -646,6 +645,7 @@ if __name__ == '__main__':
         rng['Spike Room'] = random.Random(seeds[5])
         rng['Enemy Drops'] = random.Random(seeds[6])
         rng['Special Items'] = random.Random(seeds[7])
+        # rng['NEW'] = random.Random(seeds[8])
         # NOTE(sestren): Access another pre-generated seed instead of generating more
         print('.', end='', flush=True)
         shuffler['Stages'] = {}
@@ -687,6 +687,7 @@ if __name__ == '__main__':
                     'Player X': target['Player X'],
                     'Player Y': target['Player Y'],
                     'Room': target['Stage'] + ', ' + target['Room'],
+                    'Section': target['Section'],
                     'Stage': target['Stage'],
                 }
         # Shuffle quest rewards (such as Relics)
@@ -1143,6 +1144,7 @@ if __name__ == '__main__':
             }
         # print('*********')
         validations = {
+            # NOTE(sestren): It should be possible to return to Castle Entrance after using Library Card with zero progression
             '0 - Long Library to Castle Entrance': {
                 'Start': {
                     'Room': 'Long Library, Outside Shop',
@@ -1157,6 +1159,7 @@ if __name__ == '__main__':
                     },
                 },
             },
+            # NOTE(sestren): It should be possible to complete the first Castle from the start of the game
             '1 - Start to Save Richter': {
                 'Start': {
                     'Room': 'Castle Entrance, After Drawbridge',
@@ -1165,6 +1168,38 @@ if __name__ == '__main__':
                 'End': None,
             },
         }
+        validation_id = len(validations)
+        teleporters[source_name] = {
+            'Room': target['Stage'] + ', ' + target['Room'],
+            'Stage': target['Stage'],
+        }
+        for source_name in (
+            'Warp Rooms, Fake Room with Teleporter to Abandoned Mine',
+            'Warp Rooms, Fake Room with Teleporter to Castle Keep',
+            "Warp Rooms, Fake Room with Teleporter to Olrox's Quarters",
+            'Warp Rooms, Fake Room with Teleporter to Outer Wall',
+        ):
+            validations[str(validation_id) + ' - ' + 'XXX'] = {}
+            teleporters[source_name]['Stage']
+            teleporters[source_name]['Room']
+            teleporters[source_name]['Section']
+            # Step 1: Find every Stage connected to a Warp Room Stage other than the default one
+            # Step 2: Find every Section containing a Red Door in the Stage other than the one connected to Warp Rooms
+            # Step 3: Ensure starting at that Section using Elsewhere with full progression allows you to reach the Warp Room Section
+            # source
+                # Warp Rooms, Fake Room with Teleporter to Abandoned Mine:
+                #     Index: 32
+                #     Stage: Warp Rooms
+                #     Room: Fake Room with Teleporter to Abandoned Mine
+                #     Return: Warp Rooms, Warp Room to Abandoned Mine (Left Red Door)
+                #     Target: Abandoned Mine, Four-Way Intersection (Right Red Door)
+            # target
+                # Abandoned Mine, Four-Way Intersection (Right Red Door):
+                #     Stage: Abandoned Mine
+                #     Room: Four-Way Intersection
+                #     Node: Right Red Door
+                #     Player X: 752
+                #     Player Y: 132
         logic_valid_ind = True
         solver = None
         for validation_name in sorted(validations.keys()):

@@ -316,288 +316,336 @@ Targets:
   Abandoned Mine, Bend (Lower-Left Red Door):
     Stage: Abandoned Mine
     Room: Bend
+    Section: Main
     Node: Lower-Left Red Door
     Player X: 16
     Player Y: 388
   Abandoned Mine, Four-Way Intersection (Right Red Door):
     Stage: Abandoned Mine
     Room: Four-Way Intersection
+    Section: Main
     Node: Right Red Door
     Player X: 752
     Player Y: 132
   Abandoned Mine, Wolf's Head Column (Upper-Right Red Door):
     Stage: Abandoned Mine
     Room: Wolf's Head Column
+    Section: Upper-Right Ledge
     Node: Upper-Right Red Door
     Player X: 240
     Player Y: 132
   Alchemy Laboratory, Entryway (Right Red Door):
     Stage: Alchemy Laboratory
     Room: Entryway
+    Section: Main
     Node: Right Red Door
     Player X: 752
     Player Y: 132
   Alchemy Laboratory, Exit to Marble Gallery (Right Red Door):
     Stage: Alchemy Laboratory
     Room: Exit to Marble Gallery
+    Section: Main
     Node: Right Red Door
     Player X: 496
     Player Y: 392
   Alchemy Laboratory, Exit to Royal Chapel (Left Red Door):
     Stage: Alchemy Laboratory
     Room: Exit to Royal Chapel
+    Section: Main
     Node: Left Red Door
     Player X: 16
     Player Y: 132
   Castle Center, Elevator Shaft (Top Passage):
     Stage: Castle Center
     Room: Elevator Shaft
+    Section: Main
     Node: Top Passage
     Player X: 128
     Player Y: 36
   Castle Entrance Revisited, Cube of Zoe Room (Upper-Left Red Door):
     Stage: Castle Entrance Revisited
     Room: Cube of Zoe Room
+    Section: Main
     Node: Upper-Left Red Door
     Player X: 16
     Player Y: 132
   Castle Entrance Revisited, Cube of Zoe Room (Upper-Right Red Door):
     Stage: Castle Entrance Revisited
     Room: Cube of Zoe Room
+    Section: Pressure Plate Ledge
     Node: Upper-Right Red Door
     Player X: 496
     Player Y: 132
   Castle Entrance Revisited, Shortcut to Underground Caverns (Right Red Door):
     Stage: Castle Entrance Revisited
     Room: Shortcut to Underground Caverns
+    Section: Right Side
     Node: Right Red Door
     Player X: 240
     Player Y: 132
   Castle Entrance Revisited, Shortcut to Warp Rooms (Left Red Door):
     Stage: Castle Entrance Revisited
     Room: Shortcut to Warp Rooms
+    Section: Left Side
     Node: Left Red Door
     Player X: 16
     Player Y: 132
   Castle Keep, Dual Platforms (Lower-Right Red Door):
     Stage: Castle Keep
     Room: Dual Platforms
+    Section: Main
     Node: Lower-Right Red Door
     Player X: 240
     Player Y: 388
   Castle Keep, Keep Area (Lower-Left Red Door):
     Stage: Castle Keep
     Room: Keep Area
+    Section: Hallway
     Node: Lower-Left Red Door
     Player X: 16
     Player Y: 1924
   Castle Keep, Lion Torch Platform (Lower-Right Red Door):
     Stage: Castle Keep
     Room: Lion Torch Platform
+    Section: Main
     Node: Lower-Right Red Door
     Player X: 240
     Player Y: 388
   Catacombs, Exit to Abandoned Mine (Upper-Right Red Door):
     Stage: Catacombs
     Room: Exit to Abandoned Mine
+    Section: Main
     Node: Upper-Right Red Door
     Player X: 240
     Player Y: 132
   Clock Tower, Karasuman's Room (Left Red Door):
     Stage: Clock Tower
     Room: Karasuman's Room
+    Section: Main
     Node: Left Red Door
     Player X: 16
     Player Y: 132
   Clock Tower, Stairwell to Outer Wall (Right Red Door):
     Stage: Clock Tower
     Room: Stairwell to Outer Wall
+    Section: Main
     Node: Right Red Door
     Player X: 240
     Player Y: 132
   Colosseum, Passageway Between Arena and Royal Chapel (Left Red Door):
     Stage: Colosseum
     Room: Passageway Between Arena and Royal Chapel
+    Section: Left Side
     Node: Left Red Door
     Player X: 16
     Player Y: 132
   Colosseum, Top of Elevator Shaft (Right Red Door):
     Stage: Colosseum
     Room: Top of Elevator Shaft
+    Section: Right Side
     Node: Right Red Door
     Player X: 1264
     Player Y: 132
   Long Library, Exit to Outer Wall (Right Red Door):
     Stage: Long Library
     Room: Exit to Outer Wall
+    Section: Main
     Node: Right Red Door
     Player X: 752
     Player Y: 132
   Marble Gallery, Clock Room (Bottom Passage):
     Stage: Marble Gallery
     Room: Clock Room
+    Section: Main
     Node: Bottom Passage
     Player X: 128
     Player Y: 212
   Marble Gallery, Entrance (Left Red Door):
     Stage: Marble Gallery
     Room: Entrance
+    Section: Main
     Node: Left Red Door
     Player X: 16
     Player Y: 132
   Marble Gallery, Long Hallway (Right Red Door):
     Stage: Marble Gallery
     Room: Long Hallway
+    Section: Main
     Node: Right Red Door
     Player X: 3824
     Player Y: 132
   Marble Gallery, Pathway After Left Statue (Left Red Door):
     Stage: Marble Gallery
     Room: Pathway After Left Statue
+    Section: Main
     Node: Left Red Door
     Player X: 16
     Player Y: 132
   Marble Gallery, S-Shaped Hallways (Lower-Left Red Door):
     Stage: Marble Gallery
     Room: S-Shaped Hallways
+    Section: Main
     Node: Lower-Left Red Door
     Player X: 16
     Player Y: 644
   Marble Gallery, Stairwell to Underground Caverns (Lower-Left Red Door):
     Stage: Marble Gallery
     Room: Stairwell to Underground Caverns
+    Section: Main
     Node: Lower-Left Red Door
     Player X: 16
     Player Y: 388
   Olrox's Quarters, Catwalk Crypt (Left Red Door):
     Stage: Olrox's Quarters
     Room: Catwalk Crypt
+    Section: Main
     Node: Left Red Door
     Player X: 16
     Player Y: 132
   Olrox's Quarters, Grand Staircase (Lower-Left Red Door):
     Stage: Olrox's Quarters
     Room: Grand Staircase
+    Section: Main
     Node: Lower-Left Red Door
     Player X: 16
     Player Y: 388
   Olrox's Quarters, Skelerang Room (Lower-Right Red Door):
     Stage: Olrox's Quarters
     Room: Skelerang Room
+    Section: Main
     Node: Lower-Right Red Door
     Player X: 240
     Player Y: 648
   Olrox's Quarters, Tall Shaft (Lower-Right Red Door):
     Stage: Olrox's Quarters
     Room: Tall Shaft
+    Section: Main
     Node: Lower-Right Red Door
     Player X: 240
     Player Y: 1412
   Outer Wall, Elevator Shaft Room (Middle-Left Red Door):
     Stage: Outer Wall
     Room: Elevator Shaft Room
+    Section: Main
     Node: Middle-Left Red Door
     Player X: 16
     Player Y: 1672
   Outer Wall, Elevator Shaft Room (Upper-Left Red Door):
     Stage: Outer Wall
     Room: Elevator Shaft Room
+    Section: Main
     Node: Middle-Left Red Door
     Player X: 272
     Player Y: 644
   Outer Wall, Exit to Clock Tower (Left Red Door):
     Stage: Outer Wall
     Room: Exit to Clock Tower
+    Section: Main
     Node: Left Red Door
     Player X: 16
     Player Y: 132
   Outer Wall, Exit to Marble Gallery (Left Red Door):
     Stage: Outer Wall
     Room: Exit to Marble Gallery
+    Section: Main
     Node: Left Red Door
     Player X: 16
     Player Y: 132
   Royal Chapel, Nave (Lower-Right Red Door):
     Stage: Royal Chapel
     Room: Nave
+    Section: Main
     Node: Lower-Right Red Door
     Player X: 496
     Player Y: 388
   Royal Chapel, Pushing Statue Shortcut (Right Red Door):
     Stage: Royal Chapel
     Room: Pushing Statue Shortcut
+    Section: Right Side
     Node: Right Red Door
     Player X: 240
     Player Y: 132
   Royal Chapel, Right Tower (Middle-Right Red Door):
     Stage: Royal Chapel
     Room: Right Tower
+    Section: Main
     Node: Middle-Right Red Door
     Player X: 752
     Player Y: 648
   Royal Chapel, Statue Ledge (Right Red Door):
     Stage: Royal Chapel
     Room: Statue Ledge
+    Section: Main
     Node: Right Red Door
     Player X: 240
     Player Y: 132
   Special, Succubus Encounter (Spawn):
     Stage: Special
     Room: Succubus Encounter
+    Section: Main
     Node: Spawn
     Player X: 16
     Player Y: 180
   Underground Caverns, Exit to Abandoned Mine (Left Red Door):
     Stage: Underground Caverns
     Room: Exit to Abandoned Mine
+    Section: Main
     Node: Left Red Door
     Player X: 16
     Player Y: 132
   Underground Caverns, Exit to Castle Entrance (Left Red Door):
     Stage: Underground Caverns
     Room: Exit to Castle Entrance
+    Section: Main
     Node: Left Red Door
     Player X: 16
     Player Y: 132
   Underground Caverns, False Save Room (Spawn):
     Stage: Underground Caverns
     Room: False Save Room
+    Section: Main
     Node: Upper-Right Red Door
     Player X: 128
     Player Y: 164
   Underground Caverns, Long Drop (Upper-Right Red Door):
     Stage: Underground Caverns
     Room: Long Drop
+    Section: Upper Stairwell
     Node: Upper-Right Red Door
     Player X: 240
     Player Y: 132
   Warp Rooms, Warp Room to Abandoned Mine (Left Red Door):
     Stage: Warp Rooms
     Room: Warp Room to Abandoned Mine
+    Section: Main
     Node: Left Red Door
     Player X: 16
     Player Y: 132
   Warp Rooms, Warp Room to Castle Entrance (Right Red Door):
     Stage: Warp Rooms
     Room: Warp Room to Castle Entrance
+    Section: Main
     Node: Right Red Door
     Player X: 240
     Player Y: 132
   Warp Rooms, Warp Room to Castle Keep (Left Red Door):
     Stage: Warp Rooms
     Room: Warp Room to Castle Keep
+    Section: Main
     Node: Left Red Door
     Player X: 16
     Player Y: 132
   Warp Rooms, Warp Room to Olrox's Quarters (Left Red Door):
     Stage: Warp Rooms
     Room: Warp Room to Olrox's Quarters
+    Section: Main
     Node: Left Red Door
     Player X: 16
     Player Y: 132
   Warp Rooms, Warp Room to Outer Wall (Right Red Door):
     Stage: Warp Rooms
     Room: Warp Room to Outer Wall
+    Section: Main
     Node: Right Red Door
     Player X: 240
     Player Y: 132
