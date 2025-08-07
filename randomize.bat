@@ -1,7 +1,7 @@
 
 set SEED=%1
 set SKILLSET=%2
-set BUILD=BetaRelease5
+set BUILD=BetaRelease6
 
 python lib/SOTN-Patcher/src/sotn_extractor.py "build/patcher/Castlevania - Symphony of the Night (Track 1).bin" "build/patcher/extraction.json" || goto :error
 python lib/SOTN-Patcher/src/sotn_patcher.py "build/patcher/extraction.json" --data="lib/SOTN-Patcher/data/" || goto :error

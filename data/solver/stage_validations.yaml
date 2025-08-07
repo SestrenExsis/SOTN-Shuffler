@@ -149,6 +149,7 @@ Castle Entrance:
             Room: Castle Entrance, After Drawbridge
             Section: Ground
             Option - Normalize room connections: true
+            Option - Prevent softlocks related to Death cutscene in Castle Entrance: true
         Goals:
             Reach Alchemy Laboratory:
                 Room: Castle Entrance, Loading Room to Alchemy Laboratory
@@ -172,6 +173,7 @@ Castle Entrance:
             Room: Castle Entrance, After Drawbridge
             Section: Ground
             Option - Normalize room connections: true
+            Option - Prevent softlocks related to Death cutscene in Castle Entrance: true
         Goals:
             Reach Alchemy Laboratory:
                 Room: Castle Entrance, Loading Room to Alchemy Laboratory
@@ -191,6 +193,7 @@ Castle Entrance:
             Room: Elsewhere
             Section: Elsewhere
             Option - Normalize room connections: true
+            Option - Prevent softlocks related to Death cutscene in Castle Entrance: true
             Progression - Bat Transformation: true
             Progression - Wolf Transformation: true
             Technique - Open Secret Wall in Merman Room: true
@@ -206,6 +209,7 @@ Castle Entrance:
             Room: Elsewhere
             Section: Elsewhere
             Option - Normalize room connections: true
+            Option - Prevent softlocks related to Death cutscene in Castle Entrance: true
             Progression - Bat Transformation: true
             Progression - Wolf Transformation: true
             Status - Secret Wall in Merman Room Opened: true
