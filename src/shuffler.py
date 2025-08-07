@@ -1183,6 +1183,9 @@ if __name__ == '__main__':
             for goal_key in solver.logic_core['Goals']['END'].keys():
                 print(goal_key, '=', solver.current_game.current_state.get(goal_key, '-'))
             print()
+            for stage_name in sorted(shuffler['Stages']):
+                print(shuffler['Stages'][stage_name]['Hash of Rooms'], stage_name)
+            print()
             continue
         # print('*********')
         # Flip normal castle changes and apply them to inverted castle

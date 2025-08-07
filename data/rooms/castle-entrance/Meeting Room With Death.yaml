@@ -23,46 +23,42 @@ Nodes:
         Row: 0
         Column: 0
         Edge: Left
-        Entry Section: Ledge
+        Entry Section: Ledge (Special)
         Exit Section: Ledge
     Top Passage:
         Type: "##............##"
         Row: 0
         Column: 0
         Edge: Top
-        Entry Section: Air
+        Entry Section: Air (Special)
         Exit Section: Air
     Lower-Left Passage:
         Type: "######....######"
         Row: 1
         Column: 0
         Edge: Left
-        Entry Section: Special
+        Entry Section: Ground (Special)
         Exit Section: Ground
     Lower-Right Passage:
         Type: "######....######"
         Row: 1
         Column: 0
         Edge: Right
-        Entry Section: Special
+        Entry Section: Ground (Special)
         Exit Section: Ground
 Commands:
     Move - Air:
         Outcomes:
             Section: Air
         Requirements:
-            Ground - Chained Rising Uppercuts:
-                Section: Ground
-                Progression - Rising Uppercut: true
-                Status - Meet Death in Castle Entrance: true
-            Ledge - Rising Uppercut:
-                Section: Ground
-                Progression - Rising Uppercut: true
-                Status - Meet Death in Castle Entrance: true
             Ground - Bat Form:
                 Section: Ground
                 Status - Meet Death in Castle Entrance: true
                 Progression - Bat Transformation: true
+            Ground - Chained Rising Uppercuts:
+                Section: Ground
+                Progression - Rising Uppercut: true
+                Status - Meet Death in Castle Entrance: true
             Ledge - Bat Form:
                 Section: Ledge
                 Status - Meet Death in Castle Entrance: true
@@ -72,18 +68,17 @@ Commands:
                 Status - Meet Death in Castle Entrance: true
                 Progression - Gravity Jump: true
                 Technique - Pixel-Perfect Diagonal Gravity Jump Through Narrow Gap: true
-            Special - Bat Form:
+            Ledge - Rising Uppercut:
                 Section: Ground
+                Progression - Rising Uppercut: true
                 Status - Meet Death in Castle Entrance: true
-                Progression - Bat Transformation: true
+            Air (Special):
+                Section: Air (Special)
+                Status - Meet Death in Castle Entrance: true
     Move - Ledge:
         Outcomes:
             Section: Ledge
         Requirements:
-            Ground - Rising Uppercut:
-                Section: Ground
-                Progression - Rising Uppercut: true
-                Status - Meet Death in Castle Entrance: true
             Air:
                 Section: Air
                 Status - Meet Death in Castle Entrance: true
@@ -95,14 +90,13 @@ Commands:
                 Section: Ground
                 Status - Meet Death in Castle Entrance: true
                 Progression - Gravity Jump: true
-            Special - Bat Form:
-                Section: Special
+            Ground - Rising Uppercut:
+                Section: Ground
+                Progression - Rising Uppercut: true
                 Status - Meet Death in Castle Entrance: true
-                Progression - Bat Transformation: true
-            Special - Gravity Jump:
-                Section: Special
+            Ledge (Special):
+                Section: Ledge (Special)
                 Status - Meet Death in Castle Entrance: true
-                Progression - Gravity Jump: true
     Move - Ground:
         Outcomes:
             Section: Ground
@@ -113,10 +107,10 @@ Commands:
             Ledge:
                 Section: Ledge
                 Status - Meet Death in Castle Entrance: true
-            Special:
-                Section: Special
+            Ground (Special):
+                Section: Ground (Special)
                 Status - Meet Death in Castle Entrance: true
-    Trigger - Cutscene with Death:
+    Trigger - Cutscene with Death (Ground):
         Outcomes:
             Section: Ground
             Status - Meet Death in Castle Entrance: true
@@ -128,5 +122,35 @@ Commands:
             Item - Necklace of J: -1
         Requirements:
             Default:
-                Section: Special
+                Section: Ground (Special)
                 Status - Meet Death in Castle Entrance: false
+    Trigger - Cutscene with Death (Ledge, Patched):
+        Outcomes:
+            Section: Ledge
+            Status - Meet Death in Castle Entrance: true
+            Item - Alucard Sword: -1
+            Item - Alucard Shield: -1
+            Item - Dragon Helm: -1
+            Item - Alucard Mail: -1
+            Item - Twilight Cloak: -1
+            Item - Necklace of J: -1
+        Requirements:
+            Default:
+                Section: Ledge (Special)
+                Status - Meet Death in Castle Entrance: false
+                Option - Prevent softlocks related to Death cutscene in Castle Entrance: true
+    Trigger - Cutscene with Death (Air, Patched):
+        Outcomes:
+            Section: Ground
+            Status - Meet Death in Castle Entrance: true
+            Item - Alucard Sword: -1
+            Item - Alucard Shield: -1
+            Item - Dragon Helm: -1
+            Item - Alucard Mail: -1
+            Item - Twilight Cloak: -1
+            Item - Necklace of J: -1
+        Requirements:
+            Default:
+                Section: Air (Special)
+                Status - Meet Death in Castle Entrance: false
+                Option - Prevent softlocks related to Death cutscene in Castle Entrance: true

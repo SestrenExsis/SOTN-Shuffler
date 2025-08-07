@@ -12,6 +12,7 @@ Options:
     Normalize room connections: true
     Normalize Ferryman Gate: true
     Preserve unsaved map data: Revelation
+    Prevent softlocks related to Death cutscene in Castle Entrance: true
     Shift wall in Plaque Room With Breakable Wall away from screen edge: true
     Shuffle Pitch Black Spike Maze: true
     Skip Maria cutscene in Alchemy Laboratory: true
