@@ -22,7 +22,7 @@ Nodes:
         Entry Section: Left Side
         Exit Section: Left Side
     Right Passage:
-        Type: "######....######"
+        Type: "######>>>>######"
         Row: 0
         Column: 3
         Edge: Right

@@ -149,6 +149,7 @@ Castle Entrance:
             Room: Castle Entrance, After Drawbridge
             Section: Ground
             Option - Normalize room connections: true
+            Option - Prevent softlocks related to Death cutscene in Castle Entrance: true
         Goals:
             Reach Alchemy Laboratory:
                 Room: Castle Entrance, Loading Room to Alchemy Laboratory
@@ -172,6 +173,7 @@ Castle Entrance:
             Room: Castle Entrance, After Drawbridge
             Section: Ground
             Option - Normalize room connections: true
+            Option - Prevent softlocks related to Death cutscene in Castle Entrance: true
         Goals:
             Reach Alchemy Laboratory:
                 Room: Castle Entrance, Loading Room to Alchemy Laboratory
@@ -191,6 +193,7 @@ Castle Entrance:
             Room: Elsewhere
             Section: Elsewhere
             Option - Normalize room connections: true
+            Option - Prevent softlocks related to Death cutscene in Castle Entrance: true
             Progression - Bat Transformation: true
             Progression - Wolf Transformation: true
             Technique - Open Secret Wall in Merman Room: true
@@ -206,6 +209,7 @@ Castle Entrance:
             Room: Elsewhere
             Section: Elsewhere
             Option - Normalize room connections: true
+            Option - Prevent softlocks related to Death cutscene in Castle Entrance: true
             Progression - Bat Transformation: true
             Progression - Wolf Transformation: true
             Status - Secret Wall in Merman Room Opened: true
@@ -231,44 +235,6 @@ Castle Keep:
                 Check - Leap Stone Location: true
                 Check - Power of Mist Location: true
 Catacombs:
-    (Rule) Spikebreaker Locked Behind Spike Maze:
-        Solver:
-            Approach: Steps
-            Attempts: 1
-            Limit: 99
-            Initial Seed: 1
-            Debug: False
-            Wins:
-                Maximum: 0
-        State:
-            Room: Catacombs, Loading Room to Abandoned Mine
-            Section: Main
-            Progression - Bat Transformation: true
-        Goals:
-            Find Spikebreaker without Spike Maze:
-                Item - Spike Breaker: 1
-                Rooms Visited:
-                    All:
-                        Catacombs, Pitch Black Spike Maze: false
-    (Rule) Force Left-to-Right Spike Maze:
-        Solver:
-            Approach: Steps
-            Attempts: 1
-            Limit: 99
-            Initial Seed: 1
-            Debug: False
-            Wins:
-                Maximum: 0
-        State:
-            Room: Catacombs, Loading Room to Abandoned Mine
-            Section: Main
-            Progression - Bat Transformation: true
-        Goals:
-            Try to find Right Side of Spike Maze without also finding Left Side:
-                Sections Visited:
-                    All:
-                        Catacombs, Pitch Black Spike Maze (Right Side): true
-                        Catacombs, Pitch Black Spike Maze (Left Side): false
     (Entry) Abandoned Mine -> Hub:
         Solver: *solve-within-99-steps
         State:
@@ -651,7 +617,7 @@ Outer Wall:
                 Room: Outer Wall, Loading Room to Warp Rooms
                 Section: Main
 Royal Chapel:
-    (Rule) Silver Ring Locked Behind Spike Hallway:
+    SKIP - (Rule) Silver Ring Locked Behind Spike Hallway:
         Solver:
             Approach: Steps
             Attempts: 1

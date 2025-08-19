@@ -57,17 +57,17 @@ Commands:
             Main - Default:
                 Section: Main
                 Status - Breakable Floor in Tall Zig Zag Room Broken: false
-            Secret Wall (Normalized) - Default:
-                Section: Secret Wall
-                Status - Breakable Floor in Tall Zig Zag Room Broken: false
-                Option - Disable clipping on screen edge of Tall Zig Zag Room Wall: true
     Action - Break Wall:
         Outcomes:
             Status - Breakable Wall in Tall Zig Zag Room Broken: true
         Requirements:
-            Default:
+            Main - Default:
                 Section: Main
                 Status - Breakable Wall in Tall Zig Zag Room Broken: false
+            Secret Wall (Normalized) - Default:
+                Section: Secret Wall
+                Status - Breakable Wall in Tall Zig Zag Room Broken: false
+                Option - Disable clipping on screen edge of Tall Zig Zag Room Wall: true
     Move - Broken Floor:
         Outcomes:
             Section: Broken Floor

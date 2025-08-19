@@ -140,7 +140,7 @@ class RoomSet:
             result = result.union(room.get_cells(offset_top, offset_left))
         return result
 
-    def get_open_nodes(self, matching_node: RoomNode=None) -> list:
+    def get_open_nodes(self, matching_node: RoomNode=None, match_node_type: bool=False) -> list:
         edges = {}
         for (room_name, room) in self.rooms.items():
             for (node_name, node) in room.nodes.items():
@@ -156,7 +156,7 @@ class RoomSet:
             if len(sides) == 1:
                 side = list(sides)[0]
                 node = sides[side][0]
-                if node.matches_direction_and_edge(matching_node):
+                if node.matches_direction_and_edge(matching_node) and (not match_node_type or node.matches_type(matching_node)):
                     result.append(node)
         result.sort()
         return result
@@ -302,9 +302,8 @@ stages = {
         # { 'Castle Entrance, Forest Cutscene': (44, 0) },
         # { 'Castle Entrance, Unknown Room 19': (44, 18) },
         {
-            # TODO(sestren): Add validation check to ensure Castle Entrance can be shifted to respect these rooms
-            'Castle Entrance, Unknown Room 20': (40, 30 + 1),
-            'Castle Entrance, After Drawbridge': (38, 30 + 2),
+            'Castle Entrance, Unknown Room 20': (32 + 2, 32 + 0),
+            'Castle Entrance, After Drawbridge': (32 + 0, 32 + 1),
         },
         {
             'Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory': (0, 0),
@@ -616,39 +615,44 @@ stages = {
     ],
     'Royal Chapel': [
         {
-            # NOTE(sestren): For now, these hallways and towers must be combined until the special behavior that controls transitions between them is better understood
             # NOTE(sestren): These rooms must be connected for now until arbitrary boss/cutscene teleports are allowed
-            'Royal Chapel, Spike Hallway': (32 + 5, 32 + 0),
-            'Royal Chapel, Left Tower': (32 + 2, 32 + 3),
-            'Royal Chapel, Walkway Between Towers': (32 + 4, 32 + 5),
-            'Royal Chapel, Pushing Statue Shortcut': (32 + 9, 32 + 6),
-            'Royal Chapel, Loading Room to Olrox\'s Quarters': (32 + 9, 32 + 7),
-            'Royal Chapel, Middle Tower': (32 + 1, 32 + 8),
-            'Royal Chapel, Fake Room with Teleporter to Olrox\'s Quarters': (32 + 9, 32 + 8),
-            'Royal Chapel, Walkway Left of Hippogryph': (32 + 3, 32 + 10),
-            'Royal Chapel, Hippogryph Room': (32 + 3, 32 + 13),
-            'Royal Chapel, Walkway Right of Hippogryph': (32 + 3, 32 + 15),
-            'Royal Chapel, Right Tower': (32 + 0, 32 + 16),
-            'Royal Chapel, Loading Room to Castle Keep': (32 + 2, 32 + 19),
-            'Royal Chapel, Fake Room with Teleporter to Castle Keep': (32 + 2, 32 + 20),
-            'Royal Chapel, Save Room B': (32 + 3, 32 + 19),
+            'Royal Chapel, Walkway Left of Hippogryph': (32 + 0, 32 + 0),
+            'Royal Chapel, Hippogryph Room': (32 + 0, 32 + 3),
+            'Royal Chapel, Walkway Right of Hippogryph': (32 + 0, 32 + 5),
         },
         {
-            'Royal Chapel, Nave': (0 + 0, 0 + 0),
-            'Royal Chapel, Loading Room to Colosseum': (0 + 1, 0 + 2),
-            'Royal Chapel, Fake Room with Teleporter to Colosseum': (0 + 1, 0 + 3),
+            'Royal Chapel, Right Tower': (0, 0),
+            'Royal Chapel, Loading Room to Castle Keep': (2, 3),
+            'Royal Chapel, Fake Room with Teleporter to Castle Keep': (2, 4),
+            # NOTE(sestren): The Save Room is being connected to this group for now, since it can be occluded if it is placed next to one of the "open-air" rooms
+            'Royal Chapel, Save Room B': (3, 3),
         },
         {
-            'Royal Chapel, Save Room A': (0 + 0, 0 + 0),
-            'Royal Chapel, Statue Ledge': (0 + 0, 0 + 1),
-            'Royal Chapel, Loading Room to Alchemy Laboratory': (0 + 0, 0 + 2),
-            'Royal Chapel, Fake Room with Teleporter to Alchemy Laboratory': (0 + 0, 0 + 3),
+            'Royal Chapel, Pushing Statue Shortcut': (0, 0),
+            "Royal Chapel, Loading Room to Olrox's Quarters": (0, 1),
+            "Royal Chapel, Fake Room with Teleporter to Olrox's Quarters": (0, 2),
+        },
+        {
+            'Royal Chapel, Nave': (0, 0),
+            'Royal Chapel, Loading Room to Colosseum': (1, 2),
+            'Royal Chapel, Fake Room with Teleporter to Colosseum': (1, 3),
+        },
+        {
+            # NOTE(sestren): The Save Room is being connected to this group for now, since it can be occluded if it is placed next to one of the "open-air" rooms
+            'Royal Chapel, Save Room A': (0, 0),
+            'Royal Chapel, Statue Ledge': (0, 1),
+            'Royal Chapel, Loading Room to Alchemy Laboratory': (0, 2),
+            'Royal Chapel, Fake Room with Teleporter to Alchemy Laboratory': (0, 3),
         },
         { 'Royal Chapel, Chapel Staircase': (0, 0) },
         { 'Royal Chapel, Confessional Booth': (0, 0) },
         { 'Royal Chapel, Empty Room': (0, 0) },
         { 'Royal Chapel, Goggles Room': (0, 0) },
+        { 'Royal Chapel, Left Tower': (0, 0) },
+        { 'Royal Chapel, Middle Tower': (0, 0) },
         { 'Royal Chapel, Silver Ring Room': (0, 0) },
+        { 'Royal Chapel, Spike Hallway': (0, 0) },
+        { 'Royal Chapel, Walkway Between Towers': (0, 0) },
     ],
     'Underground Caverns': [
         {
@@ -919,7 +923,7 @@ class LogicCore:
                 self.commands.pop(room_name, None)
         # Apply quests to logic
         for quest in mapper_data['Quests']['Sources'].values():
-            for requirement in quest['Requirements'].values():
+            for requirement in quest.get('Requirements', {}).values():
                 stage_name = requirement.get('Stage', 'Global')
                 if stage_name not in changes['Stages']:
                     continue
@@ -963,6 +967,8 @@ class LogicCore:
             'Disable clipping on screen edge of Snake Column Wall',
             'Disable clipping on screen edge of Tall Zig Zag Room Wall',
             'Normalize room connections',
+            'Normalize Ferryman Gate',
+            'Prevent softlocks related to Death cutscene in Castle Entrance',
             'Shift wall in Plaque Room With Breakable Wall away from screen edge',
         ):
             if changes.get('Options', {}).get(option_name, False):
@@ -1035,6 +1041,9 @@ class LogicCore:
             'Check Holy Symbol Location': {
                 'Check - Holy Symbol Location': True,
             },
+            'Check Jewel of Open Location': {
+                'Check - Jewel of Open Location': True,
+            },
             'Check Leap Stone Location': {
                 'Check - Leap Stone Location': True,
             },
@@ -1076,6 +1085,9 @@ class LogicCore:
             },
             'Check Gold Ring Location': {
                 'Check Location - Underground Caverns, False Save Room (Gold Ring)': True,
+            },
+            'Destroy Pushing Statue': {
+                'Status - Pushing Statue Destroyed': True,
             },
             'Dislodge Stairwell Near Demon Switch': {
                 'Status - Stairwell Near Demon Switch Dislodged': True,
@@ -1149,6 +1161,9 @@ class LogicCore:
             'Get Stopwatch Subweapon': {
                 'Subweapon': 'Stopwatch',
             },
+            'Lift Barrier in Right Ferryman Route': {
+                'Status - Barrier in Right Ferryman Route Lifted': True,
+            },
             'Open Secret Wall in Merman Room': {
                 'Status - Secret Wall in Merman Room Opened': True,
             },
@@ -1157,9 +1172,6 @@ class LogicCore:
             },
             'Press Switch in Abandoned Mine': {
                 'Status - Switch in Abandoned Mine Pressed': True,
-            },
-            'Purchase Jewel of Open': {
-                'Relic - Jewel of Open': True,
             },
             'Set Lower-Left Gear in Clock Tower': {
                 'Status - Lower-Left Gear in Clock Tower Set': True,
@@ -1176,69 +1188,48 @@ class LogicCore:
             'Unlock Shortcut Between Royal Chapel and Colosseum': {
                 'Status - Shortcut Between Royal Chapel and Colosseum Unlocked': True,
             },
+            'Wear Both Rings in Clock Room': {
+                'Status - Floor in Clock Room Opened Up': True,
+            },
             # Final goal
             'END': {
-                'Status - Breakable Wall in Grand Staircase Broken': True,
-                'Status - Meet Death in Castle Entrance': True,
-                'Status - Switch in Abandoned Mine Pressed': True,
-                'Rooms Visited': {
-                    'All': {
-                        "Abandoned Mine, Cerberus Room": True,
-                        "Abandoned Mine, Demon Card Room": True,
-                        "Abandoned Mine, Snake Column": True,
-                        "Alchemy Laboratory, Skill of Wolf Room": True,
-                        "Catacombs, Mormegil Room": True,
-                        "Catacombs, Spike Breaker Room": True,
-                        "Clock Tower, Fire of Bat Room": True,
-                        "Clock Tower, Karasuman's Room": True,
-                        "Long Library, Faerie Card Room": True,
-                        "Long Library, Shop": True,
-                        "Long Library, Spellbook Area": True,
-                    },
+                'Item - Spike Breaker': {
+                    'Minimum': 1,
                 },
+                'Item - Silver Ring': {
+                    'Minimum': 1,
+                },
+                'Item - Gold Ring': {
+                    'Minimum': 1,
+                },
+                'Progression - Bat Transformation': True,
+                'Progression - Echolocation': True,
+                'Progression - Item Materialization': True,
+                'Progression - Mist Transformation': True,
+                'Progression - Summon Demon Familiar': True,
+                'Progression - Summon Ferryman': True,
+                'Progression - Unlock Blue Doors': True,
+                'Progression - Wolf Transformation': True,
+                'Status - Breakable Ceiling in Catwalk Crypt Broken': True,
+                'Status - Breakable Wall in Grand Staircase Broken': True,
+                'Status - DK Bridge Broken': True,
+                'Status - Pressure Plate in Marble Gallery Activated': True,
+                'Status - Shortcut Between Royal Chapel and Colosseum Unlocked': True,
+                'Status - Shortcut in Cube of Zoe Room Activated': True,
+                'Status - Shortcut to Underground Caverns Activated': True,
+                'Status - Shortcut to Warp Rooms Activated': True,
+                'Status - Stairwell Near Demon Switch Dislodged': True,
+                'Status - Switch in Abandoned Mine Pressed': True,
                 'Sections Visited': {
                     'All': {
-                        "Abandoned Mine, Crumbling Stairwells With Demon Switch (Upper-Left Ledge)": True,
-                        "Alchemy Laboratory, Cannon Room (Right Side)": True,
-                        "Alchemy Laboratory, Tall Zig Zag Room (Main)": True,
-                        "Alchemy Laboratory, Tetromino Room (Bat Card Room Duplicate)": True,
-                        "Castle Entrance, Cube of Zoe Room (Main)": True,
-                        "Castle Entrance Revisited, After Drawbridge (Parapet)": True,
-                        "Castle Entrance Revisited, Cube of Zoe Room (Pressure Plate Ledge)": True,
-                        "Castle Entrance Revisited, Shortcut to Underground Caverns (Right Side)": True,
-                        "Castle Entrance Revisited, Shortcut to Warp Rooms (Left Side)": True,
-                        "Castle Keep, Ghost Card Room (Ground)": True,
-                        "Castle Keep, Keep Area (Anteroom)": True,
-                        "Castle Keep, Keep Area (Ground)": True,
-                        "Castle Keep, Keep Area (Middle-Left Ledge)": True,
-                        "Clock Tower, Left Gear Room (Main)": True,
-                        "Clock Tower, Right Gear Room (Main)": True,
-                        "Colosseum, Passageway Between Arena and Royal Chapel (Right Side)": True,
-                        "Colosseum, Top of Elevator Shaft (Left Side)": True,
-                        "Long Library, Lesser Demon Area (Behind Mist Gate)": True,
-                        "Marble Gallery, Blue Door Room (Right Side)": True,
-                        "Marble Gallery, Clock Room (Main)": True,
-                        "Marble Gallery, Gravity Boots Room (Main)": True,
-                        "Marble Gallery, Spirit Orb Room (Main)": True,
-                        "Olrox's Quarters, Catwalk Crypt (Main)": True,
-                        "Olrox's Quarters, Echo of Bat Room (Main)": True,
-                        "Olrox's Quarters, Olrox's Room (Ground)": True,
-                        "Olrox's Quarters, Sword Card Room (Main)": True,
-                        "Outer Wall, Elevator Shaft Room (Elevator Shaft)": True,
-                        "Outer Wall, Doppelganger Room (Main)": True,
-                        "Royal Chapel, Hippogryph Room (Main)": True,
-                        "Royal Chapel, Silver Ring Room (Main)": True,
-                        "Underground Caverns, DK Bridge (Main)": True,
-                        "Underground Caverns, DK Button (Main)": True,
-                        "Underground Caverns, False Save Room (Main)": True,
-                        "Underground Caverns, Hidden Crystal Entrance (Main)": True,
-                        "Underground Caverns, Holy Symbol Room (Main)": True,
-                        "Underground Caverns, Merman Statue Room (Main)": True,
-                        "Warp Rooms, Warp Room to Abandoned Mine (Main)": True,
-                        "Warp Rooms, Warp Room to Castle Entrance (Main)": True,
-                        "Warp Rooms, Warp Room to Castle Keep (Main)": True,
-                        "Warp Rooms, Warp Room to Olrox's Quarters (Main)": True,
-                        "Warp Rooms, Warp Room to Outer Wall (Main)": True,
+                        'Abandoned Mine, Snake Column (Main)': True,
+                        'Alchemy Laboratory, Cannon Room (Right Side)': True,
+                        'Alchemy Laboratory, Tall Zig Zag Room (Main)': True,
+                        'Clock Tower, Left Gear Room (Main)': True,
+                        'Clock Tower, Right Gear Room (Main)': True,
+                        'Royal Chapel, Pushing Statue Shortcut (Right Side)': True,
+                        'Underground Caverns, Hidden Crystal Entrance (Main)': True,
+                        'Underground Caverns, Right Ferryman Route (Left Side)': True,
                     },
                 },
             },
@@ -1268,7 +1259,7 @@ class Mapper:
         self.rng = random.Random(self.current_seed)
         self.steps = []
     
-    def generate(self, stage_rooms):
+    def generate(self, stage_rooms, match_node_type: bool=False):
         self.current_seed = self.next_seed
         self.next_seed = self.rng.randint(0, 2 ** 64)
         self.rng = random.Random(self.current_seed)
@@ -1297,7 +1288,7 @@ class Mapper:
             step.append('Target Node: ' + str(target_node))
             open_nodes = []
             for (roomset_id, roomset) in pool.items():
-                for open_node in roomset.get_open_nodes(matching_node=target_node):
+                for open_node in roomset.get_open_nodes(target_node, match_node_type):
                     open_nodes.append(open_node)
             if len(open_nodes) < 1:
                 step.append('ERROR: No matching source nodes for the chosen target node')
@@ -1465,6 +1456,7 @@ if __name__ == '__main__':
     parser.add_argument('stage_name', help='Input a valid stage name', type=str)
     parser.add_argument('target_stage_count', help='Input the desired number of stage instances to generate', type=int)
     parser.add_argument('max_attempts', help='Input the maximum number of attempts at generating stage instances', type=int)
+    parser.add_argument('--match-nodes', help='Require matching node types', dest='require_matching_node_types', action='store_true')
     parser.add_argument('--seed', help='Input an optional starting seed', type=str)
     args = parser.parse_args()
     initial_seed = args.seed
@@ -1485,19 +1477,27 @@ if __name__ == '__main__':
         if stage_count_remaining < 1:
             break
         stage_map = Mapper(mapper_core, args.stage_name, seed)
+        debug = 0
         while True:
-            stage_map.generate(stages[args.stage_name])
-            if stage_map.validate_connections(False):
+            if debug % 1_000 == 0:
+                print(debug)
+            stage_map.generate(stages[args.stage_name], args.require_matching_node_types)
+            if stage_map.validate_connections(args.require_matching_node_types):
                 stage_map.stage.normalize_bounds()
                 break
+            debug += 1
         changes = stage_map.stage.get_changes()
         hash_of_rooms = hashlib.sha256(json.dumps(changes['Rooms'], sort_keys=True).encode()).hexdigest()
+        settings = {
+            'Require matching node types': args.require_matching_node_types,
+        }
         mapper_data = {
             'Attempts': stage_map.attempts,
             'Generation Start Date': stage_map.start_time.isoformat(),
             'Generation End Date': stage_map.end_time.isoformat(),
             'Generation Version': GENERATION_VERSION,
             'Hash of Rooms': hash_of_rooms,
+            'Settings': settings,
             'Seed': stage_map.current_seed,
             'Stage': args.stage_name,
         }

@@ -17,14 +17,14 @@ Map:
     - "    0000000000000    "
 Nodes:
     Left Passage:
-        Type: "######....######"
+        Type: "######<<<<######"
         Row: 0
         Column: 1
         Edge: Left
         Entry Section: Main
         Exit Section: Main
     Right Passage:
-        Type: "######....######"
+        Type: "######>>>>######"
         Row: 0
         Column: 3
         Edge: Right

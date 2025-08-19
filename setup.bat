@@ -20,7 +20,7 @@ python src/mapper.py "Long Library"          900 1800 --seed="1" || goto :error
 python src/mapper.py "Marble Gallery"       1200 2400 --seed="1" || goto :error
 python src/mapper.py "Olrox's Quarters"     3500 7000 --seed="1" || goto :error
 python src/mapper.py "Outer Wall"              8  100 --seed="1" || goto :error
-python src/mapper.py "Royal Chapel"           16  100 --seed="1" || goto :error
+python src/mapper.py "Royal Chapel"          200  600 --seed="1" --match-nodes || goto :error
 python src/mapper.py "Underground Caverns"  1200 2400 --seed="1" || goto :error
 python src/mapper.py "Warp Rooms"              1    1 --seed="1" || goto :error
 

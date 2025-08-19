@@ -1,5 +1,6 @@
 # External libraries
 import argparse
+import copy
 import datetime
 import hashlib
 import json
@@ -137,6 +138,11 @@ def shuffle_teleporters(teleporters, rng) -> dict:
         ('Catacombs, Fake Room with Teleporter to Abandoned Mine', 'Clock Tower, Fake Room with Teleporter to Outer Wall'),
         ('Catacombs, Fake Room with Teleporter to Abandoned Mine', "Colosseum, Fake Room with Teleporter to Olrox's Quarters"),
         ('Catacombs, Fake Room with Teleporter to Abandoned Mine', 'Colosseum, Fake Room with Teleporter to Royal Chapel'),
+        # NOTE(sestren): Disallow requiring pre-Shop Library Card to open Shortcut to Warp Rooms
+        ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', 'Long Library, Fake Room with Teleporter to Outer Wall'),
+        # NOTE(sestren): Disallow requiring one-way paths to open Shortcut to Warp Rooms
+        ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', "Royal Chapel, Fake Room with Teleporter to Olrox's Quarters"),
+        ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', "Colosseum, Fake Room with Teleporter to Olrox's Quarters"),
     }
     for (source_a, source_b) in forbidden_links:
         # print((source_a, source_b))
@@ -245,27 +251,44 @@ def shuffle_teleporters(teleporters, rng) -> dict:
             alt_source_key = 'Castle Entrance Revisited' + source_b_key[len('Castle Entrance'):]
             teleporters['Sources'][alt_source_key]['Target'] = teleporters['Sources'][source_a_key]['Return']
 
-def shuffle_relics(quests, rng, relic_pool: str='Vanilla'):
-    duplicate_relics = []
-    for quest_target_name in list(sorted(quests.get('Targets', {}))):
-        if not quest_target_name.startswith('Relic'):
-            continue
-        if 'Low Priority - Racing' in quests.get('Targets', {}).get(quest_target_name, {}).get('Tags', {}):
-            continue
-        duplicate_relics.append(quest_target_name)
-    rng.shuffle(duplicate_relics)
+def shuffle_relics_and_required_items(quests, rng, relic_pool: str='Vanilla'):
     quest_targets = []
+    while True:
+        duplicate_relics = []
+        for quest_source_name in list(sorted(quests['Sources'].keys())):
+            if quests['Sources'][quest_source_name].get('Logic Level', 'Optional') != 'Required':
+                continue
+            quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
+            if not quest_target_name.startswith('Relic'):
+                continue
+            if 'Low Priority - Racing' in quests['Targets'][quest_target_name].get('Tags', {}):
+                continue
+            duplicate_relics.append(quest_target_name)
+        rng.shuffle(duplicate_relics)
+        quest_targets = []
+        for quest_source_name in list(sorted(quests.get('Sources', {}))):
+            if quests['Sources'][quest_source_name].get('Logic Level', 'Optional') != 'Required':
+                continue
+            quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
+            # If Racing Relic pool is enabled, replace low priority relics with a random duplicate of a better one
+            if relic_pool == 'Racing' and 'Low Priority - Racing' in quests['Targets'][quest_target_name].get('Tags', {}):
+                quest_target_name = duplicate_relics.pop()
+            quest_targets.append(quest_target_name)
+        rng.shuffle(quest_targets)
+        valid_ind = True
+        index = 0
+        for quest_source_name in list(sorted(quests['Sources'].keys())):
+            if quests['Sources'][quest_source_name].get('Logic Level', 'Optional') != 'Required':
+                continue
+            quest_target_type = quest_targets[-index - 1].split(' - ')[0]
+            if quest_target_type not in quests['Sources'][quest_source_name].get('Tags', []):
+                valid_ind = False
+                break
+            index += 1
+        if valid_ind:
+            break
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
-        if not quests['Sources'][quest_source_name]['Reward Class'].startswith('Relic'):
-            continue
-        quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
-        # If Racing Relic pool is enabled, replace low priority relics with a random duplicate of a better one
-        if relic_pool == 'Racing' and 'Low Priority - Racing' in quests['Targets'][quest_target_name].get('Tags', {}):
-            quest_target_name = duplicate_relics.pop()
-        quest_targets.append(quest_target_name)
-    rng.shuffle(quest_targets)
-    for quest_source_name in list(sorted(quests.get('Sources', {}))):
-        if not quests['Sources'][quest_source_name]['Reward Class'].startswith('Relic'):
+        if quests['Sources'][quest_source_name].get('Logic Level', 'Optional') != 'Required':
             continue
         quest_target_name = quest_targets.pop()
         quests['Sources'][quest_source_name]['Target Reward'] = quest_target_name
@@ -273,7 +296,9 @@ def shuffle_relics(quests, rng, relic_pool: str='Vanilla'):
 def shuffle_items(quests, rng, item_pool: str='Vanilla'):
     quest_targets = []
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
-        if quests['Sources'][quest_source_name]['Reward Class'] != 'Item':
+        if 'Item' not in quests['Sources'][quest_source_name].get('Tags', {}):
+            continue
+        if quests['Sources'][quest_source_name].get('Logic Level', 'Optional') == 'Required':
             continue
         quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
         quest_targets.append(quest_target_name)
@@ -299,9 +324,9 @@ def shuffle_items(quests, rng, item_pool: str='Vanilla'):
                 continue
             for i in range(len(quest_targets)):
                 quest_target_name = quest_targets[i]
-                if 'Low Priority - Racing' in quests['Targets'][quest_target_name]['Tags']:
+                if 'Low Priority - Racing' in quests['Targets'][quest_target_name].get('Tags', {}):
                     continue
-                if item_bin_name not in quests['Targets'][quest_target_name]['Tags']:
+                if item_bin_name not in quests['Targets'][quest_target_name].get('Tags', {}):
                     continue
                 if quest_targets[i] in chosen_items:
                     continue
@@ -311,7 +336,7 @@ def shuffle_items(quests, rng, item_pool: str='Vanilla'):
         for i in range(len(quest_targets)):
             quest_target_name = quest_targets[i]
             # Chance of replacing a Low Priority - Racing item with something else
-            if 'Low Priority - Racing' in quests['Targets'][quest_target_name]['Tags']:
+            if 'Low Priority - Racing' in quests['Targets'][quest_target_name].get('Tags', {}):
                 chance = rng.random()
                 if chance < 0.025:
                     quest_targets[i] = 'Item - Library Card'
@@ -323,16 +348,58 @@ def shuffle_items(quests, rng, item_pool: str='Vanilla'):
             else:
                 # Override items found in a placeholder bin to the binned item
                 for (item_bin_name, assigned_quest_target) in placeholders.values():
-                    if item_bin_name in quests['Targets'][quest_target_name]['Tags']:
+                    if item_bin_name in quests['Targets'][quest_target_name].get('Tags', {}):
                         quest_targets[i] = assigned_quest_target
                         break
     else:
         rng.shuffle(quest_targets)
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
-        if quests['Sources'][quest_source_name]['Reward Class'] != 'Item':
+        if 'Item' not in quests['Sources'][quest_source_name].get('Tags', {}):
+            continue
+        if quests['Sources'][quest_source_name].get('Logic Level', 'Optional') == 'Required':
             continue
         quest_target = quest_targets.pop()
         quests['Sources'][quest_source_name]['Target Reward'] = quest_target
+
+def shuffle_enemy_drops(quests, rng):
+    quest_targets = []
+    for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        if 'Enemy Drop' not in quests['Sources'][quest_source_name].get('Tags', {}):
+            continue
+        quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
+        quest_targets.append(quest_target_name)
+    rng.shuffle(quest_targets)
+    for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        if 'Enemy Drop' not in quests['Sources'][quest_source_name].get('Tags', {}):
+            continue
+        quest_target = quest_targets.pop()
+        quests['Sources'][quest_source_name]['Target Reward'] = quest_target
+
+def replace_special_items(quests, rng):
+    pools = {}
+    for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        source_tags = set(quests['Sources'][quest_source_name].get('Tags', {}))
+        if 'Special' not in source_tags:
+            continue
+        pool_name = quests['Sources'][quest_source_name].get('Pool', 'Global')
+        if pool_name not in pools:
+            pools[pool_name] = set()
+        for quest_target_name in list(sorted(quests.get('Targets', {}))):
+            target_tags = set(quests['Targets'][quest_target_name].get('Tags', {}))
+            if 'Required' in target_tags:
+                continue
+            if len(source_tags.intersection(target_tags)) > 0:
+                if quest_target_name in pools[pool_name]:
+                    continue
+                pools[pool_name].add(quest_target_name)
+    for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        source_tags = set(quests['Sources'][quest_source_name].get('Tags', {}))
+        if 'Special' not in source_tags:
+            continue
+        pool_name = quests['Sources'][quest_source_name].get('Pool', 'Global')
+        quest_target_name = rng.choice(list(sorted(pools[pool_name])))
+        quests['Sources'][quest_source_name]['Target Reward'] = quest_target_name
+        pools[pool_name].remove(quest_target_name)
 
 def draw_labels_on_castle_map(castle_map, instructions):
     # CDHIJKLNOSTUVXYZ147+-|#
@@ -552,6 +619,8 @@ if __name__ == '__main__':
             'Disable clipping on screen edge of Tall Zig Zag Room Wall',
             'Enable debug mode',
             'Normalize room connections',
+            'Preserve map exploration across saves',
+            'Prevent softlocks related to Death cutscene in Castle Entrance',
             'Shift wall in Plaque Room With Breakable Wall away from screen edge',
             'Shuffle Pitch Black Spike Maze',
             'Skip Maria cutscene in Alchemy Laboratory',
@@ -572,10 +641,12 @@ if __name__ == '__main__':
             seeds.append(seed)
         rng['Teleporters'] = random.Random(seeds[0])
         rng['Relics'] = random.Random(seeds[1])
-        rng['Items'] = random.Random(seeds[2])
+        rng['Found Items'] = random.Random(seeds[2])
         rng['Stages'] = random.Random(seeds[3])
         rng['Castle Map'] = random.Random(seeds[4])
         rng['Spike Room'] = random.Random(seeds[5])
+        rng['Enemy Drops'] = random.Random(seeds[6])
+        rng['Special Items'] = random.Random(seeds[7])
         # NOTE(sestren): Access another pre-generated seed instead of generating more
         print('.', end='', flush=True)
         shuffler['Stages'] = {}
@@ -621,24 +692,24 @@ if __name__ == '__main__':
                 }
         # Shuffle quest rewards (such as Relics)
         quest_rewards = None
+        quest_reward_ind = False
         if settings.get('Quest shuffler', {}).get('Shuffle relics', False):
             relic_pool = settings.get('Quest shuffler', {}).get('Relic pool', 'Vanilla')
-            shuffle_relics(mapper_core['Quests'], rng['Relics'], relic_pool)
-            if quest_rewards is None:
-                quest_rewards = {}
+            shuffle_relics_and_required_items(mapper_core['Quests'], rng['Relics'], relic_pool)
+            quest_reward_ind = True
         if settings.get('Quest shuffler', {}).get('Shuffle items', False):
             item_pool = settings.get('Quest shuffler', {}).get('Item pool', 'Vanilla')
-            shuffle_items(mapper_core['Quests'], rng['Items'], item_pool)
-            if quest_rewards is None:
-                quest_rewards = {}
-        if settings.get('Quest shuffler', {}).get('Item pool', 'Vanilla') == 'Racing':
-            if quest_rewards is None:
-                quest_rewards = {}
-            quest_rewards['Enemy - Bone Scimitar, Green (Short Sword)'] = 'Item - Manna Prism'
-            quest_rewards['Enemy - Bone Scimitar, Copper (Red Rust)'] = 'Item - Leather Shield'
-        if quest_rewards is not None:
+            shuffle_items(mapper_core['Quests'], rng['Found Items'], item_pool)
+            quest_reward_ind = True
+        if settings.get('Quest shuffler', {}).get('Shuffle enemy drops', False):
+            shuffle_enemy_drops(mapper_core['Quests'], rng['Enemy Drops'])
+            quest_reward_ind = True
+        if settings.get('Quest shuffler', {}).get('Shuffle special items', False):
+            replace_special_items(mapper_core['Quests'], rng['Special Items'])
+            quest_reward_ind = True
+        if quest_reward_ind:
+            quest_rewards = {}
             for (quest_name, quest) in mapper_core['Quests']['Sources'].items():
-                target_name = quest['Target Reward']
                 quest_rewards[quest_name] = quest['Target Reward']
         # print('Set starting seeds for each stage')
         for stage_name in sorted(stages.keys()):
@@ -668,7 +739,7 @@ if __name__ == '__main__':
                         mapper_data = json.load(mapper_data_json)
                         mapper_data_json.close()
                     stages[stage_name]['Mapper'] = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
-                    stages[stage_name]['Mapper'].generate(mapper.stages[stage_name])
+                    stages[stage_name]['Mapper'].generate(mapper.stages[stage_name], mapper_data.get('Settings', {}).get('Require matching node types', False))
                     stages[stage_name]['Mapper'].stage.normalize_bounds()
                     # Normalize room connections (optional)
                     if settings.get('Options', {}).get('Normalize room connections', False):
@@ -680,7 +751,6 @@ if __name__ == '__main__':
                     stage_changes = stages[stage_name]['Mapper'].stage.get_changes()
                     hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
                     if not stages[stage_name]['Mapper'].validate_connections(True):
-                        # print(hash_of_rooms)
                         continue
                     assert hash_of_rooms == mapper_data['Hash of Rooms']
                     # print(' ', 'hash:', hash_of_rooms, stage_name, len(file_listing), len(list(b for (a, b) in invalid_stage_files if a == stage_name)), max_unique_pass_count)
@@ -794,12 +864,7 @@ if __name__ == '__main__':
             best_stage_offsets = []
             (min_map_row, max_map_row) = (MIN_MAP_ROW, MAX_MAP_ROW - bottom)
             (min_map_col, max_map_col) = (MIN_MAP_COL, MAX_MAP_COL - right)
-            if stage_name == 'Castle Entrance':
-                # Castle Entrance is being restricted by where 'Unknown Room 20' and 'After Drawbridge' can be
-                min_map_row = 38 - current_stage.rooms['Castle Entrance, After Drawbridge'].top
-                max_map_row = min_map_row + 1
-                min_map_col = max(min_map_col, 1 - current_stage.rooms['Castle Entrance, Unknown Room 20'].left)
-            elif stage_name == 'Castle Center':
+            if stage_name == 'Castle Center':
                 # Castle Center is being forced to join with Marble Gallery via the Elevator Room
                 min_map_row = stages['Marble Gallery']['Stage Top'] + stages['Marble Gallery']['Mapper'].stage.rooms['Marble Gallery, Elevator Room'].top
                 max_map_row = min_map_row + 1
@@ -946,8 +1011,7 @@ if __name__ == '__main__':
                             }
                             break
                 if len(warp_room_cells.intersection(prev_cells)) > 0:
-                    print()
-                    print('Warp Room could not be placed without overlapping with another stage')
+                    print('W', end='', flush=True)
                     valid_ind = False
                     break
             for room_name in stage_changes['Rooms']:
@@ -1074,12 +1138,55 @@ if __name__ == '__main__':
                 'Left': source_left,
             }
         # print('*********')
-        # Validate First Castle to ensure it is solvable
-        if validator.validate_logic(mapper_core, changes, skills):
-            pass
-        else:
+        validations = {
+            '0 - Long Library to Castle Entrance': {
+                'Start': {
+                    'Room': 'Long Library, Outside Shop',
+                    'Section': 'Main',
+                    'Progression - Double Jump': True,
+                },
+                'End': {
+                    'Stages Visited': {
+                        'All': {
+                            "Castle Entrance Revisited": True,
+                        },
+                    },
+                },
+            },
+            '1 - Start to Save Richter': {
+                'Start': {
+                    'Room': 'Castle Entrance, After Drawbridge',
+                    'Section': 'Ground',
+                },
+                'End': None,
+            },
+        }
+        logic_valid_ind = True
+        solver = None
+        for validation_name in sorted(validations.keys()):
+            validation = validations[validation_name]
+            custom_start = copy.deepcopy(skills)
+            for (key, value) in validation['Start'].items():
+                custom_start[key] = value
+            solver = validator.validate_logic(mapper_core, changes, custom_start, validation['End'])
+            if not solver.result:
+                logic_valid_ind = False
+                break
+        if not logic_valid_ind:
+            print()
+            for (quest_source_name, target_reward) in sorted(quest_rewards.items()):
+                if mapper_core['Quests']['Sources'][quest_source_name].get('Logic Level', 'Optional') == 'Required':
+                    print(quest_source_name, '=', target_reward)
+            print()
+            for (teleporter_source_name, teleporter_info) in teleporters.items():
+                print(teleporter_source_name, '=', teleporter_info['Room'])
+            print()
+            for goal_key in solver.logic_core['Goals']['END'].keys():
+                print(goal_key, '=', solver.current_game.current_state.get(goal_key, '-'))
+            print()
             for stage_name in sorted(shuffler['Stages']):
                 print(shuffler['Stages'][stage_name]['Hash of Rooms'], stage_name)
+            print()
             continue
         # print('*********')
         # Flip normal castle changes and apply them to inverted castle
@@ -1144,7 +1251,7 @@ if __name__ == '__main__':
         seed_hint = ''.join(chars)
         changes['Constants'] = {
             'Message - Richter Mode Instructions 1': seed_hint,
-            'Message - Richter Mode Instructions 2': 'Beta Release 2      ',
+            'Message - Richter Mode Instructions 2': 'Beta Release 6      ',
         }
         # Normalize room connections
         if settings.get('Options', {}).get('Normalize room connections', False):

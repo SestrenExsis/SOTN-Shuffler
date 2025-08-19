@@ -9,13 +9,13 @@ import yaml
 import mapper
 import solver
 
-def validate_logic(mapper_core, changes, skills) -> bool:
+def validate_logic(mapper_core, changes, custom_start, custom_end) -> bool:
     SOFTLOCK_CHECK__CYCLE_LIMIT = 199
     SOFTLOCK_CHECK__MAX_SOFTLOCKS = 0
     SOFTLOCK_CHECK__ATTEMPT_COUNT = 10
     PROGRESSION_CHECK__STEP_LIMIT = 96 # 46 highest observed successful, 49 lowest observed failed
     logic_core = mapper.LogicCore(mapper_core, changes).get_core()
-    map_solver = solver.Solver(logic_core, skills)
+    map_solver = solver.Solver(logic_core, custom_start, custom_end)
     map_solver.debug = True
     map_solver.initial_seed = 1
     map_solver.decay_start = 49_999
@@ -57,7 +57,7 @@ def validate_logic(mapper_core, changes, skills) -> bool:
         map_solver.clear()
         if final_goal_ind:
             break
-    result = valid_ind
+    map_solver.result = valid_ind
     if 0 < len(map_solver.current_game.goals_remaining) < 16:
         print('Goals not obtained')
         for goal in sorted(map_solver.current_game.goals_remaining.keys()):
@@ -69,11 +69,12 @@ def validate_logic(mapper_core, changes, skills) -> bool:
             ):
                 debug_state = map_solver.current_game.current_state
                 json.dump(debug_state, debug_json, indent='    ', sort_keys=True, default=str)
+    result = map_solver
     return result
 
-def validate_stage(mapper_core, mapper_data, stage_name, validation, skills) -> bool:
+def validate_stage(mapper_core, mapper_data, stage_name, validation, custom_start) -> bool:
     current_mapper = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
-    current_mapper.generate(mapper.stages[stage_name])
+    current_mapper.generate(mapper.stages[stage_name], mapper_data.get('Settings', {}).get('Require matching node types', False))
     current_mapper.stage.normalize_bounds()
     current_mapper__stage_changes = current_mapper.stage.get_changes()
     hash_of_rooms = hashlib.sha256(
@@ -114,7 +115,7 @@ def validate_stage(mapper_core, mapper_data, stage_name, validation, skills) -> 
         logic_core['State'][state_key] = state_value
     logic_core['Goals'] = validation['Goals']
     # Validate
-    map_solver = solver.Solver(logic_core, skills)
+    map_solver = solver.Solver(logic_core, custom_start)
     validation_passed = True
     if 'Solver' not in validation: # Backwards compatibility for the old method of validating
         map_solver.solve_via_relaxed_steps(100 * validation['Solver Effort'], stage_name)
@@ -200,7 +201,7 @@ if __name__ == '__main__':
                 mapper_data = json.load(mapper_data_json)
                 mapper_data_json.close()
             current_mapper = mapper.Mapper(mapper_core, stage_name, mapper_data['Seed'])
-            current_mapper.generate(mapper.stages[stage_name])
+            current_mapper.generate(mapper.stages[stage_name], mapper_data.get('Settings', {}).get('Require matching node types', False))
             current_mapper.stage.normalize_bounds()
             current_mapper__stage_changes = current_mapper.stage.get_changes()
             hash_of_rooms = hashlib.sha256(

@@ -1,6 +1,1302 @@
 ---
 Sources:
-  Location - Bat Card:
+  Enemy - Archer (Rare Drop):
+    Tags:
+      - Item
+      - Enemy Drop
+      - Rare
+    Target Reward: Item - Vorpal Blade
+  Enemy - Archer (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Heart Refresh
+  Enemy - Armor Lord (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Saber
+  Enemy - Armor Lord (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Rapier
+  Enemy - Axe Knight, Type A (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Bronze Cuirass
+  Enemy - Axe Knight, Type A (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Subweapon (Axe)
+  Enemy - Axe Knight, Type B (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Axe Lord Shield
+  Enemy - Axe Knight, Type B (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Subweapon (Axe)
+  Enemy - Azaghal (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Mourneblade
+  Enemy - Azaghal (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Covenant Stone
+  Enemy - Bat (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Monster Vial 2
+  Enemy - Bat (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Potion
+  Enemy - Bitterfly (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Mystic Pendant
+  Enemy - Bitterfly (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Luck Potion
+  Enemy - Black Crow (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Red Bean Bun
+  Enemy - Black Crow (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Aquamarine
+  Enemy - Black Panther (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Masamune
+  Enemy - Black Panther (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Meal Ticket
+  Enemy - Blade (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Gold Plate
+  Enemy - Blade (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Hunter Sword
+  Enemy - Blade Master (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Cross Shuriken
+  Enemy - Blade Master (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Shotel
+  Enemy - Blade Soldier (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Namakura
+  Enemy - Blade Soldier (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - $400
+  Enemy - Bloody Zombie (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Basilard
+  Enemy - Bloody Zombie (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Cloth Tunic
+  Enemy - Blue Raven (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Pork Bun
+  Enemy - Blue Raven (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Zircon
+  Enemy - Blue Venus Weed (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Heart Refresh
+  Enemy - Blue Venus Weed (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Zwei Hander
+  Enemy - Bomb Knight (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Dynamite
+  Enemy - Bomb Knight (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - TNT
+  Enemy - Bone Archer (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Magic Missile
+  Enemy - Bone Archer (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - $400
+  Enemy - Bone Ark (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Skull Shield
+  Enemy - Bone Ark (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Monster Vial 3
+  Enemy - Bone Halberd (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Ham and Eggs
+  Enemy - Bone Halberd (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Javelin
+  Enemy - Bone Musket (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Talisman
+  Enemy - Bone Musket (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Magic Missile
+  Enemy - Bone Pillar (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Ballroom Mask
+  Enemy - Bone Pillar (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Antivenom
+  Enemy - Bone Scimitar, Blue (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Red Rust
+  Enemy - Bone Scimitar, Blue (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Short Sword
+  Enemy - Cave Troll (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Nauglamir
+  Enemy - Cave Troll (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Neutron Bomb
+  Enemy - Cloaked Knight (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Heaven Sword
+  Enemy - Cloaked Knight (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Flamberge
+  Enemy - Corner Guard (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Damascus Sword
+  Enemy - Corner Guard (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Cutlass
+  Enemy - Corpseweed (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Potion
+  Enemy - Corpseweed (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Antivenom
+  Enemy - Ctulhu (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Bat Pentagram
+  Enemy - Ctulhu (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Pentagram
+  Enemy - Dark Octopus (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Green Tea
+  Enemy - Dark Octopus (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Sushi
+  Enemy - Dhuron (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Rapier
+  Enemy - Dhuron (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Hide Cuirass
+  Enemy - Diplocephalus (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Tart
+  Enemy - Diplocephalus (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Pentagram
+  Enemy - Discus Lord (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Jewel Sword
+  Enemy - Discus Lord (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Chakram
+  Enemy - Dodo Bird (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Runesword
+  Enemy - Dodo Bird (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Heart Broach
+  Enemy - Ectoplasm (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Manna Prism
+  Enemy - Ectoplasm (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Uncurse
+  Enemy - Fire Demon (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Marsil
+  Enemy - Fire Demon (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Fire Shield
+  Enemy - Fire Warg (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Karma Coin
+  Enemy - Fire Warg (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Turquoise
+  Enemy - Fishhead (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Icebrand
+  Enemy - Fishhead (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Resist Ice
+  Enemy - Flail Guard (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Pot Roast
+  Enemy - Flail Guard (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Morningstar
+  Enemy - Flea Armor (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Iron Cuirass
+  Enemy - Flea Armor (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - High Potion
+  Enemy - Flea Man (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Cheese
+  Enemy - Flea Man (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Takemitsu
+  Enemy - Flea Rider (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Ham and Eggs
+  Enemy - Flea Rider (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Turkey
+  Enemy - Flying Zombie (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Frankfurter
+  Enemy - Flying Zombie (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Shuriken
+  Enemy - Frog (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Pizza
+  Enemy - Frog (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Knuckle Duster
+  Enemy - Frozen Half (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Opal Circlet
+  Enemy - Frozen Half (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Necklace of J
+  Enemy - Frozen Shade (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Ice Cream
+  Enemy - Frozen Shade (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Ice Mail
+  Enemy - Ghost (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Antivenom
+  Enemy - Ghost (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - $400
+  Enemy - Ghost Dancer (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Stone Mask
+  Enemy - Ghost Dancer (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Buffalo Star
+  Enemy - Gorgon (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Stone Sword
+  Enemy - Gorgon (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Hammer
+  Enemy - Grave Keeper (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Natou
+  Enemy - Grave Keeper (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Miso Soup
+  Enemy - Gremlin (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Fire Mail
+  Enemy - Gremlin (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Resist Fire
+  Enemy - Guardian (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - God's Garb
+  Enemy - Guardian (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Great Sword
+  Enemy - Gurkha (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Gold Plate
+  Enemy - Gurkha (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Combat Knife
+  Enemy - Hammer (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Gold Plate
+  Enemy - Hammer (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Hammer
+  Enemy - Harpy (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Life Apple
+  Enemy - Harpy (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Apple
+  Enemy - Hellfire Beast (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Fire Mail
+  Enemy - Hellfire Beast (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Lightning Mail
+  Enemy - Hunting Girl (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Cheesecake
+  Enemy - Hunting Girl (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Were Bane
+  Enemy - Imp (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - King's Stone
+  Enemy - Imp (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Luck Potion
+  Enemy - Jack O'Bones (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Flame Star
+  Enemy - Jack O'Bones (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Shuriken
+  Enemy - Karasuman (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Ring of Feanor
+  Enemy - Karasuman (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Resist Dark
+  Enemy - Killer Fish (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Sushi
+  Enemy - Killer Fish (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Aquamarine
+  Enemy - Lesser Demon (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Holbein Dagger
+  Enemy - Lesser Demon (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Obsidian Sword
+  Enemy - Lion (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Fist of Tulkas
+  Enemy - Lion (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Gauntlet
+  Enemy - Lossoth (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Firebrand
+  Enemy - Lossoth (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Sirloin
+  Enemy - Magic Tome (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Saber
+  Enemy - Magic Tome (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - $2000
+  Enemy - Malachi (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Dark Armor
+  Enemy - Malachi (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Dark Shield
+  Enemy - Marionette (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Circlet
+  Enemy - Marionette (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Smart Potion
+  Enemy - Medusa Head (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Medusa Shield
+  Enemy - Medusa Head (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Resist Stone
+  Enemy - Merman (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Monster Vial 1
+  Enemy - Merman (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Zircon
+  Enemy - Minotaur (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Fury Plate
+  Enemy - Minotaur (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Sirloin
+  Enemy - Nova Skeleton (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Terminus Est
+  Enemy - Nova Skeleton (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Monster Vial 3
+  Enemy - Orobourous (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Lapis Lazuli
+  Enemy - Orobourous (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Karma Coin
+  Enemy - Ouija Table (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Morning Set
+  Enemy - Ouija Table (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Barley Tea
+  Enemy - Owl Knight (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Medal
+  Enemy - Owl Knight (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Cutlass
+  Enemy - Paranthropus (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Ring of Varda
+  Enemy - Paranthropus (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Gauntlet
+  Enemy - Phantom Skull (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Resist Dark
+  Enemy - Phantom Skull (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Felt Hat
+  Enemy - Plate Lord (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Neutron Bomb
+  Enemy - Plate Lord (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Iron Ball
+  Enemy - Poltergeist (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Bwaka Knife
+  Enemy - Puppet Sword (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Takemitsu
+  Enemy - Rock Knight (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Platinum Mail
+  Enemy - Rock Knight (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Jewel Knuckles
+  Enemy - Salem Witch (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Shortcake
+  Enemy - Salem Witch (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Gold Circlet
+  Enemy - Salome (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Manna Prism
+  Enemy - Salome (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Wizard Hat
+  Enemy - Scarecrow (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Muramasa
+  Enemy - Scarecrow (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Javelin
+  Enemy - Schmoo (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Crissaegrim
+  Enemy - Schmoo (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Ramen
+  Enemy - Shield (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Knight Shield
+  Enemy - Skelerang (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Fire Boomerang
+  Enemy - Skelerang (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Boomerang
+  Enemy - Skeleton (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Monster Vial 3
+  Enemy - Skeleton (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Shield Potion
+  Enemy - Skeleton Ape (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - TNT
+  Enemy - Skeleton Ape (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Banana
+  Enemy - Skull (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Turquoise
+  Enemy - Skull (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Iron Ball
+  Enemy - Skull Lord (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Skull Shield
+  Enemy - Skull Lord (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Scimitar
+  Enemy - Slinger (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Knight Shield
+  Enemy - Slinger (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Leather Shield
+  Enemy - Sniper of Goth (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Brilliant Mail
+  Enemy - Sniper of Goth (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Magic Missile
+  Enemy - Spear (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Javelin
+  Enemy - Spear Guard (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Iron Cuirass
+  Enemy - Spear Guard (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Javelin
+  Enemy - Spectral Sword, Type A (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Bastard Sword
+  Enemy - Spectral Sword, Type A (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Broadsword
+  Enemy - Spectral Sword, Type B (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Mablung Sword
+  Enemy - Spectral Sword, Type B (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Gurthang
+  Enemy - Spellbook (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Pentagram
+  Enemy - Spellbook (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - $1000
+  Enemy - Spiked Ball (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Axe Lord Armor
+  Enemy - Spiked Ball (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Iron Ball
+  Enemy - Stone Rose (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Meal Ticket
+  Enemy - Stone Rose (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Leather Shield
+  Enemy - Sword Lord (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Bekatowa
+  Enemy - Sword Lord (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Cutlass
+  Enemy - Thornweed (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Strawberry
+  Enemy - Thornweed (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Grapes
+  Enemy - Tin Man (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Mojo Mail
+  Enemy - Tin Man (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Lunch A
+  Enemy - Toad (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Pizza
+  Enemy - Toad (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Blue Knuckles
+  Enemy - Tombstone (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Green Tea
+  Enemy - Tombstone (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Katana
+  Enemy - Valhalla Knight (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Claymore
+  Enemy - Valhalla Knight (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Estoc
+  Enemy - Vandal Sword (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Muramasa
+  Enemy - Vandal Sword (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Holy Sword
+  Enemy - Venus Weed (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Heart Refresh
+  Enemy - Venus Weed (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Coral Circlet
+  Enemy - Wereskeleton (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Garnet
+  Enemy - Wereskeleton (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Strength Potion
+  Enemy - Werewolf (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Yasutsuna
+  Enemy - Werewolf (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Iron Fist
+  Enemy - Winged Guard (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Javelin
+  Enemy - Winged Guard (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Iron Shield
+  Enemy - Yorick (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Skull Shield
+  Enemy - Yorick (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - Monster Vial 3
+  Enemy - Zombie (Rare Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Rare
+    Target Reward: Item - Cloth Tunic
+  Enemy - Zombie (Uncommon Drop):
+    Tags:
+      - Enemy Drop
+      - Item
+      - Uncommon
+    Target Reward: Item - $100
+  Location - Alchemy Laboratory, Bat Card Room (Bat Card):
     Description: Action - Check Bat Card Location
     Logic Level: Required
     Outcomes:
@@ -11,9 +1307,10 @@ Sources:
         Room: Alchemy Laboratory, Tetromino Room
         Section: Bat Card Room Duplicate
         Stage: Alchemy Laboratory
-    Reward Class: Relic
+    Tags:
+      - Relic
     Target Reward: Relic - Bat Card
-  Location - Cube of Zoe:
+  Location - Castle Entrance, Cube of Zoe Room (Cube of Zoe):
     Description: Action - Check Cube of Zoe Location
     Logic Level: Required
     Outcomes:
@@ -29,9 +1326,10 @@ Sources:
         Room: Castle Entrance Revisited, Cube of Zoe Room
         Section: Main
         Stage: Castle Entrance Revisited
-    Reward Class: Relic
+    Tags:
+      - Relic
     Target Reward: Relic - Cube of Zoe
-  Location - Demon Card:
+  Location - Abandoned Mine, Demon Card Room (Demon Card):
     Description: Action - Check Demon Card Location
     Logic Level: Required
     Outcomes:
@@ -42,9 +1340,11 @@ Sources:
         Room: Abandoned Mine, Demon Card Room
         Section: Main
         Stage: Abandoned Mine
-    Reward Class: Relic
+    Tags:
+      - Relic
+      - Item
     Target Reward: Relic - Demon Card
-  Location - Echo of Bat:
+  Location - Olrox's Quarters, Echo of Bat Room (Echo of Bat):
     Description: Action - Check Echo of Bat Location
     Logic Level: Required
     Outcomes:
@@ -55,10 +1355,13 @@ Sources:
         Room: Olrox's Quarters, Echo of Bat Room
         Section: Main
         Stage: Olrox's Quarters
-    Reward Class: Relic
+    Tags:
+      - Relic
+      - Item
     Target Reward: Relic - Echo of Bat
-  Location - Fire of Bat:
+  Location - Clock Tower, Fire of Bat Room (Fire of Bat):
     Description: Action - Check Fire of Bat Location
+    Logic Level: Required
     Outcomes:
       Check - Fire of Bat Location: true
     Requirements:
@@ -67,9 +1370,11 @@ Sources:
         Room: Clock Tower, Fire of Bat Room
         Section: Main
         Stage: Clock Tower
-    Reward Class: Relic
+    Tags:
+      - Relic
+      - Item
     Target Reward: Relic - Fire of Bat
-  Location - Form of Mist:
+  Location - Colosseum, Top of Elevator Shaft (Form of Mist):
     Description: Action - Check Form of Mist Location
     Logic Level: Required
     Outcomes:
@@ -80,10 +1385,13 @@ Sources:
         Room: Colosseum, Top of Elevator Shaft
         Section: Left Side
         Stage: Colosseum
-    Reward Class: Relic
+    Tags:
+      - Relic
+      - Item
     Target Reward: Relic - Form of Mist
-  Location - Ghost Card:
+  Location - Castle Keep, Ghost Card Room (Ghost Card):
     Description: Action - Check Ghost Card Location
+    Logic Level: Required
     Outcomes:
       Check - Ghost Card Location: true
     Requirements:
@@ -92,9 +1400,11 @@ Sources:
         Room: Castle Keep, Ghost Card Room
         Section: Ground
         Stage: Castle Keep
-    Reward Class: Relic
+    Tags:
+      - Relic
+      - Item
     Target Reward: Relic - Ghost Card
-  Location - Jewel of Open:
+  Location - Long Library, Shop (Jewel of Open):
     Description: Action - Check Jewel of Open Location
     Logic Level: Required
     Outcomes:
@@ -106,9 +1416,10 @@ Sources:
         Section: Main
         Helper: Low-Cost Price Range
         Stage: Long Library
-    Reward Class: Relic
+    Tags:
+      - Relic
     Target Reward: Relic - Jewel of Open
-  Location - Power of Mist:
+  Location - Castle Keep, Keep Area (Power of Mist):
     Description: Action - Check Power of Mist Location
     Logic Level: Required
     Outcomes:
@@ -119,9 +1430,11 @@ Sources:
         Room: Castle Keep, Keep Area
         Section: Middle-Left Ledge
         Stage: Castle Keep
-    Reward Class: Relic
+    Tags:
+      - Relic
+      - Item
     Target Reward: Relic - Power of Mist
-  Location - Gravity Boots:
+  Location - Marble Gallery, Gravity Boots Room (Gravity Boots):
     Description: Action - Check Gravity Boots Location
     Logic Level: Required
     Outcomes:
@@ -132,9 +1445,10 @@ Sources:
         Room: Marble Gallery, Gravity Boots Room
         Section: Main
         Stage: Marble Gallery
-    Reward Class: Relic
+    Tags:
+      - Relic
     Target Reward: Relic - Gravity Boots
-  Location - Holy Symbol:
+  Location - Underground Caverns, Holy Symbol Room (Holy Symbol):
     Description: Action - Check Holy Symbol Location
     Logic Level: Required
     Outcomes:
@@ -145,9 +1459,11 @@ Sources:
         Room: Underground Caverns, Holy Symbol Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Relic
+    Tags:
+      - Relic
+      - Item
     Target Reward: Relic - Holy Symbol
-  Location - Leap Stone:
+  Location - Castle Keep, Keep Area (Leap Stone):
     Description: Action - Check Leap Stone Location
     Logic Level: Required
     Outcomes:
@@ -158,9 +1474,10 @@ Sources:
         Room: Castle Keep, Keep Area
         Section: Ground
         Stage: Castle Keep
-    Reward Class: Relic
+    Tags:
+      - Relic
     Target Reward: Relic - Leap Stone
-  Location - Merman Statue:
+  Location - Underground Caverns, Merman Statue Room (Merman Statue):
     Description: Action - Check Merman Statue Location
     Logic Level: Required
     Outcomes:
@@ -171,10 +1488,13 @@ Sources:
         Room: Underground Caverns, Merman Statue Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Relic
+    Tags:
+      - Relic
+      - Item
     Target Reward: Relic - Merman Statue
-  Location - Power of Wolf:
+  Location - Castle Entrance, After Drawbridge (Power of Wolf):
     Description: Action - Check Power of Wolf Location
+    Logic Level: Required
     Outcomes:
       Check - Power of Wolf Location: true
     Requirements:
@@ -188,10 +1508,13 @@ Sources:
         Room: Castle Entrance Revisited, After Drawbridge
         Section: Parapet
         Stage: Castle Entrance Revisited
-    Reward Class: Relic
+    Tags:
+      - Relic
+      - Item
     Target Reward: Relic - Power of Wolf
-  Location - Skill of Wolf:
+  Location - Alchemy Laboratory, Skill of Wolf Room (Skill of Wolf):
     Description: Action - Check Skill of Wolf Location
+    Logic Level: Required
     Outcomes:
       Check - Skill of Wolf Location: true
     Requirements:
@@ -200,9 +1523,10 @@ Sources:
         Room: Alchemy Laboratory, Skill of Wolf Room
         Section: Main
         Stage: Alchemy Laboratory
-    Reward Class: Relic
+    Tags:
+      - Relic
     Target Reward: Relic - Skill of Wolf
-  Location - Soul of Bat:
+  Location - Long Library, Lesser Demon Area (Soul of Bat):
     Description: Action - Check Soul of Bat Location
     Logic Level: Required
     Outcomes:
@@ -213,10 +1537,13 @@ Sources:
         Room: Long Library, Lesser Demon Area
         Section: Behind Mist Gate
         Stage: Long Library
-    Reward Class: Relic
+    Tags:
+      - Relic
+      - Item
     Target Reward: Relic - Soul of Bat
-  Location - Soul of Wolf:
+  Location - Outer Wall, Elevator Shaft Room (Soul of Wolf):
     Description: Action - Check Soul of Wolf Location
+    Logic Level: Required
     Outcomes:
       Check - Soul of Wolf Location: true
     Requirements:
@@ -225,10 +1552,13 @@ Sources:
         Room: Outer Wall, Elevator Shaft Room
         Section: Elevator Shaft
         Stage: Outer Wall
-    Reward Class: Relic
+    Tags:
+      - Relic
+      - Item
     Target Reward: Relic - Soul of Wolf
-  Location - Spirit Orb:
+  Location - Marble Gallery, Spirit Orb Room (Spirit Orb):
     Description: Action - Check Spirit Orb Location
+    Logic Level: Required
     Outcomes:
       Check - Spirit Orb Location: true
     Requirements:
@@ -237,10 +1567,12 @@ Sources:
         Room: Marble Gallery, Spirit Orb Room
         Section: Main
         Stage: Marble Gallery
-    Reward Class: Relic
+    Tags:
+      - Relic
     Target Reward: Relic - Spirit Orb
-  Location - Sword Card:
+  Location - Olrox's Quarters, Sword Card Room (Sword Card):
     Description: Action - Check Sword Card Location
+    Logic Level: Required
     Outcomes:
       Check - Sword Card Location: true
     Requirements:
@@ -249,10 +1581,13 @@ Sources:
         Room: Olrox's Quarters, Sword Card Room
         Section: Main
         Stage: Olrox's Quarters
-    Reward Class: Relic
+    Tags:
+      - Relic
+      - Item
     Target Reward: Relic - Sword Card
-  Location - Faerie Card:
+  Location - Long Library, Faerie Card Room (Faerie Card):
     Description: Action - Check Faerie Card Location
+    Logic Level: Required
     Outcomes:
       Check - Faerie Card Location: true
     Requirements:
@@ -261,10 +1596,13 @@ Sources:
         Room: Long Library, Faerie Card Room
         Section: Main
         Stage: Long Library
-    Reward Class: Relic
+    Tags:
+      - Relic
+      - Item
     Target Reward: Relic - Faerie Card
-  Location - Faerie Scroll:
+  Location - Long Library, Spellbook Area (Faerie Scroll):
     Description: Action - Check Faerie Scroll Location
+    Logic Level: Required
     Outcomes:
       Check - Faerie Scroll Location: true
     Requirements:
@@ -273,7 +1611,9 @@ Sources:
         Room: Long Library, Spellbook Area
         Section: Main
         Stage: Long Library
-    Reward Class: Relic
+    Tags:
+      - Relic
+      - Item
     Target Reward: Relic - Faerie Scroll
   Location - Abandoned Mine, Peanuts Room (Power of Sire):
     Description: Action - Check Power of Sire Location
@@ -286,7 +1626,8 @@ Sources:
         Room: Abandoned Mine, Peanuts Room
         Section: Main
         Stage: Abandoned Mine
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Power of Sire
   Location - Abandoned Mine, Karma Coin Room (Karma Coin):
     Description: Action - Check Karma Coin Location
@@ -299,7 +1640,8 @@ Sources:
         Room: Abandoned Mine, Karma Coin Room
         Section: Main
         Stage: Abandoned Mine
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Karma Coin
   Location - Abandoned Mine, Snake Column (Turkey):
     Description: Action - Check Turkey Location
@@ -312,7 +1654,8 @@ Sources:
         Room: Abandoned Mine, Snake Column
         Section: Main
         Stage: Abandoned Mine
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Turkey
   Location - Abandoned Mine, Snake Column (Ring of Ares):
     Description: Action - Check Ring of Ares Location
@@ -325,7 +1668,8 @@ Sources:
         Room: Abandoned Mine, Snake Column
         Section: Main
         Stage: Abandoned Mine
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Ring of Ares
   Location - Abandoned Mine, Karma Coin Room (Combat Knife):
     Description: Action - Check Combat Knife Location
@@ -338,7 +1682,8 @@ Sources:
         Room: Abandoned Mine, Karma Coin Room
         Section: Main
         Stage: Abandoned Mine
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Combat Knife
   Location - Abandoned Mine, Crumbling Stairwells With Mushrooms (Shiitake 1):
     Description: Action - Check Shiitake 1 Location
@@ -351,7 +1696,8 @@ Sources:
         Room: Abandoned Mine, Crumbling Stairwells With Mushrooms
         Section: Main
         Stage: Abandoned Mine
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shiitake
   Location - Abandoned Mine, Crumbling Stairwells With Mushrooms (Shiitake 2):
     Description: Action - Check Shiitake 2 Location
@@ -364,7 +1710,8 @@ Sources:
         Room: Abandoned Mine, Crumbling Stairwells With Mushrooms
         Section: Main
         Stage: Abandoned Mine
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shiitake
   Location - Abandoned Mine, Peanuts Room (Barley Tea):
     Description: Action - Check Barley Tea Location
@@ -377,7 +1724,8 @@ Sources:
         Room: Abandoned Mine, Peanuts Room
         Section: Main
         Stage: Abandoned Mine
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Barley Tea
   Location - Abandoned Mine, Peanuts Room (Peanuts 1):
     Description: Action - Check Peanuts 1 Location
@@ -390,7 +1738,8 @@ Sources:
         Room: Abandoned Mine, Peanuts Room
         Section: Main
         Stage: Abandoned Mine
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Peanuts
   Location - Abandoned Mine, Peanuts Room (Peanuts 2):
     Description: Action - Check Peanuts 2 Location
@@ -403,7 +1752,8 @@ Sources:
         Room: Abandoned Mine, Peanuts Room
         Section: Main
         Stage: Abandoned Mine
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Peanuts
   Location - Abandoned Mine, Peanuts Room (Peanuts 3):
     Description: Action - Check Peanuts 3 Location
@@ -416,7 +1766,8 @@ Sources:
         Room: Abandoned Mine, Peanuts Room
         Section: Main
         Stage: Abandoned Mine
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Peanuts
   Location - Abandoned Mine, Peanuts Room (Peanuts 4):
     Description: Action - Check Peanuts 4 Location
@@ -429,7 +1780,8 @@ Sources:
         Room: Abandoned Mine, Peanuts Room
         Section: Main
         Stage: Abandoned Mine
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Peanuts
   Location - Alchemy Laboratory, Entryway (Hide Cuirass):
     Description: Action - Check Hide Cuirass Location
@@ -442,7 +1794,8 @@ Sources:
         Room: Alchemy Laboratory, Entryway
         Section: Main
         Stage: Alchemy Laboratory
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Hide Cuirass
   Location - Alchemy Laboratory, Heart Max-Up Room (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -455,7 +1808,8 @@ Sources:
         Room: Alchemy Laboratory, Heart Max-Up Room
         Section: Main
         Stage: Alchemy Laboratory
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Alchemy Laboratory, Cloth Cape Room (Cloth Cape):
     Description: Action - Check Cloth Cape Location
@@ -468,7 +1822,8 @@ Sources:
         Room: Alchemy Laboratory, Cloth Cape Room
         Section: Main
         Stage: Alchemy Laboratory
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Cloth Cape
   Location - Alchemy Laboratory, Secret Life Max-Up Room (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -481,7 +1836,8 @@ Sources:
         Room: Alchemy Laboratory, Secret Life Max-Up Room
         Section: Main
         Stage: Alchemy Laboratory
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Alchemy Laboratory, Sunglasses Room (Sunglasses):
     Description: Action - Check Sunglasses Location
@@ -494,7 +1850,8 @@ Sources:
         Room: Alchemy Laboratory, Sunglasses Room
         Section: Main
         Stage: Alchemy Laboratory
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Sunglasses
   Location - Alchemy Laboratory, Short Zig Zag Room (Resist Thunder):
     Description: Action - Check Resist Thunder Location
@@ -507,7 +1864,8 @@ Sources:
         Room: Alchemy Laboratory, Short Zig Zag Room
         Section: Main
         Stage: Alchemy Laboratory
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Thunder
   Location - Alchemy Laboratory, Red Skeleton Lift Room (Leather Shield):
     Description: Action - Check Leather Shield Location
@@ -520,7 +1878,8 @@ Sources:
         Room: Alchemy Laboratory, Red Skeleton Lift Room
         Section: Ground
         Stage: Alchemy Laboratory
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Leather Shield
   Location - Alchemy Laboratory, Cannon Room (Basilard):
     Description: Action - Check Basilard Location
@@ -533,7 +1892,8 @@ Sources:
         Room: Alchemy Laboratory, Cannon Room
         Section: Main
         Stage: Alchemy Laboratory
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Basilard
   Location - Alchemy Laboratory, Exit to Marble Gallery (Potion):
     Description: Action - Check Potion Location
@@ -546,7 +1906,8 @@ Sources:
         Room: Alchemy Laboratory, Exit to Marble Gallery
         Section: Main
         Stage: Alchemy Laboratory
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Potion
   Location - Anti-Chapel, XXX (Fire Boomerang):
     Description: Action - Check Fire Boomerang Location
@@ -559,7 +1920,8 @@ Sources:
         Room: Anti-Chapel, XXX
         Section: Main
         Stage: Anti-Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Fire Boomerang
   Location - Anti-Chapel, XXX (Diamond):
     Description: Action - Check Diamond Location
@@ -572,7 +1934,8 @@ Sources:
         Room: Anti-Chapel, XXX
         Section: Main
         Stage: Anti-Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Diamond
   Location - Anti-Chapel, XXX (Zircon):
     Description: Action - Check Zircon Location
@@ -585,7 +1948,8 @@ Sources:
         Room: Anti-Chapel, XXX
         Section: Main
         Stage: Anti-Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Zircon
   Location - Anti-Chapel, XXX (Heart Max-Up 1):
     Description: Action - Check Heart Max-Up 1 Location
@@ -598,7 +1962,8 @@ Sources:
         Room: Anti-Chapel, XXX
         Section: Main
         Stage: Anti-Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Anti-Chapel, XXX (Shuriken):
     Description: Action - Check Shuriken Location
@@ -611,7 +1976,8 @@ Sources:
         Room: Anti-Chapel, XXX
         Section: Main
         Stage: Anti-Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shuriken
   Location - Anti-Chapel, XXX (TNT):
     Description: Action - Check TNT Location
@@ -624,7 +1990,8 @@ Sources:
         Room: Anti-Chapel, XXX
         Section: Main
         Stage: Anti-Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - TNT
   Location - Anti-Chapel, XXX (Boomerang):
     Description: Action - Check Boomerang Location
@@ -637,7 +2004,8 @@ Sources:
         Room: Anti-Chapel, XXX
         Section: Main
         Stage: Anti-Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Boomerang
   Location - Anti-Chapel, XXX (Javelin):
     Description: Action - Check Javelin Location
@@ -650,7 +2018,8 @@ Sources:
         Room: Anti-Chapel, XXX
         Section: Main
         Stage: Anti-Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Javelin
   Location - Anti-Chapel, XXX (Manna Prism):
     Description: Action - Check Manna Prism Location
@@ -663,7 +2032,8 @@ Sources:
         Room: Anti-Chapel, XXX
         Section: Main
         Stage: Anti-Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Manna Prism
   Location - Anti-Chapel, XXX (Smart Potion):
     Description: Action - Check Smart Potion Location
@@ -676,7 +2046,8 @@ Sources:
         Room: Anti-Chapel, XXX
         Section: Main
         Stage: Anti-Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Smart Potion
   Location - Anti-Chapel, XXX (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -689,7 +2060,8 @@ Sources:
         Room: Anti-Chapel, XXX
         Section: Main
         Stage: Anti-Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Anti-Chapel, XXX (Talwar):
     Description: Action - Check Talwar Location
@@ -702,7 +2074,8 @@ Sources:
         Room: Anti-Chapel, XXX
         Section: Main
         Stage: Anti-Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Talwar
   Location - Anti-Chapel, XXX (Bwaka Knife):
     Description: Action - Check Bwaka Knife Location
@@ -715,7 +2088,8 @@ Sources:
         Room: Anti-Chapel, XXX
         Section: Main
         Stage: Anti-Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Bwaka Knife
   Location - Anti-Chapel, XXX (Magic Missile):
     Description: Action - Check Magic Missile Location
@@ -728,7 +2102,8 @@ Sources:
         Room: Anti-Chapel, XXX
         Section: Main
         Stage: Anti-Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Magic Missile
   Location - Anti-Chapel, XXX (Twilight Cloak):
     Description: Action - Check Twilight Cloak Location
@@ -741,7 +2116,8 @@ Sources:
         Room: Anti-Chapel, XXX
         Section: Main
         Stage: Anti-Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Twilight Cloak
   Location - Anti-Chapel, XXX (Heart Max-Up 2):
     Description: Action - Check Heart Max-Up 2 Location
@@ -754,7 +2130,8 @@ Sources:
         Room: Anti-Chapel, XXX
         Section: Main
         Stage: Anti-Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Black Marble Gallery, S-Shaped Hallways (Library Card):
     Description: Action - Check Library Card Location
@@ -767,7 +2144,8 @@ Sources:
         Room: Black Marble Gallery, S-Shaped Hallways
         Section: Main
         Stage: Black Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Library Card
   Location - Black Marble Gallery, Spirit Orb Room (Potion):
     Description: Action - Check Potion Location
@@ -780,7 +2158,8 @@ Sources:
         Room: Black Marble Gallery, Spirit Orb Room
         Section: Main
         Stage: Black Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Potion
   Location - Black Marble Gallery, Spirit Orb Room (Antivenom):
     Description: Action - Check Antivenom Location
@@ -793,7 +2172,8 @@ Sources:
         Room: Black Marble Gallery, Spirit Orb Room
         Section: Main
         Stage: Black Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Antivenom
   Location - Black Marble Gallery, Gravity Boots Room (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -806,7 +2186,8 @@ Sources:
         Room: Black Marble Gallery, Gravity Boots Room
         Section: Main
         Stage: Black Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Black Marble Gallery, Gravity Boots Room (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -819,7 +2200,8 @@ Sources:
         Room: Black Marble Gallery, Gravity Boots Room
         Section: Main
         Stage: Black Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Black Marble Gallery, Alucart Room (Resist Dark):
     Description: Action - Check Resist Dark Location
@@ -832,7 +2214,8 @@ Sources:
         Room: Black Marble Gallery, Alucart Room
         Section: Main
         Stage: Black Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Dark
   Location - Black Marble Gallery, Alucart Room (Resist Holy):
     Description: Action - Check Resist Holy Location
@@ -845,7 +2228,8 @@ Sources:
         Room: Black Marble Gallery, Alucart Room
         Section: Main
         Stage: Black Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Holy
   Location - Black Marble Gallery, Pathway After Right Statue (Resist Thunder):
     Description: Action - Check Resist Thunder Location
@@ -858,7 +2242,8 @@ Sources:
         Room: Black Marble Gallery, Pathway After Right Statue
         Section: Main
         Stage: Black Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Thunder
   Location - Black Marble Gallery, Pathway After Right Statue (Resist Fire):
     Description: Action - Check Resist Fire Location
@@ -871,7 +2256,8 @@ Sources:
         Room: Black Marble Gallery, Pathway After Right Statue
         Section: Main
         Stage: Black Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Fire
   Location - Black Marble Gallery, Blue Door Room (Meal Ticket):
     Description: Action - Check Meal Ticket Location
@@ -884,7 +2270,8 @@ Sources:
         Room: Black Marble Gallery, Blue Door Room
         Section: Main
         Stage: Black Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Meal Ticket
   Location - Black Marble Gallery, Beneath Right Trapdoor (Iron Ball):
     Description: Action - Check Iron Ball Location
@@ -897,7 +2284,8 @@ Sources:
         Room: Black Marble Gallery, Beneath Right Trapdoor
         Section: Main
         Stage: Black Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Iron Ball
   Location - Black Marble Gallery, Pathway After Left Statue (Heart Refresh):
     Description: Action - Check Heart Refresh Location
@@ -910,7 +2298,8 @@ Sources:
         Room: Black Marble Gallery, Pathway After Left Statue
         Section: Main
         Stage: Black Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Refresh
   Location - Catacombs, Cat-Eye Circlet Room (Cat-Eye Circlet):
     Description: Action - Check Cat-Eye Circlet Location
@@ -923,7 +2312,8 @@ Sources:
         Room: Catacombs, Cat-Eye Circlet Room
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Cat-Eye Circlet
   Location - Catacombs, Icebrand Room (Icebrand):
     Description: Action - Check Icebrand Location
@@ -936,7 +2326,8 @@ Sources:
         Room: Catacombs, Icebrand Room
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Icebrand
   Location - Catacombs, Walk Armor Room (Walk Armor):
     Description: Action - Check Walk Armor Location
@@ -949,7 +2340,8 @@ Sources:
         Room: Catacombs, Walk Armor Room
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Walk Armor
   Location - Catacombs, Mormegil Room (Mormegil):
     Description: Action - Check Mormegil Location
@@ -962,7 +2354,8 @@ Sources:
         Room: Catacombs, Mormegil Room
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Mormegil
   Location - Catacombs, Spike Breaker Room (Library Card):
     Description: Action - Check Library Card Location
@@ -975,7 +2368,8 @@ Sources:
         Room: Catacombs, Spike Breaker Room
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Library Card
   Location - Catacombs, Ballroom Mask Room (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -988,7 +2382,8 @@ Sources:
         Room: Catacombs, Ballroom Mask Room
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Catacombs, Ballroom Mask Room (Ballroom Mask):
     Description: Action - Check Ballroom Mask Location
@@ -1001,7 +2396,8 @@ Sources:
         Room: Catacombs, Ballroom Mask Room
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Ballroom Mask
   Location - Catacombs, Cat-Eye Circlet Room (Bloodstone):
     Description: Action - Check Bloodstone Location
@@ -1014,7 +2410,8 @@ Sources:
         Room: Catacombs, Cat-Eye Circlet Room
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Bloodstone
   Location - Catacombs, Room ID 19 (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -1027,7 +2424,8 @@ Sources:
         Room: Catacombs, Room ID 19
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Catacombs, Room ID 19 (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -1040,7 +2438,8 @@ Sources:
         Room: Catacombs, Room ID 19
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Catacombs, Room ID 25 (Cross Shuriken 1):
     Description: Action - Check Cross Shuriken 1 Location
@@ -1053,7 +2452,8 @@ Sources:
         Room: Catacombs, Room ID 25
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Cross Shuriken
   Location - Catacombs, Room ID 25 (Cross Shuriken 2):
     Description: Action - Check Cross Shuriken 2 Location
@@ -1066,7 +2466,8 @@ Sources:
         Room: Catacombs, Room ID 25
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Cross Shuriken
   Location - Catacombs, Room ID 25 (Karma Coin 1):
     Description: Action - Check Karma Coin 1 Location
@@ -1079,7 +2480,8 @@ Sources:
         Room: Catacombs, Room ID 25
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Karma Coin
   Location - Catacombs, Room ID 25 (Karma Coin 2):
     Description: Action - Check Karma Coin 2 Location
@@ -1092,7 +2494,8 @@ Sources:
         Room: Catacombs, Room ID 25
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Karma Coin
   Location - Catacombs, Room ID 26 (Pork Bun):
     Description: Action - Check Pork Bun Location
@@ -1105,7 +2508,8 @@ Sources:
         Room: Catacombs, Room ID 26
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Pork Bun
   Location - Catacombs, Spike Breaker Room (Spike Breaker):
     Description: Action - Check Spike Breaker Location
@@ -1118,7 +2522,10 @@ Sources:
         Room: Catacombs, Spike Breaker Room
         Section: Main
         Stage: Catacombs
-    Reward Class: Required Item
+    Tags:
+      - Item
+      - Relic
+      - Required
     Target Reward: Item - Spike Breaker
   Location - Catacombs, Room ID 20 (Monster Vial 3 1):
     Description: Action - Check Monster Vial 3 1 Location
@@ -1131,7 +2538,8 @@ Sources:
         Room: Catacombs, Room ID 20
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Monster Vial 3
   Location - Catacombs, Room ID 20 (Monster Vial 3 2):
     Description: Action - Check Monster Vial 3 2 Location
@@ -1144,7 +2552,8 @@ Sources:
         Room: Catacombs, Room ID 20
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Monster Vial 3
   Location - Catacombs, Room ID 20 (Monster Vial 3 3):
     Description: Action - Check Monster Vial 3 3 Location
@@ -1157,7 +2566,8 @@ Sources:
         Room: Catacombs, Room ID 20
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Monster Vial 3
   Location - Catacombs, Room ID 20 (Monster Vial 3 4):
     Description: Action - Check Monster Vial 3 4 Location
@@ -1170,7 +2580,8 @@ Sources:
         Room: Catacombs, Room ID 20
         Section: Main
         Stage: Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Monster Vial 3
   Location - Castle Entrance, Heart Max-Up Room (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -1188,7 +2599,8 @@ Sources:
         Room: Castle Entrance Revisited, Heart Max-Up Room
         Section: Main
         Stage: Castle Entrance Revisited
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Castle Entrance, Life Max-Up Room (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -1206,7 +2618,8 @@ Sources:
         Room: Castle Entrance Revisited, Life Max-Up Room
         Section: Main
         Stage: Castle Entrance Revisited
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Castle Entrance, Jewel Sword Room (Life Apple):
     Description: Action - Check Life Apple Location
@@ -1224,7 +2637,8 @@ Sources:
         Room: Castle Entrance Revisited, Jewel Sword Room
         Section: Main
         Stage: Castle Entrance Revisited
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Apple
   Location - Castle Entrance, Cube of Zoe Room (Shield Potion):
     Description: Action - Check Shield Potion Location
@@ -1242,7 +2656,8 @@ Sources:
         Room: Castle Entrance Revisited, Cube of Zoe Room
         Section: Main
         Stage: Castle Entrance Revisited
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shield Potion
   Location - Castle Entrance, Holy Mail Room (Holy Mail):
     Description: Action - Check Holy Mail Location
@@ -1260,7 +2675,8 @@ Sources:
         Room: Castle Entrance Revisited, Holy Mail Room
         Section: Ledge
         Stage: Castle Entrance Revisited
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Holy Mail
   Location - Castle Entrance, Shortcut to Underground Caverns (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -1278,7 +2694,8 @@ Sources:
         Room: Castle Entrance Revisited, Shortcut to Underground Caverns
         Section: Main
         Stage: Castle Entrance Revisited
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Castle Entrance, Shortcut to Warp Rooms (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -1296,7 +2713,8 @@ Sources:
         Room: Castle Entrance Revisited, Shortcut to Warp Rooms
         Section: Left Side
         Stage: Castle Entrance Revisited
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Castle Entrance, After Drawbridge (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -1314,7 +2732,8 @@ Sources:
         Room: Castle Entrance Revisited, After Drawbridge
         Section: Parapet
         Stage: Castle Entrance Revisited
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Castle Entrance, Jewel Sword Room (Jewel Sword):
     Description: Action - Check Jewel Sword Room Location
@@ -1329,7 +2748,8 @@ Sources:
         Room: Castle Entrance Revisited, Jewel Sword Room
         Section: Main
         Stage: Castle Entrance Revisited
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Jewel Sword
   Location - Castle Keep, Keep Area (Turquoise):
     Description: Action - Check Turquoise Location
@@ -1342,7 +2762,8 @@ Sources:
         Room: Castle Keep, Keep Area
         Section: Main
         Stage: Castle Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Turquoise
   Location - Castle Keep, Keep Area (Fire Mail):
     Description: Action - Check Fire Mail Location
@@ -1355,7 +2776,8 @@ Sources:
         Room: Castle Keep, Keep Area
         Section: Main
         Stage: Castle Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Fire Mail
   Location - Castle Keep, Tyrfing Room (Tyrfing):
     Description: Action - Check Tyrfing Location
@@ -1368,7 +2790,8 @@ Sources:
         Room: Castle Keep, Tyrfing Room
         Section: Main
         Stage: Castle Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Tyrfing
   Location - Castle Keep, Upper Attic (Sirloin):
     Description: Action - Check Sirloin Location
@@ -1381,7 +2804,8 @@ Sources:
         Room: Castle Keep, Upper Attic
         Section: Main
         Stage: Castle Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Sirloin
   Location - Castle Keep, Upper Attic (Pot Roast):
     Description: Action - Check Pot Roast Location
@@ -1394,7 +2818,8 @@ Sources:
         Room: Castle Keep, Upper Attic
         Section: Main
         Stage: Castle Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Pot Roast
   Location - Castle Keep, Upper Attic (Frankfurter):
     Description: Action - Check Frankfurter Location
@@ -1407,7 +2832,8 @@ Sources:
         Room: Castle Keep, Upper Attic
         Section: Main
         Stage: Castle Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Frankfurter
   Location - Castle Keep, Upper Attic (Resist Stone):
     Description: Action - Check Resist Stone Location
@@ -1420,7 +2846,8 @@ Sources:
         Room: Castle Keep, Upper Attic
         Section: Main
         Stage: Castle Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Stone
   Location - Castle Keep, Upper Attic (Resist Dark):
     Description: Action - Check Resist Dark Location
@@ -1433,7 +2860,8 @@ Sources:
         Room: Castle Keep, Upper Attic
         Section: Main
         Stage: Castle Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Dark
   Location - Castle Keep, Upper Attic (Resist Holy):
     Description: Action - Check Resist Holy Location
@@ -1446,7 +2874,8 @@ Sources:
         Room: Castle Keep, Upper Attic
         Section: Main
         Stage: Castle Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Holy
   Location - Castle Keep, Upper Attic (Platinum Mail):
     Description: Action - Check Platinum Mail Location
@@ -1459,7 +2888,8 @@ Sources:
         Room: Castle Keep, Upper Attic
         Section: Main
         Stage: Castle Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Platinum Mail
   Location - Castle Keep, Falchion Room (Falchion):
     Description: Action - Check Falchion Location
@@ -1472,7 +2902,8 @@ Sources:
         Room: Castle Keep, Falchion Room
         Section: Main
         Stage: Castle Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Falchion
   Location - Castle Keep, Ghost Card Room (Life Max-Up 1):
     Description: Action - Check Life Max-Up 1 Location
@@ -1485,7 +2916,8 @@ Sources:
         Room: Castle Keep, Ghost Card Room
         Section: Main
         Stage: Castle Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Castle Keep, Ghost Card Room (Life Max-Up 2):
     Description: Action - Check Life Max-Up 2 Location
@@ -1498,7 +2930,8 @@ Sources:
         Room: Castle Keep, Ghost Card Room
         Section: Main
         Stage: Castle Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Castle Keep, Ghost Card Room (Heart Max-Up 1):
     Description: Action - Check Heart Max-Up 1 Location
@@ -1511,7 +2944,8 @@ Sources:
         Room: Castle Keep, Ghost Card Room
         Section: Main
         Stage: Castle Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Castle Keep, Ghost Card Room (Heart Max-Up 2):
     Description: Action - Check Heart Max-Up 2 Location
@@ -1524,7 +2958,8 @@ Sources:
         Room: Castle Keep, Ghost Card Room
         Section: Main
         Stage: Castle Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Castle Keep, Keep Area (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -1537,7 +2972,8 @@ Sources:
         Room: Castle Keep, Keep Area
         Section: Main
         Stage: Castle Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Cave, XXX (Power of Sire 1):
     Description: Action - Check Power of Sire 1 Location
@@ -1550,7 +2986,8 @@ Sources:
         Room: Cave, XXX
         Section: Main
         Stage: Cave
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Power of Sire
   Location - Cave, XXX (Life Apple):
     Description: Action - Check Life Apple Location
@@ -1563,7 +3000,8 @@ Sources:
         Room: Cave, XXX
         Section: Main
         Stage: Cave
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Apple
   Location - Cave, XXX (Alucard Sword):
     Description: Action - Check Alucard Sword Location
@@ -1576,7 +3014,8 @@ Sources:
         Room: Cave, XXX
         Section: Main
         Stage: Cave
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Alucard Sword
   Location - Cave, XXX (Green Tea):
     Description: Action - Check Green Tea Location
@@ -1589,7 +3028,8 @@ Sources:
         Room: Cave, XXX
         Section: Main
         Stage: Cave
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Green Tea
   Location - Cave, XXX (Power of Sire 2):
     Description: Action - Check Power of Sire 2 Location
@@ -1602,7 +3042,8 @@ Sources:
         Room: Cave, XXX
         Section: Main
         Stage: Cave
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Power of Sire
   Location - Cave, XXX (Shiitake 1):
     Description: Action - Check Shiitake 1 Location
@@ -1615,7 +3056,8 @@ Sources:
         Room: Cave, XXX
         Section: Main
         Stage: Cave
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shiitake
   Location - Cave, XXX (Shiitake 2):
     Description: Action - Check Shiitake 2 Location
@@ -1628,7 +3070,8 @@ Sources:
         Room: Cave, XXX
         Section: Main
         Stage: Cave
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shiitake
   Location - Clock Tower, Open Courtyard (Magic Missile):
     Description: Action - Check Magic Missile Location
@@ -1641,7 +3084,8 @@ Sources:
         Room: Clock Tower, Open Courtyard
         Section: Main
         Stage: Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Magic Missile
   Location - Clock Tower, Open Courtyard (Pentagram):
     Description: Action - Check Pentagram Location
@@ -1654,7 +3098,8 @@ Sources:
         Room: Clock Tower, Open Courtyard
         Section: Main
         Stage: Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Pentagram
   Location - Clock Tower, Hidden Armory (Star Flail):
     Description: Action - Check Star Flail Location
@@ -1667,7 +3112,8 @@ Sources:
         Room: Clock Tower, Hidden Armory
         Section: Main
         Stage: Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Star Flail
   Location - Clock Tower, Hidden Armory (Gold Plate):
     Description: Action - Check Gold Plate Location
@@ -1680,7 +3126,8 @@ Sources:
         Room: Clock Tower, Hidden Armory
         Section: Main
         Stage: Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Gold Plate
   Location - Clock Tower, Hidden Armory (Steel Helm):
     Description: Action - Check Steel Helm Location
@@ -1693,7 +3140,8 @@ Sources:
         Room: Clock Tower, Hidden Armory
         Section: Main
         Stage: Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Steel Helm
   Location - Clock Tower, Healing Mail Room (Healing Mail):
     Description: Action - Check Healing Mail Location
@@ -1706,7 +3154,8 @@ Sources:
         Room: Clock Tower, Healing Mail Room
         Section: Main
         Stage: Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Healing Mail
   Location - Clock Tower, Open Courtyard (Bekatowa):
     Description: Action - Check Bekatowa Location
@@ -1719,7 +3168,8 @@ Sources:
         Room: Clock Tower, Open Courtyard
         Section: Main
         Stage: Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Bekatowa
   Location - Clock Tower, Open Courtyard (Shaman Shield):
     Description: Action - Check Shaman Shield Location
@@ -1732,7 +3182,8 @@ Sources:
         Room: Clock Tower, Open Courtyard
         Section: Main
         Stage: Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shaman Shield
   Location - Clock Tower, Open Courtyard (Ice Mail):
     Description: Action - Check Ice Mail Location
@@ -1745,7 +3196,8 @@ Sources:
         Room: Clock Tower, Open Courtyard
         Section: Main
         Stage: Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Ice Mail
   Location - Clock Tower, Spire (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -1758,7 +3210,8 @@ Sources:
         Room: Clock Tower, Spire
         Section: Main
         Stage: Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Clock Tower, Spire (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -1771,7 +3224,8 @@ Sources:
         Room: Clock Tower, Spire
         Section: Main
         Stage: Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Colosseum, Right-Side Armory (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -1784,7 +3238,8 @@ Sources:
         Room: Colosseum, Right-Side Armory
         Section: Main
         Stage: Colosseum
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Colosseum, Left-Side Armory (Shield Rod):
     Description: Action - Check Shield Rod Location
@@ -1797,7 +3252,8 @@ Sources:
         Room: Colosseum, Left-Side Armory
         Section: Main
         Stage: Colosseum
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shield Rod
   Location - Colosseum, Blood Cloak Room (Blood Cloak):
     Description: Action - Check Blood Cloak Location
@@ -1810,7 +3266,8 @@ Sources:
         Room: Colosseum, Blood Cloak Room
         Section: Main
         Stage: Colosseum
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Blood Cloak
   Location - Colosseum, Passageway Between Arena and Royal Chapel (Knight Shield):
     Description: Action - Check Knight Shield Location
@@ -1823,7 +3280,8 @@ Sources:
         Room: Colosseum, Passageway Between Arena and Royal Chapel
         Section: Main
         Stage: Colosseum
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Knight Shield
   Location - Colosseum, Passageway Between Arena and Royal Chapel (Library Card):
     Description: Action - Check Library Card Location
@@ -1836,7 +3294,8 @@ Sources:
         Room: Colosseum, Passageway Between Arena and Royal Chapel
         Section: Main
         Stage: Colosseum
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Library Card
   Location - Colosseum, Fountain Room (Green Tea):
     Description: Action - Check Green Tea Location
@@ -1849,7 +3308,8 @@ Sources:
         Room: Colosseum, Fountain Room
         Section: Main
         Stage: Colosseum
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Green Tea
   Location - Colosseum, Holy Sword Room (Holy Sword):
     Description: Action - Check Holy Sword Location
@@ -1862,7 +3322,8 @@ Sources:
         Room: Colosseum, Holy Sword Room
         Section: Main
         Stage: Colosseum
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Holy Sword
   Location - Death Wing's Lair, Secret Onyx Room (Opal):
     Description: Action - Check Opal Location
@@ -1875,7 +3336,8 @@ Sources:
         Room: Death Wing's Lair, Secret Onyx Room
         Section: Main
         Stage: Death Wing's Lair
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Opal
   Location - Death Wing's Lair, Secret Onyx Room (Sword of Hador):
     Description: Action - Check Sword of Hador Location
@@ -1888,7 +3350,8 @@ Sources:
         Room: Death Wing's Lair, Secret Onyx Room
         Section: Main
         Stage: Death Wing's Lair
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Sword of Hador
   Location - Death Wing's Lair, Secret Onyx Room (High Potion):
     Description: Action - Check High Potion Location
@@ -1901,7 +3364,8 @@ Sources:
         Room: Death Wing's Lair, Secret Onyx Room
         Section: Main
         Stage: Death Wing's Lair
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - High Potion
   Location - Death Wing's Lair, Tall Shaft (Shield Potion):
     Description: Action - Check Shield Potion Location
@@ -1914,7 +3378,8 @@ Sources:
         Room: Death Wing's Lair, Tall Shaft
         Section: Main
         Stage: Death Wing's Lair
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shield Potion
   Location - Death Wing's Lair, Tall Shaft (Luck Potion):
     Description: Action - Check Luck Potion Location
@@ -1927,7 +3392,8 @@ Sources:
         Room: Death Wing's Lair, Tall Shaft
         Section: Main
         Stage: Death Wing's Lair
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Luck Potion
   Location - Death Wing's Lair, Tall Shaft (Manna Prism):
     Description: Action - Check Manna Prism Location
@@ -1940,7 +3406,8 @@ Sources:
         Room: Death Wing's Lair, Tall Shaft
         Section: Main
         Stage: Death Wing's Lair
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Manna Prism
   Location - Death Wing's Lair, Prison (Aquamarine):
     Description: Action - Check Aquamarine Location
@@ -1953,7 +3420,8 @@ Sources:
         Room: Death Wing's Lair, Prison
         Section: Main
         Stage: Death Wing's Lair
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Aquamarine
   Location - Death Wing's Lair, Garnet Room (Alucard Mail):
     Description: Action - Check Alucard Mail Location
@@ -1966,7 +3434,8 @@ Sources:
         Room: Death Wing's Lair, Garnet Room
         Section: Main
         Stage: Death Wing's Lair
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Alucard Mail
   Location - Death Wing's Lair, Catwalk Crypt (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -1979,7 +3448,8 @@ Sources:
         Room: Death Wing's Lair, Catwalk Crypt
         Section: Main
         Stage: Death Wing's Lair
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Death Wing's Lair, Sword Card Room (Heart Refresh):
     Description: Action - Check Heart Refresh Location
@@ -1992,7 +3462,8 @@ Sources:
         Room: Death Wing's Lair, Sword Card Room
         Section: Main
         Stage: Death Wing's Lair
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Refresh
   Location - Death Wing's Lair, Narrow Hallway to Olrox (Shuriken):
     Description: Action - Check Shuriken Location
@@ -2005,7 +3476,8 @@ Sources:
         Room: Death Wing's Lair, Narrow Hallway to Olrox
         Section: Main
         Stage: Death Wing's Lair
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shuriken
   Location - Death Wing's Lair, Echo of Bat Room (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -2018,7 +3490,8 @@ Sources:
         Room: Death Wing's Lair, Echo of Bat Room
         Section: Main
         Stage: Death Wing's Lair
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Floating Catacombs, XXX (Magic Missile):
     Description: Action - Check Magic Missile Location
@@ -2031,7 +3504,8 @@ Sources:
         Room: Floating Catacombs, XXX
         Section: Main
         Stage: Floating Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Magic Missile
   Location - Floating Catacombs, XXX (Buffalo Star):
     Description: Action - Check Buffalo Star Location
@@ -2044,7 +3518,8 @@ Sources:
         Room: Floating Catacombs, XXX
         Section: Main
         Stage: Floating Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Buffalo Star
   Location - Floating Catacombs, XXX (Resist Thunder):
     Description: Action - Check Resist Thunder Location
@@ -2057,7 +3532,8 @@ Sources:
         Room: Floating Catacombs, XXX
         Section: Main
         Stage: Floating Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Thunder
   Location - Floating Catacombs, XXX (Resist Fire):
     Description: Action - Check Resist Fire Location
@@ -2070,7 +3546,8 @@ Sources:
         Room: Floating Catacombs, XXX
         Section: Main
         Stage: Floating Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Fire
   Location - Floating Catacombs, XXX (Karma Coin 1):
     Description: Action - Check Karma Coin 1 Location
@@ -2083,7 +3560,8 @@ Sources:
         Room: Floating Catacombs, XXX
         Section: Main
         Stage: Floating Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Karma Coin
   Location - Floating Catacombs, XXX (Karma Coin 2):
     Description: Action - Check Karma Coin 2 Location
@@ -2096,7 +3574,8 @@ Sources:
         Room: Floating Catacombs, XXX
         Section: Main
         Stage: Floating Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Karma Coin
   Location - Floating Catacombs, XXX (Red Bean Bun):
     Description: Action - Check Red Bean Bun Location
@@ -2109,7 +3588,8 @@ Sources:
         Room: Floating Catacombs, XXX
         Section: Main
         Stage: Floating Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Red Bean Bun
   Location - Floating Catacombs, XXX (Elixir):
     Description: Action - Check Elixir Location
@@ -2122,7 +3602,8 @@ Sources:
         Room: Floating Catacombs, XXX
         Section: Main
         Stage: Floating Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Elixir
   Location - Floating Catacombs, XXX (Library Card):
     Description: Action - Check Library Card Location
@@ -2135,7 +3616,8 @@ Sources:
         Room: Floating Catacombs, XXX
         Section: Main
         Stage: Floating Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Library Card
   Location - Floating Catacombs, XXX (Life Max-Up 1):
     Description: Action - Check Life Max-Up 1 Location
@@ -2148,7 +3630,8 @@ Sources:
         Room: Floating Catacombs, XXX
         Section: Main
         Stage: Floating Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Floating Catacombs, XXX (Heart Max-Up 1):
     Description: Action - Check Heart Max-Up 1 Location
@@ -2161,7 +3644,8 @@ Sources:
         Room: Floating Catacombs, XXX
         Section: Main
         Stage: Floating Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Floating Catacombs, XXX (Shield Potion):
     Description: Action - Check Shield Potion Location
@@ -2174,7 +3658,8 @@ Sources:
         Room: Floating Catacombs, XXX
         Section: Main
         Stage: Floating Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shield Potion
   Location - Floating Catacombs, XXX (Attack Potion):
     Description: Action - Check Attack Potion Location
@@ -2187,7 +3672,8 @@ Sources:
         Room: Floating Catacombs, XXX
         Section: Main
         Stage: Floating Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Attack Potion
   Location - Floating Catacombs, XXX (Necklace of J):
     Description: Action - Check Necklace of J Location
@@ -2200,7 +3686,8 @@ Sources:
         Room: Floating Catacombs, XXX
         Section: Main
         Stage: Floating Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Necklace of J
   Location - Floating Catacombs, XXX (Diamond):
     Description: Action - Check Diamond Location
@@ -2213,7 +3700,8 @@ Sources:
         Room: Floating Catacombs, XXX
         Section: Main
         Stage: Floating Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Diamond
   Location - Floating Catacombs, XXX (Heart Max-Up 2):
     Description: Action - Check Heart Max-Up 2 Location
@@ -2226,7 +3714,8 @@ Sources:
         Room: Floating Catacombs, XXX
         Section: Main
         Stage: Floating Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Floating Catacombs, XXX (Life Max-Up 2):
     Description: Action - Check Life Max-Up 2 Location
@@ -2239,7 +3728,8 @@ Sources:
         Room: Floating Catacombs, XXX
         Section: Main
         Stage: Floating Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Floating Catacombs, XXX (Ruby Circlet):
     Description: Action - Check Ruby Circlet Location
@@ -2252,7 +3742,8 @@ Sources:
         Room: Floating Catacombs, XXX
         Section: Main
         Stage: Floating Catacombs
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Ruby Circlet
   Location - Forbidden Library, XXX (Turquoise):
     Description: Action - Check Turquoise Location
@@ -2265,7 +3756,8 @@ Sources:
         Room: Forbidden Library, XXX
         Section: Main
         Stage: Forbidden Library
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Turquoise
   Location - Forbidden Library, XXX (Opal):
     Description: Action - Check Opal Location
@@ -2278,7 +3770,8 @@ Sources:
         Room: Forbidden Library, XXX
         Section: Main
         Stage: Forbidden Library
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Opal
   Location - Forbidden Library, XXX (Library Card):
     Description: Action - Check Library Card Location
@@ -2291,7 +3784,8 @@ Sources:
         Room: Forbidden Library, XXX
         Section: Main
         Stage: Forbidden Library
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Library Card
   Location - Forbidden Library, XXX (Resist Fire):
     Description: Action - Check Resist Fire Location
@@ -2304,7 +3798,8 @@ Sources:
         Room: Forbidden Library, XXX
         Section: Main
         Stage: Forbidden Library
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Fire
   Location - Forbidden Library, XXX (Resist Ice):
     Description: Action - Check Resist Ice Location
@@ -2317,7 +3812,8 @@ Sources:
         Room: Forbidden Library, XXX
         Section: Main
         Stage: Forbidden Library
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Ice
   Location - Forbidden Library, XXX (Resist Stone):
     Description: Action - Check Resist Stone Location
@@ -2330,7 +3826,8 @@ Sources:
         Room: Forbidden Library, XXX
         Section: Main
         Stage: Forbidden Library
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Stone
   Location - Forbidden Library, XXX (Neutron Bomb):
     Description: Action - Check Neutron Bomb Location
@@ -2343,7 +3840,8 @@ Sources:
         Room: Forbidden Library, XXX
         Section: Main
         Stage: Forbidden Library
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Neutron Bomb
   Location - Forbidden Library, XXX (Badelaire):
     Description: Action - Check Badelaire Location
@@ -2356,7 +3854,8 @@ Sources:
         Room: Forbidden Library, XXX
         Section: Main
         Stage: Forbidden Library
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Badelaire
   Location - Forbidden Library, XXX (Staurolite):
     Description: Action - Check Staurolite Location
@@ -2369,7 +3868,8 @@ Sources:
         Room: Forbidden Library, XXX
         Section: Main
         Stage: Forbidden Library
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Staurolite
   Location - Long Library, Secret Bookcase Room (Stone Mask):
     Description: Action - Check Stone Mask Location
@@ -2382,7 +3882,8 @@ Sources:
         Room: Long Library, Secret Bookcase Room
         Section: Main
         Stage: Long Library
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Stone Mask
   Location - Long Library, Holy Rod Room (Holy Rod):
     Description: Action - Check Holy Rod Location
@@ -2395,7 +3896,8 @@ Sources:
         Room: Long Library, Holy Rod Room
         Section: Main
         Stage: Long Library
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Holy Rod
   Location - Long Library, Shop (Bronze Cuirass):
     Description: Action - Check Bronze Cuirass Location
@@ -2408,7 +3910,8 @@ Sources:
         Room: Long Library, Shop
         Section: Main
         Stage: Long Library
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Bronze Cuirass
   Location - Long Library, Lesser Demon Area (Takemitsu):
     Description: Action - Check Takemitsu Location
@@ -2421,7 +3924,8 @@ Sources:
         Room: Long Library, Lesser Demon Area
         Section: Main
         Stage: Long Library
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Takemitsu
   Location - Long Library, Lesser Demon Area (Onyx):
     Description: Action - Check Onyx Location
@@ -2434,7 +3938,8 @@ Sources:
         Room: Long Library, Lesser Demon Area
         Section: Main
         Stage: Long Library
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Onyx
   Location - Long Library, Lesser Demon Area (Frankfurter):
     Description: Action - Check Frankfurter Location
@@ -2447,7 +3952,8 @@ Sources:
         Room: Long Library, Lesser Demon Area
         Section: Main
         Stage: Long Library
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Frankfurter
   Location - Long Library, Faerie Card Room (Potion):
     Description: Action - Check Potion Location
@@ -2460,7 +3966,8 @@ Sources:
         Room: Long Library, Faerie Card Room
         Section: Main
         Stage: Long Library
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Potion
   Location - Long Library, Faerie Card Room (Antivenom):
     Description: Action - Check Antivenom Location
@@ -2473,7 +3980,8 @@ Sources:
         Room: Long Library, Faerie Card Room
         Section: Main
         Stage: Long Library
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Antivenom
   Location - Long Library, Holy Rod Room (Topaz Circlet):
     Description: Action - Check Topaz Circlet Location
@@ -2486,7 +3994,8 @@ Sources:
         Room: Long Library, Holy Rod Room
         Section: Main
         Stage: Long Library
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Topaz Circlet
   Location - Marble Gallery, Pathway After Left Statue (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -2499,7 +4008,8 @@ Sources:
         Room: Marble Gallery, Pathway After Left Statue
         Section: Main
         Stage: Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Marble Gallery, Pathway After Right Statue (Alucart Shield):
     Description: Action - Check Alucart Shield Location
@@ -2512,7 +4022,8 @@ Sources:
         Room: Marble Gallery, Pathway After Right Statue
         Section: Main
         Stage: Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Alucart Shield
   Location - Marble Gallery, Pathway After Right Statue (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -2525,7 +4036,8 @@ Sources:
         Room: Marble Gallery, Pathway After Right Statue
         Section: Main
         Stage: Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Marble Gallery, Gravity Boots Room (Life Apple):
     Description: Action - Check Life Apple Location
@@ -2538,7 +4050,8 @@ Sources:
         Room: Marble Gallery, Gravity Boots Room
         Section: Main
         Stage: Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Apple
   Location - Marble Gallery, Gravity Boots Room (Hammer):
     Description: Action - Check Hammer Location
@@ -2551,7 +4064,8 @@ Sources:
         Room: Marble Gallery, Gravity Boots Room
         Section: Main
         Stage: Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Hammer
   Location - Marble Gallery, Gravity Boots Room (Potion):
     Description: Action - Check Potion Location
@@ -2564,7 +4078,8 @@ Sources:
         Room: Marble Gallery, Gravity Boots Room
         Section: Main
         Stage: Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Potion
   Location - Marble Gallery, Alucart Room (Alucart Mail):
     Description: Action - Check Alucart Mail Location
@@ -2577,7 +4092,8 @@ Sources:
         Room: Marble Gallery, Alucart Room
         Section: Main
         Stage: Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Alucart Mail
   Location - Marble Gallery, Alucart Room (Alucart Sword):
     Description: Action - Check Alucart Sword Location
@@ -2590,7 +4106,8 @@ Sources:
         Room: Marble Gallery, Alucart Room
         Section: Main
         Stage: Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Alucart Sword
   Location - Marble Gallery, Power-Up Room (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -2603,7 +4120,8 @@ Sources:
         Room: Marble Gallery, Power-Up Room
         Section: Main
         Stage: Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Marble Gallery, Power-Up Room (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -2616,7 +4134,8 @@ Sources:
         Room: Marble Gallery, Power-Up Room
         Section: Main
         Stage: Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Marble Gallery, Beneath Right Trapdoor (Library Card):
     Description: Action - Check Library Card Location
@@ -2629,7 +4148,8 @@ Sources:
         Room: Marble Gallery, Beneath Right Trapdoor
         Section: Main
         Stage: Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Library Card
   Location - Marble Gallery, Beneath Right Trapdoor (Attack Potion):
     Description: Action - Check Attack Potion Location
@@ -2642,7 +4162,8 @@ Sources:
         Room: Marble Gallery, Beneath Right Trapdoor
         Section: Main
         Stage: Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Attack Potion
   Location - Marble Gallery, Spirit Orb Room (Hammer):
     Description: Action - Check Hammer Location
@@ -2655,7 +4176,8 @@ Sources:
         Room: Marble Gallery, Spirit Orb Room
         Section: Cubbies
         Stage: Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Hammer
   Location - Marble Gallery, Spirit Orb Room (Strength Potion):
     Description: Action - Check Strength Potion Location
@@ -2668,7 +4190,8 @@ Sources:
         Room: Marble Gallery, Spirit Orb Room
         Section: Cubbies
         Stage: Marble Gallery
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Strength Potion
   Location - Necromancy Laboratory, XXX (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -2681,7 +4204,8 @@ Sources:
         Room: Necromancy Laboratory, XXX
         Section: Main
         Stage: Necromancy Laboratory
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Necromancy Laboratory, XXX (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -2694,7 +4218,8 @@ Sources:
         Room: Necromancy Laboratory, XXX
         Section: Main
         Stage: Necromancy Laboratory
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Necromancy Laboratory, XXX (Goddess Shield):
     Description: Action - Check Goddess Shield Location
@@ -2707,7 +4232,8 @@ Sources:
         Room: Necromancy Laboratory, XXX
         Section: Main
         Stage: Necromancy Laboratory
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Goddess Shield
   Location - Necromancy Laboratory, XXX (Manna Prism):
     Description: Action - Check Manna Prism Location
@@ -2720,7 +4246,8 @@ Sources:
         Room: Necromancy Laboratory, XXX
         Section: Main
         Stage: Necromancy Laboratory
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Manna Prism
   Location - Necromancy Laboratory, XXX (Katana):
     Description: Action - Check Katana Location
@@ -2733,7 +4260,8 @@ Sources:
         Room: Necromancy Laboratory, XXX
         Section: Main
         Stage: Necromancy Laboratory
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Katana
   Location - Necromancy Laboratory, XXX (High Potion):
     Description: Action - Check High Potion Location
@@ -2746,7 +4274,8 @@ Sources:
         Room: Necromancy Laboratory, XXX
         Section: Main
         Stage: Necromancy Laboratory
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - High Potion
   Location - Necromancy Laboratory, XXX (Turquoise):
     Description: Action - Check Turquoise Location
@@ -2759,7 +4288,8 @@ Sources:
         Room: Necromancy Laboratory, XXX
         Section: Main
         Stage: Necromancy Laboratory
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Turquoise
   Location - Necromancy Laboratory, XXX (Ring of Arcana):
     Description: Action - Check Ring of Arcana Location
@@ -2772,7 +4302,8 @@ Sources:
         Room: Necromancy Laboratory, XXX
         Section: Main
         Stage: Necromancy Laboratory
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Ring of Arcana
   Location - Necromancy Laboratory, XXX (Resist Dark):
     Description: Action - Check Resist Dark Location
@@ -2785,7 +4316,8 @@ Sources:
         Room: Necromancy Laboratory, XXX
         Section: Main
         Stage: Necromancy Laboratory
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Dark
   Location - Olrox's Quarters, Catwalk Crypt (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -2798,7 +4330,8 @@ Sources:
         Room: Olrox's Quarters, Catwalk Crypt
         Section: Main
         Stage: Olrox's Quarters
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Olrox's Quarters, Secret Onyx Room (Broadsword):
     Description: Action - Check Broadsword Location
@@ -2811,7 +4344,8 @@ Sources:
         Room: Olrox's Quarters, Secret Onyx Room
         Section: Main
         Stage: Olrox's Quarters
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Broadsword
   Location - Olrox's Quarters, Secret Onyx Room (Onyx):
     Description: Action - Check Onyx Location
@@ -2824,7 +4358,8 @@ Sources:
         Room: Olrox's Quarters, Secret Onyx Room
         Section: Main
         Stage: Olrox's Quarters
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Onyx
   Location - Olrox's Quarters, Secret Onyx Room (Cheese):
     Description: Action - Check Cheese Location
@@ -2837,7 +4372,8 @@ Sources:
         Room: Olrox's Quarters, Secret Onyx Room
         Section: Main
         Stage: Olrox's Quarters
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Cheese
   Location - Olrox's Quarters, Tall Shaft (Manna Prism):
     Description: Action - Check Manna Prism Location
@@ -2850,7 +4386,8 @@ Sources:
         Room: Olrox's Quarters, Tall Shaft
         Section: Main
         Stage: Olrox's Quarters
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Manna Prism
   Location - Olrox's Quarters, Tall Shaft (Resist Fire):
     Description: Action - Check Resist Fire Location
@@ -2863,7 +4400,8 @@ Sources:
         Room: Olrox's Quarters, Tall Shaft
         Section: Main
         Stage: Olrox's Quarters
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Fire
   Location - Olrox's Quarters, Tall Shaft (Luck Potion):
     Description: Action - Check Luck Potion Location
@@ -2876,7 +4414,8 @@ Sources:
         Room: Olrox's Quarters, Tall Shaft
         Section: Main
         Stage: Olrox's Quarters
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Luck Potion
   Location - Olrox's Quarters, Prison (Estoc):
     Description: Action - Check Estoc Location
@@ -2889,7 +4428,8 @@ Sources:
         Room: Olrox's Quarters, Prison
         Section: Main
         Stage: Olrox's Quarters
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Estoc
   Location - Olrox's Quarters, Narrow Hallway to Olrox (Iron Ball):
     Description: Action - Check Iron Ball Location
@@ -2902,7 +4442,8 @@ Sources:
         Room: Olrox's Quarters, Narrow Hallway to Olrox
         Section: Main
         Stage: Olrox's Quarters
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Iron Ball
   Location - Olrox's Quarters, Garnet Room (Garnet):
     Description: Action - Check Garnet Location
@@ -2915,7 +4456,8 @@ Sources:
         Room: Olrox's Quarters, Garnet Room 
         Section: Main
         Stage: Olrox's Quarters
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Garnet
   Location - Outer Wall, Jewel Knuckles Room (Jewel Knuckles):
     Description: Action - Check Jewel Knuckles Location
@@ -2928,7 +4470,8 @@ Sources:
         Room: Outer Wall, Jewel Knuckles Room
         Section: Main
         Stage: Outer Wall
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Jewel Knuckles
   Location - Outer Wall, Jewel Knuckles Room (Mirror Cuirass):
     Description: Action - Check Mirror Cuirass Location
@@ -2941,7 +4484,8 @@ Sources:
         Room: Outer Wall, Jewel Knuckles Room
         Section: Main
         Stage: Outer Wall
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Mirror Cuirass
   Location - Outer Wall, Elevator Shaft Room (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -2954,7 +4498,8 @@ Sources:
         Room: Outer Wall, Elevator Shaft Room
         Section: Main
         Stage: Outer Wall
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Outer Wall, Garnet Vase Room (Garnet):
     Description: Action - Check Garnet Location
@@ -2967,7 +4512,8 @@ Sources:
         Room: Outer Wall, Garnet Vase Room
         Section: Ledge
         Stage: Outer Wall
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Garnet
   Location - Outer Wall, Gladius Room (Gladius):
     Description: Action - Check Gladius Location
@@ -2980,7 +4526,8 @@ Sources:
         Room: Outer Wall, Gladius Room
         Section: Main
         Stage: Outer Wall
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Gladius
   Location - Outer Wall, Elevator Shaft Room (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -2993,7 +4540,8 @@ Sources:
         Room: Outer Wall, Elevator Shaft Room
         Section: Main
         Stage: Outer Wall
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Outer Wall, Exit to Marble Gallery (Zircon):
     Description: Action - Check Zircon Location
@@ -3006,7 +4554,8 @@ Sources:
         Room: Outer Wall, Exit to Marble Gallery
         Section: Main
         Stage: Outer Wall
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Zircon
   Location - Reverse Caverns, XXX (Alucard Shield):
     Description: Action - Check Alucard Shield Location
@@ -3019,7 +4568,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Alucard Shield
   Location - Reverse Caverns, Item Drop 1 (Shiitake):
     Description: Action - Check Shiitake Location
@@ -3032,7 +4582,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shiitake
   Location - Reverse Caverns, XXX (Toadstool):
     Description: Action - Check Toadstool Location
@@ -3045,7 +4596,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Toadstool
   Location - Reverse Caverns, Item Drop 3 (Shiitake):
     Description: Action - Check Shiitake Location
@@ -3058,7 +4610,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shiitake
   Location - Reverse Caverns, XXX (Garnet):
     Description: Action - Check Garnet Location
@@ -3071,7 +4624,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Garnet
   Location - Reverse Caverns, XXX (Bat Pentagram):
     Description: Action - Check Bat Pentagram Location
@@ -3084,7 +4638,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Bat Pentagram
   Location - Reverse Caverns, Item Drop 6 (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -3097,7 +4652,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Reverse Caverns, Item Drop 7 (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -3110,7 +4666,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Caverns, XXX (Potion):
     Description: Action - Check Potion Location
@@ -3123,7 +4680,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Potion
   Location - Reverse Caverns, Item Drop 9 (Shiitake):
     Description: Action - Check Shiitake Location
@@ -3136,7 +4694,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shiitake
   Location - Reverse Caverns, Item Drop 10 (Shiitake):
     Description: Action - Check Shiitake Location
@@ -3149,7 +4708,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shiitake
   Location - Reverse Caverns, XXX (Opal):
     Description: Action - Check Opal Location
@@ -3162,7 +4722,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Opal
   Location - Reverse Caverns, Item Drop 12 (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -3175,7 +4736,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Reverse Caverns, XXX (Diamond):
     Description: Action - Check Diamond Location
@@ -3188,7 +4750,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Diamond
   Location - Reverse Caverns, Item Drop 14 (Zircon):
     Description: Action - Check Zircon Location
@@ -3201,7 +4764,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Zircon
   Location - Reverse Caverns, Item Drop 15 (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -3214,7 +4778,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Caverns, Item Drop 16 (Meal Ticket):
     Description: Action - Check Meal Ticket Location
@@ -3227,7 +4792,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Meal Ticket
   Location - Reverse Caverns, Item Drop 17 (Meal Ticket):
     Description: Action - Check Meal Ticket Location
@@ -3240,7 +4806,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Meal Ticket
   Location - Reverse Caverns, Item Drop 18 (Meal Ticket):
     Description: Action - Check Meal Ticket Location
@@ -3253,7 +4820,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Meal Ticket
   Location - Reverse Caverns, Item Drop 19 (Meal Ticket):
     Description: Action - Check Meal Ticket Location
@@ -3266,7 +4834,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Meal Ticket
   Location - Reverse Caverns, Item Drop 20 (Meal Ticket):
     Description: Action - Check Meal Ticket Location
@@ -3279,7 +4848,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Meal Ticket
   Location - Reverse Caverns, Item Drop 21 (Zircon):
     Description: Action - Check Zircon Location
@@ -3292,7 +4862,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Zircon
   Location - Reverse Caverns, XXX (Pot Roast):
     Description: Action - Check Pot Roast Location
@@ -3305,7 +4876,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Pot Roast
   Location - Reverse Caverns, XXX (Dark Blade):
     Description: Action - Check Dark Blade Location
@@ -3318,7 +4890,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Dark Blade
   Location - Reverse Caverns, XXX (Manna Prism):
     Description: Action - Check Manna Prism Location
@@ -3331,7 +4904,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Manna Prism
   Location - Reverse Caverns, XXX (Elixir):
     Description: Action - Check Elixir Location
@@ -3344,7 +4918,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Elixir
   Location - Reverse Caverns, XXX (Osafune Katana):
     Description: Action - Check Osafune Katana Location
@@ -3357,7 +4932,8 @@ Sources:
         Room: Reverse Caverns, XXX
         Section: Main
         Stage: Reverse Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Osafune Katana
   Location - Reverse Clock Tower, XXX (Magic Missile):
     Description: Action - Check Magic Missile Location
@@ -3370,7 +4946,8 @@ Sources:
         Room: Reverse Clock Tower, XXX
         Section: Main
         Stage: Reverse Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Magic Missile
   Location - Reverse Clock Tower, XXX (Karma Coin):
     Description: Action - Check Karma Coin Location
@@ -3383,7 +4960,8 @@ Sources:
         Room: Reverse Clock Tower, XXX
         Section: Main
         Stage: Reverse Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Karma Coin
   Location - Reverse Clock Tower, XXX (Strength Potion):
     Description: Action - Check Strength Potion Location
@@ -3396,7 +4974,8 @@ Sources:
         Room: Reverse Clock Tower, XXX
         Section: Main
         Stage: Reverse Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Strength Potion
   Location - Reverse Clock Tower, XXX (Luminus):
     Description: Action - Check Luminus Location
@@ -3409,7 +4988,8 @@ Sources:
         Room: Reverse Clock Tower, XXX
         Section: Main
         Stage: Reverse Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Luminus
   Location - Reverse Clock Tower, XXX (Smart Potion):
     Description: Action - Check Smart Potion Location
@@ -3422,7 +5002,8 @@ Sources:
         Room: Reverse Clock Tower, XXX
         Section: Main
         Stage: Reverse Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Smart Potion
   Location - Reverse Clock Tower, XXX (Dragon Helm):
     Description: Action - Check Dragon Helm Location
@@ -3435,7 +5016,8 @@ Sources:
         Room: Reverse Clock Tower, XXX
         Section: Main
         Stage: Reverse Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Dragon Helm
   Location - Reverse Clock Tower, XXX (Diamond):
     Description: Action - Check Diamond Location
@@ -3448,7 +5030,8 @@ Sources:
         Room: Reverse Clock Tower, XXX
         Section: Main
         Stage: Reverse Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Diamond
   Location - Reverse Clock Tower, XXX (Life Apple):
     Description: Action - Check Life Apple Location
@@ -3461,7 +5044,8 @@ Sources:
         Room: Reverse Clock Tower, XXX
         Section: Main
         Stage: Reverse Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Apple
   Location - Reverse Clock Tower, XXX (Sunstone):
     Description: Action - Check Sunstone Location
@@ -3474,7 +5058,8 @@ Sources:
         Room: Reverse Clock Tower, XXX
         Section: Main
         Stage: Reverse Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Sunstone
   Location - Reverse Clock Tower, XXX (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -3487,7 +5072,8 @@ Sources:
         Room: Reverse Clock Tower, XXX
         Section: Main
         Stage: Reverse Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Reverse Clock Tower, XXX (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -3500,7 +5086,8 @@ Sources:
         Room: Reverse Clock Tower, XXX
         Section: Main
         Stage: Reverse Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Clock Tower, XXX (Moon Rod):
     Description: Action - Check Moon Rod Location
@@ -3513,7 +5100,8 @@ Sources:
         Room: Reverse Clock Tower, XXX
         Section: Main
         Stage: Reverse Clock Tower
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Moon Rod
   Location - Reverse Colosseum, XXX (Fury Plate):
     Description: Action - Check Fury Plate Location
@@ -3526,7 +5114,8 @@ Sources:
         Room: Reverse Colosseum, XXX
         Section: Main
         Stage: Reverse Colosseum
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Fury Plate
   Location - Reverse Colosseum, XXX (Zircon):
     Description: Action - Check Zircon Location
@@ -3539,7 +5128,8 @@ Sources:
         Room: Reverse Colosseum, XXX
         Section: Main
         Stage: Reverse Colosseum
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Zircon
   Location - Reverse Colosseum, XXX (Buffalo Star):
     Description: Action - Check Buffalo Star Location
@@ -3552,7 +5142,8 @@ Sources:
         Room: Reverse Colosseum, XXX
         Section: Main
         Stage: Reverse Colosseum
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Buffalo Star
   Location - Reverse Colosseum, XXX (Gram):
     Description: Action - Check Gram Location
@@ -3565,7 +5156,8 @@ Sources:
         Room: Reverse Colosseum, XXX
         Section: Main
         Stage: Reverse Colosseum
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Gram
   Location - Reverse Colosseum, XXX (Aquamarine):
     Description: Action - Check Aquamarine Location
@@ -3578,7 +5170,8 @@ Sources:
         Room: Reverse Colosseum, XXX
         Section: Main
         Stage: Reverse Colosseum
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Aquamarine
   Location - Reverse Colosseum, XXX (Heart Max-Up 1):
     Description: Action - Check Heart Max-Up 1 Location
@@ -3591,7 +5184,8 @@ Sources:
         Room: Reverse Colosseum, XXX
         Section: Main
         Stage: Reverse Colosseum
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Colosseum, XXX (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -3604,7 +5198,8 @@ Sources:
         Room: Reverse Colosseum, XXX
         Section: Main
         Stage: Reverse Colosseum
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Reverse Colosseum, XXX (Heart Max-Up 2):
     Description: Action - Check Heart Max-Up 2 Location
@@ -3617,7 +5212,8 @@ Sources:
         Room: Reverse Colosseum, XXX
         Section: Main
         Stage: Reverse Colosseum
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Entrance, After Drawbridge (Hammer):
     Description: Action - Check Hammer Location
@@ -3630,7 +5226,8 @@ Sources:
         Room: Reverse Entrance, After Drawbridge
         Section: Main
         Stage: Reverse Entrance
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Hammer
   Location - Reverse Entrance, After Drawbridge (Antivenom):
     Description: Action - Check Antivenom Location
@@ -3643,7 +5240,8 @@ Sources:
         Room: Reverse Entrance, After Drawbridge
         Section: Main
         Stage: Reverse Entrance
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Antivenom
   Location - Reverse Entrance, Warg Hallway (High Potion):
     Description: Action - Check High Potion Location
@@ -3656,7 +5254,8 @@ Sources:
         Room: Reverse Entrance, Warg Hallway
         Section: Main
         Stage: Reverse Entrance
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - High Potion
   Location - Reverse Entrance, Cube of Zoe Room (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -3669,7 +5268,8 @@ Sources:
         Room: Reverse Entrance, Cube of Zoe Room
         Section: Main
         Stage: Reverse Entrance
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Entrance, Jewel Sword Room (Zircon):
     Description: Action - Check Zircon Location
@@ -3682,7 +5282,8 @@ Sources:
         Room: Reverse Entrance, Jewel Sword Room
         Section: Main
         Stage: Reverse Entrance
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Zircon
   Location - Reverse Entrance, Jewel Sword Room (Opal):
     Description: Action - Check Opal Location
@@ -3695,7 +5296,8 @@ Sources:
         Room: Reverse Entrance, Jewel Sword Room
         Section: Main
         Stage: Reverse Entrance
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Opal
   Location - Reverse Entrance, Jewel Sword Room (Beryl Circlet):
     Description: Action - Check Beryl Circlet Location
@@ -3708,7 +5310,8 @@ Sources:
         Room: Reverse Entrance, Jewel Sword Room
         Section: Main
         Stage: Reverse Entrance
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Beryl Circlet
   Location - Reverse Entrance, Holy Mail Room (Fire Boomerang):
     Description: Action - Check Fire Boomerang Location
@@ -3721,7 +5324,8 @@ Sources:
         Room: Reverse Entrance, Holy Mail Room
         Section: Main
         Stage: Reverse Entrance
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Fire Boomerang
   Location - Reverse Entrance, Heart Max-Up Room (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -3734,7 +5338,8 @@ Sources:
         Room: Reverse Entrance, Heart Max-Up Room
         Section: Main
         Stage: Reverse Entrance
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Reverse Entrance, Life Max-Up Room (Talisman):
     Description: Action - Check Talisman Location
@@ -3747,7 +5352,8 @@ Sources:
         Room: Reverse Entrance, Life Max-Up Room
         Section: Main
         Stage: Reverse Entrance
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Talisman
   Location - Reverse Keep, XXX (Sword of Dawn):
     Description: Action - Check Sword of Dawn Location
@@ -3760,7 +5366,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Sword of Dawn
   Location - Reverse Keep, XXX (Iron Ball):
     Description: Action - Check Iron Ball Location
@@ -3773,7 +5380,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Iron Ball
   Location - Reverse Keep, XXX (Zircon):
     Description: Action - Check Zircon Location
@@ -3786,7 +5394,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Zircon
   Location - Reverse Keep, XXX (Bastard Sword):
     Description: Action - Check Bastard Sword Location
@@ -3799,7 +5408,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Bastard Sword
   Location - Reverse Keep, XXX (Life Max-Up 1):
     Description: Action - Check Life Max-Up 1 Location
@@ -3812,7 +5422,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Reverse Keep, XXX (Heart Max-Up 1):
     Description: Action - Check Heart Max-Up 1 Location
@@ -3825,7 +5436,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Keep, XXX (Life Max-Up 2):
     Description: Action - Check Life Max-Up 2 Location
@@ -3838,7 +5450,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Reverse Keep, XXX (Heart Max-Up 2):
     Description: Action - Check Heart Max-Up 2 Location
@@ -3851,7 +5464,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Keep, XXX (Life Max-Up 3):
     Description: Action - Check Life Max-Up 3 Location
@@ -3864,7 +5478,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Reverse Keep, XXX (Heart Max-Up 3):
     Description: Action - Check Heart Max-Up 3 Location
@@ -3877,7 +5492,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Keep, XXX (Royal Cloak):
     Description: Action - Check Royal Cloak Location
@@ -3890,7 +5506,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Royal Cloak
   Location - Reverse Keep, XXX (Resist Fire):
     Description: Action - Check Resist Fire Location
@@ -3903,7 +5520,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Fire
   Location - Reverse Keep, XXX (Resist Ice):
     Description: Action - Check Resist Ice Location
@@ -3916,7 +5534,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Ice
   Location - Reverse Keep, XXX (Resist Thunder):
     Description: Action - Check Resist Thunder Location
@@ -3929,7 +5548,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Thunder
   Location - Reverse Keep, XXX (Resist Stone):
     Description: Action - Check Resist Stone Location
@@ -3942,7 +5562,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Stone
   Location - Reverse Keep, XXX (High Potion):
     Description: Action - Check High Potion Location
@@ -3955,7 +5576,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - High Potion
   Location - Reverse Keep, XXX (Garnet):
     Description: Action - Check Garnet Location
@@ -3968,7 +5590,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Garnet
   Location - Reverse Keep, XXX (Lightning Mail):
     Description: Action - Check Lightning Mail Location
@@ -3981,7 +5604,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Lightning Mail
   Location - Reverse Keep, XXX (Library Card):
     Description: Action - Check Library Card Location
@@ -3994,7 +5618,8 @@ Sources:
         Room: Reverse Keep, XXX
         Section: Main
         Stage: Reverse Keep
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Library Card
   Location - Reverse Outer Wall, Lower Medusa Room (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -4007,7 +5632,8 @@ Sources:
         Room: Reverse Outer Wall, Lower Medusa Room
         Section: Main
         Stage: Reverse Outer Wall
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Outer Wall, Jewel Knuckles Room (Shotel):
     Description: Action - Check Shotel Location
@@ -4020,7 +5646,8 @@ Sources:
         Room: Reverse Outer Wall, Jewel Knuckles Room
         Section: Main
         Stage: Reverse Outer Wall
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shotel
   Location - Reverse Outer Wall, Jewel Knuckles Room (Hammer):
     Description: Action - Check Hammer Location
@@ -4033,7 +5660,8 @@ Sources:
         Room: Reverse Outer Wall, Jewel Knuckles Room
         Section: Main
         Stage: Reverse Outer Wall
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Hammer
   Location - Reverse Outer Wall, Exit to Marble Gallery (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -4046,7 +5674,8 @@ Sources:
         Room: Reverse Outer Wall, Exit to Marble Gallery
         Section: Main
         Stage: Reverse Outer Wall
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Reverse Outer Wall, Garnet Vase Room (Luck Potion):
     Description: Action - Check Luck Potion Location
@@ -4059,7 +5688,8 @@ Sources:
         Room: Reverse Outer Wall, Garnet Vase Room
         Section: Main
         Stage: Reverse Outer Wall
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Luck Potion
   Location - Reverse Outer Wall, Gladius Room (Shield Potion):
     Description: Action - Check Shield Potion Location
@@ -4072,7 +5702,8 @@ Sources:
         Room: Reverse Outer Wall, Gladius Room
         Section: Main
         Stage: Reverse Outer Wall
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shield Potion
   Location - Reverse Outer Wall, Elevator Shaft Room (High Potion):
     Description: Action - Check High Potion Location
@@ -4085,7 +5716,8 @@ Sources:
         Room: Reverse Outer Wall, Elevator Shaft Room
         Section: Main
         Stage: Reverse Outer Wall
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - High Potion
   Location - Reverse Outer Wall, Elevator Shaft Room (Garnet):
     Description: Action - Check Garnet Location
@@ -4098,7 +5730,8 @@ Sources:
         Room: Reverse Outer Wall, Elevator Shaft Room
         Section: Main
         Stage: Reverse Outer Wall
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Garnet
   Location - Royal Chapel, Chapel Staircase (Ankh of Life):
     Description: Action - Check Ankh of Life Location
@@ -4111,7 +5744,8 @@ Sources:
         Room: Royal Chapel, Chapel Staircase
         Section: Main
         Stage: Royal Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Ankh of Life
   Location - Royal Chapel, Chapel Staircase (Morningstar):
     Description: Action - Check Morningstar Location
@@ -4124,7 +5758,8 @@ Sources:
         Room: Royal Chapel, Chapel Staircase
         Section: Main
         Stage: Royal Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Morningstar
   Location - Royal Chapel, Silver Ring Room (Silver Ring):
     Description: Action - Check Silver Ring Location
@@ -4137,7 +5772,10 @@ Sources:
         Room: Royal Chapel, Silver Ring Room
         Section: Main
         Stage: Royal Chapel
-    Reward Class: Required Item
+    Tags:
+      - Item
+      - Relic
+      - Required
     Target Reward: Item - Silver Ring
   Location - Royal Chapel, Chapel Staircase (Aquamarine):
     Description: Action - Check Aquamarine Location
@@ -4150,7 +5788,8 @@ Sources:
         Room: Royal Chapel, Chapel Staircase
         Section: Main
         Stage: Royal Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Aquamarine
   Location - Royal Chapel, Chapel Staircase (Mystic Pendant):
     Description: Action - Check Mystic Pendant Location
@@ -4163,7 +5802,8 @@ Sources:
         Room: Royal Chapel, Chapel Staircase
         Section: Main
         Stage: Royal Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Mystic Pendant
   Location - Royal Chapel, Chapel Staircase (Magic Missile):
     Description: Action - Check Magic Missile Location
@@ -4176,7 +5816,8 @@ Sources:
         Room: Royal Chapel, Chapel Staircase
         Section: Main
         Stage: Royal Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Magic Missile
   Location - Royal Chapel, Chapel Staircase (Shuriken):
     Description: Action - Check Shuriken Location
@@ -4189,7 +5830,8 @@ Sources:
         Room: Royal Chapel, Chapel Staircase
         Section: Main
         Stage: Royal Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shuriken
   Location - Royal Chapel, Chapel Staircase (TNT):
     Description: Action - Check TNT Location
@@ -4202,7 +5844,8 @@ Sources:
         Room: Royal Chapel, Chapel Staircase
         Section: Main
         Stage: Royal Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - TNT
   Location - Royal Chapel, Chapel Staircase (Boomerang):
     Description: Action - Check Boomerang Location
@@ -4215,7 +5858,8 @@ Sources:
         Room: Royal Chapel, Chapel Staircase
         Section: Main
         Stage: Royal Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Boomerang
   Location - Royal Chapel, Goggles Room (Goggles):
     Description: Action - Check Goggles Location
@@ -4228,7 +5872,8 @@ Sources:
         Room: Royal Chapel, Goggles Room
         Section: Main
         Stage: Royal Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Goggles
   Location - Royal Chapel, Left Tower (Silver Plate):
     Description: Action - Check Silver Plate Location
@@ -4241,7 +5886,8 @@ Sources:
         Room: Royal Chapel, Left Tower
         Section: Main
         Stage: Royal Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Silver Plate
   Location - Royal Chapel, Left Tower (Strength Potion):
     Description: Action - Check Strength Potion Location
@@ -4254,7 +5900,8 @@ Sources:
         Room: Royal Chapel, Left Tower
         Section: Main
         Stage: Royal Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Strength Potion
   Location - Royal Chapel, Left Tower (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -4267,7 +5914,8 @@ Sources:
         Room: Royal Chapel, Left Tower
         Section: Main
         Stage: Royal Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Royal Chapel, Middle Tower (Zircon):
     Description: Action - Check Zircon Location
@@ -4280,7 +5928,8 @@ Sources:
         Room: Royal Chapel, Middle Tower
         Section: Main
         Stage: Royal Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Zircon
   Location - Royal Chapel, Right Tower (Cutlass):
     Description: Action - Check Cutlass Location
@@ -4293,7 +5942,8 @@ Sources:
         Room: Royal Chapel, Right Tower
         Section: Main
         Stage: Royal Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Cutlass
   Location - Royal Chapel, Right Tower (Potion):
     Description: Action - Check Potion Location
@@ -4306,7 +5956,8 @@ Sources:
         Room: Royal Chapel, Right Tower
         Section: Main
         Stage: Royal Chapel
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Potion
   Location - Underground Caverns, Plaque Room With Breakable Wall and Left Ferryman Route (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -4325,7 +5976,8 @@ Sources:
         Room: Underground Caverns, Left Ferryman Route
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Underground Caverns, Plaque Room With Life Max-Up (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -4338,7 +5990,8 @@ Sources:
         Room: Underground Caverns, Plaque Room With Life Max-Up
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Underground Caverns, Crystal Cloak Room (Crystal Cloak):
     Description: Action - Check Crystal Cloak Location
@@ -4351,7 +6004,8 @@ Sources:
         Room: Underground Caverns, Crystal Cloak Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Crystal Cloak
   Location - Underground Caverns, Ice Floe Room (Antivenom):
     Description: Action - Check Antivenom Location
@@ -4364,7 +6018,8 @@ Sources:
         Room: Underground Caverns, Ice Floe Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Antivenom
   Location - Underground Caverns, Ice Floe Room (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -4377,7 +6032,8 @@ Sources:
         Room: Underground Caverns, Ice Floe Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Underground Caverns, Room ID 18 (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -4390,7 +6046,8 @@ Sources:
         Room: Underground Caverns, Room ID 18
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Underground Caverns, DK Button (Herald Shield):
     Description: Action - Check Herald Shield Location
@@ -4403,7 +6060,8 @@ Sources:
         Room: Underground Caverns, DK Button
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Herald Shield
   Location - Underground Caverns, Long Drop (Zircon):
     Description: Action - Check Zircon Location
@@ -4416,7 +6074,8 @@ Sources:
         Room: Underground Caverns, Long Drop
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Zircon
   Location - Underground Caverns, False Save Room (Gold Ring):
     Description: Action - Check Gold Ring Location
@@ -4429,7 +6088,10 @@ Sources:
         Room: Underground Caverns, False Save Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Required Item
+    Tags:
+      - Item
+      - Relic
+      - Required
     Target Reward: Item - Gold Ring
   Location - Underground Caverns, Bandanna Room (Bandanna):
     Description: Action - Check Bandanna Location
@@ -4442,7 +6104,8 @@ Sources:
         Room: Underground Caverns, Bandanna Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Bandanna
   Location - Underground Caverns, Tall Stairwell (Shiitake):
     Description: Action - Check Shiitake Location
@@ -4455,7 +6118,8 @@ Sources:
         Room: Underground Caverns, Tall Stairwell
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shiitake
   Location - Underground Caverns, Claymore Stairwell (Claymore):
     Description: Action - Check Claymore Location
@@ -4468,7 +6132,8 @@ Sources:
         Room: Underground Caverns, Claymore Stairwell
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Claymore
   Location - Underground Caverns, Meal Tickets and Moonstone Room (Meal Ticket 1):
     Description: Action - Check Meal Ticket 1 Location
@@ -4481,7 +6146,8 @@ Sources:
         Room: Underground Caverns, Meal Tickets and Moonstone Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Meal Ticket
   Location - Underground Caverns, Meal Tickets and Moonstone Room (Meal Ticket 2):
     Description: Action - Check Meal Ticket 2 Location
@@ -4494,7 +6160,8 @@ Sources:
         Room: Underground Caverns, Meal Tickets and Moonstone Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Meal Ticket
   Location - Underground Caverns, Meal Tickets and Moonstone Room (Meal Ticket 3):
     Description: Action - Check Meal Ticket 3 Location
@@ -4507,7 +6174,8 @@ Sources:
         Room: Underground Caverns, Meal Tickets and Moonstone Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Meal Ticket
   Location - Underground Caverns, Meal Tickets and Moonstone Room (Meal Ticket 4):
     Description: Action - Check Meal Ticket 4 Location
@@ -4520,7 +6188,8 @@ Sources:
         Room: Underground Caverns, Meal Tickets and Moonstone Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Meal Ticket
   Location - Underground Caverns, Meal Tickets and Moonstone Room (Moonstone):
     Description: Action - Check Moonstone Location
@@ -4533,7 +6202,8 @@ Sources:
         Room: Underground Caverns, Meal Tickets and Moonstone Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Moonstone
   Location - Underground Caverns, Rising Water Room (Scimitar):
     Description: Action - Check Scimitar Location
@@ -4546,7 +6216,8 @@ Sources:
         Room: Underground Caverns, Rising Water Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Scimitar
   Location - Underground Caverns, Rising Water Room (Resist Ice):
     Description: Action - Check Resist Ice Location
@@ -4559,7 +6230,8 @@ Sources:
         Room: Underground Caverns, Rising Water Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Resist Ice
   Location - Underground Caverns, Scylla Room (Pot Roast):
     Description: Action - Check Pot Roast Location
@@ -4572,7 +6244,8 @@ Sources:
         Room: Underground Caverns, Scylla Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Pot Roast
   Location - Underground Caverns, Right Ferryman Route (Onyx):
     Description: Action - Check Onyx Location
@@ -4585,7 +6258,8 @@ Sources:
         Room: Underground Caverns, Right Ferryman Route
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Onyx
   Location - Underground Caverns, Right Ferryman Route (Knuckle Duster):
     Description: Action - Check Knuckle Duster Location
@@ -4598,7 +6272,8 @@ Sources:
         Room: Underground Caverns, Right Ferryman Route
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Knuckle Duster
   Location - Underground Caverns, Right Ferryman Route (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -4611,7 +6286,8 @@ Sources:
         Room: Underground Caverns, Right Ferryman Route
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Underground Caverns, Right Ferryman Route (Elixir):
     Description: Action - Check Elixir Location
@@ -4624,7 +6300,8 @@ Sources:
         Room: Underground Caverns, Right Ferryman Route
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Elixir
   Location - Underground Caverns, Ice Floe Room (Shiitake):
     Description: Action - Check Shiitake Location
@@ -4637,7 +6314,8 @@ Sources:
         Room: Underground Caverns, Ice Floe Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shiitake
   Location - Underground Caverns, Ice Floe Room (Toadstool):
     Description: Action - Check Toadstool Location
@@ -4650,7 +6328,8 @@ Sources:
         Room: Underground Caverns, Ice Floe Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Toadstool
   Location - Underground Caverns, DK Bridge (Life Max-Up):
     Description: Action - Check Life Max-Up Location
@@ -4663,7 +6342,8 @@ Sources:
         Room: Underground Caverns, DK Bridge
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Life Max-Up
   Location - Underground Caverns, DK Bridge (Heart Max-Up):
     Description: Action - Check Heart Max-Up Location
@@ -4676,7 +6356,8 @@ Sources:
         Room: Underground Caverns, DK Bridge
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Heart Max-Up
   Location - Underground Caverns, Pentagram Room (Pentagram):
     Description: Action - Check Pentagram Location
@@ -4689,7 +6370,8 @@ Sources:
         Room: Underground Caverns, Pentagram Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Pentagram
   Location - Underground Caverns, Waterfall (Secret Boots):
     Description: Action - Check Secret Boots Location
@@ -4702,7 +6384,8 @@ Sources:
         Room: Underground Caverns, Waterfall
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Secret Boots
   Location - Underground Caverns, Waterfall (Toadstool):
     Description: Action - Check Toadstool Location
@@ -4715,7 +6398,8 @@ Sources:
         Room: Underground Caverns, Waterfall
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Toadstool
   Location - Underground Caverns, Waterfall (Shiitake):
     Description: Action - Check Shiitake Location
@@ -4728,7 +6412,8 @@ Sources:
         Room: Underground Caverns, Waterfall
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shiitake
   Location - Underground Caverns, Exit to Castle Entrance (Shiitake):
     Description: Action - Check Shiitake Location
@@ -4741,7 +6426,8 @@ Sources:
         Room: Underground Caverns, Exit to Castle Entrance
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Shiitake
   Location - Underground Caverns, Ice Floe Room (Nunchaku):
     Description: Action - Check Nunchaku Location
@@ -4754,9 +6440,114 @@ Sources:
         Room: Underground Caverns, Ice Floe Room
         Section: Main
         Stage: Underground Caverns
-    Reward Class: Item
+    Tags:
+      - Item
     Target Reward: Item - Nunchaku
+  Special - Guaranteed Drop (Bone Scimitar, Copper):
+    Pool: Bone Scimitar
+    Tags:
+      - Special
+      - Accessory
+      - Armor
+      - One-Handed Weapon
+      - Two-Handed Weapon
+    Target Reward: Item - Red Rust
+  Special - Guaranteed Drop (Bone Scimitar, Green):
+    Pool: Bone Scimitar
+    Tags:
+      - Special
+      - Accessory
+      - Armor
+      - One-Handed Weapon
+      - Two-Handed Weapon
+    Target Reward: Item - Short Sword
+  Special - Starting Equipment (Alucard Sword):
+    Pool: Starting Gear - Weapon
+    Tags:
+      - Special
+      - One-Handed Weapon
+    Target Reward: Item - Alucard Sword
+  Special - Starting Equipment (Alucard Shield):
+    Pool: Starting Gear - Shield
+    Tags:
+      - Special
+      - Shield
+    Target Reward: Item - Alucard Shield
+  Special - Starting Equipment (Dragon Helm):
+    Pool: Starting Gear - Head
+    Tags:
+      - Special
+      - Head
+    Target Reward: Item - Dragon Helm
+  Special - Starting Equipment (Alucard Mail):
+    Pool: Starting Gear - Body
+    Tags:
+      - Special
+      - Body
+    Target Reward: Item - Alucard Mail
+  Special - Starting Equipment (Twilight Cloak):
+    Pool: Starting Gear - Cloak
+    Tags:
+      - Special
+      - Cloak
+    Target Reward: Item - Twilight Cloak
+  Special - Starting Equipment (Necklace of J):
+    Pool: Starting Gear - Accessory
+    Tags:
+      - Special
+      - Accessory
+    Target Reward: Item - Necklace of J
+  Special - Prologue Bonus Equipment (Potion):
+    Pool: Prologue Reward - Consumable
+    Tags:
+      - Special
+      - Consumable
+    Target Reward: Item - Potion
+  Special - Prologue Bonus Equipment (Heart Refresh):
+    Pool: Prologue Reward - Consumable
+    Tags:
+      - Special
+      - Consumable
+    Target Reward: Item - Heart Refresh
+  Special - Prologue Bonus Equipment (Neutron Bomb):
+    Pool: Prologue Reward - Consumable
+    Tags:
+      - Special
+      - Consumable
+    Target Reward: Item - Neutron Bomb
+  Special - Name Code Bonus Equipment (Lapis Lazuli):
+    Pool: Name Code - Accessory
+    Tags:
+      - Special
+      - Accessory
+    Target Reward: Item - Lapis Lazuli
+  Special - Name Code Bonus Equipment (Axe Lord Armor):
+    Pool: Name Code - Armor
+    Tags:
+      - Special
+      - Body
+    Target Reward: Item - Axe Lord Armor
 Targets:
+  Item - $100:
+    Outcomes:
+      Gold: 100
+    Tags:
+      - Gold
+  Item - $1000:
+    Outcomes:
+      Gold: 1000
+    Tags:
+      - Gold
+  Item - $2000:
+    Outcomes:
+      Gold: 2000
+    Tags:
+      - Gold
+  Item - $400:
+    Outcomes:
+      Gold: 400
+    Tags:
+      - Gold
   Item - Alucard Mail:
     Outcomes:
       Item - Alucard Mail: 1
@@ -4802,6 +6593,12 @@ Targets:
     Tags:
       - Consumable
       - Buff
+  Item - Apple:
+    Outcomes:
+      Item - Apple: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Aquamarine:
     Outcomes:
       Item - Aquamarine: 1
@@ -4813,6 +6610,18 @@ Targets:
     Tags:
       - Consumable
       - Buff
+  Item - Axe Lord Armor:
+    Outcomes:
+      Item - Axe Lord Armor: 1
+    Tags:
+      - Armor
+      - Body
+  Item - Axe Lord Shield:
+    Outcomes:
+      Item - Axe Lord Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Badelaire:
     Outcomes:
       Item - Badelaire: 1
@@ -4824,6 +6633,12 @@ Targets:
     Tags:
       - Armor
       - Head
+  Item - Banana:
+    Outcomes:
+      Item - Banana: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Bandanna:
     Outcomes:
       Item - Bandanna: 1
@@ -4874,12 +6689,23 @@ Targets:
       Item - Bloodstone: 1
     Tags:
       - Accessory
+  Item - Blue Knuckles:
+    Outcomes:
+      Item - Blue Knuckles: 1
+    Tags:
+      - One-Handed Weapon
   Item - Boomerang:
     Outcomes:
       Item - Boomerang: 1
     Tags:
       - Consumable
       - Thrown
+  Item - Brilliant Mail:
+    Outcomes:
+      Item - Brilliant Mail: 1
+    Tags:
+      - Armor
+      - Body
   Item - Broadsword:
     Outcomes:
       Item - Broadsword: 1
@@ -4909,12 +6735,29 @@ Targets:
     Tags:
       - Armor
       - Head
+  Item - Chakram:
+    Outcomes:
+      Item - Chakram: 1
+    Tags:
+      - One-Handed Weapon
   Item - Cheese:
     Outcomes:
       Item - Cheese: 1
     Tags:
       - Consumable
       - Food
+  Item - Cheesecake:
+    Outcomes:
+      Item - Cheesecake: 1
+    Tags:
+      - Consumable
+      - Food
+  Item - Circlet:
+    Outcomes:
+      Item - Circlet: 1
+    Tags:
+      - Armor
+      - Head
   Item - Claymore:
     Outcomes:
       Item - Claymore: 1
@@ -4926,9 +6769,31 @@ Targets:
     Tags:
       - Armor
       - Cloak
+  Item - Cloth Tunic:
+    Outcomes:
+      Item - Cloth Tunic: 1
+    Tags:
+      - Armor
+      - Body
   Item - Combat Knife:
     Outcomes:
       Item - Combat Knife: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Coral Circlet:
+    Outcomes:
+      Item - Coral Circlet: 1
+    Tags:
+      - Armor
+      - Head
+  Item - Covenant Stone:
+    Outcomes:
+      Item - Covenant Stone: 1
+    Tags:
+      - Accessory
+  Item - Crissaegrim:
+    Outcomes:
+      Item - Crissaegrim: 1
     Tags:
       - One-Handed Weapon
   Item - Cross Shuriken:
@@ -4948,11 +6813,28 @@ Targets:
       Item - Cutlass: 1
     Tags:
       - One-Handed Weapon
+  Item - Damascus Sword:
+    Outcomes:
+      Item - Damascus Sword: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Dark Armor:
+    Outcomes:
+      Item - Dark Armor: 1
+    Tags:
+      - Armor
+      - Body
   Item - Dark Blade:
     Outcomes:
       Item - Dark Blade: 1
     Tags:
       - One-Handed Weapon
+  Item - Dark Shield:
+    Outcomes:
+      Item - Dark Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Diamond:
     Outcomes:
       Item - Diamond: 1
@@ -4964,6 +6846,12 @@ Targets:
     Tags:
       - Armor
       - Head
+  Item - Dynamite:
+    Outcomes:
+      Item - Dynamite: 1
+    Tags:
+      - Consumable
+      - Bomb
   Item - Elixir:
     Outcomes:
       Item - Elixir: 1
@@ -4980,6 +6868,12 @@ Targets:
       Item - Falchion: 1
     Tags:
       - One-Handed Weapon
+  Item - Felt Hat:
+    Outcomes:
+      Item - Felt Hat: 1
+    Tags:
+      - Armor
+      - Head
   Item - Fire Boomerang:
     Outcomes:
       Item - Fire Boomerang: 1
@@ -4992,11 +6886,33 @@ Targets:
     Tags:
       - Armor
       - Body
+  Item - Fire Shield:
+    Outcomes:
+      Item - Fire Shield: 1
+    Tags:
+      - Armor
+      - Shield
+  Item - Firebrand:
+    Outcomes:
+      Item - Firebrand: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Fist of Tulkas:
+    Outcomes:
+      Item - Fist of Tulkas: 1
+    Tags:
+      - One-Handed Weapon
   Item - Flamberge:
     Outcomes:
       Item - Flamberge: 1
     Tags:
       - Two-Handed Weapon
+  Item - Flame Star:
+    Outcomes:
+      Item - Flame Star: 1
+    Tags:
+      - Consumable
+      - Thrown
   Item - Frankfurter:
     Outcomes:
       Item - Frankfurter: 1
@@ -5014,11 +6930,22 @@ Targets:
       Item - Garnet: 1
     Tags:
       - Gem
+  Item - Gauntlet:
+    Outcomes:
+      Item - Gauntlet: 1
+    Tags:
+      - Accessory
   Item - Gladius:
     Outcomes:
       Item - Gladius: 1
     Tags:
       - One-Handed Weapon
+  Item - God's Garb:
+    Outcomes:
+      Item - God's Garb: 1
+    Tags:
+      - Armor
+      - Body
   Item - Goddess Shield:
     Outcomes:
       Item - Goddess Shield: 1
@@ -5028,6 +6955,12 @@ Targets:
   Item - Goggles:
     Outcomes:
       Item - Goggles: 1
+    Tags:
+      - Armor
+      - Head
+  Item - Gold Circlet:
+    Outcomes:
+      Item - Gold Circlet: 1
     Tags:
       - Armor
       - Head
@@ -5042,14 +6975,37 @@ Targets:
       Item - Gold Ring: 1
     Tags:
       - Accessory
+      - Required
   Item - Gram:
     Outcomes:
       Item - Gram: 1
     Tags:
       - One-Handed Weapon
+  Item - Grapes:
+    Outcomes:
+      Item - Grapes: 1
+    Tags:
+      - Consumable
+      - Food
+  Item - Great Sword:
+    Outcomes:
+      Item - Great Sword: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Green Tea:
     Outcomes:
       Item - Green Tea: 1
+    Tags:
+      - Consumable
+      - Food
+  Item - Gurthang:
+    Outcomes:
+      Item - Gurthang: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Ham and Eggs:
+    Outcomes:
+      Item - Ham and Eggs: 1
     Tags:
       - Consumable
       - Food
@@ -5066,24 +7022,34 @@ Targets:
     Tags:
       - Armor
       - Body
-  Item - Heart Refresh:
+  Item - Heart Broach:
     Outcomes:
-      Item - Heart Refresh: 1
+      Item - Heart Broach: 1
     Tags:
-      - Consumable
-      - Heart
-  Item - Herald Shield:
-    Outcomes:
-      Item - Herald Shield: 1
-    Tags:
-      - Armor
-      - Shield
+      - Accessory
   Item - Heart Max-Up:
     Outcomes:
       Item - Heart Max-Up: 1
     Tags:
       - Upgrade
       - Low Priority - Racing
+  Item - Heart Refresh:
+    Outcomes:
+      Item - Heart Refresh: 1
+    Tags:
+      - Consumable
+      - Heart
+  Item - Heaven Sword:
+    Outcomes:
+      Item - Heaven Sword: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Herald Shield:
+    Outcomes:
+      Item - Herald Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Hide Cuirass:
     Outcomes:
       Item - Hide Cuirass: 1
@@ -5096,6 +7062,11 @@ Targets:
     Tags:
       - Consumable
       - Healing
+  Item - Holbein Dagger:
+    Outcomes:
+      Item - Holbein Dagger: 1
+    Tags:
+      - One-Handed Weapon
   Item - Holy Mail:
     Outcomes:
       Item - Holy Mail: 1
@@ -5112,6 +7083,17 @@ Targets:
       Item - Holy Sword: 1
     Tags:
       - One-Handed Weapon
+  Item - Hunter Sword:
+    Outcomes:
+      Item - Hunter Sword: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Ice Cream:
+    Outcomes:
+      Item - Ice Cream: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Ice Mail:
     Outcomes:
       Item - Ice Mail: 1
@@ -5129,6 +7111,23 @@ Targets:
     Tags:
       - Consumable
       - Thrown
+  Item - Iron Cuirass:
+    Outcomes:
+      Item - Iron Cuirass: 1
+    Tags:
+      - Armor
+      - Body
+  Item - Iron Fist:
+    Outcomes:
+      Item - Iron Fist: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Iron Shield:
+    Outcomes:
+      Item - Iron Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Javelin:
     Outcomes:
       Item - Javelin: 1
@@ -5156,6 +7155,11 @@ Targets:
       Item - Katana: 1
     Tags:
       - Two-Handed Weapon
+  Item - King's Stone:
+    Outcomes:
+      Item - King's Stone: 1
+    Tags:
+      - Accessory
   Item - Knight Shield:
     Outcomes:
       Item - Knight Shield: 1
@@ -5167,6 +7171,11 @@ Targets:
       Item - Knuckle Duster: 1
     Tags:
       - One-Handed Weapon
+  Item - Lapis Lazuli:
+    Outcomes:
+      Item - Lapis Lazuli: 1
+    Tags:
+      - Accessory
   Item - Leather Shield:
     Outcomes:
       Item - Leather Shield: 1
@@ -5211,6 +7220,17 @@ Targets:
       Item - Luminus: 1
     Tags:
       - One-Handed Weapon
+  Item - Lunch A:
+    Outcomes:
+      Item - Lunch A: 1
+    Tags:
+      - Consumable
+      - Food
+  Item - Mablung Sword:
+    Outcomes:
+      Item - Mablung Sword: 1
+    Tags:
+      - One-Handed Weapon
   Item - Magic Missile:
     Outcomes:
       Item - Magic Missile: 1
@@ -5224,6 +7244,16 @@ Targets:
       - Consumable
       - Manna
       - High Priority - Racing
+  Item - Marsil:
+    Outcomes:
+      Item - Marsil: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Masamune:
+    Outcomes:
+      Item - Masamune: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Meal Ticket:
     Outcomes:
       Item - Meal Ticket: 1
@@ -5231,9 +7261,32 @@ Targets:
       - Consumable
       - Food
       - Low Priority - Racing
+  Item - Medal:
+    Outcomes:
+      Item - Medal: 1
+    Tags:
+      - Accessory
+  Item - Medusa Shield:
+    Outcomes:
+      Item - Medusa Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Mirror Cuirass:
     Outcomes:
       Item - Mirror Cuirass: 1
+    Tags:
+      - Armor
+      - Body
+  Item - Miso Soup:
+    Outcomes:
+      Item - Miso Soup: 1
+    Tags:
+      - Consumable
+      - Food
+  Item - Mojo Mail:
+    Outcomes:
+      Item - Mojo Mail: 1
     Tags:
       - Armor
       - Body
@@ -5270,14 +7323,46 @@ Targets:
       Item - Mormegil: 1
     Tags:
       - One-Handed Weapon
+  Item - Morning Set:
+    Outcomes:
+      Item - Morning Set: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Morningstar:
     Outcomes:
       Item - Morningstar: 1
     Tags:
       - One-Handed Weapon
+  Item - Mourneblade:
+    Outcomes:
+      Item - Mourneblade: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Muramasa:
+    Outcomes:
+      Item - Muramasa: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Mystic Pendant:
     Outcomes:
       Item - Mystic Pendant: 1
+    Tags:
+      - Accessory
+  Item - Namakura:
+    Outcomes:
+      Item - Namakura: 1
+    Tags:
+      - Two-Handed Weapon
+  Item - Natou:
+    Outcomes:
+      Item - Natou: 1
+    Tags:
+      - Consumable
+      - Food
+  Item - Nauglamir:
+    Outcomes:
+      Item - Nauglamir: 1
     Tags:
       - Accessory
   Item - Necklace of J:
@@ -5296,6 +7381,11 @@ Targets:
       Item - Nunchaku: 1
     Tags:
       - Two-Handed Weapon
+  Item - Obsidian Sword:
+    Outcomes:
+      Item - Obsidian Sword: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Onyx:
     Outcomes:
       Item - Onyx: 1
@@ -5306,6 +7396,12 @@ Targets:
       Item - Opal: 1
     Tags:
       - Gem
+  Item - Opal Circlet:
+    Outcomes:
+      Item - Opal Circlet: 1
+    Tags:
+      - Armor
+      - Head
   Item - Osafune Katana:
     Outcomes:
       Item - Osafune Katana: 1
@@ -5323,6 +7419,12 @@ Targets:
     Tags:
       - Consumable
       - Bomb
+  Item - Pizza:
+    Outcomes:
+      Item - Pizza: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Platinum Mail:
     Outcomes:
       Item - Platinum Mail: 1
@@ -5354,12 +7456,28 @@ Targets:
     Tags:
       - Consumable
       - Bomb
+  Item - Ramen:
+    Outcomes:
+      Item - Ramen: 1
+    Tags:
+      - Consumable
+      - Food
+  Item - Rapier:
+    Outcomes:
+      Item - Rapier: 1
+    Tags:
+      - One-Handed Weapon
   Item - Red Bean Bun:
     Outcomes:
       Item - Red Bean Bun: 1
     Tags:
       - Consumable
       - Food
+  Item - Red Rust:
+    Outcomes:
+      Item - Red Rust: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Resist Dark:
     Outcomes:
       Item - Resist Dark: 1
@@ -5406,6 +7524,16 @@ Targets:
       Item - Ring of Ares: 1
     Tags:
       - Accessory
+  Item - Ring of Feanor:
+    Outcomes:
+      Item - Ring of Feanor: 1
+    Tags:
+      - Accessory
+  Item - Ring of Varda:
+    Outcomes:
+      Item - Ring of Varda: 1
+    Tags:
+      - Accessory
   Item - Royal Cloak:
     Outcomes:
       Item - Royal Cloak: 1
@@ -5418,6 +7546,16 @@ Targets:
     Tags:
       - Armor
       - Head
+  Item - Runesword:
+    Outcomes:
+      Item - Runesword: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Saber:
+    Outcomes:
+      Item - Saber: 1
+    Tags:
+      - One-Handed Weapon
   Item - Scimitar:
     Outcomes:
       Item - Scimitar: 1
@@ -5451,6 +7589,17 @@ Targets:
     Tags:
       - Consumable
       - Food
+  Item - Short Sword:
+    Outcomes:
+      Item - Short Sword: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Shortcake:
+    Outcomes:
+      Item - Shortcake: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Shotel:
     Outcomes:
       Item - Shotel: 1
@@ -5473,12 +7622,19 @@ Targets:
       Item - Silver Ring: 1
     Tags:
       - Accessory
+      - Required
   Item - Sirloin:
     Outcomes:
       Item - Sirloin: 1
     Tags:
       - Consumable
       - Food
+  Item - Skull Shield:
+    Outcomes:
+      Item - Skull Shield: 1
+    Tags:
+      - Armor
+      - Shield
   Item - Smart Potion:
     Outcomes:
       Item - Smart Potion: 1
@@ -5491,6 +7647,7 @@ Targets:
     Tags:
       - Armor
       - Body
+      - Required
   Item - Star Flail:
     Outcomes:
       Item - Star Flail: 1
@@ -5518,23 +7675,35 @@ Targets:
       Item - Stone Sword: 1
     Tags:
       - One-Handed Weapon
+  Item - Strawberry:
+    Outcomes:
+      Item - Strawberry: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Strength Potion:
     Outcomes:
       Item - Strength Potion: 1
     Tags:
       - Consumable
       - Buff
-  Item - Sunstone:
-    Outcomes:
-      Item - Sunstone: 1
-    Tags:
-      - Accessory
   Item - Sunglasses:
     Outcomes:
       Item - Sunglasses: 1
     Tags:
       - Armor
       - Head
+  Item - Sunstone:
+    Outcomes:
+      Item - Sunstone: 1
+    Tags:
+      - Accessory
+  Item - Sushi:
+    Outcomes:
+      Item - Sushi: 1
+    Tags:
+      - Consumable
+      - Food
   Item - Sword of Dawn:
     Outcomes:
       Item - Sword of Dawn: 1
@@ -5545,6 +7714,12 @@ Targets:
       Item - Sword of Hador: 1
     Tags:
       - One-Handed Weapon
+  Item - TNT:
+    Outcomes:
+      Item - TNT: 1
+    Tags:
+      - Consumable
+      - Thrown
   Item - Takemitsu:
     Outcomes:
       Item - Takemitsu: 1
@@ -5560,12 +7735,17 @@ Targets:
       Item - Talwar: 1
     Tags:
       - One-Handed Weapon
-  Item - TNT:
+  Item - Tart:
     Outcomes:
-      Item - TNT: 1
+      Item - Tart: 1
     Tags:
       - Consumable
-      - Thrown
+      - Food
+  Item - Terminus Est:
+    Outcomes:
+      Item - Terminus Est: 1
+    Tags:
+      - One-Handed Weapon
   Item - Toadstool:
     Outcomes:
       Item - Toadstool: 1
@@ -5600,17 +7780,49 @@ Targets:
       Item - Tyrfing: 1
     Tags:
       - One-Handed Weapon
+  Item - Uncurse:
+    Outcomes:
+      Item - Uncurse: 1
+    Tags:
+      - Consumable
+      - Buff
+  Item - Vorpal Blade:
+    Outcomes:
+      Item - Vorpal Blade: 1
+    Tags:
+      - One-Handed Weapon
   Item - Walk Armor:
     Outcomes:
       Item - Walk Armor: 1
     Tags:
       - Armor
       - Body
+  Item - Were Bane:
+    Outcomes:
+      Item - Were Bane: 1
+    Tags:
+      - One-Handed Weapon
+  Item - Wizard Hat:
+    Outcomes:
+      Item - Wizard Hat: 1
+    Tags:
+      - Armor
+      - Head
+  Item - Yasutsuna:
+    Outcomes:
+      Item - Yasutsuna: 1
+    Tags:
+      - Two-Handed Weapon
   Item - Zircon:
     Outcomes:
       Item - Zircon: 1
     Tags:
       - Gem
+  Item - Zwei Hander:
+    Outcomes:
+      Item - Zwei Hander: 1
+    Tags:
+      - Two-Handed Weapon
   Relic - Bat Card:
     Outcomes:
       Relic - Bat Card: true
@@ -5628,6 +7840,17 @@ Targets:
     Outcomes:
       Progression - Echolocation: true
       Relic - Echo of Bat: true
+  Relic - Faerie Card:
+    Outcomes:
+      Progression - Summon Faerie Familiar: true
+      Relic - Faerie Card: true
+    Tags:
+      - Low Priority - Racing
+  Relic - Faerie Scroll:
+    Outcomes:
+      Relic - Faerie Scroll: true
+    Tags:
+      - Low Priority - Racing
   Relic - Fire of Bat:
     Outcomes:
       Relic - Fire of Bat: true
@@ -5665,14 +7888,18 @@ Targets:
     Outcomes:
       Progression - Summon Ferryman: true
       Relic - Merman Statue: true
+  Relic - Power of Mist:
+    Outcomes:
+      Progression - Longer Mist Duration: true
+      Relic - Power of Mist: true
   Relic - Power of Wolf:
     Outcomes:
       Progression - Faster Wolf Run Speed: true
       Relic - Power of Wolf: true
   Relic - Skill of Wolf:
     Outcomes:
-      Relic - Skill of Wolf: true
       Progression - Wolf Charge Attack: true
+      Relic - Skill of Wolf: true
   Relic - Soul of Bat:
     Outcomes:
       Progression - Bat Transformation: true
@@ -5694,18 +7921,8 @@ Targets:
       Relic - Sword Card: true
     Tags:
       - Low Priority - Racing
-  Relic - Power of Mist:
+  Item - Subweapon (Axe):
     Outcomes:
-      Progression - Longer Mist Duration: true
-      Relic - Power of Mist: true
-  Relic - Faerie Card:
-    Outcomes:
-      Progression - Summon Faerie Familiar: true
-      Relic - Faerie Card: true
+      Subweapon: Axe
     Tags:
-      - Low Priority - Racing
-  Relic - Faerie Scroll:
-    Outcomes:
-      Relic - Faerie Scroll: true
-    Tags:
-      - Low Priority - Racing
+      - Subweapon
