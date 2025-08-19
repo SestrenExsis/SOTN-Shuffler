@@ -620,6 +620,7 @@ if __name__ == '__main__':
             'Enable debug mode',
             'Normalize room connections',
             'Preserve map exploration across saves',
+            'Prevent softlocks related to Death cutscene in Castle Entrance',
             'Shift wall in Plaque Room With Breakable Wall away from screen edge',
             'Shuffle Pitch Black Spike Maze',
             'Skip Maria cutscene in Alchemy Laboratory',
@@ -1250,7 +1251,7 @@ if __name__ == '__main__':
         seed_hint = ''.join(chars)
         changes['Constants'] = {
             'Message - Richter Mode Instructions 1': seed_hint,
-            'Message - Richter Mode Instructions 2': 'Beta Release 5      ',
+            'Message - Richter Mode Instructions 2': 'Beta Release 6      ',
         }
         # Normalize room connections
         if settings.get('Options', {}).get('Normalize room connections', False):
