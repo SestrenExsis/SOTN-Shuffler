@@ -167,16 +167,29 @@ class Game:
         result = ''.join(progressions)
         return result
     
-    def get_key(self, ignore_location: bool=False) -> int:
+    def get_key(self, ignores: set={}) -> int:
         self.cleanup_state()
         current_state = copy.deepcopy(self.current_state)
-        if ignore_location:
-            if 'Stages Visited' in current_state:
-                current_state.pop('Stages Visited')
-            if 'Rooms Visited' in current_state:
-                current_state.pop('Rooms Visited')
-            if 'Sections Visited' in current_state:
-                current_state.pop('Sections Visited')
+        if 'Visit History' in ignores:
+            current_state.pop('Stages Visited', None)
+            current_state.pop('Rooms Visited', None)
+            current_state.pop('Sections Visited', None)
+        if 'Map Progression' in ignores:
+            current_state.pop('Status - Cannon Activated', None)
+            current_state.pop('Status - Pressure Plate in Marble Gallery Activated', None)
+            current_state.pop('Status - Shortcut in Cube of Zoe Room Activated', None)
+            current_state.pop('Status - Shortcut to Underground Caverns Activated', None)
+            current_state.pop('Status - Shortcut to Warp Rooms Activated', None)
+            current_state.pop('Status - Breakable Ceiling in Catwalk Crypt Broken', None)
+            current_state.pop('Status - DK Bridge Broken', None)
+            current_state.pop('Status - Breakable Floor in Hidden Crystal Entrance Broken', None)
+            current_state.pop('Status - Breakable Floor in Tall Zig Zag Room Broken', None)
+            current_state.pop('Status - Snake Column Wall Broken', None)
+            current_state.pop('Status - Breakable Wall in Grand Staircase Broken', None)
+            current_state.pop('Status - Breakable Wall in Left Gear Room Broken', None)
+            current_state.pop('Status - Breakable Wall in Tall Zig Zag Room Broken', None)
+            current_state.pop('Status - Pushing Statue Destroyed', None)
+            current_state.pop('Status - Stairwell Near Demon Switch Dislodged', None)
         hashed_state = hash(json.dumps(current_state, sort_keys=True, default=str))
         result = hashed_state
         return result
@@ -443,7 +456,7 @@ class Solver():
                 solution_found = True
                 self.results['Wins'].append((step__solver, game__solver))
                 break
-            hashed_state__solver = game__solver.get_key(True)
+            hashed_state__solver = game__solver.get_key(ignores={'Visit History'})
             if hashed_state__solver in memo and memo[hashed_state__solver] <= step__solver:
                 continue
             memo[hashed_state__solver] = step__solver
@@ -456,7 +469,7 @@ class Solver():
                     if not next_game__solver.current_state['Room'].startswith(restrict_to_stage):
                         continue
                 next_step__solver = step__solver + 1
-                next_hashed_state__solver = next_game__solver.get_key(True)
+                next_hashed_state__solver = next_game__solver.get_key(ignores={'Visit History'})
                 if next_hashed_state__solver in memo and memo[next_hashed_state__solver] <= next_step__solver:
                     continue
                 current_work_key += 1
@@ -490,7 +503,7 @@ class Solver():
                 solution_found = True
                 self.results['Wins'].append((step__solver, game__solver))
                 break
-            hashed_state__solver = game__solver.get_key(True)
+            hashed_state__solver = game__solver.get_key(ignores={'Visit History'})
             if hashed_state__solver in memo and memo[hashed_state__solver] <= step__solver:
                 continue
             memo[hashed_state__solver] = step__solver
@@ -506,7 +519,7 @@ class Solver():
                     ):
                         continue
                 next_step__solver = step__solver + 1
-                next_hashed_state__solver = next_game__solver.get_key(True)
+                next_hashed_state__solver = next_game__solver.get_key(ignores={'Visit History'})
                 if next_hashed_state__solver in memo and memo[next_hashed_state__solver] <= next_step__solver:
                     continue
                 current_work_key += 1
@@ -533,7 +546,7 @@ class Solver():
                 solution_found = True
                 self.results['Wins'].append((step__solver, game__solver))
                 break
-            hashed_state__solver = game__solver.get_key()
+            hashed_state__solver = game__solver.get_key(ignores={'Visit History'})
             if hashed_state__solver in memo and memo[hashed_state__solver] <= step__solver:
                 # if self.debug:
                 #     print('    seen', hashed_state__solver, 'with layer', memo[hashed_state__solver], len(work__solver), len(memo))

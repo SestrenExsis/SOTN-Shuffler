@@ -1,4 +1,5 @@
 # External libraries
+import collections
 import copy
 import heapq
 import hashlib
@@ -265,6 +266,65 @@ def analyze_stage(stage_name, hash_of_rooms, skills):
             print('  - ', requirements_key)
     return result
 
+important_commands = {
+    'Check - Bat Card Location',
+    'Check - Cube of Zoe Location',
+    'Check - Demon Card Location',
+    'Check - Echo of Bat Location',
+    'Check - Fire of Bat Location',
+    'Check - Form of Mist Location',
+    'Check - Ghost Card Location',
+    'Check - Gravity Boots Location',
+    'Check - Holy Symbol Location',
+    'Check - Jewel of Open Location',
+    'Check - Leap Stone Location',
+    'Check - Merman Statue Location',
+    'Check - Power of Wolf Location',
+    'Check - Skill of Wolf Location',
+    'Check - Soul of Bat Location',
+    'Check - Soul of Wolf Location',
+    'Check - Spirit Orb Location',
+    'Check - Sword Card Location',
+    'Check - Power of Mist Location',
+    'Check - Faerie Card Location',
+    'Check - Faerie Scroll Location',
+    'Check Location - Catacombs, Spike Breaker Room (Spike Breaker)',
+    'Check Location - Royal Chapel, Silver Ring Room (Silver Ring)',
+    'Check Location - Underground Caverns, False Save Room (Gold Ring)',
+}
+
+def get_bonded_locations(map_solver, progression:dict = {}):
+    REFLEXIVE_LIMIT = 3
+    # Find all bonded locations (i.e., reachable from the starting location without additional progression)
+    bonded_locations = {} # key = location_name, value = distance_in_steps
+    memo = {}
+    game__init = map_solver.current_game.clone()
+    for (key, value) in progression.items():
+        if type(value) in (bool, str):
+            game__init.current_state[key] = value
+        elif type(value) == int:
+            game__init.current_state[key] += value
+    work__bond = collections.deque()
+    work__bond.appendleft((0, game__init))
+    while len(work__bond) > 0:
+        (step__bond, game__bond) = work__bond.pop()
+        if bonded_locations.get(game__bond.location, float('inf')) <= step__bond:
+            continue
+        bonded_locations[game__bond.location] = step__bond
+        for command__bond in game__bond.get_valid_command_names():
+            logic_level = game__bond.commands[game__bond.room][command__bond].get('Logic Level', 'Optional')
+            if logic_level in ('Hidden', 'Required'):
+                if logic_level == 'Required':
+                    if game__bond.location not in memo:
+                        memo[game__bond.location] = set()
+                    memo[game__bond.location].add(command__bond)
+                continue
+            next_game__bond = game__bond.clone()
+            next_game__bond.process_command(command__bond)
+            work__bond.append((step__bond + 1, next_game__bond))
+    result = bonded_locations
+    return result
+
 if __name__ == '__main__':
     '''
     Usage
@@ -273,11 +333,33 @@ if __name__ == '__main__':
     skills = {}
     with (
         open(os.path.join('examples', 'skillsets.yaml')) as skillsets_file,
+        open(os.path.join('build', 'shuffler', 'current-seed.json')) as current_seed_json,
     ):
         skillsets = yaml.safe_load(skillsets_file)
+        skillsets_file.close()
         for skill in skillsets['Integration']:
             skills[skill] = True
-    stage_name = 'Marble Gallery'
-    hash_of_rooms = '09df8ef7d08b7c25d174908c20ed8b6368f1f973dde8e17bbe4e8fd1bfe1dc3f'
-    result = analyze_stage(stage_name, hash_of_rooms, skills)
-    print(result)
+        current_seed = json.load(current_seed_json)
+        current_seed_json.close()
+        for (description, progression) in (
+            ('NONE', {}),
+            ('Leap Stone', {
+                'Progression - Double Jump': True,
+            }),
+            ('Soul of Wolf', {
+                'Progression - Wolf Transformation': True,
+                'Progression - Mid-Air Reset': True,
+            }),
+            ('Gravity Boots', {
+                'Progression - Gravity Jump': True,
+            }),
+            ('Soul of Bat', {
+                'Progression - Bat Transformation': True,
+                'Progression - Mid-Air Reset': True,
+            }),
+        ):
+            map_solver = solver.Solver(current_seed['Logic Core'], skills)
+            bonded_locations = get_bonded_locations(map_solver, progression)
+            print('', description, len(bonded_locations))
+            # for (location, distance) in bonded_locations.items():
+            #     print('  -', distance, location)
