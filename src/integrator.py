@@ -58,27 +58,23 @@ goals = {
     },
 }
 
-requirements = {
-    'Marble Gallery Pressure Plate': {
-        'Status - Pressure Plate in Marble Gallery Activated': True,
-    },
-    'Clock Room Floor': {
-        'Status - Floor in Clock Room Opened Up': True,
-    },
+all_progressions = {
+    # 'Empty Hand': {},
     'Cube of Zoe': {
-        'Subweapon': 'Stopwatch',
+        'Progression - Item Materialization': True,
+        'Relic - Cube of Zoe': True,
     },
-    # 'Cube of Zoe': {
-    #     'Progression - Item Materialization': True,
-    #     'Relic - Cube of Zoe': True,
-    # },
-    # 'Demon Card': {
-    #     'Progression - Summon Demon Familiar': True,
-    #     'Relic - Demon Card': True,
-    # },
-    # 'Echo of Bat': {
-    #     'Progression - Echolocation': True,
-    #     'Relic - Echo of Bat': True,
+    'Demon Card': {
+        'Progression - Summon Demon Familiar': True,
+        'Relic - Demon Card': True,
+    },
+    'Echo of Bat': {
+        'Progression - Echolocation': True,
+        'Relic - Echo of Bat': True,
+    },
+    # 'Faerie Card': {
+    #     'Progression - Summon Faerie Familiar': True,
+    #     'Relic - Faerie Card': True,
     # },
     'Form of Mist': {
         'Progression - Mid-Air Reset': True,
@@ -93,6 +89,13 @@ requirements = {
         'Progression - Gravity Jump': True,
         'Relic - Gravity Boots': True,
     },
+    'Holy Glasses': {
+        'Item - Holy Glasses': 1,
+    },
+    'Holy Symbol': {
+        'Progression - Protection From Water': True,
+        'Relic - Holy Symbol': True,
+    },
     'Jewel of Open': {
         'Progression - Unlock Blue Doors': True,
         'Relic - Jewel of Open': True,
@@ -102,14 +105,22 @@ requirements = {
         'Progression - Mid-Air Reset': True,
         'Relic - Leap Stone': True,
     },
-    # 'Merman Statue': {
-    #     'Progression - Summon Ferryman': True,
-    #     'Relic - Merman Statue': True,
-    # },
+    'Merman Statue': {
+        'Progression - Summon Ferryman': True,
+        'Relic - Merman Statue': True,
+    },
     'Power of Mist': {
         'Progression - Longer Mist Duration': True,
         'Relic - Power of Mist': True,
     },
+    # 'Power of Wolf': {
+    #     'Progression - Faster Wolf Run Speed': True,
+    #     'Relic - Power of Wolf': True,
+    # },
+    # 'Skill of Wolf': {
+    #     'Progression - Wolf Charge Attack': True,
+    #     'Relic - Skill of Wolf': True,
+    # },
     'Soul of Bat': {
         'Progression - Bat Transformation': True,
         'Progression - Mid-Air Reset': True,
@@ -120,7 +131,49 @@ requirements = {
         'Progression - Wolf Transformation': True,
         'Relic - Soul of Wolf': True,
     },
-    # 'Spike Breaker': {
+    'Spike Breaker': {
+        'Item - Spike Breaker': 1,
+    },
+    # 'Sword Card': {
+    #     'Progression - Summon Sword Familiar': True,
+    #     'Relic - Sword Card': True,
+    # },
+    # 'All': {
+    #     'Progression - Item Materialization': True,
+    #     'Relic - Cube of Zoe': True,
+    #     'Progression - Summon Demon Familiar': True,
+    #     'Relic - Demon Card': True,
+    #     'Progression - Echolocation': True,
+    #     'Relic - Echo of Bat': True,
+    #     'Progression - Mid-Air Reset': True,
+    #     'Progression - Mist Transformation': True,
+    #     'Relic - Form of Mist': True,
+    #     'Item - Gold Ring': 1,
+    #     'Item - Silver Ring': 1,
+    #     'Progression - Gravity Jump': True,
+    #     'Relic - Gravity Boots': True,
+    #     'Item - Holy Glasses': 1,
+    #     'Progression - Protection From Water': True,
+    #     'Relic - Holy Symbol': True,
+    #     'Progression - Unlock Blue Doors': True,
+    #     'Relic - Jewel of Open': True,
+    #     'Progression - Double Jump': True,
+    #     'Progression - Mid-Air Reset': True,
+    #     'Relic - Leap Stone': True,
+    #     'Progression - Summon Ferryman': True,
+    #     'Relic - Merman Statue': True,
+    #     'Progression - Longer Mist Duration': True,
+    #     'Relic - Power of Mist': True,
+    #     'Progression - Faster Wolf Run Speed': True,
+    #     'Relic - Power of Wolf': True,
+    #     'Progression - Wolf Charge Attack': True,
+    #     'Relic - Skill of Wolf': True,
+    #     'Progression - Bat Transformation': True,
+    #     'Progression - Mid-Air Reset': True,
+    #     'Relic - Soul of Bat': True,
+    #     'Progression - Mid-Air Reset': True,
+    #     'Progression - Wolf Transformation': True,
+    #     'Relic - Soul of Wolf': True,
     #     'Item - Spike Breaker': 1,
     # },
 }
@@ -203,7 +256,7 @@ def analyze_stage(stage_name, hash_of_rooms, skills):
     for goal_id in sorted(goals.keys()):
         for other_goal_id in sorted(goals.keys()):
             work.append((goal_id, other_goal_id))
-    requirement_ids = list(sorted(requirements.keys()))
+    requirement_ids = list(sorted(all_progressions.keys()))
     while len(work) > 0:
         (entry_point_id, exit_point_id) = work.pop()
         if entry_point_id == exit_point_id:
@@ -266,63 +319,41 @@ def analyze_stage(stage_name, hash_of_rooms, skills):
             print('  - ', requirements_key)
     return result
 
-important_commands = {
-    'Check - Bat Card Location',
-    'Check - Cube of Zoe Location',
-    'Check - Demon Card Location',
-    'Check - Echo of Bat Location',
-    'Check - Fire of Bat Location',
-    'Check - Form of Mist Location',
-    'Check - Ghost Card Location',
-    'Check - Gravity Boots Location',
-    'Check - Holy Symbol Location',
-    'Check - Jewel of Open Location',
-    'Check - Leap Stone Location',
-    'Check - Merman Statue Location',
-    'Check - Power of Wolf Location',
-    'Check - Skill of Wolf Location',
-    'Check - Soul of Bat Location',
-    'Check - Soul of Wolf Location',
-    'Check - Spirit Orb Location',
-    'Check - Sword Card Location',
-    'Check - Power of Mist Location',
-    'Check - Faerie Card Location',
-    'Check - Faerie Scroll Location',
-    'Check Location - Catacombs, Spike Breaker Room (Spike Breaker)',
-    'Check Location - Royal Chapel, Silver Ring Room (Silver Ring)',
-    'Check Location - Underground Caverns, False Save Room (Gold Ring)',
-}
-
-def get_bonded_locations(map_solver, progression:dict = {}):
-    REFLEXIVE_LIMIT = 3
-    # Find all bonded locations (i.e., reachable from the starting location without additional progression)
-    bonded_locations = {} # key = location_name, value = distance_in_steps
-    memo = {}
+def get_reachable_locations(map_solver, progression_ids: set):
+    progression = {}
+    for progression_id in progression_ids:
+        for (key, value) in all_progressions[progression_id].items():
+            progression[key] = value
+    # Find all locations potentially reachable without additional progression
     game__init = map_solver.current_game.clone()
     for (key, value) in progression.items():
         if type(value) in (bool, str):
             game__init.current_state[key] = value
         elif type(value) == int:
+            if key not in game__init.current_state:
+                game__init.current_state[key] = 0
             game__init.current_state[key] += value
+    reachable_locations = {}
+    memo = {} # key = location_name, value = distance_in_steps
     work__bond = collections.deque()
     work__bond.appendleft((0, game__init))
     while len(work__bond) > 0:
         (step__bond, game__bond) = work__bond.pop()
-        if bonded_locations.get(game__bond.location, float('inf')) <= step__bond:
+        if memo.get(game__bond.location, float('inf')) <= step__bond:
             continue
-        bonded_locations[game__bond.location] = step__bond
+        memo[game__bond.location] = step__bond
+        if game__bond.location not in reachable_locations:
+            reachable_locations[game__bond.location] = set()
         for command__bond in game__bond.get_valid_command_names():
             logic_level = game__bond.commands[game__bond.room][command__bond].get('Logic Level', 'Optional')
             if logic_level in ('Hidden', 'Required'):
                 if logic_level == 'Required':
-                    if game__bond.location not in memo:
-                        memo[game__bond.location] = set()
-                    memo[game__bond.location].add(command__bond)
+                    reachable_locations[game__bond.location].add(command__bond)
                 continue
             next_game__bond = game__bond.clone()
             next_game__bond.process_command(command__bond)
             work__bond.append((step__bond + 1, next_game__bond))
-    result = bonded_locations
+    result = reachable_locations
     return result
 
 if __name__ == '__main__':
@@ -341,25 +372,53 @@ if __name__ == '__main__':
             skills[skill] = True
         current_seed = json.load(current_seed_json)
         current_seed_json.close()
-        for (description, progression) in (
-            ('NONE', {}),
-            ('Leap Stone', {
-                'Progression - Double Jump': True,
-            }),
-            ('Soul of Wolf', {
-                'Progression - Wolf Transformation': True,
-                'Progression - Mid-Air Reset': True,
-            }),
-            ('Gravity Boots', {
-                'Progression - Gravity Jump': True,
-            }),
-            ('Soul of Bat', {
-                'Progression - Bat Transformation': True,
-                'Progression - Mid-Air Reset': True,
-            }),
-        ):
-            map_solver = solver.Solver(current_seed['Logic Core'], skills)
-            bonded_locations = get_bonded_locations(map_solver, progression)
-            print('', description, len(bonded_locations))
-            # for (location, distance) in bonded_locations.items():
-            #     print('  -', distance, location)
+        # ...
+        map_solver = solver.Solver(current_seed['Logic Core'], skills)
+        all_locations = get_reachable_locations(map_solver, all_progressions.keys())
+        all_checks = set()
+        for checks in all_locations.values():
+            for check in checks:
+                all_checks.add(check)
+        print('\nAll Checks -', len(all_checks), 'in total')
+        for check in sorted(all_checks):
+            print(' -', check)
+        print('\nAll Locations -', len(all_locations), 'in total')
+        for location in sorted(all_locations):
+            print(' -', location)
+        memo = {}
+        work = collections.deque()
+        work.appendleft(
+            set(), # Empty Hand
+        )
+        while len(work) > 0:
+            progression_items = work.pop()
+            reachable_locations = get_reachable_locations(map_solver, progression_items)
+            progression_key = (
+                'Empty Hand' if len(progression_items) < 1
+                else ' + '.join(sorted(progression_items))
+            )
+            memo[progression_key] = reachable_locations
+            print(progression_key, len(reachable_locations))
+            if len(reachable_locations) >= len(all_locations):
+                print('ALL LOCATIONS REACHABLE FOR', progression_key, '!!!')
+                continue
+            for progression_id in all_progressions:
+                if len(progression_items) > 0 and progression_id <= min(progression_items):
+                    continue
+                work.appendleft(progression_items.union({ progression_id, }))
+        # for requirement_count in range(2, len(requirement_ids) + 1):
+        #     print(requirement_count)
+        #     for curr_requirements in itertools.combinations(requirement_ids, requirement_count):
+        #         requirements_key = ' + '.join(sorted(curr_requirements))
+        #         requirements[requirements_key] = {}
+        #         for requirement_id in curr_requirements:
+        #             for (key, value) in requirements[requirement_id].items():
+        #                 requirements[requirements_key][key] = value
+        # for (description, progression) in requirements.items():
+        #     map_solver = solver.Solver(current_seed['Logic Core'], skills)
+        #     reachable_locations = get_reachable_locations(map_solver, progression)
+        #     all_checks = set()
+        #     for checks in reachable_locations.values():
+        #         for check in checks:
+        #             all_checks.add(check)
+        #     print('', description, len(reachable_locations), len(all_checks))
