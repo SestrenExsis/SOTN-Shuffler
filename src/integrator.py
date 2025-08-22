@@ -1,11 +1,11 @@
 # External libraries
 import collections
 import copy
-import heapq
 import hashlib
 import itertools
 import json
 import os
+import time
 import yaml
 
 # Local libraries
@@ -39,22 +39,34 @@ entry_points = {
     },
 }
 
-goals = {
-    'Location - Blue Door Room': {
-        'Room': 'Marble Gallery, Blue Door Room',
-        'Section': 'Right Side',
-    },
-    'Location - Stopwatch Room': {
-        'Room': 'Marble Gallery, Stopwatch Room',
-        'Section': 'Main',
-    },
-    'Location - Gravity Boots': {
-        'Room': 'Marble Gallery, Gravity Boots Room',
-        'Section': 'Main',
-    },
-    'Location - Spirit Orb': {
-        'Room': 'Marble Gallery, Spirit Orb Room',
-        'Section': 'Main',
+goals__all_checks = {
+    'Sections Visited': {
+        'All': {
+            'Alchemy Laboratory, Bat Card Room (Bat Card Room Duplicate)': True,
+            'Castle Entrance, Cube of Zoe Room (Main)': True,
+            'Abandoned Mine, Demon Card Room (Main)': True,
+            "Olrox's Quarters, Echo of Bat Room (Main)": True,
+            'Clock Tower, Fire of Bat Room (Main)': True,
+            'Colosseum, Top of Elevator Shaft (Left Side)': True,
+            'Castle Keep, Ghost Card Room (Ground)': True,
+            'Long Library, Shop (Main)': True,
+            'Castle Keep, Keep Area (Middle-Left Ledge)': True,
+            'Marble Gallery, Gravity Boots Room (Main)': True,
+            'Underground Caverns, Holy Symbol Room (Main)': True,
+            'Castle Keep, Keep Area (Ground)': True,
+            'Underground Caverns, Merman Statue Room (Main)': True,
+            'Castle Entrance, After Drawbridge (Parapet)': True,
+            'Alchemy Laboratory, Skill of Wolf Room (Main)': True,
+            'Long Library, Lesser Demon Area (Behind Mist Gate)': True,
+            'Outer Wall, Elevator Shaft Room (Elevator Shaft)': True,
+            'Marble Gallery, Spirit Orb Room (Main)': True,
+            "Olrox's Quarters, Sword Card Room (Main)": True,
+            'Long Library, Faerie Card Room (Main)': True,
+            'Long Library, Spellbook Area (Main)': True,
+            'Catacombs, Spike Breaker Room (Main)': True,
+            'Royal Chapel, Silver Ring Room (Main)': True,
+            'Underground Caverns, False Save Room (Main)': True,
+        },
     },
 }
 
@@ -81,17 +93,17 @@ all_progressions = {
         'Progression - Mist Transformation': True,
         'Relic - Form of Mist': True,
     },
-    'Gold Ring + Silver Ring': {
-        'Item - Gold Ring': 1,
-        'Item - Silver Ring': 1,
-    },
+    # 'Gold Ring + Silver Ring': {
+    #     'Item - Gold Ring': 1,
+    #     'Item - Silver Ring': 1,
+    # },
     'Gravity Boots': {
         'Progression - Gravity Jump': True,
         'Relic - Gravity Boots': True,
     },
-    'Holy Glasses': {
-        'Item - Holy Glasses': 1,
-    },
+    # 'Holy Glasses': {
+    #     'Item - Holy Glasses': 1,
+    # },
     'Holy Symbol': {
         'Progression - Protection From Water': True,
         'Relic - Holy Symbol': True,
@@ -319,7 +331,7 @@ def analyze_stage(stage_name, hash_of_rooms, skills):
             print('  - ', requirements_key)
     return result
 
-def get_reachable_locations(map_solver, progression_ids: set):
+def get_reachable_checks(map_solver, progression_ids: set, custom_goal: dict=None):
     progression = {}
     for progression_id in progression_ids:
         for (key, value) in all_progressions[progression_id].items():
@@ -333,27 +345,26 @@ def get_reachable_locations(map_solver, progression_ids: set):
             if key not in game__init.current_state:
                 game__init.current_state[key] = 0
             game__init.current_state[key] += value
-    reachable_locations = {}
-    memo = {} # key = location_name, value = distance_in_steps
+    reachable_checks = set()
+    memo__bond = {} # key = location_name, value = distance_in_steps
     work__bond = collections.deque()
     work__bond.appendleft((0, game__init))
     while len(work__bond) > 0:
         (step__bond, game__bond) = work__bond.pop()
-        if memo.get(game__bond.location, float('inf')) <= step__bond:
-            continue
-        memo[game__bond.location] = step__bond
-        if game__bond.location not in reachable_locations:
-            reachable_locations[game__bond.location] = set()
+        memo__bond[game__bond.location] = step__bond
+        if 'END' in game__bond.goals_achieved:
+            break
         for command__bond in game__bond.get_valid_command_names():
             logic_level = game__bond.commands[game__bond.room][command__bond].get('Logic Level', 'Optional')
+            if logic_level == 'Required':
+                reachable_checks.add(command__bond)
             if logic_level in ('Hidden', 'Required'):
-                if logic_level == 'Required':
-                    reachable_locations[game__bond.location].add(command__bond)
                 continue
             next_game__bond = game__bond.clone()
             next_game__bond.process_command(command__bond)
-            work__bond.append((step__bond + 1, next_game__bond))
-    result = reachable_locations
+            if memo__bond.get(next_game__bond.location, float('inf')) > step__bond:
+                work__bond.appendleft((step__bond + 1, next_game__bond))
+    result = reachable_checks
     return result
 
 if __name__ == '__main__':
@@ -366,6 +377,7 @@ if __name__ == '__main__':
         open(os.path.join('examples', 'skillsets.yaml')) as skillsets_file,
         open(os.path.join('build', 'shuffler', 'current-seed.json')) as current_seed_json,
     ):
+        start_time = time.time()
         skillsets = yaml.safe_load(skillsets_file)
         skillsets_file.close()
         for skill in skillsets['Integration']:
@@ -373,36 +385,29 @@ if __name__ == '__main__':
         current_seed = json.load(current_seed_json)
         current_seed_json.close()
         # ...
-        map_solver = solver.Solver(current_seed['Logic Core'], skills)
-        all_locations = get_reachable_locations(map_solver, all_progressions.keys())
-        all_checks = set()
-        for checks in all_locations.values():
-            for check in checks:
-                all_checks.add(check)
+        map_solver = solver.Solver(current_seed['Logic Core'], skills, custom_end=goals__all_checks)
+        all_checks = get_reachable_checks(map_solver, all_progressions.keys())
         print('\nAll Checks -', len(all_checks), 'in total')
         for check in sorted(all_checks):
             print(' -', check)
-        # print('\nAll Locations -', len(all_locations), 'in total')
-        # for location in sorted(all_locations):
-        #     print(' -', location)
         memo = {}
         work = collections.deque()
         work.appendleft(
             set(), # Empty Hand
         )
+        i = 0
         while len(work) > 0:
+            if i % 50 == 0:
+                print(i, len(work), time.time() - start_time)
+            i += 1
             progression_items = work.pop()
-            reachable_locations = get_reachable_locations(map_solver, progression_items)
-            reachable_checks = set()
-            for checks in reachable_locations.values():
-                for check in checks:
-                    reachable_checks.add(check)
+            reachable_checks = get_reachable_checks(map_solver, progression_items)
             progression_key = (
                 'Empty Hand' if len(progression_items) < 1
                 else ' + '.join(sorted(progression_items))
             )
             memo[progression_key] = reachable_checks
-            print(progression_key, len(reachable_checks))
+            print(' -', len(reachable_checks), progression_key)
             if len(reachable_checks) >= len(all_checks):
                 print('  ', 'ALL LOCATIONS REACHABLE FOR', progression_key, '!!!')
                 continue
