@@ -382,9 +382,9 @@ if __name__ == '__main__':
         print('\nAll Checks -', len(all_checks), 'in total')
         for check in sorted(all_checks):
             print(' -', check)
-        print('\nAll Locations -', len(all_locations), 'in total')
-        for location in sorted(all_locations):
-            print(' -', location)
+        # print('\nAll Locations -', len(all_locations), 'in total')
+        # for location in sorted(all_locations):
+        #     print(' -', location)
         memo = {}
         work = collections.deque()
         work.appendleft(
@@ -393,32 +393,21 @@ if __name__ == '__main__':
         while len(work) > 0:
             progression_items = work.pop()
             reachable_locations = get_reachable_locations(map_solver, progression_items)
+            reachable_checks = set()
+            for checks in reachable_locations.values():
+                for check in checks:
+                    reachable_checks.add(check)
             progression_key = (
                 'Empty Hand' if len(progression_items) < 1
                 else ' + '.join(sorted(progression_items))
             )
-            memo[progression_key] = reachable_locations
-            print(progression_key, len(reachable_locations))
-            if len(reachable_locations) >= len(all_locations):
-                print('ALL LOCATIONS REACHABLE FOR', progression_key, '!!!')
+            memo[progression_key] = reachable_checks
+            print(progression_key, len(reachable_checks))
+            if len(reachable_checks) >= len(all_checks):
+                print('  ', 'ALL LOCATIONS REACHABLE FOR', progression_key, '!!!')
                 continue
-            for progression_id in all_progressions:
-                if len(progression_items) > 0 and progression_id <= min(progression_items):
+            for progression_id in sorted(all_progressions):
+                if len(progression_items) > 0 and progression_id <= max(progression_items):
                     continue
+                # print('---- ', progression_id, progression_items)
                 work.appendleft(progression_items.union({ progression_id, }))
-        # for requirement_count in range(2, len(requirement_ids) + 1):
-        #     print(requirement_count)
-        #     for curr_requirements in itertools.combinations(requirement_ids, requirement_count):
-        #         requirements_key = ' + '.join(sorted(curr_requirements))
-        #         requirements[requirements_key] = {}
-        #         for requirement_id in curr_requirements:
-        #             for (key, value) in requirements[requirement_id].items():
-        #                 requirements[requirements_key][key] = value
-        # for (description, progression) in requirements.items():
-        #     map_solver = solver.Solver(current_seed['Logic Core'], skills)
-        #     reachable_locations = get_reachable_locations(map_solver, progression)
-        #     all_checks = set()
-        #     for checks in reachable_locations.values():
-        #         for check in checks:
-        #             all_checks.add(check)
-        #     print('', description, len(reachable_locations), len(all_checks))
