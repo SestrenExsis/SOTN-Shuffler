@@ -29,6 +29,7 @@ Nodes:
         Exit Section: Top
 Commands:
     Action - Collect Holy Glasses:
+        Logic Level: Required
         Outcomes:
             Check - Holy Glasses Location: true
             Item - Holy Glasses: 1
