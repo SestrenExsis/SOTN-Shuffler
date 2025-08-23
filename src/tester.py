@@ -17,8 +17,8 @@ if __name__ == '__main__':
             current_seed['Changes'],
         ).get_core()
         game = solver.Game(logic_core)
-        game.current_state['Progression - Summon Demon Familiar'] = False
-        game.cheat_location('Abandoned Mine, Crumbling Stairwells With Demon Switch', 'Block Area')
+        # game.current_state['Progression - Summon Demon Familiar'] = False
+        # game.cheat_location('Abandoned Mine, Crumbling Stairwells With Demon Switch', 'Block Area')
         # game.current_state['Status - Warp Room to Abandoned Mine Unlocked'] = True
         # game.current_state['Status - Warp Room to Castle Entrance Unlocked'] = True
         # game.current_state['Status - Warp Room to Castle Keep Unlocked'] = True

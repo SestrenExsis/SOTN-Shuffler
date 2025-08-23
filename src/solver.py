@@ -194,6 +194,35 @@ class Game:
         result = hashed_state
         return result
     
+    def get_alt_key(self) -> int:
+        self.cleanup_state()
+        current_state = {}
+        for key in (
+            'Stage',
+            'Room',
+            'Section',
+            # 'Status - Cannon Activated'
+            # 'Status - Pressure Plate in Marble Gallery Activated'
+            # 'Status - Shortcut in Cube of Zoe Room Activated',
+            # 'Status - Shortcut to Underground Caverns Activated',
+            # 'Status - Shortcut to Warp Rooms Activated',
+            # 'Status - Breakable Ceiling in Catwalk Crypt Broken',
+            # 'Status - DK Bridge Broken',
+            # 'Status - Breakable Floor in Hidden Crystal Entrance Broken',
+            # 'Status - Breakable Floor in Tall Zig Zag Room Broken',
+            # 'Status - Snake Column Wall Broken',
+            # 'Status - Breakable Wall in Grand Staircase Broken',
+            # 'Status - Breakable Wall in Left Gear Room Broken',
+            # 'Status - Breakable Wall in Tall Zig Zag Room Broken',
+            # 'Status - Pushing Statue Destroyed',
+            # 'Status - Stairwell Near Demon Switch Dislodged',
+        ):
+            if key in self.current_state:
+                current_state[key] = self.current_state[key]
+        hashed_state = hash(json.dumps(current_state, sort_keys=True, default=str))
+        result = hashed_state
+        return result
+    
     def check_requirement(self, requirement, scoped_state) -> bool:
         # All checks within a given requirement set must pass
         valid_ind = True

@@ -125,12 +125,29 @@ all_progressions = {
 }
 
 def get_reachable_checks(map_solver, progression_ids: set):
+    global_state = {
+        'Status - Cannon Activated': False,
+        'Status - Pressure Plate in Marble Gallery Activated': False,
+        'Status - Shortcut in Cube of Zoe Room Activated': False,
+        'Status - Shortcut to Underground Caverns Activated': False,
+        'Status - Shortcut to Warp Rooms Activated': False,
+        'Status - Breakable Ceiling in Catwalk Crypt Broken': False,
+        'Status - DK Bridge Broken': False,
+        'Status - Breakable Floor in Hidden Crystal Entrance Broken': False,
+        'Status - Breakable Floor in Tall Zig Zag Room Broken': False,
+        'Status - Snake Column Wall Broken': False,
+        'Status - Breakable Wall in Grand Staircase Broken': False,
+        'Status - Breakable Wall in Left Gear Room Broken': False,
+        'Status - Breakable Wall in Tall Zig Zag Room Broken': False,
+        'Status - Pushing Statue Destroyed': False,
+        'Status - Stairwell Near Demon Switch Dislodged': False,
+    }
     progression = {}
     for progression_id in progression_ids:
         for (key, value) in all_progressions[progression_id].items():
             progression[key] = value
-    for (key, value) in progression.items():
-        print(key, value)
+    # for (key, value) in progression.items():
+    #     print(key, value)
     # Find all locations potentially reachable without additional progression
     game__init = map_solver.current_game.clone()
     for (key, value) in progression.items():
@@ -144,20 +161,33 @@ def get_reachable_checks(map_solver, progression_ids: set):
     memo__bond = {} # key = location_name, value = distance_in_steps
     work__bond = collections.deque()
     work__bond.appendleft((0, game__init))
+    i = 0
     while len(work__bond) > 0:
         (step__bond, game__bond) = work__bond.pop()
-        memo__bond[game__bond.location] = step__bond
+        # Preserve global state across all game instances
+        for key in global_state:
+            if key in game__bond.current_state and game__bond.current_state[key]:
+                work__bond.appendleft((0, game__init))
+                global_state[key] |= game__bond.current_state[key]
+            game__bond.current_state[key] = global_state[key]
+        # if i % 100 == 0:
+        #     print('    ', len(work__bond), step__bond, game__bond.location)
+        i += 1
+        # time.sleep(0.5)
+        memo__bond[game__bond.get_alt_key()] = step__bond
         if 'END' in game__bond.goals_achieved:
             break
         for command__bond in game__bond.get_valid_command_names():
             logic_level = game__bond.commands[game__bond.room][command__bond].get('Logic Level', 'Optional')
+            # print('      ', command__bond, '...', logic_level)
+            # time.sleep(0.1)
             if logic_level == 'Required':
                 reachable_checks.add(command__bond)
             if logic_level in ('Hidden', 'Required'):
                 continue
             next_game__bond = game__bond.clone()
             next_game__bond.process_command(command__bond)
-            if memo__bond.get(next_game__bond.location, float('inf')) > step__bond:
+            if memo__bond.get(next_game__bond.get_alt_key(), float('inf')) > step__bond:
                 work__bond.appendleft((step__bond + 1, next_game__bond))
     result = reachable_checks
     return result
