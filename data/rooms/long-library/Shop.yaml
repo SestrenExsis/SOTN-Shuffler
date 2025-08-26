@@ -31,12 +31,24 @@ Nodes:
         Entry Section: Beneath Shop
         Exit Section: Beneath Shop
 Commands:
+    Move - Shopkeeper:
+        Outcomes:
+            Section: Shopkeeper
+        Requirements:
+            Default:
+                Section: Main
+    Move - Main:
+        Outcomes:
+            Section: Main
+        Requirements:
+            Default:
+                Section: Shopkeeper
     Action - View Low-Cost Items:
         Outcomes:
             Helper: Low-Cost Price Range
         Requirements:
             Default:
-                Section: Main
+                Section: Shopkeeper
                 Progression - Item Materialization: true
     Action - Purchase Library Card:
         Outcomes:
@@ -44,8 +56,8 @@ Commands:
             Tracker - Library Cards: 1
         Requirements:
             Item Materialization:
-                Section: Main
-                Progression - Item Materialization: true
+                Section: Shopkeeper
+                Helper: Low-Cost Price Range
                 Item - Library Card:
                     Maximum: 1
 

@@ -60,9 +60,14 @@ class Game:
     @property
     def location(self):
         section_name = self.DEFAULT_STRING
+        helper_name = self.DEFAULT_STRING
         if 'Section' in self.current_state:
             section_name = self.current_state['Section']
+        if 'Helper' in self.current_state:
+            helper_name = self.current_state['Helper']
         result = self.room + ' (' + section_name + ')'
+        if helper_name != 'NONE':
+            result += ' [' + helper_name + ']'
         return result
     
     def clone(self):
@@ -194,13 +199,13 @@ class Game:
         result = hashed_state
         return result
     
-    def get_alt_key(self) -> int:
-        self.cleanup_state()
+    def get_alt_key(self, debug=False) -> int:
         current_state = {}
         for key in (
             'Stage',
             'Room',
             'Section',
+            'Helper',
             # 'Status - Cannon Activated'
             # 'Status - Pressure Plate in Marble Gallery Activated'
             # 'Status - Shortcut in Cube of Zoe Room Activated',
@@ -221,6 +226,8 @@ class Game:
                 current_state[key] = self.current_state[key]
         hashed_state = hash(json.dumps(current_state, sort_keys=True, default=str))
         result = hashed_state
+        if debug:
+            result = (hashed_state, current_state)
         return result
     
     def check_requirement(self, requirement, scoped_state) -> bool:

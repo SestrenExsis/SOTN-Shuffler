@@ -122,6 +122,12 @@ all_progressions = {
     'Spike Breaker': {
         'Item - Spike Breaker': 1,
     },
+    'Silver Ring': {
+        'Item - Silver Ring': 1,
+    },
+    'Gold Ring': {
+        'Item - Gold Ring': 1,
+    },
 }
 
 def get_reachable_checks(map_solver, progression_ids: set):
@@ -209,8 +215,59 @@ if __name__ == '__main__':
             skills[skill] = True
         current_seed = json.load(current_seed_json)
         current_seed_json.close()
-        # ...
         map_solver = solver.Solver(current_seed['Logic Core'], skills, custom_end=goals__all_checks)
+        # Identify all (stage, room, section) locations attainable with full progression
+        game__init = map_solver.current_game.clone()
+        for (progression_id, progression_pairs) in all_progressions.items():
+            for (key, value) in progression_pairs.items():
+                game__init.current_state[key] = value
+        visits__full_progression = set()
+        work = collections.deque()
+        work.appendleft((0, game__init))
+        while len(work) > 0:
+            (step__current, game__current) = work.pop()
+            location__current = (game__current.room, game__current.current_state['Section'])
+            print(len(work), len(visits__full_progression), step__current, game__current.location)
+            visits__full_progression.add(location__current)
+            for command_name in game__current.get_valid_command_names():
+                command = game__current.commands[game__current.room][command_name]
+                if command.get('Logic Level', 'Optional') in ('Hidden', 'Required'):
+                    continue
+                game__next = game__current.clone()
+                game__next.process_command(command_name)
+                location__next = (game__next.room, game__next.current_state['Section'])
+                if location__next not in visits__full_progression:
+                    work.appendleft((step__current + 1, game__next))
+                    visits__full_progression.add(location__next)
+        print()
+        # Arbitrarily choose from the remaining (stage, room, section) locations, and identify all other locations bonded to the chosen one with no progression
+        visits__bonded = {}
+        map_solver.zones = {}
+        while len(visits__full_progression) > 0:
+            (room__current, section__current) = visits__full_progression.pop()
+            game__init = map_solver.current_game.clone()
+            game__init.current_state['Room'] = room__current
+            game__init.current_state['Section'] = section__current
+            location__bonded = game__init.location
+            print(len(visits__bonded), location__bonded)
+            work = collections.deque()
+            work.appendleft((0, game__init))
+            while len(work) > 0:
+                (step__current, game__current) = work.pop()
+                location__current = (game__current.room, game__current.current_state['Section'])
+                print('  ', len(work), len(visits__bonded), step__current, game__current.location)
+                visits__bonded[location__current] = set()
+                for command_name in game__current.get_valid_command_names():
+                    command = game__current.commands[game__current.room][command_name]
+                    if command.get('Logic Level', 'Optional') in ('Hidden', 'Required'):
+                        continue
+                    game__next = game__current.clone()
+                    game__next.process_command(command_name)
+                    location__next = (game__next.room, game__next.current_state['Section'])
+                    if location__next not in visits__bonded:
+                        work.appendleft((step__current + 1, game__next))
+                        visits__bonded[location__current].add(location__next)
+            raise Exception('')
         all_checks = get_reachable_checks(map_solver, all_progressions.keys())
         print('\nAll Checks -', len(all_checks), 'in total')
         for check in sorted(all_checks):
