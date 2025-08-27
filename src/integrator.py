@@ -239,17 +239,17 @@ if __name__ == '__main__':
                 if location__next not in visits__full_progression:
                     work.appendleft((step__current + 1, game__next))
                     visits__full_progression.add(location__next)
-        print()
         # Arbitrarily choose from the remaining (stage, room, section) locations, and identify all other locations bonded to the chosen one with no progression
         visits__bonded = {}
-        map_solver.zones = {}
         while len(visits__full_progression) > 0:
+            print()
             (room__current, section__current) = visits__full_progression.pop()
             game__init = map_solver.current_game.clone()
             game__init.current_state['Room'] = room__current
             game__init.current_state['Section'] = section__current
             location__bonded = game__init.location
             print(len(visits__bonded), location__bonded)
+            memo = set()
             work = collections.deque()
             work.appendleft((0, game__init))
             while len(work) > 0:
@@ -264,10 +264,10 @@ if __name__ == '__main__':
                     game__next = game__current.clone()
                     game__next.process_command(command_name)
                     location__next = (game__next.room, game__next.current_state['Section'])
-                    if location__next not in visits__bonded:
+                    if location__next not in memo:
+                        memo.add(location__next)
                         work.appendleft((step__current + 1, game__next))
                         visits__bonded[location__current].add(location__next)
-            raise Exception('')
         all_checks = get_reachable_checks(map_solver, all_progressions.keys())
         print('\nAll Checks -', len(all_checks), 'in total')
         for check in sorted(all_checks):
