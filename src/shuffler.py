@@ -619,6 +619,8 @@ if __name__ == '__main__':
             'Disable clipping on screen edge of Tall Zig Zag Room Wall',
             'Enable debug mode',
             'Normalize room connections',
+            'Permit Logical Risks',
+            'Permit Logical Blunders',
             'Preserve map exploration across saves',
             'Prevent softlocks related to Death cutscene in Castle Entrance',
             'Shift wall in Plaque Room With Breakable Wall away from screen edge',
@@ -1173,13 +1175,15 @@ if __name__ == '__main__':
                 logic_valid_ind = False
                 break
         if not logic_valid_ind:
-            print()
-            for (quest_source_name, target_reward) in sorted(quest_rewards.items()):
-                if mapper_core['Quests']['Sources'][quest_source_name].get('Logic Level', 'Optional') == 'Required':
-                    print(quest_source_name, '=', target_reward)
-            print()
-            for (teleporter_source_name, teleporter_info) in teleporters.items():
-                print(teleporter_source_name, '=', teleporter_info['Room'])
+            if quest_rewards is not None:
+                print()
+                for (quest_source_name, target_reward) in sorted(quest_rewards.items()):
+                    if mapper_core['Quests']['Sources'][quest_source_name].get('Logic Level', 'Optional') == 'Required':
+                        print(quest_source_name, '=', target_reward)
+            if teleporters is not None:
+                print()
+                for (teleporter_source_name, teleporter_info) in teleporters.items():
+                    print(teleporter_source_name, '=', teleporter_info['Room'])
             print()
             for goal_key in solver.logic_core['Goals']['END'].keys():
                 print(goal_key, '=', solver.current_game.current_state.get(goal_key, '-'))

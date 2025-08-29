@@ -480,7 +480,7 @@ class Solver():
         while len(work__solver) > 0 and not solution_found:
             (step__solver, game__solver) = work__solver.popleft()
             if self.debug and self.cycle_count > 0 and self.cycle_count % 10_000 == 0:
-                print('   ', (step__solver, len(work__solver)), self.cycle_count, game__solver.current_state['Room'])
+                print('   ', (step__solver, len(work__solver)), self.cycle_count, game__solver.location)
             if step__solver >= step_limit:
                 continue
             self.cycle_count += 1
@@ -507,7 +507,9 @@ class Solver():
                 next_step__solver = step__solver + 1
                 next_hashed_state__solver = next_game__solver.get_key(ignores={'Visit History'})
                 if next_hashed_state__solver in memo and memo[next_hashed_state__solver] <= next_step__solver:
+                    # print('          -', memo[next_hashed_state__solver], command)
                     continue
+                # print('          +', next_step__solver, command)
                 current_work_key += 1
                 work__solver.append((next_step__solver, next_game__solver))
 

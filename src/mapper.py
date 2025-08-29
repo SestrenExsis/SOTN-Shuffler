@@ -968,6 +968,8 @@ class LogicCore:
             'Disable clipping on screen edge of Tall Zig Zag Room Wall',
             'Normalize room connections',
             'Normalize Ferryman Gate',
+            'Permit Logical Risks',
+            'Permit Logical Blunders',
             'Prevent softlocks related to Death cutscene in Castle Entrance',
             'Shift wall in Plaque Room With Breakable Wall away from screen edge',
         ):
@@ -1093,7 +1095,7 @@ class LogicCore:
                 'Status - Stairwell Near Demon Switch Dislodged': True,
             },
             'Find Clock Room in Marble Gallery': {
-                'Room': "Marble Gallery, Clock Room",
+                'Room': 'Marble Gallery, Clock Room',
                 'Section': 'Main',
             },
             'Find Shop in Long Library': {
