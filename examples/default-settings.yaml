@@ -11,6 +11,8 @@ Options:
     Enable debug mode: false
     Normalize room connections: true
     Normalize Ferryman Gate: true
+    Permit Logical Risks: false
+    Permit Logical Blunders: false
     Preserve unsaved map data: Revelation
     Prevent softlocks related to Death cutscene in Castle Entrance: true
     Shift wall in Plaque Room With Breakable Wall away from screen edge: true

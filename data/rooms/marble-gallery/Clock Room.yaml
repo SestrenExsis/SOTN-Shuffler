@@ -47,6 +47,7 @@ Commands:
     Move - Main:
         Outcomes:
             Section: Main
+            Helper: NONE
         Requirements:
             Left Path:
                 Section: Top, Falling

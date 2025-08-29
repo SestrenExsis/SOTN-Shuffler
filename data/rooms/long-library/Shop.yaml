@@ -41,11 +41,13 @@ Commands:
         Outcomes:
             Section: Main
         Requirements:
-            Default:
+            Shopkeeper:
                 Section: Shopkeeper
+            Shopkeeper, Low-Cost Items:
+                Section: Shopkeeper, Low-Cost Items
     Action - View Low-Cost Items:
         Outcomes:
-            Helper: Low-Cost Price Range
+            Section: Shopkeeper, Low-Cost Items
         Requirements:
             Default:
                 Section: Shopkeeper
@@ -56,8 +58,7 @@ Commands:
             Tracker - Library Cards: 1
         Requirements:
             Item Materialization:
-                Section: Shopkeeper
-                Helper: Low-Cost Price Range
+                Section: Shopkeeper, Low-Cost Items
                 Item - Library Card:
                     Maximum: 1
 

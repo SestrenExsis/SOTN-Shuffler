@@ -1413,8 +1413,7 @@ Sources:
       Default:
         Check - Jewel of Open Location: false
         Room: Long Library, Shop
-        Section: Main
-        Helper: Low-Cost Price Range
+        Section: Shopkeeper, Low-Cost Items
         Stage: Long Library
     Tags:
       - Relic

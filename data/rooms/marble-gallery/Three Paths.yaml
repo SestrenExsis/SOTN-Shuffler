@@ -59,6 +59,7 @@ Commands:
     Move - Left Side:
         Outcomes:
             Section: Left Side
+            Helper: NONE
         Requirements:
             Left Path:
                 Section: Bottom, Rising
@@ -66,6 +67,7 @@ Commands:
     Move - Top, Rising:
         Outcomes:
             Section: Top, Rising
+            Helper: Middle Path
         Requirements:
             Bottom, Rising - Bat:
                 Section: Bottom, Rising
@@ -99,6 +101,7 @@ Commands:
     Move - Right Side:
         Outcomes:
             Section: Right Side
+            Helper: NONE
         Requirements:
             Right Path:
                 Section: Bottom, Rising
