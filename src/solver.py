@@ -220,6 +220,11 @@ class Game:
             # 'Status - Breakable Wall in Tall Zig Zag Room Broken',
             # 'Status - Pushing Statue Destroyed',
             'Status - Stairwell Near Demon Switch Dislodged',
+            # 'Status - Warp Room to Abandoned Mine Unlocked',
+            # 'Status - Warp Room to Castle Entrance Unlocked',
+            # 'Status - Warp Room to Castle Keep Unlocked',
+            # "Status - Warp Room to Olrox's Quarters Unlocked",
+            # 'Status - Warp Room to Outer Wall Unlocked',
             'Helper',
             'Subweapon',
         ):

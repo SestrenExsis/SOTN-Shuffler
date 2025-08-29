@@ -208,8 +208,9 @@ def traverse(game__init, visits):
         location__current = (game__current.room, game__current.current_state['Section'])
         key__current = (location__current, game__current.get_status_flags())
         memo.add(key__current)
-        print(' ', (len(work), len(memo), step__current), location__current)
-        visits[location__current] = set()
+        # print(' ', (len(work), len(memo), step__current), location__current)
+        if location__current not in visits:
+            visits[location__current] = set()
         for command_name in game__current.get_valid_command_names():
             command = game__current.commands[game__current.room][command_name]
             if command.get('Logic Level', 'Optional') in ('Hidden', 'Required'):
@@ -224,8 +225,10 @@ def traverse(game__init, visits):
                 memo.add(key__next)
                 work.appendleft((step__current + 1, game__next))
                 visits[location__current].add(location__next)
-            print('   ', (command_name, location__next, seen_ind))
-    unbonded_commands = set()
+            # print('   ', (command_name, location__next, seen_ind))
+    locations = set(a for (a, b) in memo)
+    unbonded_commands = {}
+    # TODO(sestren): With full progression, unbonded commands represent unreachable or nonsensical commands
     for ((room__current, section__current), _) in memo:
         game__current = game__init.clone()
         game__current.current_state['Room'] = room__current
@@ -237,12 +240,11 @@ def traverse(game__init, visits):
             game__next = game__current.clone()
             game__next.process_command(command_name)
             location__next = (game__next.room, game__next.current_state['Section'])
-            if location__next not in memo:
-                unbonded_commands.add((room__current, section__current, command_name))
-    print('Unbonded commands')
-    for (room__current, section__current, command_name) in sorted(unbonded_commands):
-        print((room__current, section__current, command_name))
-    result = memo
+            if location__next not in locations:
+                unbonded_commands[(room__current, section__current, command_name)] = location__next
+    # for key in sorted(unbonded_commands):
+    #     print(key, unbonded_commands[key])
+    result = (locations, unbonded_commands)
     return result
 
 if __name__ == '__main__':
@@ -255,6 +257,18 @@ if __name__ == '__main__':
         open(os.path.join('examples', 'skillsets.yaml')) as skillsets_file,
         open(os.path.join('build', 'shuffler', 'current-seed.json')) as current_seed_json,
     ):
+        # Start from the beginning
+        # Try every command
+        #   - Valid and bonded with zero progression (add new location to the current group and add next state to work)
+        #   - Valid and unbonded with zero progression (add [location, command] to the list of bridge commands)
+        #   - Invalid with zero progression but valid with full progression (add [location, command] to the list of bridge commands)
+        #   - Invalid even with full progression
+        #       - Invalid even after adding all status flags (add [location, command] to the list of illegal commands)
+        #       - Valid after adding all status flags (add [location, command] to the list of bridge commands)
+
+        #   - N-bonded commands take you to a state that allows you to return to the previous state in N or fewer steps
+        #       - Example of a bonded command: Going through a passageway or door
+        #       - Example of an unbonded command: Opening a shortcut or activating a pressure plate
         start_time = time.time()
         skillsets = yaml.safe_load(skillsets_file)
         skillsets_file.close()
@@ -271,18 +285,22 @@ if __name__ == '__main__':
                 game__full_progression.current_state[key] = value
         visits__full_progression = {}
         print((len(visits__full_progression), ''))
-        memo__full_progression = traverse(game__full_progression, visits__full_progression)
+        (locations__full_progression, _) = traverse(game__full_progression, visits__full_progression)
         # Traverse all (stage, room, section) locations, and identify all other locations bonded to the chosen one with no progression
         visits__bonded = {}
-        for (room__current, section__current) in sorted(memo__full_progression):
-            print()
+        for (room__current, section__current) in sorted(locations__full_progression):
             game__no_progression = map_solver.current_game.clone()
             game__no_progression.current_state['Room'] = room__current
             game__no_progression.current_state['Section'] = section__current
             location__bonded = game__no_progression.location
-            print((len(visits__bonded), location__bonded))
-            memo = traverse(game__no_progression, visits__bonded)
+            (locations__no_progression, unbonded_commands) = traverse(game__no_progression, visits__bonded)
+            locations__hash = hash(tuple(sorted(locations__no_progression)))
+            print('BV =', len(visits__bonded), ', BL =', location__bonded, ', Lc =', len(locations__no_progression), ', UC =', len(unbonded_commands), ', Hs = ', locations__hash)
+            for location in sorted(locations__no_progression):
+                print('  -', location)
+            print('')
         # ...
+        raise Exception()
         all_checks = get_reachable_checks(map_solver, all_progressions.keys())
         print('\nAll Checks -', len(all_checks), 'in total')
         for check in sorted(all_checks):
