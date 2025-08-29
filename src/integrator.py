@@ -198,6 +198,53 @@ def get_reachable_checks(map_solver, progression_ids: set):
     result = reachable_checks
     return result
 
+def traverse(game__init, visits):
+    # bonded_locations, unbonded_commands
+    memo = set()
+    work = collections.deque()
+    work.appendleft((0, game__init))
+    while len(work) > 0:
+        (step__current, game__current) = work.pop()
+        location__current = (game__current.room, game__current.current_state['Section'])
+        key__current = (location__current, game__current.get_status_flags())
+        memo.add(key__current)
+        print(' ', (len(work), len(memo), step__current), location__current)
+        visits[location__current] = set()
+        for command_name in game__current.get_valid_command_names():
+            command = game__current.commands[game__current.room][command_name]
+            if command.get('Logic Level', 'Optional') in ('Hidden', 'Required'):
+                continue
+            game__next = game__current.clone()
+            game__next.process_command(command_name)
+            location__next = (game__next.room, game__next.current_state['Section'])
+            key__next = (location__next, game__next.get_status_flags())
+            seen_ind = 'SKIP'
+            if key__next not in memo:
+                seen_ind = '-'
+                memo.add(key__next)
+                work.appendleft((step__current + 1, game__next))
+                visits[location__current].add(location__next)
+            print('   ', (command_name, location__next, seen_ind))
+    unbonded_commands = set()
+    for ((room__current, section__current), _) in memo:
+        game__current = game__init.clone()
+        game__current.current_state['Room'] = room__current
+        game__current.current_state['Section'] = section__current
+        for command_name in game__current.get_valid_command_names(False):
+            command = game__current.commands[game__current.room][command_name]
+            if command.get('Logic Level', 'Optional') in ('Hidden', 'Required'):
+                continue
+            game__next = game__current.clone()
+            game__next.process_command(command_name)
+            location__next = (game__next.room, game__next.current_state['Section'])
+            if location__next not in memo:
+                unbonded_commands.add((room__current, section__current, command_name))
+    print('Unbonded commands')
+    for (room__current, section__current, command_name) in sorted(unbonded_commands):
+        print((room__current, section__current, command_name))
+    result = memo
+    return result
+
 if __name__ == '__main__':
     '''
     Usage
@@ -217,57 +264,25 @@ if __name__ == '__main__':
         current_seed_json.close()
         map_solver = solver.Solver(current_seed['Logic Core'], skills, custom_end=goals__all_checks)
         # Identify all (stage, room, section) locations attainable with full progression
-        game__init = map_solver.current_game.clone()
+        print()
+        game__full_progression = map_solver.current_game.clone()
         for (progression_id, progression_pairs) in all_progressions.items():
             for (key, value) in progression_pairs.items():
-                game__init.current_state[key] = value
-        visits__full_progression = set()
-        work = collections.deque()
-        work.appendleft((0, game__init))
-        while len(work) > 0:
-            (step__current, game__current) = work.pop()
-            location__current = (game__current.room, game__current.current_state['Section'])
-            print(len(work), len(visits__full_progression), step__current, game__current.location)
-            visits__full_progression.add(location__current)
-            for command_name in game__current.get_valid_command_names():
-                command = game__current.commands[game__current.room][command_name]
-                if command.get('Logic Level', 'Optional') in ('Hidden', 'Required'):
-                    continue
-                game__next = game__current.clone()
-                game__next.process_command(command_name)
-                location__next = (game__next.room, game__next.current_state['Section'])
-                if location__next not in visits__full_progression:
-                    work.appendleft((step__current + 1, game__next))
-                    visits__full_progression.add(location__next)
-        # Arbitrarily choose from the remaining (stage, room, section) locations, and identify all other locations bonded to the chosen one with no progression
+                game__full_progression.current_state[key] = value
+        visits__full_progression = {}
+        print((len(visits__full_progression), ''))
+        memo__full_progression = traverse(game__full_progression, visits__full_progression)
+        # Traverse all (stage, room, section) locations, and identify all other locations bonded to the chosen one with no progression
         visits__bonded = {}
-        while len(visits__full_progression) > 0:
+        for (room__current, section__current) in sorted(memo__full_progression):
             print()
-            (room__current, section__current) = visits__full_progression.pop()
-            game__init = map_solver.current_game.clone()
-            game__init.current_state['Room'] = room__current
-            game__init.current_state['Section'] = section__current
-            location__bonded = game__init.location
-            print(len(visits__bonded), location__bonded)
-            memo = set()
-            work = collections.deque()
-            work.appendleft((0, game__init))
-            while len(work) > 0:
-                (step__current, game__current) = work.pop()
-                location__current = (game__current.room, game__current.current_state['Section'])
-                print('  ', len(work), len(visits__bonded), step__current, game__current.location)
-                visits__bonded[location__current] = set()
-                for command_name in game__current.get_valid_command_names():
-                    command = game__current.commands[game__current.room][command_name]
-                    if command.get('Logic Level', 'Optional') in ('Hidden', 'Required'):
-                        continue
-                    game__next = game__current.clone()
-                    game__next.process_command(command_name)
-                    location__next = (game__next.room, game__next.current_state['Section'])
-                    if location__next not in memo:
-                        memo.add(location__next)
-                        work.appendleft((step__current + 1, game__next))
-                        visits__bonded[location__current].add(location__next)
+            game__no_progression = map_solver.current_game.clone()
+            game__no_progression.current_state['Room'] = room__current
+            game__no_progression.current_state['Section'] = section__current
+            location__bonded = game__no_progression.location
+            print((len(visits__bonded), location__bonded))
+            memo = traverse(game__no_progression, visits__bonded)
+        # ...
         all_checks = get_reachable_checks(map_solver, all_progressions.keys())
         print('\nAll Checks -', len(all_checks), 'in total')
         for check in sorted(all_checks):

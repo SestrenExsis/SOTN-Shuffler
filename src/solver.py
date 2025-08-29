@@ -199,6 +199,38 @@ class Game:
         result = hashed_state
         return result
     
+    def get_status_flags(self, debug=False) -> str:
+        status_flags = {}
+        for key in (
+            # 'Stage',
+            # 'Room',
+            # 'Section',
+            # 'Status - Cannon Activated'
+            'Status - Pressure Plate in Marble Gallery Activated'
+            # 'Status - Shortcut in Cube of Zoe Room Activated',
+            # 'Status - Shortcut to Underground Caverns Activated',
+            # 'Status - Shortcut to Warp Rooms Activated',
+            'Status - Breakable Ceiling in Catwalk Crypt Broken',
+            'Status - DK Bridge Broken',
+            'Status - Breakable Floor in Hidden Crystal Entrance Broken',
+            'Status - Breakable Floor in Tall Zig Zag Room Broken',
+            # 'Status - Snake Column Wall Broken',
+            # 'Status - Breakable Wall in Grand Staircase Broken',
+            # 'Status - Breakable Wall in Left Gear Room Broken',
+            # 'Status - Breakable Wall in Tall Zig Zag Room Broken',
+            # 'Status - Pushing Statue Destroyed',
+            'Status - Stairwell Near Demon Switch Dislodged',
+            'Helper',
+            'Subweapon',
+        ):
+            if key in self.current_state:
+                status_flags[key] = self.current_state[key]
+        hashed_state = hash(json.dumps(status_flags, sort_keys=True, default=str))
+        result = hashed_state
+        if debug:
+            result = (hashed_state, status_flags)
+        return result
+    
     def get_alt_key(self, debug=False) -> int:
         current_state = {}
         for key in (
@@ -207,20 +239,21 @@ class Game:
             'Section',
             'Helper',
             # 'Status - Cannon Activated'
-            # 'Status - Pressure Plate in Marble Gallery Activated'
+            'Status - Pressure Plate in Marble Gallery Activated'
             # 'Status - Shortcut in Cube of Zoe Room Activated',
             # 'Status - Shortcut to Underground Caverns Activated',
             # 'Status - Shortcut to Warp Rooms Activated',
-            # 'Status - Breakable Ceiling in Catwalk Crypt Broken',
-            # 'Status - DK Bridge Broken',
-            # 'Status - Breakable Floor in Hidden Crystal Entrance Broken',
-            # 'Status - Breakable Floor in Tall Zig Zag Room Broken',
+            'Status - Breakable Ceiling in Catwalk Crypt Broken',
+            'Status - DK Bridge Broken',
+            'Status - Breakable Floor in Hidden Crystal Entrance Broken',
+            'Status - Breakable Floor in Tall Zig Zag Room Broken',
             # 'Status - Snake Column Wall Broken',
             # 'Status - Breakable Wall in Grand Staircase Broken',
             # 'Status - Breakable Wall in Left Gear Room Broken',
             # 'Status - Breakable Wall in Tall Zig Zag Room Broken',
             # 'Status - Pushing Statue Destroyed',
-            # 'Status - Stairwell Near Demon Switch Dislodged',
+            'Status - Stairwell Near Demon Switch Dislodged',
+            'Subweapon',
         ):
             if key in self.current_state:
                 current_state[key] = self.current_state[key]
