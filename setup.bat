@@ -5,8 +5,8 @@ mkdir "build/shuffler"
 @REM If the next step fails, make sure the BIN is placed inside build/patcher and is named "Castlevania - Symphony of the Night (Track 1).bin"
 @REM After doing so, rerun this script
 
-python lib/SOTN-Patcher/src/sotn_extractor.py "build/patcher/Castlevania - Symphony of the Night (Track 1).bin" "build/patcher/extraction.json" || goto :error
-python lib/SOTN-Patcher/src/sotn_patcher.py "build/patcher/extraction.json" --data="lib/SOTN-Patcher/data/" --template="build/shuffler/vanilla-changes.json"
+python lib/SOTN-Patcher/src/sotn_extractor.py "build/patcher/Castlevania - Symphony of the Night (Track 1).bin" "build/patcher" || goto :error
+python lib/SOTN-Patcher/src/sotn_patcher.py "build/patcher" --data="lib/SOTN-Patcher/data/" --template="build/shuffler/vanilla-changes.json"
 
 python src/mapper.py "Abandoned Mine"        250  600 --seed="1" || goto :error
 python src/mapper.py "Alchemy Laboratory"    900 1800 --seed="1" || goto :error

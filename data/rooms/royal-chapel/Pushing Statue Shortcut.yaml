@@ -34,6 +34,14 @@ Commands:
             Default:
                 Section: Right Side
                 Status - Pushing Statue Destroyed : true
+    Move - Left Side (Destroying Statue):
+        Outcomes:
+            Section: Left Side
+            Status - Pushing Statue Destroyed : true
+        Requirements:
+            Default:
+                Section: Right Side
+                Status - Pushing Statue Destroyed : false
     Move - Right Side:
         Outcomes:
             Section: Right Side
@@ -41,10 +49,3 @@ Commands:
             Default:
                 Section: Left Side
                 Status - Pushing Statue Destroyed: true
-    Action - Destroy Pushing Statue:
-        Outcomes:
-            Status - Pushing Statue Destroyed: true
-        Requirements:
-            Default:
-                Section: Right Side
-                Status - Pushing Statue Destroyed: false

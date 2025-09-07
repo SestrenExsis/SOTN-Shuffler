@@ -172,6 +172,14 @@ class Game:
         result = ''.join(progressions)
         return result
     
+    def get_scoped_state(self, scope_template: dict) -> tuple:
+        current_state = []
+        for key in sorted(scope_template):
+            value = self.current_state.get(key, scope_template[key])
+            current_state.append((key, str(value)))
+        result = tuple(current_state)
+        return result
+    
     def get_key(self, ignores: set={}) -> int:
         self.cleanup_state()
         current_state = copy.deepcopy(self.current_state)
@@ -205,21 +213,23 @@ class Game:
             # 'Stage',
             # 'Room',
             # 'Section',
-            # 'Status - Cannon Activated'
-            'Status - Pressure Plate in Marble Gallery Activated'
+            # 'Status - Cannon Activated',
+            'Status - Pressure Plate in Marble Gallery Activated',
             # 'Status - Shortcut in Cube of Zoe Room Activated',
             # 'Status - Shortcut to Underground Caverns Activated',
             # 'Status - Shortcut to Warp Rooms Activated',
             'Status - Breakable Ceiling in Catwalk Crypt Broken',
             'Status - DK Bridge Broken',
+            'Status - DK Button Pressed',
             'Status - Breakable Floor in Hidden Crystal Entrance Broken',
             'Status - Breakable Floor in Tall Zig Zag Room Broken',
             # 'Status - Snake Column Wall Broken',
             # 'Status - Breakable Wall in Grand Staircase Broken',
             # 'Status - Breakable Wall in Left Gear Room Broken',
             # 'Status - Breakable Wall in Tall Zig Zag Room Broken',
-            # 'Status - Pushing Statue Destroyed',
+            'Status - Pushing Statue Destroyed',
             'Status - Stairwell Near Demon Switch Dislodged',
+            'Status - Switch in Abandoned Mine Pressed',
             # 'Status - Warp Room to Abandoned Mine Unlocked',
             # 'Status - Warp Room to Castle Entrance Unlocked',
             # 'Status - Warp Room to Castle Keep Unlocked',

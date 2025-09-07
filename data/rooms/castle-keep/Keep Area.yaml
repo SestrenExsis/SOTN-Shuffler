@@ -274,7 +274,8 @@ Commands:
         Requirements:
             Anteroom - Default:
                 Section: Anteroom
-                Status - Richter Saved: true
+                Item - Holy Glasses:
+                    Minimum: 1
             Teleporter - Default:
                 Section: Teleporter
     Move - Upper-Right Ledge:
