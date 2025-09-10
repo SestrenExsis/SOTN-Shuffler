@@ -297,19 +297,6 @@ if __name__ == '__main__':
         open(os.path.join('examples', 'skillsets.yaml')) as skillsets_file,
         open(os.path.join('build', 'shuffler', 'current-seed.json')) as current_seed_json,
     ):
-        # Reflexive
-        # Start from the beginning
-        # Try every command
-        #   - Valid and bonded with zero progression (add new location to the current group and add next state to work)
-        #   - Valid and unbonded with zero progression (add [location, command] to the list of bridge commands)
-        #   - Invalid with zero progression but valid with full progression (add [location, command] to the list of bridge commands)
-        #   - Invalid even with full progression
-        #       - Invalid even after adding all status flags (add [location, command] to the list of illegal commands)
-        #       - Valid after adding all status flags (add [location, command] to the list of bridge commands)
-
-        #   - N-bonded commands take you to a state that allows you to return to the previous state in N or fewer steps
-        #       - Example of a bonded command: Going through a passageway or door
-        #       - Example of an unbonded command: Opening a shortcut or activating a pressure plate
         start_time = time.time()
         skillsets = yaml.safe_load(skillsets_file)
         skillsets_file.close()
@@ -318,17 +305,12 @@ if __name__ == '__main__':
         current_seed = json.load(current_seed_json)
         current_seed_json.close()
         map_solver = solver.Solver(current_seed['Logic Core'], skills, custom_end=goals__all_checks)
+        game__init = map_solver.current_game.clone()
         # Identify all (stage, room, section) locations attainable with full progression
-        game__full_progression = map_solver.current_game.clone()
+        game__full_progression = game__init.clone()
         for (progression_id, progression_pairs) in all_progressions.items():
             for (key, value) in progression_pairs.items():
                 game__full_progression.current_state[key] = value
-        # for status_key in (
-        #     'Technique - Open Secret Wall in Merman Room',
-        #     'Technique - Gear Puzzle',
-        # ):
-        #     game__full_progression.current_state[status_key] = True
-        # location__bonded = game__full_progression.location
         states__full_progression = set()
         traverse_greedily(game__full_progression, states__full_progression, 3)
         print('Full Progression')
@@ -349,7 +331,7 @@ if __name__ == '__main__':
         group_ids = {}
         while len(locations__full_progression) > 0:
             (room__current, section__current) = locations__full_progression.pop()
-            game__no_progression = map_solver.current_game.clone()
+            game__no_progression = game__init.clone()
             game__no_progression.current_state['Room'] = room__current
             game__no_progression.current_state['Section'] = section__current
             states__no_progression = set()
@@ -369,6 +351,7 @@ if __name__ == '__main__':
                 if (room__current, section__current) in locations__full_progression:
                     locations__full_progression.remove((room__current, section__current))
             group_ids[len(group_ids)] = locations__no_progression
+        # Look for groups that overlap and split them up along their boundaries
         groups = []
         while len(group_ids) > 0:
             group_id__current = max(group_ids)
@@ -396,6 +379,7 @@ if __name__ == '__main__':
                 count += 1
             groups.append(group__core)
         print('')
+        meta_commands = {} # (source_group_id, progression_required, target_group_id)
         for (group_id, group) in enumerate(groups):
             print(f'Group ID #{group_id} has {len(group)} locations')
             for (room__current, section__current) in sorted(group):
