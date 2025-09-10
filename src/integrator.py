@@ -202,12 +202,12 @@ def get_reachable_checks(map_solver, progression_ids: set):
     return result
 
 def get_choices(game__init, state_template: dict, max_steps: int=3):
-    command_costs = {
-        'Action - Set Lower-Left Gear': 0.25,
-        'Action - Set Lower-Right Gear': 0.25,
-        'Action - Set Upper-Left Gear': 0.25,
-        'Action - Set Upper-Right Gear': 0.25,
-    }
+    command_costs = {}
+    if game__init.current_state.get('Technique - Gear Puzzle', False):
+        command_costs['Action - Set Lower-Left Gear'] = 0.25
+        command_costs['Action - Set Lower-Right Gear'] = 0.25
+        command_costs['Action - Set Upper-Left Gear'] = 0.25
+        command_costs['Action - Set Upper-Right Gear'] = 0.25
     choices = {}
     work = []
     for command_name__init in game__init.get_valid_command_names():
@@ -243,6 +243,7 @@ def traverse_safely(game__init, states, max_steps: int=3):
     while len(work) > 0:
         (step__current, game__current) = work.pop()
         state__current = game__current.get_scoped_state(state_template)
+        states.add(state__current)
         choices = get_choices(game__current, state_template, max_steps)
         for command_history in choices.get(state__current, []):
             game__next = game__current.clone()
@@ -269,6 +270,7 @@ def traverse_greedily(game__init, states, max_steps: int=3):
     while len(work) > 0:
         (step__current, game__current) = work.pop()
         state__current = game__current.get_scoped_state(state_template)
+        states.add(state__current)
         choices = get_choices(game__current, state_template, max_steps)
         for (state__next, command_histories) in choices.items():
             if state__next == state__current:
@@ -321,16 +323,16 @@ if __name__ == '__main__':
         for (progression_id, progression_pairs) in all_progressions.items():
             for (key, value) in progression_pairs.items():
                 game__full_progression.current_state[key] = value
-        for status_key in (
-            'Technique - Open Secret Wall in Merman Room',
-            'Technique - Gear Puzzle',
-        ):
-            game__full_progression.current_state[status_key] = True
-        location__bonded = game__full_progression.location
+        # for status_key in (
+        #     'Technique - Open Secret Wall in Merman Room',
+        #     'Technique - Gear Puzzle',
+        # ):
+        #     game__full_progression.current_state[status_key] = True
+        # location__bonded = game__full_progression.location
         states__full_progression = set()
         traverse_greedily(game__full_progression, states__full_progression, 3)
         print('Full Progression')
-        memo = set()
+        locations__full_progression = set()
         for state in sorted(states__full_progression):
             room__current = game__full_progression.DEFAULT_STRING
             section__current = game__full_progression.DEFAULT_STRING
@@ -339,21 +341,65 @@ if __name__ == '__main__':
                     room__current = value
                 if key == 'Section':
                     section__current = value
-            if (room__current, section__current) not in memo:
+            if (room__current, section__current) not in locations__full_progression:
                 print('  -', (room__current, section__current))
-                memo.add((room__current, section__current))
+                locations__full_progression.add((room__current, section__current))
         print('')
         # Traverse all (stage, room, section) locations, and identify all other locations bonded to the chosen one with no progression
-        for (room__current, section__current) in sorted(memo):
+        group_ids = {}
+        while len(locations__full_progression) > 0:
+            (room__current, section__current) = locations__full_progression.pop()
             game__no_progression = map_solver.current_game.clone()
             game__no_progression.current_state['Room'] = room__current
             game__no_progression.current_state['Section'] = section__current
             states__no_progression = set()
             traverse_safely(game__no_progression, states__no_progression, 3)
+            locations__no_progression = set()
             print('No Progression:', (room__current, section__current))
             for state in sorted(states__no_progression):
-                print('  -', state)
-            print('')
+                room__current = game__no_progression.DEFAULT_STRING
+                section__current = game__no_progression.DEFAULT_STRING
+                for (key, value) in state:
+                    if key == 'Room':
+                        room__current = value
+                    if key == 'Section':
+                        section__current = value
+                # print('  -', (room__current, section__current))
+                locations__no_progression.add((room__current, section__current))
+                if (room__current, section__current) in locations__full_progression:
+                    locations__full_progression.remove((room__current, section__current))
+            group_ids[len(group_ids)] = locations__no_progression
+        groups = []
+        while len(group_ids) > 0:
+            group_id__current = max(group_ids)
+            group__current = group_ids.pop(group_id__current)
+            group__core = group__current
+            overlap_ind = True
+            count = 0
+            while overlap_ind:
+                print(len(groups), len(group_ids), count)
+                overlap_ind = False
+                for group_id__next in list(sorted(group_ids.keys())):
+                    group__next = group_ids[group_id__next]
+                    if len(group__next & group__current) > 0:
+                        left_group = group__current - group__next
+                        if len(left_group) > 0:
+                            group_id__left = max(group_ids) + 1
+                            group_ids[group_id__left] = left_group
+                        right_group = group__next - group__current
+                        if len(right_group) > 0:
+                            group_id__right = max(group_ids) + 1
+                            group_ids[group_id__right] = right_group
+                        group__core &= group__next
+                        group_ids.pop(group_id__next)
+                        overlap_ind = True
+                count += 1
+            groups.append(group__core)
+        print('')
+        for (group_id, group) in enumerate(groups):
+            print(f'Group ID #{group_id} has {len(group)} locations')
+            for (room__current, section__current) in sorted(group):
+                print('  -', (room__current, section__current))
         # ...
         raise Exception()
         all_checks = get_reachable_checks(map_solver, all_progressions.keys())
