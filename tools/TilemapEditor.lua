@@ -80,10 +80,10 @@ P.update_input = function()
     P.mouse_row = math.floor((P.curr_mouse.Y + (0xF & P.Memory.ScrollY.Value) + 0) / 16)
     P.curr_row = (P.mouse_row + P.scroll_row)
     if (P.curr_keys.Z and (P.prev_keys.Z == nil or P.prev_keys.Z == false)) then
-        if P.mode == "READ" then
-            P.mode = "WRITE"
+        if P.mode == "FOREGROUND" then
+            P.mode = "BACKGROUND"
         else
-            P.mode = "READ"
+            P.mode = "FOREGROUND"
         end
     end
     local width_in_tiles = (P.Memory.RoomWidth.Value / 16)
@@ -91,19 +91,21 @@ P.update_input = function()
     local tile_offset = 2 * ((width_in_tiles * P.curr_row) + P.curr_col)
     local fg_offset = (0x1FFFFF & P.Memory.ForegroundPointer.Value)
     if (P.curr_mouse.Left == true) then
-        local tilemap_offset = fg_offset + 2 * width_in_tiles * height_in_tiles
-        if (P.mode == "READ") then
+        if (P.mode == "FOREGROUND") then
+            local tilemap_offset = fg_offset
+            P.fg_tile_data = memory.read_u16_le(tilemap_offset + tile_offset)
+        elseif (P.mode == "BACKGROUND") then
+            local tilemap_offset = fg_offset + 2 * width_in_tiles * height_in_tiles
             P.bg_tile_data = memory.read_u16_le(tilemap_offset + tile_offset)
-        elseif (P.mode == "WRITE") then
-            memory.write_u16_le(tilemap_offset + tile_offset, P.bg_tile_data)
         end
     end
     if (P.curr_mouse.Right == true) then
-        local tilemap_offset = fg_offset
-        if (P.mode == "READ") then
-            P.fg_tile_data = memory.read_u16_le(tilemap_offset + tile_offset)
-        elseif (P.mode == "WRITE") then
+        if (P.mode == "FOREGROUND") then
+            local tilemap_offset = fg_offset
             memory.write_u16_le(tilemap_offset + tile_offset, P.fg_tile_data)
+        elseif (P.mode == "BACKGROUND") then
+            local tilemap_offset = fg_offset + 2 * width_in_tiles * height_in_tiles
+            memory.write_u16_le(tilemap_offset + tile_offset, P.bg_tile_data)
         end
     end
 end
@@ -129,9 +131,9 @@ P.draw = function()
     end
     local left = 16 * (P.curr_col - P.scroll_col) - (0xF & P.Memory.ScrollX.Value) + 14
     local top = 16 * (P.curr_row - P.scroll_row) - (0xF & P.Memory.ScrollY.Value) - 1
-    local box_color = 0xFFFFFF00
-    if (P.mode == "WRITE") then
-        box_color = 0xFFFF0000
+    local box_color = 0xFF999999
+    if (P.mode == "FOREGROUND") then
+        box_color = 0xFFFFFFFF
     end
     gui.drawBox(left, top, left + 17, top + 17, box_color, 0x00000000)
     P.canvas.Refresh()
@@ -173,7 +175,7 @@ P.curr_row = 0
 P.prev_col = curr_col
 P.prev_row = curr_row
 -- Other editor-specific variables
-P.mode = "READ"
+P.mode = "BACKGROUND"
 P.bg_tile_data = 0x0000
 P.fg_tile_data = 0x0000
 -- GUI variables
