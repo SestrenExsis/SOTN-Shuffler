@@ -91,15 +91,19 @@ P.update_input = function()
     local tile_offset = 2 * ((width_in_tiles * P.curr_row) + P.curr_col)
     local fg_offset = (0x1FFFFF & P.Memory.ForegroundPointer.Value)
     if (P.curr_mouse.Left == true) then
+        local tilemap_offset = fg_offset + 2 * width_in_tiles * height_in_tiles
         if (P.mode == "READ") then
-            local tilemap_offset = fg_offset + 2 * width_in_tiles * height_in_tiles
             P.bg_tile_data = memory.read_u16_le(tilemap_offset + tile_offset)
+        elseif (P.mode == "WRITE") then
+            memory.write_u16_le(tilemap_offset + tile_offset, P.bg_tile_data)
         end
     end
     if (P.curr_mouse.Right == true) then
+        local tilemap_offset = fg_offset
         if (P.mode == "READ") then
-            local tilemap_offset = fg_offset
             P.fg_tile_data = memory.read_u16_le(tilemap_offset + tile_offset)
+        elseif (P.mode == "WRITE") then
+            memory.write_u16_le(tilemap_offset + tile_offset, P.fg_tile_data)
         end
     end
 end
