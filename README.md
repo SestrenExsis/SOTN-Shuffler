@@ -22,9 +22,11 @@ Make a **COPY** of your target BIN (`SLUS-00067`) and place it inside the `build
 
 From the root of the repository, run `git submodule update --init --recursive` to fetch the required SOTN-Patcher repo as a submodule.
 
+Run `pip install -r requirements.txt` to download the required Python libraries.
+
 Run the `setup.bat` script, which will generate the necessary extraction and randomly-generated map files for shuffling. It will also run validation checks against the generated map files. Be aware that this step can take several minutes to run.
 
-Once the necessary files have been generated, running the `randomize.bat` script will go through the process of building a randomized PPF file. Be aware that this step can also take a few minutes to complete.
+Once the necessary files have been generated, running the `randomize.bat` script with the appropriate arguments will go through the process of building a randomized PPF file. Be aware that this step can also take a few minutes to complete. There are two arguments, the first argument is passed as the seed, and the second specificies the skillset to use when verifying that the seed is solvable. For now, `Casual` is recommended, so you can run, for example, `./randomize.bat 123456789 Casual` to generate a Casual seed using `123456789` as the seed value.
 
 Once that step has completed, a file called `current-seed.ppf` will have been created inside the `build/patcher` folder. This file can be used in conjunction with [ppf.sotn.io](https://ppf.sotn.io/) to apply the changes to your BIN file.
 
