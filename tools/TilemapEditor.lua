@@ -79,6 +79,7 @@ P.update_input = function()
     P.scroll_row = math.floor(P.Memory.ScrollY.Value / 16)
     P.mouse_row = math.floor((P.curr_mouse.Y + (0xF & P.Memory.ScrollY.Value) + 0) / 16)
     P.curr_row = (P.mouse_row + P.scroll_row)
+    -- Handle key inputs
     if (P.curr_keys.Z and (P.prev_keys.Z == nil or P.prev_keys.Z == false)) then
         if P.mode == "FOREGROUND" then
             P.mode = "BACKGROUND"
@@ -90,23 +91,56 @@ P.update_input = function()
     local height_in_tiles = (P.Memory.RoomHeight.Value / 16)
     local tile_offset = 2 * ((width_in_tiles * P.curr_row) + P.curr_col)
     local fg_offset = (0x1FFFFF & P.Memory.ForegroundPointer.Value)
+    local fg_address = fg_offset + tile_offset
+    local bg_address = fg_address + 2 * width_in_tiles * height_in_tiles
+    -- Read tile
     if (P.curr_mouse.Left == true) then
         if (P.mode == "FOREGROUND") then
-            local tilemap_offset = fg_offset
-            P.fg_tile_data = memory.read_u16_le(tilemap_offset + tile_offset)
+            P.fg_tile_data = memory.read_u16_le(fg_address)
+            console.log(P.edits[fg_address])
         elseif (P.mode == "BACKGROUND") then
-            local tilemap_offset = fg_offset + 2 * width_in_tiles * height_in_tiles
-            P.bg_tile_data = memory.read_u16_le(tilemap_offset + tile_offset)
+            P.bg_tile_data = memory.read_u16_le(bg_address)
+            console.log(P.edits[bg_address])
         end
     end
+    -- Write tile
+    local edit_ind = false
     if (P.curr_mouse.Right == true) then
         if (P.mode == "FOREGROUND") then
-            local tilemap_offset = fg_offset
-            memory.write_u16_le(tilemap_offset + tile_offset, P.fg_tile_data)
+            local original_value = memory.read_u16_le(fg_address)
+            if P.edits[fg_address] ~= nil then
+                original_value = P.edits[fg_address].OriginalValue
+            end
+            memory.write_u16_le(fg_address, P.fg_tile_data)
+            P.edits[fg_address] = {
+                OriginalValue = original_value,
+                CurrentValue = P.fg_tile_data,
+            }
+            edit_ind = true
         elseif (P.mode == "BACKGROUND") then
-            local tilemap_offset = fg_offset + 2 * width_in_tiles * height_in_tiles
-            memory.write_u16_le(tilemap_offset + tile_offset, P.bg_tile_data)
+            local original_value = memory.read_u16_le(bg_address)
+            if P.edits[bg_address] ~= nil then
+                original_value = P.edits[bg_address].OriginalValue
+            end
+            memory.write_u16_le(bg_address, P.bg_tile_data)
+            P.edits[bg_address] = {
+                OriginalValue = original_value,
+                CurrentValue = P.bg_tile_data,
+            }
+            edit_ind = true
         end
+    end
+    -- Update edits
+    if edit_ind then
+        P.edit_count = 0
+        local current_edits = {}
+        for address, value in pairs(P.edits) do
+            if value ~= nil and value.OriginalValue ~= value.CurrentValue then
+                current_edits[address] = value
+                P.edit_count = P.edit_count + 1
+            end
+        end
+        P.edits = current_edits
     end
 end
 
@@ -123,6 +157,8 @@ P.draw = function()
     P.text(20, 3, bizstring.hex(P.bg_tile_data))
     P.text(0, 4, "Stored Foreground")
     P.text(20, 4, bizstring.hex(P.fg_tile_data))
+    P.text(0, 5, "Edit Count")
+    P.text(20, 5, P.edit_count)
     for index, value_name in pairs(P.MemoryKeys) do
         local value = P.Memory[value_name]
         P.text(0, index + 6, value_name)
@@ -172,12 +208,14 @@ P.mouse_row = 0
 -- Tile coordinates are the sum of Mouse coordinates + Scroll coordinates
 P.curr_col = 0
 P.curr_row = 0
-P.prev_col = curr_col
-P.prev_row = curr_row
+P.prev_col = P.curr_col
+P.prev_row = P.curr_row
 -- Other editor-specific variables
 P.mode = "BACKGROUND"
 P.bg_tile_data = 0x0000
 P.fg_tile_data = 0x0000
+P.edits = {}
+P.edit_count = 0
 -- GUI variables
 P.scale = 1.5
 P.canvas_width = P.scale * (400)
