@@ -79,21 +79,46 @@ P.update_input = function()
     P.scroll_row = math.floor(P.Memory.ScrollY.Value / 16)
     P.mouse_row = math.floor((P.curr_mouse.Y + (0xF & P.Memory.ScrollY.Value) + 0) / 16)
     P.curr_row = (P.mouse_row + P.scroll_row)
-    -- Handle key inputs
-    if (P.curr_keys.Z and (P.prev_keys.Z == nil or P.prev_keys.Z == false)) then
-        if P.mode == "FOREGROUND" then
-            P.mode = "BACKGROUND"
-        else
-            P.mode = "FOREGROUND"
-        end
-    end
     local width_in_tiles = (P.Memory.RoomWidth.Value / 16)
     local height_in_tiles = (P.Memory.RoomHeight.Value / 16)
     local tile_offset = 2 * ((width_in_tiles * P.curr_row) + P.curr_col)
     local fg_offset = (0x1FFFFF & P.Memory.ForegroundPointer.Value)
     local fg_address = fg_offset + tile_offset
     local bg_address = fg_address + 2 * width_in_tiles * height_in_tiles
-    -- Read tile
+    local edit_ind = false
+    -- Handle key input: Switch mode
+    if (P.curr_keys.X and (P.prev_keys.X == nil or P.prev_keys.X == false)) then
+        if P.mode == "FOREGROUND" then
+            P.mode = "BACKGROUND"
+        else
+            P.mode = "FOREGROUND"
+        end
+    end
+    -- Handle key input: Erase tile edit
+    if (P.curr_keys.Z) then
+        if P.mode == "FOREGROUND" then
+            if P.edits[fg_address] ~= nil then
+                local original_value = P.edits[fg_address].OriginalValue
+                memory.write_u16_le(fg_address, original_value)
+                P.edits[fg_address] = {
+                    OriginalValue = original_value,
+                    CurrentValue = original_value,
+                }
+                edit_ind = true
+            end
+        elseif (P.mode == "BACKGROUND") then
+            if P.edits[bg_address] ~= nil then
+                local original_value = P.edits[bg_address].OriginalValue
+                memory.write_u16_le(bg_address, original_value)
+                P.edits[bg_address] = {
+                    OriginalValue = original_value,
+                    CurrentValue = original_value,
+                }
+                edit_ind = true
+            end
+        end
+    end
+    -- Handle mouse input: Read tile
     if (P.curr_mouse.Left == true) then
         if (P.mode == "FOREGROUND") then
             P.fg_tile_data = memory.read_u16_le(fg_address)
@@ -103,8 +128,7 @@ P.update_input = function()
             console.log(P.edits[bg_address])
         end
     end
-    -- Write tile
-    local edit_ind = false
+    -- Handle mouse input: Write tile
     if (P.curr_mouse.Right == true) then
         if (P.mode == "FOREGROUND") then
             local original_value = memory.read_u16_le(fg_address)
