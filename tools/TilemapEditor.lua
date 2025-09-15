@@ -96,63 +96,46 @@ P.update_input = function()
     end
     -- Handle key input: Erase tile edit
     if (P.curr_keys.Z) then
-        if P.mode == "FOREGROUND" then
-            if P.edits[fg_address] ~= nil then
-                local original_value = P.edits[fg_address].OriginalValue
-                memory.write_u16_le(fg_address, original_value)
-                P.edits[fg_address] = {
-                    OriginalValue = original_value,
-                    CurrentValue = original_value,
-                }
-                edit_ind = true
-            end
-        elseif (P.mode == "BACKGROUND") then
-            if P.edits[bg_address] ~= nil then
-                local original_value = P.edits[bg_address].OriginalValue
-                memory.write_u16_le(bg_address, original_value)
-                P.edits[bg_address] = {
-                    OriginalValue = original_value,
-                    CurrentValue = original_value,
-                }
-                edit_ind = true
-            end
+        local address = fg_address
+        if P.mode == "BACKGROUND" then
+            address = bg_address
+        end
+        if P.edits[address] ~= nil then
+            local original_value = P.edits[address].OriginalValue
+            memory.write_u16_le(address, original_value)
+            P.edits[address] = {
+                OriginalValue = original_value,
+                CurrentValue = original_value,
+            }
+            edit_ind = true
         end
     end
     -- Handle mouse input: Read tile
     if (P.curr_mouse.Left == true) then
         if (P.mode == "FOREGROUND") then
             P.fg_tile_data = memory.read_u16_le(fg_address)
-            console.log(P.edits[fg_address])
         elseif (P.mode == "BACKGROUND") then
             P.bg_tile_data = memory.read_u16_le(bg_address)
-            console.log(P.edits[bg_address])
         end
     end
     -- Handle mouse input: Write tile
     if (P.curr_mouse.Right == true) then
-        if (P.mode == "FOREGROUND") then
-            local original_value = memory.read_u16_le(fg_address)
-            if P.edits[fg_address] ~= nil then
-                original_value = P.edits[fg_address].OriginalValue
-            end
-            memory.write_u16_le(fg_address, P.fg_tile_data)
-            P.edits[fg_address] = {
-                OriginalValue = original_value,
-                CurrentValue = P.fg_tile_data,
-            }
-            edit_ind = true
-        elseif (P.mode == "BACKGROUND") then
-            local original_value = memory.read_u16_le(bg_address)
-            if P.edits[bg_address] ~= nil then
-                original_value = P.edits[bg_address].OriginalValue
-            end
-            memory.write_u16_le(bg_address, P.bg_tile_data)
-            P.edits[bg_address] = {
-                OriginalValue = original_value,
-                CurrentValue = P.bg_tile_data,
-            }
-            edit_ind = true
+        local address = fg_address
+        local tile_data = P.fg_tile_data
+        if P.mode == "BACKGROUND" then
+            address = bg_address
+            tile_data = P.bg_tile_data
         end
+        local original_value = memory.read_u16_le(address)
+        if P.edits[address] ~= nil then
+            original_value = P.edits[address].OriginalValue
+        end
+        memory.write_u16_le(address, tile_data)
+        P.edits[address] = {
+            OriginalValue = original_value,
+            CurrentValue = tile_data,
+        }
+        edit_ind = true
     end
     -- Update edits
     if edit_ind then
