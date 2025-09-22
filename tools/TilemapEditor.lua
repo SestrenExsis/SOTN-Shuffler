@@ -106,9 +106,16 @@ P.update_input = function()
             P.edits[address] = {
                 OriginalValue = original_value,
                 CurrentValue = original_value,
+                Layer = P.mode,
+                Col = P.curr_col,
+                Row = P.curr_row,
             }
             edit_ind = true
         end
+    end
+    -- Handle key input: Toggle highlights
+    if (P.curr_keys.A and (P.prev_keys.A == nil or P.prev_keys.A == false)) then
+        P.highlightEdits = not(P.highlightEdits)
     end
     -- Handle mouse input: Read tile
     if (P.curr_mouse.Left == true) then
@@ -134,6 +141,9 @@ P.update_input = function()
         P.edits[address] = {
             OriginalValue = original_value,
             CurrentValue = tile_data,
+            Layer = P.mode,
+            Col = P.curr_col,
+            Row = P.curr_row,
         }
         edit_ind = true
     end
@@ -149,6 +159,12 @@ P.update_input = function()
         end
         P.edits = current_edits
     end
+end
+
+P.highlightTile = function(__col, __row, __outline, __fill)
+    local left = 16 * (__col - P.scroll_col) - (0xF & P.Memory.ScrollX.Value) + 14
+    local top = 16 * (__row - P.scroll_row) - (0xF & P.Memory.ScrollY.Value) - 1
+    gui.drawBox(left, top, left + 17, top + 17, __outline, __fill)
 end
 
 P.draw = function()
@@ -172,13 +188,22 @@ P.draw = function()
         P.text(20, index + 6, value.Type)
         P.text(30, index + 6, bizstring.hex(value.Value))
     end
-    local left = 16 * (P.curr_col - P.scroll_col) - (0xF & P.Memory.ScrollX.Value) + 14
-    local top = 16 * (P.curr_row - P.scroll_row) - (0xF & P.Memory.ScrollY.Value) - 1
     local box_color = 0xFF999999
     if (P.mode == "FOREGROUND") then
         box_color = 0xFFFFFFFF
     end
-    gui.drawBox(left, top, left + 17, top + 17, box_color, 0x00000000)
+    P.highlightTile(P.curr_col, P.curr_row, box_color, 0x00000000)
+    if (P.highlightEdits) then
+        for address, value in pairs(P.edits) do
+            if value ~= nil and value.OriginalValue ~= value.CurrentValue then
+                local fill = 0x880000FF
+                if (value.Layer == "FOREGROUND") then
+                    fill = 0x88FF0000
+                end
+                P.highlightTile(value.Col, value.Row, 0x00000000, fill)
+            end
+        end
+    end
     P.canvas.Refresh()
 end
 
@@ -219,6 +244,7 @@ P.prev_col = P.curr_col
 P.prev_row = P.curr_row
 -- Other editor-specific variables
 P.mode = "BACKGROUND"
+P.highlightEdits = false
 P.bg_tile_data = 0x0000
 P.fg_tile_data = 0x0000
 P.edits = {}
