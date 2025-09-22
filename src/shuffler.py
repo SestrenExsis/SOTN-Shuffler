@@ -1251,13 +1251,15 @@ if __name__ == '__main__':
         seed_hint = ''.join(chars)
         changes['Constants'] = {
             'Message - Richter Mode Instructions 1': seed_hint,
-            'Message - Richter Mode Instructions 2': 'Beta Release 6      ',
+            'Message - Richter Mode Instructions 2': 'Beta Prerelease 7   ',
         }
         # Normalize room connections
         if settings.get('Options', {}).get('Normalize room connections', False):
             for stage_name in normalizer.stages:
                 for room_name in normalizer.stages[stage_name]:
-                    changes['Stages'][stage_name]['Rooms'][room_name]['Tilemap'] = normalizer.normalize_room_tilemap(room_name)
+                    tilemap_changes = normalizer.normalize_room_tilemap(room_name)
+                    if len(tilemap_changes) > 0:
+                        changes['Stages'][stage_name]['Rooms'][room_name]['Tilemap'] = tilemap_changes
         # ...
         shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)
         current_seed = {
