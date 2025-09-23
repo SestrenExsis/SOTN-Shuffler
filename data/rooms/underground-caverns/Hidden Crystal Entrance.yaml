@@ -99,3 +99,7 @@ Commands:
             Default:
                 Section: Main
                 Status - Breakable Floor in Hidden Crystal Entrance Broken: false
+            Bottom, Rising (Normalized) - Default:
+                Section: Bottom, Rising
+                Option - Normalize room connections: true
+                Status - Breakable Floor in Hidden Crystal Entrance Broken: false

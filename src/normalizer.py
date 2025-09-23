@@ -15,6 +15,7 @@ def stamp(room, top, left, grid):
 
 stages = {
     'Alchemy Laboratory': {
+        'Alchemy Laboratory, Entryway',
         'Alchemy Laboratory, Red Skeleton Lift Room',
     },
     'Long Library': {
