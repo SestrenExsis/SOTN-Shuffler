@@ -750,6 +750,7 @@ if __name__ == '__main__':
                                     stages[stage_name]['Mapper'].stage.rooms[room_name].nodes[node_name].type = normalizer.nodes[(room_name, node_name)]
                     stage_changes = stages[stage_name]['Mapper'].stage.get_changes()
                     hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
+                    # stages[stage_name]['Mapper'].debug = True
                     if not stages[stage_name]['Mapper'].validate_connections(True):
                         continue
                     assert hash_of_rooms == mapper_data['Hash of Rooms']

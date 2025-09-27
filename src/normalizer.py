@@ -16,11 +16,20 @@ def stamp(room, top, left, grid):
 stages = {
     'Alchemy Laboratory': {
         'Alchemy Laboratory, Entryway',
+        'Alchemy Laboratory, Glass Vats',
         'Alchemy Laboratory, Red Skeleton Lift Room',
+        'Alchemy Laboratory, Secret Life Max-Up Room',
+        'Alchemy Laboratory, Tall Zig Zag Room',
     },
     'Long Library': {
         'Long Library, Secret Bookcase Room',
         'Long Library, Holy Rod Room',
+    },
+    'Marble Gallery': {
+        'Marble Gallery, Beneath Left Trapdoor',
+        'Marble Gallery, Beneath Right Trapdoor',
+        'Marble Gallery, Slinger Staircase',
+        'Marble Gallery, Stopwatch Room',
     },
     "Olrox's Quarters": {
         "Olrox's Quarters, Grand Staircase",
@@ -43,10 +52,18 @@ stages = {
 }
 
 nodes = {
-    ('Alchemy Laboratory, Red Skeleton Lift Room', 'Bottom Passage'): '######....######',
     ('Alchemy Laboratory, Entryway', 'Top Passage'): '######....######',
+    ('Alchemy Laboratory, Glass Vats', 'Left-Bottom Passage'): '######....######',
+    ('Alchemy Laboratory, Red Skeleton Lift Room', 'Bottom Passage'): '######....######',
+    ('Alchemy Laboratory, Red Skeleton Lift Room', 'Top Passage'): '######....######',
+    ('Alchemy Laboratory, Secret Life Max-Up Room', 'Top Passage'): '######....######',
+    ('Alchemy Laboratory, Tall Zig Zag Room', 'Lower Passage'): '######....######',
     ('Long Library, Secret Bookcase Room', 'Right Passage'): '######....######',
     ('Long Library, Holy Rod Room', 'Left Passage'): '######....######',
+    ('Marble Gallery, Beneath Left Trapdoor', 'Top Passage'): '######....######',
+    ('Marble Gallery, Beneath Right Trapdoor', 'Top Passage'): '######....######',
+    ('Marble Gallery, Slinger Staircase', 'Right-Bottom Passage'): '######....######',
+    ('Marble Gallery, Stopwatch Room', 'Bottom Passage'): '######....######',
     ('Underground Caverns, Crystal Bend', 'Top Passage'): '######....######',
     ('Underground Caverns, DK Bridge', 'Bottom Passage'): '######....######',
     ('Underground Caverns, Exit to Abandoned Mine', 'Top Passage'): '######....######',
