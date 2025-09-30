@@ -173,7 +173,7 @@ Commands:
                 Progression - Double Jump: true
                 Progression - Wolf Transformation: true
                 Status - Stairwell Near Demon Switch Dislodged: false
-                Technique - Double Jump Reset: true
+                Technique - Double Jump Reset (Short): true
             Lower Ledges - Double Jump With Damage Boost:
                 Section: Lower Ledges
                 Progression - Double Jump: true

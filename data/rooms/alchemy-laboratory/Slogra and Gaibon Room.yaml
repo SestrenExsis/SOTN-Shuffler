@@ -57,6 +57,11 @@ Commands:
                 Progression - Double Jump: true
                 Status - Slogra and Gaibon Defeated: false
                 Technique - Repeated Dive Kick Head Stomps: true
+            Double Jump Reset (Wolf):
+                Section: Main
+                Progression - Double Jump: true
+                Progression - Wolf Transformation: true
+                Technique - Double Jump Reset (Long): true
             Gravity Jump:
                 Section: Main
                 Progression - Gravity Jump: true

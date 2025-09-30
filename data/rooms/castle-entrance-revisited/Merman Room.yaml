@@ -84,6 +84,10 @@ Commands:
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
                 Technique - Wolf-Mist Rise (Very Long): true
+            Ground - Enemy Dive Kick:
+                Section: Ground
+                Progression - Double Jump: true
+                Technique - Enemy Dive Kick (Forgiving): true
     Move - Ground:
         Outcomes:
             Section: Ground

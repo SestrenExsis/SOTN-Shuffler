@@ -245,6 +245,10 @@ Commands:
             Ground - Bat Form:
                 Section: Ground
                 Progression - Bat Transformation: true
+            Ground - Flea Ladder:
+                Section: Ground
+                Technique - Flea Ladder: true
+                Progression - Double Jump: true
             Ground - Multiple Gravity Jumps:
                 Section: Ground
                 Progression - Double Jump: true

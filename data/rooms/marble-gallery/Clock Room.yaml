@@ -85,7 +85,7 @@ Commands:
             Main - Candle Dive Kick:
                 Section: Main
                 Progression - Mid-Air Reset: true
-                Technique - Candle Dive Kick: true
+                Technique - Candle Dive Kick (Forgiving): true
     Move - Top, Rising, Middle Path:
         Outcomes:
             Section: Top, Rising
@@ -135,7 +135,7 @@ Commands:
                 Section: Main
                 Progression - Mid-Air Reset: true
                 Subweapon: Stopwatch
-                Technique - Candle Dive Kick: true
+                Technique - Candle Dive Kick (Forgiving): true
     Action - Equip Both Rings:
         Outcomes:
             Status - Floor in Clock Room Opened Up: true
