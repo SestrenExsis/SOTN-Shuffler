@@ -621,6 +621,7 @@ if __name__ == '__main__':
             'Normalize room connections',
             'Preserve unsaved map data',
             'Prevent softlocks related to Death cutscene in Castle Entrance',
+            'Prevent softlocks related to Door behind Scylla',
             'Shift wall in Plaque Room With Breakable Wall away from screen edge',
             'Shuffle Pitch Black Spike Maze',
             'Skip Maria cutscene in Alchemy Laboratory',

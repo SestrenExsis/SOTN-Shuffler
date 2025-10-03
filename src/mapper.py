@@ -969,6 +969,7 @@ class LogicCore:
             'Normalize room connections',
             'Normalize Ferryman Gate',
             'Prevent softlocks related to Death cutscene in Castle Entrance',
+            'Prevent softlocks related to Door behind Scylla',
             'Shift wall in Plaque Room With Breakable Wall away from screen edge',
         ):
             if changes.get('Options', {}).get(option_name, False):
