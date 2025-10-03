@@ -20,7 +20,7 @@ Nodes:
         Edge: Left
         Entry Section: Ground
         Exit Section: Ground
-    Left-Top Passage:
+    Top Passage:
         Type: "#####..#########"
         Row: 0
         Column: 5

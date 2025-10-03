@@ -105,6 +105,10 @@ Commands:
                 Progression - Mist Transformation: true
                 Progression - Wolf Transformation: true
                 Technique - Wolf-Mist Rise (Long): true
+            Main - Candle Dive Kick:
+                Section: Main
+                Progression - Double Jump: true
+                Technique - Candle Dive Kick (Forgiving): true
             Pressure Plate Ledge - Fall Down:
                 Section: Pressure Plate Ledge
                 Status - Shortcut in Cube of Zoe Room Activated: true

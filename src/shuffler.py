@@ -619,8 +619,9 @@ if __name__ == '__main__':
             'Disable clipping on screen edge of Tall Zig Zag Room Wall',
             'Enable debug mode',
             'Normalize room connections',
-            'Preserve map exploration across saves',
+            'Preserve unsaved map data',
             'Prevent softlocks related to Death cutscene in Castle Entrance',
+            'Prevent softlocks related to Door behind Scylla',
             'Shift wall in Plaque Room With Breakable Wall away from screen edge',
             'Shuffle Pitch Black Spike Maze',
             'Skip Maria cutscene in Alchemy Laboratory',
@@ -750,6 +751,7 @@ if __name__ == '__main__':
                                     stages[stage_name]['Mapper'].stage.rooms[room_name].nodes[node_name].type = normalizer.nodes[(room_name, node_name)]
                     stage_changes = stages[stage_name]['Mapper'].stage.get_changes()
                     hash_of_rooms = hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest()
+                    # stages[stage_name]['Mapper'].debug = True
                     if not stages[stage_name]['Mapper'].validate_connections(True):
                         continue
                     assert hash_of_rooms == mapper_data['Hash of Rooms']
@@ -1251,13 +1253,15 @@ if __name__ == '__main__':
         seed_hint = ''.join(chars)
         changes['Constants'] = {
             'Message - Richter Mode Instructions 1': seed_hint,
-            'Message - Richter Mode Instructions 2': 'Beta Release 6      ',
+            'Message - Richter Mode Instructions 2': 'Beta Prerelease 7   ',
         }
         # Normalize room connections
         if settings.get('Options', {}).get('Normalize room connections', False):
             for stage_name in normalizer.stages:
                 for room_name in normalizer.stages[stage_name]:
-                    changes['Stages'][stage_name]['Rooms'][room_name]['Tilemap'] = normalizer.normalize_room_tilemap(room_name)
+                    tilemap_changes = normalizer.normalize_room_tilemap(room_name)
+                    if len(tilemap_changes) > 0:
+                        changes['Stages'][stage_name]['Rooms'][room_name]['Tilemap'] = tilemap_changes
         # ...
         shuffler['End Time'] = datetime.datetime.now(datetime.timezone.utc)
         current_seed = {

@@ -304,6 +304,8 @@ stages = {
         {
             'Castle Entrance, Unknown Room 20': (32 + 2, 32 + 0),
             'Castle Entrance, After Drawbridge': (32 + 0, 32 + 1),
+            'Castle Entrance, Drop Under Portcullis': (32 + 3, 32 + 1),
+            'Castle Entrance, Save Room A': (32 + 4, 32 + 2),
         },
         {
             'Castle Entrance, Fake Room with Teleporter to Alchemy Laboratory': (0, 0),
@@ -325,7 +327,6 @@ stages = {
         { 'Castle Entrance, Attic Entrance': (0, 0) },
         { 'Castle Entrance, Attic Hallway': (0, 0) },
         { 'Castle Entrance, Attic Staircase': (0, 0) },
-        { 'Castle Entrance, Drop Under Portcullis': (0, 0) },
         {
             # NOTE(sestren): Force connection between Gargoyle Room and Meeting Room With Death to be vanilla for now
             'Castle Entrance, Gargoyle Room': (0, 0),
@@ -336,7 +337,6 @@ stages = {
         { 'Castle Entrance, Jewel Sword Room': (0, 0) },
         { 'Castle Entrance, Life Max-Up Room': (0, 0) },
         { 'Castle Entrance, Merman Room': (0, 0) },
-        { 'Castle Entrance, Save Room A': (0, 0) },
         { 'Castle Entrance, Save Room B': (0, 0) },
         { 'Castle Entrance, Save Room C': (0, 0) },
         { 'Castle Entrance, Stairwell After Death': (0, 0) },
@@ -969,6 +969,7 @@ class LogicCore:
             'Normalize room connections',
             'Normalize Ferryman Gate',
             'Prevent softlocks related to Death cutscene in Castle Entrance',
+            'Prevent softlocks related to Door behind Scylla',
             'Shift wall in Plaque Room With Breakable Wall away from screen edge',
         ):
             if changes.get('Options', {}).get(option_name, False):

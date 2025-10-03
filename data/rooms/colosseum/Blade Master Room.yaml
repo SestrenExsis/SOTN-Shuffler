@@ -53,6 +53,11 @@ Commands:
                 Progression - Wolf Transformation: true
                 Status - Breakable Ceiling in Blade Master Room Broken: true
                 Technique - Wolf-Mist Rise (Very Long): true
+            Main - Enemy Dive Kick With Double Jump:
+                Section: Main
+                Progression - Double Jump: true
+                Status - Breakable Ceiling in Blade Master Room Broken: true
+                Technique - Enemy Dive Kick (Forgiving): true
     Move - Main:
         Outcomes:
             Section: Main

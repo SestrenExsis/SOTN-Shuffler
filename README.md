@@ -22,9 +22,11 @@ Make a **COPY** of your target BIN (`SLUS-00067`) and place it inside the `build
 
 From the root of the repository, run `git submodule update --init --recursive` to fetch the required SOTN-Patcher repo as a submodule.
 
+Run `pip install -r requirements.txt` to download the required Python libraries.
+
 Run the `setup.bat` script, which will generate the necessary extraction and randomly-generated map files for shuffling. It will also run validation checks against the generated map files. Be aware that this step can take several minutes to run.
 
-Once the necessary files have been generated, running the `randomize.bat` script will go through the process of building a randomized PPF file. Be aware that this step can also take a few minutes to complete.
+Once the necessary files have been generated, running the `randomize.bat` script with the appropriate arguments will go through the process of building a randomized PPF file. Be aware that this step can also take a few minutes to complete. There are two arguments, the first argument is passed as the seed, and the second specificies the skillset to use when verifying that the seed is solvable. For now, `Casual` is recommended, so you can run, for example, `./randomize.bat 123456789 Casual` to generate a Casual seed using `123456789` as the seed value.
 
 Once that step has completed, a file called `current-seed.ppf` will have been created inside the `build/patcher` folder. This file can be used in conjunction with [ppf.sotn.io](https://ppf.sotn.io/) to apply the changes to your BIN file.
 
@@ -35,7 +37,8 @@ Most of the knowledge present in this project is only possible due to the immens
 - Forat Negre, for their research into room layouts, which helped demystify a lot of how stages and rooms worked in this game
 - [TalicZealot](https://github.com/taliczealot), for furthering knowledge about the game and making available tons of SOTN-related resources
 - [MainMemory](https://github.com/MainMemory), for their [CastleEditor](https://github.com/MainMemory/SotNCastleEditor) project, which provided key insight into a few addresses as well as extremely helpful visualizations of the castle stages
-- [Mottzilla](https://github.com/MottZilla), for their _StartAnywhere_ script, which dramatically improved turnaround time during playtesting
+- [Mottzilla](https://github.com/MottZilla), for their _StartAnywhere_ and _TileMapFind_ scripts, which dramatically improved turnaround time during playtesting
+- [meunierd](https://github.com/meunierd), for the PPF file format
 - [Fatalis](https://github.com/fatalis), for their Drop Calculator
 - Contributors and maintainers of the [SOTN-Decomp](https://github.com/Xeeynamo/sotn-decomp) project, including:
   - [Xeeynamo](https://github.com/Xeeynamo)
@@ -47,5 +50,6 @@ Most of the knowledge present in this project is only possible due to the immens
   - [Mottzilla](https://github.com/MottZilla)
   - [eldri7ch](https://github.com/eldri7ch2)
   - [LuciaRolon](https://github.com/LuciaRolon)
+- [ToiletPain](https://github.com/jjcdrummer), for their extensive help during beta testing
 - Dr4gonBlitz, for being a huge inspiration for SOTN speedrunning, and for their continued help and patience during the alpha testing phase of this project
 - The entire SOTN community, for their generosity and kindness

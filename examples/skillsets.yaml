@@ -8,7 +8,7 @@ Casual:
 Veteran:
  - Technique - Book Jump (Forgiving)
  - Technique - Box Puzzle
- - Technique - Candle Dive Kick
+ - Technique - Candle Dive Kick (Forgiving)
  - Technique - Corner Mist (Forgiving)
  - Technique - Corner Mist (Precise)
  - Technique - Diagonal Gravity Jump
@@ -25,12 +25,16 @@ Challenge:
  - Technique - Book Jump (Forgiving)
  - Technique - Book Jump (Precise)
  - Technique - Box Puzzle
- - Technique - Candle Dive Kick
+ - Technique - Candle Dive Kick (Forgiving)
+ - Technique - Candle Dive Kick (Precise)
  - Technique - Corner Mist (Forgiving)
  - Technique - Corner Mist (Precise)
  - Technique - Damage Boost (Precise)
  - Technique - Diagonal Gravity Jump
- - Technique - Double Jump Reset
+ - Technique - Double Jump Reset (Short)
+ - Technique - Enemy Dive Kick (Forgiving)
+ - Technique - Flea Ladder
+ - Technique - Gear Puzzle
  - Technique - Gravity Jump
  - Technique - Invincibility Frame Abuse
  - Technique - Multiple Gravity Jumps (Double Jump Reset)
@@ -40,7 +44,6 @@ Challenge:
  - Technique - Powered Mist Travel (Long)
  - Technique - Powered Mist Travel (Very Long)
  - Technique - Red Skeleton Lift Puzzle
- - Technique - Gear Puzzle
  - Technique - Wolf Charge Across Gap
  - Technique - Wolf Charge Across Gap With Early Untransform
  - Technique - Wolf-Mist Rise (Short)
@@ -54,3 +57,5 @@ Extreme:
  - Technique - Repeated Dive Kick Head Stomps
  - Technique - Wolf Through Clock Tower Courtyard
  - Technique - Wolf-Mist Rise (Very Long)
+ - Technique - Double Jump Reset (Long)
+ - Technique - Enemy Dive Kick (Precise)

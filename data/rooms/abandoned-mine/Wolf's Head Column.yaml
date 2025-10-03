@@ -90,7 +90,7 @@ Commands:
             Ground - Candle Dive Kick:
                 Section: Ground
                 Progression - Mid-Air Reset: true
-                Technique - Candle Dive Kick: true
+                Technique - Candle Dive Kick (Forgiving): true
             Upper-Right Ledge - Logical Risk:
                 Section: Upper-Right Ledge
                 Option - Permit Logical Risks: true
