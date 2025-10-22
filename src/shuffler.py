@@ -14,6 +14,24 @@ import normalizer
 import shuffle_spike_room
 import validator
 
+reversible_stages = {
+    'Abandoned Mine': 'Cave',
+    'Alchemy Laboratory': 'Necromancy Laboratory',
+    'Castle Center': 'Reverse Castle Center',
+    'Castle Entrance': 'Reverse Entrance',
+    'Castle Keep': 'Reverse Keep',
+    'Catacombs': 'Floating Catacombs',
+    'Clock Tower': 'Reverse Clock Tower',
+    'Colosseum': 'Reverse Colosseum',
+    'Long Library': 'Forbidden Library',
+    'Marble Gallery': 'Black Marble Gallery',
+    'Olrox\'s Quarters': 'Death Wing\'s Lair',
+    'Outer Wall': 'Reverse Outer Wall',
+    'Royal Chapel': 'Anti-Chapel',
+    'Underground Caverns': 'Reverse Caverns',
+    'Warp Rooms': 'Reverse Warp Rooms',
+}
+
 def get_room_drawing(mapper_core, room_name) -> list[str]:
     room = mapper_core['Rooms'][room_name]
     char = '1'
@@ -605,6 +623,7 @@ if __name__ == '__main__':
         'Settings': settings,
         'Start Time': datetime.datetime.now(datetime.timezone.utc),
         'Stages': {},
+        'Nodes': {},
     }
     # Some settings are Shuffler-specific, while some get passed down to the Patcher as patches
     options = {}
@@ -619,6 +638,7 @@ if __name__ == '__main__':
             'Disable clipping on screen edge of Tall Zig Zag Room Wall',
             'Enable debug mode',
             'Normalize room connections',
+            'Normalize sounds',
             'Preserve unsaved map data',
             'Prevent softlocks related to Death cutscene in Castle Entrance',
             'Prevent softlocks related to Door behind Scylla',
@@ -651,6 +671,7 @@ if __name__ == '__main__':
         # NOTE(sestren): Access another pre-generated seed instead of generating more
         print('.', end='', flush=True)
         shuffler['Stages'] = {}
+        shuffler['Nodes'] = {}
         # Randomize
         stages = {
             'Abandoned Mine': {},
@@ -801,6 +822,26 @@ if __name__ == '__main__':
                             all_valid_ind = False
                             break
                     if all_valid_ind:
+                        for (source_node, target_node) in stages[stage_name]['Mapper'].connections.items():
+                            (source_room_name, source_node_name) = source_node
+                            (target_room_name, (room_top, room_left), (room_rows, room_cols)) = target_node
+                            if source_room_name not in shuffler['Nodes']:
+                                shuffler['Nodes'][source_room_name] = {}
+                            shuffler['Nodes'][source_room_name][source_node_name] = {
+                                'Target Room Name': target_room_name,
+                                'X': room_left,
+                                'Y': room_top,
+                            }
+                            reversed_stage_name = reversible_stages[stage_name]
+                            reversed_source_room_name = reversed_stage_name + ', ' + source_room_name[(len(stage_name + ', ')):]
+                            if reversed_source_room_name not in shuffler['Nodes']:
+                                shuffler['Nodes'][reversed_source_room_name] = {}
+                            reversed_target_room_name = reversed_stage_name + ', ' + target_room_name[(len(stage_name + ', ')):]
+                            shuffler['Nodes'][reversed_source_room_name][source_node_name] = {
+                                'Target Room Name': reversed_target_room_name,
+                                'X': 256 * room_cols - room_left,
+                                'Y': 256 * room_rows - room_top,
+                            }
                         break
                     else:
                         invalid_stage_files.add((stage_name, chosen_file_name[:-len('.json')]))
@@ -1192,23 +1233,6 @@ if __name__ == '__main__':
             continue
         # print('*********')
         # Flip normal castle changes and apply them to inverted castle
-        reversible_stages = {
-            'Abandoned Mine': 'Cave',
-            'Alchemy Laboratory': 'Necromancy Laboratory',
-            'Castle Center': 'Reverse Castle Center',
-            'Castle Entrance': 'Reverse Entrance',
-            'Castle Keep': 'Reverse Keep',
-            'Catacombs': 'Floating Catacombs',
-            'Clock Tower': 'Reverse Clock Tower',
-            'Colosseum': 'Reverse Colosseum',
-            'Long Library': 'Forbidden Library',
-            'Marble Gallery': 'Black Marble Gallery',
-            'Olrox\'s Quarters': 'Death Wing\'s Lair',
-            'Outer Wall': 'Reverse Outer Wall',
-            'Royal Chapel': 'Anti-Chapel',
-            'Underground Caverns': 'Reverse Caverns',
-            'Warp Rooms': 'Reverse Warp Rooms',
-        }
         for (stage_name, reversed_stage_name) in reversible_stages.items():
             changes['Stages'][reversed_stage_name] = {
                 'Rooms': {},
