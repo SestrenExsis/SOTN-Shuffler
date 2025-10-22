@@ -11,8 +11,9 @@ import random
 import yaml
 
 class RoomNode:
-    def __init__(self, room, row: int, column: int, edge: str, type: str):
+    def __init__(self, room, node_name: str, row: int, column: int, edge: str, type: str):
         self.room = room
+        self.node_name = node_name
         self.row = row
         self.column = column
         self.edge = edge
@@ -75,6 +76,22 @@ class RoomNode:
             left += 1
         result = (top, left)
         return result
+    
+    def get_relative_room_position(self) -> set[int, int]:
+        top = 256 * self.row
+        left = 256 * self.column
+        if self.edge == 'Top':
+            left += 128
+        elif self.edge == 'Left':
+            top += 128
+        elif self.edge == 'Bottom':
+            top += 256
+            left += 128
+        elif self.edge == 'Right':
+            top += 128
+            left += 256
+        result = (top, left)
+        return result
 
 class Room:
     def __init__(self, room_data: dict, top: int=None, left: int=None):
@@ -92,7 +109,7 @@ class Room:
         self.nodes = {}
         for (node_name, node_data) in room_data['Nodes'].items():
             node = RoomNode(
-                self, node_data['Row'], node_data['Column'], node_data['Edge'], node_data['Type']
+                self, node_name, node_data['Row'], node_data['Column'], node_data['Edge'], node_data['Type']
             )
             self.nodes[node_name] = node
     
@@ -682,15 +699,11 @@ stages = {
             'Underground Caverns, Scylla Wyrm Room': (2, 1),
             'Underground Caverns, Rising Water Room': (2, 2),
         },
-        {
-            # NOTE(sestren): Each of these rooms can turn on or off the waterfall sound, and shuffling them around allows the sound to "escape"
-            # NOTE(sestren): These rooms must be connected for now until entities can be moved around rooms arbitrarily
-            'Underground Caverns, DK Button': (0, 0),
-            'Underground Caverns, Waterfall': (0, 1),
-            'Underground Caverns, Pentagram Room': (0, 3),
-            'Underground Caverns, Room ID 19': (5, 0),
-            'Underground Caverns, Room ID 18': (5, 3),
-        },
+        { 'Underground Caverns, Waterfall': (0, 0) },
+        { 'Underground Caverns, Room ID 19': (0, 0) },
+        { 'Underground Caverns, DK Button': (0, 0) },
+        { 'Underground Caverns, Pentagram Room': (0, 0) },
+        { 'Underground Caverns, Room ID 18': (0, 0) },
         { 'Underground Caverns, Save Room A': (0, 0) },
         { 'Underground Caverns, Save Room B': (0, 0) },
         { 'Underground Caverns, Save Room C': (0, 0) },
@@ -1259,6 +1272,7 @@ class Mapper:
         self.current_seed = self.next_seed = seed
         self.rng = random.Random(self.current_seed)
         self.steps = []
+        self.connections = {}
     
     def generate(self, stage_rooms, match_node_type: bool=False):
         self.current_seed = self.next_seed
@@ -1303,6 +1317,10 @@ class Mapper:
                 offset_left = (target_node.room.left + target_node.left) - (source_node.room.left + source_node.left)
                 valid_ind = self.stage.add_roomset(source_node.room.roomset, offset_top, offset_left)
                 if valid_ind:
+                    source_room_name = self.stage_name + ', ' + source_node.room.room_name
+                    target_room_name = self.stage_name + ', ' + target_node.room.room_name
+                    self.connections[(source_room_name, source_node.node_name)] = (target_room_name, target_node.get_relative_room_position(), (target_node.room.rows, target_node.room.columns))
+                    self.connections[(target_room_name, target_node.node_name)] = (source_room_name, source_node.get_relative_room_position(), (source_node.room.rows, source_node.room.columns))
                     step.append('Source Node: ' + str(source_node))
                     roomset = pool.pop(roomset_key, None)
                     break
