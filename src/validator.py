@@ -157,7 +157,7 @@ if __name__ == '__main__':
     print('Validate all generated maps')
     parser = argparse.ArgumentParser()
     parser.add_argument('stage_validations', help='Input a filepath to the stage validations YAML file', type=str)
-    parser.add_argument('--skillset', help='The assumed skillset to use when validating', type=str, default='Casual')
+    parser.add_argument('--skillset', help='The assumed skillset to use when validating', type=str, default='Extreme')
     args = parser.parse_args()
     stage_validations = {}
     skills = {}

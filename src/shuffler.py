@@ -637,6 +637,7 @@ if __name__ == '__main__':
             'Disable clipping on screen edge of Snake Column Wall',
             'Disable clipping on screen edge of Tall Zig Zag Room Wall',
             'Enable debug mode',
+            'Normalize particle effects',
             'Normalize room connections',
             'Normalize sounds',
             'Preserve unsaved map data',
@@ -1123,11 +1124,11 @@ if __name__ == '__main__':
                 "#101810FF", # 3 -> Fills of unexplored rooms (revealed when purchasing the Castle Map)
                 "#F80000FF", # 4 -> Fills of Save Rooms
                 "#F88000FF", # 5
-                "#CC7400FF", # 6
+                "#B78C4DFF", # 6
                 "#FF1A57FF", # 7
                 "#E600B8FF", # 8
                 "#008099FF", # 9
-                "#F25D0DFF", # A
+                "#B64FFFFF", # A
                 "#00B300FF", # B
                 "#666666FF", # C
                 "#036333FF", # D -> Borders of unexplored rooms (revealed when purchasing the Castle Map)
