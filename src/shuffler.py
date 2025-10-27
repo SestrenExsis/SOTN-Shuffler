@@ -639,6 +639,7 @@ if __name__ == '__main__':
             'Enable debug mode',
             'Normalize room connections',
             'Normalize sounds',
+            'Normalize special effects',
             'Preserve unsaved map data',
             'Prevent softlocks related to Death cutscene in Castle Entrance',
             'Prevent softlocks related to Door behind Scylla',
@@ -1123,11 +1124,11 @@ if __name__ == '__main__':
                 "#101810FF", # 3 -> Fills of unexplored rooms (revealed when purchasing the Castle Map)
                 "#F80000FF", # 4 -> Fills of Save Rooms
                 "#F88000FF", # 5
-                "#CC7400FF", # 6
+                "#B78C4DFF", # 6
                 "#FF1A57FF", # 7
                 "#E600B8FF", # 8
                 "#008099FF", # 9
-                "#F25D0DFF", # A
+                "#B64FFFFF", # A
                 "#00B300FF", # B
                 "#666666FF", # C
                 "#036333FF", # D -> Borders of unexplored rooms (revealed when purchasing the Castle Map)
@@ -1277,7 +1278,7 @@ if __name__ == '__main__':
         seed_hint = ''.join(chars)
         changes['Constants'] = {
             'Message - Richter Mode Instructions 1': seed_hint,
-            'Message - Richter Mode Instructions 2': 'Beta Prerelease 7   ',
+            'Message - Richter Mode Instructions 2': 'Beta Release 7      ',
         }
         # Normalize room connections
         if settings.get('Options', {}).get('Normalize room connections', False):

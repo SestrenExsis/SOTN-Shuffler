@@ -70,6 +70,9 @@ Commands:
         Outcomes:
             Section: Middle-Right Ledge
         Requirements:
+            Ground - Coyote Jump:
+                Section: Ground
+                Technique - Coyote Jump (Precise): true
             Ground - Rising Uppercut:
                 Section: Ground
                 Progression - Rising Uppercut: true
