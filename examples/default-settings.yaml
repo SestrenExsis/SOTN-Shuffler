@@ -9,7 +9,7 @@ Options:
     Disable clipping on screen edge of Snake Column Wall: true
     Disable clipping on screen edge of Tall Zig Zag Room Wall: true
     Enable debug mode: false
-    Normalize particle effects: true
+    Normalize special effects: true
     Normalize room connections: true
     Normalize sounds: true
     Normalize Ferryman Gate: true
