@@ -250,7 +250,7 @@ def main(quests, initial_seed, quest_settings):
         quest_targets = None
         if relic_pool == 'Racing':
             quest_targets = get_quest_targets__significant_locations__racing(quests, rng['Relics'])
-        elif relic_pool == 'Skill Expression':
+        elif relic_pool == 'Sparse':
             quest_targets = get_quest_targets__significant_locations__skill_expression(quests, rng['Relics'])
         else:
             quest_targets = get_quest_targets__significant_locations__vanilla(quests, rng['Relics'])
@@ -308,7 +308,7 @@ if __name__ == '__main__':
         'Enemy drop pool': 'Vanilla',
         'Item pool': 'Vanilla',
         'Special item pool': 'Vanilla',
-        'Relic pool': 'Skill Expression',
+        'Relic pool': 'Vanilla',
         'Shuffle enemy drops': False,
         'Shuffle items': False,
         'Shuffle special items': False,

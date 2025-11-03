@@ -449,7 +449,7 @@ if __name__ == '__main__':
         open(args.settings) as settings_file,
         open(args.stage_validations) as stage_validations_file,
         open(validation_results_filepath) as validation_results_file,
-        open(os.path.join('examples', 'skillsets.yaml')) as skillsets_file,
+        open(os.path.join('data', 'solver', 'skillsets.yaml')) as skillsets_file,
         open(os.path.join('build', 'shuffler', 'vanilla-changes.json')) as vanilla_file,
     ):
         settings = yaml.safe_load(settings_file)
