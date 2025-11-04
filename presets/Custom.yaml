@@ -110,55 +110,56 @@ Quest reward shuffler:
       - Action: Remap Quest Rewards
         Match:
           Names:
-            - Starting Equipment (Alucard Sword)
+            - Special - Starting Equipment (Alucard Sword)
         Selection:
           Pool: Pool - Starting Gear - Weapon
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
           Names:
-            - Starting Equipment (Alucard Shield)
+            - Special - Starting Equipment (Alucard Shield)
         Selection:
           Pool: Pool - Starting Gear - Shield
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
           Names:
-            - Starting Equipment (Dragon Helm)
+            - Special - Starting Equipment (Dragon Helm)
         Selection:
           Pool: Pool - Starting Gear - Head
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
           Names:
-            - Starting Equipment (Alucard Mail)
+            - Special - Starting Equipment (Alucard Mail)
         Selection:
           Pool: Pool - Starting Gear - Body
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
           Names:
-            - Starting Equipment (Twilight Cloak)
+            - Special - Starting Equipment (Twilight Cloak)
         Selection:
           Pool: Pool - Starting Gear - Cloak
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
           Names:
-            - Starting Equipment (Necklace of J)
+            - Special - Starting Equipment (Necklace of J)
         Selection:
           Pool: Pool - Starting Gear - Accessory
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
           Names:
-            - Prologue Bonus Equipment (Potion)
-            - Prologue Bonus Equipment (Heart Refresh)
-            - Prologue Bonus Equipment (Neutron Bomb)
+            - Special - Prologue Bonus Equipment (Potion)
+            - Special - Prologue Bonus Equipment (Heart Refresh)
+            - Special - Prologue Bonus Equipment (Neutron Bomb)
         Selection:
           Pool: Pool - Prologue Reward - Consumable
           Method: Random Without Replacement
-    Notes: {}
+    Notes:
+      - TODO(sestren): Reduce the ceiling on power level of starting gear
 Room shuffler:
   Shuffle rooms within stages: true
 Stage shuffler:

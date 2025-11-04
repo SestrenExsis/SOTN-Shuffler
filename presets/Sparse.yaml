@@ -29,7 +29,8 @@ Quest reward shuffler:
           - Relic - Demon Card
       - Action: Remap Quest Rewards
         Match:
-          Target Reward: Relic - Power of Mist
+          Target Rewards:
+            - Relic - Power of Mist
         Selection:
           Pool: Pool - Modest Relic
           Method: Random With Replacement
