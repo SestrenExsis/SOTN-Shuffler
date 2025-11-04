@@ -19,13 +19,253 @@ Options:
   Shift wall in Plaque Room With Breakable Wall away from screen edge: true
   Shuffle Pitch Black Spike Maze: true
   Skip Maria cutscene in Alchemy Laboratory: true
-Quest shuffler:
-  Item pool: Racing
-  Relic pool: Racing
-  Shuffle enemy drops: true
-  Shuffle items: true
-  Shuffle special items: true
-  Shuffle relics: true
+Quest reward shuffler:
+  - Description: Shuffle significant location checks
+    Steps:
+      - Action: Populate Pools
+        Pools:
+          Pool - Major Relic:
+            Tags (All):
+              - Relic
+            Tags (None):
+              - Low Priority - Racing
+      - Action: Remap Quest Rewards
+        Match:
+          Tags (All):
+            - Low Priority - Racing
+        Selection:
+          Pool: Pool - Major Relic
+          Method: Random Without Replacement
+      - Action: Shuffle Quest Rewards
+        Match:
+          Tags (All):
+            - Significant
+            - Location Check
+    Notes:
+      - Relics that are unhelpful to racing are replaced with more helpful ones
+  - Description: Shuffle optional location checks
+    Steps:
+      - Action: Populate Pools
+        Pools:
+          Pool - Bomb:
+            Tags (All):
+              - Bomb
+          Pool - Thrown:
+            Tags (All):
+              - Thrown
+          Pool - Food:
+            Tags (All):
+              - Food
+          Pool - Buff:
+            Tags (All):
+              - Buff
+          Pool - Healing:
+            Tags (All):
+              - Healing
+          Pool - High Quality:
+            Tags (All):
+              - High Priority - Racing
+          Pool - Moderate Quality:
+            Tags (Any):
+              - Accessory
+              - Armor
+              - Consumable
+              - Gem
+              - One-Handed Weapon
+              - Subweapon
+              - Two-Handed Weapon
+              - Upgrade
+            Tags (None):
+              - High Priority - Racing
+              - Low Priority - Racing
+              - Relic
+          Pool - Low Quality:
+            Tags (All):
+              - Low Priority - Racing
+          Pool - Random Quality:
+            Names:
+              - Pool - Low Quality
+              - Pool - Low Quality
+              - Pool - Moderate Quality
+              - Pool - Moderate Quality
+              - Pool - Moderate Quality
+              - Pool - Moderate Quality
+              - Pool - Moderate Quality
+              - Pool - Moderate Quality
+              - Pool - Moderate Quality
+              - Pool - High Quality
+      - Action: Remap Quest Rewards
+        Match:
+          Tags (All):
+            - Bomb
+        Selection:
+          Pool: Pool - Bomb
+          Method: Random With Repetition
+          Repeat Cycle: 1
+      - Action: Remap Quest Rewards
+        Match:
+          Tags (All):
+            - Thrown
+        Selection:
+          Pool: Pool - Thrown
+          Method: Random With Repetition
+          Repeat Cycle: 1
+      - Action: Remap Quest Rewards
+        Match:
+          Tags (All):
+            - Food
+        Selection:
+          Pool: Pool - Food
+          Method: Random With Repetition
+          Repeat Cycle: 1
+      - Action: Remap Quest Rewards
+        Match:
+          Tags (All):
+            - Buff
+        Selection:
+          Pool: Pool - Buff
+          Method: Random With Repetition
+          Repeat Cycle: 1
+      - Action: Remap Quest Rewards
+        Match:
+          Tags (All):
+            - Healing
+        Selection:
+          Pool: Pool - Healing
+          Method: Random With Repetition
+          Repeat Cycle: 1
+      - Action: Remap Quest Rewards
+        Match:
+          Tags (All):
+            - Low Priority - Racing
+        Selection:
+          Pool: Pool - Random Quality
+          Method: Random With Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Target Reward: Pool - Low Quality
+        Selection:
+          Pool: Pool - Low Quality
+          Method: Random With Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Target Reward: Pool - Moderate Quality
+        Selection:
+          Pool: Pool - Moderate Quality
+          Method: Random With Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Target Reward: Pool - High Quality
+        Selection:
+          Pool: Pool - High Quality
+          Method: Random With Replacement
+      - Action: Shuffle Quest Rewards
+        Match:
+          Tags (All):
+            - Location Check
+          Tags (None):
+            - Significant
+    Notes:
+      - Items are condensed into a smaller variety of items
+      - Items that are unhelpful to racing are likely to be replaced by a more helpful item
+  - Description: Randomize starting gear and special items
+    Steps:
+      - Action: Populate Pools
+        Pools:
+          Pool - Bone Scimitar:
+            Tags (Any):
+              - Accessory
+              - Armor
+              - One-Handed Weapon
+              - Two-Handed Weapon
+          Pool - Starting Gear - Weapon:
+            Tags (Any):
+              - One-Handed Weapon
+          Pool - Starting Gear - Shield:
+            Tags (Any):
+              - Shield
+          Pool - Starting Gear - Head:
+            Tags (Any):
+              - Head
+          Pool - Starting Gear - Body:
+            Tags (Any):
+              - Body
+          Pool - Starting Gear - Cloak:
+            Tags (Any):
+              - Cloak
+          Pool - Starting Gear - Accessory:
+            Tags (Any):
+              - Accessory
+          Pool - Prologue Reward - Consumable:
+            Tags (Any):
+              - Consumable
+          Pool - Name Code - Accessory:
+            Tags (Any):
+              - Accessory
+          Pool - Name Code - Armor:
+            Tags (Any):
+              - Body
+      - Action: Remap Quest Rewards
+        Match:
+          Names:
+            - Special - Guaranteed Drop (Bone Scimitar, Copper)
+            - Special - Guaranteed Drop (Bone Scimitar, Green)
+        Selection:
+          Pool: Pool - Bone Scimitar
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Names:
+            - Starting Equipment (Alucard Sword)
+        Selection:
+          Pool: Pool - Starting Gear - Weapon
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Names:
+            - Starting Equipment (Alucard Shield)
+        Selection:
+          Pool: Pool - Starting Gear - Shield
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Names:
+            - Starting Equipment (Dragon Helm)
+        Selection:
+          Pool: Pool - Starting Gear - Head
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Names:
+            - Starting Equipment (Alucard Mail)
+        Selection:
+          Pool: Pool - Starting Gear - Body
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Names:
+            - Starting Equipment (Twilight Cloak)
+        Selection:
+          Pool: Pool - Starting Gear - Cloak
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Names:
+            - Starting Equipment (Necklace of J)
+        Selection:
+          Pool: Pool - Starting Gear - Accessory
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Names:
+            - Prologue Bonus Equipment (Potion)
+            - Prologue Bonus Equipment (Heart Refresh)
+            - Prologue Bonus Equipment (Neutron Bomb)
+        Selection:
+          Pool: Pool - Prologue Reward - Consumable
+          Method: Random Without Replacement
+    Notes:
+      - TODO(sestren): Reduce the ceiling on power level of starting gear
 Room shuffler:
   Shuffle rooms within stages: true
 Stage shuffler:

@@ -1,35 +1,150 @@
 ---
 Options:
-    Assign Power of Wolf relic a unique ID: true
-    Clock hands show minutes and seconds instead of hours and minutes: false
-    Color-code each stage on the map: true
-    Disable clipping on screen edge of Demon Switch Wall: true
-    Disable clipping on screen edge of Left Gear Room Wall: true
-    Disable clipping on screen edge of Pendulum Room Wall: true
-    Disable clipping on screen edge of Snake Column Wall: true
-    Disable clipping on screen edge of Tall Zig Zag Room Wall: true
-    Enable debug mode: false
-    Normalize special effects: true
-    Normalize room connections: true
-    Normalize sounds: true
-    Normalize Ferryman Gate: true
-    Preserve unsaved map data: Revelation
-    Prevent softlocks related to Death cutscene in Castle Entrance: true
-    Prevent softlocks related to Door behind Scylla: true
-    Shift wall in Plaque Room With Breakable Wall away from screen edge: true
-    Shuffle Pitch Black Spike Maze: false
-    Skip Maria cutscene in Alchemy Laboratory: true
-Quest shuffler:
-  Item pool: Vanilla
-  Relic pool: Sparse
-  Shuffle enemy drops: true
-  Shuffle items: true
-  Shuffle special items: true
-  Shuffle relics: true
+  Assign Power of Wolf relic a unique ID: true
+  Clock hands show minutes and seconds instead of hours and minutes: true
+  Color-code each stage on the map: true
+  Disable clipping on screen edge of Demon Switch Wall: true
+  Disable clipping on screen edge of Left Gear Room Wall: true
+  Disable clipping on screen edge of Pendulum Room Wall: true
+  Disable clipping on screen edge of Snake Column Wall: true
+  Disable clipping on screen edge of Tall Zig Zag Room Wall: true
+  Enable debug mode: false
+  Normalize special effects: true
+  Normalize room connections: true
+  Normalize sounds: true
+  Normalize Ferryman Gate: true
+  Preserve unsaved map data: Revelation
+  Prevent softlocks related to Death cutscene in Castle Entrance: true
+  Prevent softlocks related to Door behind Scylla: true
+  Shift wall in Plaque Room With Breakable Wall away from screen edge: true
+  Shuffle Pitch Black Spike Maze: true
+  Skip Maria cutscene in Alchemy Laboratory: true
+Quest reward shuffler:
+  - Description: Shuffle significant location checks
+    Steps:
+      - Action: Shuffle Quest Rewards
+        Match:
+          Tags (All):
+            - Significant
+            - Location Check
+    Notes: {}
+  - Description: Shuffle optional location checks
+    Steps:
+      - Action: Shuffle Quest Rewards
+        Match:
+          Tags (All):
+            - Location Check
+          Tags (None):
+            - Significant
+    Notes: {}
+  - Description: Shuffle enemy drops
+    Steps:
+      - Action: Shuffle Quest Rewards
+        Match:
+          Tags (All):
+            - Enemy Drop
+    Notes: {}
+  - Description: Randomize starting gear and special items
+    Steps:
+      - Action: Populate Pools
+        Pools:
+          Pool - Bone Scimitar:
+            Tags (Any):
+              - Accessory
+              - Armor
+              - One-Handed Weapon
+              - Two-Handed Weapon
+          Pool - Starting Gear - Weapon:
+            Tags (Any):
+              - One-Handed Weapon
+          Pool - Starting Gear - Shield:
+            Tags (Any):
+              - Shield
+          Pool - Starting Gear - Head:
+            Tags (Any):
+              - Head
+          Pool - Starting Gear - Body:
+            Tags (Any):
+              - Body
+          Pool - Starting Gear - Cloak:
+            Tags (Any):
+              - Cloak
+          Pool - Starting Gear - Accessory:
+            Tags (Any):
+              - Accessory
+          Pool - Prologue Reward - Consumable:
+            Tags (Any):
+              - Consumable
+          Pool - Name Code - Accessory:
+            Tags (Any):
+              - Accessory
+          Pool - Name Code - Armor:
+            Tags (Any):
+              - Body
+      - Action: Remap Quest Rewards
+        Match:
+          Names:
+            - Special - Guaranteed Drop (Bone Scimitar, Copper)
+            - Special - Guaranteed Drop (Bone Scimitar, Green)
+        Selection:
+          Pool: Pool - Bone Scimitar
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Names:
+            - Starting Equipment (Alucard Sword)
+        Selection:
+          Pool: Pool - Starting Gear - Weapon
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Names:
+            - Starting Equipment (Alucard Shield)
+        Selection:
+          Pool: Pool - Starting Gear - Shield
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Names:
+            - Starting Equipment (Dragon Helm)
+        Selection:
+          Pool: Pool - Starting Gear - Head
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Names:
+            - Starting Equipment (Alucard Mail)
+        Selection:
+          Pool: Pool - Starting Gear - Body
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Names:
+            - Starting Equipment (Twilight Cloak)
+        Selection:
+          Pool: Pool - Starting Gear - Cloak
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Names:
+            - Starting Equipment (Necklace of J)
+        Selection:
+          Pool: Pool - Starting Gear - Accessory
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Names:
+            - Prologue Bonus Equipment (Potion)
+            - Prologue Bonus Equipment (Heart Refresh)
+            - Prologue Bonus Equipment (Neutron Bomb)
+        Selection:
+          Pool: Pool - Prologue Reward - Consumable
+          Method: Random Without Replacement
+    Notes: {}
 Room shuffler:
-    Shuffle rooms within stages: true
+  Shuffle rooms within stages: true
 Stage shuffler:
-    Shuffle connections between stages: true
-    Loading room labels: Connection
+  Shuffle connections between stages: true
+  Loading room labels: Connection
 Solver:
-  Default skillset: Damageless
+  Default skillset: Casual

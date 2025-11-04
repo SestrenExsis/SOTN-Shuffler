@@ -2,8 +2,8 @@
 Sources:
   Enemy - Archer (Rare Drop):
     Tags:
-      - Item
       - Enemy Drop
+      - Item
       - Rare
     Target Reward: Item - Vorpal Blade
   Enemy - Archer (Uncommon Drop):
@@ -1308,6 +1308,8 @@ Sources:
         Section: Bat Card Room Duplicate
         Stage: Alchemy Laboratory
     Tags:
+      - Significant
+      - Location Check
       - Relic
     Target Reward: Relic - Bat Card
   Location - Castle Entrance, Cube of Zoe Room (Cube of Zoe):
@@ -1327,6 +1329,8 @@ Sources:
         Section: Main
         Stage: Castle Entrance Revisited
     Tags:
+      - Significant
+      - Location Check
       - Relic
     Target Reward: Relic - Cube of Zoe
   Location - Abandoned Mine, Demon Card Room (Demon Card):
@@ -1341,6 +1345,8 @@ Sources:
         Section: Main
         Stage: Abandoned Mine
     Tags:
+      - Significant
+      - Location Check
       - Relic
       - Item
     Target Reward: Relic - Demon Card
@@ -1356,6 +1362,8 @@ Sources:
         Section: Main
         Stage: Olrox's Quarters
     Tags:
+      - Significant
+      - Location Check
       - Relic
       - Item
     Target Reward: Relic - Echo of Bat
@@ -1371,6 +1379,8 @@ Sources:
         Section: Main
         Stage: Clock Tower
     Tags:
+      - Significant
+      - Location Check
       - Relic
       - Item
     Target Reward: Relic - Fire of Bat
@@ -1386,6 +1396,8 @@ Sources:
         Section: Left Side
         Stage: Colosseum
     Tags:
+      - Significant
+      - Location Check
       - Relic
       - Item
     Target Reward: Relic - Form of Mist
@@ -1401,6 +1413,8 @@ Sources:
         Section: Ground
         Stage: Castle Keep
     Tags:
+      - Significant
+      - Location Check
       - Relic
       - Item
     Target Reward: Relic - Ghost Card
@@ -1417,6 +1431,8 @@ Sources:
         Helper: Low-Cost Price Range
         Stage: Long Library
     Tags:
+      - Significant
+      - Location Check
       - Relic
     Target Reward: Relic - Jewel of Open
   Location - Castle Keep, Keep Area (Power of Mist):
@@ -1431,6 +1447,8 @@ Sources:
         Section: Middle-Left Ledge
         Stage: Castle Keep
     Tags:
+      - Significant
+      - Location Check
       - Relic
       - Item
     Target Reward: Relic - Power of Mist
@@ -1446,6 +1464,8 @@ Sources:
         Section: Main
         Stage: Marble Gallery
     Tags:
+      - Significant
+      - Location Check
       - Relic
     Target Reward: Relic - Gravity Boots
   Location - Underground Caverns, Holy Symbol Room (Holy Symbol):
@@ -1460,6 +1480,8 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Significant
+      - Location Check
       - Relic
       - Item
     Target Reward: Relic - Holy Symbol
@@ -1475,6 +1497,8 @@ Sources:
         Section: Ground
         Stage: Castle Keep
     Tags:
+      - Significant
+      - Location Check
       - Relic
     Target Reward: Relic - Leap Stone
   Location - Underground Caverns, Merman Statue Room (Merman Statue):
@@ -1489,6 +1513,8 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Significant
+      - Location Check
       - Relic
       - Item
     Target Reward: Relic - Merman Statue
@@ -1509,6 +1535,8 @@ Sources:
         Section: Parapet
         Stage: Castle Entrance Revisited
     Tags:
+      - Significant
+      - Location Check
       - Relic
       - Item
     Target Reward: Relic - Power of Wolf
@@ -1524,6 +1552,8 @@ Sources:
         Section: Main
         Stage: Alchemy Laboratory
     Tags:
+      - Significant
+      - Location Check
       - Relic
     Target Reward: Relic - Skill of Wolf
   Location - Long Library, Lesser Demon Area (Soul of Bat):
@@ -1538,6 +1568,8 @@ Sources:
         Section: Behind Mist Gate
         Stage: Long Library
     Tags:
+      - Significant
+      - Location Check
       - Relic
       - Item
     Target Reward: Relic - Soul of Bat
@@ -1553,6 +1585,8 @@ Sources:
         Section: Elevator Shaft
         Stage: Outer Wall
     Tags:
+      - Significant
+      - Location Check
       - Relic
       - Item
     Target Reward: Relic - Soul of Wolf
@@ -1568,6 +1602,8 @@ Sources:
         Section: Main
         Stage: Marble Gallery
     Tags:
+      - Significant
+      - Location Check
       - Relic
     Target Reward: Relic - Spirit Orb
   Location - Olrox's Quarters, Sword Card Room (Sword Card):
@@ -1582,6 +1618,8 @@ Sources:
         Section: Main
         Stage: Olrox's Quarters
     Tags:
+      - Significant
+      - Location Check
       - Relic
       - Item
     Target Reward: Relic - Sword Card
@@ -1597,6 +1635,8 @@ Sources:
         Section: Main
         Stage: Long Library
     Tags:
+      - Significant
+      - Location Check
       - Relic
       - Item
     Target Reward: Relic - Faerie Card
@@ -1612,6 +1652,8 @@ Sources:
         Section: Main
         Stage: Long Library
     Tags:
+      - Significant
+      - Location Check
       - Relic
       - Item
     Target Reward: Relic - Faerie Scroll
@@ -1627,6 +1669,7 @@ Sources:
         Section: Main
         Stage: Abandoned Mine
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Power of Sire
   Location - Abandoned Mine, Karma Coin Room (Karma Coin):
@@ -1641,6 +1684,7 @@ Sources:
         Section: Main
         Stage: Abandoned Mine
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Karma Coin
   Location - Abandoned Mine, Snake Column (Turkey):
@@ -1655,6 +1699,7 @@ Sources:
         Section: Main
         Stage: Abandoned Mine
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Turkey
   Location - Abandoned Mine, Snake Column (Ring of Ares):
@@ -1669,6 +1714,7 @@ Sources:
         Section: Main
         Stage: Abandoned Mine
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Ring of Ares
   Location - Abandoned Mine, Karma Coin Room (Combat Knife):
@@ -1683,6 +1729,7 @@ Sources:
         Section: Main
         Stage: Abandoned Mine
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Combat Knife
   Location - Abandoned Mine, Crumbling Stairwells With Mushrooms (Shiitake 1):
@@ -1697,6 +1744,7 @@ Sources:
         Section: Main
         Stage: Abandoned Mine
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shiitake
   Location - Abandoned Mine, Crumbling Stairwells With Mushrooms (Shiitake 2):
@@ -1711,6 +1759,7 @@ Sources:
         Section: Main
         Stage: Abandoned Mine
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shiitake
   Location - Abandoned Mine, Peanuts Room (Barley Tea):
@@ -1725,6 +1774,7 @@ Sources:
         Section: Main
         Stage: Abandoned Mine
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Barley Tea
   Location - Abandoned Mine, Peanuts Room (Peanuts 1):
@@ -1739,6 +1789,7 @@ Sources:
         Section: Main
         Stage: Abandoned Mine
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Peanuts
   Location - Abandoned Mine, Peanuts Room (Peanuts 2):
@@ -1753,6 +1804,7 @@ Sources:
         Section: Main
         Stage: Abandoned Mine
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Peanuts
   Location - Abandoned Mine, Peanuts Room (Peanuts 3):
@@ -1767,6 +1819,7 @@ Sources:
         Section: Main
         Stage: Abandoned Mine
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Peanuts
   Location - Abandoned Mine, Peanuts Room (Peanuts 4):
@@ -1781,6 +1834,7 @@ Sources:
         Section: Main
         Stage: Abandoned Mine
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Peanuts
   Location - Alchemy Laboratory, Entryway (Hide Cuirass):
@@ -1795,6 +1849,7 @@ Sources:
         Section: Main
         Stage: Alchemy Laboratory
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Hide Cuirass
   Location - Alchemy Laboratory, Heart Max-Up Room (Heart Max-Up):
@@ -1809,6 +1864,7 @@ Sources:
         Section: Main
         Stage: Alchemy Laboratory
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Alchemy Laboratory, Cloth Cape Room (Cloth Cape):
@@ -1823,6 +1879,7 @@ Sources:
         Section: Main
         Stage: Alchemy Laboratory
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Cloth Cape
   Location - Alchemy Laboratory, Secret Life Max-Up Room (Life Max-Up):
@@ -1837,6 +1894,7 @@ Sources:
         Section: Main
         Stage: Alchemy Laboratory
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Alchemy Laboratory, Sunglasses Room (Sunglasses):
@@ -1851,6 +1909,7 @@ Sources:
         Section: Main
         Stage: Alchemy Laboratory
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Sunglasses
   Location - Alchemy Laboratory, Short Zig Zag Room (Resist Thunder):
@@ -1865,6 +1924,7 @@ Sources:
         Section: Main
         Stage: Alchemy Laboratory
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Thunder
   Location - Alchemy Laboratory, Red Skeleton Lift Room (Leather Shield):
@@ -1879,6 +1939,7 @@ Sources:
         Section: Ground
         Stage: Alchemy Laboratory
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Leather Shield
   Location - Alchemy Laboratory, Cannon Room (Basilard):
@@ -1893,6 +1954,7 @@ Sources:
         Section: Main
         Stage: Alchemy Laboratory
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Basilard
   Location - Alchemy Laboratory, Exit to Marble Gallery (Potion):
@@ -1907,6 +1969,7 @@ Sources:
         Section: Main
         Stage: Alchemy Laboratory
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Potion
   Location - Anti-Chapel, XXX (Fire Boomerang):
@@ -1921,6 +1984,7 @@ Sources:
         Section: Main
         Stage: Anti-Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Fire Boomerang
   Location - Anti-Chapel, XXX (Diamond):
@@ -1935,6 +1999,7 @@ Sources:
         Section: Main
         Stage: Anti-Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Diamond
   Location - Anti-Chapel, XXX (Zircon):
@@ -1949,6 +2014,7 @@ Sources:
         Section: Main
         Stage: Anti-Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Zircon
   Location - Anti-Chapel, XXX (Heart Max-Up 1):
@@ -1963,6 +2029,7 @@ Sources:
         Section: Main
         Stage: Anti-Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Anti-Chapel, XXX (Shuriken):
@@ -1977,6 +2044,7 @@ Sources:
         Section: Main
         Stage: Anti-Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shuriken
   Location - Anti-Chapel, XXX (TNT):
@@ -1991,6 +2059,7 @@ Sources:
         Section: Main
         Stage: Anti-Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - TNT
   Location - Anti-Chapel, XXX (Boomerang):
@@ -2005,6 +2074,7 @@ Sources:
         Section: Main
         Stage: Anti-Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Boomerang
   Location - Anti-Chapel, XXX (Javelin):
@@ -2019,6 +2089,7 @@ Sources:
         Section: Main
         Stage: Anti-Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Javelin
   Location - Anti-Chapel, XXX (Manna Prism):
@@ -2033,6 +2104,7 @@ Sources:
         Section: Main
         Stage: Anti-Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Manna Prism
   Location - Anti-Chapel, XXX (Smart Potion):
@@ -2047,6 +2119,7 @@ Sources:
         Section: Main
         Stage: Anti-Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Smart Potion
   Location - Anti-Chapel, XXX (Life Max-Up):
@@ -2061,6 +2134,7 @@ Sources:
         Section: Main
         Stage: Anti-Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Anti-Chapel, XXX (Talwar):
@@ -2075,6 +2149,7 @@ Sources:
         Section: Main
         Stage: Anti-Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Talwar
   Location - Anti-Chapel, XXX (Bwaka Knife):
@@ -2089,6 +2164,7 @@ Sources:
         Section: Main
         Stage: Anti-Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Bwaka Knife
   Location - Anti-Chapel, XXX (Magic Missile):
@@ -2103,6 +2179,7 @@ Sources:
         Section: Main
         Stage: Anti-Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Magic Missile
   Location - Anti-Chapel, XXX (Twilight Cloak):
@@ -2117,6 +2194,7 @@ Sources:
         Section: Main
         Stage: Anti-Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Twilight Cloak
   Location - Anti-Chapel, XXX (Heart Max-Up 2):
@@ -2131,6 +2209,7 @@ Sources:
         Section: Main
         Stage: Anti-Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Black Marble Gallery, S-Shaped Hallways (Library Card):
@@ -2145,6 +2224,7 @@ Sources:
         Section: Main
         Stage: Black Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Library Card
   Location - Black Marble Gallery, Spirit Orb Room (Potion):
@@ -2159,6 +2239,7 @@ Sources:
         Section: Main
         Stage: Black Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Potion
   Location - Black Marble Gallery, Spirit Orb Room (Antivenom):
@@ -2173,6 +2254,7 @@ Sources:
         Section: Main
         Stage: Black Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Antivenom
   Location - Black Marble Gallery, Gravity Boots Room (Life Max-Up):
@@ -2187,6 +2269,7 @@ Sources:
         Section: Main
         Stage: Black Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Black Marble Gallery, Gravity Boots Room (Heart Max-Up):
@@ -2201,6 +2284,7 @@ Sources:
         Section: Main
         Stage: Black Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Black Marble Gallery, Alucart Room (Resist Dark):
@@ -2215,6 +2299,7 @@ Sources:
         Section: Main
         Stage: Black Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Dark
   Location - Black Marble Gallery, Alucart Room (Resist Holy):
@@ -2229,6 +2314,7 @@ Sources:
         Section: Main
         Stage: Black Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Holy
   Location - Black Marble Gallery, Pathway After Right Statue (Resist Thunder):
@@ -2243,6 +2329,7 @@ Sources:
         Section: Main
         Stage: Black Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Thunder
   Location - Black Marble Gallery, Pathway After Right Statue (Resist Fire):
@@ -2257,6 +2344,7 @@ Sources:
         Section: Main
         Stage: Black Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Fire
   Location - Black Marble Gallery, Blue Door Room (Meal Ticket):
@@ -2271,6 +2359,7 @@ Sources:
         Section: Main
         Stage: Black Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Meal Ticket
   Location - Black Marble Gallery, Beneath Right Trapdoor (Iron Ball):
@@ -2285,6 +2374,7 @@ Sources:
         Section: Main
         Stage: Black Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Iron Ball
   Location - Black Marble Gallery, Pathway After Left Statue (Heart Refresh):
@@ -2299,6 +2389,7 @@ Sources:
         Section: Main
         Stage: Black Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Refresh
   Location - Catacombs, Cat-Eye Circlet Room (Cat-Eye Circlet):
@@ -2313,6 +2404,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Cat-Eye Circlet
   Location - Catacombs, Icebrand Room (Icebrand):
@@ -2327,6 +2419,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Icebrand
   Location - Catacombs, Walk Armor Room (Walk Armor):
@@ -2341,6 +2434,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Walk Armor
   Location - Catacombs, Mormegil Room (Mormegil):
@@ -2355,6 +2449,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Mormegil
   Location - Catacombs, Spike Breaker Room (Library Card):
@@ -2369,6 +2464,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Library Card
   Location - Catacombs, Ballroom Mask Room (Heart Max-Up):
@@ -2383,6 +2479,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Catacombs, Ballroom Mask Room (Ballroom Mask):
@@ -2397,6 +2494,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Ballroom Mask
   Location - Catacombs, Cat-Eye Circlet Room (Bloodstone):
@@ -2411,6 +2509,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Bloodstone
   Location - Catacombs, Room ID 19 (Life Max-Up):
@@ -2425,6 +2524,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Catacombs, Room ID 19 (Heart Max-Up):
@@ -2439,6 +2539,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Catacombs, Room ID 25 (Cross Shuriken 1):
@@ -2453,6 +2554,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Cross Shuriken
   Location - Catacombs, Room ID 25 (Cross Shuriken 2):
@@ -2467,6 +2569,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Cross Shuriken
   Location - Catacombs, Room ID 25 (Karma Coin 1):
@@ -2481,6 +2584,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Karma Coin
   Location - Catacombs, Room ID 25 (Karma Coin 2):
@@ -2495,6 +2599,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Karma Coin
   Location - Catacombs, Room ID 26 (Pork Bun):
@@ -2509,6 +2614,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Pork Bun
   Location - Catacombs, Spike Breaker Room (Spike Breaker):
@@ -2523,6 +2629,8 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Significant
+      - Location Check
       - Item
       - Relic
       - Required
@@ -2539,6 +2647,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Monster Vial 3
   Location - Catacombs, Room ID 20 (Monster Vial 3 2):
@@ -2553,6 +2662,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Monster Vial 3
   Location - Catacombs, Room ID 20 (Monster Vial 3 3):
@@ -2567,6 +2677,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Monster Vial 3
   Location - Catacombs, Room ID 20 (Monster Vial 3 4):
@@ -2581,6 +2692,7 @@ Sources:
         Section: Main
         Stage: Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Monster Vial 3
   Location - Castle Entrance, Heart Max-Up Room (Heart Max-Up):
@@ -2600,6 +2712,7 @@ Sources:
         Section: Main
         Stage: Castle Entrance Revisited
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Castle Entrance, Life Max-Up Room (Life Max-Up):
@@ -2619,6 +2732,7 @@ Sources:
         Section: Main
         Stage: Castle Entrance Revisited
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Castle Entrance, Jewel Sword Room (Life Apple):
@@ -2638,6 +2752,7 @@ Sources:
         Section: Main
         Stage: Castle Entrance Revisited
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Apple
   Location - Castle Entrance, Cube of Zoe Room (Shield Potion):
@@ -2657,6 +2772,7 @@ Sources:
         Section: Main
         Stage: Castle Entrance Revisited
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shield Potion
   Location - Castle Entrance, Holy Mail Room (Holy Mail):
@@ -2676,6 +2792,7 @@ Sources:
         Section: Ledge
         Stage: Castle Entrance Revisited
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Holy Mail
   Location - Castle Entrance, Shortcut to Underground Caverns (Life Max-Up):
@@ -2695,6 +2812,7 @@ Sources:
         Section: Main
         Stage: Castle Entrance Revisited
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Castle Entrance, Shortcut to Warp Rooms (Heart Max-Up):
@@ -2714,6 +2832,7 @@ Sources:
         Section: Left Side
         Stage: Castle Entrance Revisited
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Castle Entrance, After Drawbridge (Life Max-Up):
@@ -2733,6 +2852,7 @@ Sources:
         Section: Parapet
         Stage: Castle Entrance Revisited
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Castle Entrance, Jewel Sword Room (Jewel Sword):
@@ -2749,6 +2869,7 @@ Sources:
         Section: Main
         Stage: Castle Entrance Revisited
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Jewel Sword
   Location - Castle Keep, Keep Area (Turquoise):
@@ -2763,6 +2884,7 @@ Sources:
         Section: Main
         Stage: Castle Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Turquoise
   Location - Castle Keep, Keep Area (Fire Mail):
@@ -2777,6 +2899,7 @@ Sources:
         Section: Main
         Stage: Castle Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Fire Mail
   Location - Castle Keep, Tyrfing Room (Tyrfing):
@@ -2791,6 +2914,7 @@ Sources:
         Section: Main
         Stage: Castle Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Tyrfing
   Location - Castle Keep, Upper Attic (Sirloin):
@@ -2805,6 +2929,7 @@ Sources:
         Section: Main
         Stage: Castle Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Sirloin
   Location - Castle Keep, Upper Attic (Pot Roast):
@@ -2819,6 +2944,7 @@ Sources:
         Section: Main
         Stage: Castle Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Pot Roast
   Location - Castle Keep, Upper Attic (Frankfurter):
@@ -2833,6 +2959,7 @@ Sources:
         Section: Main
         Stage: Castle Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Frankfurter
   Location - Castle Keep, Upper Attic (Resist Stone):
@@ -2847,6 +2974,7 @@ Sources:
         Section: Main
         Stage: Castle Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Stone
   Location - Castle Keep, Upper Attic (Resist Dark):
@@ -2861,6 +2989,7 @@ Sources:
         Section: Main
         Stage: Castle Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Dark
   Location - Castle Keep, Upper Attic (Resist Holy):
@@ -2875,6 +3004,7 @@ Sources:
         Section: Main
         Stage: Castle Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Holy
   Location - Castle Keep, Upper Attic (Platinum Mail):
@@ -2889,6 +3019,7 @@ Sources:
         Section: Main
         Stage: Castle Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Platinum Mail
   Location - Castle Keep, Falchion Room (Falchion):
@@ -2903,6 +3034,7 @@ Sources:
         Section: Main
         Stage: Castle Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Falchion
   Location - Castle Keep, Ghost Card Room (Life Max-Up 1):
@@ -2917,6 +3049,7 @@ Sources:
         Section: Main
         Stage: Castle Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Castle Keep, Ghost Card Room (Life Max-Up 2):
@@ -2931,6 +3064,7 @@ Sources:
         Section: Main
         Stage: Castle Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Castle Keep, Ghost Card Room (Heart Max-Up 1):
@@ -2945,6 +3079,7 @@ Sources:
         Section: Main
         Stage: Castle Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Castle Keep, Ghost Card Room (Heart Max-Up 2):
@@ -2959,6 +3094,7 @@ Sources:
         Section: Main
         Stage: Castle Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Castle Keep, Keep Area (Heart Max-Up):
@@ -2973,6 +3109,7 @@ Sources:
         Section: Main
         Stage: Castle Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Cave, XXX (Power of Sire 1):
@@ -2987,6 +3124,7 @@ Sources:
         Section: Main
         Stage: Cave
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Power of Sire
   Location - Cave, XXX (Life Apple):
@@ -3001,6 +3139,7 @@ Sources:
         Section: Main
         Stage: Cave
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Apple
   Location - Cave, XXX (Alucard Sword):
@@ -3015,6 +3154,7 @@ Sources:
         Section: Main
         Stage: Cave
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Alucard Sword
   Location - Cave, XXX (Green Tea):
@@ -3029,6 +3169,7 @@ Sources:
         Section: Main
         Stage: Cave
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Green Tea
   Location - Cave, XXX (Power of Sire 2):
@@ -3043,6 +3184,7 @@ Sources:
         Section: Main
         Stage: Cave
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Power of Sire
   Location - Cave, XXX (Shiitake 1):
@@ -3057,6 +3199,7 @@ Sources:
         Section: Main
         Stage: Cave
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shiitake
   Location - Cave, XXX (Shiitake 2):
@@ -3071,6 +3214,7 @@ Sources:
         Section: Main
         Stage: Cave
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shiitake
   Location - Clock Tower, Open Courtyard (Magic Missile):
@@ -3085,6 +3229,7 @@ Sources:
         Section: Main
         Stage: Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Magic Missile
   Location - Clock Tower, Open Courtyard (Pentagram):
@@ -3099,6 +3244,7 @@ Sources:
         Section: Main
         Stage: Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Pentagram
   Location - Clock Tower, Hidden Armory (Star Flail):
@@ -3113,6 +3259,7 @@ Sources:
         Section: Main
         Stage: Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Star Flail
   Location - Clock Tower, Hidden Armory (Gold Plate):
@@ -3127,6 +3274,7 @@ Sources:
         Section: Main
         Stage: Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Gold Plate
   Location - Clock Tower, Hidden Armory (Steel Helm):
@@ -3141,6 +3289,7 @@ Sources:
         Section: Main
         Stage: Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Steel Helm
   Location - Clock Tower, Healing Mail Room (Healing Mail):
@@ -3155,6 +3304,7 @@ Sources:
         Section: Main
         Stage: Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Healing Mail
   Location - Clock Tower, Open Courtyard (Bekatowa):
@@ -3169,6 +3319,7 @@ Sources:
         Section: Main
         Stage: Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Bekatowa
   Location - Clock Tower, Open Courtyard (Shaman Shield):
@@ -3183,6 +3334,7 @@ Sources:
         Section: Main
         Stage: Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shaman Shield
   Location - Clock Tower, Open Courtyard (Ice Mail):
@@ -3197,6 +3349,7 @@ Sources:
         Section: Main
         Stage: Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Ice Mail
   Location - Clock Tower, Spire (Life Max-Up):
@@ -3211,6 +3364,7 @@ Sources:
         Section: Main
         Stage: Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Clock Tower, Spire (Heart Max-Up):
@@ -3225,6 +3379,7 @@ Sources:
         Section: Main
         Stage: Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Colosseum, Right-Side Armory (Heart Max-Up):
@@ -3239,6 +3394,7 @@ Sources:
         Section: Main
         Stage: Colosseum
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Colosseum, Left-Side Armory (Shield Rod):
@@ -3253,6 +3409,7 @@ Sources:
         Section: Main
         Stage: Colosseum
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shield Rod
   Location - Colosseum, Blood Cloak Room (Blood Cloak):
@@ -3267,6 +3424,7 @@ Sources:
         Section: Main
         Stage: Colosseum
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Blood Cloak
   Location - Colosseum, Passageway Between Arena and Royal Chapel (Knight Shield):
@@ -3281,6 +3439,7 @@ Sources:
         Section: Main
         Stage: Colosseum
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Knight Shield
   Location - Colosseum, Passageway Between Arena and Royal Chapel (Library Card):
@@ -3295,6 +3454,7 @@ Sources:
         Section: Main
         Stage: Colosseum
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Library Card
   Location - Colosseum, Fountain Room (Green Tea):
@@ -3309,6 +3469,7 @@ Sources:
         Section: Main
         Stage: Colosseum
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Green Tea
   Location - Colosseum, Holy Sword Room (Holy Sword):
@@ -3323,6 +3484,7 @@ Sources:
         Section: Main
         Stage: Colosseum
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Holy Sword
   Location - Death Wing's Lair, Secret Onyx Room (Opal):
@@ -3337,6 +3499,7 @@ Sources:
         Section: Main
         Stage: Death Wing's Lair
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Opal
   Location - Death Wing's Lair, Secret Onyx Room (Sword of Hador):
@@ -3351,6 +3514,7 @@ Sources:
         Section: Main
         Stage: Death Wing's Lair
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Sword of Hador
   Location - Death Wing's Lair, Secret Onyx Room (High Potion):
@@ -3365,6 +3529,7 @@ Sources:
         Section: Main
         Stage: Death Wing's Lair
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - High Potion
   Location - Death Wing's Lair, Tall Shaft (Shield Potion):
@@ -3379,6 +3544,7 @@ Sources:
         Section: Main
         Stage: Death Wing's Lair
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shield Potion
   Location - Death Wing's Lair, Tall Shaft (Luck Potion):
@@ -3393,6 +3559,7 @@ Sources:
         Section: Main
         Stage: Death Wing's Lair
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Luck Potion
   Location - Death Wing's Lair, Tall Shaft (Manna Prism):
@@ -3407,6 +3574,7 @@ Sources:
         Section: Main
         Stage: Death Wing's Lair
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Manna Prism
   Location - Death Wing's Lair, Prison (Aquamarine):
@@ -3421,6 +3589,7 @@ Sources:
         Section: Main
         Stage: Death Wing's Lair
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Aquamarine
   Location - Death Wing's Lair, Garnet Room (Alucard Mail):
@@ -3435,6 +3604,7 @@ Sources:
         Section: Main
         Stage: Death Wing's Lair
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Alucard Mail
   Location - Death Wing's Lair, Catwalk Crypt (Life Max-Up):
@@ -3449,6 +3619,7 @@ Sources:
         Section: Main
         Stage: Death Wing's Lair
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Death Wing's Lair, Sword Card Room (Heart Refresh):
@@ -3463,6 +3634,7 @@ Sources:
         Section: Main
         Stage: Death Wing's Lair
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Refresh
   Location - Death Wing's Lair, Narrow Hallway to Olrox (Shuriken):
@@ -3477,6 +3649,7 @@ Sources:
         Section: Main
         Stage: Death Wing's Lair
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shuriken
   Location - Death Wing's Lair, Echo of Bat Room (Heart Max-Up):
@@ -3491,6 +3664,7 @@ Sources:
         Section: Main
         Stage: Death Wing's Lair
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Floating Catacombs, XXX (Magic Missile):
@@ -3505,6 +3679,7 @@ Sources:
         Section: Main
         Stage: Floating Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Magic Missile
   Location - Floating Catacombs, XXX (Buffalo Star):
@@ -3519,6 +3694,7 @@ Sources:
         Section: Main
         Stage: Floating Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Buffalo Star
   Location - Floating Catacombs, XXX (Resist Thunder):
@@ -3533,6 +3709,7 @@ Sources:
         Section: Main
         Stage: Floating Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Thunder
   Location - Floating Catacombs, XXX (Resist Fire):
@@ -3547,6 +3724,7 @@ Sources:
         Section: Main
         Stage: Floating Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Fire
   Location - Floating Catacombs, XXX (Karma Coin 1):
@@ -3561,6 +3739,7 @@ Sources:
         Section: Main
         Stage: Floating Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Karma Coin
   Location - Floating Catacombs, XXX (Karma Coin 2):
@@ -3575,6 +3754,7 @@ Sources:
         Section: Main
         Stage: Floating Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Karma Coin
   Location - Floating Catacombs, XXX (Red Bean Bun):
@@ -3589,6 +3769,7 @@ Sources:
         Section: Main
         Stage: Floating Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Red Bean Bun
   Location - Floating Catacombs, XXX (Elixir):
@@ -3603,6 +3784,7 @@ Sources:
         Section: Main
         Stage: Floating Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Elixir
   Location - Floating Catacombs, XXX (Library Card):
@@ -3617,6 +3799,7 @@ Sources:
         Section: Main
         Stage: Floating Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Library Card
   Location - Floating Catacombs, XXX (Life Max-Up 1):
@@ -3631,6 +3814,7 @@ Sources:
         Section: Main
         Stage: Floating Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Floating Catacombs, XXX (Heart Max-Up 1):
@@ -3645,6 +3829,7 @@ Sources:
         Section: Main
         Stage: Floating Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Floating Catacombs, XXX (Shield Potion):
@@ -3659,6 +3844,7 @@ Sources:
         Section: Main
         Stage: Floating Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shield Potion
   Location - Floating Catacombs, XXX (Attack Potion):
@@ -3673,6 +3859,7 @@ Sources:
         Section: Main
         Stage: Floating Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Attack Potion
   Location - Floating Catacombs, XXX (Necklace of J):
@@ -3687,6 +3874,7 @@ Sources:
         Section: Main
         Stage: Floating Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Necklace of J
   Location - Floating Catacombs, XXX (Diamond):
@@ -3701,6 +3889,7 @@ Sources:
         Section: Main
         Stage: Floating Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Diamond
   Location - Floating Catacombs, XXX (Heart Max-Up 2):
@@ -3715,6 +3904,7 @@ Sources:
         Section: Main
         Stage: Floating Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Floating Catacombs, XXX (Life Max-Up 2):
@@ -3729,6 +3919,7 @@ Sources:
         Section: Main
         Stage: Floating Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Floating Catacombs, XXX (Ruby Circlet):
@@ -3743,6 +3934,7 @@ Sources:
         Section: Main
         Stage: Floating Catacombs
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Ruby Circlet
   Location - Forbidden Library, XXX (Turquoise):
@@ -3757,6 +3949,7 @@ Sources:
         Section: Main
         Stage: Forbidden Library
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Turquoise
   Location - Forbidden Library, XXX (Opal):
@@ -3771,6 +3964,7 @@ Sources:
         Section: Main
         Stage: Forbidden Library
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Opal
   Location - Forbidden Library, XXX (Library Card):
@@ -3785,6 +3979,7 @@ Sources:
         Section: Main
         Stage: Forbidden Library
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Library Card
   Location - Forbidden Library, XXX (Resist Fire):
@@ -3799,6 +3994,7 @@ Sources:
         Section: Main
         Stage: Forbidden Library
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Fire
   Location - Forbidden Library, XXX (Resist Ice):
@@ -3813,6 +4009,7 @@ Sources:
         Section: Main
         Stage: Forbidden Library
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Ice
   Location - Forbidden Library, XXX (Resist Stone):
@@ -3827,6 +4024,7 @@ Sources:
         Section: Main
         Stage: Forbidden Library
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Stone
   Location - Forbidden Library, XXX (Neutron Bomb):
@@ -3841,6 +4039,7 @@ Sources:
         Section: Main
         Stage: Forbidden Library
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Neutron Bomb
   Location - Forbidden Library, XXX (Badelaire):
@@ -3855,6 +4054,7 @@ Sources:
         Section: Main
         Stage: Forbidden Library
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Badelaire
   Location - Forbidden Library, XXX (Staurolite):
@@ -3869,6 +4069,7 @@ Sources:
         Section: Main
         Stage: Forbidden Library
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Staurolite
   Location - Long Library, Secret Bookcase Room (Stone Mask):
@@ -3883,6 +4084,7 @@ Sources:
         Section: Main
         Stage: Long Library
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Stone Mask
   Location - Long Library, Holy Rod Room (Holy Rod):
@@ -3897,6 +4099,7 @@ Sources:
         Section: Main
         Stage: Long Library
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Holy Rod
   Location - Long Library, Shop (Bronze Cuirass):
@@ -3911,6 +4114,7 @@ Sources:
         Section: Main
         Stage: Long Library
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Bronze Cuirass
   Location - Long Library, Lesser Demon Area (Takemitsu):
@@ -3925,6 +4129,7 @@ Sources:
         Section: Main
         Stage: Long Library
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Takemitsu
   Location - Long Library, Lesser Demon Area (Onyx):
@@ -3939,6 +4144,7 @@ Sources:
         Section: Main
         Stage: Long Library
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Onyx
   Location - Long Library, Lesser Demon Area (Frankfurter):
@@ -3953,6 +4159,7 @@ Sources:
         Section: Main
         Stage: Long Library
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Frankfurter
   Location - Long Library, Faerie Card Room (Potion):
@@ -3967,6 +4174,7 @@ Sources:
         Section: Main
         Stage: Long Library
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Potion
   Location - Long Library, Faerie Card Room (Antivenom):
@@ -3981,6 +4189,7 @@ Sources:
         Section: Main
         Stage: Long Library
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Antivenom
   Location - Long Library, Holy Rod Room (Topaz Circlet):
@@ -3995,6 +4204,7 @@ Sources:
         Section: Main
         Stage: Long Library
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Topaz Circlet
   Location - Marble Gallery, Pathway After Left Statue (Life Max-Up):
@@ -4009,6 +4219,7 @@ Sources:
         Section: Main
         Stage: Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Marble Gallery, Pathway After Right Statue (Alucart Shield):
@@ -4023,6 +4234,7 @@ Sources:
         Section: Main
         Stage: Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Alucart Shield
   Location - Marble Gallery, Pathway After Right Statue (Heart Max-Up):
@@ -4037,6 +4249,7 @@ Sources:
         Section: Main
         Stage: Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Marble Gallery, Gravity Boots Room (Life Apple):
@@ -4051,6 +4264,7 @@ Sources:
         Section: Main
         Stage: Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Apple
   Location - Marble Gallery, Gravity Boots Room (Hammer):
@@ -4065,6 +4279,7 @@ Sources:
         Section: Main
         Stage: Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Hammer
   Location - Marble Gallery, Gravity Boots Room (Potion):
@@ -4079,6 +4294,7 @@ Sources:
         Section: Main
         Stage: Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Potion
   Location - Marble Gallery, Alucart Room (Alucart Mail):
@@ -4093,6 +4309,7 @@ Sources:
         Section: Main
         Stage: Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Alucart Mail
   Location - Marble Gallery, Alucart Room (Alucart Sword):
@@ -4107,6 +4324,7 @@ Sources:
         Section: Main
         Stage: Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Alucart Sword
   Location - Marble Gallery, Power-Up Room (Life Max-Up):
@@ -4121,6 +4339,7 @@ Sources:
         Section: Main
         Stage: Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Marble Gallery, Power-Up Room (Heart Max-Up):
@@ -4135,6 +4354,7 @@ Sources:
         Section: Main
         Stage: Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Marble Gallery, Beneath Right Trapdoor (Library Card):
@@ -4149,6 +4369,7 @@ Sources:
         Section: Main
         Stage: Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Library Card
   Location - Marble Gallery, Beneath Right Trapdoor (Attack Potion):
@@ -4163,6 +4384,7 @@ Sources:
         Section: Main
         Stage: Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Attack Potion
   Location - Marble Gallery, Spirit Orb Room (Hammer):
@@ -4177,6 +4399,7 @@ Sources:
         Section: Cubbies
         Stage: Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Hammer
   Location - Marble Gallery, Spirit Orb Room (Strength Potion):
@@ -4191,6 +4414,7 @@ Sources:
         Section: Cubbies
         Stage: Marble Gallery
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Strength Potion
   Location - Necromancy Laboratory, XXX (Heart Max-Up):
@@ -4205,6 +4429,7 @@ Sources:
         Section: Main
         Stage: Necromancy Laboratory
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Necromancy Laboratory, XXX (Life Max-Up):
@@ -4219,6 +4444,7 @@ Sources:
         Section: Main
         Stage: Necromancy Laboratory
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Necromancy Laboratory, XXX (Goddess Shield):
@@ -4233,6 +4459,7 @@ Sources:
         Section: Main
         Stage: Necromancy Laboratory
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Goddess Shield
   Location - Necromancy Laboratory, XXX (Manna Prism):
@@ -4247,6 +4474,7 @@ Sources:
         Section: Main
         Stage: Necromancy Laboratory
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Manna Prism
   Location - Necromancy Laboratory, XXX (Katana):
@@ -4261,6 +4489,7 @@ Sources:
         Section: Main
         Stage: Necromancy Laboratory
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Katana
   Location - Necromancy Laboratory, XXX (High Potion):
@@ -4275,6 +4504,7 @@ Sources:
         Section: Main
         Stage: Necromancy Laboratory
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - High Potion
   Location - Necromancy Laboratory, XXX (Turquoise):
@@ -4289,6 +4519,7 @@ Sources:
         Section: Main
         Stage: Necromancy Laboratory
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Turquoise
   Location - Necromancy Laboratory, XXX (Ring of Arcana):
@@ -4303,6 +4534,7 @@ Sources:
         Section: Main
         Stage: Necromancy Laboratory
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Ring of Arcana
   Location - Necromancy Laboratory, XXX (Resist Dark):
@@ -4317,6 +4549,7 @@ Sources:
         Section: Main
         Stage: Necromancy Laboratory
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Dark
   Location - Olrox's Quarters, Catwalk Crypt (Heart Max-Up):
@@ -4331,6 +4564,7 @@ Sources:
         Section: Main
         Stage: Olrox's Quarters
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Olrox's Quarters, Secret Onyx Room (Broadsword):
@@ -4345,6 +4579,7 @@ Sources:
         Section: Main
         Stage: Olrox's Quarters
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Broadsword
   Location - Olrox's Quarters, Secret Onyx Room (Onyx):
@@ -4359,6 +4594,7 @@ Sources:
         Section: Main
         Stage: Olrox's Quarters
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Onyx
   Location - Olrox's Quarters, Secret Onyx Room (Cheese):
@@ -4373,6 +4609,7 @@ Sources:
         Section: Main
         Stage: Olrox's Quarters
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Cheese
   Location - Olrox's Quarters, Tall Shaft (Manna Prism):
@@ -4387,6 +4624,7 @@ Sources:
         Section: Main
         Stage: Olrox's Quarters
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Manna Prism
   Location - Olrox's Quarters, Tall Shaft (Resist Fire):
@@ -4401,6 +4639,7 @@ Sources:
         Section: Main
         Stage: Olrox's Quarters
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Fire
   Location - Olrox's Quarters, Tall Shaft (Luck Potion):
@@ -4415,6 +4654,7 @@ Sources:
         Section: Main
         Stage: Olrox's Quarters
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Luck Potion
   Location - Olrox's Quarters, Prison (Estoc):
@@ -4429,6 +4669,7 @@ Sources:
         Section: Main
         Stage: Olrox's Quarters
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Estoc
   Location - Olrox's Quarters, Narrow Hallway to Olrox (Iron Ball):
@@ -4443,6 +4684,7 @@ Sources:
         Section: Main
         Stage: Olrox's Quarters
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Iron Ball
   Location - Olrox's Quarters, Garnet Room (Garnet):
@@ -4457,6 +4699,7 @@ Sources:
         Section: Main
         Stage: Olrox's Quarters
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Garnet
   Location - Outer Wall, Jewel Knuckles Room (Jewel Knuckles):
@@ -4471,6 +4714,7 @@ Sources:
         Section: Main
         Stage: Outer Wall
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Jewel Knuckles
   Location - Outer Wall, Jewel Knuckles Room (Mirror Cuirass):
@@ -4485,6 +4729,7 @@ Sources:
         Section: Main
         Stage: Outer Wall
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Mirror Cuirass
   Location - Outer Wall, Elevator Shaft Room (Heart Max-Up):
@@ -4499,6 +4744,7 @@ Sources:
         Section: Main
         Stage: Outer Wall
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Outer Wall, Garnet Vase Room (Garnet):
@@ -4513,6 +4759,7 @@ Sources:
         Section: Ledge
         Stage: Outer Wall
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Garnet
   Location - Outer Wall, Gladius Room (Gladius):
@@ -4527,6 +4774,7 @@ Sources:
         Section: Main
         Stage: Outer Wall
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Gladius
   Location - Outer Wall, Elevator Shaft Room (Life Max-Up):
@@ -4541,6 +4789,7 @@ Sources:
         Section: Main
         Stage: Outer Wall
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Outer Wall, Exit to Marble Gallery (Zircon):
@@ -4555,6 +4804,7 @@ Sources:
         Section: Main
         Stage: Outer Wall
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Zircon
   Location - Reverse Caverns, XXX (Alucard Shield):
@@ -4569,6 +4819,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Alucard Shield
   Location - Reverse Caverns, Item Drop 1 (Shiitake):
@@ -4583,6 +4834,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shiitake
   Location - Reverse Caverns, XXX (Toadstool):
@@ -4597,6 +4849,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Toadstool
   Location - Reverse Caverns, Item Drop 3 (Shiitake):
@@ -4611,6 +4864,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shiitake
   Location - Reverse Caverns, XXX (Garnet):
@@ -4625,6 +4879,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Garnet
   Location - Reverse Caverns, XXX (Bat Pentagram):
@@ -4639,6 +4894,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Bat Pentagram
   Location - Reverse Caverns, Item Drop 6 (Life Max-Up):
@@ -4653,6 +4909,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Reverse Caverns, Item Drop 7 (Heart Max-Up):
@@ -4667,6 +4924,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Caverns, XXX (Potion):
@@ -4681,6 +4939,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Potion
   Location - Reverse Caverns, Item Drop 9 (Shiitake):
@@ -4695,6 +4954,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shiitake
   Location - Reverse Caverns, Item Drop 10 (Shiitake):
@@ -4709,6 +4969,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shiitake
   Location - Reverse Caverns, XXX (Opal):
@@ -4723,6 +4984,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Opal
   Location - Reverse Caverns, Item Drop 12 (Life Max-Up):
@@ -4737,6 +4999,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Reverse Caverns, XXX (Diamond):
@@ -4751,6 +5014,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Diamond
   Location - Reverse Caverns, Item Drop 14 (Zircon):
@@ -4765,6 +5029,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Zircon
   Location - Reverse Caverns, Item Drop 15 (Heart Max-Up):
@@ -4779,6 +5044,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Caverns, Item Drop 16 (Meal Ticket):
@@ -4793,6 +5059,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Meal Ticket
   Location - Reverse Caverns, Item Drop 17 (Meal Ticket):
@@ -4807,6 +5074,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Meal Ticket
   Location - Reverse Caverns, Item Drop 18 (Meal Ticket):
@@ -4821,6 +5089,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Meal Ticket
   Location - Reverse Caverns, Item Drop 19 (Meal Ticket):
@@ -4835,6 +5104,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Meal Ticket
   Location - Reverse Caverns, Item Drop 20 (Meal Ticket):
@@ -4849,6 +5119,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Meal Ticket
   Location - Reverse Caverns, Item Drop 21 (Zircon):
@@ -4863,6 +5134,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Zircon
   Location - Reverse Caverns, XXX (Pot Roast):
@@ -4877,6 +5149,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Pot Roast
   Location - Reverse Caverns, XXX (Dark Blade):
@@ -4891,6 +5164,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Dark Blade
   Location - Reverse Caverns, XXX (Manna Prism):
@@ -4905,6 +5179,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Manna Prism
   Location - Reverse Caverns, XXX (Elixir):
@@ -4919,6 +5194,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Elixir
   Location - Reverse Caverns, XXX (Osafune Katana):
@@ -4933,6 +5209,7 @@ Sources:
         Section: Main
         Stage: Reverse Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Osafune Katana
   Location - Reverse Clock Tower, XXX (Magic Missile):
@@ -4947,6 +5224,7 @@ Sources:
         Section: Main
         Stage: Reverse Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Magic Missile
   Location - Reverse Clock Tower, XXX (Karma Coin):
@@ -4961,6 +5239,7 @@ Sources:
         Section: Main
         Stage: Reverse Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Karma Coin
   Location - Reverse Clock Tower, XXX (Strength Potion):
@@ -4975,6 +5254,7 @@ Sources:
         Section: Main
         Stage: Reverse Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Strength Potion
   Location - Reverse Clock Tower, XXX (Luminus):
@@ -4989,6 +5269,7 @@ Sources:
         Section: Main
         Stage: Reverse Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Luminus
   Location - Reverse Clock Tower, XXX (Smart Potion):
@@ -5003,6 +5284,7 @@ Sources:
         Section: Main
         Stage: Reverse Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Smart Potion
   Location - Reverse Clock Tower, XXX (Dragon Helm):
@@ -5017,6 +5299,7 @@ Sources:
         Section: Main
         Stage: Reverse Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Dragon Helm
   Location - Reverse Clock Tower, XXX (Diamond):
@@ -5031,6 +5314,7 @@ Sources:
         Section: Main
         Stage: Reverse Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Diamond
   Location - Reverse Clock Tower, XXX (Life Apple):
@@ -5045,6 +5329,7 @@ Sources:
         Section: Main
         Stage: Reverse Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Apple
   Location - Reverse Clock Tower, XXX (Sunstone):
@@ -5059,6 +5344,7 @@ Sources:
         Section: Main
         Stage: Reverse Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Sunstone
   Location - Reverse Clock Tower, XXX (Life Max-Up):
@@ -5073,6 +5359,7 @@ Sources:
         Section: Main
         Stage: Reverse Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Reverse Clock Tower, XXX (Heart Max-Up):
@@ -5087,6 +5374,7 @@ Sources:
         Section: Main
         Stage: Reverse Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Clock Tower, XXX (Moon Rod):
@@ -5101,6 +5389,7 @@ Sources:
         Section: Main
         Stage: Reverse Clock Tower
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Moon Rod
   Location - Reverse Colosseum, XXX (Fury Plate):
@@ -5115,6 +5404,7 @@ Sources:
         Section: Main
         Stage: Reverse Colosseum
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Fury Plate
   Location - Reverse Colosseum, XXX (Zircon):
@@ -5129,6 +5419,7 @@ Sources:
         Section: Main
         Stage: Reverse Colosseum
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Zircon
   Location - Reverse Colosseum, XXX (Buffalo Star):
@@ -5143,6 +5434,7 @@ Sources:
         Section: Main
         Stage: Reverse Colosseum
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Buffalo Star
   Location - Reverse Colosseum, XXX (Gram):
@@ -5157,6 +5449,7 @@ Sources:
         Section: Main
         Stage: Reverse Colosseum
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Gram
   Location - Reverse Colosseum, XXX (Aquamarine):
@@ -5171,6 +5464,7 @@ Sources:
         Section: Main
         Stage: Reverse Colosseum
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Aquamarine
   Location - Reverse Colosseum, XXX (Heart Max-Up 1):
@@ -5185,6 +5479,7 @@ Sources:
         Section: Main
         Stage: Reverse Colosseum
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Colosseum, XXX (Life Max-Up):
@@ -5199,6 +5494,7 @@ Sources:
         Section: Main
         Stage: Reverse Colosseum
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Reverse Colosseum, XXX (Heart Max-Up 2):
@@ -5213,6 +5509,7 @@ Sources:
         Section: Main
         Stage: Reverse Colosseum
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Entrance, After Drawbridge (Hammer):
@@ -5227,6 +5524,7 @@ Sources:
         Section: Main
         Stage: Reverse Entrance
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Hammer
   Location - Reverse Entrance, After Drawbridge (Antivenom):
@@ -5241,6 +5539,7 @@ Sources:
         Section: Main
         Stage: Reverse Entrance
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Antivenom
   Location - Reverse Entrance, Warg Hallway (High Potion):
@@ -5255,6 +5554,7 @@ Sources:
         Section: Main
         Stage: Reverse Entrance
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - High Potion
   Location - Reverse Entrance, Cube of Zoe Room (Heart Max-Up):
@@ -5269,6 +5569,7 @@ Sources:
         Section: Main
         Stage: Reverse Entrance
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Entrance, Jewel Sword Room (Zircon):
@@ -5283,6 +5584,7 @@ Sources:
         Section: Main
         Stage: Reverse Entrance
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Zircon
   Location - Reverse Entrance, Jewel Sword Room (Opal):
@@ -5297,6 +5599,7 @@ Sources:
         Section: Main
         Stage: Reverse Entrance
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Opal
   Location - Reverse Entrance, Jewel Sword Room (Beryl Circlet):
@@ -5311,6 +5614,7 @@ Sources:
         Section: Main
         Stage: Reverse Entrance
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Beryl Circlet
   Location - Reverse Entrance, Holy Mail Room (Fire Boomerang):
@@ -5325,6 +5629,7 @@ Sources:
         Section: Main
         Stage: Reverse Entrance
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Fire Boomerang
   Location - Reverse Entrance, Heart Max-Up Room (Life Max-Up):
@@ -5339,6 +5644,7 @@ Sources:
         Section: Main
         Stage: Reverse Entrance
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Reverse Entrance, Life Max-Up Room (Talisman):
@@ -5353,6 +5659,7 @@ Sources:
         Section: Main
         Stage: Reverse Entrance
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Talisman
   Location - Reverse Keep, XXX (Sword of Dawn):
@@ -5367,6 +5674,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Sword of Dawn
   Location - Reverse Keep, XXX (Iron Ball):
@@ -5381,6 +5689,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Iron Ball
   Location - Reverse Keep, XXX (Zircon):
@@ -5395,6 +5704,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Zircon
   Location - Reverse Keep, XXX (Bastard Sword):
@@ -5409,6 +5719,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Bastard Sword
   Location - Reverse Keep, XXX (Life Max-Up 1):
@@ -5423,6 +5734,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Reverse Keep, XXX (Heart Max-Up 1):
@@ -5437,6 +5749,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Keep, XXX (Life Max-Up 2):
@@ -5451,6 +5764,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Reverse Keep, XXX (Heart Max-Up 2):
@@ -5465,6 +5779,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Keep, XXX (Life Max-Up 3):
@@ -5479,6 +5794,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Reverse Keep, XXX (Heart Max-Up 3):
@@ -5493,6 +5809,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Keep, XXX (Royal Cloak):
@@ -5507,6 +5824,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Royal Cloak
   Location - Reverse Keep, XXX (Resist Fire):
@@ -5521,6 +5839,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Fire
   Location - Reverse Keep, XXX (Resist Ice):
@@ -5535,6 +5854,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Ice
   Location - Reverse Keep, XXX (Resist Thunder):
@@ -5549,6 +5869,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Thunder
   Location - Reverse Keep, XXX (Resist Stone):
@@ -5563,6 +5884,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Stone
   Location - Reverse Keep, XXX (High Potion):
@@ -5577,6 +5899,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - High Potion
   Location - Reverse Keep, XXX (Garnet):
@@ -5591,6 +5914,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Garnet
   Location - Reverse Keep, XXX (Lightning Mail):
@@ -5605,6 +5929,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Lightning Mail
   Location - Reverse Keep, XXX (Library Card):
@@ -5619,6 +5944,7 @@ Sources:
         Section: Main
         Stage: Reverse Keep
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Library Card
   Location - Reverse Outer Wall, Lower Medusa Room (Heart Max-Up):
@@ -5633,6 +5959,7 @@ Sources:
         Section: Main
         Stage: Reverse Outer Wall
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Reverse Outer Wall, Jewel Knuckles Room (Shotel):
@@ -5647,6 +5974,7 @@ Sources:
         Section: Main
         Stage: Reverse Outer Wall
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shotel
   Location - Reverse Outer Wall, Jewel Knuckles Room (Hammer):
@@ -5661,6 +5989,7 @@ Sources:
         Section: Main
         Stage: Reverse Outer Wall
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Hammer
   Location - Reverse Outer Wall, Exit to Marble Gallery (Life Max-Up):
@@ -5675,6 +6004,7 @@ Sources:
         Section: Main
         Stage: Reverse Outer Wall
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Reverse Outer Wall, Garnet Vase Room (Luck Potion):
@@ -5689,6 +6019,7 @@ Sources:
         Section: Main
         Stage: Reverse Outer Wall
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Luck Potion
   Location - Reverse Outer Wall, Gladius Room (Shield Potion):
@@ -5703,6 +6034,7 @@ Sources:
         Section: Main
         Stage: Reverse Outer Wall
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shield Potion
   Location - Reverse Outer Wall, Elevator Shaft Room (High Potion):
@@ -5717,6 +6049,7 @@ Sources:
         Section: Main
         Stage: Reverse Outer Wall
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - High Potion
   Location - Reverse Outer Wall, Elevator Shaft Room (Garnet):
@@ -5731,6 +6064,7 @@ Sources:
         Section: Main
         Stage: Reverse Outer Wall
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Garnet
   Location - Royal Chapel, Chapel Staircase (Ankh of Life):
@@ -5745,6 +6079,7 @@ Sources:
         Section: Main
         Stage: Royal Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Ankh of Life
   Location - Royal Chapel, Chapel Staircase (Morningstar):
@@ -5759,6 +6094,7 @@ Sources:
         Section: Main
         Stage: Royal Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Morningstar
   Location - Royal Chapel, Silver Ring Room (Silver Ring):
@@ -5773,6 +6109,8 @@ Sources:
         Section: Main
         Stage: Royal Chapel
     Tags:
+      - Significant
+      - Location Check
       - Item
       - Relic
       - Required
@@ -5789,6 +6127,7 @@ Sources:
         Section: Main
         Stage: Royal Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Aquamarine
   Location - Royal Chapel, Chapel Staircase (Mystic Pendant):
@@ -5803,6 +6142,7 @@ Sources:
         Section: Main
         Stage: Royal Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Mystic Pendant
   Location - Royal Chapel, Chapel Staircase (Magic Missile):
@@ -5817,6 +6157,7 @@ Sources:
         Section: Main
         Stage: Royal Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Magic Missile
   Location - Royal Chapel, Chapel Staircase (Shuriken):
@@ -5831,6 +6172,7 @@ Sources:
         Section: Main
         Stage: Royal Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shuriken
   Location - Royal Chapel, Chapel Staircase (TNT):
@@ -5845,6 +6187,7 @@ Sources:
         Section: Main
         Stage: Royal Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - TNT
   Location - Royal Chapel, Chapel Staircase (Boomerang):
@@ -5859,6 +6202,7 @@ Sources:
         Section: Main
         Stage: Royal Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Boomerang
   Location - Royal Chapel, Goggles Room (Goggles):
@@ -5873,6 +6217,7 @@ Sources:
         Section: Main
         Stage: Royal Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Goggles
   Location - Royal Chapel, Left Tower (Silver Plate):
@@ -5887,6 +6232,7 @@ Sources:
         Section: Main
         Stage: Royal Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Silver Plate
   Location - Royal Chapel, Left Tower (Strength Potion):
@@ -5901,6 +6247,7 @@ Sources:
         Section: Main
         Stage: Royal Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Strength Potion
   Location - Royal Chapel, Left Tower (Life Max-Up):
@@ -5915,6 +6262,7 @@ Sources:
         Section: Main
         Stage: Royal Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Royal Chapel, Middle Tower (Zircon):
@@ -5929,6 +6277,7 @@ Sources:
         Section: Main
         Stage: Royal Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Zircon
   Location - Royal Chapel, Right Tower (Cutlass):
@@ -5943,6 +6292,7 @@ Sources:
         Section: Main
         Stage: Royal Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Cutlass
   Location - Royal Chapel, Right Tower (Potion):
@@ -5957,6 +6307,7 @@ Sources:
         Section: Main
         Stage: Royal Chapel
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Potion
   Location - Underground Caverns, Plaque Room With Breakable Wall and Left Ferryman Route (Heart Max-Up):
@@ -5977,6 +6328,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Underground Caverns, Plaque Room With Life Max-Up (Life Max-Up):
@@ -5991,6 +6343,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Underground Caverns, Crystal Cloak Room (Crystal Cloak):
@@ -6005,6 +6358,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Crystal Cloak
   Location - Underground Caverns, Ice Floe Room (Antivenom):
@@ -6019,6 +6373,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Antivenom
   Location - Underground Caverns, Ice Floe Room (Life Max-Up):
@@ -6033,6 +6388,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Underground Caverns, Room ID 18 (Life Max-Up):
@@ -6047,6 +6403,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Underground Caverns, DK Button (Herald Shield):
@@ -6061,6 +6418,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Herald Shield
   Location - Underground Caverns, Long Drop (Zircon):
@@ -6075,6 +6433,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Zircon
   Location - Underground Caverns, False Save Room (Gold Ring):
@@ -6089,6 +6448,8 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Significant
+      - Location Check
       - Item
       - Relic
       - Required
@@ -6105,6 +6466,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Bandanna
   Location - Underground Caverns, Tall Stairwell (Shiitake):
@@ -6119,6 +6481,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shiitake
   Location - Underground Caverns, Claymore Stairwell (Claymore):
@@ -6133,6 +6496,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Claymore
   Location - Underground Caverns, Meal Tickets and Moonstone Room (Meal Ticket 1):
@@ -6147,6 +6511,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Meal Ticket
   Location - Underground Caverns, Meal Tickets and Moonstone Room (Meal Ticket 2):
@@ -6161,6 +6526,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Meal Ticket
   Location - Underground Caverns, Meal Tickets and Moonstone Room (Meal Ticket 3):
@@ -6175,6 +6541,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Meal Ticket
   Location - Underground Caverns, Meal Tickets and Moonstone Room (Meal Ticket 4):
@@ -6189,6 +6556,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Meal Ticket
   Location - Underground Caverns, Meal Tickets and Moonstone Room (Moonstone):
@@ -6203,6 +6571,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Moonstone
   Location - Underground Caverns, Rising Water Room (Scimitar):
@@ -6217,6 +6586,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Scimitar
   Location - Underground Caverns, Rising Water Room (Resist Ice):
@@ -6231,6 +6601,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Resist Ice
   Location - Underground Caverns, Scylla Room (Pot Roast):
@@ -6245,6 +6616,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Pot Roast
   Location - Underground Caverns, Right Ferryman Route (Onyx):
@@ -6259,6 +6631,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Onyx
   Location - Underground Caverns, Right Ferryman Route (Knuckle Duster):
@@ -6273,6 +6646,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Knuckle Duster
   Location - Underground Caverns, Right Ferryman Route (Life Max-Up):
@@ -6287,6 +6661,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Underground Caverns, Right Ferryman Route (Elixir):
@@ -6301,6 +6676,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Elixir
   Location - Underground Caverns, Ice Floe Room (Shiitake):
@@ -6315,6 +6691,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shiitake
   Location - Underground Caverns, Ice Floe Room (Toadstool):
@@ -6329,6 +6706,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Toadstool
   Location - Underground Caverns, DK Bridge (Life Max-Up):
@@ -6343,6 +6721,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Life Max-Up
   Location - Underground Caverns, DK Bridge (Heart Max-Up):
@@ -6357,6 +6736,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Heart Max-Up
   Location - Underground Caverns, Pentagram Room (Pentagram):
@@ -6371,6 +6751,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Pentagram
   Location - Underground Caverns, Waterfall (Secret Boots):
@@ -6385,6 +6766,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Secret Boots
   Location - Underground Caverns, Waterfall (Toadstool):
@@ -6399,6 +6781,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Toadstool
   Location - Underground Caverns, Waterfall (Shiitake):
@@ -6413,6 +6796,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shiitake
   Location - Underground Caverns, Exit to Castle Entrance (Shiitake):
@@ -6427,6 +6811,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Shiitake
   Location - Underground Caverns, Ice Floe Room (Nunchaku):
@@ -6441,6 +6826,7 @@ Sources:
         Section: Main
         Stage: Underground Caverns
     Tags:
+      - Location Check
       - Item
     Target Reward: Item - Nunchaku
   Special - Guaranteed Drop (Bone Scimitar, Copper):
@@ -6565,6 +6951,7 @@ Targets:
       Item - Alucard Sword: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Alucart Mail:
     Outcomes:
       Item - Alucart Mail: 1
@@ -6582,6 +6969,7 @@ Targets:
       Item - Alucart Sword: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Ankh of Life:
     Outcomes:
       Item - Ankh of Life: 1
@@ -6796,6 +7184,7 @@ Targets:
       Item - Crissaegrim: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Cross Shuriken:
     Outcomes:
       Item - Cross Shuriken: 1
@@ -6829,6 +7218,7 @@ Targets:
       Item - Dark Blade: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Dark Shield:
     Outcomes:
       Item - Dark Shield: 1
@@ -6852,6 +7242,12 @@ Targets:
     Tags:
       - Consumable
       - Bomb
+  Item - Duplicator:
+    Outcomes:
+      Item - Duplicator: 1
+    Tags:
+      - Accessory
+      - Quality - Good
   Item - Elixir:
     Outcomes:
       Item - Elixir: 1
@@ -6897,11 +7293,13 @@ Targets:
       Item - Firebrand: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Fist of Tulkas:
     Outcomes:
       Item - Fist of Tulkas: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Flamberge:
     Outcomes:
       Item - Flamberge: 1
@@ -6981,6 +7379,7 @@ Targets:
       Item - Gram: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Grapes:
     Outcomes:
       Item - Grapes: 1
@@ -7003,6 +7402,7 @@ Targets:
       Item - Gurthang: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Ham and Eggs:
     Outcomes:
       Item - Ham and Eggs: 1
@@ -7016,6 +7416,11 @@ Targets:
       - Consumable
       - Familiar
       - Low Priority - Racing
+  Item - Harper:
+    Outcomes:
+      Item - Harper: 1
+    Tags:
+      - Quality - Good
   Item - Healing Mail:
     Outcomes:
       Item - Healing Mail: 1
@@ -7044,6 +7449,7 @@ Targets:
       Item - Heaven Sword: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Herald Shield:
     Outcomes:
       Item - Herald Shield: 1
@@ -7083,6 +7489,7 @@ Targets:
       Item - Holy Sword: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Hunter Sword:
     Outcomes:
       Item - Hunter Sword: 1
@@ -7105,6 +7512,7 @@ Targets:
       Item - Icebrand: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Iron Ball:
     Outcomes:
       Item - Iron Ball: 1
@@ -7197,6 +7605,7 @@ Targets:
       - Consumable
       - Familiar
       - Low Priority - Racing
+      - Quality - Good
   Item - Life Max-Up:
     Outcomes:
       Item - Life Max-Up: 1
@@ -7220,6 +7629,7 @@ Targets:
       Item - Luminus: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Lunch A:
     Outcomes:
       Item - Lunch A: 1
@@ -7231,6 +7641,7 @@ Targets:
       Item - Mablung Sword: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Magic Missile:
     Outcomes:
       Item - Magic Missile: 1
@@ -7249,11 +7660,13 @@ Targets:
       Item - Marsil: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Masamune:
     Outcomes:
       Item - Masamune: 1
     Tags:
       - Two-Handed Weapon
+      - Quality - Good
   Item - Meal Ticket:
     Outcomes:
       Item - Meal Ticket: 1
@@ -7323,6 +7736,7 @@ Targets:
       Item - Mormegil: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Morning Set:
     Outcomes:
       Item - Morning Set: 1
@@ -7339,11 +7753,13 @@ Targets:
       Item - Mourneblade: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Muramasa:
     Outcomes:
       Item - Muramasa: 1
     Tags:
       - Two-Handed Weapon
+      - Quality - Good
   Item - Mystic Pendant:
     Outcomes:
       Item - Mystic Pendant: 1
@@ -7407,6 +7823,7 @@ Targets:
       Item - Osafune Katana: 1
     Tags:
       - Two-Handed Weapon
+      - Quality - Good
   Item - Peanuts:
     Outcomes:
       Item - Peanuts: 1
@@ -7534,6 +7951,7 @@ Targets:
       Item - Ring of Varda: 1
     Tags:
       - Accessory
+      - Quality - Good
   Item - Royal Cloak:
     Outcomes:
       Item - Royal Cloak: 1
@@ -7551,6 +7969,7 @@ Targets:
       Item - Runesword: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Saber:
     Outcomes:
       Item - Saber: 1
@@ -7583,6 +8002,7 @@ Targets:
       Item - Shield Rod: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Shiitake:
     Outcomes:
       Item - Shiitake: 1
@@ -7714,12 +8134,19 @@ Targets:
       Item - Sword of Hador: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - TNT:
     Outcomes:
       Item - TNT: 1
     Tags:
       - Consumable
       - Thrown
+  Item - Thunderbrand:
+    Outcomes:
+      Item - Thunderbrand: 1
+    Tags:
+      - One-Handed Weapon
+      - Quality - Good
   Item - Takemitsu:
     Outcomes:
       Item - Takemitsu: 1
@@ -7746,6 +8173,7 @@ Targets:
       Item - Terminus Est: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Toadstool:
     Outcomes:
       Item - Toadstool: 1
@@ -7791,6 +8219,7 @@ Targets:
       Item - Vorpal Blade: 1
     Tags:
       - One-Handed Weapon
+      - Quality - Good
   Item - Walk Armor:
     Outcomes:
       Item - Walk Armor: 1
@@ -7813,6 +8242,7 @@ Targets:
       Item - Yasutsuna: 1
     Tags:
       - Two-Handed Weapon
+      - Quality - Good
   Item - Zircon:
     Outcomes:
       Item - Zircon: 1
@@ -7827,99 +8257,134 @@ Targets:
     Outcomes:
       Relic - Bat Card: true
     Tags:
+      - Relic
       - Low Priority - Racing
   Relic - Cube of Zoe:
     Outcomes:
       Progression - Item Materialization: true
       Relic - Cube of Zoe: true
+    Tags:
+      - Relic
   Relic - Demon Card:
     Outcomes:
       Progression - Summon Demon Familiar: true
       Relic - Demon Card: true
+    Tags:
+      - Relic
   Relic - Echo of Bat:
     Outcomes:
       Progression - Echolocation: true
       Relic - Echo of Bat: true
+    Tags:
+      - Relic
   Relic - Faerie Card:
     Outcomes:
       Progression - Summon Faerie Familiar: true
       Relic - Faerie Card: true
     Tags:
+      - Relic
       - Low Priority - Racing
   Relic - Faerie Scroll:
     Outcomes:
       Relic - Faerie Scroll: true
     Tags:
+      - Relic
       - Low Priority - Racing
   Relic - Fire of Bat:
     Outcomes:
       Relic - Fire of Bat: true
     Tags:
+      - Relic
       - Low Priority - Racing
   Relic - Form of Mist:
     Outcomes:
       Progression - Mid-Air Reset: true
       Progression - Mist Transformation: true
       Relic - Form of Mist: true
+    Tags:
+      - Relic
   Relic - Ghost Card:
     Outcomes:
       Progression - Summon Ghost Familiar: true
       Relic - Ghost Card: true
     Tags:
+      - Relic
       - Low Priority - Racing
   Relic - Gravity Boots:
     Outcomes:
       Progression - Gravity Jump: true
       Relic - Gravity Boots: true
+    Tags:
+      - Relic
   Relic - Holy Symbol:
     Outcomes:
       Progression - Protection From Water: true
       Relic - Holy Symbol: true
+    Tags:
+      - Relic
   Relic - Jewel of Open:
     Outcomes:
       Progression - Unlock Blue Doors: true
       Relic - Jewel of Open: true
+    Tags:
+      - Relic
   Relic - Leap Stone:
     Outcomes:
       Progression - Double Jump: true
       Progression - Mid-Air Reset: true
       Relic - Leap Stone: true
+    Tags:
+      - Relic
   Relic - Merman Statue:
     Outcomes:
       Progression - Summon Ferryman: true
       Relic - Merman Statue: true
+    Tags:
+      - Relic
   Relic - Power of Mist:
     Outcomes:
       Progression - Longer Mist Duration: true
       Relic - Power of Mist: true
+    Tags:
+      - Relic
   Relic - Power of Wolf:
     Outcomes:
       Progression - Faster Wolf Run Speed: true
       Relic - Power of Wolf: true
+    Tags:
+      - Relic
   Relic - Skill of Wolf:
     Outcomes:
       Progression - Wolf Charge Attack: true
       Relic - Skill of Wolf: true
+    Tags:
+      - Relic
   Relic - Soul of Bat:
     Outcomes:
       Progression - Bat Transformation: true
       Progression - Mid-Air Reset: true
       Relic - Soul of Bat: true
+    Tags:
+      - Relic
   Relic - Soul of Wolf:
     Outcomes:
       Progression - Mid-Air Reset: true
       Progression - Wolf Transformation: true
       Relic - Soul of Wolf: true
+    Tags:
+      - Relic
   Relic - Spirit Orb:
     Outcomes:
       Relic - Spirit Orb: true
     Tags:
+      - Relic
       - Low Priority - Racing
   Relic - Sword Card:
     Outcomes:
       Progression - Summon Sword Familiar: true
       Relic - Sword Card: true
     Tags:
+      - Relic
       - Low Priority - Racing
   Item - Subweapon (Axe):
     Outcomes:

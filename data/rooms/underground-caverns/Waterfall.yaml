@@ -49,6 +49,7 @@ Commands:
         Requirements:
             Take Damage:
                 Section: Ground
+                Rule - Damageless: false
             Protection From Water:
                 Section: Ground
                 Progression - Protection From Water: true

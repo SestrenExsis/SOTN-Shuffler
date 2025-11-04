@@ -297,6 +297,76 @@ def main(quests, initial_seed, quest_settings):
     result = quest_rewards
     return result
 
+def shuffle_quest_rewards(quests, initial_seed, step):
+    rng = random.Random(initial_seed)
+    quest_source_names = []
+    quest_target_names = []
+    for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        match_ind = True
+        match_rules = step.get('Match', {})
+        for rule_name in step.get('Match', {}):
+            tags = set(quests['Sources'][quest_source_name].get('Tags', {}))
+            rule_data = step['Match'][rule_name]
+            if rule_name == 'Tags (All)':
+                if len(tags & set(rule_data)) == len(set(rule_data)):
+                    pass
+                else:
+                    match_ind = False
+                    break
+            elif rule_name == 'Tags (Any)':
+                if len(tags & set(rule_data)) > 0:
+                    pass
+                else:
+                    match_ind = False
+                    break
+            elif rule_name == 'Tags (None)':
+                if len(tags & set(rule_data)) < 1:
+                    pass
+                else:
+                    match_ind = False
+                    break
+            elif rule_name == 'Names':
+                if quest_source_name == rule_data:
+                    pass
+                else:
+                    match_ind = False
+                    break
+        if not match_ind:
+            continue
+        quest_source_names.append(quest_source_name)
+        quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
+        quest_target_names.append(quest_target_name)
+    rng.shuffle(quest_target_names)
+    for quest_source_name in quest_source_names:
+        quest_target_name = quest_target_names.pop()
+        quests['Sources'][quest_source_name]['Target Reward'] = quest_target_name
+        print('   -', quest_source_name, quest_target_name)
+
+def process_operations(quests, initial_seed, operations):
+    local_rng = random.Random(initial_seed)
+    seeds = []
+    # NOTE(sestren): Generate a bunch of seeds at once for RNG-consistency
+    for _ in range(256):
+        seed = local_rng.randint(MIN_SEED, MAX_SEED)
+        seeds.append(seed)
+    for (operation_id, operation) in enumerate(operations):
+        print('', operation['Description'])
+        operation_seed = seeds[operation_id]
+        operation_rng = random.Random(operation_seed)
+        for step in operation['Steps']:
+            step_seed = operation_rng.randint(MIN_SEED, MAX_SEED)
+            print(' -', step['Action'])
+            if step['Action'] == 'Populate Pools':
+                pass
+            elif step['Action'] == 'Remap Quest Rewards':
+                pass
+            elif step['Action'] == 'Shuffle Quest Rewards':
+                shuffle_quest_rewards(quests, step_seed, step)
+            else:
+                raise Exception(f'Invalid step type: {step['Action']}')
+    result = []
+    return result
+
 if __name__ == '__main__':
     '''
     Usage
@@ -304,18 +374,26 @@ if __name__ == '__main__':
     '''
     MIN_SEED = 0
     MAX_SEED = 2 ** 64 - 1
-    quest_settings = {
-        'Enemy drop pool': 'Vanilla',
-        'Item pool': 'Vanilla',
-        'Special item pool': 'Vanilla',
-        'Relic pool': 'Vanilla',
-        'Shuffle enemy drops': False,
-        'Shuffle items': False,
-        'Shuffle special items': False,
-        'Shuffle relics': True,
-    }
+    quest_reward_shuffler = [
+        {
+            'Description': 'Shuffle significant location checks',
+            'Steps': [
+                {
+                    'Action': 'Shuffle Quest Rewards',
+                    'Match': {
+                        'Tags (All)': [
+                            'Significant',
+                            'Location Check',
+                        ],
+                    },
+                },
+            ],
+            'Notes': [],
+        },
+    ]
     parser = argparse.ArgumentParser()
     parser.add_argument('quests', help='Input a filepath to the quests YAML file', type=str)
+    parser.add_argument('settings', help='Input a filepath to the settings YAML file', type=str)
     parser.add_argument('--seed', help='Input an optional starting seed', type=str)
     args = parser.parse_args()
     initial_seed = args.seed
@@ -325,6 +403,9 @@ if __name__ == '__main__':
     seed = global_rng.randint(MIN_SEED, MAX_SEED)
     with (
         open(args.quests) as quests_file,
+        open(args.settings) as settings_file,
     ):
         quests = yaml.safe_load(quests_file)
-    shuffled_quests = main(quests, initial_seed, quest_settings)
+        settings = yaml.safe_load(settings_file)
+    # shuffled_quests = main(quests, initial_seed, quest_settings)
+    shuffled_quests = process_operations(quests, initial_seed, settings['Quest reward shuffler'])
