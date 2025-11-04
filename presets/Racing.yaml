@@ -32,6 +32,7 @@ Quest reward shuffler:
       - Action: Remap Quest Rewards
         Match:
           Tags (All):
+            - Relic
             - Low Priority - Racing
         Selection:
           Pool: Pool - Major Relic

@@ -305,7 +305,6 @@ def populate_pool(quests, pools, step_seed, step):
     if 'List' in step:
         for quest_target_name in step['List']:
             pools[pool_name].append(quest_target_name)
-            # print('   -', (pool_name, quest_target_name))
     elif 'Match' in step:
         for quest_target_name in list(sorted(quests.get('Targets', {}))):
             match_ind = True
@@ -340,16 +339,16 @@ def populate_pool(quests, pools, step_seed, step):
                     raise Exception(f'Invalid rule: {rule_name}')
             if match_ind:
                 pools[pool_name].append(quest_target_name)
-                # print('   -', (pool_name, quest_target_name))
 
 def remap_quest_rewards(quests, pools, step_seed, step):
     rng = random.Random(initial_seed)
     pool_name = step['Selection']['Pool']
     method = step['Selection']['Method']
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
         match_ind = True
         for rule_name in step.get('Match', {}):
-            tags = set(quests['Sources'][quest_source_name].get('Tags', {}))
+            tags = set(quests['Targets'].get(quest_target_name, {}).get('Tags', {}))
             rule_data = step['Match'][rule_name]
             if rule_name == 'Tags (All)':
                 if len(tags & set(rule_data)) == len(set(rule_data)):
@@ -385,7 +384,6 @@ def remap_quest_rewards(quests, pools, step_seed, step):
                 raise Exception(f'Invalid rule: {rule_name}')
         if not match_ind:
             continue
-        quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
         # NOTE(sestren): Pools are automatically shuffled after they are modified during a 'Populate Pool' step
         if method == 'Random With Repetition':
             quest_target_name = pools[pool_name][-1]
@@ -396,7 +394,6 @@ def remap_quest_rewards(quests, pools, step_seed, step):
         else:
             raise Exception(f'Invalid method: {method}')
         quests['Sources'][quest_source_name]['Target Reward'] = quest_target_name
-        # print('   -', (quest_source_name, quest_target_name))
 
 def shuffle_quest_rewards(quests, initial_seed, step):
     rng = random.Random(initial_seed)
@@ -442,7 +439,6 @@ def shuffle_quest_rewards(quests, initial_seed, step):
     for quest_source_name in quest_source_names:
         quest_target_name = quest_target_names.pop()
         quests['Sources'][quest_source_name]['Target Reward'] = quest_target_name
-        # print('   -', (quest_source_name, quest_target_name))
 
 def process_operations(quests, initial_seed, operations):
     pools = {}
@@ -453,12 +449,10 @@ def process_operations(quests, initial_seed, operations):
         seed = local_rng.randint(MIN_SEED, MAX_SEED)
         seeds.append(seed)
     for (operation_id, operation) in enumerate(operations):
-        print('', operation['Description'])
         operation_seed = seeds[operation_id]
         operation_rng = random.Random(operation_seed)
         for step in operation['Steps']:
             step_seed = operation_rng.randint(MIN_SEED, MAX_SEED)
-            print(' -', step['Action'])
             if step['Action'] == 'Populate Pool':
                 populate_pool(quests, pools, step_seed, step)
                 pool_name = step['Name']
@@ -469,7 +463,6 @@ def process_operations(quests, initial_seed, operations):
                 shuffle_quest_rewards(quests, step_seed, step)
             else:
                 raise Exception(f'Invalid step type: {step['Action']}')
-    print('DONE')
 
 if __name__ == '__main__':
     '''
@@ -516,7 +509,6 @@ if __name__ == '__main__':
     reward_tracker = {}
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
         quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
-        # print((quest_source_name, ':', quest_target_name))
         if quest_target_name not in reward_tracker:
             reward_tracker[quest_target_name] = []
         reward_tracker[quest_target_name].append(quest_source_name)

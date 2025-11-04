@@ -158,8 +158,7 @@ Quest reward shuffler:
         Selection:
           Pool: Pool - Prologue Reward - Consumable
           Method: Random Without Replacement
-    Notes:
-      - TODO(sestren): Reduce the ceiling on power level of starting gear
+    Notes: {}
 Room shuffler:
   Shuffle rooms within stages: true
 Stage shuffler:
