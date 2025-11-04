@@ -20,27 +20,26 @@ Options:
   Shuffle Pitch Black Spike Maze: false
   Skip Maria cutscene in Alchemy Laboratory: true
 Quest reward shuffler:
-- Description: Shuffle significant location checks
-  Steps:
-    - Action: Populate Pools
-      Pools:
-        Pool - Modest Relic:
-          Names:
-            - Relic - Cube of Zoe
-            - Relic - Demon Card
-    - Action: Remap Quest Rewards
-      Match:
-        Target Reward: Relic - Power of Mist
-      Selection:
-        Pool: Pool - Modest Relic
-        Method: Random With Replacement
-    - Action: Shuffle Quest Rewards
-      Match:
-        Tags (All):
-          - Significant
-          - Location Check
-  Notes:
-    - Power of Mist is banned
+  - Description: Shuffle significant location checks
+    Steps:
+      - Action: Populate Pool
+        Name: Pool - Modest Relic
+        List:
+          - Relic - Cube of Zoe
+          - Relic - Demon Card
+      - Action: Remap Quest Rewards
+        Match:
+          Target Reward: Relic - Power of Mist
+        Selection:
+          Pool: Pool - Modest Relic
+          Method: Random With Replacement
+      - Action: Shuffle Quest Rewards
+        Match:
+          Tags (All):
+            - Significant
+            - Location Check
+    Notes:
+      - Power of Mist is banned
 Room shuffler:
   Shuffle rooms within stages: true
 Stage shuffler:

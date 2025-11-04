@@ -46,41 +46,59 @@ Quest reward shuffler:
     Notes: {}
   - Description: Randomize starting gear and special items
     Steps:
-      - Action: Populate Pools
-        Pools:
-          Pool - Bone Scimitar:
-            Tags (Any):
-              - Accessory
-              - Armor
-              - One-Handed Weapon
-              - Two-Handed Weapon
-          Pool - Starting Gear - Weapon:
-            Tags (Any):
-              - One-Handed Weapon
-          Pool - Starting Gear - Shield:
-            Tags (Any):
-              - Shield
-          Pool - Starting Gear - Head:
-            Tags (Any):
-              - Head
-          Pool - Starting Gear - Body:
-            Tags (Any):
-              - Body
-          Pool - Starting Gear - Cloak:
-            Tags (Any):
-              - Cloak
-          Pool - Starting Gear - Accessory:
-            Tags (Any):
-              - Accessory
-          Pool - Prologue Reward - Consumable:
-            Tags (Any):
-              - Consumable
-          Pool - Name Code - Accessory:
-            Tags (Any):
-              - Accessory
-          Pool - Name Code - Armor:
-            Tags (Any):
-              - Body
+      - Action: Populate Pool
+        Name: Pool - Bone Scimitar
+        Match:
+          Tags (Any):
+            - Accessory
+            - Armor
+            - One-Handed Weapon
+            - Two-Handed Weapon
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Weapon
+        Match:
+          Tags (Any):
+            - One-Handed Weapon
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Shield
+        Match:
+          Tags (Any):
+            - Shield
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Head
+        Match:
+          Tags (Any):
+            - Head
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Body
+        Match:
+          Tags (Any):
+            - Body
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Cloak
+        Match:
+          Tags (Any):
+            - Cloak
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Accessory
+        Match:
+          Tags (Any):
+            - Accessory
+      - Action: Populate Pool
+        Name: Pool - Prologue Reward - Consumable
+        Match:
+          Tags (Any):
+            - Consumable
+      - Action: Populate Pool
+        Name: Pool - Name Code - Accessory
+        Match:
+          Tags (Any):
+            - Accessory
+      - Action: Populate Pool
+        Name: Pool - Name Code - Armor
+        Match:
+          Tags (Any):
+            - Body
       - Action: Remap Quest Rewards
         Match:
           Names:

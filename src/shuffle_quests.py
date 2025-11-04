@@ -297,13 +297,55 @@ def main(quests, initial_seed, quest_settings):
     result = quest_rewards
     return result
 
+def populate_pool(quests, pools, step_seed, step):
+    local_rng = random.Random(initial_seed)
+    pool_name = step['Name']
+    if pool_name not in pools:
+        pools[pool_name] = []
+    if 'List' in step:
+        for quest_target_name in step['List']:
+            pools[pool_name].append(quest_target_name)
+    elif 'Match' in step:
+        for quest_target_name in list(sorted(quests.get('Targets', {}))):
+            match_ind = True
+            for rule_name in step.get('Match', {}):
+                tags = set(quests['Targets'][quest_target_name].get('Tags', {}))
+                rule_data = step['Match'][rule_name]
+                if rule_name == 'Tags (All)':
+                    if len(tags & set(rule_data)) == len(set(rule_data)):
+                        pass
+                    else:
+                        match_ind = False
+                        break
+                elif rule_name == 'Tags (Any)':
+                    if len(tags & set(rule_data)) > 0:
+                        pass
+                    else:
+                        match_ind = False
+                        break
+                elif rule_name == 'Tags (None)':
+                    if len(tags & set(rule_data)) < 1:
+                        pass
+                    else:
+                        match_ind = False
+                        break
+                elif rule_name == 'Names':
+                    if quest_target_name in set(rule_data):
+                        pass
+                    else:
+                        match_ind = False
+                        break
+                else:
+                    raise Exception(f'Invalid rule: {rule_name}')
+            if match_ind:
+                pools[pool_name].append(quest_target_name)
+
 def shuffle_quest_rewards(quests, initial_seed, step):
     rng = random.Random(initial_seed)
     quest_source_names = []
     quest_target_names = []
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
         match_ind = True
-        match_rules = step.get('Match', {})
         for rule_name in step.get('Match', {}):
             tags = set(quests['Sources'][quest_source_name].get('Tags', {}))
             rule_data = step['Match'][rule_name]
@@ -331,6 +373,8 @@ def shuffle_quest_rewards(quests, initial_seed, step):
                 else:
                     match_ind = False
                     break
+            else:
+                raise Exception(f'Invalid rule: {rule_name}')
         if not match_ind:
             continue
         quest_source_names.append(quest_source_name)
@@ -343,6 +387,7 @@ def shuffle_quest_rewards(quests, initial_seed, step):
         print('   -', quest_source_name, quest_target_name)
 
 def process_operations(quests, initial_seed, operations):
+    pools = {}
     local_rng = random.Random(initial_seed)
     seeds = []
     # NOTE(sestren): Generate a bunch of seeds at once for RNG-consistency
@@ -356,8 +401,8 @@ def process_operations(quests, initial_seed, operations):
         for step in operation['Steps']:
             step_seed = operation_rng.randint(MIN_SEED, MAX_SEED)
             print(' -', step['Action'])
-            if step['Action'] == 'Populate Pools':
-                pass
+            if step['Action'] == 'Populate Pool':
+                populate_pool(quests, pools, step_seed, step)
             elif step['Action'] == 'Remap Quest Rewards':
                 pass
             elif step['Action'] == 'Shuffle Quest Rewards':

@@ -22,13 +22,13 @@ Options:
 Quest reward shuffler:
   - Description: Shuffle significant location checks
     Steps:
-      - Action: Populate Pools
-        Pools:
-          Pool - Major Relic:
-            Tags (All):
-              - Relic
-            Tags (None):
-              - Low Priority - Racing
+      - Action: Populate Pool
+        Name: Pool - Major Relic
+        Match:
+          Tags (All):
+            - Relic
+          Tags (None):
+            - Low Priority - Racing
       - Action: Remap Quest Rewards
         Match:
           Tags (All):
@@ -45,55 +45,70 @@ Quest reward shuffler:
       - Relics that are unhelpful to racing are replaced with more helpful ones
   - Description: Shuffle optional location checks
     Steps:
-      - Action: Populate Pools
-        Pools:
-          Pool - Bomb:
-            Tags (All):
-              - Bomb
-          Pool - Thrown:
-            Tags (All):
-              - Thrown
-          Pool - Food:
-            Tags (All):
-              - Food
-          Pool - Buff:
-            Tags (All):
-              - Buff
-          Pool - Healing:
-            Tags (All):
-              - Healing
-          Pool - High Quality:
-            Tags (All):
-              - High Priority - Racing
-          Pool - Moderate Quality:
-            Tags (Any):
-              - Accessory
-              - Armor
-              - Consumable
-              - Gem
-              - One-Handed Weapon
-              - Subweapon
-              - Two-Handed Weapon
-              - Upgrade
-            Tags (None):
-              - High Priority - Racing
-              - Low Priority - Racing
-              - Relic
-          Pool - Low Quality:
-            Tags (All):
-              - Low Priority - Racing
-          Pool - Random Quality:
-            Names:
-              - Pool - Low Quality
-              - Pool - Low Quality
-              - Pool - Moderate Quality
-              - Pool - Moderate Quality
-              - Pool - Moderate Quality
-              - Pool - Moderate Quality
-              - Pool - Moderate Quality
-              - Pool - Moderate Quality
-              - Pool - Moderate Quality
-              - Pool - High Quality
+      - Action: Populate Pool
+        Name: Pool - Bomb
+        Match:
+          Tags (All):
+            - Bomb
+      - Action: Populate Pool
+        Name: Pool - Thrown
+        Match:
+          Tags (All):
+            - Thrown
+      - Action: Populate Pool
+        Name: Pool - Food
+        Match:
+          Tags (All):
+            - Food
+      - Action: Populate Pool
+        Name: Pool - Buff
+        Match:
+          Tags (All):
+            - Buff
+      - Action: Populate Pool
+        Name: Pool - Healing
+        Match:
+          Tags (All):
+            - Healing
+      - Action: Populate Pool
+        Name: Pool - High Quality
+        Match:
+          Tags (All):
+            - High Priority - Racing
+      - Action: Populate Pool
+        Name: Pool - Moderate Quality
+        Match:
+          Tags (Any):
+            - Accessory
+            - Armor
+            - Consumable
+            - Gem
+            - One-Handed Weapon
+            - Subweapon
+            - Two-Handed Weapon
+            - Upgrade
+          Tags (None):
+            - High Priority - Racing
+            - Low Priority - Racing
+            - Relic
+      - Action: Populate Pool
+        Name: Pool - Low Quality
+        Match:
+          Tags (All):
+            - Low Priority - Racing
+      - Action: Populate Pool
+        Name: Pool - Random Quality
+        List:
+          - Pool - Low Quality
+          - Pool - Low Quality
+          - Pool - Moderate Quality
+          - Pool - Moderate Quality
+          - Pool - Moderate Quality
+          - Pool - Moderate Quality
+          - Pool - Moderate Quality
+          - Pool - Moderate Quality
+          - Pool - Moderate Quality
+          - Pool - High Quality
       - Action: Remap Quest Rewards
         Match:
           Tags (All):
@@ -170,41 +185,59 @@ Quest reward shuffler:
       - Items that are unhelpful to racing are likely to be replaced by a more helpful item
   - Description: Randomize starting gear and special items
     Steps:
-      - Action: Populate Pools
-        Pools:
-          Pool - Bone Scimitar:
-            Tags (Any):
-              - Accessory
-              - Armor
-              - One-Handed Weapon
-              - Two-Handed Weapon
-          Pool - Starting Gear - Weapon:
-            Tags (Any):
-              - One-Handed Weapon
-          Pool - Starting Gear - Shield:
-            Tags (Any):
-              - Shield
-          Pool - Starting Gear - Head:
-            Tags (Any):
-              - Head
-          Pool - Starting Gear - Body:
-            Tags (Any):
-              - Body
-          Pool - Starting Gear - Cloak:
-            Tags (Any):
-              - Cloak
-          Pool - Starting Gear - Accessory:
-            Tags (Any):
-              - Accessory
-          Pool - Prologue Reward - Consumable:
-            Tags (Any):
-              - Consumable
-          Pool - Name Code - Accessory:
-            Tags (Any):
-              - Accessory
-          Pool - Name Code - Armor:
-            Tags (Any):
-              - Body
+      - Action: Populate Pool
+        Name: Pool - Bone Scimitar
+        Match:
+          Tags (Any):
+            - Accessory
+            - Armor
+            - One-Handed Weapon
+            - Two-Handed Weapon
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Weapon
+        Match:
+          Tags (Any):
+            - One-Handed Weapon
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Shield
+        Match:
+          Tags (Any):
+            - Shield
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Head
+        Match:
+          Tags (Any):
+            - Head
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Body
+        Match:
+          Tags (Any):
+            - Body
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Cloak
+        Match:
+          Tags (Any):
+            - Cloak
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Accessory
+        Match:
+          Tags (Any):
+            - Accessory
+      - Action: Populate Pool
+        Name: Pool - Prologue Reward - Consumable
+        Match:
+          Tags (Any):
+            - Consumable
+      - Action: Populate Pool
+        Name: Pool - Name Code - Accessory
+        Match:
+          Tags (Any):
+            - Accessory
+      - Action: Populate Pool
+        Name: Pool - Name Code - Armor
+        Match:
+          Tags (Any):
+            - Body
       - Action: Remap Quest Rewards
         Match:
           Names:
