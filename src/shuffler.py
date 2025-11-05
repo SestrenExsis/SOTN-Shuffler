@@ -566,7 +566,7 @@ if __name__ == '__main__':
                 }
         # Shuffle quest rewards (such as Relics)
         quest_shuffler_seed = rng['Spike Room'].randint(MIN_SEED, MAX_SEED)
-        quest_rewards = shuffle_quests.main(mapper_core['Quests'], quest_shuffler_seed, settings.get('Quest shuffler', {}))
+        quest_rewards = shuffle_quests.process_operations(mapper_core['Quests'], quest_shuffler_seed, settings.get('Quest reward shuffler', {}))
         # print('Set starting seeds for each stage')
         for stage_name in sorted(stages.keys()):
             next_seed = rng['Stages'].randint(MIN_SEED, MAX_SEED)
