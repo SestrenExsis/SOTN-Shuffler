@@ -18,25 +18,25 @@ def populate_pool(quests, pools, initial_seed, step):
             for rule_name in step.get('Match', {}):
                 tags = set(quests['Targets'][quest_target_name].get('Tags', {}))
                 rule_data = step['Match'][rule_name]
-                if rule_name == 'Tags (All)':
+                if rule_name == 'Targets - Tags (All)':
                     if len(tags & set(rule_data)) == len(set(rule_data)):
                         pass
                     else:
                         match_ind = False
                         break
-                elif rule_name == 'Tags (Any)':
+                elif rule_name == 'Targets - Tags (Any)':
                     if len(tags & set(rule_data)) > 0:
                         pass
                     else:
                         match_ind = False
                         break
-                elif rule_name == 'Tags (None)':
+                elif rule_name == 'Targets - Tags (None)':
                     if len(tags & set(rule_data)) < 1:
                         pass
                     else:
                         match_ind = False
                         break
-                elif rule_name == 'Names':
+                elif rule_name == 'Targets - Names':
                     if quest_target_name in set(rule_data):
                         pass
                     else:
@@ -52,37 +52,62 @@ def remap_quest_rewards(quests, pools, initial_seed, step):
     pool_name = step['Selection']['Pool']
     method = step['Selection']['Method']
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        source_tags = set(quests['Sources'].get(quest_source_name, {}).get('Tags', {}))
         quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
         match_ind = True
         for rule_name in step.get('Match', {}):
-            tags = set(quests['Targets'].get(quest_target_name, {}).get('Tags', {}))
+            target_tags = set(quests['Targets'].get(quest_target_name, {}).get('Tags', {}))
             rule_data = step['Match'][rule_name]
-            if rule_name == 'Tags (All)':
-                if len(tags & set(rule_data)) == len(set(rule_data)):
+            if rule_name == 'Sources - Tags (All)':
+                if len(source_tags & set(rule_data)) == len(set(rule_data)):
                     pass
                 else:
                     match_ind = False
                     break
-            elif rule_name == 'Tags (Any)':
-                if len(tags & set(rule_data)) > 0:
+            elif rule_name == 'Sources - Tags (Any)':
+                if len(source_tags & set(rule_data)) > 0:
                     pass
                 else:
                     match_ind = False
                     break
-            elif rule_name == 'Tags (None)':
-                if len(tags & set(rule_data)) < 1:
+            elif rule_name == 'Sources - Tags (None)':
+                if len(source_tags & set(rule_data)) < 1:
                     pass
                 else:
                     match_ind = False
                     break
-            elif rule_name == 'Names':
+            elif rule_name == 'Sources - Names':
                 if quest_source_name in set(rule_data):
                     pass
                 else:
                     match_ind = False
                     break
-            elif rule_name == 'Target Rewards':
+            elif rule_name == 'Sources - Target Reward':
                 if quests['Sources'][quest_source_name]['Target Reward'] in set(rule_data):
+                    pass
+                else:
+                    match_ind = False
+                    break
+            elif rule_name == 'Targets - Tags (All)':
+                if len(target_tags & set(rule_data)) == len(set(rule_data)):
+                    pass
+                else:
+                    match_ind = False
+                    break
+            elif rule_name == 'Targets - Tags (Any)':
+                if len(target_tags & set(rule_data)) > 0:
+                    pass
+                else:
+                    match_ind = False
+                    break
+            elif rule_name == 'Targets - Tags (None)':
+                if len(target_tags & set(rule_data)) < 1:
+                    pass
+                else:
+                    match_ind = False
+                    break
+            elif rule_name == 'Targets - Names':
+                if quest_target_name in set(rule_data):
                     pass
                 else:
                     match_ind = False
@@ -107,30 +132,61 @@ def shuffle_quest_rewards(quests, initial_seed, step):
     quest_source_names = []
     quest_target_names = []
     for quest_source_name in list(sorted(quests.get('Sources', {}))):
+        source_tags = set(quests['Sources'].get(quest_source_name, {}).get('Tags', {}))
         match_ind = True
         for rule_name in step.get('Match', {}):
-            tags = set(quests['Sources'][quest_source_name].get('Tags', {}))
+            target_tags = set(quests['Sources'][quest_source_name].get('Tags', {}))
             rule_data = step['Match'][rule_name]
-            if rule_name == 'Tags (All)':
-                if len(tags & set(rule_data)) == len(set(rule_data)):
+            if rule_name == 'Sources - Tags (All)':
+                if len(source_tags & set(rule_data)) == len(set(rule_data)):
                     pass
                 else:
                     match_ind = False
                     break
-            elif rule_name == 'Tags (Any)':
-                if len(tags & set(rule_data)) > 0:
+            elif rule_name == 'Sources - Tags (Any)':
+                if len(source_tags & set(rule_data)) > 0:
                     pass
                 else:
                     match_ind = False
                     break
-            elif rule_name == 'Tags (None)':
-                if len(tags & set(rule_data)) < 1:
+            elif rule_name == 'Sources - Tags (None)':
+                if len(source_tags & set(rule_data)) < 1:
                     pass
                 else:
                     match_ind = False
                     break
-            elif rule_name == 'Names':
+            elif rule_name == 'Sources - Names':
                 if quest_source_name in set(rule_data):
+                    pass
+                else:
+                    match_ind = False
+                    break
+            elif rule_name == 'Sources - Target Reward':
+                if quests['Sources'][quest_source_name]['Target Reward'] in set(rule_data):
+                    pass
+                else:
+                    match_ind = False
+                    break
+            elif rule_name == 'Targets - Tags (All)':
+                if len(target_tags & set(rule_data)) == len(set(rule_data)):
+                    pass
+                else:
+                    match_ind = False
+                    break
+            elif rule_name == 'Targets - Tags (Any)':
+                if len(target_tags & set(rule_data)) > 0:
+                    pass
+                else:
+                    match_ind = False
+                    break
+            elif rule_name == 'Targets - Tags (None)':
+                if len(target_tags & set(rule_data)) < 1:
+                    pass
+                else:
+                    match_ind = False
+                    break
+            elif rule_name == 'Targets - Names':
+                if quest_target_name in set(rule_data):
                     pass
                 else:
                     match_ind = False
@@ -142,7 +198,6 @@ def shuffle_quest_rewards(quests, initial_seed, step):
         quest_source_names.append(quest_source_name)
         quest_target_name = quests['Sources'][quest_source_name]['Target Reward']
         quest_target_names.append(quest_target_name)
-        # print(' ', (quest_source_name, quest_target_name))
     # Validate that rewards are not shuffled into quests they are invalid for based on their type
     valid_ind = False
     while not valid_ind:
@@ -153,7 +208,6 @@ def shuffle_quest_rewards(quests, initial_seed, step):
             quest_target_type = quest_target_name.split(' - ')[0]
             if quest_target_type not in quests['Sources'][quest_source_name].get('Tags', []):
                 valid_ind = False
-                # print((quest_source_name, quest_target_name), quests['Sources'][quest_source_name].get('Tags', []))
                 break
     for (index, quest_source_name) in enumerate(quest_source_names):
         quests['Sources'][quest_source_name]['Target Reward'] = quest_target_names[index]
@@ -175,7 +229,6 @@ def process_operations(initial_quests, initial_seed, operations):
         operation_rng = random.Random(operation_seed)
         for step in operation['Steps']:
             step_seed = operation_rng.randint(MIN_SEED, MAX_SEED)
-            # print(step['Action'])
             if step['Action'] == 'Populate Pool':
                 populate_pool(quests, pools, step_seed, step)
                 pool_name = step['Name']

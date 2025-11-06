@@ -24,7 +24,7 @@ Quest reward shuffler:
     Steps:
       - Action: Shuffle Quest Rewards
         Match:
-          Tags (All):
+          Sources - Tags (All):
             - Significant
             - Location Check
     Notes: {}
@@ -32,16 +32,16 @@ Quest reward shuffler:
     Steps:
       - Action: Shuffle Quest Rewards
         Match:
-          Tags (All):
+          Sources - Tags (All):
             - Location Check
-          Tags (None):
+          Sources - Tags (None):
             - Significant
     Notes: {}
   - Description: Shuffle enemy drops
     Steps:
       - Action: Shuffle Quest Rewards
         Match:
-          Tags (All):
+          Sources - Tags (All):
             - Enemy Drop
     Notes: {}
   - Description: Randomize starting gear and special items
@@ -49,7 +49,7 @@ Quest reward shuffler:
       - Action: Populate Pool
         Name: Pool - Bone Scimitar
         Match:
-          Tags (Any):
+          Targets - Tags (Any):
             - Accessory
             - Armor
             - One-Handed Weapon
@@ -57,51 +57,51 @@ Quest reward shuffler:
       - Action: Populate Pool
         Name: Pool - Starting Gear - Weapon
         Match:
-          Tags (Any):
+          Targets - Tags (Any):
             - One-Handed Weapon
       - Action: Populate Pool
         Name: Pool - Starting Gear - Shield
         Match:
-          Tags (Any):
+          Targets - Tags (Any):
             - Shield
       - Action: Populate Pool
         Name: Pool - Starting Gear - Head
         Match:
-          Tags (Any):
+          Targets - Tags (Any):
             - Head
       - Action: Populate Pool
         Name: Pool - Starting Gear - Body
         Match:
-          Tags (Any):
+          Targets - Tags (Any):
             - Body
       - Action: Populate Pool
         Name: Pool - Starting Gear - Cloak
         Match:
-          Tags (Any):
+          Targets - Tags (Any):
             - Cloak
       - Action: Populate Pool
         Name: Pool - Starting Gear - Accessory
         Match:
-          Tags (Any):
+          Targets - Tags (Any):
             - Accessory
       - Action: Populate Pool
         Name: Pool - Prologue Reward - Consumable
         Match:
-          Tags (Any):
+          Targets - Tags (Any):
             - Consumable
       - Action: Populate Pool
         Name: Pool - Name Code - Accessory
         Match:
-          Tags (Any):
+          Targets - Tags (Any):
             - Accessory
       - Action: Populate Pool
         Name: Pool - Name Code - Armor
         Match:
-          Tags (Any):
+          Targets - Tags (Any):
             - Body
       - Action: Remap Quest Rewards
         Match:
-          Names:
+          Sources - Names:
             - Special - Guaranteed Drop (Bone Scimitar, Copper)
             - Special - Guaranteed Drop (Bone Scimitar, Green)
         Selection:
@@ -109,49 +109,49 @@ Quest reward shuffler:
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Names:
+          Sources - Names:
             - Special - Starting Equipment (Alucard Sword)
         Selection:
           Pool: Pool - Starting Gear - Weapon
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Names:
+          Sources - Names:
             - Special - Starting Equipment (Alucard Shield)
         Selection:
           Pool: Pool - Starting Gear - Shield
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Names:
+          Sources - Names:
             - Special - Starting Equipment (Dragon Helm)
         Selection:
           Pool: Pool - Starting Gear - Head
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Names:
+          Sources - Names:
             - Special - Starting Equipment (Alucard Mail)
         Selection:
           Pool: Pool - Starting Gear - Body
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Names:
+          Sources - Names:
             - Special - Starting Equipment (Twilight Cloak)
         Selection:
           Pool: Pool - Starting Gear - Cloak
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Names:
+          Sources - Names:
             - Special - Starting Equipment (Necklace of J)
         Selection:
           Pool: Pool - Starting Gear - Accessory
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Names:
+          Sources - Names:
             - Special - Prologue Bonus Equipment (Potion)
             - Special - Prologue Bonus Equipment (Heart Refresh)
             - Special - Prologue Bonus Equipment (Neutron Bomb)
