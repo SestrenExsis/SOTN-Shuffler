@@ -7024,6 +7024,7 @@ Targets:
     Tags:
       - Armor
       - Head
+      - Quality - Poor
   Item - Banana:
     Outcomes:
       Item - Banana: 1
@@ -7362,6 +7363,7 @@ Targets:
     Tags:
       - Armor
       - Head
+      - Quality - Poor
   Item - Gold Circlet:
     Outcomes:
       Item - Gold Circlet: 1
@@ -7534,6 +7536,7 @@ Targets:
     Tags:
       - Armor
       - Body
+      - Quality - Poor
   Item - Iron Fist:
     Outcomes:
       Item - Iron Fist: 1
@@ -7951,6 +7954,7 @@ Targets:
       Item - Ring of Arcana: 1
     Tags:
       - Accessory
+      - Quality - Good
   Item - Ring of Ares:
     Outcomes:
       Item - Ring of Ares: 1
@@ -8132,6 +8136,7 @@ Targets:
     Tags:
       - Armor
       - Head
+      - Quality - Poor
   Item - Sunstone:
     Outcomes:
       Item - Sunstone: 1

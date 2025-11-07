@@ -44,7 +44,9 @@ Quest reward shuffler:
             - Location Check
     Notes:
       - Relics that are unhelpful to racing are replaced with more helpful ones
-  - Description: Shuffle enemy drops and optional location checks
+  - Description: Shuffle rare enemy drops and optional location checks
+    TODO(sestren):
+      - Exclude Manna Prisms and Library Cards from enemy drops
     Steps:
       - Action: Populate Pool
         Name: Pool - Bomb
