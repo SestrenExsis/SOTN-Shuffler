@@ -6955,6 +6955,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Alucart Mail:
     Outcomes:
       Item - Alucart Mail: 1
@@ -6973,6 +6974,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Ankh of Life:
     Outcomes:
       Item - Ankh of Life: 1
@@ -7190,6 +7192,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Cross Shuriken:
     Outcomes:
       Item - Cross Shuriken: 1
@@ -7224,6 +7227,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Dark Shield:
     Outcomes:
       Item - Dark Shield: 1
@@ -7254,6 +7258,7 @@ Targets:
     Tags:
       - Accessory
       - Quality - Good
+      - Banned - Sparse
   Item - Elixir:
     Outcomes:
       Item - Elixir: 1
@@ -7301,12 +7306,14 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Fist of Tulkas:
     Outcomes:
       Item - Fist of Tulkas: 1
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Flamberge:
     Outcomes:
       Item - Flamberge: 1
@@ -7388,6 +7395,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Grapes:
     Outcomes:
       Item - Grapes: 1
@@ -7412,6 +7420,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Ham and Eggs:
     Outcomes:
       Item - Ham and Eggs: 1
@@ -7431,6 +7440,7 @@ Targets:
       Item - Harper: 1
     Tags:
       - Quality - Good
+      - Banned - Sparse
   Item - Healing Mail:
     Outcomes:
       Item - Healing Mail: 1
@@ -7461,6 +7471,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Herald Shield:
     Outcomes:
       Item - Herald Shield: 1
@@ -7501,6 +7512,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Hunter Sword:
     Outcomes:
       Item - Hunter Sword: 1
@@ -7524,6 +7536,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Iron Ball:
     Outcomes:
       Item - Iron Ball: 1
@@ -7619,6 +7632,7 @@ Targets:
       - Familiar
       - Low Priority - Racing
       - Quality - Good
+      - Banned - Sparse
   Item - Life Max-Up:
     Outcomes:
       Item - Life Max-Up: 1
@@ -7643,6 +7657,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Lunch A:
     Outcomes:
       Item - Lunch A: 1
@@ -7655,6 +7670,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Magic Missile:
     Outcomes:
       Item - Magic Missile: 1
@@ -7674,12 +7690,14 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Masamune:
     Outcomes:
       Item - Masamune: 1
     Tags:
       - Two-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Meal Ticket:
     Outcomes:
       Item - Meal Ticket: 1
@@ -7751,6 +7769,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Morning Set:
     Outcomes:
       Item - Morning Set: 1
@@ -7769,12 +7788,14 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Muramasa:
     Outcomes:
       Item - Muramasa: 1
     Tags:
       - Two-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Mystic Pendant:
     Outcomes:
       Item - Mystic Pendant: 1
@@ -7840,6 +7861,7 @@ Targets:
     Tags:
       - Two-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Peanuts:
     Outcomes:
       Item - Peanuts: 1
@@ -7971,6 +7993,7 @@ Targets:
     Tags:
       - Accessory
       - Quality - Good
+      - Banned - Sparse
   Item - Royal Cloak:
     Outcomes:
       Item - Royal Cloak: 1
@@ -7989,6 +8012,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Saber:
     Outcomes:
       Item - Saber: 1
@@ -8023,6 +8047,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Shiitake:
     Outcomes:
       Item - Shiitake: 1
@@ -8160,6 +8185,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - TNT:
     Outcomes:
       Item - TNT: 1
@@ -8172,6 +8198,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Takemitsu:
     Outcomes:
       Item - Takemitsu: 1
@@ -8200,6 +8227,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Toadstool:
     Outcomes:
       Item - Toadstool: 1
@@ -8248,6 +8276,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Walk Armor:
     Outcomes:
       Item - Walk Armor: 1
@@ -8271,6 +8300,7 @@ Targets:
     Tags:
       - Two-Handed Weapon
       - Quality - Good
+      - Banned - Sparse
   Item - Zircon:
     Outcomes:
       Item - Zircon: 1

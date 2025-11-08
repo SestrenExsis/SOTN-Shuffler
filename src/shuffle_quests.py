@@ -36,7 +36,7 @@ def populate_pool(quests, pools, initial_seed, step):
                     else:
                         match_ind = False
                         break
-                elif rule_name == 'Targets - Names':
+                elif rule_name == 'Targets - Names (Any)':
                     if quest_target_name in set(rule_data):
                         pass
                     else:
@@ -76,13 +76,19 @@ def remap_quest_rewards(quests, pools, initial_seed, step):
                 else:
                     match_ind = False
                     break
-            elif rule_name == 'Sources - Names':
+            elif rule_name == 'Sources - Names (Any)':
                 if quest_source_name in set(rule_data):
                     pass
                 else:
                     match_ind = False
                     break
-            elif rule_name == 'Sources - Target Reward':
+            elif rule_name == 'Sources - Names (None)':
+                if quest_source_name not in set(rule_data):
+                    pass
+                else:
+                    match_ind = False
+                    break
+            elif rule_name == 'Sources - Target Reward (Any)':
                 if quests['Sources'][quest_source_name]['Target Reward'] in set(rule_data):
                     pass
                 else:
@@ -106,7 +112,7 @@ def remap_quest_rewards(quests, pools, initial_seed, step):
                 else:
                     match_ind = False
                     break
-            elif rule_name == 'Targets - Names':
+            elif rule_name == 'Targets - Names (Any)':
                 if quest_target_name in set(rule_data):
                     pass
                 else:
@@ -155,13 +161,19 @@ def shuffle_quest_rewards(quests, initial_seed, step):
                 else:
                     match_ind = False
                     break
-            elif rule_name == 'Sources - Names':
+            elif rule_name == 'Sources - Names (Any)':
                 if quest_source_name in set(rule_data):
                     pass
                 else:
                     match_ind = False
                     break
-            elif rule_name == 'Sources - Target Reward':
+            elif rule_name == 'Sources - Names (None)':
+                if quest_source_name not in set(rule_data):
+                    pass
+                else:
+                    match_ind = False
+                    break
+            elif rule_name == 'Sources - Target Reward (Any)':
                 if quests['Sources'][quest_source_name]['Target Reward'] in set(rule_data):
                     pass
                 else:
@@ -185,7 +197,7 @@ def shuffle_quest_rewards(quests, initial_seed, step):
                 else:
                     match_ind = False
                     break
-            elif rule_name == 'Targets - Names':
+            elif rule_name == 'Targets - Names (Any)':
                 if quest_target_name in set(rule_data):
                     pass
                 else:

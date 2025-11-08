@@ -205,7 +205,7 @@ Quest reward shuffler:
             - Enemy Drop
           Sources - Tags (None):
             - Significant
-          Sources - Target Reward:
+          Sources - Target Reward (Any):
             - Pool - Low Quality
         Selection:
           Pool: Pool - Low Quality
@@ -217,7 +217,7 @@ Quest reward shuffler:
             - Enemy Drop
           Sources - Tags (None):
             - Significant
-          Sources - Target Reward:
+          Sources - Target Reward (Any):
             - Pool - Moderate Quality
         Selection:
           Pool: Pool - Moderate Quality
@@ -229,7 +229,7 @@ Quest reward shuffler:
             - Enemy Drop
           Sources - Tags (None):
             - Significant
-          Sources - Target Reward:
+          Sources - Target Reward (Any):
             - Pool - High Quality
         Selection:
           Pool: Pool - High Quality
@@ -318,7 +318,7 @@ Quest reward shuffler:
             - Body
       - Action: Remap Quest Rewards
         Match:
-          Sources - Names:
+          Sources - Names (Any):
             - Special - Guaranteed Drop (Bone Scimitar, Copper)
             - Special - Guaranteed Drop (Bone Scimitar, Green)
         Selection:
@@ -326,49 +326,49 @@ Quest reward shuffler:
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Sources - Names:
+          Sources - Names (Any):
             - Special - Starting Equipment (Alucard Sword)
         Selection:
           Pool: Pool - Starting Gear - Weapon
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Sources - Names:
+          Sources - Names (Any):
             - Special - Starting Equipment (Alucard Shield)
         Selection:
           Pool: Pool - Starting Gear - Shield
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Sources - Names:
+          Sources - Names (Any):
             - Special - Starting Equipment (Dragon Helm)
         Selection:
           Pool: Pool - Starting Gear - Head
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Sources - Names:
+          Sources - Names (Any):
             - Special - Starting Equipment (Alucard Mail)
         Selection:
           Pool: Pool - Starting Gear - Body
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Sources - Names:
+          Sources - Names (Any):
             - Special - Starting Equipment (Twilight Cloak)
         Selection:
           Pool: Pool - Starting Gear - Cloak
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Sources - Names:
+          Sources - Names (Any):
             - Special - Starting Equipment (Necklace of J)
         Selection:
           Pool: Pool - Starting Gear - Accessory
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Sources - Names:
+          Sources - Names (Any):
             - Special - Prologue Bonus Equipment (Potion)
             - Special - Prologue Bonus Equipment (Heart Refresh)
             - Special - Prologue Bonus Equipment (Neutron Bomb)

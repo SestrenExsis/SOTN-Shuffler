@@ -29,7 +29,7 @@ Quest reward shuffler:
           - Relic - Demon Card
       - Action: Remap Quest Rewards
         Match:
-          Sources - Target Reward:
+          Sources - Target Reward (Any):
             - Relic - Power of Mist
         Selection:
           Pool: Pool - Modest Relic
@@ -44,6 +44,22 @@ Quest reward shuffler:
   - Description: Shuffle optional location checks
     Steps:
       - Action: Populate Pool
+        Name: Pool - Poor Quality
+        Match:
+          Targets - Tags (All):
+            - Quality - Poor
+          Targets - Tags (Any):
+            - Accessory
+            - Armor
+            - Consumable
+            - One-Handed Weapon
+            - Subweapon
+            - Two-Handed Weapon
+          Targets - Tags (None):
+            - Banned - Sparse
+            - Quality - Good
+            - Relic
+      - Action: Populate Pool
         Name: Pool - Moderate Quality
         Match:
           Targets - Tags (Any):
@@ -54,55 +70,36 @@ Quest reward shuffler:
             - Subweapon
             - Two-Handed Weapon
           Targets - Tags (None):
+            - Banned - Sparse
+            - Quality - Poor
             - Quality - Good
-            - Quality - Poor
-            - Relic
-      - Action: Populate Pool
-        Name: Pool - Low Quality
-        Match:
-          Targets - Tags (All):
-            - Quality - Poor
-          Targets - Tags (Any):
-            - Accessory
-            - Armor
-            - Consumable
-            - One-Handed Weapon
-            - Subweapon
-            - Two-Handed Weapon
-          Targets - Tags (None):
             - Relic
       - Action: Populate Pool
         Name: Pool - Quality Level 1
         List:
-          - Pool - Low Quality
-          - Pool - Low Quality
-          - Pool - Low Quality
-          - Pool - Moderate Quality
-          - Pool - Moderate Quality
+          - Pool - Poor Quality
+          - Pool - Poor Quality
+          - Pool - Poor Quality
       - Action: Populate Pool
         Name: Pool - Quality Level 2
         List:
-          - Pool - Low Quality
-          - Pool - Low Quality
-          - Pool - Moderate Quality
-          - Pool - Moderate Quality
+          - Pool - Poor Quality
+          - Pool - Poor Quality
           - Pool - Moderate Quality
       - Action: Populate Pool
         Name: Pool - Quality Level 3
         List:
-          - Pool - Low Quality
-          - Pool - Moderate Quality
-          - Pool - Moderate Quality
+          - Pool - Poor Quality
           - Pool - Moderate Quality
           - Pool - Moderate Quality
       - Action: Remap Quest Rewards
         Match:
-          Targets - Tags (All):
+          Sources - Tags (All):
             - Location Check
-            - Quality - Poor
-          Targets - Tags (None):
+          Sources - Tags (None):
             - Significant
-            - Relic
+          Targets - Tags (All):
+            - Quality - Poor
         Selection:
           Pool: Pool - Quality Level 1
           Method: Random With Replacement
@@ -115,33 +112,71 @@ Quest reward shuffler:
           Targets - Tags (None):
             - Quality - Poor
             - Quality - Good
-            - Relic
         Selection:
           Pool: Pool - Quality Level 2
           Method: Random With Replacement
       - Action: Remap Quest Rewards
         Match:
           Sources - Tags (All):
-            - Quality - Good
+            - Location Check
           Sources - Tags (None):
             - Significant
           Targets - Tags (All):
-            - Location Check
-          Targets - Tags (None):
-            - Relic
+            - Quality - Good
         Selection:
           Pool: Pool - Quality Level 3
           Method: Random With Replacement
       - Action: Remap Quest Rewards
         Match:
-          Sources - Target Reward:
-            - Pool - Low Quality
+          Sources - Tags (All):
+            - Location Check
+          Sources - Tags (None):
+            - Significant
+          Sources - Target Reward (Any):
+            - Pool - Quality Level 1
         Selection:
-          Pool: Pool - Low Quality
+          Pool: Pool - Quality Level 1
           Method: Random With Replacement
       - Action: Remap Quest Rewards
         Match:
-          Sources - Target Reward:
+          Sources - Tags (All):
+            - Location Check
+          Sources - Tags (None):
+            - Significant
+          Sources - Target Reward (Any):
+            - Pool - Quality Level 2
+        Selection:
+          Pool: Pool - Quality Level 2
+          Method: Random With Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Tags (All):
+            - Location Check
+          Sources - Tags (None):
+            - Significant
+          Sources - Target Reward (Any):
+            - Pool - Quality Level 3
+        Selection:
+          Pool: Pool - Quality Level 3
+          Method: Random With Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Tags (All):
+            - Location Check
+          Sources - Tags (None):
+            - Significant
+          Sources - Target Reward (Any):
+            - Pool - Poor Quality
+        Selection:
+          Pool: Pool - Poor Quality
+          Method: Random With Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Tags (All):
+            - Location Check
+          Sources - Tags (None):
+            - Significant
+          Sources - Target Reward (Any):
             - Pool - Moderate Quality
         Selection:
           Pool: Pool - Moderate Quality
@@ -194,6 +229,7 @@ Quest reward shuffler:
             - One-Handed Weapon
             - Two-Handed Weapon
           Targets - Tags (None):
+            - Banned - Sparse
             - Quality - Good
       - Action: Populate Pool
         Name: Pool - Starting Gear - Weapon
@@ -201,6 +237,7 @@ Quest reward shuffler:
           Targets - Tags (Any):
             - One-Handed Weapon
           Targets - Tags (None):
+            - Banned - Sparse
             - Quality - Good
       - Action: Populate Pool
         Name: Pool - Starting Gear - Shield
@@ -208,6 +245,7 @@ Quest reward shuffler:
           Targets - Tags (Any):
             - Shield
           Targets - Tags (None):
+            - Banned - Sparse
             - Quality - Good
       - Action: Populate Pool
         Name: Pool - Starting Gear - Head
@@ -215,6 +253,7 @@ Quest reward shuffler:
           Targets - Tags (Any):
             - Head
           Targets - Tags (None):
+            - Banned - Sparse
             - Quality - Good
       - Action: Populate Pool
         Name: Pool - Starting Gear - Body
@@ -222,6 +261,7 @@ Quest reward shuffler:
           Targets - Tags (Any):
             - Body
           Targets - Tags (None):
+            - Banned - Sparse
             - Quality - Good
       - Action: Populate Pool
         Name: Pool - Starting Gear - Cloak
@@ -229,6 +269,7 @@ Quest reward shuffler:
           Targets - Tags (Any):
             - Cloak
           Targets - Tags (None):
+            - Banned - Sparse
             - Quality - Good
       - Action: Populate Pool
         Name: Pool - Starting Gear - Accessory
@@ -236,25 +277,32 @@ Quest reward shuffler:
           Targets - Tags (Any):
             - Accessory
           Targets - Tags (None):
+            - Banned - Sparse
             - Quality - Good
       - Action: Populate Pool
         Name: Pool - Prologue Reward - Consumable
         Match:
           Targets - Tags (Any):
             - Consumable
+          Targets - Tags (None):
+            - Banned - Sparse
       - Action: Populate Pool
         Name: Pool - Name Code - Accessory
         Match:
           Targets - Tags (Any):
             - Accessory
+          Targets - Tags (None):
+            - Banned - Sparse
       - Action: Populate Pool
         Name: Pool - Name Code - Armor
         Match:
           Targets - Tags (Any):
             - Body
+          Targets - Tags (None):
+            - Banned - Sparse
       - Action: Remap Quest Rewards
         Match:
-          Sources - Names:
+          Sources - Names (Any):
             - Special - Guaranteed Drop (Bone Scimitar, Copper)
             - Special - Guaranteed Drop (Bone Scimitar, Green)
         Selection:
@@ -262,49 +310,49 @@ Quest reward shuffler:
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Sources - Names:
+          Sources - Names (Any):
             - Special - Starting Equipment (Alucard Sword)
         Selection:
           Pool: Pool - Starting Gear - Weapon
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Sources - Names:
+          Sources - Names (Any):
             - Special - Starting Equipment (Alucard Shield)
         Selection:
           Pool: Pool - Starting Gear - Shield
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Sources - Names:
+          Sources - Names (Any):
             - Special - Starting Equipment (Dragon Helm)
         Selection:
           Pool: Pool - Starting Gear - Head
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Sources - Names:
+          Sources - Names (Any):
             - Special - Starting Equipment (Alucard Mail)
         Selection:
           Pool: Pool - Starting Gear - Body
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Sources - Names:
+          Sources - Names (Any):
             - Special - Starting Equipment (Twilight Cloak)
         Selection:
           Pool: Pool - Starting Gear - Cloak
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Sources - Names:
+          Sources - Names (Any):
             - Special - Starting Equipment (Necklace of J)
         Selection:
           Pool: Pool - Starting Gear - Accessory
           Method: Random Without Replacement
       - Action: Remap Quest Rewards
         Match:
-          Sources - Names:
+          Sources - Names (Any):
             - Special - Prologue Bonus Equipment (Potion)
             - Special - Prologue Bonus Equipment (Heart Refresh)
             - Special - Prologue Bonus Equipment (Neutron Bomb)
