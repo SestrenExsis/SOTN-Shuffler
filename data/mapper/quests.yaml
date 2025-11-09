@@ -7020,6 +7020,7 @@ Targets:
       Item - Badelaire: 1
     Tags:
       - One-Handed Weapon
+      - Banned - Sparse
   Item - Ballroom Mask:
     Outcomes:
       Item - Ballroom Mask: 1
@@ -8264,6 +8265,7 @@ Targets:
     Tags:
       - One-Handed Weapon
       - Quality - Poor
+      - Banned - Sparse
   Item - Uncurse:
     Outcomes:
       Item - Uncurse: 1

@@ -1,9 +1,7 @@
 ---
 Casual:
- - Technique - Box Puzzle
  - Technique - Gravity Jump
  - Technique - Powered Mist Travel (Short)
- - Technique - Gear Puzzle
  - Technique - Blade Dash
  - Technique - Rising Uppercut
 Veteran:
@@ -14,12 +12,20 @@ Veteran:
  - Technique - Corner Mist (Precise)
  - Technique - Coyote Jump (Precise)
  - Technique - Diagonal Gravity Jump
+ - Technique - Double Jump Reset (Short)
+ - Technique - Enemy Dive Kick (Forgiving)
+ - Technique - Gear Puzzle
  - Technique - Gravity Jump
+ - Technique - Invincibility Frame Abuse
  - Technique - Multiple Gravity Jumps (Double Jump Reset)
+ - Technique - Multiple Gravity Jumps (Transformation Reset)
  - Technique - Open Secret Wall in Merman Room
  - Technique - Powered Mist Travel (Short)
  - Technique - Powered Mist Travel (Long)
- - Technique - Gear Puzzle
+ - Technique - Red Skeleton Lift Puzzle
+ - Technique - Wolf Charge Across Gap
+ - Technique - Wolf-Mist Rise (Short)
+ - Technique - Wolf Slope Jump
  - Technique - Blade Dash
  - Technique - Rising Uppercut
  - Technique - Chained Rising Uppercuts
@@ -63,6 +69,7 @@ Extreme:
  - Technique - Candle Dive Kick (Precise)
  - Technique - Corner Mist (Forgiving)
  - Technique - Corner Mist (Precise)
+ - Technique - Coyote Jump (Precise)
  - Technique - Damage Boost (Precise)
  - Technique - Diagonal Gravity Jump
  - Technique - Double Jump Reset (Short)
@@ -92,20 +99,17 @@ Extreme:
  - Technique - Blade Dash
  - Technique - Rising Uppercut
  - Technique - Chained Rising Uppercuts
- - Technique - Coyote Jump (Precise)
 Damageless:
  - Rule - Damageless
  - Technique - Book Jump (Forgiving)
- - Technique - Book Jump (Precise)
  - Technique - Box Puzzle
  - Technique - Candle Dive Kick (Forgiving)
- - Technique - Candle Dive Kick (Precise)
  - Technique - Corner Mist (Forgiving)
  - Technique - Corner Mist (Precise)
+ - Technique - Coyote Jump (Precise)
  - Technique - Diagonal Gravity Jump
  - Technique - Double Jump Reset (Short)
  - Technique - Enemy Dive Kick (Forgiving)
- - Technique - Flea Ladder
  - Technique - Gear Puzzle
  - Technique - Gravity Jump
  - Technique - Invincibility Frame Abuse
@@ -114,16 +118,12 @@ Damageless:
  - Technique - Open Secret Wall in Merman Room
  - Technique - Powered Mist Travel (Short)
  - Technique - Powered Mist Travel (Long)
- - Technique - Powered Mist Travel (Very Long)
  - Technique - Red Skeleton Lift Puzzle
  - Technique - Wolf Charge Across Gap
- - Technique - Wolf Charge Across Gap With Early Untransform
  - Technique - Wolf-Mist Rise (Short)
- - Technique - Wolf-Mist Rise (Long)
  - Technique - Wolf Slope Jump
  - Technique - Blade Dash
  - Technique - Rising Uppercut
  - Technique - Chained Rising Uppercuts
- - Technique - Coyote Jump (Precise)
 Glitched:
  - Rule - Glitches Allowed

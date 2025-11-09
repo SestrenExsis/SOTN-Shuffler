@@ -1133,9 +1133,10 @@ if __name__ == '__main__':
             # current_seed['Solver'] = solution
         filename = ' '.join((
             shuffler['End Time'].strftime('%Y-%m-%d %H-%M-%S'),
-            'SOTN Shuffler',
-            changes['Constants']['Message - Richter Mode Instructions 2'].strip(),
+            shuffler['Settings']['Info']['Name'],
+            skillset,
             '(' + str(shuffler['Initial Seed']) + ')',
+            changes['Constants']['Message - Richter Mode Instructions 2'].strip(),
         ))
         filepath = os.path.join('build', 'shuffler', filename + '.json')
         with open(filepath, 'w') as current_seed_json:

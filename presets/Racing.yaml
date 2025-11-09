@@ -1,4 +1,8 @@
 ---
+Info:
+  Name: Racing
+  Description:
+    - TODO(sestren) - Add a description for the Racing preset
 Options:
   Assign Power of Wolf relic a unique ID: true
   Clock hands show minutes and seconds instead of hours and minutes: true
@@ -17,7 +21,7 @@ Options:
   Prevent softlocks related to Death cutscene in Castle Entrance: true
   Prevent softlocks related to Door behind Scylla: true
   Shift wall in Plaque Room With Breakable Wall away from screen edge: true
-  Shuffle Pitch Black Spike Maze: true
+  Shuffle Pitch Black Spike Maze: false
   Skip Maria cutscene in Alchemy Laboratory: true
 Quest reward shuffler:
   - Description: Shuffle significant location checks
