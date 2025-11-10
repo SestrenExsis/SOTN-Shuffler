@@ -1319,8 +1319,6 @@ class Mapper:
                 if valid_ind:
                     source_room_name = self.stage_name + ', ' + source_node.room.room_name
                     target_room_name = self.stage_name + ', ' + target_node.room.room_name
-                    self.connections[(source_room_name, source_node.node_name)] = (target_room_name, target_node.get_relative_room_position(), (target_node.room.rows, target_node.room.columns))
-                    self.connections[(target_room_name, target_node.node_name)] = (source_room_name, source_node.get_relative_room_position(), (source_node.room.rows, source_node.room.columns))
                     step.append('Source Node: ' + str(source_node))
                     roomset = pool.pop(roomset_key, None)
                     break
@@ -1328,6 +1326,18 @@ class Mapper:
                 step.append('ERROR: All matching source nodes for the target node result in invalid room placement')
                 break
             self.steps.append(' | '.join(step))
+        self.connections = {}
+        for (source_room_name, source_room) in self.rooms.items():
+            for (target_room_name, target_room) in self.rooms.items():
+                if target_room_name == source_room_name:
+                    continue
+                for (source_node_name, source_node) in source_room.nodes.items():
+                    for (target_node_name, target_node) in target_room.nodes.items():
+                        matches_direction_and_edge_ind = target_node.matches_direction_and_edge(source_node)
+                        matches_position_ind = target_node.matches_position(source_node)
+                        if matches_direction_and_edge_ind and matches_position_ind:
+                            self.connections[(source_room_name, source_node.node_name)] = (target_room_name, target_node.get_relative_room_position(), (target_node.room.rows, target_node.room.columns))
+                            self.connections[(target_room_name, target_node.node_name)] = (source_room_name, source_node.get_relative_room_position(), (source_node.room.rows, source_node.room.columns))
         self.attempts += 1
         self.end_time = datetime.datetime.now(datetime.timezone.utc)
 

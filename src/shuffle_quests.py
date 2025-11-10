@@ -225,17 +225,16 @@ def shuffle_quest_rewards(quests, initial_seed, step):
         quests['Sources'][quest_source_name]['Target Reward'] = quest_target_names[index]
 
 def process_operations(initial_quests, initial_seed, operations):
+    # NOTE(sestren): Generate a bunch of seeds at once for RNG-consistency
     MIN_SEED = 0
     MAX_SEED = 2 ** 64 - 1
-    quests = copy.deepcopy(initial_quests)
-    quest_rewards = {}
-    pools = {}
     rng = random.Random(initial_seed)
     seeds = []
-    # NOTE(sestren): Generate a bunch of seeds at once for RNG-consistency
     for _ in range(256):
         seed = rng.randint(MIN_SEED, MAX_SEED)
         seeds.append(seed)
+    quests = copy.deepcopy(initial_quests)
+    pools = {}
     for (operation_id, operation) in enumerate(operations):
         operation_seed = seeds[operation_id]
         operation_rng = random.Random(operation_seed)
@@ -251,6 +250,7 @@ def process_operations(initial_quests, initial_seed, operations):
                 shuffle_quest_rewards(quests, step_seed, step)
             else:
                 raise Exception(f'Invalid step type: {step['Action']}')
+    quest_rewards = {}
     for (quest_source_name, quest_source) in quests['Sources'].items():
         quest_rewards[quest_source_name] = quest_source['Target Reward']
     result = quest_rewards

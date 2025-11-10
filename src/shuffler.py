@@ -513,13 +513,14 @@ if __name__ == '__main__':
             seed = rng['Local'].randint(MIN_SEED, MAX_SEED)
             seeds.append(seed)
         rng['Teleporters'] = random.Random(seeds[0])
-        rng['Relics'] = random.Random(seeds[1])
-        rng['Found Items'] = random.Random(seeds[2])
+        # rng['Relics'] = random.Random(seeds[1])
+        # rng['Found Items'] = random.Random(seeds[2])
         rng['Stages'] = random.Random(seeds[3])
         rng['Castle Map'] = random.Random(seeds[4])
         rng['Spike Room'] = random.Random(seeds[5])
-        rng['Enemy Drops'] = random.Random(seeds[6])
-        rng['Special Items'] = random.Random(seeds[7])
+        # rng['Enemy Drops'] = random.Random(seeds[6])
+        # rng['Special Items'] = random.Random(seeds[7])
+        rng['Quests'] = random.Random(seeds[8])
         # NOTE(sestren): Access another pre-generated seed instead of generating more
         print('.', end='', flush=True)
         shuffler['Stages'] = {}
@@ -565,8 +566,11 @@ if __name__ == '__main__':
                     'Stage': target['Stage'],
                 }
         # Shuffle quest rewards (such as Relics)
-        quest_shuffler_seed = rng['Spike Room'].randint(MIN_SEED, MAX_SEED)
+        quest_shuffler_seed = rng['Quests'].randint(MIN_SEED, MAX_SEED)
         quest_rewards = shuffle_quests.process_operations(mapper_core['Quests'], quest_shuffler_seed, settings.get('Quest reward shuffler', {}))
+        for quest_source_name in list(sorted(quest_rewards)):
+            quest_target_name = quest_rewards[quest_source_name]
+            mapper_core['Quests']['Sources'][quest_source_name]['Target Reward'] = quest_target_name
         # print('Set starting seeds for each stage')
         for stage_name in sorted(stages.keys()):
             next_seed = rng['Stages'].randint(MIN_SEED, MAX_SEED)
@@ -721,6 +725,26 @@ if __name__ == '__main__':
                     'Hash of Rooms': hashlib.sha256(json.dumps(stage_changes['Rooms'], sort_keys=True).encode()).hexdigest(),
                     'Stage': stage_name,
                 }
+                for (source_node, target_node) in stages[stage_name]['Mapper'].connections.items():
+                    (source_room_name, source_node_name) = source_node
+                    (target_room_name, (room_top, room_left), (room_rows, room_cols)) = target_node
+                    if source_room_name not in shuffler['Nodes']:
+                        shuffler['Nodes'][source_room_name] = {}
+                    shuffler['Nodes'][source_room_name][source_node_name] = {
+                        'Target Room Name': target_room_name,
+                        'X': room_left,
+                        'Y': room_top,
+                    }
+                    reversed_stage_name = reversible_stages[stage_name]
+                    reversed_source_room_name = reversed_stage_name + ', ' + source_room_name[(len(stage_name + ', ')):]
+                    if reversed_source_room_name not in shuffler['Nodes']:
+                        shuffler['Nodes'][reversed_source_room_name] = {}
+                    reversed_target_room_name = reversed_stage_name + ', ' + target_room_name[(len(stage_name + ', ')):]
+                    shuffler['Nodes'][reversed_source_room_name][source_node_name] = {
+                        'Target Room Name': reversed_target_room_name,
+                        'X': 256 * room_cols - room_left,
+                        'Y': 256 * room_rows - room_top,
+                    }
         # Randomly place down stages one at a time
         stage_names = list(sorted(stages.keys() - {'Warp Rooms', 'Castle Center'}))
         rng['Castle Map'].shuffle(stage_names)
