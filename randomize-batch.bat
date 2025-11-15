@@ -1,5 +1,5 @@
 
-set BUILD=BetaRelease7
+set BUILD=BetaRelease8
 set COUNT=%1
 set PRESET=%2
 set SKILLSET=%3
@@ -18,7 +18,7 @@ goto :EOF
     set SKILLSET=%2
     set SEED=%3
     python src/shuffler.py "presets/%PRESET%.yaml" "data/solver/stage_validations.yaml" --output="build/shuffler/current-seed.json" --seed=%SEED% --skillset=%SKILLSET% || goto :error
-    python lib/SOTN-Patcher/src/sotn_ppf.py "build/patcher" --data="lib/SOTN-Patcher/data/" --changes="build/shuffler/current-seed.json" --ppf="build/patcher/"%BUILD%"_"%PRESET%"_"%SKILLSET%"_"%SEED%".ppf" || goto :error
+    python lib/SOTN-Patcher/src/sotn_ppf.py "build/patcher" --data="lib/SOTN-Patcher/data/" --changes="build/shuffler/current-seed.json" --ppf="build/patcher/"%SEED%"_"%PRESET%"_"%SKILLSET%"_"%BUILD%.ppf" || goto :error
 
 goto :EOF
 
