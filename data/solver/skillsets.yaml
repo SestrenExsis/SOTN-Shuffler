@@ -1,23 +1,37 @@
+---
 Casual:
- - Technique - Box Puzzle
  - Technique - Gravity Jump
  - Technique - Powered Mist Travel (Short)
- - Technique - Gear Puzzle
  - Technique - Blade Dash
  - Technique - Rising Uppercut
+Vanilla:
+ - Technique - Gravity Jump
+ - Technique - Powered Mist Travel (Short)
+ - Technique - Blade Dash
+ - Technique - Rising Uppercut
+ - Option - Permit Logical Risks
 Veteran:
  - Technique - Book Jump (Forgiving)
  - Technique - Box Puzzle
  - Technique - Candle Dive Kick (Forgiving)
  - Technique - Corner Mist (Forgiving)
  - Technique - Corner Mist (Precise)
+ - Technique - Coyote Jump (Precise)
  - Technique - Diagonal Gravity Jump
+ - Technique - Double Jump Reset (Short)
+ - Technique - Enemy Dive Kick (Forgiving)
+ - Technique - Gear Puzzle
  - Technique - Gravity Jump
+ - Technique - Invincibility Frame Abuse
  - Technique - Multiple Gravity Jumps (Double Jump Reset)
+ - Technique - Multiple Gravity Jumps (Transformation Reset)
  - Technique - Open Secret Wall in Merman Room
  - Technique - Powered Mist Travel (Short)
  - Technique - Powered Mist Travel (Long)
- - Technique - Gear Puzzle
+ - Technique - Red Skeleton Lift Puzzle
+ - Technique - Wolf Charge Across Gap
+ - Technique - Wolf-Mist Rise (Short)
+ - Technique - Wolf Slope Jump
  - Technique - Blade Dash
  - Technique - Rising Uppercut
  - Technique - Chained Rising Uppercuts
@@ -29,6 +43,7 @@ Challenge:
  - Technique - Candle Dive Kick (Precise)
  - Technique - Corner Mist (Forgiving)
  - Technique - Corner Mist (Precise)
+ - Technique - Coyote Jump (Precise)
  - Technique - Damage Boost (Precise)
  - Technique - Diagonal Gravity Jump
  - Technique - Double Jump Reset (Short)
@@ -52,7 +67,6 @@ Challenge:
  - Technique - Blade Dash
  - Technique - Rising Uppercut
  - Technique - Chained Rising Uppercuts
- - Technique - Coyote Jump (Precise)
 Extreme:
  - Technique - Book Jump (Forgiving)
  - Technique - Book Jump (Precise)
@@ -61,6 +75,7 @@ Extreme:
  - Technique - Candle Dive Kick (Precise)
  - Technique - Corner Mist (Forgiving)
  - Technique - Corner Mist (Precise)
+ - Technique - Coyote Jump (Precise)
  - Technique - Damage Boost (Precise)
  - Technique - Diagonal Gravity Jump
  - Technique - Double Jump Reset (Short)
@@ -90,4 +105,31 @@ Extreme:
  - Technique - Blade Dash
  - Technique - Rising Uppercut
  - Technique - Chained Rising Uppercuts
+Damageless:
+ - Rule - Damageless
+ - Technique - Book Jump (Forgiving)
+ - Technique - Box Puzzle
+ - Technique - Candle Dive Kick (Forgiving)
+ - Technique - Corner Mist (Forgiving)
+ - Technique - Corner Mist (Precise)
  - Technique - Coyote Jump (Precise)
+ - Technique - Diagonal Gravity Jump
+ - Technique - Double Jump Reset (Short)
+ - Technique - Enemy Dive Kick (Forgiving)
+ - Technique - Gear Puzzle
+ - Technique - Gravity Jump
+ - Technique - Invincibility Frame Abuse
+ - Technique - Multiple Gravity Jumps (Double Jump Reset)
+ - Technique - Multiple Gravity Jumps (Transformation Reset)
+ - Technique - Open Secret Wall in Merman Room
+ - Technique - Powered Mist Travel (Short)
+ - Technique - Powered Mist Travel (Long)
+ - Technique - Red Skeleton Lift Puzzle
+ - Technique - Wolf Charge Across Gap
+ - Technique - Wolf-Mist Rise (Short)
+ - Technique - Wolf Slope Jump
+ - Technique - Blade Dash
+ - Technique - Rising Uppercut
+ - Technique - Chained Rising Uppercuts
+Glitched:
+ - Rule - Glitches Allowed

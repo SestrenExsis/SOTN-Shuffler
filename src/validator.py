@@ -166,7 +166,7 @@ if __name__ == '__main__':
         skillset = 'Casual'
     with (
         open(args.stage_validations) as stage_validations_file,
-        open(os.path.join('examples', 'skillsets.yaml')) as skillsets_file,
+        open(os.path.join('data', 'solver', 'skillsets.yaml')) as skillsets_file,
     ):
         stage_validations = yaml.safe_load(stage_validations_file)
         skillsets = yaml.safe_load(skillsets_file)

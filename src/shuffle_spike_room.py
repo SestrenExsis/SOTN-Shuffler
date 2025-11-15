@@ -1,7 +1,5 @@
 # External libraries
 import argparse
-import json
-import os
 import random
 
 def get_obstacles(seed, obstacle_count: int=4):
@@ -250,7 +248,6 @@ if __name__ == '__main__':
     MIN_SEED = 0
     MAX_SEED = 2 ** 64 - 1
     parser = argparse.ArgumentParser()
-    parser.add_argument('extraction', help='Input a filepath to the extraction JSON file', type=str)
     parser.add_argument('--seed', help='Input an optional starting seed', type=str)
     args = parser.parse_args()
     initial_seed = args.seed
@@ -258,8 +255,4 @@ if __name__ == '__main__':
         initial_seed = str(random.randint(MIN_SEED, MAX_SEED))
     global_rng = random.Random(initial_seed)
     seed = global_rng.randint(MIN_SEED, MAX_SEED)
-    # with (
-    #     open(args.extraction) as extraction_file,
-    # ):
-    #     extraction = json.load(extraction_file)
     tilemaps = main(initial_seed)

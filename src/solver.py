@@ -625,7 +625,7 @@ if __name__ == '__main__':
         json.dump(mapper_core, debug_mapper_data_json, indent='    ', sort_keys=True, default=str)
     with (
         open(args.changes) as changes_json,
-        open(os.path.join('examples', 'skillsets.yaml')) as skillsets_file,
+        open(os.path.join('data', 'solver', 'skillsets.yaml')) as skillsets_file,
     ):
         changes = json.load(changes_json)
         changes_json.close()

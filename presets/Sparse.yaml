@@ -1,0 +1,377 @@
+---
+Info:
+  Name: Sparse
+  Description:
+    - Power of Mist is banned
+    - Good quality items are banned
+    - Poor quality items are very common
+    - Enemies will only drop small amounts of money
+Options:
+  Assign Power of Wolf relic a unique ID: true
+  Clock hands show minutes and seconds instead of hours and minutes: false
+  Color-code each stage on the map: true
+  Disable clipping on screen edge of Demon Switch Wall: true
+  Disable clipping on screen edge of Left Gear Room Wall: true
+  Disable clipping on screen edge of Pendulum Room Wall: true
+  Disable clipping on screen edge of Snake Column Wall: true
+  Disable clipping on screen edge of Tall Zig Zag Room Wall: true
+  Enable debug mode: false
+  Normalize special effects: true
+  Normalize room connections: true
+  Normalize sounds: true
+  Normalize Ferryman Gate: true
+  Preserve unsaved map data: Revelation
+  Prevent softlocks related to Death cutscene in Castle Entrance: true
+  Prevent softlocks related to Door behind Scylla: true
+  Shift wall in Plaque Room With Breakable Wall away from screen edge: true
+  Shuffle Pitch Black Spike Maze: false
+  Skip Maria cutscene in Alchemy Laboratory: true
+Quest reward shuffler:
+  - Description: Shuffle significant location checks
+    Steps:
+      - Action: Populate Pool
+        Name: Pool - Modest Relic
+        List:
+          - Relic - Cube of Zoe
+          - Relic - Demon Card
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Target Reward (Any):
+            - Relic - Power of Mist
+        Selection:
+          Pool: Pool - Modest Relic
+          Method: Random With Replacement
+      - Action: Shuffle Quest Rewards
+        Match:
+          Sources - Tags (All):
+            - Significant
+            - Location Check
+    Notes:
+      - Power of Mist is banned
+  - Description: Shuffle optional location checks
+    Steps:
+      - Action: Populate Pool
+        Name: Pool - Poor Quality
+        Match:
+          Targets - Tags (All):
+            - Quality - Poor
+          Targets - Tags (Any):
+            - Accessory
+            - Armor
+            - Consumable
+            - One-Handed Weapon
+            - Subweapon
+            - Two-Handed Weapon
+          Targets - Tags (None):
+            - Banned - Sparse
+            - Quality - Good
+            - Relic
+      - Action: Populate Pool
+        Name: Pool - Moderate Quality
+        Match:
+          Targets - Tags (Any):
+            - Accessory
+            - Armor
+            - Consumable
+            - One-Handed Weapon
+            - Subweapon
+            - Two-Handed Weapon
+          Targets - Tags (None):
+            - Banned - Sparse
+            - Quality - Poor
+            - Quality - Good
+            - Relic
+      - Action: Populate Pool
+        Name: Pool - Quality Level 1
+        List:
+          - Pool - Poor Quality
+          - Pool - Poor Quality
+          - Pool - Poor Quality
+      - Action: Populate Pool
+        Name: Pool - Quality Level 2
+        List:
+          - Pool - Poor Quality
+          - Pool - Poor Quality
+          - Pool - Moderate Quality
+      - Action: Populate Pool
+        Name: Pool - Quality Level 3
+        List:
+          - Pool - Poor Quality
+          - Pool - Moderate Quality
+          - Pool - Moderate Quality
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Tags (All):
+            - Location Check
+          Sources - Tags (None):
+            - Significant
+          Targets - Tags (All):
+            - Quality - Poor
+        Selection:
+          Pool: Pool - Quality Level 1
+          Method: Random With Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Tags (All):
+            - Location Check
+          Sources - Tags (None):
+            - Significant
+          Targets - Tags (None):
+            - Quality - Poor
+            - Quality - Good
+        Selection:
+          Pool: Pool - Quality Level 2
+          Method: Random With Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Tags (All):
+            - Location Check
+          Sources - Tags (None):
+            - Significant
+          Targets - Tags (All):
+            - Quality - Good
+        Selection:
+          Pool: Pool - Quality Level 3
+          Method: Random With Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Tags (All):
+            - Location Check
+          Sources - Tags (None):
+            - Significant
+          Sources - Target Reward (Any):
+            - Pool - Quality Level 1
+        Selection:
+          Pool: Pool - Quality Level 1
+          Method: Random With Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Tags (All):
+            - Location Check
+          Sources - Tags (None):
+            - Significant
+          Sources - Target Reward (Any):
+            - Pool - Quality Level 2
+        Selection:
+          Pool: Pool - Quality Level 2
+          Method: Random With Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Tags (All):
+            - Location Check
+          Sources - Tags (None):
+            - Significant
+          Sources - Target Reward (Any):
+            - Pool - Quality Level 3
+        Selection:
+          Pool: Pool - Quality Level 3
+          Method: Random With Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Tags (All):
+            - Location Check
+          Sources - Tags (None):
+            - Significant
+          Sources - Target Reward (Any):
+            - Pool - Poor Quality
+        Selection:
+          Pool: Pool - Poor Quality
+          Method: Random With Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Tags (All):
+            - Location Check
+          Sources - Tags (None):
+            - Significant
+          Sources - Target Reward (Any):
+            - Pool - Moderate Quality
+        Selection:
+          Pool: Pool - Moderate Quality
+          Method: Random With Replacement
+      - Action: Shuffle Quest Rewards
+        Match:
+          Sources - Tags (All):
+            - Location Check
+          Sources - Tags (None):
+            - Significant
+    Notes:
+      - Good quality items are banned
+      - Poor quality items are very common
+  - Description: Shuffle enemy drops
+    Steps:
+      - Action: Populate Pool
+        Name: Pool - Money 1
+        List:
+          - Item - $100
+      - Action: Populate Pool
+        Name: Pool - Money 2
+        List:
+          - Item - $400
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Tags (All):
+            - Enemy Drop
+            - Uncommon
+        Selection:
+          Pool: Pool - Money 1
+          Method: Random With Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Tags (All):
+            - Enemy Drop
+            - Rare
+        Selection:
+          Pool: Pool - Money 2
+          Method: Random With Replacement
+    Notes:
+      - Enemies will only drop small amounts of money
+  - Description: Randomize starting gear and special items
+    Steps:
+      - Action: Populate Pool
+        Name: Pool - Bone Scimitar
+        Match:
+          Targets - Tags (Any):
+            - Accessory
+            - Armor
+            - One-Handed Weapon
+            - Two-Handed Weapon
+          Targets - Tags (None):
+            - Banned - Sparse
+            - Quality - Good
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Weapon
+        Match:
+          Targets - Tags (Any):
+            - One-Handed Weapon
+          Targets - Tags (None):
+            - Banned - Sparse
+            - Quality - Good
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Shield
+        Match:
+          Targets - Tags (Any):
+            - Shield
+          Targets - Tags (None):
+            - Banned - Sparse
+            - Quality - Good
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Head
+        Match:
+          Targets - Tags (Any):
+            - Head
+          Targets - Tags (None):
+            - Banned - Sparse
+            - Quality - Good
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Body
+        Match:
+          Targets - Tags (Any):
+            - Body
+          Targets - Tags (None):
+            - Banned - Sparse
+            - Quality - Good
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Cloak
+        Match:
+          Targets - Tags (Any):
+            - Cloak
+          Targets - Tags (None):
+            - Banned - Sparse
+            - Quality - Good
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Accessory
+        Match:
+          Targets - Tags (Any):
+            - Accessory
+          Targets - Tags (None):
+            - Banned - Sparse
+            - Quality - Good
+      - Action: Populate Pool
+        Name: Pool - Prologue Reward - Consumable
+        Match:
+          Targets - Tags (Any):
+            - Consumable
+          Targets - Tags (None):
+            - Banned - Sparse
+      - Action: Populate Pool
+        Name: Pool - Name Code - Accessory
+        Match:
+          Targets - Tags (Any):
+            - Accessory
+          Targets - Tags (None):
+            - Banned - Sparse
+      - Action: Populate Pool
+        Name: Pool - Name Code - Armor
+        Match:
+          Targets - Tags (Any):
+            - Body
+          Targets - Tags (None):
+            - Banned - Sparse
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Names (Any):
+            - Special - Guaranteed Drop (Bone Scimitar, Copper)
+            - Special - Guaranteed Drop (Bone Scimitar, Green)
+        Selection:
+          Pool: Pool - Bone Scimitar
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Names (Any):
+            - Special - Starting Equipment (Alucard Sword)
+        Selection:
+          Pool: Pool - Starting Gear - Weapon
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Names (Any):
+            - Special - Starting Equipment (Alucard Shield)
+        Selection:
+          Pool: Pool - Starting Gear - Shield
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Names (Any):
+            - Special - Starting Equipment (Dragon Helm)
+        Selection:
+          Pool: Pool - Starting Gear - Head
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Names (Any):
+            - Special - Starting Equipment (Alucard Mail)
+        Selection:
+          Pool: Pool - Starting Gear - Body
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Names (Any):
+            - Special - Starting Equipment (Twilight Cloak)
+        Selection:
+          Pool: Pool - Starting Gear - Cloak
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Names (Any):
+            - Special - Starting Equipment (Necklace of J)
+        Selection:
+          Pool: Pool - Starting Gear - Accessory
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Names (Any):
+            - Special - Prologue Bonus Equipment (Potion)
+            - Special - Prologue Bonus Equipment (Heart Refresh)
+            - Special - Prologue Bonus Equipment (Neutron Bomb)
+        Selection:
+          Pool: Pool - Prologue Reward - Consumable
+          Method: Random Without Replacement
+    Notes:
+      - Good quality items are banned on most starting gear
+Room shuffler:
+  Shuffle rooms within stages: true
+Stage shuffler:
+  Shuffle connections between stages: true
+  Loading room labels: Connection
+Solver:
+  Default skillset: Damageless

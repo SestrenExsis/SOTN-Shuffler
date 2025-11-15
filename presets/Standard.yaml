@@ -1,0 +1,178 @@
+---
+Info:
+  Name: Standard
+  Description:
+    - This preset is designed to be an introduction to SOTN map rando
+    - Rooms within a stage are shuffled where possible
+    - The connections between stages are shuffled
+    - Relic locations are shuffled
+    - Item locations are shuffled
+    - Enemy drops are shuffled
+    - Starting gear is randomized
+Options:
+  Assign Power of Wolf relic a unique ID: true
+  Clock hands show minutes and seconds instead of hours and minutes: false
+  Color-code each stage on the map: true
+  Disable clipping on screen edge of Demon Switch Wall: true
+  Disable clipping on screen edge of Left Gear Room Wall: true
+  Disable clipping on screen edge of Pendulum Room Wall: true
+  Disable clipping on screen edge of Snake Column Wall: true
+  Disable clipping on screen edge of Tall Zig Zag Room Wall: true
+  Enable debug mode: false
+  Normalize special effects: true
+  Normalize room connections: true
+  Normalize sounds: true
+  Normalize Ferryman Gate: true
+  Preserve unsaved map data: None
+  Prevent softlocks related to Death cutscene in Castle Entrance: true
+  Prevent softlocks related to Door behind Scylla: true
+  Shift wall in Plaque Room With Breakable Wall away from screen edge: true
+  Shuffle Pitch Black Spike Maze: false
+  Skip Maria cutscene in Alchemy Laboratory: true
+Quest reward shuffler:
+  - Description: Shuffle significant location checks
+    Steps:
+      - Action: Shuffle Quest Rewards
+        Match:
+          Sources - Tags (All):
+            - Significant
+            - Location Check
+    Notes: {}
+  - Description: Shuffle optional location checks
+    Steps:
+      - Action: Shuffle Quest Rewards
+        Match:
+          Sources - Tags (All):
+            - Location Check
+          Sources - Tags (None):
+            - Significant
+    Notes: {}
+  - Description: Shuffle enemy drops
+    Steps:
+      - Action: Shuffle Quest Rewards
+        Match:
+          Sources - Tags (All):
+            - Enemy Drop
+    Notes: {}
+  - Description: Randomize starting gear and special items
+    Steps:
+      - Action: Populate Pool
+        Name: Pool - Bone Scimitar
+        Match:
+          Targets - Tags (Any):
+            - Accessory
+            - Armor
+            - One-Handed Weapon
+            - Two-Handed Weapon
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Weapon
+        Match:
+          Targets - Tags (Any):
+            - One-Handed Weapon
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Shield
+        Match:
+          Targets - Tags (Any):
+            - Shield
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Head
+        Match:
+          Targets - Tags (Any):
+            - Head
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Body
+        Match:
+          Targets - Tags (Any):
+            - Body
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Cloak
+        Match:
+          Targets - Tags (Any):
+            - Cloak
+      - Action: Populate Pool
+        Name: Pool - Starting Gear - Accessory
+        Match:
+          Targets - Tags (Any):
+            - Accessory
+      - Action: Populate Pool
+        Name: Pool - Prologue Reward - Consumable
+        Match:
+          Targets - Tags (Any):
+            - Consumable
+      - Action: Populate Pool
+        Name: Pool - Name Code - Accessory
+        Match:
+          Targets - Tags (Any):
+            - Accessory
+      - Action: Populate Pool
+        Name: Pool - Name Code - Armor
+        Match:
+          Targets - Tags (Any):
+            - Body
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Names (Any):
+            - Special - Guaranteed Drop (Bone Scimitar, Copper)
+            - Special - Guaranteed Drop (Bone Scimitar, Green)
+        Selection:
+          Pool: Pool - Bone Scimitar
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Names (Any):
+            - Special - Starting Equipment (Alucard Sword)
+        Selection:
+          Pool: Pool - Starting Gear - Weapon
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Names (Any):
+            - Special - Starting Equipment (Alucard Shield)
+        Selection:
+          Pool: Pool - Starting Gear - Shield
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Names (Any):
+            - Special - Starting Equipment (Dragon Helm)
+        Selection:
+          Pool: Pool - Starting Gear - Head
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Names (Any):
+            - Special - Starting Equipment (Alucard Mail)
+        Selection:
+          Pool: Pool - Starting Gear - Body
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Names (Any):
+            - Special - Starting Equipment (Twilight Cloak)
+        Selection:
+          Pool: Pool - Starting Gear - Cloak
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Names (Any):
+            - Special - Starting Equipment (Necklace of J)
+        Selection:
+          Pool: Pool - Starting Gear - Accessory
+          Method: Random Without Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Names (Any):
+            - Special - Prologue Bonus Equipment (Potion)
+            - Special - Prologue Bonus Equipment (Heart Refresh)
+            - Special - Prologue Bonus Equipment (Neutron Bomb)
+        Selection:
+          Pool: Pool - Prologue Reward - Consumable
+          Method: Random Without Replacement
+    Notes: {}
+Room shuffler:
+  Shuffle rooms within stages: true
+Stage shuffler:
+  Shuffle connections between stages: true
+  Loading room labels: Connection
+Solver:
+  Default skillset: Casual
