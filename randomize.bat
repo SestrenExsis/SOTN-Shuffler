@@ -8,7 +8,7 @@ python lib/SOTN-Patcher/src/sotn_extractor.py "build/patcher/Castlevania - Symph
 python lib/SOTN-Patcher/src/sotn_patcher.py "build/patcher" || goto :error
 python lib/SOTN-Patcher/src/sotn_ppf.py "build/patcher" --data="lib/SOTN-Patcher/data" || goto :error
 python src/shuffler.py "presets/%PRESET%.yaml" "data/solver/stage_validations.yaml" --output="build/shuffler/current-seed.json" --seed=%SEED% --skillset=%SKILLSET% || goto :error
-python lib/SOTN-Patcher/src/sotn_ppf.py "build/patcher" --data="lib/SOTN-Patcher/data/" --changes="build/shuffler/current-seed.json" --ppf="build/patcher/"%SEED%"_"%PRESET%"_"%SKILLSET%"_"%BUILD%.ppf" || goto :error
+python lib/SOTN-Patcher/src/sotn_ppf.py "build/patcher" --data="lib/SOTN-Patcher/data/" --changes="build/shuffler/current-seed.json" --ppf="build/patcher/"%SEED%"_"%PRESET%"_"%SKILLSET%"_"%BUILD%".ppf" || goto :error
 
 goto :EOF
 
