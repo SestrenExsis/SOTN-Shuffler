@@ -825,6 +825,8 @@ if __name__ == '__main__':
         }
         if quest_rewards is not None:
             changes['Quest Rewards'] = quest_rewards
+        for change_key in settings.get('Changes', {}):
+            changes[change_key] = settings['Changes'][change_key]
         stages['Warp Rooms']['Stage Top'] = 0
         stages['Warp Rooms']['Stage Left'] = 0
         # Initialize the castle map drawing grid
