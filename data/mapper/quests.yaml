@@ -8421,6 +8421,7 @@ Targets:
   Relic - Skill of Wolf:
     Outcomes:
       Progression - Wolf Charge Attack: true
+      Progression - Wolf Swim Movement: true
       Relic - Skill of Wolf: true
     Tags:
       - Relic
