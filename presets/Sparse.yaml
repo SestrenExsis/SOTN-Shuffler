@@ -5,7 +5,7 @@ Info:
     - Power of Mist is banned
     - Good quality items are banned
     - Poor quality items are very common
-    - Enemies will only drop small amounts of money
+    - Enemies (with a couple notable exceptions) will not drop items
 Options:
   Assign Power of Wolf relic a unique ID: true
   Clock hands show minutes and seconds instead of hours and minutes: false

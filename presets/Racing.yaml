@@ -2,7 +2,14 @@
 Info:
   Name: Racing
   Description:
-    - TODO(sestren) - Add a description for the Racing preset
+    - This preset is designed to present as fair a playing field as possible when racing against others playing the same seed
+    - Rooms within a stage are shuffled where possible
+    - The connections between stages are shuffled
+    - Relic locations are shuffled
+    - Item locations are shuffled
+    - Enemy drops are shuffled, but the base enemy drop rate has been tripled
+    - Starting gear is randomized, but the overall quality of starting gear is reduced
+    - Any consumables found will congregate around a smaller subset of possible consumables, resulting in larger stacks of the same consumables
 Options:
   Assign Power of Wolf relic a unique ID: true
   Clock hands show minutes and seconds instead of hours and minutes: true
