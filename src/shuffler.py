@@ -160,8 +160,9 @@ def shuffle_teleporters(teleporters, rng) -> dict:
         # NOTE(sestren): Disallow requiring pre-Shop Library Card to open Shortcut to Warp Rooms
         ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', 'Long Library, Fake Room with Teleporter to Outer Wall'),
         # NOTE(sestren): Disallow requiring one-way paths to open Shortcut to Warp Rooms
-        ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', "Royal Chapel, Fake Room with Teleporter to Olrox's Quarters"),
+        ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', "Catacombs, Fake Room with Teleporter to Abandoned Mine"),
         ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', "Colosseum, Fake Room with Teleporter to Olrox's Quarters"),
+        ('Castle Entrance, Fake Room with Teleporter to Warp Rooms', "Royal Chapel, Fake Room with Teleporter to Olrox's Quarters"),
     }
     for (source_a, source_b) in forbidden_links:
         # print((source_a, source_b))
@@ -482,12 +483,14 @@ if __name__ == '__main__':
         if option_key in (
             'Assign Power of Wolf relic a unique ID',
             'Clock hands show minutes and seconds instead of hours and minutes',
+            'Color-code each stage on the map',
             'Disable clipping on screen edge of Demon Switch Wall',
             'Disable clipping on screen edge of Left Gear Room Wall',
             'Disable clipping on screen edge of Pendulum Room Wall',
             'Disable clipping on screen edge of Snake Column Wall',
             'Disable clipping on screen edge of Tall Zig Zag Room Wall',
             'Enable debug mode',
+            'Normalize Ferryman Gate',
             'Normalize room connections',
             'Normalize sounds',
             'Normalize special effects',

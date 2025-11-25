@@ -145,11 +145,13 @@ class Game:
             'dc': 'Relic - Demon Card',
             'gb': 'Relic - Gravity Boots',
             'hg': 'Item - Holy Glasses',
+            'hs': 'Relic - Holy Symbol',
             'jo': 'Relic - Jewel of Open',
             'ls': 'Relic - Leap Stone',
             'rg': 'Item - Gold Ring',
             'rs': 'Item - Silver Ring',
             'sb': 'Item - Spike Breaker',
+            'st': 'Relic - Merman Statue',
         }
         progressions = []
         for progression_code in sorted(chars):
