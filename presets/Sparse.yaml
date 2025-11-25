@@ -5,7 +5,7 @@ Info:
     - Power of Mist is banned
     - Good quality items are banned
     - Poor quality items are very common
-    - Enemies will only drop small amounts of money
+    - Enemies (with a couple notable exceptions) will not drop items
 Options:
   Assign Power of Wolf relic a unique ID: true
   Clock hands show minutes and seconds instead of hours and minutes: false
@@ -26,6 +26,17 @@ Options:
   Shift wall in Plaque Room With Breakable Wall away from screen edge: true
   Shuffle Pitch Black Spike Maze: false
   Skip Maria cutscene in Alchemy Laboratory: true
+Changes:
+  Base Drop Rates:
+    - Stage: Global
+      Index: 1
+      Value: 0
+    - Stage: Global
+      Index: 2
+      Value: 0
+    - Stage: Global
+      Index: 3
+      Value: 0
 Quest reward shuffler:
   - Description: Shuffle significant location checks
     Steps:
