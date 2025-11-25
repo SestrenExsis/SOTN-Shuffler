@@ -25,7 +25,6 @@ Adjectives:
   - Azure
   - Baggy
   - Balmy
-  - Banal
   - Basic
   - Beady
   - Beige
@@ -46,52 +45,139 @@ Adjectives:
   - Crisp
   - Crude
   - Cruel
+  - Daffy
   - Dark
+  - Dead
+  - Dear
+  - Deft
+  - Dense
+  - Dire
   - Dizzy
+  - Dour
+  - Dusty
+  - Eager
   - Easy
   - Edgy
+  - Eerie
+  - Elite
   - Empty
   - Epic
   - Even
   - Evil
+  - Exact
   - Fancy
+  - Faint
+  - Fair
   - Fast
   - Fiery
+  - First
+  - Free
   - Funny
+  - Fuzzy
   - Giddy
   - Glad
   - Glum
+  - Gold
+  - Grand
+  - Great
+  - Green
   - Goofy
   - Grimy
+  - Happy
+  - Harsh
+  - Hasty
+  - Hazy
+  - Heavy
+  - Hefty
   - Holy
   - Hyper
   - Icy
   - Ideal
   - Idle
+  - Inert
   - Jolly
+  - Jumpy
   - Keen
+  - Kind
   - Light
   - Last
+  - Late
+  - Lazy
+  - Livid
+  - Loud
+  - Loyal
+  - Lucky
+  - Mad
+  - Magic
+  - Manic
+  - Mean
+  - Meek
+  - Messy
+  - Mild
   - Misty
   - Mock
+  - Naive
+  - Neat
   - Nice
+  - Nifty
   - Noble
+  - Noisy
   - Okay
+  - Petty
   - Phony
   - Picky
+  - Pithy
+  - Plain
   - Quick
   - Quiet
   - Rainy
   - Rapid
   - Rare
+  - Risky
+  - Rocky
+  - Roomy
+  - Royal
+  - Rude
+  - Sad
+  - Safe
+  - Sandy
+  - Sane
+  - Scary
+  - Shady
+  - Shaky
+  - Sharp
+  - Shiny
+  - Sick
+  - Silky
   - Silly
+  - Slick
+  - Smoky
+  - Smug
+  - Snowy
   - Soft
   - Spicy
+  - Stern
+  - Stoic
+  - Stray
+  - Sunny
+  - Super
+  - Sweet
+  - Swift
+  - Tacky
+  - Tall
+  - Tame
+  - Tidy
   - Toxic
   - Ultra
+  - Upset
+  - Vain
+  - Vile
+  - Vital
   - Vivid
   - Vocal
   - Wacky
+  - Warm
+  - Wary
   - Wavy
   - Weak
   - Weary
@@ -99,6 +185,7 @@ Adjectives:
   - Wild
   - Wily
   - Wise
+  - Witty
 Nouns:
   - Abode
   - Abbey
@@ -134,7 +221,6 @@ Nouns:
   - Aroma
   - Array
   - Arrow
-  - Asset
   - Atlas
   - Atoll
   - Atom
@@ -204,10 +290,26 @@ Nouns:
   - Devil
   - Demon
   - Dove
+  - Druid
+  - Dryad
+  - Duel
   - Error
   - Field
   - Fiend
+  - Fury
+  - Game
+  - Gecko
+  - Geese
+  - Genie
+  - Geode
   - Ghost
+  - Ghoul
+  - Giant
+  - Gift
+  - Gizmo
+  - Glen
+  - Grave
+  - Harpy
   - Hobby
   - Human
   - Miser
@@ -224,8 +326,15 @@ Nouns:
   - Tiger
   - Tomb
   - Trio
+  - Trout
+  - Truck
+  - Tulip
   - Tunic
+  - Tutor
+  - Twig
+  - Twin
   - Umbra
+  - Usher
   - Veil
   - Venom
   - Vial
@@ -254,4 +363,5 @@ Nouns:
   - Yell
   - Yoga
   - Zebra
+  - zest
   - Zone

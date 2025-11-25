@@ -134,6 +134,12 @@ Commands:
             Ground - Bat Form:
                 Section: Ground
                 Progression - Bat Transformation: true
+            Ground - Wolf Waterfall Climb:
+                Section: Ground
+                Progression - Protection From Water: true
+                Progression - Wolf Swim Movement: true
+                Progression - Wolf Transformation: true
+                Technique - Wolf Waterfall Climb: true
             Ground - Multiple Gravity Jumps:
                 Section: Ground
                 Progression - Double Jump: true

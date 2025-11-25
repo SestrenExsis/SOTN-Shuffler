@@ -1,4 +1,8 @@
 
+IF [%1]==[] goto :error
+IF [%2]==[] goto :error
+IF [%3]==[] goto :error
+
 set PRESET=%1
 set SKILLSET=%2
 set SEED=%3

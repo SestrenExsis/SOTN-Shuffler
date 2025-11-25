@@ -2,7 +2,14 @@
 Info:
   Name: Racing
   Description:
-    - TODO(sestren) - Add a description for the Racing preset
+    - This preset is designed to present as fair a playing field as possible when racing against others playing the same seed
+    - Rooms within a stage are shuffled where possible
+    - The connections between stages are shuffled
+    - Relic locations are shuffled
+    - Item locations are shuffled
+    - Enemy drops are shuffled, but the base enemy drop rate has been tripled
+    - Starting gear is randomized, but the overall quality of starting gear is reduced
+    - Any consumables found will congregate around a smaller subset of possible consumables, resulting in larger stacks of the same consumables
 Options:
   Assign Power of Wolf relic a unique ID: true
   Clock hands show minutes and seconds instead of hours and minutes: true
@@ -23,6 +30,17 @@ Options:
   Shift wall in Plaque Room With Breakable Wall away from screen edge: true
   Shuffle Pitch Black Spike Maze: false
   Skip Maria cutscene in Alchemy Laboratory: true
+Changes:
+  Base Drop Rates:
+    - Stage: Global
+      Index: 1
+      Value: 192
+    - Stage: Global
+      Index: 2
+      Value: 96
+    - Stage: Global
+      Index: 3
+      Value: 48
 Quest reward shuffler:
   - Description: Shuffle significant location checks
     Steps:
@@ -50,7 +68,7 @@ Quest reward shuffler:
       - Relics that are unhelpful to racing are replaced with more helpful ones
   - Description: Shuffle rare enemy drops and optional location checks
     TODO(sestren):
-      - Exclude Manna Prisms and Library Cards from enemy drops
+      - Exclude Manna Prisms, Life Max-Ups, Heart Max-Ups, and Library Cards from enemy drops
     Steps:
       - Action: Populate Pool
         Name: Pool - Bomb
@@ -94,6 +112,7 @@ Quest reward shuffler:
             - High Priority - Racing
           Targets - Tags (None):
             - Relic
+            - Upgrade
       - Action: Populate Pool
         Name: Pool - Moderate Quality
         Match:
@@ -110,6 +129,7 @@ Quest reward shuffler:
             - High Priority - Racing
             - Low Priority - Racing
             - Relic
+            - Upgrade
       - Action: Populate Pool
         Name: Pool - Low Quality
         Match:
@@ -117,6 +137,7 @@ Quest reward shuffler:
             - Low Priority - Racing
           Targets - Tags (None):
             - Relic
+            - Upgrade
       - Action: Populate Pool
         Name: Pool - Random Quality
         List:

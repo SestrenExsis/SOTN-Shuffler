@@ -1,16 +1,18 @@
 ---
 Casual:
+ - Option - Permit Logical Risks
  - Technique - Gravity Jump
  - Technique - Powered Mist Travel (Short)
  - Technique - Blade Dash
  - Technique - Rising Uppercut
 Vanilla:
+ - Option - Permit Logical Risks
  - Technique - Gravity Jump
  - Technique - Powered Mist Travel (Short)
  - Technique - Blade Dash
  - Technique - Rising Uppercut
- - Option - Permit Logical Risks
 Veteran:
+ - Option - Permit Logical Risks
  - Technique - Book Jump (Forgiving)
  - Technique - Box Puzzle
  - Technique - Candle Dive Kick (Forgiving)
@@ -36,6 +38,7 @@ Veteran:
  - Technique - Rising Uppercut
  - Technique - Chained Rising Uppercuts
 Challenge:
+ - Option - Permit Logical Risks
  - Technique - Book Jump (Forgiving)
  - Technique - Book Jump (Precise)
  - Technique - Box Puzzle
@@ -64,10 +67,12 @@ Challenge:
  - Technique - Wolf-Mist Rise (Short)
  - Technique - Wolf-Mist Rise (Long)
  - Technique - Wolf Slope Jump
+ - Technique - Wolf Waterfall Climb
  - Technique - Blade Dash
  - Technique - Rising Uppercut
  - Technique - Chained Rising Uppercuts
 Extreme:
+ - Option - Permit Logical Risks
  - Technique - Book Jump (Forgiving)
  - Technique - Book Jump (Precise)
  - Technique - Box Puzzle
@@ -102,10 +107,12 @@ Extreme:
  - Technique - Wolf-Mist Rise (Very Long)
  - Technique - Wolf Slope Jump
  - Technique - Wolf Through Clock Tower Courtyard
+ - Technique - Wolf Waterfall Climb
  - Technique - Blade Dash
  - Technique - Rising Uppercut
  - Technique - Chained Rising Uppercuts
 Damageless:
+ - Option - Permit Logical Risks
  - Rule - Damageless
  - Technique - Book Jump (Forgiving)
  - Technique - Box Puzzle
@@ -132,4 +139,5 @@ Damageless:
  - Technique - Rising Uppercut
  - Technique - Chained Rising Uppercuts
 Glitched:
+ - Option - Permit Logical Risks
  - Rule - Glitches Allowed
