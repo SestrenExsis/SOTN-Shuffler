@@ -507,6 +507,7 @@ if __name__ == '__main__':
     rng = {}
     # (initial_seed, rng, children)
     rng['Global'] = random.Random(initial_seed)
+    original_mapper_core = mapper.MapperData().get_core()
     while True:
         local_seed = rng['Global'].randint(MIN_SEED, MAX_SEED)
         rng['Local'] = random.Random(local_seed)
@@ -546,8 +547,9 @@ if __name__ == '__main__':
             'Underground Caverns': {},
             'Warp Rooms': {},
         }
-        mapper_core = mapper.MapperData().get_core()
+        mapper_core = copy.deepcopy(original_mapper_core)
         # Calculate teleporter changes
+        print('R', end='', flush=True)
         teleporters = {}
         # Generate the seed regardless, so RNG can be independent of the setting
         if settings.get('Stage shuffler', {}).get('Shuffle connections between stages', False):
@@ -568,12 +570,14 @@ if __name__ == '__main__':
                     'Room': target['Stage'] + ', ' + target['Room'],
                     'Stage': target['Stage'],
                 }
+        print('Q', end='', flush=True)
         # Shuffle quest rewards (such as Relics)
         quest_shuffler_seed = rng['Quests'].randint(MIN_SEED, MAX_SEED)
         quest_rewards = shuffle_quests.process_operations(mapper_core['Quests'], quest_shuffler_seed, settings.get('Quest reward shuffler', {}))
         for quest_source_name in list(sorted(quest_rewards)):
             quest_target_name = quest_rewards[quest_source_name]
             mapper_core['Quests']['Sources'][quest_source_name]['Target Reward'] = quest_target_name
+        print('S', end='', flush=True)
         # print('Set starting seeds for each stage')
         for stage_name in sorted(stages.keys()):
             next_seed = rng['Stages'].randint(MIN_SEED, MAX_SEED)
@@ -748,6 +752,7 @@ if __name__ == '__main__':
                         'X': 256 * room_cols - room_left,
                         'Y': 256 * room_rows - room_top,
                     }
+        print('M', end='', flush=True)
         # Randomly place down stages one at a time
         stage_names = list(sorted(stages.keys() - {'Warp Rooms', 'Castle Center'}))
         rng['Castle Map'].shuffle(stage_names)
@@ -819,6 +824,7 @@ if __name__ == '__main__':
         if not valid_ind:
             # print('Gave up trying to find a valid arrangement of the stages; starting over from scratch')
             continue
+        print('C', end='', flush=True)
         changes = {
             'Boss Teleporters': {},
             'Castle Map': [],
@@ -917,7 +923,7 @@ if __name__ == '__main__':
                             }
                             break
                 if len(warp_room_cells.intersection(prev_cells)) > 0:
-                    print('W', end='', flush=True)
+                    print('w', end='', flush=True)
                     valid_ind = False
                     break
             for room_name in stage_changes['Rooms']:
@@ -955,6 +961,7 @@ if __name__ == '__main__':
                             pass
         if not valid_ind:
             continue
+        print('L', end='', flush=True)
         # Draw connection labels onto the loading rooms of the map
         if settings.get('Stage shuffler', {}).get('Loading room labels', 'None') != 'None':
             instructions = []
@@ -1043,6 +1050,7 @@ if __name__ == '__main__':
                 'Top': source_top,
                 'Left': source_left,
             }
+        print('V', end='', flush=True)
         # print('*********')
         validations = {
             '0 - Long Library to Castle Entrance': {
