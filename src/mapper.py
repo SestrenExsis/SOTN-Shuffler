@@ -11,7 +11,7 @@ import random
 import yaml
 
 class RoomNode:
-    def __init__(self, room, node_name: str, row: int, column: int, edge: str, type: str):
+    def __init__(self, room, node_name: str, row: int, column: int, edge: str, type: str, required_attributes: set):
         self.room = room
         self.node_name = node_name
         self.row = row
@@ -20,6 +20,7 @@ class RoomNode:
         self.type = type
         self.top = self.row + (1 if self.edge == 'Bottom' else 0)
         self.left = self.column + (1 if self.edge == 'Right' else 0)
+        self.required_attributes = required_attributes
         self.direction = None
         if edge in ('Top', 'Bottom'):
             self.direction = 'Right'
@@ -63,6 +64,14 @@ class RoomNode:
             result = (self.type == node.type)
         return result
     
+    def matches_attributes(self, node=None) -> bool:
+        result = True
+        if len(self.required_attributes) > 0 and node is not None and 'Immutable Entity Layout' in node.room.attributes:
+            result = False
+        if node is not None and len(node.required_attributes) > 0 and 'Immutable Entity Layout' in self.room.attributes:
+            result = False
+        return result
+    
     def get_facing_cell(self) -> set[int, int]:
         top = self.room.top + self.top
         left = self.room.left + self.left
@@ -103,13 +112,14 @@ class Room:
         self.left = left
         self.rows = room_data['Rows']
         self.columns = room_data['Columns']
+        self.attributes = set(room_data.get('Attributes', []))
         self.empty_cells = set()
         for cell_data in room_data['Empty Cells']:
             self.empty_cells.add((cell_data['Row'], cell_data['Column']))
         self.nodes = {}
         for (node_name, node_data) in room_data['Nodes'].items():
             node = RoomNode(
-                self, node_name, node_data['Row'], node_data['Column'], node_data['Edge'], node_data['Type']
+                self, node_name, node_data['Row'], node_data['Column'], node_data['Edge'], node_data['Type'], node_data.get('Required Attributes', {})
             )
             self.nodes[node_name] = node
     
@@ -173,7 +183,11 @@ class RoomSet:
             if len(sides) == 1:
                 side = list(sides)[0]
                 node = sides[side][0]
-                if node.matches_direction_and_edge(matching_node) and (not match_node_type or node.matches_type(matching_node)):
+                if (
+                    node.matches_direction_and_edge(matching_node) and
+                    node.matches_attributes(matching_node) and
+                    (not match_node_type or node.matches_type(matching_node))
+                ):
                     result.append(node)
         result.sort()
         return result
@@ -1372,7 +1386,8 @@ class Mapper:
                         for (target_node_name, target_node) in target_room.nodes.items():
                             matches_direction_and_edge_ind = target_node.matches_direction_and_edge(source_node)
                             matches_position_ind = target_node.matches_position(source_node)
-                            if matches_direction_and_edge_ind and matches_position_ind:
+                            matches_attributes_ind = target_node.matches_attributes(source_node)
+                            if matches_direction_and_edge_ind and matches_position_ind and matches_attributes_ind:
                                 if not target_node.matches_type(source_node):
                                     mismatched_node_types.add((source_room_name, source_node_name, target_room_name, target_node_name))
                                 work.appendleft(target_room_name)

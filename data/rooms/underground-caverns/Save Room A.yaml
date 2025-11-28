@@ -5,6 +5,8 @@ Index: 34
 Columns: 1
 Rows: 1
 Empty Cells: {}
+Attributes:
+    - Immutable Entity Layout
 Nodes:
     Right Passage:
         Type: "######....######"

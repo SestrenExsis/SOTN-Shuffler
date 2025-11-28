@@ -13,7 +13,7 @@ Nodes:
         Edge: Left
         Entry Section: Upper-Left Ledge
         Exit Section: Upper-Left Ledge
-        Requirements:
+        Required Attributes:
             - Waterfall Sound Entity
     Upper-Right Passage:
         Type: "######....######"
@@ -22,7 +22,7 @@ Nodes:
         Edge: Right
         Entry Section: Upper-Right Ledge
         Exit Section: Upper-Right Ledge
-        Requirements:
+        Required Attributes:
             - Waterfall Sound Entity
     Lower-Left Passage:
         Type: "######....######"
@@ -31,7 +31,7 @@ Nodes:
         Edge: Left
         Entry Section: Ground
         Exit Section: Ground
-        Requirements:
+        Required Attributes:
             - Waterfall Sound Entity
     Lower-Right Passage:
         Type: "######....######"
@@ -40,7 +40,7 @@ Nodes:
         Edge: Right
         Entry Section: Behind Waterfall
         Exit Section: Behind Waterfall
-        Requirements:
+        Required Attributes:
             - Waterfall Sound Entity
 Commands:
     Move - Behind Waterfall:
