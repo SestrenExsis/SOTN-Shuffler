@@ -42,6 +42,12 @@ def populate_pool(quests, pools, initial_seed, step):
                     else:
                         match_ind = False
                         break
+                elif rule_name == 'Targets - Names (None)':
+                    if quest_target_name not in set(rule_data):
+                        pass
+                    else:
+                        match_ind = False
+                        break
                 else:
                     raise Exception(f'Invalid rule: {rule_name}')
             if match_ind:
@@ -114,6 +120,12 @@ def remap_quest_rewards(quests, pools, initial_seed, step):
                     break
             elif rule_name == 'Targets - Names (Any)':
                 if quest_target_name in set(rule_data):
+                    pass
+                else:
+                    match_ind = False
+                    break
+            elif rule_name == 'Targets - Names (None)':
+                if quest_target_name not in set(rule_data):
                     pass
                 else:
                     match_ind = False
@@ -199,6 +211,12 @@ def shuffle_quest_rewards(quests, initial_seed, step):
                     break
             elif rule_name == 'Targets - Names (Any)':
                 if quest_target_name in set(rule_data):
+                    pass
+                else:
+                    match_ind = False
+                    break
+            elif rule_name == 'Targets - Names (None)':
+                if quest_target_name not in set(rule_data):
                     pass
                 else:
                     match_ind = False

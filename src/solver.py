@@ -615,7 +615,7 @@ if __name__ == '__main__':
     Usage
     python solver.py
     '''
-    # TODO(sestren): Allow testing of single stages with requiring full seed generation
+    # TODO(sestren): Allow testing of single stages without requiring full seed generation
     parser = argparse.ArgumentParser()
     parser.add_argument('changes', help='Input a filepath to the changes JSON file', type=str)
     args = parser.parse_args()

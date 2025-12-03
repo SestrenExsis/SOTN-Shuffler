@@ -45,19 +45,39 @@ Quest reward shuffler:
   - Description: Shuffle significant location checks
     Steps:
       - Action: Populate Pool
-        Name: Pool - Major Relic
-        Match:
-          Targets - Tags (All):
-            - Relic
-          Targets - Tags (None):
-            - Low Priority - Racing
+        Name: Pool - More Helpful Reward
+        List:
+          - Item - Spike Breaker
+          - Item - Silver Ring
+          - Item - Gold Ring
+          - Relic - Cube of Zoe
+          - Relic - Demon Card
+          - Relic - Echo of Bat
+          - Relic - Form of Mist
+          - Relic - Form of Mist
+          - Relic - Gravity Boots
+          - Relic - Gravity Boots
+          - Relic - Holy Symbol
+          - Relic - Jewel of Open
+          - Relic - Leap Stone
+          - Relic - Leap Stone
+          - Relic - Merman Statue
+          - Relic - Power of Mist
+          - Relic - Power of Wolf
+          - Relic - Skill of Wolf
+          - Relic - Soul of Bat
+          - Relic - Soul of Bat
+          - Relic - Soul of Wolf
+          - Relic - Soul of Wolf
       - Action: Remap Quest Rewards
         Match:
           Sources - Tags (All):
-            - Relic
+            - Significant
+            - Location Check
+          Targets - Tags (All):
             - Low Priority - Racing
         Selection:
-          Pool: Pool - Major Relic
+          Pool: Pool - More Helpful Reward
           Method: Random Without Replacement
       - Action: Shuffle Quest Rewards
         Match:
@@ -67,8 +87,6 @@ Quest reward shuffler:
     Notes:
       - Relics that are unhelpful to racing are replaced with more helpful ones
   - Description: Shuffle rare enemy drops and optional location checks
-    TODO(sestren):
-      - Exclude Manna Prisms, Life Max-Ups, Heart Max-Ups, and Library Cards from enemy drops
     Steps:
       - Action: Populate Pool
         Name: Pool - Bomb
@@ -77,6 +95,7 @@ Quest reward shuffler:
             - Bomb
           Targets - Tags (None):
             - Relic
+            - Banned - Racing
       - Action: Populate Pool
         Name: Pool - Thrown
         Match:
@@ -84,6 +103,7 @@ Quest reward shuffler:
             - Thrown
           Targets - Tags (None):
             - Relic
+            - Banned - Racing
       - Action: Populate Pool
         Name: Pool - Food
         Match:
@@ -91,6 +111,7 @@ Quest reward shuffler:
             - Food
           Targets - Tags (None):
             - Relic
+            - Banned - Racing
       - Action: Populate Pool
         Name: Pool - Buff
         Match:
@@ -98,6 +119,7 @@ Quest reward shuffler:
             - Buff
           Targets - Tags (None):
             - Relic
+            - Banned - Racing
       - Action: Populate Pool
         Name: Pool - Healing
         Match:
@@ -105,16 +127,22 @@ Quest reward shuffler:
             - Healing
           Targets - Tags (None):
             - Relic
+            - Banned - Racing
       - Action: Populate Pool
-        Name: Pool - High Quality
-        Match:
-          Targets - Tags (All):
-            - High Priority - Racing
-          Targets - Tags (None):
-            - Relic
-            - Upgrade
+        Name: Pool - Specific Location Check
+        List:
+          - Item - Heart Max-Up
+          - Item - Library Card
+          - Item - Library Card
+          - Item - Library Card
+          - Item - Library Card
+          - Item - Life Max-Up
+          - Item - Manna Prism
+          - Item - Manna Prism
+          - Item - Manna Prism
+          - Item - Manna Prism
       - Action: Populate Pool
-        Name: Pool - Moderate Quality
+        Name: Pool - Miscellaneous Location Check
         Match:
           Targets - Tags (Any):
             - Accessory
@@ -122,35 +150,80 @@ Quest reward shuffler:
             - Consumable
             - Gem
             - One-Handed Weapon
-            - Subweapon
             - Two-Handed Weapon
             - Upgrade
           Targets - Tags (None):
-            - High Priority - Racing
-            - Low Priority - Racing
             - Relic
-            - Upgrade
+            - Banned - Racing
       - Action: Populate Pool
-        Name: Pool - Low Quality
+        Name: Pool - Location Check
+        List:
+          - Pool - Specific Location Check
+          - Pool - Miscellaneous Location Check
+          - Pool - Miscellaneous Location Check
+          - Pool - Miscellaneous Location Check
+      - Action: Populate Pool
+        Name: Pool - Enemy Drop
         Match:
-          Targets - Tags (All):
-            - Low Priority - Racing
+          Targets - Tags (Any):
+            - Accessory
+            - Armor
+            - Consumable
+            - One-Handed Weapon
+            - Subweapon
+            - Two-Handed Weapon
           Targets - Tags (None):
             - Relic
+            - Gem
             - Upgrade
-      - Action: Populate Pool
-        Name: Pool - Random Quality
-        List:
-          - Pool - Low Quality
-          - Pool - Low Quality
-          - Pool - Moderate Quality
-          - Pool - Moderate Quality
-          - Pool - Moderate Quality
-          - Pool - Moderate Quality
-          - Pool - Moderate Quality
-          - Pool - Moderate Quality
-          - Pool - Moderate Quality
-          - Pool - High Quality
+            - Banned - Racing
+          Targets - Names (None):
+            - Item - Library Card
+            - Item - Manna Prism
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Tags (Any):
+            - Location Check
+          Sources - Tags (None):
+            - Significant
+          Targets - Tags (None):
+            - Bomb
+            - Buff
+            - Food
+            - Healing
+            - Thrown
+        Selection:
+          Pool: Pool - Location Check
+          Method: Random With Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Target Reward (Any):
+            - Pool - Specific Location Check
+        Selection:
+          Pool: Pool - Specific Location Check
+          Method: Random With Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Target Reward (Any):
+            - Pool - Miscellaneous Location Check
+        Selection:
+          Pool: Pool - Miscellaneous Location Check
+          Method: Random With Replacement
+      - Action: Remap Quest Rewards
+        Match:
+          Sources - Tags (Any):
+            - Enemy Drop
+          Sources - Tags (None):
+            - Significant
+          Targets - Tags (None):
+            - Bomb
+            - Buff
+            - Food
+            - Healing
+            - Thrown
+        Selection:
+          Pool: Pool - Enemy Drop
+          Method: Random With Replacement
       - Action: Remap Quest Rewards
         Match:
           Sources - Tags (Any):
@@ -211,58 +284,17 @@ Quest reward shuffler:
         Selection:
           Pool: Pool - Healing
           Method: Random With Repetition
-      - Action: Remap Quest Rewards
-        Match:
-          Sources - Tags (Any):
-            - Location Check
-            - Enemy Drop
-          Sources - Tags (None):
-            - Significant
-          Targets - Tags (All):
-            - Low Priority - Racing
-        Selection:
-          Pool: Pool - Random Quality
-          Method: Random With Replacement
-      - Action: Remap Quest Rewards
-        Match:
-          Sources - Tags (Any):
-            - Location Check
-            - Enemy Drop
-          Sources - Tags (None):
-            - Significant
-          Sources - Target Reward (Any):
-            - Pool - Low Quality
-        Selection:
-          Pool: Pool - Low Quality
-          Method: Random With Replacement
-      - Action: Remap Quest Rewards
-        Match:
-          Sources - Tags (Any):
-            - Location Check
-            - Enemy Drop
-          Sources - Tags (None):
-            - Significant
-          Sources - Target Reward (Any):
-            - Pool - Moderate Quality
-        Selection:
-          Pool: Pool - Moderate Quality
-          Method: Random With Replacement
-      - Action: Remap Quest Rewards
-        Match:
-          Sources - Tags (Any):
-            - Location Check
-            - Enemy Drop
-          Sources - Tags (None):
-            - Significant
-          Sources - Target Reward (Any):
-            - Pool - High Quality
-        Selection:
-          Pool: Pool - High Quality
-          Method: Random With Replacement
       - Action: Shuffle Quest Rewards
         Match:
           Sources - Tags (Any):
             - Location Check
+          Sources - Tags (None):
+            - Significant
+          Targets - Tags (None):
+            - Relic
+      - Action: Shuffle Quest Rewards
+        Match:
+          Sources - Tags (Any):
             - Enemy Drop
           Sources - Tags (None):
             - Significant
@@ -271,7 +303,6 @@ Quest reward shuffler:
     Notes:
       - Enemy drops and optional location checks are mixed together
       - Items are condensed into a smaller variety of items
-      - Items that are unhelpful to racing are likely to be replaced by a more helpful item
   - Description: Randomize starting gear and special items
     Steps:
       - Action: Populate Pool
@@ -284,6 +315,7 @@ Quest reward shuffler:
             - Two-Handed Weapon
           Targets - Tags (None):
             - Quality - Good
+            - Banned - Racing
       - Action: Populate Pool
         Name: Pool - Starting Gear - Weapon
         Match:
@@ -291,6 +323,7 @@ Quest reward shuffler:
             - One-Handed Weapon
           Targets - Tags (None):
             - Quality - Good
+            - Banned - Racing
       - Action: Populate Pool
         Name: Pool - Starting Gear - Shield
         Match:
@@ -298,6 +331,7 @@ Quest reward shuffler:
             - Shield
           Targets - Tags (None):
             - Quality - Good
+            - Banned - Racing
       - Action: Populate Pool
         Name: Pool - Starting Gear - Head
         Match:
@@ -305,6 +339,7 @@ Quest reward shuffler:
             - Head
           Targets - Tags (None):
             - Quality - Good
+            - Banned - Racing
       - Action: Populate Pool
         Name: Pool - Starting Gear - Body
         Match:
@@ -312,6 +347,7 @@ Quest reward shuffler:
             - Body
           Targets - Tags (None):
             - Quality - Good
+            - Banned - Racing
       - Action: Populate Pool
         Name: Pool - Starting Gear - Cloak
         Match:
@@ -319,6 +355,7 @@ Quest reward shuffler:
             - Cloak
           Targets - Tags (None):
             - Quality - Good
+            - Banned - Racing
       - Action: Populate Pool
         Name: Pool - Starting Gear - Accessory
         Match:
@@ -326,21 +363,28 @@ Quest reward shuffler:
             - Accessory
           Targets - Tags (None):
             - Quality - Good
+            - Banned - Racing
       - Action: Populate Pool
         Name: Pool - Prologue Reward - Consumable
         Match:
           Targets - Tags (Any):
             - Consumable
+          Targets - Tags (None):
+            - Banned - Racing
       - Action: Populate Pool
         Name: Pool - Name Code - Accessory
         Match:
           Targets - Tags (Any):
             - Accessory
+          Targets - Tags (None):
+            - Banned - Racing
       - Action: Populate Pool
         Name: Pool - Name Code - Armor
         Match:
           Targets - Tags (Any):
             - Body
+          Targets - Tags (None):
+            - Banned - Racing
       - Action: Remap Quest Rewards
         Match:
           Sources - Names (Any):

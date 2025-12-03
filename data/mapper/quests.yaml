@@ -7260,6 +7260,7 @@ Targets:
       - Accessory
       - Quality - Good
       - Banned - Sparse
+      - Banned - Racing
   Item - Elixir:
     Outcomes:
       Item - Elixir: 1
@@ -7705,7 +7706,7 @@ Targets:
     Tags:
       - Consumable
       - Food
-      - Low Priority - Racing
+      - Banned - Racing
       - Quality - Poor
   Item - Medal:
     Outcomes:
