@@ -551,7 +551,6 @@ if __name__ == '__main__':
         # Calculate teleporter changes
         print('R', end='', flush=True)
         teleporters = {}
-        # Generate the seed regardless, so RNG can be independent of the setting
         if settings.get('Stage shuffler', {}).get('Shuffle connections between stages', False):
             shuffle_teleporters(mapper_core['Teleporters'], rng['Teleporters'])
             for (source_name, source) in mapper_core['Teleporters']['Sources'].items():
@@ -1146,10 +1145,8 @@ if __name__ == '__main__':
             chars.append(' ')
             string_size += 1
         seed_hint = ''.join(chars)
-        changes['Constants'] = {
-            'Message - Richter Mode Instructions 1': seed_hint,
-            'Message - Richter Mode Instructions 2': 'Beta Release 8      ',
-        }
+        changes['Constants']['Message - Richter Mode Instructions 1'] = seed_hint
+        changes['Constants']['Message - Richter Mode Instructions 2'] = 'Beta Release 8      '
         # Normalize room connections
         if settings.get('Options', {}).get('Normalize room connections', False):
             for stage_name in normalizer.stages:

@@ -10,6 +10,7 @@ Info:
     - Enemy drops are shuffled, but the base enemy drop rate has been tripled
     - Starting gear is randomized, but the overall quality of starting gear is reduced
     - Any consumables found will congregate around a smaller subset of possible consumables, resulting in larger stacks of the same consumables
+    - Gear Puzzle has been made simpler
 Options:
   Assign Power of Wolf relic a unique ID: true
   Clock hands show minutes and seconds instead of hours and minutes: true
@@ -41,6 +42,27 @@ Changes:
     - Stage: Global
       Index: 3
       Value: 48
+  Constants:
+    Gear Puzzle Rotation Speed (Clock Tower): 64
+    Gear Puzzle Rotation Speed (Reverse Clock Tower): 64
+    Gear Puzzle Target Rotations (Clock Tower):
+      - Index: 0
+        Value: "0400"
+      - Index: 1
+        Value: "0400"
+      - Index: 2
+        Value: "0400"
+      - Index: 3
+        Value: "0400"
+    Gear Puzzle Target Rotations (Reverse Clock Tower):
+      - Index: 0
+        Value: "0400"
+      - Index: 1
+        Value: "0400"
+      - Index: 2
+        Value: "0400"
+      - Index: 3
+        Value: "0400"
 Quest reward shuffler:
   - Description: Shuffle significant location checks
     Steps:
@@ -48,11 +70,8 @@ Quest reward shuffler:
         Name: Pool - More Helpful Reward
         List:
           - Item - Spike Breaker
-          - Item - Silver Ring
-          - Item - Gold Ring
           - Relic - Cube of Zoe
           - Relic - Demon Card
-          - Relic - Echo of Bat
           - Relic - Form of Mist
           - Relic - Form of Mist
           - Relic - Gravity Boots
@@ -62,9 +81,6 @@ Quest reward shuffler:
           - Relic - Leap Stone
           - Relic - Leap Stone
           - Relic - Merman Statue
-          - Relic - Power of Mist
-          - Relic - Power of Wolf
-          - Relic - Skill of Wolf
           - Relic - Soul of Bat
           - Relic - Soul of Bat
           - Relic - Soul of Wolf
