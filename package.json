@@ -1,0 +1,16 @@
+{
+  "name": "sotn-shuffler",
+  "version": "0.0.0",
+  "description": "A tool for generating patch files for Castlevania: Symphony of the Night (SOTN); meant for use with sotn-patcher",
+  "license": "MIT",
+  "author": "Sestren",
+  "type": "module",
+  "main": "shuffle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "seedrandom": "3.0.5",
+    "yargs": "18.0.0"
+  }
+}
