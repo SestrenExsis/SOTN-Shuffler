@@ -404,7 +404,8 @@ const stages = {
     },
 }
 
-function shuffle(rng, array) {
+function shuffleArray(rng, array) {
+    // Use Fisher-Yates to shuffle an array in-place
     for (let i = array.length - 1; i >= 1; i--) {
         const j = Math.floor(rng() * (i + 1))
         const temp = array[i]
@@ -414,12 +415,93 @@ function shuffle(rng, array) {
     return array
 }
 
+function shuffleStages(rng) {
+    let validInd = false
+    let result
+    while (!validInd) {
+        validInd = true
+        result = {}
+        // Try to match every teleporter with a random valid other teleporter
+        const links = {}
+        Object.keys(teleporters)
+            .forEach((teleporterName) => {
+                links[teleporterName] = null
+            })
+        const linkedStages = {}
+        Object.keys(stages)
+            .forEach((stageName) => {
+                linkedStages[stageName] = new Set()
+            })
+        const teleporterNamesRemaining = new Set(Object.keys(teleporters))
+        const work = new Set()
+        work.add('fromCastleEntranceToAlchemyLaboratory')
+        while (work.size > 0) {
+            const workRemaining = shuffleArray(rng, Array.from(work.values()).sort())
+            const sourceTeleporterName = workRemaining.at(0)
+            work.delete(sourceTeleporterName)
+            const sourceTeleporter = teleporters[sourceTeleporterName]
+            const possibleLinks = Object.keys(teleporters)
+                .filter((targetTeleporterName) => {
+                    const targetTeleporter = teleporters[targetTeleporterName]
+                    return (
+                        teleporterNamesRemaining.has(targetTeleporterName) &&
+                        stages[sourceTeleporter.stage].teleporterNames.length >= targetTeleporter.minimumTargetLinkCount &&
+                        stages[targetTeleporter.stage].teleporterNames.length >= sourceTeleporter.minimumTargetLinkCount &&
+                        sourceTeleporter.stage != targetTeleporter.stage &&
+                        sourceTeleporter.direction != targetTeleporter.direction &&
+                        !sourceTeleporter.forbiddenConnections.has(targetTeleporterName) &&
+                        !targetTeleporter.forbiddenConnections.has(sourceTeleporterName) &&
+                        !linkedStages[sourceTeleporter.stage].has(targetTeleporter.stage) &&
+                        !linkedStages[targetTeleporter.stage].has(sourceTeleporter.stage)
+                    )
+                })
+            if (possibleLinks.length < 1) {
+                validInd = false
+                break
+            }
+            const targetTeleporterName = shuffleArray(rng, possibleLinks.sort()).at(0)
+            const targetTeleporter = teleporters[targetTeleporterName]
+            links[targetTeleporterName] = sourceTeleporterName
+            links[sourceTeleporterName] = targetTeleporterName
+            linkedStages[sourceTeleporter.stage].add(targetTeleporter.stage)
+            linkedStages[targetTeleporter.stage].add(sourceTeleporter.stage)
+            teleporterNamesRemaining.delete(sourceTeleporterName)
+            teleporterNamesRemaining.delete(targetTeleporterName)
+            work.delete(sourceTeleporterName)
+            work.delete(targetTeleporterName)
+            teleporterNamesRemaining
+                .forEach((nextTeleporterName) => {
+                    if (teleporters[nextTeleporterName].stage == targetTeleporter.stage) {
+                        work.add(nextTeleporterName)
+                    }
+                })
+        }
+        if (teleporterNamesRemaining.size > 0) {
+            // console.log(teleporterNamesRemaining.size, Array.from(teleporterNamesRemaining).sort().at(0))
+            validInd = false
+        }
+        result.linkedStages = {}
+        Object.entries(linkedStages)
+            .forEach(([stageName, stageLinks]) => {
+                result.linkedStages[stageName] = Array.from(stageLinks.values()).sort()
+            })
+        result.links = links
+    }
+    return result
+}
+
 const argv = yargs(process.argv.slice(2))
     .command({ // stage
         command: 'stage',
         describe: 'Shuffle connections between stages',
         builder: (yargs) => {
             return yargs
+            .option('extraction', {
+                alias: 'e',
+                describe: 'Path to the aliased extraction file',
+                type: 'string',
+                normalize: true,
+            })
             .option('out', {
                 alias: 'o',
                 describe: 'Path to the output file to create',
@@ -431,80 +513,42 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'Seed to provide for randomization',
                 normalize: true,
             })
-            .demandOption(['out'])
+            .demandOption(['extraction', 'out'])
         },
         handler: (argv) => {
+            const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
             const rng = seedrandom(argv.seed)
-            let validInd = false
-            let shuffleData
-            while (!validInd) {
-                validInd = true
-                shuffleData = {}
-                // Try to match every teleporter with a random valid other teleporter
-                const links = {}
-                Object.keys(teleporters)
-                    .forEach((teleporterName) => {
-                        links[teleporterName] = null
-                    })
-                const linkedStages = {}
-                Object.keys(stages)
-                    .forEach((stageName) => {
-                        linkedStages[stageName] = new Set()
-                    })
-                const teleporterNamesRemaining = new Set(Object.keys(teleporters))
-                const work = new Set()
-                work.add('fromCastleEntranceToAlchemyLaboratory')
-                while (work.size > 0) {
-                    const workRemaining = shuffle(rng, Array.from(work.values()).sort())
-                    const sourceTeleporterName = workRemaining.at(0)
-                    work.delete(sourceTeleporterName)
-                    const sourceTeleporter = teleporters[sourceTeleporterName]
-                    const possibleLinks = Object.keys(teleporters)
-                        .filter((targetTeleporterName) => {
-                            const targetTeleporter = teleporters[targetTeleporterName]
-                            return (
-                                teleporterNamesRemaining.has(targetTeleporterName) &&
-                                stages[sourceTeleporter.stage].teleporterNames.length >= targetTeleporter.minimumTargetLinkCount &&
-                                stages[targetTeleporter.stage].teleporterNames.length >= sourceTeleporter.minimumTargetLinkCount &&
-                                sourceTeleporter.stage != targetTeleporter.stage &&
-                                sourceTeleporter.direction != targetTeleporter.direction &&
-                                !sourceTeleporter.forbiddenConnections.has(targetTeleporterName) &&
-                                !targetTeleporter.forbiddenConnections.has(sourceTeleporterName) &&
-                                !linkedStages[sourceTeleporter.stage].has(targetTeleporter.stage) &&
-                                !linkedStages[targetTeleporter.stage].has(sourceTeleporter.stage)
-                            )
-                        })
-                    if (possibleLinks.length < 1) {
-                        validInd = false
-                        break
+            const links = shuffleStages(rng).links
+            const teleporters = {}
+            Object.entries(links)
+                .forEach(([sourceTeleporterName, targetTeleporterName]) => {
+                    const targetTeleporterIndex = extraction.teleporters.aliases[targetTeleporterName]
+                    const targetTeleporter = extraction.teleporters.data[targetTeleporterIndex]
+                    teleporters[sourceTeleporterName] = {
+                        'playerX=': targetTeleporter.playerX,
+                        'playerY=': targetTeleporter.playerY,
+                        'roomOffset=': targetTeleporter.roomOffset,
+                        'targetStageId=': targetTeleporter.targetStageId,
                     }
-                    const targetTeleporterName = shuffle(rng, possibleLinks.sort()).at(0)
-                    const targetTeleporter = teleporters[targetTeleporterName]
-                    links[targetTeleporterName] = sourceTeleporterName
-                    links[sourceTeleporterName] = targetTeleporterName
-                    linkedStages[sourceTeleporter.stage].add(targetTeleporter.stage)
-                    linkedStages[targetTeleporter.stage].add(sourceTeleporter.stage)
-                    teleporterNamesRemaining.delete(sourceTeleporterName)
-                    teleporterNamesRemaining.delete(targetTeleporterName)
-                    work.delete(sourceTeleporterName)
-                    work.delete(targetTeleporterName)
-                    teleporterNamesRemaining
-                        .forEach((nextTeleporterName) => {
-                            if (teleporters[nextTeleporterName].stage == targetTeleporter.stage) {
-                                work.add(nextTeleporterName)
-                            }
-                        })
-                }
-                if (teleporterNamesRemaining.size > 0) {
-                    console.log(teleporterNamesRemaining.size, Array.from(teleporterNamesRemaining).sort().at(0))
-                    validInd = false
-                }
-                shuffleData.linkedStages = {}
-                Object.entries(linkedStages)
-                    .forEach(([stageName, stageLinks]) => {
-                        shuffleData.linkedStages[stageName] = Array.from(stageLinks.values()).sort()
-                    })
-                shuffleData.links = links
+                })
+            const shuffleData = {
+                authors: [
+                    'Sestren',
+                ],
+                changes: [
+                    {
+                        changeType: 'merge',
+                        merge: {
+                            teleporters: teleporters,
+                        },
+                    },
+                ],
+                description: [
+                    'Shuffle teleporters'
+                ],
+                settings: {
+                    seed: argv.seed,
+                },
             }
             fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4));
         }

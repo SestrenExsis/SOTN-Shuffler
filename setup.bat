@@ -1,6 +1,7 @@
 set BIN=%1
 
 mkdir "build/patcher"
+mkdir "build/shuffler"
 mkdir "lib/BIN-Patcher/build"
 
 rm -f build/extraction-template.json
