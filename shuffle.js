@@ -519,17 +519,47 @@ const argv = yargs(process.argv.slice(2))
             const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
             const rng = seedrandom(argv.seed)
             const links = shuffleStages(rng).links
-            const teleporters = {}
+            const teleporterData = {}
             Object.entries(links)
                 .forEach(([sourceTeleporterName, targetTeleporterName]) => {
+                    const sourceTeleporterIndex = extraction.teleporters.aliases[sourceTeleporterName]
                     const targetTeleporterIndex = extraction.teleporters.aliases[targetTeleporterName]
+                    const sourceTeleporter = extraction.teleporters.data[sourceTeleporterIndex]
                     const targetTeleporter = extraction.teleporters.data[targetTeleporterIndex]
-                    teleporters[sourceTeleporterName] = {
-                        'playerX=': targetTeleporter.playerX,
-                        'playerY=': targetTeleporter.playerY,
-                        'roomOffset=': targetTeleporter.roomOffset,
-                        'targetStageId=': targetTeleporter.targetStageId,
+                    const assignments = []
+                    assignments.push([
+                        sourceTeleporter.sourceStageId,
+                        sourceTeleporter.targetStageId,
+                        // NOTE(sestren): Notice that the target teleporter's stage order is swapped
+                        // This reflection allows the original return target to be fetched
+                        targetTeleporter.targetStageId,
+                        targetTeleporter.sourceStageId,
+                    ])
+                    if (sourceTeleporter.sourceStageId === 'castleEntrance') {
+                        assignments.push([
+                            'castleEntranceRevisited',
+                            sourceTeleporter.targetStageId,
+                            targetTeleporter.targetStageId,
+                            targetTeleporter.sourceStageId,
+                        ])
                     }
+                    assignments.forEach(([sourceFrom, sourceTo, targetFrom, targetTo]) => {
+                        if (sourceTo === 'castleEntranceRevisited') {
+                            sourceTo = 'castleEntrance'
+                        }
+                        const teleporterNameA = 'from' + sourceFrom.at(0).toUpperCase() + sourceFrom.slice(1) + 'To' + sourceTo.at(0).toUpperCase() + sourceTo.slice(1)
+                        const teleporterNameB = 'from' + targetFrom.at(0).toUpperCase() + targetFrom.slice(1) + 'To' + targetTo.at(0).toUpperCase() + targetTo.slice(1)
+                        const teleporterIndexA = extraction.teleporters.aliases[teleporterNameA]
+                        const teleporterIndexB = extraction.teleporters.aliases[teleporterNameB]
+                        const teleporterA = extraction.teleporters.data[teleporterIndexA]
+                        const teleporterB = extraction.teleporters.data[teleporterIndexB]
+                        teleporterData[teleporterNameA] = {
+                            'playerX=': teleporterB.playerX,
+                            'playerY=': teleporterB.playerY,
+                            'roomOffset=': teleporterB.roomOffset,
+                            'targetStageId=': teleporterB.targetStageId,
+                        }
+                    })
                 })
             const shuffleData = {
                 authors: [
@@ -539,12 +569,12 @@ const argv = yargs(process.argv.slice(2))
                     {
                         changeType: 'merge',
                         merge: {
-                            teleporters: teleporters,
+                            teleporters: teleporterData,
                         },
                     },
                 ],
                 description: [
-                    'Shuffle teleporters'
+                    'Shuffle teleporters',
                 ],
                 settings: {
                     seed: argv.seed,
