@@ -1,0 +1,3 @@
+[submodule "lib/BIN-Patcher"]
+	path = lib/BIN-Patcher
+	url = https://github.com/SestrenExsis/BIN-Patcher.git

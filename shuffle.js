@@ -43,14 +43,14 @@ const teleporters = {
         stage: 'castleEntrance',
         direction: 'left',
         forbiddenConnections: new Set([
-            // NOTE(sestren): Forbidden from leading to Warp Rooms
+            // NOTE(sestren): The only available connection at the start of the game should not lead to a Warp
             'fromWarpRoomsToAbandonedMine',
             'fromWarpRoomsToCastleEntrance',
             'fromWarpRoomsToCastleKeep',
             'fromWarpRoomsToOlroxsQuarters',
             'fromWarpRoomsToOuterWall',
         ]),
-        // NOTE(sestren): Forbidden from leading to "dead end" stages
+        // NOTE(sestren): The only available connection at the start of the game should not lead to a "dead end" stage
         minimumTargetLinkCount: 2,
     },
     fromCastleEntranceToMarbleGallery: {
@@ -63,7 +63,7 @@ const teleporters = {
         stage: 'castleEntrance',
         direction: 'right',
         forbiddenConnections: new Set([
-            // NOTE(sestren): Forbidden from being "orphaned" by one-way paths
+            // NOTE(sestren): Do not pair one-ways with initially-locked locations
             'fromWarpRoomsToAbandonedMine',
             'fromWarpRoomsToCastleKeep',
             'fromWarpRoomsToOlroxsQuarters',
@@ -75,12 +75,12 @@ const teleporters = {
         stage: 'castleEntrance',
         direction: 'left',
         forbiddenConnections: new Set([
-            // NOTE(sestren): Forbidden from being "orphaned" by one-way paths
+            // NOTE(sestren): Do not pair one-ways with initially-locked locations
             'fromWarpRoomsToAbandonedMine',
             'fromWarpRoomsToCastleKeep',
             'fromWarpRoomsToOlroxsQuarters',
             'fromWarpRoomsToOuterWall',
-            // NOTE(sestren): Forbidden from requiring a Library Card to open
+            // NOTE(sestren): Do not require a Library Card to unlock an initially-locked location
             'fromLongLibraryToOuterWall',
             // NOTE(sestren): Forbidden from requiring one-way paths to open
             'fromCatacombsToAbandonedMine',
@@ -243,7 +243,7 @@ const teleporters = {
         stage: 'royalChapel',
         direction: 'right',
         forbiddenConnections: new Set([
-            // NOTE(sestren): Forbidden from being "orphaned" by one-way paths
+            // NOTE(sestren): The source is a one-way path, so these connections would become "orphaned"
             'fromWarpRoomsToAbandonedMine',
             'fromWarpRoomsToCastleKeep',
             'fromWarpRoomsToOlroxsQuarters',
