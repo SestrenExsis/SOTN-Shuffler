@@ -415,7 +415,8 @@ function shuffleArray(rng, array) {
     return array
 }
 
-export function shuffleStages(rng) {
+export function shuffleStages(seed) {
+    const rng = seedrandom(seed)
     let validInd = false
     let result
     while (!validInd) {

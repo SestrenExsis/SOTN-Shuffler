@@ -33,9 +33,12 @@ const argv = yargs(process.argv.slice(2))
             .demandOption(['extraction', 'out'])
         },
         handler: (argv) => {
+            let seed = argv.seed
+            if (seed === null || seed === '') {
+                seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+            }
             const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
-            const rng = seedrandom(argv.seed)
-            const shuffledStages = shuffleStages(rng)
+            const shuffledStages = shuffleStages(seed)
             const teleporterData = getTeleporterData(extraction, shuffledStages.links)
             const shuffleData = {
                 authors: [

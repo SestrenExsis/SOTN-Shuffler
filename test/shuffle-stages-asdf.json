@@ -1,0 +1,308 @@
+{
+    "authors": [
+        "Sestren"
+    ],
+    "changes": [
+        {
+            "changeType": "merge",
+            "merge": {
+                "teleporters": {
+                    "fromAbandonedMineToCatacombs": {
+                        "playerX=": 240,
+                        "playerY=": 388,
+                        "roomOffset=": "castleKeep.dualPlatforms",
+                        "targetStageId=": "castleKeep"
+                    },
+                    "fromAbandonedMineToUndergroundCaverns": {
+                        "playerX=": 16,
+                        "playerY=": 132,
+                        "roomOffset=": "warpRooms.warpRoomToOlroxsQuarters",
+                        "targetStageId=": "warpRooms"
+                    },
+                    "fromAbandonedMineToWarpRooms": {
+                        "playerX=": 16,
+                        "playerY=": 132,
+                        "roomOffset=": "clockTower.karasumansRoom",
+                        "targetStageId=": "clockTower"
+                    },
+                    "fromAlchemyLaboratoryToCastleEntrance": {
+                        "playerX=": 16,
+                        "playerY=": 132,
+                        "roomOffset=": "castleEntranceRevisited.shortcutToWarpRooms",
+                        "targetStageId=": "castleEntranceRevisited"
+                    },
+                    "fromAlchemyLaboratoryToMarbleGallery": {
+                        "playerX=": 16,
+                        "playerY=": 132,
+                        "roomOffset=": "colosseum.passagewayBetweenArenaAndRoyalChapel",
+                        "targetStageId=": "colosseum"
+                    },
+                    "fromAlchemyLaboratoryToRoyalChapel": {
+                        "playerX=": 240,
+                        "playerY=": 132,
+                        "roomOffset=": "catacombs.exitToAbandonedMine",
+                        "targetStageId=": "catacombs"
+                    },
+                    "fromCastleEntranceToAlchemyLaboratory": {
+                        "playerX=": 240,
+                        "playerY=": 648,
+                        "roomOffset=": "olroxsQuarters.skelerangRoom",
+                        "targetStageId=": "olroxsQuarters"
+                    },
+                    "fromCastleEntranceRevisitedToAlchemyLaboratory": {
+                        "playerX=": 240,
+                        "playerY=": 648,
+                        "roomOffset=": "olroxsQuarters.skelerangRoom",
+                        "targetStageId=": "olroxsQuarters"
+                    },
+                    "fromCastleEntranceToMarbleGallery": {
+                        "playerX=": 16,
+                        "playerY=": 388,
+                        "roomOffset=": "marbleGallery.stairwellToUndergroundCaverns",
+                        "targetStageId=": "marbleGallery"
+                    },
+                    "fromCastleEntranceRevisitedToMarbleGallery": {
+                        "playerX=": 16,
+                        "playerY=": 388,
+                        "roomOffset=": "marbleGallery.stairwellToUndergroundCaverns",
+                        "targetStageId=": "marbleGallery"
+                    },
+                    "fromCastleEntranceToUndergroundCaverns": {
+                        "playerX=": 16,
+                        "playerY=": 132,
+                        "roomOffset=": "outerWall.exitToClockTower",
+                        "targetStageId=": "outerWall"
+                    },
+                    "fromCastleEntranceRevisitedToUndergroundCaverns": {
+                        "playerX=": 16,
+                        "playerY=": 132,
+                        "roomOffset=": "outerWall.exitToClockTower",
+                        "targetStageId=": "outerWall"
+                    },
+                    "fromCastleEntranceToWarpRooms": {
+                        "playerX=": 752,
+                        "playerY=": 132,
+                        "roomOffset=": "alchemyLaboratory.entryway",
+                        "targetStageId=": "alchemyLaboratory"
+                    },
+                    "fromCastleEntranceRevisitedToWarpRooms": {
+                        "playerX=": 752,
+                        "playerY=": 132,
+                        "roomOffset=": "alchemyLaboratory.entryway",
+                        "targetStageId=": "alchemyLaboratory"
+                    },
+                    "fromCastleKeepToClockTower": {
+                        "playerX=": 16,
+                        "playerY=": 132,
+                        "roomOffset=": "olroxsQuarters.catwalkCrypt",
+                        "targetStageId=": "olroxsQuarters"
+                    },
+                    "fromCastleKeepToRoyalChapel": {
+                        "playerX=": 240,
+                        "playerY=": 132,
+                        "roomOffset=": "clockTower.stairwellToOuterWall",
+                        "targetStageId=": "clockTower"
+                    },
+                    "fromCastleKeepToWarpRooms": {
+                        "playerX=": 16,
+                        "playerY=": 388,
+                        "roomOffset=": "abandonedMine.bend",
+                        "targetStageId=": "abandonedMine"
+                    },
+                    "fromCatacombsToAbandonedMine": {
+                        "playerX=": 16,
+                        "playerY=": 132,
+                        "roomOffset=": "alchemyLaboratory.exitToRoyalChapel",
+                        "targetStageId=": "alchemyLaboratory"
+                    },
+                    "fromClockTowerToCastleKeep": {
+                        "playerX=": 752,
+                        "playerY=": 132,
+                        "roomOffset=": "abandonedMine.fourWayIntersection",
+                        "targetStageId=": "abandonedMine"
+                    },
+                    "fromClockTowerToOuterWall": {
+                        "playerX=": 16,
+                        "playerY=": 1924,
+                        "roomOffset=": "castleKeep.keepArea",
+                        "targetStageId=": "castleKeep"
+                    },
+                    "fromColosseumToOlroxsQuarters": {
+                        "playerX=": 16,
+                        "playerY=": 132,
+                        "roomOffset=": "undergroundCaverns.exitToAbandonedMine",
+                        "targetStageId=": "undergroundCaverns"
+                    },
+                    "fromColosseumToRoyalChapel": {
+                        "playerX=": 496,
+                        "playerY=": 392,
+                        "roomOffset=": "alchemyLaboratory.exitToMarbleGallery",
+                        "targetStageId=": "alchemyLaboratory"
+                    },
+                    "fromLongLibraryToOuterWall": {
+                        "playerX=": 16,
+                        "playerY=": 644,
+                        "roomOffset=": "marbleGallery.sShapedHallways",
+                        "targetStageId=": "marbleGallery"
+                    },
+                    "fromMarbleGalleryToAlchemyLaboratory": {
+                        "playerX=": 240,
+                        "playerY=": 132,
+                        "roomOffset=": "royalChapel.pushingStatueShortcut",
+                        "targetStageId=": "royalChapel"
+                    },
+                    "fromMarbleGalleryToCastleEntrance": {
+                        "playerX=": 752,
+                        "playerY=": 132,
+                        "roomOffset=": "longLibrary.exitToOuterWall",
+                        "targetStageId=": "longLibrary"
+                    },
+                    "fromMarbleGalleryToOlroxsQuarters": {
+                        "playerX=": 240,
+                        "playerY=": 132,
+                        "roomOffset=": "undergroundCaverns.longDrop",
+                        "targetStageId=": "undergroundCaverns"
+                    },
+                    "fromMarbleGalleryToOuterWall": {
+                        "playerX=": 16,
+                        "playerY=": 132,
+                        "roomOffset=": "warpRooms.warpRoomToCastleKeep",
+                        "targetStageId=": "warpRooms"
+                    },
+                    "fromMarbleGalleryToUndergroundCaverns": {
+                        "playerX=": 496,
+                        "playerY=": 132,
+                        "roomOffset=": "castleEntranceRevisited.cubeOfZoeRoom",
+                        "targetStageId=": "castleEntranceRevisited"
+                    },
+                    "fromOlroxsQuartersToColosseum": {
+                        "playerX=": 752,
+                        "playerY=": 648,
+                        "roomOffset=": "royalChapel.rightTower",
+                        "targetStageId=": "royalChapel"
+                    },
+                    "fromOlroxsQuartersToMarbleGallery": {
+                        "playerX=": 16,
+                        "playerY=": 132,
+                        "roomOffset=": "castleEntranceRevisited.cubeOfZoeRoom",
+                        "targetStageId=": "castleEntranceRevisited"
+                    },
+                    "fromOlroxsQuartersToRoyalChapel": {
+                        "playerX=": 240,
+                        "playerY=": 388,
+                        "roomOffset=": "castleKeep.lionTorchPlatform",
+                        "targetStageId=": "castleKeep"
+                    },
+                    "fromOlroxsQuartersToWarpRooms": {
+                        "playerX=": 272,
+                        "playerY=": 644,
+                        "roomOffset=": "outerWall.elevatorShaftRoom",
+                        "targetStageId=": "outerWall"
+                    },
+                    "fromOuterWallToClockTower": {
+                        "playerX=": 240,
+                        "playerY=": 132,
+                        "roomOffset=": "castleEntranceRevisited.shortcutToUndergroundCaverns",
+                        "targetStageId=": "castleEntranceRevisited"
+                    },
+                    "fromOuterWallToLongLibrary": {
+                        "playerX=": 240,
+                        "playerY=": 132,
+                        "roomOffset=": "royalChapel.statueLedge",
+                        "targetStageId=": "royalChapel"
+                    },
+                    "fromOuterWallToMarbleGallery": {
+                        "playerX=": 240,
+                        "playerY=": 132,
+                        "roomOffset=": "warpRooms.warpRoomToOuterWall",
+                        "targetStageId=": "warpRooms"
+                    },
+                    "fromOuterWallToWarpRooms": {
+                        "playerX=": 240,
+                        "playerY=": 1412,
+                        "roomOffset=": "olroxsQuarters.tallShaft",
+                        "targetStageId=": "olroxsQuarters"
+                    },
+                    "fromRoyalChapelToAlchemyLaboratory": {
+                        "playerX=": 16,
+                        "playerY=": 1672,
+                        "roomOffset=": "outerWall.elevatorShaftRoom",
+                        "targetStageId=": "outerWall"
+                    },
+                    "fromRoyalChapelToCastleKeep": {
+                        "playerX=": 16,
+                        "playerY=": 388,
+                        "roomOffset=": "olroxsQuarters.grandStaircase",
+                        "targetStageId=": "olroxsQuarters"
+                    },
+                    "fromRoyalChapelToColosseum": {
+                        "playerX=": 16,
+                        "playerY=": 132,
+                        "roomOffset=": "warpRooms.warpRoomToAbandonedMine",
+                        "targetStageId=": "warpRooms"
+                    },
+                    "fromRoyalChapelToOlroxsQuarters": {
+                        "playerX=": 16,
+                        "playerY=": 132,
+                        "roomOffset=": "marbleGallery.entrance",
+                        "targetStageId=": "marbleGallery"
+                    },
+                    "fromUndergroundCavernsToAbandonedMine": {
+                        "playerX=": 1264,
+                        "playerY=": 132,
+                        "roomOffset=": "colosseum.topOfElevatorShaft",
+                        "targetStageId=": "colosseum"
+                    },
+                    "fromUndergroundCavernsToCastleEntrance": {
+                        "playerX=": 240,
+                        "playerY=": 132,
+                        "roomOffset=": "warpRooms.warpRoomToCastleEntrance",
+                        "targetStageId=": "warpRooms"
+                    },
+                    "fromUndergroundCavernsToMarbleGallery": {
+                        "playerX=": 16,
+                        "playerY=": 132,
+                        "roomOffset=": "marbleGallery.pathwayAfterLeftStatue",
+                        "targetStageId=": "marbleGallery"
+                    },
+                    "fromWarpRoomsToAbandonedMine": {
+                        "playerX=": 496,
+                        "playerY=": 388,
+                        "roomOffset=": "royalChapel.nave",
+                        "targetStageId=": "royalChapel"
+                    },
+                    "fromWarpRoomsToCastleEntrance": {
+                        "playerX=": 16,
+                        "playerY=": 132,
+                        "roomOffset=": "undergroundCaverns.exitToCastleEntrance",
+                        "targetStageId=": "undergroundCaverns"
+                    },
+                    "fromWarpRoomsToCastleKeep": {
+                        "playerX=": 3824,
+                        "playerY=": 132,
+                        "roomOffset=": "marbleGallery.longHallway",
+                        "targetStageId=": "marbleGallery"
+                    },
+                    "fromWarpRoomsToOlroxsQuarters": {
+                        "playerX=": 240,
+                        "playerY=": 132,
+                        "roomOffset=": "abandonedMine.wolfsHeadColumn",
+                        "targetStageId=": "abandonedMine"
+                    },
+                    "fromWarpRoomsToOuterWall": {
+                        "playerX=": 16,
+                        "playerY=": 132,
+                        "roomOffset=": "outerWall.exitToMarbleGallery",
+                        "targetStageId=": "outerWall"
+                    }
+                }
+            }
+        }
+    ],
+    "description": [
+        "Shuffle teleporters"
+    ],
+    "settings": {
+        "seed": "asdf"
+    }
+}
