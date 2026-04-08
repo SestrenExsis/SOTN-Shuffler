@@ -471,17 +471,20 @@ export function shuffleSongs(seed) {
         })
     const result = {}
     result.stage = stageMusic
-    console.log(result)
     return result
 }
 
-export function getSongData(extraction, songData) {
-    const result = {}
+export function getSongChanges(extraction, songData) {
+    const songChanges = {}
     Object.entries(songData.stage)
         .forEach(([stageName, songName]) => {
             songs[stageName].stage.keys.forEach((keyName) => {
-                result[keyName + '='] = songName
+                songChanges[keyName + '='] = songName
             })
         })
+    const result = {
+        changeType: 'merge',
+        merge: songChanges,
+    }
     return result
 }

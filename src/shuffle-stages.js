@@ -484,8 +484,8 @@ export function shuffleStages(seed) {
     return result
 }
 
-export function getTeleporterData(extraction, links) {
-    const result = {}
+export function getTeleporterChanges(extraction, links) {
+    const teleporterData = {}
     Object.entries(links)
         .forEach(([sourceTeleporterName, targetTeleporterName]) => {
             const sourceTeleporterIndex = extraction.teleporters.aliases[sourceTeleporterName]
@@ -519,7 +519,7 @@ export function getTeleporterData(extraction, links) {
                 const teleporterIndexB = extraction.teleporters.aliases[teleporterNameB]
                 const teleporterA = extraction.teleporters.data[teleporterIndexA]
                 const teleporterB = extraction.teleporters.data[teleporterIndexB]
-                result[teleporterNameA] = {
+                teleporterData[teleporterNameA] = {
                     'playerX=': teleporterB.playerX,
                     'playerY=': teleporterB.playerY,
                     'roomOffset=': teleporterB.roomOffset,
@@ -527,5 +527,11 @@ export function getTeleporterData(extraction, links) {
                 }
             })
         })
+    const result = {
+        changeType: 'merge',
+        merge: {
+            teleporters: teleporterData,
+        },
+    }
     return result
 }
