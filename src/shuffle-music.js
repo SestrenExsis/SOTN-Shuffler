@@ -480,14 +480,6 @@ export function getSongData(extraction, songData) {
     Object.entries(songData.stage)
         .forEach(([stageName, songName]) => {
             songs[stageName].stage.keys.forEach((keyName) => {
-                // const keyParts = keyName.split('.')
-                // let context = result
-                // keyParts.slice(0, -1).forEach((keyPart) => {
-                //     if (!(keyPart in context)) {
-                //         context[keyPart] = {}
-                //     }
-                //     context = context[keyPart]
-                // })
                 result[keyName + '='] = songName
             })
         })
