@@ -44,25 +44,25 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
             })
             // The rest of these options are listed alphabetically
-            .option('debug', {
-                alias: 'd',
-                describe: 'Whether or not to enable debug mode',
-                type: 'boolean',
+            .option('debugger', {
+                describe: 'Configuration for enabling debug features',
+                type: 'object',
             })
-            .option('music', {
-                alias: 'm',
-                describe: 'Whether or not to shuffle music',
-                type: 'boolean',
+            .option('musicShuffler', {
+                describe: 'Configuration for shuffling in-game music',
+                type: 'object',
             })
-            .option('normalize', {
-                alias: 'n',
-                describe: 'Whether or not to normalize room connections in the game',
-                type: 'string',
+            .option('roomNormalizer', {
+                describe: 'Configuration for normalizing room connections in the game',
+                type: 'object',
             })
-            .option('stages', {
-                alias: 't',
-                describe: 'Whether or not to shuffle the connections between stages (aka, teleporters)',
-                type: 'boolean',
+            .option('solver', {
+                describe: 'Configuration for verifying that all the other configurations result in a gameplay experience that should be completable',
+                type: 'object',
+            })
+            .option('stageShuffler', {
+                describe: 'Configuration for shuffling the connections between stages (aka, teleporters)',
+                type: 'object',
             })
             .demandOption(['extraction', 'out'])
         },
@@ -72,15 +72,7 @@ const argv = yargs(process.argv.slice(2))
                 const seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
                 seedName = getSeedName(seed)
             }
-            console.log(seedName)
-            const rng = seedrandom(seedName)
-            const seeds = {}
-            // NOTE(sestren): The order in which the following seed values are generated should not change
-            // NOTE(sestren): All of the following seed values should be called, even if they don't get used
-            seeds.music = Math.floor(rng() * Number.MAX_SAFE_INTEGER)
-            seeds.stages = Math.floor(rng() * Number.MAX_SAFE_INTEGER)
-            seeds.relics = Math.floor(rng() * Number.MAX_SAFE_INTEGER)
-            // NOTE(sestren): If a new seed value needs to be added, it should be added here at the end of the list
+            console.log('seedName:', seedName)
             const shuffleData = {
                 authors: [
                     'Sestren',
@@ -94,21 +86,55 @@ const argv = yargs(process.argv.slice(2))
                 },
             }
             const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
-            if (argv.debug) {
-                const debugChanges = getDebugChanges()
-                shuffleData.changes.push(debugChanges)
+            if (argv.debugger) {
+                console.log('debugger:', argv.debugger)
+                if (argv.debugger.on === 'true') {
+                    const debugChanges = getDebugChanges()
+                    shuffleData.changes.push(debugChanges)
+                }
             }
-            if (argv.music) {
-                const shuffledSongs = shuffleSongs(seeds.music)
-                const songChanges = getSongChanges(extraction, shuffledSongs)
-                shuffleData.changes.push(songChanges)
+            if (argv.musicShuffler) {
+                console.log('musicShuffler:', argv.musicShuffler)
+                if (argv.musicShuffler.on === 'true') {
+                    const seed = (argv.musicShuffler.seed ?? seedName) + '_musicShuffler'
+                    const shuffledSongs = shuffleSongs(seed)
+                    const songChanges = getSongChanges(extraction, shuffledSongs)
+                    shuffleData.changes.push(songChanges)
+                }
             }
-            if (argv.stages) {
-                const shuffledStages = shuffleStages(seeds.stages)
-                const teleporterChanges = getTeleporterChanges(extraction, shuffledStages.links)
-                shuffleData.changes.push(teleporterChanges)
+            let solvable = false
+            let attemptCount = 0
+            let changesToAdd = []
+            while (!solvable) {
+                attemptCount += 1
+                changesToAdd = []
+                if (argv.stageShuffler) {
+                    console.log('stageShuffler:', argv.stageShuffler)
+                    if (argv.stageShuffler.on === 'true') {
+                        const seed = (argv.musicShuffler.seed ?? seedName) + '_stageShuffler_' + attemptCount
+                        const shuffledStages = shuffleStages(seed)
+                        const teleporterChanges = getTeleporterChanges(extraction, shuffledStages.links)
+                        changesToAdd.push(teleporterChanges)
+                    }
+                }
+                if (argv.solver) {
+                    if (argv.solver.on === 'true') {
+                        if ((10 * Math.random()) < attemptCount) {
+                            solvable = true
+                        }
+                    }
+                    else {
+                        solvable = true
+                    }
+                }
+                else {
+                    solvable = true
+                }
             }
-            fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4));
+            for (let index = 0; index < changesToAdd.length; index++) {
+                shuffleData.changes.push(changesToAdd.at(index))
+            }
+            fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))
         }
     })
     .command({ // seed
@@ -177,7 +203,7 @@ const argv = yargs(process.argv.slice(2))
             const shuffledStages = shuffleStages(seed)
             const teleporterChanges = getTeleporterChanges(extraction, shuffledStages.links)
             shuffleData.changes.push(teleporterChanges)
-            fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4));
+            fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))
         }
     })
     .command({ // music
@@ -225,7 +251,7 @@ const argv = yargs(process.argv.slice(2))
             const shuffledSongs = shuffleSongs(seed)
             const songChanges = getSongChanges(extraction, shuffledSongs)
             shuffleData.changes.push(songChanges)
-            fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4));
+            fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))
         }
     })
     .demandCommand(1)
