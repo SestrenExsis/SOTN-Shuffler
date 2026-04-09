@@ -67,11 +67,13 @@ const argv = yargs(process.argv.slice(2))
             .demandOption(['extraction', 'out'])
         },
         handler: (argv) => {
-            let seed = argv.seed
-            if (seed === null || seed === '') {
-                seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+            let seedName = argv.seed
+            if (!seedName) {
+                const seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+                seedName = getSeedName(seed)
             }
-            const rng = seedrandom(seed)
+            console.log(seedName)
+            const rng = seedrandom(seedName)
             const seeds = {}
             // NOTE(sestren): The order in which the following seed values are generated should not change
             // NOTE(sestren): All of the following seed values should be called, even if they don't get used
@@ -123,7 +125,7 @@ const argv = yargs(process.argv.slice(2))
         },
         handler: (argv) => {
             let seed = argv.seed
-            if (seed === null || seed === '') {
+            if (!seed) {
                 seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
             }
             const seedName = getSeedName(seed)
@@ -156,7 +158,7 @@ const argv = yargs(process.argv.slice(2))
         },
         handler: (argv) => {
             let seed = argv.seed
-            if (seed === null || seed === '') {
+            if (!seed) {
                 seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
             }
             const shuffleData = {
@@ -204,7 +206,7 @@ const argv = yargs(process.argv.slice(2))
         },
         handler: (argv) => {
             let seed = argv.seed
-            if (seed === null || seed === '') {
+            if (!seed) {
                 seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
             }
             const shuffleData = {
