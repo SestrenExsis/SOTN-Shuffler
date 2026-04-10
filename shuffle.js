@@ -57,6 +57,15 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'If supplied, this seed is alway used for supplying randomness to the music shuffler',
                 type: 'string',
             })
+            // Patcher options
+            .option('patcher.on', {
+                describe: 'Whether or not to apply the given list of patches',
+                type: 'boolean',
+            })
+            .option('patcher.list', {
+                describe: 'A list of filepaths of patches to apply, in order',
+                type: 'array',
+            })
             // Room normalizer options
             .option('roomNormalizer.on', {
                 describe: 'Whether or not to normalize room connections in the game; if disabled, all other options in this category are ignored',
@@ -113,46 +122,68 @@ const argv = yargs(process.argv.slice(2))
                 seedName = getSeedName(seed)
             }
             shuffleData.debugInfo.seedName = seedName
-            if (argv.debugger.on) {
+            if (argv.debugger?.on) {
                 shuffleData.settings.debugger = argv.debugger
             }
-            if (argv.musicShuffler.on) {
+            if (argv.musicShuffler?.on) {
                 shuffleData.settings.musicShuffler = argv.musicShuffler
             }
-            if (argv.stageShuffler.on) {
+            if (argv.patcher?.on) {
+                shuffleData.settings.patcher = argv.patcher
+            }
+            if (argv.stageShuffler?.on) {
                 shuffleData.settings.stageShuffler = argv.stageShuffler
             }
-            if (argv.solver.on) {
+            if (argv.solver?.on) {
                 shuffleData.settings.solver = argv.solver
             }
-            console.log('seedName:', seedName)
             // Apply all enabled modules
-            if (argv.debugger.on) {
+            console.log('seedName:', seedName)
+            // Patcher
+            if (argv.patcher.on) {
+                const patches = argv.patcher.list ?? []
+                for (let i = 0; i < patches.length; i++) {
+                    const patch = JSON.parse(fs.readFileSync(patches.at(i), 'utf8'))
+                    for (let j = 0; j < patch.authors.length; j++) {
+                        const element = patch.authors[j]
+                        if (!shuffleData.authors.includes(element)) {
+                            shuffleData.authors.push(element)
+                        }
+                    }
+                    for (let j = 0; j < patch.description.length; j++) {
+                        shuffleData.description.push(patch.description[j])
+                    }
+                    for (let j = 0; j < patch.changes.length; j++) {
+                        shuffleData.changes.push(patch.changes[j])
+                    }
+                }
+            }
+            if (argv.debugger?.on) {
                 const debugChanges = getDebugChanges()
                 shuffleData.changes.push(debugChanges)
             }
-            if (argv.musicShuffler.on) {
+            if (argv.musicShuffler?.on) {
                 const seed = argv.musicShuffler.seed ?? (seedName + '_musicShuffler')
                 const shuffledSongs = shuffleSongs(seed)
                 const songChanges = getSongChanges(extraction, shuffledSongs)
                 shuffleData.changes.push(songChanges)
                 shuffleData.debugInfo.finalSeedsUsed.musicShuffler = seed
             }
-            // Some modules must be run inside a loop because the solver must verify 
+            // Some modules must be run inside a loop because the solver must verify them
             let solvable = false
             shuffleData.debugInfo.solverAttemptCount = 0
             let changesToAdd = []
             while (!solvable) {
                 shuffleData.debugInfo.solverAttemptCount += 1
                 changesToAdd = []
-                if (argv.stageShuffler.on) {
+                if (argv.stageShuffler?.on) {
                     const seed = argv.stageShuffler.seed ?? (seedName + '_stageShuffler_' + shuffleData.debugInfo.solverAttemptCount)
                     const shuffledStages = shuffleStages(seed)
                     const teleporterChanges = getTeleporterChanges(extraction, shuffledStages.links)
                     changesToAdd.push(teleporterChanges)
                     shuffleData.debugInfo.finalSeedsUsed.stageShuffler = seed
                 }
-                if (argv.solver.on) {
+                if (argv.solver?.on) {
                     shuffleData.debugInfo.solvable = false
                     const seed = argv.solver.seed ?? (seedName + '_solver_' + shuffleData.debugInfo.solverAttemptCount)
                     const rng = seedrandom(seed)
@@ -165,8 +196,9 @@ const argv = yargs(process.argv.slice(2))
                 else {
                     solvable = true
                 }
-                if (shuffleData.debugInfo.solverAttemptCount > 1000000)  {
-                    throw Error('Took too many attempts to solve, abandoning')
+                if (shuffleData.debugInfo.solverAttemptCount > argv.solver.maxAttempts)  {
+                    console.log('Took too many attempts to solve, abandoning ...')
+                    break
                 }
             }
             for (let index = 0; index < changesToAdd.length; index++) {
