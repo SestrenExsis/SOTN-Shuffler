@@ -82,7 +82,7 @@ const argv = yargs(process.argv.slice(2))
                     'Shuffle various things',
                 ],
                 settings: {
-                    seed: argv.seed,
+                    seedName: seedName,
                 },
             }
             const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
@@ -91,15 +91,22 @@ const argv = yargs(process.argv.slice(2))
                 if (argv.debugger.on === 'true') {
                     const debugChanges = getDebugChanges()
                     shuffleData.changes.push(debugChanges)
+                    shuffleData.settings.debugger = {
+                        on: 'true',
+                    }
                 }
             }
             if (argv.musicShuffler) {
                 console.log('musicShuffler:', argv.musicShuffler)
                 if (argv.musicShuffler.on === 'true') {
-                    const seed = (argv.musicShuffler.seed ?? seedName) + '_musicShuffler'
+                    const seed = argv.musicShuffler.seed ?? (seedName + '_musicShuffler')
                     const shuffledSongs = shuffleSongs(seed)
                     const songChanges = getSongChanges(extraction, shuffledSongs)
                     shuffleData.changes.push(songChanges)
+                    shuffleData.settings.musicShuffler = {
+                        on: 'true',
+                        seed: seed,
+                    }
                 }
             }
             let solvable = false
@@ -111,16 +118,26 @@ const argv = yargs(process.argv.slice(2))
                 if (argv.stageShuffler) {
                     console.log('stageShuffler:', argv.stageShuffler)
                     if (argv.stageShuffler.on === 'true') {
-                        const seed = (argv.musicShuffler.seed ?? seedName) + '_stageShuffler_' + attemptCount
+                        const seed = argv.stageShuffler.seed ?? (seedName + '_stageShuffler_' + attemptCount)
                         const shuffledStages = shuffleStages(seed)
                         const teleporterChanges = getTeleporterChanges(extraction, shuffledStages.links)
                         changesToAdd.push(teleporterChanges)
+                        shuffleData.settings.stageShuffler = {
+                            on: 'true',
+                            seed: seed,
+                        }
                     }
                 }
                 if (argv.solver) {
                     if (argv.solver.on === 'true') {
-                        if ((10 * Math.random()) < attemptCount) {
+                        const seed = argv.solver.seed ?? (seedName + '_solver_' + attemptCount)
+                        const rng = seedrandom(seed)
+                        if ((100 * rng()) < attemptCount) {
                             solvable = true
+                        }
+                        shuffleData.settings.solver = {
+                            on: 'true',
+                            seed: seed,
                         }
                     }
                     else {
