@@ -16,10 +16,6 @@ import {
     shuffleStages,
 } from './src/shuffle-stages.js'
 
-import {
-    getDebugChanges,
-} from './src/enable-debug.js'
-
 const argv = yargs(process.argv.slice(2))
     .command({ // multi
         command: 'multi',
@@ -43,12 +39,7 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'Seed to provide for randomization',
                 type: 'string',
             })
-            // Debugger options
-            .option('debugger.on', {
-                describe: 'Whether or not to enable debug mode; if disabled, all other options in this category are ignored',
-                type: 'boolean',
-            })
-            // Music shuffler options
+        // Music shuffler options
             .option('musicShuffler.on', {
                 describe: 'Whether or not to enable shuffling of in-game music; if disabled, all other options in this category are ignored',
                 type: 'boolean',
@@ -57,7 +48,9 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'If supplied, this seed is alway used for supplying randomness to the music shuffler',
                 type: 'string',
             })
-            // Patcher options
+        // Patcher options
+            // TODO(sestren): Add ability to specify relative or absolute filepath?
+            // TODO(sestren): Add ability to specify shallow or deep copy of patch?
             .option('patcher.on', {
                 describe: 'Whether or not to apply the given list of patches',
                 type: 'boolean',
@@ -66,18 +59,18 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'A list of filepaths of patches to apply, in order',
                 type: 'array',
             })
-            // Room normalizer options
+        // Room normalizer options
             .option('roomNormalizer.on', {
                 describe: 'Whether or not to normalize room connections in the game; if disabled, all other options in this category are ignored',
                 type: 'boolean',
             })
-            // Solver options
+        // Solver options
             .option('solver.on', {
                 describe: 'Whether or not to verify that all the other configurations result in a gameplay experience that should be completable; if disabled, all other options in this category are ignored',
                 type: 'boolean',
             })
             .option('solver.seed', {
-                describe: 'If supplied, this seed is alway used for supplying randomness to the solver',
+                describe: 'If supplied, this seed is always used for supplying randomness to the solver',
                 type: 'string',
             })
             .option('solver.maxAttempts', {
@@ -85,7 +78,7 @@ const argv = yargs(process.argv.slice(2))
                 type: 'number',
                 default: 1000000,
             })
-            // Stage shuffler options
+        // Stage shuffler options
             .option('stageShuffler.on', {
                 describe: 'Whether or not to shuffle the connections between stages (aka, teleporters). If disabled, all other options in this category are ignored.',
                 type: 'boolean',
@@ -94,7 +87,7 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'If supplied, this seed is alway used for supplying randomness to the stage shuffler',
                 type: 'string',
             })
-            // The following options must be declared
+        // The following options must be declared
             .demandOption(['extraction', 'out'])
         },
         handler: (argv) => {
@@ -122,9 +115,6 @@ const argv = yargs(process.argv.slice(2))
                 seedName = getSeedName(seed)
             }
             shuffleData.debugInfo.seedName = seedName
-            if (argv.debugger?.on) {
-                shuffleData.settings.debugger = argv.debugger
-            }
             if (argv.musicShuffler?.on) {
                 shuffleData.settings.musicShuffler = argv.musicShuffler
             }
@@ -157,10 +147,6 @@ const argv = yargs(process.argv.slice(2))
                         shuffleData.changes.push(patch.changes[j])
                     }
                 }
-            }
-            if (argv.debugger?.on) {
-                const debugChanges = getDebugChanges()
-                shuffleData.changes.push(debugChanges)
             }
             if (argv.musicShuffler?.on) {
                 const seed = argv.musicShuffler.seed ?? (seedName + '_musicShuffler')
