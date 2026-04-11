@@ -49,8 +49,8 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
             })
         // Patcher options
-            // TODO(sestren): Add ability to specify relative or absolute filepath?
-            // TODO(sestren): Add ability to specify shallow or deep copy of patch?
+            // IDEA(sestren): Add ability to specify relative or absolute filepath
+            // IDEA(sestren): Add ability to specify shallow or deep copy of patch
             .option('patcher.on', {
                 describe: 'Whether or not to apply the given list of patches',
                 type: 'boolean',
@@ -58,11 +58,6 @@ const argv = yargs(process.argv.slice(2))
             .option('patcher.list', {
                 describe: 'A list of filepaths of patches to apply, in order',
                 type: 'array',
-            })
-        // Room normalizer options
-            .option('roomNormalizer.on', {
-                describe: 'Whether or not to normalize room connections in the game; if disabled, all other options in this category are ignored',
-                type: 'boolean',
             })
         // Solver options
             .option('solver.on', {
