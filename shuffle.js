@@ -12,6 +12,11 @@ import {
 } from './src/shuffle-music.js'
 
 import {
+    getRoomChanges,
+    shuffleRooms,
+} from './src/shuffle-rooms.js'
+
+import {
     getTeleporterChanges,
     shuffleStages,
 } from './src/shuffle-stages.js'
@@ -207,6 +212,54 @@ const argv = yargs(process.argv.slice(2))
             }
             const seedName = getSeedName(seed)
             console.log(seedName)
+        }
+    })
+    .command({ // room
+        command: 'room',
+        describe: 'Shuffle rooms within stages',
+        builder: (yargs) => {
+            return yargs
+            .option('extraction', {
+                alias: 'e',
+                describe: 'Path to the aliased extraction file',
+                type: 'string',
+                normalize: true,
+            })
+            .option('out', {
+                alias: 'o',
+                describe: 'Path to the output file to create',
+                type: 'string',
+                normalize: true,
+            })
+            .option('seed', {
+                alias: 's',
+                describe: 'Seed to provide for randomization',
+                type: 'string',
+            })
+            .demandOption(['extraction', 'out'])
+        },
+        handler: (argv) => {
+            let seed = argv.seed
+            if (!seed) {
+                seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+            }
+            const shuffleData = {
+                authors: [
+                    'Sestren',
+                ],
+                changes: [],
+                description: [
+                    'Shuffle rooms',
+                ],
+                settings: {
+                    seed: argv.seed,
+                },
+            }
+            const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
+            const shuffledRooms = shuffleRooms(seed, 'abandonedMine')
+            // const roomChanges = getRoomChanges(extraction, shuffledRooms)
+            // shuffleData.changes.push(roomChanges)
+            // fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))
         }
     })
     .command({ // stage
