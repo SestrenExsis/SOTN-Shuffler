@@ -27,8 +27,8 @@ const nodeGroups = [
             },
         ],
         cells: [
-            '..#',
-            'TL#',
+            '..0',
+            '#=0',
         ],
         edges: [
             {
@@ -37,7 +37,7 @@ const nodeGroups = [
                 collision: '######....######',
                 row: 0.5,
                 column: 2.0,
-            }
+            },
         ],
     },
     { // abandonedMine.wellLitSkullRoom, abandonedMine.cerberusRoom, abandonedMine.demonSwitch
@@ -60,10 +60,10 @@ const nodeGroups = [
             },
         ],
         cells: [
-            '#####',
-            '....#',
-            '....#',
-            '....#',
+            '11223',
+            '....3',
+            '....3',
+            '....3',
         ],
         edges: [
             {
@@ -86,7 +86,7 @@ const nodeGroups = [
                 collision: '######....######',
                 row: 4.0,
                 column: 4.5,
-            }
+            },
         ],
     },
     { // abandonedMine.demonCard
@@ -99,7 +99,7 @@ const nodeGroups = [
             },
         ],
         cells: [
-            '##',
+            '44',
         ],
         edges: [
             {
@@ -131,7 +131,7 @@ const nodeGroups = [
             },
         ],
         cells: [
-            '###LT'
+            '555=#'
         ],
         edges: [
             {
@@ -167,7 +167,7 @@ const nodeGroups = [
             },
         ],
         cells: [
-            '#'
+            '6'
         ],
         edges: [
             {
@@ -189,10 +189,10 @@ const nodeGroups = [
             },
         ],
         cells: [
-            '#',
-            '#',
-            '#',
-            '#',
+            '7',
+            '7',
+            '7',
+            '7',
         ],
         edges: [
             {
@@ -228,7 +228,7 @@ const nodeGroups = [
             },
         ],
         cells: [
-            '#',
+            '8',
         ],
         edges: [
             {
@@ -250,7 +250,7 @@ const nodeGroups = [
             },
         ],
         cells: [
-            '#',
+            '9',
         ],
         edges: [
             {
@@ -272,8 +272,8 @@ const nodeGroups = [
             },
         ],
         cells: [
-            '#',
-            '#',
+            'a',
+            'a',
         ],
         edges: [
             {
@@ -302,7 +302,7 @@ const nodeGroups = [
             },
         ],
         cells: [
-            '####',
+            'bbbb',
         ],
         edges: [
             {
@@ -341,10 +341,10 @@ const nodeGroups = [
             },
         ],
         cells: [
-            '#LT',
-            '#..',
-            '#..',
-            '#..',
+            'c=#',
+            'c..',
+            'c..',
+            'c..',
         ],
         edges: [
             {
@@ -363,13 +363,741 @@ const nodeGroups = [
             },
         ],
     },
+    { // alchemyLaboratory.entryway, alchemyLaboratory.loadingRoomToCastleEntrance, alchemyLaboratory.triggerTeleporterToCastleEntrance
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'entryway',
+                row: 0,
+                column: 0,
+            },
+            {
+                room: 'loadingRoomToCastleEntrance',
+                row: 0,
+                column: 2,
+            },
+            {
+                room: 'triggerTeleporterToCastleEntrance',
+                row: 0,
+                column: 3,
+            },
+        ],
+        cells: [
+            '000=#',
+        ],
+        edges: [
+            {
+                roomName: 'entryway',
+                edgeName: 'top',
+                collision: '######...#######',
+                row: 0.0,
+                column: 1.5,
+            },
+        ],
+    },
+    { // alchemyLaboratory.triggerTeleporterToRoyalChapel, alchemyLaboratory.loadingRoomToRoyalChapel, alchemyLaboratory.exitToRoyalChapel
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'triggerTeleporterToRoyalChapel',
+                row: 0,
+                column: 0,
+            },
+            {
+                room: 'loadingRoomToRoyalChapel',
+                row: 0,
+                column: 1,
+            },
+            {
+                room: 'exitToRoyalChapel',
+                row: 0,
+                column: 2,
+            },
+        ],
+        cells: [
+            '#=1',
+        ],
+        edges: [
+            {
+                roomName: 'exitToRoyalChapel',
+                edgeName: 'right',
+                collision: '######....######',
+                row: 0.5,
+                column: 3.0,
+            },
+        ],
+    },
+    { // alchemyLaboratory.exitToMarbleGallery, alchemyLaboratory.loadingRoomToMarbleGallery, alchemyLaboratory.triggerTeleporterToMarbleGallery
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'exitToMarbleGallery',
+                row: 0,
+                column: 0,
+            },
+            {
+                room: 'loadingRoomToMarbleGallery',
+                row: 1,
+                column: 2,
+            },
+            {
+                room: 'triggerTeleporterToMarbleGallery',
+                row: 1,
+                column: 3,
+            },
+        ],
+        cells: [
+            '22..',
+            '22=#',
+            '22..',
+        ],
+        edges: [
+            {
+                roomName: 'exitToMarbleGallery',
+                edgeName: 'left',
+                collision: '######....######',
+                row: 1.5,
+                column: 0.0,
+            },
+        ],
+    },
+    { // alchemyLaboratory.tallSpittleboneRoom, alchemyLaboratory.slograAndGaibonRoom, alchemyLaboratory.tetrominoRoom, alchemyLaboratory.batCardRoom
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'tallSpittleboneRoom',
+                row: 1,
+                column: 0,
+            },
+            {
+                room: 'slograAndGaibonRoom',
+                row: 1,
+                column: 1,
+            },
+            {
+                room: 'tetrominoRoom',
+                row: 0,
+                column: 5,
+            },
+            {
+                room: 'batCardRoom',
+                row: 1,
+                column: 5,
+            },
+        ],
+        cells: [
+            '.....x3',
+            '4555533',
+            '4555533',
+            '4......',
+            '4......',
+            '4......',
+        ],
+        edges: [
+            {
+                roomName: 'tallSpittleboneRoom',
+                edgeName: 'leftUpper',
+                collision: '######....######',
+                row: 2.5,
+                column: 0.0,
+            },
+            {
+                roomName: 'tallSpittleboneRoom',
+                edgeName: 'leftLower',
+                collision: '######....######',
+                row: 4.5,
+                column: 0.0,
+            },
+            {
+                roomName: 'tallSpittleboneRoom',
+                edgeName: 'rightLower',
+                collision: '######....######',
+                row: 4.5,
+                column: 1.0,
+            },
+            {
+                roomName: 'tetrominoRoom',
+                edgeName: 'rightUpper',
+                collision: '######....######',
+                row: 0.5,
+                column: 7.0,
+            },
+            {
+                roomName: 'tetrominoRoom',
+                edgeName: 'right',
+                collision: '######....######',
+                row: 1.5,
+                column: 7.0,
+            },
+            {
+                roomName: 'tetrominoRoom',
+                edgeName: 'rightLower',
+                collision: '######....######',
+                row: 2.5,
+                column: 7.0,
+            },
+        ],
+    },
+    { // alchemyLaboratory.bloodyZombieHallway
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'bloodyZombieHallway',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            '6666',
+        ],
+        edges: [
+            {
+                roomName: 'bloodyZombieHallway',
+                edgeName: 'left',
+                collision: '######....######',
+                row: 0.5,
+                column: 0.0,
+            },
+            {
+                roomName: 'bloodyZombieHallway',
+                edgeName: 'right',
+                collision: '######....######',
+                row: 0.5,
+                column: 4.0,
+            },
+        ],
+    },
+    { // alchemyLaboratory.blueDoorHallway
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'blueDoorHallway',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            '77',
+        ],
+        edges: [
+            {
+                roomName: 'blueDoorHallway',
+                edgeName: 'left',
+                collision: '######....######',
+                row: 0.5,
+                column: 0.0,
+            },
+            {
+                roomName: 'blueDoorHallway',
+                edgeName: 'right',
+                collision: '######....######',
+                row: 0.5,
+                column: 2.0,
+            },
+        ],
+    },
+    { // alchemyLaboratory.boxPuzzleRoom
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'boxPuzzleRoom',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            '88',
+            '88',
+        ],
+        edges: [
+            {
+                roomName: 'boxPuzzleRoom',
+                edgeName: 'left',
+                collision: '######....######',
+                row: 0.5,
+                column: 0.0,
+            },
+            {
+                roomName: 'boxPuzzleRoom',
+                edgeName: 'rightUpper',
+                collision: '######....######',
+                row: 0.5,
+                column: 2.0,
+            },
+            {
+                roomName: 'boxPuzzleRoom',
+                edgeName: 'rightLower',
+                collision: '######....######',
+                row: 1.5,
+                column: 2.0,
+            },
+        ],
+    },
+    { // alchemyLaboratory.cannonRoom
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'cannonRoom',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            '9',
+        ],
+        edges: [
+            {
+                roomName: 'cannonRoom',
+                edgeName: 'left',
+                collision: '######....######',
+                row: 0.5,
+                column: 0.0,
+            },
+            {
+                roomName: 'cannonRoom',
+                edgeName: 'right',
+                collision: '######....######',
+                row: 0.5,
+                column: 1.0,
+            },
+        ],
+    },
+    { // alchemyLaboratory.clothCapeRoom
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'clothCapeRoom',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            'a',
+        ],
+        edges: [
+            {
+                roomName: 'clothCapeRoom',
+                edgeName: 'right',
+                collision: '######....######',
+                row: 0.5,
+                column: 1.0,
+            },
+        ],
+    },
+    { // alchemyLaboratory.corridorToElevator
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'corridorToElevator',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            'bb',
+        ],
+        edges: [
+            {
+                roomName: 'corridorToElevator',
+                edgeName: 'left',
+                collision: '######....######',
+                row: 0.5,
+                column: 0.0,
+            },
+            {
+                roomName: 'corridorToElevator',
+                edgeName: 'right',
+                collision: '######....######',
+                row: 0.5,
+                column: 2.0,
+            },
+        ],
+    },
+    { // alchemyLaboratory.elevatorShaft
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'elevatorShaft',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            'c',
+            'c',
+            'c',
+            'c',
+            'c',
+            'c',
+            'c',
+        ],
+        edges: [
+            {
+                roomName: 'elevatorShaft',
+                edgeName: 'leftUpper',
+                collision: '######....######',
+                row: 0.5,
+                column: 0.0,
+            },
+            {
+                roomName: 'elevatorShaft',
+                edgeName: 'left',
+                collision: '######....######',
+                row: 3.5,
+                column: 0.0,
+            },
+            {
+                roomName: 'elevatorShaft',
+                edgeName: 'leftLower',
+                collision: '######....######',
+                row: 6.5,
+                column: 0.0,
+            },
+        ],
+    },
+    { // alchemyLaboratory.emptyZigZagRoom
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'emptyZigZagRoom',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            'd',
+            'd',
+        ],
+        edges: [
+            {
+                roomName: 'emptyZigZagRoom',
+                edgeName: 'leftUpper',
+                collision: '######....######',
+                row: 0.5,
+                column: 0.0,
+            },
+            {
+                roomName: 'emptyZigZagRoom',
+                edgeName: 'leftLower',
+                collision: '######....######',
+                row: 1.5,
+                column: 0.0,
+            },
+        ],
+    },
+    { // alchemyLaboratory.glassVats
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'glassVats',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            'ee',
+        ],
+        edges: [
+            {
+                roomName: 'glassVats',
+                edgeName: 'right',
+                collision: '######....######',
+                row: 0.5,
+                column: 2.0,
+            },
+            {
+                roomName: 'glassVats',
+                edgeName: 'bottom',
+                collision: '#####..#########',
+                row: 1.0,
+                column: 0.5,
+            },
+        ],
+    },
+    { // alchemyLaboratory.heartMaxUpRoom
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'heartMaxUpRoom',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            'f',
+        ],
+        edges: [
+            {
+                roomName: 'heartMaxUpRoom',
+                edgeName: 'right',
+                collision: '######....######',
+                row: 0.5,
+                column: 1.0,
+            },
+        ],
+    },
+    { // alchemyLaboratory.redSkeletonLiftRoom
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'redSkeletonLiftRoom',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            'ggg',
+            'ggg',
+        ],
+        edges: [
+            {
+                roomName: 'redSkeletonLiftRoom',
+                edgeName: 'top',
+                collision: '#####..#########',
+                row: 0.0,
+                column: 0.5,
+            },
+            {
+                roomName: 'redSkeletonLiftRoom',
+                edgeName: 'left',
+                collision: '######....######',
+                row: 0.5,
+                column: 0.0,
+            },
+            {
+                roomName: 'redSkeletonLiftRoom',
+                edgeName: 'rightUpper',
+                collision: '######....######',
+                row: 0.5,
+                column: 3.0,
+            },
+            {
+                roomName: 'redSkeletonLiftRoom',
+                edgeName: 'rightLower',
+                collision: '######....######',
+                row: 1.5,
+                column: 3.0,
+            },
+            {
+                roomName: 'redSkeletonLiftRoom',
+                edgeName: 'bottom',
+                collision: '######...#######',
+                row: 2.0,
+                column: 2.5,
+            },
+        ],
+    },
+    { // alchemyLaboratory.saveRoomA
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'saveRoomA',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            'h',
+        ],
+        edges: [
+            {
+                roomName: 'saveRoomA',
+                edgeName: 'right',
+                collision: '######....######',
+                row: 0.5,
+                column: 1.0,
+            },
+        ],
+    },
+    { // alchemyLaboratory.saveRoomB
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'saveRoomB',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            'i',
+        ],
+        edges: [
+            {
+                roomName: 'saveRoomB',
+                edgeName: 'left',
+                collision: '######....######',
+                row: 0.5,
+                column: 0.0,
+            },
+        ],
+    },
+    { // alchemyLaboratory.saveRoomC
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'saveRoomC',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            'j',
+        ],
+        edges: [
+            {
+                roomName: 'saveRoomC',
+                edgeName: 'left',
+                collision: '######....######',
+                row: 0.5,
+                column: 0.0,
+            },
+        ],
+    },
+    { // alchemyLaboratory.secretLifeMaxUpRoom
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'secretLifeMaxUpRoom',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            'k',
+            'k',
+        ],
+        edges: [
+            {
+                roomName: 'secretLifeMaxUpRoom',
+                edgeName: 'top',
+                collision: '#######..#######',
+                row: 0.0,
+                column: 0.5,
+            },
+        ],
+    },
+    { // alchemyLaboratory.shortZigZagRoom
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'shortZigZagRoom',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            'l',
+            'l',
+        ],
+        edges: [
+            {
+                roomName: 'shortZigZagRoom',
+                edgeName: 'left',
+                collision: '######....######',
+                row: 0.5,
+                column: 0.0,
+            },
+            {
+                roomName: 'shortZigZagRoom',
+                edgeName: 'right',
+                collision: '######....######',
+                row: 1.5,
+                column: 1.0,
+            },
+        ],
+    },
+    { // alchemyLaboratory.skillOfWolfRoom
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'skillOfWolfRoom',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            'm',
+        ],
+        edges: [
+            {
+                roomName: 'skillOfWolfRoom',
+                edgeName: 'left',
+                collision: '######....######',
+                row: 0.5,
+                column: 0.0,
+            },
+        ],
+    },
+    { // alchemyLaboratory.sunglassesRoom
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'sunglassesRoom',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            'n',
+        ],
+        edges: [
+            {
+                roomName: 'sunglassesRoom',
+                edgeName: 'right',
+                collision: '######....######',
+                row: 0.5,
+                column: 1.0,
+            },
+        ],
+    },
+    { // alchemyLaboratory.tallZigZagRoom
+        stage: 'alchemyLaboratory',
+        rooms: [
+            {
+                room: 'tallZigZagRoom',
+                row: 0,
+                column: 0,
+            },
+        ],
+        cells: [
+            'o',
+            'o',
+            'o',
+        ],
+        edges: [
+            {
+                roomName: 'tallZigZagRoom',
+                edgeName: 'leftUpper',
+                collision: '######....######',
+                row: 0.5,
+                column: 0.0,
+            },
+            {
+                roomName: 'tallZigZagRoom',
+                edgeName: 'leftLower',
+                collision: '######....######',
+                row: 2.5,
+                column: 0.0,
+            },
+            {
+                roomName: 'tallZigZagRoom',
+                edgeName: 'right',
+                collision: '######....######',
+                row: 2.5,
+                column: 1.0,
+            },
+            {
+                roomName: 'tallZigZagRoom',
+                edgeName: 'bottom',
+                collision: '#######..#######',
+                row: 3.0,
+                column: 0.5,
+            },
+        ],
+    },
 ]
 
 export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOffset) {
-    console.log('baseNodeGroup:', baseNodeGroup)
-    console.log('nodeGroup:', nodeGroup)
-    console.log('rowOffset:', rowOffset)
-    console.log('columnOffset:', columnOffset)
     assert.strictEqual(baseNodeGroup.stage, nodeGroup.stage)
     const result = {
         stage: baseNodeGroup.stage,
@@ -434,7 +1162,7 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
         }
         result.cells.push(rowData.join(''))
     }
-    // console.log('Place down edges for baseNodeGroup')
+    let validInd = true
     baseNodeGroup.edges
         .filter((baseEdgeInfo) => {
             // This is O(M * N), but N is assumed to be very small
@@ -444,11 +1172,14 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
                 .filter((edgeInfo) => {
                     const row = edgeInfo.row + Math.max(0, rowOffset)
                     const column = edgeInfo.column + Math.max(0, columnOffset)
-                    if (baseRow == row || baseColumn == column) {
-                        // console.log(baseEdgeInfo, edgeInfo)
-                    }
                     return baseRow == row && baseColumn == column
                 })
+            const mismatchedEdges = matchingEdgesFound.filter((edgeInfo) => {
+                return baseEdgeInfo.collisions != edgeInfo.collisions
+            })
+            if (mismatchedEdges.length > 0) {
+                validInd = false
+            }
             return matchingEdgesFound.length < 1
         })
         .forEach((baseEdgeInfo) => {
@@ -462,7 +1193,9 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
                 column: baseColumn,
             })
         })
-    // console.log('Place down edges for nodeGroup')
+    if (!validInd) {
+        return null
+    }
     nodeGroup.edges
         .filter((edgeInfo) => {
             // This is O(M * N), but M is assumed to be very small
@@ -472,11 +1205,14 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
                 .filter((baseEdgeInfo) => {
                     const baseRow = baseEdgeInfo.row + Math.max(0, -rowOffset)
                     const baseColumn = baseEdgeInfo.column + Math.max(0, -columnOffset)
-                    if (row == baseRow || column == baseColumn) {
-                        // console.log(edgeInfo, baseEdgeInfo)
-                    }
                     return row == baseRow && column == baseColumn
                 })
+            const mismatchedEdges = matchingEdgesFound.filter((baseEdgeInfo) => {
+                return edgeInfo.collisions != baseEdgeInfo.collisions
+            })
+            if (mismatchedEdges.length > 0) {
+                validInd = false
+            }
             return matchingEdgesFound.length < 1
         })
         .forEach((edgeInfo) => {
@@ -490,23 +1226,28 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
                 column: column,
             })
         })
-    console.log('result:', result)
+    if (!validInd) {
+        return null
+    }
     return result
 }
 
 export function shuffleRooms(seed, stageName) {
+    const stageNodeGroups = nodeGroups
+        .filter((nodeGroup) => {
+            return nodeGroup.stage === stageName
+        })
     const rng = seedrandom(seed)
+    let attemptCount = 0
     let validInd = false
     let result
     while (!validInd) {
         validInd = true
-        const groupIndexes = Array.from(Array(nodeGroups.length).keys())
+        attemptCount += 1
+        const groupIndexes = Array.from(Array(stageNodeGroups.length).keys())
         shuffleArray(rng, groupIndexes)
         const groupIndex = groupIndexes.pop()
-        result = JSON.parse(JSON.stringify(nodeGroups.at(groupIndex)))
-        // console.log(result)
-        // console.log(groupIndex)
-        // console.log(groupIndexes)
+        result = JSON.parse(JSON.stringify(stageNodeGroups.at(groupIndex)))
         while (groupIndexes.length > 0) {
             if (result.edges.length < 1) {
                 validInd = false
@@ -517,7 +1258,7 @@ export function shuffleRooms(seed, stageName) {
             const nextResults = []
             for (let i = 0; i < groupIndexes.length; i++) {
                 const groupIndex = groupIndexes.at(i)
-                const nodeGroup = nodeGroups.at(groupIndex)
+                const nodeGroup = stageNodeGroups.at(groupIndex)
                 for (let j = 0; j < nodeGroup.edges.length; j++) {
                     const edge = nodeGroup.edges.at(j)
                     const rowOffset = baseEdge.row - edge.row
@@ -530,7 +1271,6 @@ export function shuffleRooms(seed, stageName) {
                                 groupIndex: groupIndex,
                                 nextResult: nextResult,
                             })
-                            // throw new Error('')
                         }
                     }
                 }
@@ -547,9 +1287,9 @@ export function shuffleRooms(seed, stageName) {
         if (groupIndexes.length > 0 || result.edges.length > 0) {
             validInd = false
         }
-        console.log('validInd:', validInd)
     }
-    console.log(result)
+    console.log('attemptCount:', attemptCount)
+    console.log('result:', result)
     return result
 }
 

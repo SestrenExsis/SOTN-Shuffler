@@ -236,6 +236,11 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'Seed to provide for randomization',
                 type: 'string',
             })
+            .option('stageName', {
+                alias: 'n',
+                describe: 'Name of stage to randomize rooms in',
+                type: 'string',
+            })
             .demandOption(['extraction', 'out'])
         },
         handler: (argv) => {
@@ -256,7 +261,7 @@ const argv = yargs(process.argv.slice(2))
                 },
             }
             const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
-            const shuffledRooms = shuffleRooms(seed, 'abandonedMine')
+            const shuffledRooms = shuffleRooms(seed, argv.stageName)
             // const roomChanges = getRoomChanges(extraction, shuffledRooms)
             // shuffleData.changes.push(roomChanges)
             // fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))
