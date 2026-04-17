@@ -1,6 +1,4 @@
-import fs from 'fs'
 import seedrandom from 'seedrandom'
-import yargs from 'yargs'
 
 import {
     shuffleArray

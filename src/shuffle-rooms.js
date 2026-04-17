@@ -1,5 +1,4 @@
 import assert from 'node:assert'
-import fs from 'fs'
 import seedrandom from 'seedrandom'
 
 import {
