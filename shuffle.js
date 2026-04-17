@@ -236,10 +236,13 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'Seed to provide for randomization',
                 type: 'string',
             })
-            .option('stageName', {
-                alias: 'n',
-                describe: 'Name of stage to randomize rooms in',
+            .option('stage', {
+                describe: 'Name of stage to shuffle rooms in',
                 type: 'string',
+            })
+            .option('norm', {
+                describe: 'Whether or not to apply normalization to room connections before shuffling',
+                type: 'boolean',
             })
             .demandOption(['extraction', 'out'])
         },
@@ -261,7 +264,7 @@ const argv = yargs(process.argv.slice(2))
                 },
             }
             const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
-            const shuffledRooms = shuffleRooms(seed, argv.stageName)
+            const shuffledRooms = shuffleRooms(seed, argv.stage, argv.norm)
             // const roomChanges = getRoomChanges(extraction, shuffledRooms)
             // shuffleData.changes.push(roomChanges)
             // fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))
