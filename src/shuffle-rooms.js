@@ -7,12 +7,14 @@ import {
 } from './common.js'
 
 const normalizationPatches = {
-    'nodeGroups.alchemyLaboratory.entryway.edges.top.collision': '######....######',
-}
-
-const edgeCollisions = {
-    default: '######....######',
-    alchemyLaboratoryEntrywayTop: '######...#######',
+    alchemyLaboratory: {
+        'entryway.edges.top.collision': '######....######',
+        'glassVats.edges.bottom.collision': '######....######',
+        'redSkeletonLiftRoom.edges.top.collision': '######....######',
+        'redSkeletonLiftRoom.edges.bottom.collision': '######....######',
+        'secretLifeMaxUpRoom.edges.top.collision': '######....######',
+        'tallZigZagRoom.edges.bottom.collision': '######....######',
+    },
 }
 
 const nodeGroups = {
@@ -483,37 +485,37 @@ const nodeGroups = {
                 '4......',
             ],
             edges: {
-                leftUpper: {
+                leftUpperOnTheLeft: {
                     roomName: 'tallSpittleboneRoom',
                     collision: '######....######',
                     row: 2.5,
                     column: 0.0,
                 },
-                leftLower: {
+                leftLowerOnTheLeft: {
                     roomName: 'tallSpittleboneRoom',
                     collision: '######....######',
                     row: 4.5,
                     column: 0.0,
                 },
-                rightLower: {
+                rightLowerOnTheLeft: {
                     roomName: 'tallSpittleboneRoom',
                     collision: '######....######',
                     row: 4.5,
                     column: 1.0,
                 },
-                rightUpper: {
+                rightUpperOnTheRight: {
                     roomName: 'tetrominoRoom',
                     collision: '######....######',
                     row: 0.5,
                     column: 7.0,
                 },
-                right: {
+                rightOnTheRight: {
                     roomName: 'tetrominoRoom',
                     collision: '######....######',
                     row: 1.5,
                     column: 7.0,
                 },
-                rightLower: {
+                rightLowerOnTheRight: {
                     roomName: 'tetrominoRoom',
                     collision: '######....######',
                     row: 2.5,
@@ -1110,45 +1112,45 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
         result.cells.push(rowData.join(''))
     }
     let validInd = true
-    Object.entries(baseNodeGroup.edges)
-        .filter(([baseEdgeName, baseEdgeInfo]) => {
+    baseNodeGroup.edges
+        .filter((baseEdgeInfo) => {
             // This is O(M * N), but N is assumed to be very small
             const baseRow = baseEdgeInfo.row + Math.max(0, -rowOffset)
             const baseColumn = baseEdgeInfo.column + Math.max(0, -columnOffset)
-            const matchingEdgesFound = Object.values(nodeGroup.edges)
+            const matchingEdgesFound = nodeGroup.edges
                 .filter((edgeInfo) => {
                     const row = edgeInfo.row + Math.max(0, rowOffset)
                     const column = edgeInfo.column + Math.max(0, columnOffset)
                     return baseRow == row && baseColumn == column
                 })
             const mismatchedEdges = matchingEdgesFound.filter((edgeInfo) => {
-                return baseEdgeInfo.collisions != edgeInfo.collisions
+                return baseEdgeInfo.collision != edgeInfo.collision
             })
             if (mismatchedEdges.length > 0) {
                 validInd = false
             }
             return matchingEdgesFound.length < 1
         })
-        .forEach(([baseEdgeName, baseEdgeInfo]) => {
+        .forEach((baseEdgeInfo) => {
             const baseRow = baseEdgeInfo.row + Math.max(0, -rowOffset)
             const baseColumn = baseEdgeInfo.column + Math.max(0, -columnOffset)
-            result.edges[baseEdgeName] = {
+            result.edges.push({
                 roomName: baseEdgeInfo.roomName,
                 edgeName: baseEdgeInfo.edgeName,
                 collision: baseEdgeInfo.collision,
                 row: baseRow,
                 column: baseColumn,
-            }
+            })
         })
     if (!validInd) {
         return null
     }
-    Object.entries(nodeGroup.edges)
-        .filter(([edgeName, edgeInfo]) => {
+    nodeGroup.edges
+        .filter((edgeInfo) => {
             // This is O(M * N), but M is assumed to be very small
             const row = edgeInfo.row + Math.max(0, rowOffset)
             const column = edgeInfo.column + Math.max(0, columnOffset)
-            const matchingEdgesFound = Object.values(baseNodeGroup.edges)
+            const matchingEdgesFound = baseNodeGroup.edges
                 .filter((baseEdgeInfo) => {
                     const baseRow = baseEdgeInfo.row + Math.max(0, -rowOffset)
                     const baseColumn = baseEdgeInfo.column + Math.max(0, -columnOffset)
@@ -1162,16 +1164,16 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
             }
             return matchingEdgesFound.length < 1
         })
-        .forEach(([edgeName, edgeInfo]) => {
+        .forEach((edgeInfo) => {
             const row = edgeInfo.row + Math.max(0, rowOffset)
             const column = edgeInfo.column + Math.max(0, columnOffset)
-            result.edges[edgeName] = {
+            result.edges.push({
                 roomName: edgeInfo.roomName,
                 edgeName: edgeInfo.edgeName,
                 collision: edgeInfo.collision,
                 row: row,
                 column: column,
-            }
+            })
         })
     if (!validInd) {
         return null
@@ -1179,8 +1181,21 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
     return result
 }
 
-export function shuffleRooms(seed, stageName) {
-    const stageNodeGroups = Object.values(nodeGroups[stageName])
+export function shuffleRooms(seed, stageName, applyNormalization) {
+    if (applyNormalization) {
+        Object.entries(normalizationPatches[stageName]).forEach(([patchKey, patchValue]) => {
+            let context = nodeGroups[stageName]
+            const properties = patchKey.split('.')
+            for (let propertyIndex = 0; propertyIndex < properties.length - 1; propertyIndex++) {
+                context = context[properties.at(propertyIndex)]
+            }
+            context[properties.at(-1)] = patchValue
+        })
+    }
+    const stageNodeGroups = JSON.parse(JSON.stringify(Object.values(nodeGroups[stageName]).sort()))
+    stageNodeGroups.forEach((stageNodeGroup) => {
+        stageNodeGroup.edges = Object.values(stageNodeGroup.edges).sort()
+    })
     const rng = seedrandom(seed)
     let attemptCount = 0
     let validInd = false
@@ -1188,29 +1203,23 @@ export function shuffleRooms(seed, stageName) {
     while (!validInd) {
         validInd = true
         attemptCount += 1
-        console.log(`attemptCount: ${attemptCount}`)
         const groupIndexes = Array.from(Array(stageNodeGroups.length).keys())
         shuffleArray(rng, groupIndexes)
-        console.log(`  groupIndexes(${groupIndexes.length}): ${groupIndexes}`)
         const groupIndex = groupIndexes.pop()
-        console.log(`  groupIndex: ${groupIndex}`)
-        result = JSON.parse(JSON.stringify(stageNodeGroups.at(groupIndex)))
+        result = stageNodeGroups.at(groupIndex)
         while (groupIndexes.length > 0) {
-            const resultEdges = Object.entries(result.edges).sort()
-            if (resultEdges.length < 1) {
+            if (result.edges.length < 1) {
                 validInd = false
-                console.log(`  BREAK: resultEdges.length < 1`)
                 break
             }
-            const edgeIndex = Math.floor(rng() * resultEdges.length)
-            const baseEdge = resultEdges.at(edgeIndex)
+            const edgeIndex = Math.floor(rng() * result.edges.length)
+            const baseEdge = result.edges.at(edgeIndex)
             const nextResults = []
             for (let i = 0; i < groupIndexes.length; i++) {
                 const groupIndex = groupIndexes.at(i)
                 const nodeGroup = stageNodeGroups.at(groupIndex)
-                const nodeGroupEdges = Object.entries(nodeGroup.edges).sort()
-                for (let j = 0; j < nodeGroupEdges.length; j++) {
-                    const edge = nodeGroupEdges.at(j)
+                for (let j = 0; j < nodeGroup.edges.length; j++) {
+                    const edge = nodeGroup.edges.at(j)
                     const rowOffset = baseEdge.row - edge.row
                     const columnOffset = baseEdge.column - edge.column
                     // A non-integer offset implies a horizontal edge being matched with a vertical edge
@@ -1228,7 +1237,6 @@ export function shuffleRooms(seed, stageName) {
             shuffleArray(rng, nextResults)
             if (nextResults.length < 1) {
                 validInd = false
-                console.log(`  BREAK: nextResults.length < 1`)
                 break
             }
             const spliceIndex = groupIndexes.indexOf(nextResults.at(-1).groupIndex)
