@@ -472,7 +472,7 @@ export function shuffleSongs(seed) {
     return result
 }
 
-export function getSongChanges(extraction, songData) {
+export function getSongChanges(songData) {
     const songChanges = {}
     Object.entries(songData.stage)
         .forEach(([stageName, songName]) => {

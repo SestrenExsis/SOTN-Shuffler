@@ -329,11 +329,13 @@ const nodeGroups = {
                     column: 0,
                 },
                 {
+                    stage: 'abandonedMine',
                     room: 'loadingRoomToUndergroundCaverns',
                     row: 0,
                     column: 1,
                 },
                 {
+                    stage: 'abandonedMine',
                     room: 'triggerTeleporterToUndergroundCaverns',
                     row: 0,
                     column: 2,
@@ -1268,56 +1270,17 @@ export function shuffleRooms(seed, stageName, applyNormalization) {
     return result
 }
 
-export function getRoomChanges(extraction, rooms) {
-    const roomData = {
-        stages: {},
-    }
-    Object.entries(links)
-        .forEach(([sourceTeleporterName, targetTeleporterName]) => {
-            const sourceTeleporterIndex = extraction.teleporters.aliases[sourceTeleporterName]
-            const targetTeleporterIndex = extraction.teleporters.aliases[targetTeleporterName]
-            const sourceTeleporter = extraction.teleporters.data[sourceTeleporterIndex]
-            const targetTeleporter = extraction.teleporters.data[targetTeleporterIndex]
-            const assignments = []
-            assignments.push([
-                sourceTeleporter.sourceStageId,
-                sourceTeleporter.targetStageId,
-                // NOTE(sestren): Notice that the target teleporter's stage order is swapped
-                // This reflection allows the original return target to be fetched
-                targetTeleporter.targetStageId,
-                targetTeleporter.sourceStageId,
-            ])
-            if (sourceTeleporter.sourceStageId === 'castleEntrance') {
-                assignments.push([
-                    'castleEntranceRevisited',
-                    sourceTeleporter.targetStageId,
-                    targetTeleporter.targetStageId,
-                    targetTeleporter.sourceStageId,
-                ])
-            }
-            assignments.forEach(([sourceFrom, sourceTo, targetFrom, targetTo]) => {
-                if (sourceTo === 'castleEntranceRevisited') {
-                    sourceTo = 'castleEntrance'
-                }
-                const teleporterNameA = 'from' + sourceFrom.at(0).toUpperCase() + sourceFrom.slice(1) + 'To' + sourceTo.at(0).toUpperCase() + sourceTo.slice(1)
-                const teleporterNameB = 'from' + targetFrom.at(0).toUpperCase() + targetFrom.slice(1) + 'To' + targetTo.at(0).toUpperCase() + targetTo.slice(1)
-                const teleporterIndexA = extraction.teleporters.aliases[teleporterNameA]
-                const teleporterIndexB = extraction.teleporters.aliases[teleporterNameB]
-                const teleporterA = extraction.teleporters.data[teleporterIndexA]
-                const teleporterB = extraction.teleporters.data[teleporterIndexB]
-                teleporterData[teleporterNameA] = {
-                    'playerX=': teleporterB.playerX,
-                    'playerY=': teleporterB.playerY,
-                    'roomOffset=': teleporterB.roomOffset,
-                    'targetStageId=': teleporterB.targetStageId,
-                }
-            })
-        })
+export function getRoomChanges(rooms, rowOffset, columnOffset) {
+    const roomData = {}
+    rooms.forEach((roomInfo) => {
+        const rowProperty = `stages.${roomInfo.stage}.rooms.${roomInfo.room}.top=`
+        roomData[rowProperty] = rowOffset + roomInfo.row
+        const columnProperty = `stages.${roomInfo.stage}.rooms.${roomInfo.room}.left=`
+        roomData[columnProperty] = columnOffset + roomInfo.column
+    })
     const result = {
         changeType: 'merge',
-        merge: {
-            teleporters: roomData,
-        },
+        merge: roomData,
     }
     return result
 }
