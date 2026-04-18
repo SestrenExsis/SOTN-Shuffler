@@ -19,19 +19,21 @@ const normalizationPatches = {
 const nodeGroups = {
     abandonedMine: {
         bend: { // triggerTeleporterToCatacombs, loadingRoomToCatacombs, bend
-            stage: 'abandonedMine',
             rooms: [
                 {
+                    stage: 'abandonedMine',
                     room: 'triggerTeleporterToCatacombs',
                     row: 1,
                     column: 0,
                 },
                 {
+                    stage: 'abandonedMine',
                     room: 'loadingRoomToCatacombs',
                     row: 1,
                     column: 1,
                 },
                 {
+                    stage: 'abandonedMine',
                     room: 'bend',
                     row: 0,
                     column: 2,
@@ -51,19 +53,21 @@ const nodeGroups = {
             },
         },
         cerberusRoom: { // wellLitSkullRoom, demonSwitch
-            stage: 'abandonedMine',
             rooms: [
                 {
+                    stage: 'abandonedMine',
                     room: 'wellLitSkullRoom',
                     row: 0,
                     column: 0,
                 },
                 {
+                    stage: 'abandonedMine',
                     room: 'cerberusRoom',
                     row: 0,
                     column: 2,
                 },
                 {
+                    stage: 'abandonedMine',
                     room: 'demonSwitch',
                     row: 0,
                     column: 4,
@@ -97,9 +101,9 @@ const nodeGroups = {
             },
         },
         demonCard: {
-            stage: 'abandonedMine',
             rooms: [
                 {
+                    stage: 'abandonedMine',
                     room: 'demonCard',
                     row: 0,
                     column: 0,
@@ -118,19 +122,21 @@ const nodeGroups = {
             },
         },
         fourWayIntersection: { // fourWayIntersection, loadingRoomToWarpRooms, triggerTeleporterToWarpRooms
-            stage: 'abandonedMine',
             rooms: [
                 {
+                    stage: 'abandonedMine',
                     room: 'fourWayIntersection',
                     row: 0,
                     column: 0,
                 },
                 {
+                    stage: 'abandonedMine',
                     room: 'loadingRoomToWarpRooms',
                     row: 0,
                     column: 3,
                 },
                 {
+                    stage: 'abandonedMine',
                     room: 'triggerTeleporterToWarpRooms',
                     row: 0,
                     column: 4,
@@ -161,9 +167,9 @@ const nodeGroups = {
             },
         },
         karmaCoinRoom: {
-            stage: 'abandonedMine',
             rooms: [
                 {
+                    stage: 'abandonedMine',
                     room: 'karmaCoinRoom',
                     row: 0,
                     column: 0,
@@ -182,9 +188,9 @@ const nodeGroups = {
             },
         },
         lowerStairwell: {
-            stage: 'abandonedMine',
             rooms: [
                 {
+                    stage: 'abandonedMine',
                     room: 'lowerStairwell',
                     row: 0,
                     column: 0,
@@ -218,9 +224,9 @@ const nodeGroups = {
             },
         },
         peanutsRoom: {
-            stage: 'abandonedMine',
             rooms: [
                 {
+                    stage: 'abandonedMine',
                     room: 'peanutsRoom',
                     row: 0,
                     column: 0,
@@ -239,9 +245,9 @@ const nodeGroups = {
             },
         },
         saveRoom: {
-            stage: 'abandonedMine',
             rooms: [
                 {
+                    stage: 'abandonedMine',
                     room: 'saveRoom',
                     row: 0,
                     column: 0,
@@ -260,9 +266,9 @@ const nodeGroups = {
             },
         },
         snakeColumn: {
-            stage: 'abandonedMine',
             rooms: [
                 {
+                    stage: 'abandonedMine',
                     room: 'snakeColumn',
                     row: 0,
                     column: 0,
@@ -288,9 +294,9 @@ const nodeGroups = {
             },
         },
         venusWeedRoom: {
-            stage: 'abandonedMine',
             rooms: [
                 {
+                    stage: 'abandonedMine',
                     room: 'venusWeedRoom',
                     row: 0,
                     column: 0,
@@ -315,9 +321,9 @@ const nodeGroups = {
             },
         },
         wolfsHeadColumn: { // wolfsHeadColumn, loadingRoomToUndergroundCaverns, triggerTeleporterToUndergroundCaverns
-            stage: 'abandonedMine',
             rooms: [
                 {
+                    stage: 'abandonedMine',
                     room: 'wolfsHeadColumn',
                     row: 0,
                     column: 0,
@@ -357,19 +363,21 @@ const nodeGroups = {
     },
     alchemyLaboratory: {
         entryway: { // entryway, loadingRoomToCastleEntrance, triggerTeleporterToCastleEntrance
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'entryway',
                     row: 0,
                     column: 0,
                 },
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'loadingRoomToCastleEntrance',
                     row: 0,
                     column: 2,
                 },
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'triggerTeleporterToCastleEntrance',
                     row: 0,
                     column: 3,
@@ -388,19 +396,21 @@ const nodeGroups = {
             },
         },
         exitToRoyalChapel: { // triggerTeleporterToRoyalChapel, loadingRoomToRoyalChapel, exitToRoyalChapel
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'triggerTeleporterToRoyalChapel',
                     row: 0,
                     column: 0,
                 },
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'loadingRoomToRoyalChapel',
                     row: 0,
                     column: 1,
                 },
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'exitToRoyalChapel',
                     row: 0,
                     column: 2,
@@ -419,19 +429,21 @@ const nodeGroups = {
             },
         },
         exitToMarbleGallery: { // exitToMarbleGallery, loadingRoomToMarbleGallery, triggerTeleporterToMarbleGallery
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'exitToMarbleGallery',
                     row: 0,
                     column: 0,
                 },
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'loadingRoomToMarbleGallery',
                     row: 1,
                     column: 2,
                 },
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'triggerTeleporterToMarbleGallery',
                     row: 1,
                     column: 3,
@@ -452,24 +464,27 @@ const nodeGroups = {
             },
         },
         slograAndGaibonRoom: { // tallSpittleboneRoom, tetrominoRoom, batCardRoom
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'tallSpittleboneRoom',
                     row: 1,
                     column: 0,
                 },
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'slograAndGaibonRoom',
                     row: 1,
                     column: 1,
                 },
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'tetrominoRoom',
                     row: 0,
                     column: 5,
                 },
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'batCardRoom',
                     row: 1,
                     column: 5,
@@ -523,9 +538,9 @@ const nodeGroups = {
             },
         },
         bloodyZombieHallway: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'bloodyZombieHallway',
                     row: 0,
                     column: 0,
@@ -550,9 +565,9 @@ const nodeGroups = {
             },
         },
         blueDoorHallway: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'blueDoorHallway',
                     row: 0,
                     column: 0,
@@ -577,9 +592,9 @@ const nodeGroups = {
             },
         },
         boxPuzzleRoom: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'boxPuzzleRoom',
                     row: 0,
                     column: 0,
@@ -611,9 +626,9 @@ const nodeGroups = {
             },
         },
         cannonRoom: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'cannonRoom',
                     row: 0,
                     column: 0,
@@ -638,9 +653,9 @@ const nodeGroups = {
             },
         },
         clothCapeRoom: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'clothCapeRoom',
                     row: 0,
                     column: 0,
@@ -659,9 +674,9 @@ const nodeGroups = {
             },
         },
         corridorToElevator: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'corridorToElevator',
                     row: 0,
                     column: 0,
@@ -686,9 +701,9 @@ const nodeGroups = {
             },
         },
         elevatorShaft: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'elevatorShaft',
                     row: 0,
                     column: 0,
@@ -725,9 +740,9 @@ const nodeGroups = {
             },
         },
         emptyZigZagRoom: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'emptyZigZagRoom',
                     row: 0,
                     column: 0,
@@ -753,9 +768,9 @@ const nodeGroups = {
             },
         },
         glassVats: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'glassVats',
                     row: 0,
                     column: 0,
@@ -780,9 +795,9 @@ const nodeGroups = {
             },
         },
         heartMaxUpRoom: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'heartMaxUpRoom',
                     row: 0,
                     column: 0,
@@ -801,9 +816,9 @@ const nodeGroups = {
             },
         },
         redSkeletonLiftRoom: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'redSkeletonLiftRoom',
                     row: 0,
                     column: 0,
@@ -847,9 +862,9 @@ const nodeGroups = {
             },
         },
         saveRoomA: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'saveRoomA',
                     row: 0,
                     column: 0,
@@ -868,9 +883,9 @@ const nodeGroups = {
             },
         },
         saveRoomB: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'saveRoomB',
                     row: 0,
                     column: 0,
@@ -889,9 +904,9 @@ const nodeGroups = {
             },
         },
         saveRoomC: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'saveRoomC',
                     row: 0,
                     column: 0,
@@ -910,9 +925,9 @@ const nodeGroups = {
             },
         },
         secretLifeMaxUpRoom: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'secretLifeMaxUpRoom',
                     row: 0,
                     column: 0,
@@ -932,9 +947,9 @@ const nodeGroups = {
             },
         },
         shortZigZagRoom: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'shortZigZagRoom',
                     row: 0,
                     column: 0,
@@ -960,9 +975,9 @@ const nodeGroups = {
             },
         },
         skillOfWolfRoom: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'skillOfWolfRoom',
                     row: 0,
                     column: 0,
@@ -981,9 +996,9 @@ const nodeGroups = {
             },
         },
         sunglassesRoom: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'sunglassesRoom',
                     row: 0,
                     column: 0,
@@ -1002,9 +1017,9 @@ const nodeGroups = {
             },
         },
         tallZigZagRoom: {
-            stage: 'alchemyLaboratory',
             rooms: [
                 {
+                    stage: 'alchemyLaboratory',
                     room: 'tallZigZagRoom',
                     row: 0,
                     column: 0,
@@ -1046,15 +1061,14 @@ const nodeGroups = {
 }
 
 export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOffset) {
-    assert.strictEqual(baseNodeGroup.stage, nodeGroup.stage)
     const result = {
-        stage: baseNodeGroup.stage,
         rooms: [],
         cells: [],
         edges: [],
     }
     baseNodeGroup.rooms.forEach((roomInfo) => {
         result.rooms.push({
+            stage: roomInfo.stage,
             room: roomInfo.room,
             row: roomInfo.row + Math.max(0, -rowOffset),
             column: roomInfo.column + Math.max(0, -columnOffset),
@@ -1062,6 +1076,7 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
     })
     nodeGroup.rooms.forEach((roomInfo) => {
         result.rooms.push({
+            stage: roomInfo.stage,
             room: roomInfo.room,
             row: roomInfo.row + Math.max(0, rowOffset),
             column: roomInfo.column + Math.max(0, columnOffset),
@@ -1182,14 +1197,16 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
 
 export function shuffleRooms(seed, stageName, applyNormalization) {
     if (applyNormalization) {
-        Object.entries(normalizationPatches[stageName]).forEach(([patchKey, patchValue]) => {
-            let context = nodeGroups[stageName]
-            const properties = patchKey.split('.')
-            for (let propertyIndex = 0; propertyIndex < properties.length - 1; propertyIndex++) {
-                context = context[properties.at(propertyIndex)]
-            }
-            context[properties.at(-1)] = patchValue
-        })
+        if (stageName in normalizationPatches) {
+            Object.entries(normalizationPatches[stageName]).forEach(([patchKey, patchValue]) => {
+                let context = nodeGroups[stageName]
+                const properties = patchKey.split('.')
+                for (let propertyIndex = 0; propertyIndex < properties.length - 1; propertyIndex++) {
+                    context = context[properties.at(propertyIndex)]
+                }
+                context[properties.at(-1)] = patchValue
+            })
+        }
     }
     const stageNodeGroups = JSON.parse(JSON.stringify(Object.values(nodeGroups[stageName]).sort()))
     stageNodeGroups.forEach((stageNodeGroup) => {
@@ -1251,8 +1268,10 @@ export function shuffleRooms(seed, stageName, applyNormalization) {
     return result
 }
 
-export function getRoomChanges(extraction, links) {
-    const teleporterData = {}
+export function getRoomChanges(extraction, rooms) {
+    const roomData = {
+        stages: {},
+    }
     Object.entries(links)
         .forEach(([sourceTeleporterName, targetTeleporterName]) => {
             const sourceTeleporterIndex = extraction.teleporters.aliases[sourceTeleporterName]
@@ -1297,7 +1316,7 @@ export function getRoomChanges(extraction, links) {
     const result = {
         changeType: 'merge',
         merge: {
-            teleporters: teleporterData,
+            teleporters: roomData,
         },
     }
     return result
