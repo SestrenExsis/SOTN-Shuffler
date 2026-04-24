@@ -3,6 +3,10 @@ import seedrandom from 'seedrandom'
 import yargs from 'yargs'
 
 import {
+    arrangeStages,
+} from './src/common.js'
+
+import {
     getSeedName,
 } from './src/generate-words.js'
 
@@ -10,6 +14,11 @@ import {
     getSongChanges,
     shuffleSongs,
 } from './src/shuffle-music.js'
+
+import {
+    getRoomChanges,
+    shuffleRooms,
+} from './src/shuffle-rooms.js'
 
 import {
     getTeleporterChanges,
@@ -73,6 +82,15 @@ const argv = yargs(process.argv.slice(2))
                 type: 'number',
                 default: 1000000,
             })
+        // Room shuffler options
+            .option('roomShuffler.on', {
+                describe: 'Whether or not to shuffle how rooms within a stage connect. If disabled, all other options in this category are ignored.',
+                type: 'boolean',
+            })
+            .option('roomShuffler.seed', {
+                describe: 'If supplied, this seed is alway used for supplying randomness to the room shuffler',
+                type: 'string',
+            })
         // Stage shuffler options
             .option('stageShuffler.on', {
                 describe: 'Whether or not to shuffle the connections between stages (aka, teleporters). If disabled, all other options in this category are ignored.',
@@ -86,6 +104,7 @@ const argv = yargs(process.argv.slice(2))
             .demandOption(['extraction', 'out'])
         },
         handler: (argv) => {
+            console.log(argv)
             const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
             const shuffleData = {
                 authors: [
@@ -115,6 +134,9 @@ const argv = yargs(process.argv.slice(2))
             }
             if (argv.patcher?.on) {
                 shuffleData.settings.patcher = argv.patcher
+            }
+            if (argv.roomShuffler?.on) {
+                shuffleData.settings.roomShuffler = argv.roomShuffler
             }
             if (argv.stageShuffler?.on) {
                 shuffleData.settings.stageShuffler = argv.stageShuffler
@@ -146,11 +168,11 @@ const argv = yargs(process.argv.slice(2))
             if (argv.musicShuffler?.on) {
                 const seed = argv.musicShuffler.seed ?? (seedName + '_musicShuffler')
                 const shuffledSongs = shuffleSongs(seed)
-                const songChanges = getSongChanges(extraction, shuffledSongs)
+                const songChanges = getSongChanges(shuffledSongs)
                 shuffleData.changes.push(songChanges)
                 shuffleData.debugInfo.finalSeedsUsed.musicShuffler = seed
             }
-            // Some modules must be run inside a loop because the solver must verify them
+            // Some modules (those that modify or depend on logic) must be run inside a loop because the solver must verify them
             let solvable = false
             shuffleData.debugInfo.solverAttemptCount = 0
             let changesToAdd = []
@@ -164,7 +186,17 @@ const argv = yargs(process.argv.slice(2))
                     changesToAdd.push(teleporterChanges)
                     shuffleData.debugInfo.finalSeedsUsed.stageShuffler = seed
                 }
+                if (argv.roomShuffler?.on) {
+                    const seed = argv.roomShuffler.seed ?? (seedName + '_roomShuffler_' + shuffleData.debugInfo.solverAttemptCount)
+                    // abandonedMine
+                    // alchemyLaboratory
+                    const shuffledRooms = shuffleRooms(seed, stageName, applyNormalization)
+                    const roomChanges = getRoomChanges(shuffledRooms.rooms, rowOffset, columnOffset)
+                    changesToAdd.push(roomChanges)
+                    shuffleData.debugInfo.finalSeedsUsed.roomShuffler = seed
+                }
                 if (argv.solver?.on) {
+                    // For now, the solver is only randomly accepting or rejecting; to be replaced with an actual solver at a later date
                     shuffleData.debugInfo.solvable = false
                     const seed = argv.solver.seed ?? (seedName + '_solver_' + shuffleData.debugInfo.solverAttemptCount)
                     const rng = seedrandom(seed)
@@ -188,6 +220,39 @@ const argv = yargs(process.argv.slice(2))
             fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))
         }
     })
+    .command({ // map
+        command: 'map',
+        describe: 'Customize castle map',
+        builder: (yargs) => {
+            return yargs
+            .option('extraction', {
+                alias: 'e',
+                describe: 'Path to the aliased extraction file',
+                type: 'string',
+                normalize: true,
+            })
+            .option('seed', {
+                alias: 's',
+                describe: 'Seed to provide for randomization',
+                type: 'string',
+            })
+            .demandOption([])
+        },
+        handler: (argv) => {
+            let seed = argv.seed
+            if (!seed) {
+                seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+            }
+            const rng = seedrandom(seed)
+            const nodeGroups = {
+                abandonedMine: shuffleRooms(rng(), 'abandonedMine', true),
+                alchemyLaboratory: shuffleRooms(rng(), 'alchemyLaboratory', true),
+                marbleGallery: shuffleRooms(rng(), 'marbleGallery', true),
+            }
+            const stageArrangements = arrangeStages(seed, nodeGroups)
+            console.log(stageArrangements)
+        }
+    })
     .command({ // seed
         command: 'seed',
         describe: 'Generate random seed name',
@@ -207,6 +272,62 @@ const argv = yargs(process.argv.slice(2))
             }
             const seedName = getSeedName(seed)
             console.log(seedName)
+        }
+    })
+    .command({ // room
+        command: 'room',
+        describe: 'Shuffle rooms within stages',
+        builder: (yargs) => {
+            return yargs
+            .option('extraction', {
+                alias: 'e',
+                describe: 'Path to the aliased extraction file',
+                type: 'string',
+                normalize: true,
+            })
+            .option('out', {
+                alias: 'o',
+                describe: 'Path to the output file to create',
+                type: 'string',
+                normalize: true,
+            })
+            .option('seed', {
+                alias: 's',
+                describe: 'Seed to provide for randomization',
+                type: 'string',
+            })
+            .option('stage', {
+                describe: 'Name of stage to shuffle rooms in',
+                type: 'string',
+            })
+            .option('norm', {
+                describe: 'Whether or not to apply normalization to room connections before shuffling',
+                type: 'boolean',
+            })
+            .demandOption(['extraction', 'out'])
+        },
+        handler: (argv) => {
+            let seed = argv.seed
+            if (!seed) {
+                seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+            }
+            const shuffleData = {
+                authors: [
+                    'Sestren',
+                ],
+                changes: [],
+                description: [
+                    'Shuffle rooms',
+                ],
+                settings: {
+                    seed: argv.seed,
+                },
+            }
+            const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
+            const shuffledRooms = shuffleRooms(seed, argv.stage, argv.norm)
+            // const roomChanges = getRoomChanges(extraction, shuffledRooms.rooms, 16, 16)
+            // shuffleData.changes.push(roomChanges)
+            // fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))
         }
     })
     .command({ // stage
@@ -262,12 +383,6 @@ const argv = yargs(process.argv.slice(2))
         describe: 'Shuffle music',
         builder: (yargs) => {
             return yargs
-            .option('extraction', {
-                alias: 'e',
-                describe: 'Path to the aliased extraction file',
-                type: 'string',
-                normalize: true,
-            })
             .option('out', {
                 alias: 'o',
                 describe: 'Path to the output file to create',
@@ -279,7 +394,7 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'Seed to provide for randomization',
                 type: 'string',
             })
-            .demandOption(['extraction', 'out'])
+            .demandOption(['out'])
         },
         handler: (argv) => {
             let seed = argv.seed
@@ -298,9 +413,8 @@ const argv = yargs(process.argv.slice(2))
                     seed: argv.seed,
                 },
             }
-            const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
             const shuffledSongs = shuffleSongs(seed)
-            const songChanges = getSongChanges(extraction, shuffledSongs)
+            const songChanges = getSongChanges(shuffledSongs)
             shuffleData.changes.push(songChanges)
             fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))
         }
