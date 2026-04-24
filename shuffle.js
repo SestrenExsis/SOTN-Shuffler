@@ -3,6 +3,10 @@ import seedrandom from 'seedrandom'
 import yargs from 'yargs'
 
 import {
+    arrangeStages,
+} from './src/common.js'
+
+import {
     getSeedName,
 } from './src/generate-words.js'
 
@@ -214,6 +218,39 @@ const argv = yargs(process.argv.slice(2))
                 shuffleData.changes.push(changesToAdd.at(index))
             }
             fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))
+        }
+    })
+    .command({ // map
+        command: 'map',
+        describe: 'Customize castle map',
+        builder: (yargs) => {
+            return yargs
+            .option('extraction', {
+                alias: 'e',
+                describe: 'Path to the aliased extraction file',
+                type: 'string',
+                normalize: true,
+            })
+            .option('seed', {
+                alias: 's',
+                describe: 'Seed to provide for randomization',
+                type: 'string',
+            })
+            .demandOption([])
+        },
+        handler: (argv) => {
+            let seed = argv.seed
+            if (!seed) {
+                seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+            }
+            const rng = seedrandom(seed)
+            const nodeGroups = {
+                abandonedMine: shuffleRooms(rng(), 'abandonedMine', true),
+                alchemyLaboratory: shuffleRooms(rng(), 'alchemyLaboratory', true),
+                marbleGallery: shuffleRooms(rng(), 'marbleGallery', true),
+            }
+            const stageArrangements = arrangeStages(seed, nodeGroups)
+            console.log(stageArrangements)
         }
     })
     .command({ // seed
