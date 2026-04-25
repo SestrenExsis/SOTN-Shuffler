@@ -1067,6 +1067,578 @@ const nodeGroups = {
             },
         },
     },
+    castleEntrance: {
+        afterDrawbridge: { // afterDrawbridge, unknownRoom20, dropUnderPortcullis, saveRoomA
+            rooms: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'afterDrawbridge',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'castleEntrance',
+                    room: 'unknownRoom20',
+                    row: 2,
+                    column: 0,
+                },
+                {
+                    stage: 'castleEntrance',
+                    room: 'dropUnderPortcullis',
+                    row: 3,
+                    column: 1,
+                },
+                {
+                    stage: 'castleEntrance',
+                    room: 'saveRoomA',
+                    row: 4,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '.00',
+                '.00',
+                '#00',
+                '.1.',
+                '.12',
+            ],
+            edges: {
+                right: {
+                    roomName: 'afterDrawbridge',
+                    collision: '######...#######',
+                    row: 2.5,
+                    column: 3.0,
+                },
+            },
+        },
+        cubeOfZoeRoom: { // triggerTeleporterToAlchemyLaboratory, loadingRoomToAlchemyLaboratory, cubeOfZoeRoom, loadingRoomToMarbleGallery, triggerTeleporterToMarbleGallery
+            rooms: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'triggerTeleporterToAlchemyLaboratory',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'castleEntrance',
+                    room: 'loadingRoomToAlchemyLaboratory',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'castleEntrance',
+                    room: 'cubeOfZoeRoom',
+                    row: 0,
+                    column: 2,
+                },
+                {
+                    stage: 'castleEntrance',
+                    room: 'loadingRoomToMarbleGallery',
+                    row: 0,
+                    column: 4,
+                },
+                {
+                    stage: 'castleEntrance',
+                    room: 'triggerTeleporterToMarbleGallery',
+                    row: 0,
+                    column: 5,
+                },
+            ],
+            cells: [
+                '#=33=#',
+                '..33..',
+                '..33..',
+            ],
+            edges: {
+                leftUpper: {
+                    roomName: 'cubeOfZoeRoom',
+                    collision: '######...#######',
+                    row: 1.5,
+                    column: 2.0,
+                },
+                rightUpper: {
+                    roomName: 'cubeOfZoeRoom',
+                    collision: '######...#######',
+                    row: 1.5,
+                    column: 4.0,
+                },
+                leftLower: {
+                    roomName: 'cubeOfZoeRoom',
+                    collision: '######...#######',
+                    row: 2.5,
+                    column: 2.0,
+                },
+                rightLower: {
+                    roomName: 'cubeOfZoeRoom',
+                    collision: '######...#######',
+                    row: 2.5,
+                    column: 4.0,
+                },
+            },
+        },
+        shortcutToWarpRooms: { // triggerTeleporterToWarpRooms, loadingRoomToWarpRooms, shortcutToWarpRooms
+            rooms: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'triggerTeleporterToWarpRooms',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'castleEntrance',
+                    room: 'loadingRoomToWarpRooms',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'castleEntrance',
+                    room: 'shortcutToWarpRooms',
+                    row: 0,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '#=4',
+            ],
+            edges: {
+                right: {
+                    roomName: 'shortcutToWarpRooms',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 3.0,
+                },
+            },
+        },
+        shortcutToUndergroundCaverns: { // triggerTeleporterToUndergroundCaverns, loadingRoomToUndergroundCaverns, shortcutToUndergroundCaverns
+            rooms: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'shortcutToUndergroundCaverns',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'castleEntrance',
+                    room: 'loadingRoomToUndergroundCaverns',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'castleEntrance',
+                    room: 'triggerTeleporterToUndergroundCaverns',
+                    row: 0,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '5=#',
+            ],
+            edges: {
+                left: {
+                    roomName: 'shortcutToUndergroundCaverns',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        meetingRoomWithDeath: { // gargoyleRoom, meetingRoomWithDeath
+            rooms: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'gargoyleRoom',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'castleEntrance',
+                    room: 'meetingRoomWithDeath',
+                    row: 1,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '6',
+                '7',
+                '7',
+            ],
+            edges: {
+                leftUpper: {
+                    roomName: 'gargoyleRoom',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                rightUpper: {
+                    roomName: 'gargoyleRoom',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+                left: {
+                    roomName: 'meetingRoomWithDeath',
+                    collision: '######...#######',
+                    row: 1.5,
+                    column: 0.0,
+                },
+                leftLower: {
+                    roomName: 'meetingRoomWithDeath',
+                    collision: '######...#######',
+                    row: 2.5,
+                    column: 0.0,
+                },
+                rightLower: {
+                    roomName: 'meetingRoomWithDeath',
+                    collision: '######...#######',
+                    row: 2.5,
+                    column: 1.0,
+                },
+            },
+        },
+        atticEntrance: { // atticEntrance
+            rooms: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'atticEntrance',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '8',
+            ],
+            edges: {
+                left: {
+                    roomName: 'atticEntrance',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                bottom: {
+                    roomName: 'atticEntrance',
+                    collision: '######...#######',
+                    row: 1.0,
+                    column: 0.5,
+                },
+            },
+        },
+        atticHallway: { // atticHallway
+            rooms: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'atticHallway',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '9999',
+            ],
+            edges: {
+                left: {
+                    roomName: 'atticHallway',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'atticHallway',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 4.0,
+                },
+            },
+        },
+        atticStaircase: { // atticStaircase
+            rooms: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'atticStaircase',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'a',
+                'a',
+            ],
+            edges: {
+                leftUpper: {
+                    roomName: 'atticStaircase',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                leftLower: {
+                    roomName: 'atticStaircase',
+                    collision: '######...#######',
+                    row: 1.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'atticStaircase',
+                    collision: '######...#######',
+                    row: 1.5,
+                    column: 1.0,
+                },
+            },
+        },
+        heartMaxUpRoom: { // heartMaxUpRoom
+            rooms: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'heartMaxUpRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'b',
+            ],
+            edges: {
+                right: {
+                    roomName: 'heartMaxUpRoom',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        holyMailRoom: { // holyMailRoom
+            rooms: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'holyMailRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'c',
+            ],
+            edges: {
+                right: {
+                    roomName: 'holyMailRoom',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        jewelSwordRoom: { // jewelSwordRoom
+            rooms: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'jewelSwordRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'd',
+            ],
+            edges: {
+                right: {
+                    roomName: 'jewelSwordRoom',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        lifeMaxUpRoom: { // lifeMaxUpRoom
+            rooms: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'lifeMaxUpRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'e',
+            ],
+            edges: {
+                left: {
+                    roomName: 'lifeMaxUpRoom',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        mermanRoom: { // mermanRoom
+            rooms: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'mermanRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'fff',
+                'fff',
+            ],
+            edges: {
+                top: {
+                    roomName: 'mermanRoom',
+                    collision: '######...#######',
+                    row: 0.0,
+                    column: 0.5,
+                },
+                leftUpper: {
+                    roomName: 'mermanRoom',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                rightUpper: {
+                    roomName: 'mermanRoom',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 3.0,
+                },
+                leftLower: {
+                    roomName: 'mermanRoom',
+                    collision: '######...#######',
+                    row: 1.5,
+                    column: 0.0,
+                },
+                rightLower: {
+                    roomName: 'mermanRoom',
+                    collision: '######...#######',
+                    row: 1.5,
+                    column: 3.0,
+                },
+            },
+        },
+        saveRoomB: { // saveRoomB
+            rooms: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'saveRoomB',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'g',
+            ],
+            edges: {
+                right: {
+                    roomName: 'saveRoomB',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        saveRoomC: { // saveRoomC
+            rooms: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'saveRoomC',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'h',
+            ],
+            edges: {
+                right: {
+                    roomName: 'saveRoomC',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        stairwellAfterDeath: { // stairwellAfterDeath
+            rooms: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'stairwellAfterDeath',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'i',
+                'i',
+                'i',
+            ],
+            edges: {
+                leftUpper: {
+                    roomName: 'stairwellAfterDeath',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                leftLower: {
+                    roomName: 'stairwellAfterDeath',
+                    collision: '######...#######',
+                    row: 2.5,
+                    column: 0.0,
+                },
+            },
+        },
+        wargHallway: { // wargHallway
+            rooms: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'wargHallway',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'jjjjjj',
+            ],
+            edges: {
+                left: {
+                    roomName: 'wargHallway',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'wargHallway',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 6.0,
+                },
+            },
+        },
+        zombieHallway: { // zombieHallway
+            rooms: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'zombieHallway',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'kkkkkkk',
+            ],
+            edges: {
+                left: {
+                    roomName: 'zombieHallway',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'zombieHallway',
+                    collision: '######...#######',
+                    row: 0.5,
+                    column: 7.0,
+                },
+            },
+        },
+    },
     marbleGallery: {
         clockRoom: { // threePaths, leftOfClockRoom, clockRoom, rightOfClockRoom, saveRoomA, elevatorRoom, powerUpRoom, triggerTeleporterToCastleCenter, triggerTeleporterToMarbleGallery, elevatorShaft, centerCube, triggerTeleporterToBO6, unknownRoomId02
             rooms: [

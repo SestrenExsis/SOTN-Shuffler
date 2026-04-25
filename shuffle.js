@@ -25,6 +25,8 @@ import {
     shuffleStages,
 } from './src/shuffle-stages.js'
 
+// TODO(sestren): Generate a hash of options used to serve as a shorthand to help in quickly verifying if a set of options has changed
+
 const argv = yargs(process.argv.slice(2))
     .command({ // multi
         command: 'multi',
