@@ -27,6 +27,12 @@ import {
 
 // TODO(sestren): Generate a hash of options used to serve as a shorthand to help in quickly verifying if a set of options has changed
 
+// NOTE(sestren): Proposed order of operations:
+//   - Shuffle the rooms within each stage
+//   - Shuffle the stage connections
+//   - Assign warp rooms to the stage they connect to
+//   - Arrange stages on the map
+
 const argv = yargs(process.argv.slice(2))
     .command({ // multi
         command: 'multi',
@@ -249,6 +255,9 @@ const argv = yargs(process.argv.slice(2))
             const nodeGroups = {
                 abandonedMine: shuffleRooms(rng(), 'abandonedMine', true),
                 alchemyLaboratory: shuffleRooms(rng(), 'alchemyLaboratory', true),
+                castleEntrance: shuffleRooms(rng(), 'castleEntrance', true),
+                castleKeep: shuffleRooms(rng(), 'castleKeep', true),
+                clockTower: shuffleRooms(rng(), 'clockTower', true),
                 marbleGallery: shuffleRooms(rng(), 'marbleGallery', true),
             }
             const stageArrangements = arrangeStages(seed, nodeGroups)
@@ -327,6 +336,7 @@ const argv = yargs(process.argv.slice(2))
             }
             const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
             const shuffledRooms = shuffleRooms(seed, argv.stage, argv.norm)
+            console.log('shuffledRooms:', shuffledRooms)
             // const roomChanges = getRoomChanges(extraction, shuffledRooms.rooms, 16, 16)
             // shuffleData.changes.push(roomChanges)
             // fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))

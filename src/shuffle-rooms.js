@@ -1105,7 +1105,7 @@ const nodeGroups = {
             edges: {
                 right: {
                     roomName: 'afterDrawbridge',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 2.5,
                     column: 3.0,
                 },
@@ -1152,25 +1152,25 @@ const nodeGroups = {
             edges: {
                 leftUpper: {
                     roomName: 'cubeOfZoeRoom',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 1.5,
                     column: 2.0,
                 },
                 rightUpper: {
                     roomName: 'cubeOfZoeRoom',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 1.5,
                     column: 4.0,
                 },
                 leftLower: {
                     roomName: 'cubeOfZoeRoom',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 2.5,
                     column: 2.0,
                 },
                 rightLower: {
                     roomName: 'cubeOfZoeRoom',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 2.5,
                     column: 4.0,
                 },
@@ -1203,7 +1203,7 @@ const nodeGroups = {
             edges: {
                 right: {
                     roomName: 'shortcutToWarpRooms',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 3.0,
                 },
@@ -1236,7 +1236,7 @@ const nodeGroups = {
             edges: {
                 left: {
                     roomName: 'shortcutToUndergroundCaverns',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 0.0,
                 },
@@ -1265,31 +1265,31 @@ const nodeGroups = {
             edges: {
                 leftUpper: {
                     roomName: 'gargoyleRoom',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 0.0,
                 },
                 rightUpper: {
                     roomName: 'gargoyleRoom',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 1.0,
                 },
                 left: {
                     roomName: 'meetingRoomWithDeath',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 1.5,
                     column: 0.0,
                 },
                 leftLower: {
                     roomName: 'meetingRoomWithDeath',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 2.5,
                     column: 0.0,
                 },
                 rightLower: {
                     roomName: 'meetingRoomWithDeath',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 2.5,
                     column: 1.0,
                 },
@@ -1310,13 +1310,13 @@ const nodeGroups = {
             edges: {
                 left: {
                     roomName: 'atticEntrance',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 0.0,
                 },
                 bottom: {
                     roomName: 'atticEntrance',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 1.0,
                     column: 0.5,
                 },
@@ -1337,13 +1337,13 @@ const nodeGroups = {
             edges: {
                 left: {
                     roomName: 'atticHallway',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 0.0,
                 },
                 right: {
                     roomName: 'atticHallway',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 4.0,
                 },
@@ -1365,19 +1365,19 @@ const nodeGroups = {
             edges: {
                 leftUpper: {
                     roomName: 'atticStaircase',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 0.0,
                 },
                 leftLower: {
                     roomName: 'atticStaircase',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 1.5,
                     column: 0.0,
                 },
                 right: {
                     roomName: 'atticStaircase',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 1.5,
                     column: 1.0,
                 },
@@ -1398,7 +1398,7 @@ const nodeGroups = {
             edges: {
                 right: {
                     roomName: 'heartMaxUpRoom',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 1.0,
                 },
@@ -1419,7 +1419,7 @@ const nodeGroups = {
             edges: {
                 right: {
                     roomName: 'holyMailRoom',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 1.0,
                 },
@@ -1440,7 +1440,7 @@ const nodeGroups = {
             edges: {
                 right: {
                     roomName: 'jewelSwordRoom',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 1.0,
                 },
@@ -1461,7 +1461,7 @@ const nodeGroups = {
             edges: {
                 left: {
                     roomName: 'lifeMaxUpRoom',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 0.0,
                 },
@@ -1483,31 +1483,31 @@ const nodeGroups = {
             edges: {
                 top: {
                     roomName: 'mermanRoom',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.0,
                     column: 0.5,
                 },
                 leftUpper: {
                     roomName: 'mermanRoom',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 0.0,
                 },
                 rightUpper: {
                     roomName: 'mermanRoom',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 3.0,
                 },
                 leftLower: {
                     roomName: 'mermanRoom',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 1.5,
                     column: 0.0,
                 },
                 rightLower: {
                     roomName: 'mermanRoom',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 1.5,
                     column: 3.0,
                 },
@@ -1528,7 +1528,7 @@ const nodeGroups = {
             edges: {
                 right: {
                     roomName: 'saveRoomB',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 1.0,
                 },
@@ -1549,7 +1549,7 @@ const nodeGroups = {
             edges: {
                 right: {
                     roomName: 'saveRoomC',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 1.0,
                 },
@@ -1572,13 +1572,13 @@ const nodeGroups = {
             edges: {
                 leftUpper: {
                     roomName: 'stairwellAfterDeath',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 0.0,
                 },
                 leftLower: {
                     roomName: 'stairwellAfterDeath',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 2.5,
                     column: 0.0,
                 },
@@ -1599,13 +1599,13 @@ const nodeGroups = {
             edges: {
                 left: {
                     roomName: 'wargHallway',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 0.0,
                 },
                 right: {
                     roomName: 'wargHallway',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 6.0,
                 },
@@ -1626,19 +1626,632 @@ const nodeGroups = {
             edges: {
                 left: {
                     roomName: 'zombieHallway',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 0.0,
                 },
                 right: {
                     roomName: 'zombieHallway',
-                    collision: '######...#######',
+                    collision: '######....######',
                     row: 0.5,
                     column: 7.0,
                 },
             },
         },
     },
+    castleKeep: {
+        keepArea: { // keepArea, upperAttic, lowerAttic, loadingRoomToRoyalChapel, triggerTeleporterToRoyalChapel
+            rooms: [
+                {
+                    stage: 'castleKeep',
+                    room: 'keepArea',
+                    row: 0,
+                    column: 2,
+                },
+                {
+                    stage: 'castleKeep',
+                    room: 'upperAttic',
+                    row: 1,
+                    column: 5,
+                },
+                {
+                    stage: 'castleKeep',
+                    room: 'lowerAttic',
+                    row: 2,
+                    column: 6,
+                },
+                {
+                    stage: 'castleKeep',
+                    room: 'triggerTeleporterToRoyalChapel',
+                    row: 7,
+                    column: 0,
+                },
+                {
+                    stage: 'castleKeep',
+                    room: 'loadingRoomToRoyalChapel',
+                    row: 7,
+                    column: 1,
+                },
+            ],
+            cells: [
+                '..,,,,,,,,',
+                '..,,,00011',
+                '..,1,12211',
+                '..,1111111',
+                '..,1111111',
+                '..,1111111',
+                '..,1111111',
+                '#=11111111',
+            ],
+            edges: {
+                rightUpper: {
+                    roomName: 'keepArea',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 10.0,
+                },
+                right: {
+                    roomName: 'keepArea',
+                    collision: '######....######',
+                    row: 4.5,
+                    column: 10.0,
+                },
+                rightLower: {
+                    roomName: 'keepArea',
+                    collision: '######....######',
+                    row: 6.5,
+                    column: 10.0,
+                },
+                rightLowest: {
+                    roomName: 'keepArea',
+                    collision: '######....######',
+                    row: 7.5,
+                    column: 10.0,
+                },
+            },
+        },
+        lionTorchPlatform: { // lionTorchPlatform, loadingRoomToClockTower, triggerTeleporterToClockTower
+            rooms: [
+                {
+                    stage: 'castleKeep',
+                    room: 'lionTorchPlatform',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'castleKeep',
+                    room: 'loadingRoomToClockTower',
+                    row: 1,
+                    column: 1,
+                },
+                {
+                    stage: 'castleKeep',
+                    room: 'triggerTeleporterToClockTower',
+                    row: 1,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '3..',
+                '3=#',
+            ],
+            edges: {
+                top: {
+                    roomName: 'lionTorchPlatform',
+                    collision: '######....######',
+                    row: 0.0,
+                    column: 0.5,
+                },
+                left: {
+                    roomName: 'lionTorchPlatform',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'lionTorchPlatform',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+                bottom: {
+                    roomName: 'lionTorchPlatform',
+                    collision: '######....######',
+                    row: 2.0,
+                    column: 0.5,
+                },
+            },
+        },
+        dualPlatforms: { // dualPlatforms, loadingRoomToWarpRooms, triggerTeleporterToWarpRooms
+            rooms: [
+                {
+                    stage: 'castleKeep',
+                    room: 'dualPlatforms',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'castleKeep',
+                    room: 'loadingRoomToWarpRooms',
+                    row: 1,
+                    column: 1,
+                },
+                {
+                    stage: 'castleKeep',
+                    room: 'triggerTeleporterToWarpRooms',
+                    row: 1,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '4..',
+                '4=#',
+            ],
+            edges: {
+                top: {
+                    roomName: 'dualPlatforms',
+                    collision: '######....######',
+                    row: 0.0,
+                    column: 0.5,
+                },
+                leftUpper: {
+                    roomName: 'dualPlatforms',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'dualPlatforms',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+                leftLower: {
+                    roomName: 'dualPlatforms',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 0.0,
+                },
+            },
+        },
+        bend: { // bend
+            rooms: [
+                {
+                    stage: 'castleKeep',
+                    room: 'bend',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '5',
+            ],
+            edges: {
+                right: {
+                    roomName: 'bend',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+                bottom: {
+                    roomName: 'bend',
+                    collision: '######....######',
+                    row: 1.0,
+                    column: 0.5,
+                },
+            },
+        },
+        falchionRoom: { // falchionRoom
+            rooms: [
+                {
+                    stage: 'castleKeep',
+                    room: 'falchionRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '6',
+            ],
+            edges: {
+                left: {
+                    roomName: 'falchionRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        ghostCardRoom: { // ghostCardRoom
+            rooms: [
+                {
+                    stage: 'castleKeep',
+                    room: 'ghostCardRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '77',
+                '77',
+                '77',
+            ],
+            edges: {
+                left: {
+                    roomName: 'ghostCardRoom',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 0.0,
+                },
+            },
+        },
+        saveRoomA: { // saveRoomA
+            rooms: [
+                {
+                    stage: 'castleKeep',
+                    room: 'saveRoomA',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '8',
+            ],
+            edges: {
+                left: {
+                    roomName: 'saveRoomA',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        tyrfingRoom: { // tyrfingRoom
+            rooms: [
+                {
+                    stage: 'castleKeep',
+                    room: 'tyrfingRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '9',
+            ],
+            edges: {
+                left: {
+                    roomName: 'tyrfingRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+    },
+    // catacombs
+    clockTower: {
+        karasumansRoom: { // triggerTeleporterToCastleKeep, loadingRoomToCastleKeep, karasumansRoom
+            rooms: [
+                {
+                    stage: 'clockTower',
+                    room: 'triggerTeleporterToCastleKeep',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'clockTower',
+                    room: 'loadingRoomToCastleKeep',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'clockTower',
+                    room: 'karasumansRoom',
+                    row: 0,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '#=0',
+            ],
+            edges: {
+                right: {
+                    roomName: 'karasumansRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 3.0,
+                },
+            },
+        },
+        stairwellToOuterWall: { // stairwellToOuterWall, loadingRoomToOuterWall, triggerTeleporterToOuterWall
+            rooms: [
+                {
+                    stage: 'clockTower',
+                    room: 'stairwellToOuterWall',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'clockTower',
+                    room: 'loadingRoomToOuterWall',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'clockTower',
+                    room: 'triggerTeleporterToOuterWall',
+                    row: 0,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '1=#',
+                '1..',
+            ],
+            edges: {
+                leftUpper: {
+                    roomName: 'stairwellToOuterWall',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                leftLower: {
+                    roomName: 'stairwellToOuterWall',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 0.0,
+                },
+            },
+        },
+        leftGearRoom: { // spire, belfry, leftGearRoom, hiddenArmory
+            rooms: [
+                {
+                    stage: 'clockTower',
+                    room: 'spire',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'clockTower',
+                    room: 'belfry',
+                    row: 2,
+                    column: 1,
+                },
+                {
+                    stage: 'clockTower',
+                    room: 'leftGearRoom',
+                    row: 3,
+                    column: 1,
+                },
+                {
+                    stage: 'clockTower',
+                    room: 'hiddenArmory',
+                    row: 6,
+                    column: 0,
+                },
+            ],
+            cells: [
+                ',,2,,',
+                ',222,',
+                '.333.',
+                '.433.',
+                '.4...',
+                '.4...',
+                '54...',
+            ],
+            edges: {
+                left: {
+                    roomName: 'leftGearRoom',
+                    collision: '######....######',
+                    row: 3.5,
+                    column: 1.0,
+                },
+                right: {
+                    roomName: 'leftGearRoom',
+                    collision: '######....######',
+                    row: 6.5,
+                    column: 2.0,
+                },
+            },
+        },
+        pendulumRoom: { // pathToKarasuman, pendulumRoom
+            rooms: [
+                {
+                    stage: 'clockTower',
+                    room: 'pathToKarasuman',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'clockTower',
+                    room: 'pendulumRoom',
+                    row: 0,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '666777777',
+                '..7777777',
+            ],
+            edges: {
+                leftUpper: {
+                    roomName: 'pathToKarasuman',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                leftLower: {
+                    roomName: 'pendulumRoom',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 2.0,
+                },
+                right: {
+                    roomName: 'pendulumRoom',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 9.0,
+                },
+            },
+        },
+        healingMailRoom: { // healingMailRoom
+            rooms: [
+                {
+                    stage: 'clockTower',
+                    room: 'healingMailRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '8',
+            ],
+            edges: {
+                right: {
+                    roomName: 'healingMailRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        rightGearRoom: { // rightGearRoom
+            rooms: [
+                {
+                    stage: 'clockTower',
+                    room: 'rightGearRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '9',
+                '9',
+                '9',
+            ],
+            edges: {
+                right: {
+                    roomName: 'rightGearRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+                left: {
+                    roomName: 'rightGearRoom',
+                    collision: '######....######',
+                    row: 2.5,
+                    column: 0.0,
+                },
+            },
+        },
+        exitToCourtyard: { // exitToCourtyard
+            rooms: [
+                {
+                    stage: 'clockTower',
+                    room: 'exitToCourtyard',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'a',
+                'a',
+                'a',
+            ],
+            edges: {
+                left: {
+                    roomName: 'exitToCourtyard',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                rightUpper: {
+                    roomName: 'exitToCourtyard',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+                rightLower: {
+                    roomName: 'exitToCourtyard',
+                    collision: '######....######',
+                    row: 2.5,
+                    column: 1.0,
+                },
+            },
+        },
+        openCourtyard: { // openCourtyard
+            rooms: [
+                {
+                    stage: 'clockTower',
+                    room: 'openCourtyard',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'bbbbbb',
+                'bbbbbb',
+                'bbbbbb',
+                'bbbbbb',
+                'bbbbbb',
+            ],
+            edges: {
+                leftUpper: {
+                    roomName: 'openCourtyard',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 0.0,
+                },
+                leftLower: {
+                    roomName: 'openCourtyard',
+                    collision: '######....######',
+                    row: 3.5,
+                    column: 0.0,
+                },
+                rightUpper: {
+                    roomName: 'openCourtyard',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 6.0,
+                },
+                right: {
+                    roomName: 'openCourtyard',
+                    collision: '######....######',
+                    row: 3.5,
+                    column: 6.0,
+                },
+                rightLower: {
+                    roomName: 'openCourtyard',
+                    collision: '######....######',
+                    row: 4.5,
+                    column: 6.0,
+                },
+            },
+        },
+        fireOfBatRoom: { // fireOfBatRoom
+            rooms: [
+                {
+                    stage: 'clockTower',
+                    room: 'fireOfBatRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'c',
+            ],
+            edges: {
+                left: {
+                    roomName: 'fireOfBatRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+    },
+    // colosseum
+    // longLibrary
     marbleGallery: {
         clockRoom: { // threePaths, leftOfClockRoom, clockRoom, rightOfClockRoom, saveRoomA, elevatorRoom, powerUpRoom, triggerTeleporterToCastleCenter, triggerTeleporterToMarbleGallery, elevatorShaft, centerCube, triggerTeleporterToBO6, unknownRoomId02
             rooms: [
@@ -2335,6 +2948,11 @@ const nodeGroups = {
             },
         },
     },
+    // olroxsQuarters
+    // outerWall
+    // royalChapel
+    // undergroundCaverns
+    // warpRooms
 }
 
 export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOffset) {
@@ -2462,7 +3080,6 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
             const column = edgeInfo.column + Math.max(0, columnOffset)
             result.edges.push({
                 roomName: edgeInfo.roomName,
-                // edgeName: edgeInfo.edgeName,
                 collision: edgeInfo.collision,
                 row: row,
                 column: column,
@@ -2471,6 +3088,46 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
     if (!validInd) {
         return null
     }
+    // TODO(sestren): Verify that all open edges do not face a filled-in square
+    const blockedEdges = result.edges
+        .filter((edgeInfo) => {
+            let rowA = edgeInfo.row
+            let rowB = edgeInfo.row
+            let columnA = edgeInfo.column
+            let columnB = edgeInfo.column
+            if (Number.isInteger(edgeInfo.row)) {
+                columnA -= 0.5
+                columnB -= 0.5
+                rowA -= 1
+            }
+            else if (Number.isInteger(edgeInfo.column)) {
+                rowA -= 0.5
+                rowB -= 0.5
+                columnA -= 1
+            }
+            else {
+                throw Error('Either row or column of edge must be non-integer')
+            }
+            if (
+                (0 <= rowA && rowA < result.cells.length) &&
+                (0 <= rowB && rowB < result.cells.length) &&
+                (0 <= columnA && columnA < result.cells.at(0).length) &&
+                (0 <= columnB && columnB < result.cells.at(0).length)
+            ) {
+                const cellA = result.cells.at(rowA).at(columnA)
+                const cellB = result.cells.at(rowB).at(columnB)
+                return (cellA !== '.') && (cellB !== '.')
+            }
+            else {
+                return false
+            }
+        })
+    if (blockedEdges.length > 0) {
+        console.log('blockedEdges:', blockedEdges)
+        console.log('result:', result)
+        return null
+    }
+    // console.log('result:', result)
     return result
 }
 
@@ -2505,6 +3162,7 @@ export function shuffleRooms(seed, stageName, applyNormalization) {
         while (groupIndexes.length > 0) {
             if (result.edges.length < 1) {
                 validInd = false
+                // console.log('ERROR result.edges.length < 1:', result.edges.length)
                 break
             }
             const edgeIndex = Math.floor(rng() * result.edges.length)
@@ -2531,6 +3189,7 @@ export function shuffleRooms(seed, stageName, applyNormalization) {
             }
             shuffleArray(rng, nextResults)
             if (nextResults.length < 1) {
+                // console.log('ERROR nextResults.length < 1:', nextResults.length)
                 validInd = false
                 break
             }
@@ -2539,7 +3198,14 @@ export function shuffleRooms(seed, stageName, applyNormalization) {
             result = nextResults.at(-1).nextResult
         }
         if (groupIndexes.length > 0 || result.edges.length > 0) {
+            // console.log('ERROR groupIndexes.length > 0 || result.edges.length > 0:', groupIndexes.length, result.edges.length)
             validInd = false
+        }
+        if (groupIndexes.length < 2) {
+            groupIndexes.forEach((groupIndex) => {
+                console.log('stageNodeGroup:', groupIndex, stageNodeGroups.at(groupIndex))
+            })
+            console.log('result:', result)
         }
     }
     console.log('attemptCount:', attemptCount)
