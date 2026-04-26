@@ -2660,7 +2660,410 @@ const nodeGroups = {
             },
         },
     },
-    // longLibrary
+    longLibrary: {
+        exitToOuterWall: { // exitToOuterWall, loadingRoomToOuterWall, triggerTeleporterToOuterWall
+            rooms: [
+                {
+                    stage: 'longLibrary',
+                    room: 'exitToOuterWall',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'longLibrary',
+                    room: 'loadingRoomToOuterWall',
+                    row: 0,
+                    column: 3,
+                },
+                {
+                    stage: 'longLibrary',
+                    room: 'triggerTeleporterToOuterWall',
+                    row: 0,
+                    column: 4,
+                },
+            ],
+            cells: [
+                '000=#',
+            ],
+            edges: {
+                left: {
+                    roomName: 'exitToOuterWall',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        spellbookArea: { // spellbookArea, footOfStaircase
+            rooms: [
+                {
+                    stage: 'longLibrary',
+                    room: 'spellbookArea',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'longLibrary',
+                    room: 'footOfStaircase',
+                    row: 3,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '1111111',
+                '1111111',
+                '1111111',
+                '..2....',
+            ],
+            edges: {
+                leftUpperA: {
+                    roomName: 'spellbookArea',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                leftUpperB: {
+                    roomName: 'spellbookArea',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 0.0,
+                },
+                leftLowerA: {
+                    roomName: 'spellbookArea',
+                    collision: '######....######',
+                    row: 2.5,
+                    column: 0.0,
+                },
+                leftLowerB: {
+                    roomName: 'footOfStaircase',
+                    collision: '######....######',
+                    row: 3.5,
+                    column: 2.0,
+                },
+                right: {
+                    roomName: 'footOfStaircase',
+                    collision: '######....######',
+                    row: 3.5,
+                    column: 3.0,
+                },
+            },
+        },
+        lesserDemonArea: { // lesserDemonArea
+            rooms: [
+                {
+                    stage: 'longLibrary',
+                    room: 'lesserDemonArea',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                ',3333',
+                ',3333',
+                '33333',
+                '33333',
+            ],
+            edges: {
+                rightUpper: {
+                    roomName: 'lesserDemonArea',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 5.0,
+                },
+                rightLower: {
+                    roomName: 'lesserDemonArea',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 5.0,
+                },
+            },
+        },
+        secretBookcaseRoom: { // secretBookcaseRoom
+            rooms: [
+                {
+                    stage: 'longLibrary',
+                    room: 'secretBookcaseRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '4',
+            ],
+            edges: {
+                left: {
+                    roomName: 'secretBookcaseRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'secretBookcaseRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        holyRodRoom: { // holyRodRoom
+            rooms: [
+                {
+                    stage: 'longLibrary',
+                    room: 'holyRodRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '5',
+            ],
+            edges: {
+                left: {
+                    roomName: 'holyRodRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        dhuronAndFleaArmorRoom: { // dhuronAndFleaArmorRoom
+            rooms: [
+                {
+                    stage: 'longLibrary',
+                    room: 'dhuronAndFleaArmorRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '66',
+            ],
+            edges: {
+                left: {
+                    roomName: 'dhuronAndFleaArmorRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'dhuronAndFleaArmorRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 2.0,
+                },
+            },
+        },
+        shop: { // shop
+            rooms: [
+                {
+                    stage: 'longLibrary',
+                    room: 'shop',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '7',
+                '7',
+            ],
+            edges: {
+                rightUpper: {
+                    roomName: 'shop',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+                rightLower: {
+                    roomName: 'shop',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 1.0,
+                },
+            },
+        },
+        outsideShop: { // outsideShop
+            rooms: [
+                {
+                    stage: 'longLibrary',
+                    room: 'outsideShop',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '88',
+            ],
+            edges: {
+                left: {
+                    roomName: 'outsideShop',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'outsideShop',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 2.0,
+                },
+            },
+        },
+        fleaManRoom: { // fleaManRoom
+            rooms: [
+                {
+                    stage: 'longLibrary',
+                    room: 'fleaManRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '99',
+            ],
+            edges: {
+                left: {
+                    roomName: 'fleaManRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'fleaManRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 2.0,
+                },
+            },
+        },
+        faerieCardRoom: { // faerieCardRoom
+            rooms: [
+                {
+                    stage: 'longLibrary',
+                    room: 'faerieCardRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'a',
+            ],
+            edges: {
+                right: {
+                    roomName: 'faerieCardRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        threeLayerRoom: { // threeLayerRoom
+            rooms: [
+                {
+                    stage: 'longLibrary',
+                    room: 'threeLayerRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'b',
+                'b',
+                'b',
+            ],
+            edges: {
+                leftUpper: {
+                    roomName: 'threeLayerRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                rightUpper: {
+                    roomName: 'threeLayerRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+                left: {
+                    roomName: 'threeLayerRoom',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'threeLayerRoom',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 1.0,
+                },
+                leftLower: {
+                    roomName: 'threeLayerRoom',
+                    collision: '######....######',
+                    row: 2.5,
+                    column: 0.0,
+                },
+                rightLower: {
+                    roomName: 'threeLayerRoom',
+                    collision: '######....######',
+                    row: 2.5,
+                    column: 1.0,
+                },
+            },
+        },
+        dhuronAndFleaManRoom: { // dhuronAndFleaManRoom
+            rooms: [
+                {
+                    stage: 'longLibrary',
+                    room: 'dhuronAndFleaManRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'cc',
+            ],
+            edges: {
+                left: {
+                    roomName: 'dhuronAndFleaManRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'dhuronAndFleaManRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 2.0,
+                },
+            },
+        },
+        saveRoomA: { // saveRoomA
+            rooms: [
+                {
+                    stage: 'longLibrary',
+                    room: 'saveRoomA',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '@',
+            ],
+            edges: {
+                left: {
+                    roomName: 'saveRoomA',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'saveRoomA',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+    },
     marbleGallery: {
         clockRoom: { // threePaths, leftOfClockRoom, clockRoom, rightOfClockRoom, saveRoomA, elevatorRoom, powerUpRoom, triggerTeleporterToCastleCenter, triggerTeleporterToMarbleGallery, elevatorShaft, centerCube, triggerTeleporterToBO6, unknownRoomId02
             rooms: [
