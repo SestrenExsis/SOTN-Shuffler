@@ -4146,7 +4146,482 @@ const nodeGroups = {
             },
         },
     },
-    // royalChapel
+    royalChapel: {
+        hippogryphRoom: { // walkwayLeftOfHippogryph, hippogryphRoom, walkwayRightOfHippogryph
+            rooms: [
+                {
+                    stage: 'royalChapel',
+                    room: 'walkwayLeftOfHippogryph',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'royalChapel',
+                    room: 'hippogryphRoom',
+                    row: 0,
+                    column: 3,
+                },
+                {
+                    stage: 'royalChapel',
+                    room: 'walkwayRightOfHippogryph',
+                    row: 0,
+                    column: 5,
+                },
+            ],
+            cells: [
+                '.001122.',
+            ],
+            edges: {
+                left: {
+                    roomName: 'walkwayLeftOfHippogryph',
+                    collision: '######<<<<######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+                right: {
+                    roomName: 'walkwayRightOfHippogryph',
+                    collision: '######>>>>######',
+                    row: 0.5,
+                    column: 7.0,
+                },
+            },
+        },
+        rightTower: { // rightTower, loadingRoomToCastleKeep, triggerTeleporterToCastleKeep, saveRoomB
+            rooms: [
+                {
+                    stage: 'royalChapel',
+                    room: 'rightTower',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'royalChapel',
+                    room: 'loadingRoomToCastleKeep',
+                    row: 2,
+                    column: 3,
+                },
+                {
+                    stage: 'royalChapel',
+                    room: 'triggerTeleporterToCastleKeep',
+                    row: 2,
+                    column: 4,
+                },
+                {
+                    stage: 'royalChapel',
+                    room: 'saveRoomB',
+                    row: 3,
+                    column: 3,
+                },
+            ],
+            cells: [
+                '.33..',
+                '.33..',
+                '.33=#',
+                '.334.',
+            ],
+            edges: {
+                left: {
+                    roomName: 'rightTower',
+                    collision: '######>>>>######',
+                    row: 3.5,
+                    column: 1.0,
+                },
+            },
+        },
+        pushingStatueShortcut: { // pushingStatueShortcut, loadingRoomToOlroxsQuarters, triggerTeleporterToOlroxsQuarters
+            rooms: [
+                {
+                    stage: 'royalChapel',
+                    room: 'pushingStatueShortcut',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'royalChapel',
+                    room: 'loadingRoomToOlroxsQuarters',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'royalChapel',
+                    room: 'triggerTeleporterToOlroxsQuarters',
+                    row: 0,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '5=#',
+            ],
+            edges: {
+                left: {
+                    roomName: 'pushingStatueShortcut',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        nave: { // nave, loadingRoomToColosseum, triggerTeleporterToColosseum
+            rooms: [
+                {
+                    stage: 'royalChapel',
+                    room: 'nave',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'royalChapel',
+                    room: 'loadingRoomToColosseum',
+                    row: 1,
+                    column: 2,
+                },
+                {
+                    stage: 'royalChapel',
+                    room: 'triggerTeleporterToColosseum',
+                    row: 1,
+                    column: 3,
+                },
+            ],
+            cells: [
+                '66..',
+                '66=#',
+            ],
+            edges: {
+                leftUpper: {
+                    roomName: 'nave',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'nave',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 2.0,
+                },
+                leftLower: {
+                    roomName: 'nave',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 0.0,
+                },
+            },
+        },
+        statueLedge: { // saveRoomA, statueLedge, loadingRoomToAlchemyLaboratory, triggerTeleporterToAlchemyLaboratory
+            rooms: [
+                {
+                    stage: 'royalChapel',
+                    room: 'saveRoomA',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'royalChapel',
+                    room: 'statueLedge',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'royalChapel',
+                    room: 'loadingRoomToAlchemyLaboratory',
+                    row: 0,
+                    column: 2,
+                },
+                {
+                    stage: 'royalChapel',
+                    room: 'triggerTeleporterToAlchemyLaboratory',
+                    row: 0,
+                    column: 3,
+                },
+            ],
+            cells: [
+                '@7=#',
+            ],
+            edges: {
+                top: {
+                    roomName: 'statueLedge',
+                    collision: '######....######',
+                    row: 0.0,
+                    column: 1.5,
+                },
+            },
+        },
+        chapelStaircase: { // chapelStaircase
+            rooms: [
+                {
+                    stage: 'royalChapel',
+                    room: 'chapelStaircase',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                ',,,,,,88',
+                ',,,,,888',
+                ',,,,8888',
+                ',,,888,,',
+                ',,888,,,',
+                ',888,,,,',
+                '888,,,,,',
+            ],
+            edges: {
+                right: {
+                    roomName: 'chapelStaircase',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 8.0,
+                },
+                bottom: {
+                    roomName: 'chapelStaircase',
+                    collision: '######....######',
+                    row: 7.0,
+                    column: 1.5,
+                },
+            },
+        },
+        confessionalBooth: { // confessionalBooth
+            rooms: [
+                {
+                    stage: 'royalChapel',
+                    room: 'xxx',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '9',
+            ],
+            edges: {
+                left: {
+                    roomName: 'confessionalBooth',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        emptyRoom: { // emptyRoom
+            rooms: [
+                {
+                    stage: 'royalChapel',
+                    room: 'emptyRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'a',
+            ],
+            edges: {
+                left: {
+                    roomName: 'emptyRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'emptyRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        gogglesRoom: { // gogglesRoom
+            rooms: [
+                {
+                    stage: 'royalChapel',
+                    room: 'gogglesRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'b',
+                'b',
+                'b',
+            ],
+            edges: {
+                left: {
+                    roomName: 'gogglesRoom',
+                    collision: '######....######',
+                    row: 2.5,
+                    column: 0.0,
+                },
+                rightUpper: {
+                    roomName: 'gogglesRoom',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 1.0,
+                },
+                rightLower: {
+                    roomName: 'gogglesRoom',
+                    collision: '######....######',
+                    row: 2.5,
+                    column: 1.0,
+                },
+            },
+        },
+        leftTower: { // leftTower
+            rooms: [
+                {
+                    stage: 'royalChapel',
+                    room: 'leftTower',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '.cc.',
+                '.cc.',
+                '.cc.',
+                '.cc.',
+                '.cc.',
+                '.cc.',
+                '.cc.',
+                '.cc.',
+                '.cc.',
+                '.cc.',
+            ],
+            edges: {
+                leftUpper: {
+                    roomName: 'leftTower',
+                    collision: '######>>>>######',
+                    row: 3.5,
+                    column: 1.0,
+                },
+                leftLower: {
+                    roomName: 'leftTower',
+                    collision: '######....######',
+                    row: 9.5,
+                    column: 1.0,
+                },
+                rightUpper: {
+                    roomName: 'leftTower',
+                    collision: '######<<<<######',
+                    row: 2.5,
+                    column: 3.0,
+                },
+                right: {
+                    roomName: 'leftTower',
+                    collision: '######....######',
+                    row: 7.5,
+                    column: 3.0,
+                },
+                rightLower: {
+                    roomName: 'leftTower',
+                    collision: '######....######',
+                    row: 8.5,
+                    column: 3.0,
+                },
+            },
+        },
+        middleTower: { // middleTower
+            rooms: [
+                {
+                    stage: 'royalChapel',
+                    room: 'middleTower',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '.dd.',
+                '.dd.',
+                '.dd.',
+                '.dd.',
+            ],
+            edges: {
+                left: {
+                    roomName: 'middleTower',
+                    collision: '######>>>>######',
+                    row: 3.5,
+                    column: 1.0,
+                },
+                right: {
+                    roomName: 'middleTower',
+                    collision: '######<<<<######',
+                    row: 2.5,
+                    column: 3.0,
+                },
+            },
+        },
+        silverRingRoom: { // silverRingRoom
+            rooms: [
+                {
+                    stage: 'royalChapel',
+                    room: 'silverRingRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'ee',
+            ],
+            edges: {
+                right: {
+                    roomName: 'silverRingRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 2.0,
+                },
+            },
+        },
+        spikeHallway: { // spikeHallway
+            rooms: [
+                {
+                    stage: 'royalChapel',
+                    room: 'spikeHallway',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'ffff.',
+            ],
+            edges: {
+                left: {
+                    roomName: 'spikeHallway',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'spikeHallway',
+                    collision: '######>>>>######',
+                    row: 0.5,
+                    column: 4.0,
+                },
+            },
+        },
+        walkwayBetweenTowers: { // walkwayBetweenTowers
+            rooms: [
+                {
+                    stage: 'royalChapel',
+                    room: 'walkwayBetweenTowers',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '.ggg.',
+            ],
+            edges: {
+                left: {
+                    roomName: 'walkwayBetweenTowers',
+                    collision: '######<<<<######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+                right: {
+                    roomName: 'walkwayBetweenTowers',
+                    collision: '######>>>>######',
+                    row: 0.5,
+                    column: 4.0,
+                },
+            },
+        },
+    },
     // undergroundCaverns
     // warpRooms
 }
