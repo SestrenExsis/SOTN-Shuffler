@@ -258,6 +258,7 @@ const argv = yargs(process.argv.slice(2))
                 castleEntrance: shuffleRooms(rng(), 'castleEntrance', true),
                 castleKeep: shuffleRooms(rng(), 'castleKeep', true),
                 clockTower: shuffleRooms(rng(), 'clockTower', true),
+                colosseum: shuffleRooms(rng(), 'colosseum', true),
                 marbleGallery: shuffleRooms(rng(), 'marbleGallery', true),
             }
             const stageArrangements = arrangeStages(seed, nodeGroups)
