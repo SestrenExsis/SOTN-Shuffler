@@ -257,7 +257,7 @@ const argv = yargs(process.argv.slice(2))
                 alchemyLaboratory: shuffleRooms(rng(), 'alchemyLaboratory', true),
                 castleEntrance: shuffleRooms(rng(), 'castleEntrance', true),
                 castleKeep: shuffleRooms(rng(), 'castleKeep', true),
-                // catacombs
+                catacombs: shuffleRooms(rng(), 'catacombs', true),
                 clockTower: shuffleRooms(rng(), 'clockTower', true),
                 colosseum: shuffleRooms(rng(), 'colosseum', true),
                 longLibrary: shuffleRooms(rng(), 'longLibrary', true),

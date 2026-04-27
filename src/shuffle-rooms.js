@@ -1936,7 +1936,729 @@ const nodeGroups = {
             },
         },
     },
-    // catacombs
+    catacombs: {
+        exitToAbandonedMine: { // exitToAbandonedMine, loadingRoomToAbandonedMine, triggerTeleporterToAbandonedMine
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'exitToAbandonedMine',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'catacombs',
+                    room: 'loadingRoomToAbandonedMine',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'catacombs',
+                    room: 'triggerTeleporterToAbandonedMine',
+                    row: 0,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '0=#',
+                '0..',
+            ],
+            edges: {
+                left: {
+                    roomName: 'exitToAbandonedMine',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'exitToAbandonedMine',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 1.0,
+                },
+            },
+        },
+        granfaloonsLair: { // granfaloonsLair, roomId04, roomId02
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'granfaloonsLair',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'catacombs',
+                    room: 'roomId04',
+                    row: 0,
+                    column: 3,
+                },
+                {
+                    stage: 'catacombs',
+                    room: 'roomId02',
+                    row: 1,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '.112',
+                '311.',
+            ],
+            edges: {
+                left: {
+                    roomName: 'roomId02',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'roomId04',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 4.0,
+                },
+            },
+        },
+        roomId00: { // roomId00
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'roomId00',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '4',
+                '4',
+            ],
+            edges: {
+                rightUpper: {
+                    roomName: 'roomId00',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+                rightLower: {
+                    roomName: 'roomId00',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 1.0,
+                },
+            },
+        },
+        mormegilRoom: { // mormegilRoom
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'mormegilRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '5',
+            ],
+            edges: {
+                left: {
+                    roomName: 'mormegilRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        roomId05: { // roomId05
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'roomId05',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '6',
+            ],
+            edges: {
+                right: {
+                    roomName: 'roomId05',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        smallGremlinRoom: { // smallGremlinRoom
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'smallGremlinRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '7',
+                '7',
+            ],
+            edges: {
+                leftUpper: {
+                    roomName: 'smallGremlinRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                rightUpper: {
+                    roomName: 'smallGremlinRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+                leftLower: {
+                    roomName: 'smallGremlinRoom',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 0.0,
+                },
+                rightLower: {
+                    roomName: 'smallGremlinRoom',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 1.0,
+                },
+            },
+        },
+        saveRoomA: { // saveRoomA
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'saveRoomA',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '@',
+            ],
+            edges: {
+                left: {
+                    roomName: 'saveRoomA',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'saveRoomA',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        walkArmorRoom: { // walkArmorRoom
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'walkArmorRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '8',
+            ],
+            edges: {
+                left: {
+                    roomName: 'walkArmorRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        icebrandRoom: { // icebrandRoom
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'icebrandRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '9',
+            ],
+            edges: {
+                right: {
+                    roomName: 'icebrandRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        leftLavaPath: { // leftLavaPath
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'leftLavaPath',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'aaa',
+            ],
+            edges: {
+                left: {
+                    roomName: 'leftLavaPath',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'leftLavaPath',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 3.0,
+                },
+            },
+        },
+        ballroomMaskRoom: { // ballroomMaskRoom
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'ballroomMaskRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'bb',
+                'bb',
+            ],
+            edges: {
+                leftUpper: {
+                    roomName: 'ballroomMaskRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                leftLower: {
+                    roomName: 'ballroomMaskRoom',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'ballroomMaskRoom',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 2.0,
+                },
+            },
+        },
+        rightLavaPath: { // rightLavaPath
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'rightLavaPath',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'ccc',
+            ],
+            edges: {
+                left: {
+                    roomName: 'rightLavaPath',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'rightLavaPath',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 3.0,
+                },
+            },
+        },
+        catEyeCircletRoom: { // catEyeCircletRoom
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'catEyeCircletRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'd',
+            ],
+            edges: {
+                right: {
+                    roomName: 'catEyeCircletRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        roomId14: { // roomId14
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'roomId14',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'e',
+            ],
+            edges: {
+                left: {
+                    roomName: 'roomId14',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'roomId14',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        saveRoomB: { // saveRoomB
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'saveRoomB',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '@',
+            ],
+            edges: {
+                left: {
+                    roomName: 'saveRoomB',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'saveRoomB',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        hellfireBeastRoom: { // hellfireBeastRoom
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'hellfireBeastRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'ff',
+            ],
+            edges: {
+                left: {
+                    roomName: 'hellfireBeastRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'hellfireBeastRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 2.0,
+                },
+            },
+        },
+        boneArkRoom: { // boneArkRoom
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'boneArkRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'ggg',
+            ],
+            edges: {
+                left: {
+                    roomName: 'boneArkRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'boneArkRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 3.0,
+                },
+            },
+        },
+        roomId19: { // roomId19
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'roomId19',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'h',
+            ],
+            edges: {
+                left: {
+                    roomName: 'roomId19',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'roomId19',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        roomId20: { // roomId20
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'roomId20',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'ii',
+            ],
+            edges: {
+                left: {
+                    roomName: 'roomId20',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'roomId20',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 2.0,
+                },
+            },
+        },
+        roomId21: { // roomId21
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'roomId21',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'jj',
+                'jj',
+            ],
+            edges: {
+                leftUpper: {
+                    roomName: 'roomId21',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                leftLower: {
+                    roomName: 'roomId21',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'roomId21',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 2.0,
+                },
+            },
+        },
+        roomId22: { // roomId22
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'roomId22',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'k',
+            ],
+            edges: {
+                left: {
+                    roomName: 'roomId22',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'roomId22',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        roomId23: { // roomId23
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'roomId23',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'lll',
+                'lll',
+            ],
+            edges: {
+                left: {
+                    roomName: 'roomId23',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'roomId23',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 3.0,
+                },
+            },
+        },
+        pitchBlackSpikeMaze: { // pitchBlackSpikeMaze
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'pitchBlackSpikeMaze',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'mmm',
+            ],
+            edges: {
+                left: {
+                    roomName: 'pitchBlackSpikeMaze',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'pitchBlackSpikeMaze',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 3.0,
+                },
+            },
+        },
+        roomId25: { // roomId25
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'roomId25',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'nnnnn',
+            ],
+            edges: {
+                left: {
+                    roomName: 'roomId25',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                bottom: {
+                    roomName: 'roomId25',
+                    collision: '######....######',
+                    row: 1.0,
+                    column: 4.5,
+                },
+            },
+        },
+        roomId26: { // roomId26
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'roomId26',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'ooooo',
+            ],
+            edges: {
+                top: {
+                    roomName: 'roomId26',
+                    collision: '######....######',
+                    row: 0.0,
+                    column: 4.5,
+                },
+                left: {
+                    roomName: 'roomId26',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        spikeBreakerRoom: { // spikeBreakerRoom
+            rooms: [
+                {
+                    stage: 'catacombs',
+                    room: 'spikeBreakerRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'ppp',
+            ],
+            edges: {
+                right: {
+                    roomName: 'spikeBreakerRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 3.0,
+                },
+            },
+        },
+    },
     clockTower: {
         karasumansRoom: { // triggerTeleporterToCastleKeep, loadingRoomToCastleKeep, karasumansRoom
             rooms: [
