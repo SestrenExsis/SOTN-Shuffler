@@ -257,12 +257,16 @@ const argv = yargs(process.argv.slice(2))
                 alchemyLaboratory: shuffleRooms(rng(), 'alchemyLaboratory', true),
                 castleEntrance: shuffleRooms(rng(), 'castleEntrance', true),
                 castleKeep: shuffleRooms(rng(), 'castleKeep', true),
+                // catacombs
                 clockTower: shuffleRooms(rng(), 'clockTower', true),
                 colosseum: shuffleRooms(rng(), 'colosseum', true),
                 longLibrary: shuffleRooms(rng(), 'longLibrary', true),
                 marbleGallery: shuffleRooms(rng(), 'marbleGallery', true),
+                olroxsQuarters: shuffleRooms(rng(), 'olroxsQuarters', true),
                 outerWall: shuffleRooms(rng(), 'outerWall', true),
                 royalChapel: shuffleRooms(rng(), 'royalChapel', true),
+                // undergroundCaverns
+                // warpRooms
             }
             const stageArrangements = arrangeStages(seed, nodeGroups)
             console.log(stageArrangements)

@@ -21,6 +21,14 @@ const normalizationPatches = {
         'gravityBootsRoom.edges.bottom.collision': '######....######',
         'slingerStaircase.edges.bottom.collision': '######....######',
     },
+    olroxsQuarters: {
+        'catwalkCrypt.edges.top.collision': '######....######',
+        'tallShaft.edges.top.collision': '######....######',
+        'openCourtyard.edges.top.collision': '######....######',
+        'prison.edges.bottomLeft.collision': '######....######',
+        'prison.edges.bottomRight.collision': '######....######',
+        'swordCardRoom.edges.bottom.collision': '######....######',
+    },
 }
 
 const nodeGroups = {
@@ -3760,7 +3768,459 @@ const nodeGroups = {
             },
         },
     },
-    // olroxsQuarters
+    olroxsQuarters: {
+        skelerangRoom: { // skelerangRoom, loadingRoomToMarbleGallery, triggerTeleporterToMarbleGallery
+            rooms: [
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'skelerangRoom',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'loadingRoomToMarbleGallery',
+                    row: 2,
+                    column: 1,
+                },
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'triggerTeleporterToMarbleGallery',
+                    row: 2,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '0..',
+                '0..',
+                '0=#',
+            ],
+            edges: {
+                left: {
+                    roomName: 'skelerangRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        catwalkCrypt: { // triggerTeleporterToRoyalChapel, loadingRoomToRoyalChapel, catwalkCrypt
+            rooms: [
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'triggerTeleporterToRoyalChapel',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'loadingRoomToRoyalChapel',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'catwalkCrypt',
+                    row: 0,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '#=4444444',
+            ],
+            edges: {
+                top: {
+                    roomName: 'catwalkCrypt',
+                    collision: '#######..#######',
+                    row: 0.0,
+                    column: 3.5,
+                },
+                right: {
+                    roomName: 'catwalkCrypt',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 9.0,
+                },
+            },
+        },
+        grandStaircase: { // triggerTeleporterToColosseum, loadingRoomToColosseum, grandStaircase, bottomOfStairwell
+            rooms: [
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'triggerTeleporterToColosseum',
+                    row: 1,
+                    column: 0,
+                },
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'loadingRoomToColosseum',
+                    row: 1,
+                    column: 1,
+                },
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'grandStaircase',
+                    row: 0,
+                    column: 2,
+                },
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'bottomOfStairwell',
+                    row: 2,
+                    column: 3,
+                },
+            ],
+            cells: [
+                '..111',
+                '#=111',
+                '...2.',
+            ],
+            edges: {
+                debug: {
+                    roomName: 'grandStaircase',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 2.0,
+                },
+                rightUpper: {
+                    roomName: 'grandStaircase',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 5.0,
+                },
+                right: {
+                    roomName: 'grandStaircase',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 5.0,
+                },
+                rightLower: {
+                    roomName: 'bottomOfStairwell',
+                    collision: '######....######',
+                    row: 2.5,
+                    column: 4.0,
+                },
+            },
+        },
+        tallShaft: { // tallShaft, loadingRoomToWarpRooms, triggerTeleporterToWarpRooms
+            rooms: [
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'tallShaft',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'loadingRoomToWarpRooms',
+                    row: 5,
+                    column: 1,
+                },
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'triggerTeleporterToWarpRooms',
+                    row: 5,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '3..',
+                '3..',
+                '3..',
+                '3..',
+                '3..',
+                '3=#',
+            ],
+            edges: {
+                top: {
+                    roomName: 'tallShaft',
+                    collision: '#########..#####',
+                    row: 0.0,
+                    column: 0.5,
+                },
+                left: {
+                    roomName: 'tallShaft',
+                    collision: '######....######',
+                    row: 5.5,
+                    column: 0.0,
+                },
+            },
+        },
+        olroxsRoom: { // echoOfBatRoom, olroxsRoom, narrowHallwayToOlrox
+            rooms: [
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'echoOfBatRoom',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'olroxsRoom',
+                    row: 0,
+                    column: 3,
+                },
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'narrowHallwayToOlrox',
+                    row: 0,
+                    column: 5,
+                },
+            ],
+            cells: [
+                '555667777',
+                '...66....',
+            ],
+            edges: {
+                right: {
+                    roomName: 'narrowHallwayToOlrox',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 9.0,
+                },
+            },
+        },
+        emptyRoom: { // emptyRoom
+            rooms: [
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'emptyRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '9',
+            ],
+            edges: {
+                left: {
+                    roomName: 'emptyRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'emptyRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        hammerAndBladeRoom: { // hammerAndBladeRoom
+            rooms: [
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'hammerAndBladeRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'bbbb',
+            ],
+            edges: {
+                left: {
+                    roomName: 'hammerAndBladeRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'hammerAndBladeRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 4.0,
+                },
+            },
+        },
+        emptyCells: { // emptyCells
+            rooms: [
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'emptyCells',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '88',
+            ],
+            edges: {
+                left: {
+                    roomName: 'emptyCells',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'emptyCells',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 2.0,
+                },
+            },
+        },
+        garnetRoom: { // garnetRoom
+            rooms: [
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'garnetRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'a',
+            ],
+            edges: {
+                left: {
+                    roomName: 'garnetRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        prison: { // prison
+            rooms: [
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'prison',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'dddddd',
+            ],
+            edges: {
+                bottomLeft: {
+                    roomName: 'prison',
+                    collision: '#####..#########',
+                    row: 1.0,
+                    column: 0.5,
+                },
+                bottomRight: {
+                    roomName: 'prison',
+                    collision: '#########..#####',
+                    row: 1.0,
+                    column: 5.5,
+                },
+            },
+        },
+        openCourtyard: { // openCourtyard
+            rooms: [
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'openCourtyard',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'cccccc',
+                'cccccc',
+                'cccccc',
+                'cccccc',
+            ],
+            edges: {
+                top: {
+                    roomName: 'openCourtyard',
+                    collision: '#####..#########',
+                    row: 0.0,
+                    column: 5.5,
+                },
+                leftUpper: {
+                    roomName: 'openCourtyard',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                leftLower: {
+                    roomName: 'openCourtyard',
+                    collision: '######....######',
+                    row: 3.5,
+                    column: 0.0,
+                },
+                rightUpper: {
+                    roomName: 'openCourtyard',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 6.0,
+                },
+                leftLower: {
+                    roomName: 'openCourtyard',
+                    collision: '######....######',
+                    row: 2.5,
+                    column: 6.0,
+                },
+            },
+        },
+        saveRoomA: { // saveRoomA
+            rooms: [
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'saveRoomA',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '@',
+            ],
+            edges: {
+                left: {
+                    roomName: 'saveRoomA',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        secretOnyxRoom: { // secretOnyxRoom
+            rooms: [
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'secretOnyxRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'eee',
+            ],
+            edges: {
+                left: {
+                    roomName: 'secretOnyxRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        swordCardRoom: { // swordCardRoom
+            rooms: [
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'swordCardRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'ff',
+            ],
+            edges: {
+                bottom: {
+                    roomName: 'swordCardRoom',
+                    collision: '#######..#######',
+                    row: 1.0,
+                    column: 0.5,
+                },
+            },
+        },
+    },
     outerWall: {
         elevatorShaftRoom: { // elevatorShaftRoom, triggerTeleporterToWarpRooms, loadingRoomToWarpRooms, triggerTeleporterToLongLibrary, loadingRoomToLongLibrary
             rooms: [
