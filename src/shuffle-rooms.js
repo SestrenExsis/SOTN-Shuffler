@@ -5565,7 +5565,7 @@ const nodeGroups = {
             rooms: [
                 {
                     stage: 'royalChapel',
-                    room: 'xxx',
+                    room: 'confessionalBooth',
                     row: 0,
                     column: 0,
                 },
@@ -5804,7 +5804,861 @@ const nodeGroups = {
             },
         },
     },
-    // undergroundCaverns
+    undergroundCaverns: {
+        falseSaveRoom: { // falseSaveRoom, triggerTeleporterToBossSuccubus
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'falseSaveRoom',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'triggerTeleporterToBossSuccubus',
+                    row: 0,
+                    column: 1,
+                },
+            ],
+            cells: [
+                '@#',
+            ],
+            edges: {
+                left: {
+                    roomName: 'falseSaveRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        exitToCastleEntrance: { // triggerTeleporterToCastleEntrance, loadingRoomToCastleEntrance, exitToCastleEntrance
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'triggerTeleporterToCastleEntrance',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'loadingRoomToCastleEntrance',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'exitToCastleEntrance',
+                    row: 0,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '#=00',
+            ],
+            edges: {
+                bottom: {
+                    roomName: 'exitToCastleEntrance',
+                    collision: '######....######',
+                    row: 1.0,
+                    column: 1.5,
+                },
+            },
+        },
+        longDrop: { // longDrop, loadingRoomToMarbleGallery, triggerTeleporterToMarbleGallery
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'longDrop',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'loadingRoomToMarbleGallery',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'triggerTeleporterToMarbleGallery',
+                    row: 0,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '1=#',
+                '1..',
+                '1..',
+                '1..',
+                '1..',
+                '1..',
+                '1..',
+                '1..',
+                '1..',
+                '1..',
+                '1..',
+            ],
+            edges: {
+                left: {
+                    roomName: 'longDrop',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 0.0,
+                },
+                rightUpper: {
+                    roomName: 'longDrop',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 1.0,
+                },
+                rightLower: {
+                    roomName: 'longDrop',
+                    collision: '######....######',
+                    row: 3.5,
+                    column: 1.0,
+                },
+                bottom: {
+                    roomName: 'longDrop',
+                    collision: '######....######',
+                    row: 11.0,
+                    column: 0.5,
+                },
+            },
+        },
+        exitToAbandonedMine: { // triggerTeleporterToAbandonedMine, loadingRoomToAbandonedMine, exitToAbandonedMine
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'triggerTeleporterToAbandonedMine',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'loadingRoomToAbandonedMine',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'exitToAbandonedMine',
+                    row: 0,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '2=#',
+            ],
+            edges: {
+                top: {
+                    roomName: 'exitToAbandonedMine',
+                    collision: '######....######',
+                    row: 0.0,
+                    column: 2.5,
+                },
+            },
+        },
+        scyllaRoom: { // hiddenCrystalEntrance, crystalCloakRoom, scyllaRoom, scyllaWyrmRoom, risingWaterRoom
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'hiddenCrystalEntrance',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'crystalCloakRoom',
+                    row: 1,
+                    column: 1,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'scyllaRoom',
+                    row: 1,
+                    column: 2,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'scyllaWyrmRoom',
+                    row: 2,
+                    column: 1,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'risingWaterRoom',
+                    row: 2,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '3......',
+                '3455555',
+                '3677777',
+            ],
+            edges: {
+                top: {
+                    roomName: 'hiddenCrystalEntrance',
+                    collision: '######....######',
+                    row: 0.0,
+                    column: 0.5,
+                },
+                left: {
+                    roomName: 'hiddenCrystalEntrance',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'hiddenCrystalEntrance',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+                bottom: {
+                    roomName: 'hiddenCrystalEntrance',
+                    collision: '######....######',
+                    row: 3.0,
+                    column: 0.5,
+                },
+            },
+        },
+        waterfall: { // dKButton, waterfall, pentagramRoom, roomId19, roomId18
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'dKButton',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'waterfall',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'pentagramRoom',
+                    row: 0,
+                    column: 3,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'roomId19',
+                    row: 5,
+                    column: 1,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'roomId18',
+                    row: 5,
+                    column: 3,
+                },
+            ],
+            cells: [
+                '899a',
+                '.99.',
+                '.99.',
+                '.99.',
+                '.99.',
+                'b99c',
+            ],
+            edges: {
+                left: {
+                    roomName: 'roomId19',
+                    collision: '######....######',
+                    row: 5.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'pentagramRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 4.0,
+                },
+            },
+        },
+        saveRoomA: { // saveRoomA
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'saveRoomA',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '@',
+            ],
+            edges: {
+                right: {
+                    roomName: 'saveRoomA',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        saveRoomB: { // saveRoomB
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'saveRoomB',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '@',
+            ],
+            edges: {
+                left: {
+                    roomName: 'saveRoomB',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        saveRoomC: { // saveRoomC
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'saveRoomC',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                '@',
+            ],
+            edges: {
+                left: {
+                    roomName: 'saveRoomC',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        crystalBend: { // crystalBend
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'crystalBend',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'd',
+                'd',
+            ],
+            edges: {
+                top: {
+                    roomName: 'crystalBend',
+                    collision: '######....######',
+                    row: 0.0,
+                    column: 0.5,
+                },
+                right: {
+                    roomName: 'crystalBend',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 1.0,
+                },
+            },
+        },
+        tallStairwell: { // tallStairwell
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'tallStairwell',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'e',
+                'e',
+                'e',
+                'e',
+                'e',
+                'e',
+                'e',
+                'e',
+                'e',
+            ],
+            edges: {
+                leftUpper: {
+                    roomName: 'tallStairwell',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                leftLower: {
+                    roomName: 'tallStairwell',
+                    collision: '######....######',
+                    row: 6.5,
+                    column: 0.0,
+                },
+                bottom: {
+                    roomName: 'tallStairwell',
+                    collision: '######....######',
+                    row: 9.0,
+                    column: 0.5,
+                },
+            },
+        },
+        plaqueRoomWithLifeMaxUp: { // plaqueRoomWithLifeMaxUp
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'plaqueRoomWithLifeMaxUp',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'f',
+            ],
+            edges: {
+                bottom: {
+                    roomName: 'plaqueRoomWithLifeMaxUp',
+                    collision: '######....######',
+                    row: 1.0,
+                    column: 0.5,
+                },
+            },
+        },
+        smallStairwell: { // smallStairwell
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'smallStairwell',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'g',
+                'g',
+            ],
+            edges: {
+                top: {
+                    roomName: 'smallStairwell',
+                    collision: '######....######',
+                    row: 0.0,
+                    column: 0.5,
+                },
+                right: {
+                    roomName: 'smallStairwell',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 1.0,
+                },
+            },
+        },
+        claymoreStairwell: { // claymoreStairwell
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'claymoreStairwell',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'h',
+                'h',
+                'h',
+                'h',
+            ],
+            edges: {
+                left: {
+                    roomName: 'claymoreStairwell',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'claymoreStairwell',
+                    collision: '######....######',
+                    row: 3.5,
+                    column: 1.0,
+                },
+            },
+        },
+        mealTicketsAndMoonstoneRoom: { // mealTicketsAndMoonstoneRoom
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'mealTicketsAndMoonstoneRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'i',
+                'i',
+            ],
+            edges: {
+                leftUpper: {
+                    roomName: 'mealTicketsAndMoonstoneRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                leftLower: {
+                    roomName: 'mealTicketsAndMoonstoneRoom',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'mealTicketsAndMoonstoneRoom',
+                    collision: '######....######',
+                    row: 1.5,
+                    column: 1.0,
+                },
+            },
+        },
+        plaqueRoomWithBreakableWall: { // plaqueRoomWithBreakableWall
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'plaqueRoomWithBreakableWall',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'j',
+            ],
+            edges: {
+                left: {
+                    roomName: 'plaqueRoomWithBreakableWall',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'plaqueRoomWithBreakableWall',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        roomId09: { // roomId09
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'roomId09',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'kk',
+            ],
+            edges: {
+                left: {
+                    roomName: 'roomId09',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'roomId09',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 2.0,
+                },
+                bottom: {
+                    roomName: 'roomId09',
+                    collision: '######....######',
+                    row: 1.0,
+                    column: 0.5,
+                },
+            },
+        },
+        roomId10: { // roomId10
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'roomId10',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'l',
+            ],
+            edges: {
+                top: {
+                    roomName: 'roomId10',
+                    collision: '######....######',
+                    row: 0.0,
+                    column: 0.5,
+                },
+                bottom: {
+                    roomName: 'roomId10',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        roomId11: { // roomId11
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'roomId11',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'mmm',
+            ],
+            edges: {
+                left: {
+                    roomName: 'roomId11',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'roomId11',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 3.0,
+                },
+            },
+        },
+        roomId12: { // roomId12
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'xxx',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'nn',
+            ],
+            edges: {
+                left: {
+                    roomName: 'xxx',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'xxx',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 2.0,
+                },
+            },
+        },
+        holySymbolRoom: { // holySymbolRoom
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'holySymbolRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'o',
+            ],
+            edges: {
+                left: {
+                    roomName: 'holySymbolRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+            },
+        },
+        dKBridge: { // dKBridge
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'dKBridge',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'pppp',
+            ],
+            edges: {
+                left: {
+                    roomName: 'dKBridge',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'dKBridge',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 4.0,
+                },
+                bottom: {
+                    roomName: 'dKBridge',
+                    collision: '######....######',
+                    row: 1.0,
+                    column: 3.5,
+                },
+            },
+        },
+        mermanStatueRoom: { // mermanStatueRoom
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'mermanStatueRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'q',
+            ],
+            edges: {
+                right: {
+                    roomName: 'mermanStatueRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+        iceFloeRoom: { // iceFloeRoom
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'iceFloeRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'rrrrrrrrr',
+                'rr,rrrrrr',
+            ],
+            edges: {
+                top: {
+                    roomName: 'iceFloeRoom',
+                    collision: '######....######',
+                    row: 0.0,
+                    column: 8.5,
+                },
+                left: {
+                    roomName: 'iceFloeRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'iceFloeRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 9.0,
+                },
+            },
+        },
+        rightFerrymanRoute: { // rightFerrymanRoute
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'rightFerrymanRoute',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'sssssssssssss',
+                'sss,,,ss,ssss',
+            ],
+            edges: {
+                left: {
+                    roomName: 'rightFerrymanRoute',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'rightFerrymanRoute',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 13.0,
+                },
+            },
+        },
+        leftFerrymanRoute: { // leftFerrymanRoute
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'leftFerrymanRoute',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'ttttttttttttt',
+                'ttttt,,,,,,,,',
+            ],
+            edges: {
+                top: {
+                    roomName: 'leftFerrymanRoute',
+                    collision: '######....######',
+                    row: 0.0,
+                    column: 8.5,
+                },
+                left: {
+                    roomName: 'leftFerrymanRoute',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 0.0,
+                },
+                right: {
+                    roomName: 'leftFerrymanRoute',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 13.0,
+                },
+            },
+        },
+        bandannaRoom: { // bandannaRoom
+            rooms: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'bandannaRoom',
+                    row: 0,
+                    column: 0,
+                },
+            ],
+            cells: [
+                'u',
+            ],
+            edges: {
+                right: {
+                    roomName: 'bandannaRoom',
+                    collision: '######....######',
+                    row: 0.5,
+                    column: 1.0,
+                },
+            },
+        },
+    },
     // warpRooms
 }
 

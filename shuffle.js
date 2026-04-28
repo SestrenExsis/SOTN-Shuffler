@@ -265,7 +265,7 @@ const argv = yargs(process.argv.slice(2))
                 olroxsQuarters: shuffleRooms(rng(), 'olroxsQuarters', true),
                 outerWall: shuffleRooms(rng(), 'outerWall', true),
                 royalChapel: shuffleRooms(rng(), 'royalChapel', true),
-                // undergroundCaverns
+                undergroundCaverns: shuffleRooms(rng(), 'undergroundCaverns', true),
                 // warpRooms
             }
             const stageArrangements = arrangeStages(seed, nodeGroups)
