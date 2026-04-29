@@ -31,7 +31,7 @@ const normalizationPatches = {
     },
 }
 
-const nodeGroups = {
+export const nodeGroups = {
     abandonedMine: {
         bend: { // triggerTeleporterToCatacombs, loadingRoomToCatacombs, bend
             rooms: [
@@ -5052,9 +5052,21 @@ const nodeGroups = {
             rooms: [
                 {
                     stage: 'outerWall',
-                    room: 'exitToMarbleGallery',
+                    room: 'triggerTeleporterToMarbleGallery',
                     row: 0,
                     column: 0,
+                },
+                {
+                    stage: 'outerWall',
+                    room: 'loadingRoomToMarbleGallery',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'outerWall',
+                    room: 'exitToMarbleGallery',
+                    row: 0,
+                    column: 2,
                 },
             ],
             cells: [
@@ -6443,7 +6455,7 @@ const nodeGroups = {
             rooms: [
                 {
                     stage: 'undergroundCaverns',
-                    room: 'xxx',
+                    room: 'roomId12',
                     row: 0,
                     column: 0,
                 },
@@ -6453,13 +6465,13 @@ const nodeGroups = {
             ],
             edges: {
                 left: {
-                    roomName: 'xxx',
+                    roomName: 'roomId12',
                     collision: '######....######',
                     row: 0.5,
                     column: 0.0,
                 },
                 right: {
-                    roomName: 'xxx',
+                    roomName: 'roomId12',
                     collision: '######....######',
                     row: 0.5,
                     column: 2.0,
@@ -6659,10 +6671,144 @@ const nodeGroups = {
             },
         },
     },
-    // warpRooms
+    warpRooms: {
+        warpRoomToCastleEntrance: { // warpRoomToCastleEntrance, loadingRoomToCastleEntrance, triggerTeleporterToCastleEntrance
+            rooms: [
+                {
+                    stage: 'warpRooms',
+                    room: 'warpRoomToCastleEntrance',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'warpRooms',
+                    room: 'loadingRoomToCastleEntrance',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'warpRooms',
+                    room: 'triggerTeleporterToCastleEntrance',
+                    row: 0,
+                    column: 2,
+                },
+            ],
+            cells: [
+                'W..',
+            ],
+            edges: {},
+        },
+        warpRoomToCastleKeep: { // triggerTeleporterToCastleKeep, loadingRoomToCastleKeep, warpRoomToCastleKeep
+            rooms: [
+                {
+                    stage: 'warpRooms',
+                    room: 'triggerTeleporterToCastleKeep',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'loadingRoomToCastleKeep',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'warpRoomToCastleKeep',
+                    row: 0,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '..W',
+            ],
+            edges: {},
+        },
+        warpRoomToOlroxsQuarters: { // triggerTeleporterToOlroxsQuarters, loadingRoomToOlroxsQuarters, warpRoomToOlroxsQuarters
+            rooms: [
+                {
+                    stage: 'warpRooms',
+                    room: 'triggerTeleporterToOlroxsQuarters',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'loadingRoomToOlroxsQuarters',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'warpRoomToOlroxsQuarters',
+                    row: 0,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '..W',
+            ],
+            edges: {},
+        },
+        warpRoomToOuterWall: { // warpRoomToOuterWall, loadingRoomToOuterWall, triggerTeleporterToOuterWall
+            rooms: [
+                {
+                    stage: 'warpRooms',
+                    room: 'warpRoomToOuterWall',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'warpRooms',
+                    room: 'loadingRoomToOuterWall',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'warpRooms',
+                    room: 'triggerTeleporterToOuterWall',
+                    row: 0,
+                    column: 2,
+                },
+            ],
+            cells: [
+                'W..',
+            ],
+            edges: {},
+        },
+        warpRoomToAbandonedMine: { // triggerTeleporterToAbandonedMine, loadingRoomToAbandonedMine, warpRoomToAbandonedMine
+            rooms: [
+                {
+                    stage: 'warpRooms',
+                    room: 'triggerTeleporterToAbandonedMine',
+                    row: 0,
+                    column: 0,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'loadingRoomToAbandonedMine',
+                    row: 0,
+                    column: 1,
+                },
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'warpRoomToAbandonedMine',
+                    row: 0,
+                    column: 2,
+                },
+            ],
+            cells: [
+                '..W',
+            ],
+            edges: {},
+        },
+    },
 }
 
-export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOffset) {
+export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOffset, options={}) {
+    if ('allowOverlaps' in options) {
+        console.log(baseNodeGroup, nodeGroup, rowOffset, columnOffset)
+    }
     const result = {
         rooms: [],
         cells: [],
@@ -6697,7 +6843,7 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
     for (let row = 0; row < rows; row++) {
         const rowData = []
         for (let column = 0; column < columns; column++) {
-            let values = ['.']
+            const values = ['.']
             const rowA = row - Math.max(0, -rowOffset)
             const columnA = column - Math.max(0, -columnOffset)
             if (
@@ -6723,7 +6869,9 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
                 values.push(nodeGroup.cells.at(rowB).at(columnB))
             }
             if (values.length > 2) {
-                return null
+                if (!(options.allowOverlaps ?? false)) {
+                    return null
+                }
             }
             rowData.push(values.at(-1))
         }
@@ -6763,7 +6911,8 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
     if (!validInd) {
         return null
     }
-    nodeGroup.edges
+    const nodeEdges = Array.isArray(nodeGroup.edges) ? nodeGroup.edges : []
+    nodeEdges
         .filter((edgeInfo) => {
             // This is O(M * N), but M is assumed to be very small
             const row = edgeInfo.row + Math.max(0, rowOffset)

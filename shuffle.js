@@ -16,8 +16,10 @@ import {
 } from './src/shuffle-music.js'
 
 import {
+    nodeGroups,
     getRoomChanges,
     shuffleRooms,
+    combineNodeGroups,
 } from './src/shuffle-rooms.js'
 
 import {
@@ -247,29 +249,71 @@ const argv = yargs(process.argv.slice(2))
             .demandOption([])
         },
         handler: (argv) => {
-            let seed = argv.seed
-            if (!seed) {
-                seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+            const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
+            let seedName
+            if (argv.seed) {
+                seedName = argv.seed
             }
-            const rng = seedrandom(seed)
-            const nodeGroups = {
-                abandonedMine: shuffleRooms(rng(), 'abandonedMine', true),
-                alchemyLaboratory: shuffleRooms(rng(), 'alchemyLaboratory', true),
-                castleEntrance: shuffleRooms(rng(), 'castleEntrance', true),
-                castleKeep: shuffleRooms(rng(), 'castleKeep', true),
-                catacombs: shuffleRooms(rng(), 'catacombs', true),
-                clockTower: shuffleRooms(rng(), 'clockTower', true),
-                colosseum: shuffleRooms(rng(), 'colosseum', true),
-                longLibrary: shuffleRooms(rng(), 'longLibrary', true),
-                marbleGallery: shuffleRooms(rng(), 'marbleGallery', true),
-                olroxsQuarters: shuffleRooms(rng(), 'olroxsQuarters', true),
-                outerWall: shuffleRooms(rng(), 'outerWall', true),
-                royalChapel: shuffleRooms(rng(), 'royalChapel', true),
-                undergroundCaverns: shuffleRooms(rng(), 'undergroundCaverns', true),
-                // warpRooms
+            else {
+                const seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+                seedName = getSeedName(seed)
             }
-            const stageArrangements = arrangeStages(seed, nodeGroups)
+            const stageNodeGroups = {
+                abandonedMine: shuffleRooms(seedName + '_abandonedMine', 'abandonedMine', true),
+                alchemyLaboratory: shuffleRooms(seedName + '_alchemyLaboratory', 'alchemyLaboratory', true),
+                castleEntrance: shuffleRooms(seedName + '_castleEntrance', 'castleEntrance', true),
+                castleKeep: shuffleRooms(seedName + '_castleKeep', 'castleKeep', true),
+                catacombs: shuffleRooms(seedName + '_catacombs', 'catacombs', true),
+                clockTower: shuffleRooms(seedName + '_clockTower', 'clockTower', true),
+                colosseum: shuffleRooms(seedName + '_colosseum', 'colosseum', true),
+                longLibrary: shuffleRooms(seedName + '_longLibrary', 'longLibrary', true),
+                marbleGallery: shuffleRooms(seedName + '_marbleGallery', 'marbleGallery', true),
+                olroxsQuarters: shuffleRooms(seedName + '_olroxsQuarters', 'olroxsQuarters', true),
+                outerWall: shuffleRooms(seedName + '_outerWall', 'outerWall', true),
+                royalChapel: shuffleRooms(seedName + '_royalChapel', 'royalChapel', true),
+                undergroundCaverns: shuffleRooms(seedName + '_undergroundCaverns', 'undergroundCaverns', true),
+            }
+            const shuffledStages = shuffleStages(seedName + '_stageShuffler')
+            // Attach warpRooms to the stages they lead to
+            Object.entries(shuffledStages.links)
+                .filter(([teleporterSource, teleporterTarget]) => {
+                    return teleporterSource.startsWith('fromWarpRoomsTo')
+                })
+                .forEach(([teleporterSource, teleporterTarget]) => {
+                    console.log('teleporterSource:', teleporterSource)
+                    console.log('teleporterTarget:', teleporterTarget)
+                    // NOTE(sestren): This hack is to avoid matching 'To' with 'Tower'
+                    const parts = teleporterTarget.replace('ClockTower', 'CLOCKTOWER').split('To')
+                    const firstPart = parts.at(0).replace('CLOCKTOWER', 'ClockTower').slice(4)
+                    const stageName = firstPart.at(0).toLowerCase() + firstPart.slice(1)
+                    const roomName = 'loadingRoomTo' + parts.at(1).replace('CLOCKTOWER', 'ClockTower')
+                    console.log('firstPart:', firstPart)
+                    console.log('stageName:', stageName)
+                    console.log('roomName:', roomName)
+                    // NOTE(sestren): Centering on the loading room should be a reliable way to match the rooms
+                    let matchingRoomCount = 0
+                    stageNodeGroups[stageName].rooms
+                        .filter((roomInfo) => {
+                            return (roomInfo.stage === stageName) && (roomInfo.room === roomName)
+                        })
+                        .forEach((roomInfo) => {
+                            matchingRoomCount += 1
+                            const rowOffset = roomInfo.row
+                            const columnOffset = roomInfo.column - 1
+                            const warpRoomGroupName = 'warpRoomTo' + teleporterSource.split('WarpRoomsTo').at(1)
+                            const warpRoomGroup = nodeGroups.warpRooms[warpRoomGroupName]
+                            stageNodeGroups[stageName] = combineNodeGroups(stageNodeGroups[stageName], warpRoomGroup, rowOffset, columnOffset, { allowOverlaps: true })
+                        })
+                    if (matchingRoomCount < 1)  {
+                        console.log(stageNodeGroups[stageName].rooms)
+                        throw Error(`Room not found for stage '${stageName}' and room '${roomName}'`)
+                    }
+                })
+            const stageArrangements = arrangeStages(seedName + '_stageArranger', stageNodeGroups)
             console.log(stageArrangements)
+            const teleporterChanges = getTeleporterChanges(extraction, shuffledStages.links)
+            // TODO(sestren): Populate changes
+            // changesToAdd.push(teleporterChanges)
         }
     })
     .command({ // seed

@@ -479,6 +479,7 @@ export function shuffleStages(seed) {
             })
         result.links = links
     }
+    console.log(result)
     return result
 }
 
