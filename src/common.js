@@ -39,7 +39,7 @@ export function arrangeStages(seed, startingNodeGroups) { //}, links) {
             const maxRows = result.cells.length + nodeGroup.cells.length
             const minColumns = -1 * nodeGroup.cells.at(0).length
             const maxColumns = result.cells.at(0).length + nodeGroup.cells.at(0).length
-            console.log('dimensions:', minRows, maxRows, minColumns, maxColumns)
+            // console.log('dimensions:', minRows, maxRows, minColumns, maxColumns)
             for (let rowOffset = minRows; rowOffset <= maxRows; rowOffset++) {
                 for (let columnOffset = minColumns; columnOffset <= maxColumns; columnOffset++) {
                     const candidate = combineNodeGroups(result, nodeGroup, rowOffset, columnOffset)
@@ -50,7 +50,7 @@ export function arrangeStages(seed, startingNodeGroups) { //}, links) {
                             candidates = []
                         }
                         if (encumbrance === minEncumbrance) {
-                            console.log(`rowOffset: ${rowOffset}, columnOffset: ${columnOffset}, minEncumbrance: ${minEncumbrance}, encumbrance: ${encumbrance}`)
+                            // console.log(`rowOffset: ${rowOffset}, columnOffset: ${columnOffset}, minEncumbrance: ${minEncumbrance}, encumbrance: ${encumbrance}`)
                             candidates.push(candidate)
                         }
                     }

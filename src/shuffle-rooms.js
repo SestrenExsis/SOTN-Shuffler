@@ -6806,9 +6806,6 @@ export const nodeGroups = {
 }
 
 export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOffset, options={}) {
-    if ('allowOverlaps' in options) {
-        console.log(baseNodeGroup, nodeGroup, rowOffset, columnOffset)
-    }
     const result = {
         rooms: [],
         cells: [],
@@ -7063,7 +7060,7 @@ export function shuffleRooms(seed, stageName, applyNormalization) {
         }
     }
     console.log('attemptCount:', attemptCount)
-    console.log('result:', result)
+    // console.log('result:', result)
     return result
 }
 

@@ -114,6 +114,7 @@ const argv = yargs(process.argv.slice(2))
             .demandOption(['extraction', 'out'])
         },
         handler: (argv) => {
+            // TODO(sestren): Add ability to turn room and stage-shuffling on or off independently of one another
             console.log(argv)
             const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
             const shuffleData = {
@@ -188,20 +189,67 @@ const argv = yargs(process.argv.slice(2))
             let changesToAdd = []
             while (!solvable) {
                 shuffleData.debugInfo.solverAttemptCount += 1
+                console.log('solverAttemptCount:', shuffleData.debugInfo.solverAttemptCount)
                 changesToAdd = []
+                let stageConnections
                 if (argv.stageShuffler?.on) {
                     const seed = argv.stageShuffler.seed ?? (seedName + '_stageShuffler_' + shuffleData.debugInfo.solverAttemptCount)
-                    const shuffledStages = shuffleStages(seed)
-                    const teleporterChanges = getTeleporterChanges(extraction, shuffledStages.links)
+                    stageConnections = shuffleStages(seed)
+                    const teleporterChanges = getTeleporterChanges(extraction, stageConnections.links)
                     changesToAdd.push(teleporterChanges)
                     shuffleData.debugInfo.finalSeedsUsed.stageShuffler = seed
                 }
+                else {
+                    stageConnections = getVanillaStageLinks()
+                }
                 if (argv.roomShuffler?.on) {
                     const seed = argv.roomShuffler.seed ?? (seedName + '_roomShuffler_' + shuffleData.debugInfo.solverAttemptCount)
-                    // abandonedMine
-                    // alchemyLaboratory
-                    const shuffledRooms = shuffleRooms(seed, stageName, applyNormalization)
-                    const roomChanges = getRoomChanges(shuffledRooms.rooms, rowOffset, columnOffset)
+                    const stageNodeGroups = {
+                        abandonedMine: shuffleRooms(seed + '_abandonedMine', 'abandonedMine', true),
+                        alchemyLaboratory: shuffleRooms(seed + '_alchemyLaboratory', 'alchemyLaboratory', true),
+                        castleEntrance: shuffleRooms(seed + '_castleEntrance', 'castleEntrance', true),
+                        castleKeep: shuffleRooms(seed + '_castleKeep', 'castleKeep', true),
+                        catacombs: shuffleRooms(seed + '_catacombs', 'catacombs', true),
+                        clockTower: shuffleRooms(seed + '_clockTower', 'clockTower', true),
+                        colosseum: shuffleRooms(seed + '_colosseum', 'colosseum', true),
+                        longLibrary: shuffleRooms(seed + '_longLibrary', 'longLibrary', true),
+                        marbleGallery: shuffleRooms(seed + '_marbleGallery', 'marbleGallery', true),
+                        olroxsQuarters: shuffleRooms(seed + '_olroxsQuarters', 'olroxsQuarters', true),
+                        outerWall: shuffleRooms(seed + '_outerWall', 'outerWall', true),
+                        royalChapel: shuffleRooms(seed + '_royalChapel', 'royalChapel', true),
+                        undergroundCaverns: shuffleRooms(seed + '_undergroundCaverns', 'undergroundCaverns', true),
+                    }
+                    // Attach warpRooms to the stages they lead to
+                    Object.entries(stageConnections.links)
+                        .filter(([teleporterSource, teleporterTarget]) => {
+                            return teleporterSource.startsWith('fromWarpRoomsTo')
+                        })
+                        .forEach(([teleporterSource, teleporterTarget]) => {
+                            // NOTE(sestren): This hack is to avoid matching the 'To' between stage names with the 'To' in ClockTower
+                            const parts = teleporterTarget.replace('ClockTower', 'CLOCKTOWER').split('To')
+                            const firstPart = parts.at(0).replace('CLOCKTOWER', 'ClockTower').slice(4)
+                            const stageName = firstPart.at(0).toLowerCase() + firstPart.slice(1)
+                            const roomName = 'loadingRoomTo' + parts.at(1).replace('CLOCKTOWER', 'ClockTower')
+                            // NOTE(sestren): Centering on the loading room is a reliable way to match the rooms without having to know the direction
+                            let matchingRoomCount = 0
+                            stageNodeGroups[stageName].rooms
+                                .filter((roomInfo) => {
+                                    return (roomInfo.stage === stageName) && (roomInfo.room === roomName)
+                                })
+                                .forEach((roomInfo) => {
+                                    matchingRoomCount += 1
+                                    const rowOffset = roomInfo.row
+                                    const columnOffset = roomInfo.column - 1
+                                    const warpRoomGroupName = 'warpRoomTo' + teleporterSource.split('WarpRoomsTo').at(1)
+                                    const warpRoomGroup = nodeGroups.warpRooms[warpRoomGroupName]
+                                    stageNodeGroups[stageName] = combineNodeGroups(stageNodeGroups[stageName], warpRoomGroup, rowOffset, columnOffset, { allowOverlaps: true })
+                                })
+                            if (matchingRoomCount < 1)  {
+                                throw Error(`Room not found for stage '${stageName}' and room '${roomName}'`)
+                            }
+                        })
+                    const stageArrangements = arrangeStages(seed + '_stageArranger', stageNodeGroups)
+                    const roomChanges = getRoomChanges(stageArrangements.rooms, 5, 0)
                     changesToAdd.push(roomChanges)
                     shuffleData.debugInfo.finalSeedsUsed.roomShuffler = seed
                 }
@@ -246,7 +294,16 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'Seed to provide for randomization',
                 type: 'string',
             })
-            .demandOption([])
+            // TODO(sestren): Add ability to turn room and stage-shuffling on or off independently of one another
+            // .option('shuffleRooms', {
+            //     describe: 'Whether or not to shuffle how rooms within a stage connect',
+            //     type: 'boolean',
+            // })
+            // .option('shuffleStages', {
+            //     describe: 'Whether or not to shuffle the connections between stages (aka, teleporters)',
+            //     type: 'boolean',
+            // })
+            .demandOption(['extraction'])
         },
         handler: (argv) => {
             const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
@@ -280,17 +337,12 @@ const argv = yargs(process.argv.slice(2))
                     return teleporterSource.startsWith('fromWarpRoomsTo')
                 })
                 .forEach(([teleporterSource, teleporterTarget]) => {
-                    console.log('teleporterSource:', teleporterSource)
-                    console.log('teleporterTarget:', teleporterTarget)
-                    // NOTE(sestren): This hack is to avoid matching 'To' with 'Tower'
+                    // NOTE(sestren): This hack is to avoid matching the 'To' between stage names with the 'To' in ClockTower
                     const parts = teleporterTarget.replace('ClockTower', 'CLOCKTOWER').split('To')
                     const firstPart = parts.at(0).replace('CLOCKTOWER', 'ClockTower').slice(4)
                     const stageName = firstPart.at(0).toLowerCase() + firstPart.slice(1)
                     const roomName = 'loadingRoomTo' + parts.at(1).replace('CLOCKTOWER', 'ClockTower')
-                    console.log('firstPart:', firstPart)
-                    console.log('stageName:', stageName)
-                    console.log('roomName:', roomName)
-                    // NOTE(sestren): Centering on the loading room should be a reliable way to match the rooms
+                    // NOTE(sestren): Centering on the loading room is a reliable way to match the rooms without having to know the direction
                     let matchingRoomCount = 0
                     stageNodeGroups[stageName].rooms
                         .filter((roomInfo) => {
@@ -305,13 +357,13 @@ const argv = yargs(process.argv.slice(2))
                             stageNodeGroups[stageName] = combineNodeGroups(stageNodeGroups[stageName], warpRoomGroup, rowOffset, columnOffset, { allowOverlaps: true })
                         })
                     if (matchingRoomCount < 1)  {
-                        console.log(stageNodeGroups[stageName].rooms)
                         throw Error(`Room not found for stage '${stageName}' and room '${roomName}'`)
                     }
                 })
             const stageArrangements = arrangeStages(seedName + '_stageArranger', stageNodeGroups)
             console.log(stageArrangements)
             const teleporterChanges = getTeleporterChanges(extraction, shuffledStages.links)
+            // TODO(sestren): Redraw castle map
             // TODO(sestren): Populate changes
             // changesToAdd.push(teleporterChanges)
         }
