@@ -391,13 +391,13 @@ export const nodeGroups = {
                     stage: 'alchemyLaboratory',
                     room: 'loadingRoomToCastleEntrance',
                     row: 0,
-                    column: 2,
+                    column: 3,
                 },
                 {
                     stage: 'alchemyLaboratory',
                     room: 'triggerTeleporterToCastleEntrance',
                     row: 0,
-                    column: 3,
+                    column: 4,
                 },
             ],
             cells: [
@@ -4598,12 +4598,6 @@ export const nodeGroups = {
                 '...2.',
             ],
             edges: {
-                debug: {
-                    roomName: 'grandStaircase',
-                    collision: '######....######',
-                    row: 0.5,
-                    column: 2.0,
-                },
                 rightUpper: {
                     roomName: 'grandStaircase',
                     collision: '######....######',
@@ -4871,7 +4865,7 @@ export const nodeGroups = {
                     row: 1.5,
                     column: 6.0,
                 },
-                leftLower: {
+                rightLower: {
                     roomName: 'openCourtyard',
                     collision: '######....######',
                     row: 2.5,
@@ -6707,13 +6701,13 @@ export const nodeGroups = {
                     column: 0,
                 },
                 {
-                    stage: 'undergroundCaverns',
+                    stage: 'warpRooms',
                     room: 'loadingRoomToCastleKeep',
                     row: 0,
                     column: 1,
                 },
                 {
-                    stage: 'undergroundCaverns',
+                    stage: 'warpRooms',
                     room: 'warpRoomToCastleKeep',
                     row: 0,
                     column: 2,
@@ -6733,13 +6727,13 @@ export const nodeGroups = {
                     column: 0,
                 },
                 {
-                    stage: 'undergroundCaverns',
+                    stage: 'warpRooms',
                     room: 'loadingRoomToOlroxsQuarters',
                     row: 0,
                     column: 1,
                 },
                 {
-                    stage: 'undergroundCaverns',
+                    stage: 'warpRooms',
                     room: 'warpRoomToOlroxsQuarters',
                     row: 0,
                     column: 2,
@@ -6785,13 +6779,13 @@ export const nodeGroups = {
                     column: 0,
                 },
                 {
-                    stage: 'undergroundCaverns',
+                    stage: 'warpRooms',
                     room: 'loadingRoomToAbandonedMine',
                     row: 0,
                     column: 1,
                 },
                 {
-                    stage: 'undergroundCaverns',
+                    stage: 'warpRooms',
                     room: 'warpRoomToAbandonedMine',
                     row: 0,
                     column: 2,
