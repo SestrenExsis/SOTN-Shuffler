@@ -292,38 +292,21 @@ const argv = yargs(process.argv.slice(2))
                 }
                 mapPixels[roomInfo.stage][roomInfo.room]
                     .forEach((fillData) => {
-                        console.log(fillData)
-                        const argumentString = fillData.split('(').at(1).slice(0, -1)
-                        let pixelColor = '0'
-                        let pixelRow = 0
-                        let pixelColumn = 0
-                        let pixelHeight = 1
-                        let pixelWidth = 1
-                        argumentString.split(',').forEach((keyValueString) => {
-                            const keyValuePair = keyValueString.split('=')
-                            switch (keyValuePair.at(0)) {
-                                case 'f':
-                                    pixelColor = keyValuePair.at(1)
-                                    break
-                                case 'r':
-                                    pixelRow = 4 * (MIN_MAP_ROW + roomInfo.row) + Number.parseInt(keyValuePair.at(1))
-                                    break
-                                case 'c':
-                                    pixelColumn = 4 * (0 + roomInfo.column) + Number.parseInt(keyValuePair.at(1))
-                                    break
-                                case 'h':
-                                    pixelHeight = Number.parseInt(keyValuePair.at(1))
-                                    break
-                                case 'w':
-                                    pixelWidth = Number.parseInt(keyValuePair.at(1))
-                                    break
-                            }
-                        })
-                        for (let rowOffset = 0; rowOffset < pixelHeight; rowOffset++) {
-                            const leftSide = mapGrid.at(pixelRow + rowOffset).slice(0, pixelColumn)
-                            const rightSide = mapGrid.at(pixelRow + rowOffset).slice(pixelColumn + pixelWidth)
-                            console.log('L:', leftSide.length, 'R:', rightSide.length)
-                            mapGrid[pixelRow + rowOffset] = leftSide + pixelColor.repeat(pixelWidth) + rightSide
+                        switch (fillData.command) {
+                            case 'fillRect':
+                                console.log(fillData)
+                                const MIN_MAP_COL = 0
+                                const pixelRow = 4 * (MIN_MAP_ROW + roomInfo.row) + fillData.parameters.top
+                                const pixelColumn = 4 * (MIN_MAP_COL + roomInfo.column) + fillData.parameters.left
+                                for (let rowOffset = 0; rowOffset < fillData.parameters.rows; rowOffset++) {
+                                    const leftSide = mapGrid.at(pixelRow + rowOffset).slice(0, pixelColumn)
+                                    const rightSide = mapGrid.at(pixelRow + rowOffset).slice(pixelColumn + fillData.parameters.columns)
+                                    mapGrid[pixelRow + rowOffset] = leftSide + fillData.parameters.colorIndex.repeat(fillData.parameters.columns) + rightSide
+                                }
+                                break
+                            default:
+                                console.log(`WARNING: Unknown value for command property: ${fillData.command}`)
+                                break
                         }
                     })
             })
