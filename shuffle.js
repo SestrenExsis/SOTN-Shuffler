@@ -16,14 +16,16 @@ import {
 } from './src/shuffle-music.js'
 
 import {
-    nodeGroups,
-    getRoomChanges,
-    shuffleRooms,
     combineNodeGroups,
+    getRoomChanges,
+    mapPixels,
+    nodeGroups,
+    shuffleRooms,
 } from './src/shuffle-rooms.js'
 
 import {
     getTeleporterChanges,
+    getVanillaStageLinks,
     shuffleStages,
 } from './src/shuffle-stages.js'
 
@@ -34,6 +36,8 @@ import {
 //   - Shuffle the stage connections
 //   - Assign warp rooms to the stage they connect to
 //   - Arrange stages on the map
+
+const MIN_MAP_ROW = 5
 
 const argv = yargs(process.argv.slice(2))
     .command({ // multi
@@ -132,7 +136,7 @@ const argv = yargs(process.argv.slice(2))
             }
             // Translate arguments into settings
             let seedName = argv.seed
-            if (shuffleData.settings.seedName) {
+            if (seedName) {
                 shuffleData.settings.seedName = argv.seed
             }
             else {
@@ -183,24 +187,22 @@ const argv = yargs(process.argv.slice(2))
                 shuffleData.changes.push(songChanges)
                 shuffleData.debugInfo.finalSeedsUsed.musicShuffler = seed
             }
-            // Some modules (those that modify or depend on logic) must be run inside a loop because the solver must verify them
-            let solvable = false
             shuffleData.debugInfo.solverAttemptCount = 0
             let changesToAdd = []
+            let stageConnections = getVanillaStageLinks()
+            let roomArrangements = {}
+            // Some modules (those that modify or depend on logic) must be run inside a loop because the solver must verify them
+            let solvable = false
             while (!solvable) {
                 shuffleData.debugInfo.solverAttemptCount += 1
                 console.log('solverAttemptCount:', shuffleData.debugInfo.solverAttemptCount)
                 changesToAdd = []
-                let stageConnections
                 if (argv.stageShuffler?.on) {
                     const seed = argv.stageShuffler.seed ?? (seedName + '_stageShuffler_' + shuffleData.debugInfo.solverAttemptCount)
                     stageConnections = shuffleStages(seed)
                     const teleporterChanges = getTeleporterChanges(extraction, stageConnections.links)
                     changesToAdd.push(teleporterChanges)
                     shuffleData.debugInfo.finalSeedsUsed.stageShuffler = seed
-                }
-                else {
-                    stageConnections = getVanillaStageLinks()
                 }
                 if (argv.roomShuffler?.on) {
                     const seed = argv.roomShuffler.seed ?? (seedName + '_roomShuffler_' + shuffleData.debugInfo.solverAttemptCount)
@@ -248,17 +250,17 @@ const argv = yargs(process.argv.slice(2))
                                 throw Error(`Room not found for stage '${stageName}' and room '${roomName}'`)
                             }
                         })
-                    const stageArrangements = arrangeStages(seed + '_stageArranger', stageNodeGroups)
-                    const roomChanges = getRoomChanges(stageArrangements.rooms, 5, 0)
+                    roomArrangements = arrangeStages(seed + '_stageArranger', stageNodeGroups)
+                    const roomChanges = getRoomChanges(roomArrangements.rooms, MIN_MAP_ROW, 0)
                     changesToAdd.push(roomChanges)
                     shuffleData.debugInfo.finalSeedsUsed.roomShuffler = seed
                 }
                 if (argv.solver?.on) {
-                    // For now, the solver is only randomly accepting or rejecting; to be replaced with an actual solver at a later date
+                    // NOTE(sestren): For now, the solver is only randomly accepting or rejecting; to be replaced with an actual solver at a later date
                     shuffleData.debugInfo.solvable = false
                     const seed = argv.solver.seed ?? (seedName + '_solver_' + shuffleData.debugInfo.solverAttemptCount)
                     const rng = seedrandom(seed)
-                    if ((1000 * rng()) < shuffleData.debugInfo.solverAttemptCount) {
+                    if ((10 * rng()) < shuffleData.debugInfo.solverAttemptCount) {
                         solvable = true
                         shuffleData.debugInfo.solvable = true
                     }
@@ -272,6 +274,66 @@ const argv = yargs(process.argv.slice(2))
                     break
                 }
             }
+            // TODO(sestren): Redraw map
+            const mapGrid = []
+            for (let row = 0; row < 256; row++) {
+                const rowData = '0'.repeat(256)
+                mapGrid.push(rowData)
+            }
+            roomArrangements.rooms.forEach((roomInfo) => {
+                if (
+                    !(
+                        (roomInfo.stage in mapPixels) &&
+                        (roomInfo.room in mapPixels[roomInfo.stage])
+                    )
+                )
+                {
+                    return
+                }
+                mapPixels[roomInfo.stage][roomInfo.room]
+                    .forEach((fillData) => {
+                        console.log(fillData)
+                        const argumentString = fillData.split('(').at(1).slice(0, -1)
+                        let pixelColor = '0'
+                        let pixelRow = 0
+                        let pixelColumn = 0
+                        let pixelHeight = 1
+                        let pixelWidth = 1
+                        argumentString.split(',').forEach((keyValueString) => {
+                            const keyValuePair = keyValueString.split('=')
+                            switch (keyValuePair.at(0)) {
+                                case 'f':
+                                    pixelColor = keyValuePair.at(1)
+                                    break
+                                case 'r':
+                                    pixelRow = 4 * (MIN_MAP_ROW + roomInfo.row) + Number.parseInt(keyValuePair.at(1))
+                                    break
+                                case 'c':
+                                    pixelColumn = 4 * (0 + roomInfo.column) + Number.parseInt(keyValuePair.at(1))
+                                    break
+                                case 'h':
+                                    pixelHeight = Number.parseInt(keyValuePair.at(1))
+                                    break
+                                case 'w':
+                                    pixelWidth = Number.parseInt(keyValuePair.at(1))
+                                    break
+                            }
+                        })
+                        for (let rowOffset = 0; rowOffset < pixelHeight; rowOffset++) {
+                            const leftSide = mapGrid.at(pixelRow + rowOffset).slice(0, pixelColumn)
+                            const rightSide = mapGrid.at(pixelRow + rowOffset).slice(pixelColumn + pixelWidth)
+                            console.log('L:', leftSide.length, 'R:', rightSide.length)
+                            mapGrid[pixelRow + rowOffset] = leftSide + pixelColor.repeat(pixelWidth) + rightSide
+                        }
+                    })
+            })
+            const mapChanges = {
+                changeType: 'merge',
+                merge: {
+                    'castleMap.data=': mapGrid,
+                },
+            }
+            changesToAdd.push(mapChanges)
             for (let index = 0; index < changesToAdd.length; index++) {
                 shuffleData.changes.push(changesToAdd.at(index))
             }

@@ -31,6 +31,112 @@ const normalizationPatches = {
     },
 }
 
+export const mapPixels = {
+    abandonedMine: {
+        bend: [
+            'fill(f=1,r=1,c=1,h=7,w=3)',
+            'fill(f=1,r=2,c=0)',
+            'fill(f=4,r=6,c=0)',
+        ],
+        cerberusRoom: [
+            'fill(f=1,r=1,c=1,h=3,w=7)',
+            'fill(f=1,r=2,c=0)',
+            'fill(f=1,r=2,c=8)',
+        ],
+        demonSwitch: [
+            'fill(f=1,r=1,c=1,h=15,w=3)',
+            'fill(f=1,r=2,c=0)',
+            'fill(f=1,r=2,c=4)',
+            'fill(f=1,r=16,c=2)',
+        ],
+        lowerStairwell: [
+            'fill(f=1,r=1,c=1,h=15,w=3)',
+            'fill(f=1,r=0,c=2)',
+            'fill(f=1,r=14,c=0)',
+            'fill(f=1,r=14,c=4)',
+        ],
+        demonCard: [
+            'fill(f=1,r=1,c=1,h=3,w=7)',
+            'fill(f=1,r=2,c=8)',
+        ],
+        fourWayIntersection: [
+            'fill(f=1,r=1,c=1,h=3,w=11)',
+            'fill(f=1,r=0,c=6)',
+            'fill(f=1,r=2,c=0)',
+            'fill(f=4,r=2,c=12)',
+            'fill(f=1,r=4,c=6)',
+        ],
+        karmaCoinRoom: [
+            'fill(f=1,r=1,c=1,h=3,w=3)',
+            'fill(f=1,r=2,c=4)',
+        ],
+        loadingRoomToCatacombs: [
+            'rect(r=1,c=1,h=3,w=3,f=c)',
+        ],
+        loadingRoomToUndergroundCaverns: [
+            'rect(r=1,c=1,h=3,w=3,f=c)',
+        ],
+        loadingRoomToWarpRooms: [
+            'rect(r=1,c=1,h=3,w=3,f=c)',
+        ],
+        peanutsRoom: [
+            'fill(f=1,r=1,c=1,h=3,w=3)',
+            'fill(f=1,r=2,c=4)',
+        ],
+        saveRoom: [
+            'fill(f=4,r=1,c=1,h=3,w=3)',
+            'fill(f=1,r=2,c=0)',
+        ],
+        snakeColumn: [
+            'fill(f=1,r=1,c=1,h=7,w=3)',
+            'fill(f=1,r=2,c=0)',
+            'fill(f=1,r=6,c=0)',
+        ],
+        venusWeedRoom: [
+            'fill(f=1,r=1,c=1,h=3,w=15)',
+            'fill(f=1,r=2,c=0)',
+            'fill(f=1,r=2,c=14)',
+        ],
+        wellLitSkullRoom: [
+            'fill(f=1,r=1,c=1,h=3,w=7)',
+            'fill(f=1,r=2,c=0)',
+            'fill(f=1,r=2,c=6)',
+        ],
+        wolfsHeadColumn: [
+            'fill(f=1,r=1,c=1,h=15,w=3)',
+            'fill(f=4,r=2,c=4)',
+            'fill(f=1,r=10,c=4)',
+            'fill(f=1,r=14,c=4)',
+        ],
+    },
+    warpRooms: {
+        warpRoomToCastleEntrance: [
+            'fill(f=5,r=1,c=1,h=3,w=3)',
+            'fill(f=4,r=2,c=4)',
+        ],
+        warpRoomToCastleEntrance: [
+            'fill(f=5,r=1,c=1,h=3,w=3)',
+            'fill(f=4,r=2,c=0)',
+        ],
+        warpRoomToCastleKeep: [
+            'fill(f=5,r=1,c=1,h=3,w=3)',
+            'fill(f=4,r=2,c=0)',
+        ],
+        warpRoomToOlroxsQuarters: [
+            'fill(f=5,r=1,c=1,h=3,w=3)',
+            'fill(f=4,r=2,c=0)',
+        ],
+        warpRoomToOuterWall: [
+            'fill(f=5,r=1,c=1,h=3,w=3)',
+            'fill(f=4,r=2,c=4)',
+        ],
+        warpRoomToAbandonedMine: [
+            'fill(f=5,r=1,c=1,h=3,w=3)',
+            'fill(f=4,r=2,c=0)',
+        ],
+    },
+}
+
 export const nodeGroups = {
     abandonedMine: {
         bend: { // triggerTeleporterToCatacombs, loadingRoomToCatacombs, bend

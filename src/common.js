@@ -19,7 +19,7 @@ export function shuffleArray(rng, array) {
 // Arrange the stages on the map so they fit together as much as possible
 // Come up with several possible arrangements, and choose the one that maximizes the number of overlapping load rooms
 // TODO(sestren): Allow overlapping load rooms if linked via teleporters
-export function arrangeStages(seed, startingNodeGroups) { //}, links) {
+export function arrangeStages(seed, startingNodeGroups) {
     const rng = seedrandom(seed)
     let validInd = false
     let result
