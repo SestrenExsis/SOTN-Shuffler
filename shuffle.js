@@ -294,7 +294,6 @@ const argv = yargs(process.argv.slice(2))
                     .forEach((fillData) => {
                         switch (fillData.command) {
                             case 'fillRect':
-                                console.log(fillData)
                                 const MIN_MAP_COL = 0
                                 const pixelRow = 4 * (MIN_MAP_ROW + roomInfo.row) + fillData.parameters.top
                                 const pixelColumn = 4 * (MIN_MAP_COL + roomInfo.column) + fillData.parameters.left

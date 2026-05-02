@@ -7018,12 +7018,151 @@ export const mapPixels = {
         //     fillRect('6', 1, 1, 3, 3),
         // ],
         tetrominoRoom: [
-            fillRect('6', 1, 4, 11, 3),
+            fillRect('6', 1, 5, 11, 3),
             fillRect('6', 9, 1, 3, 7),
             fillRect('6', 2, 8),
             fillRect('6', 6, 8),
             fillRect('6', 10, 0),
             fillRect('6', 10, 8),
+        ],
+    },
+    castleEntrance: {
+        afterDrawbridge: [
+            fillRect('7', 1, 1, 11, 7),
+            fillRect('7', 10, 8),
+        ],
+        dropUnderPortcullis: [
+            fillRect('7', 1, 1, 7, 3),
+            fillRect('7', 6, 4),
+        ],
+        saveRoomA: [
+            fillRect('4', 1, 1, 3, 3),
+            fillRect('4', 2, 0),
+        ],
+        loadingRoomToAlchemyLaboratory: [
+            fillRect('c', 1, 1, 3, 3),
+        ],
+        cubeOfZoeRoom: [
+            fillRect('7', 1, 1, 11, 7),
+            fillRect('4', 2, 0),
+            fillRect('4', 2, 8),
+            fillRect('7', 6, 0),
+            fillRect('7', 6, 8),
+            fillRect('7', 10, 0),
+            fillRect('7', 10, 8),
+        ],
+        loadingRoomToMarbleGallery: [
+            fillRect('c', 1, 1, 3, 3),
+        ],
+        loadingRoomToWarpRooms: [
+            fillRect('c', 1, 1, 3, 3),
+        ],
+        shortcutToWarpRooms: [
+            fillRect('7', 1, 1, 3, 3),
+            fillRect('4', 2, 0),
+            fillRect('7', 2, 4),
+            fillRect('0', 2, 2), // Obstacle
+        ],
+        loadingRoomToUndergroundCaverns: [
+            fillRect('c', 1, 1, 3, 3),
+        ],
+        shortcutToUndergroundCaverns: [
+            fillRect('7', 1, 1, 3, 3),
+            fillRect('7', 2, 0),
+            fillRect('4', 2, 4),
+            fillRect('0', 2, 2), // Obstacle
+        ],
+        gargoyleRoom: [
+            fillRect('7', 1, 1, 3, 3),
+            fillRect('7', 2, 0),
+            fillRect('7', 2, 4),
+            fillRect('7', 4, 2),
+        ],
+        meetingRoomWithDeath: [
+            fillRect('7', 1, 1, 7, 3),
+            fillRect('7', 0, 2),
+            fillRect('7', 2, 0),
+            fillRect('7', 6, 0),
+            fillRect('7', 6, 4),
+        ],
+    },
+    castleKeep: {
+        keepArea: [
+            fillRect('f', 9, 5, 7, 3),
+            fillRect('f', 13, 5, 3, 7),
+            fillRect('f', 13, 13, 3, 3),
+            fillRect('f', 13, 17, 3, 7),
+            fillRect('f', 5, 25, 23, 7),
+            fillRect('f', 17, 5, 11, 27),
+            fillRect('f', 29, 1, 3, 31),
+            fillRect('f', 6, 32),
+            fillRect('f', 14, 12),
+            fillRect('f', 14, 16),
+            fillRect('f', 14, 24),
+            fillRect('f', 18, 32),
+            fillRect('f', 26, 32),
+            fillRect('4', 30, 0),
+            fillRect('f', 30, 32),
+        ],
+        upperAttic: [
+            fillRect('f', 1, 1, 3, 11),
+            fillRect('f', 4, 6),
+        ],
+        lowerAttic: [
+            fillRect('f', 1, 1, 3, 7),
+            fillRect('f', 0, 2),
+            fillRect('f', 4, 6),
+        ],
+        loadingRoomToRoyalChapel: [
+            fillRect('c', 1, 1, 3, 3),
+        ],
+        lionTorchPlatform: [
+            fillRect('f', 1, 1, 7, 3),
+            fillRect('f', 0, 2),
+            fillRect('f', 2, 0),
+            fillRect('f', 2, 4),
+            fillRect('4', 6, 4),
+            fillRect('f', 8, 2),
+        ],
+        loadingRoomToClockTower: [
+            fillRect('c', 1, 1, 3, 3),
+        ],
+        dualPlatforms: [
+            fillRect('f', 1, 1, 7, 3),
+            fillRect('f', 0, 2),
+            fillRect('f', 2, 0),
+            fillRect('f', 2, 4),
+            fillRect('f', 6, 0),
+            fillRect('4', 6, 4),
+        ],
+        loadingRoomToWarpRooms: [
+            fillRect('c', 1, 1, 3, 3),
+        ],
+    },
+    catacombs: {
+        exitToAbandonedMine: [
+            fillRect('8', 1, 1, 7, 3),
+            fillRect('4', 2, 4),
+            fillRect('8', 6, 0),
+            fillRect('8', 6, 4),
+        ],
+        loadingRoomToAbandonedMine: [
+            fillRect('c', 1, 1, 3, 3),
+        ],
+        granfaloonsLair: [
+            fillRect('8', 1, 1, 7, 7),
+            fillRect('8', 2, 8),
+            fillRect('8', 6, 0),
+        ],
+        roomId04: [
+            fillRect('8', 1, 1, 3, 3),
+            fillRect('8', 2, 0),
+            fillRect('8', 2, 4),
+        ],
+        roomId02: [
+            fillRect('8', 1, 1, 3, 3),
+            fillRect('8', 2, 0),
+            fillRect('8', 2, 4),
         ],
     },
     warpRooms: {
@@ -7109,17 +7248,17 @@ Object.entries(nodeGroups)
                         break
                     case 'castleCenter':
                     case 'marbleGallery':
-                        colorIndex = 'A'
+                        colorIndex = 'a'
                         break
                     case 'olroxsQuarters':
-                        colorIndex = 'B'
+                        colorIndex = 'b'
                         break
                     case 'royalChapel':
-                        colorIndex = 'C'
+                        colorIndex = 'c'
                         break
                     case 'castleKeep':
                     case 'outerWall':
-                        colorIndex = 'F'
+                        colorIndex = 'f'
                         break
                 }
                 if (nodeGroupName.startsWith('saveRoom')) {
