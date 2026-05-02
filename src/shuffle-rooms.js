@@ -45,112 +45,6 @@ function fillRect(colorIndex, top, left, rows = 1, columns = 1) {
     return result
 }
 
-export const mapPixels = {
-    abandonedMine: {
-        bend: [
-            fillRect('1', 1, 1, 7, 3),
-            fillRect('1', 2, 0),
-            fillRect('4', 6, 0),
-        ],
-        cerberusRoom: [
-            fillRect('1', 1, 1, 3, 7),
-            fillRect('1', 2, 0),
-            fillRect('1', 2, 8),
-        ],
-        demonSwitch: [
-            fillRect('1', 1, 1, 15, 3),
-            fillRect('1', 2, 0),
-            fillRect('1', 2, 4),
-            fillRect('1', 16, 2),
-        ],
-        lowerStairwell: [
-            fillRect('1', 1, 1, 15, 3),
-            fillRect('1', 0, 2),
-            fillRect('1', 14, 0),
-            fillRect('1', 14, 4),
-        ],
-        demonCard: [
-            fillRect('1', 1, 1, 3, 7),
-            fillRect('1', 2, 8),
-        ],
-        fourWayIntersection: [
-            fillRect('1', 1, 1, 3, 11),
-            fillRect('1', 0, 6),
-            fillRect('1', 2, 0),
-            fillRect('4', 2, 12),
-            fillRect('1', 4, 6),
-        ],
-        karmaCoinRoom: [
-            fillRect('1', 1, 1, 3, 3),
-            fillRect('1', 2, 4),
-        ],
-        loadingRoomToCatacombs: [
-            fillRect('c', 1, 1, 3, 3),
-        ],
-        loadingRoomToUndergroundCaverns: [
-            fillRect('c', 1, 1, 3, 3),
-        ],
-        loadingRoomToWarpRooms: [
-            fillRect('c', 1, 1, 3, 3),
-        ],
-        peanutsRoom: [
-            fillRect('1', 1, 1, 3, 3),
-            fillRect('1', 2, 4),
-        ],
-        saveRoom: [
-            fillRect('4', 1, 1, 3, 3),
-            fillRect('1', 2, 0),
-        ],
-        snakeColumn: [
-            fillRect('1', 1, 1, 7, 3),
-            fillRect('1', 2, 0),
-            fillRect('1', 6, 0),
-        ],
-        venusWeedRoom: [
-            fillRect('1', 1, 1, 3, 15),
-            fillRect('1', 2, 0),
-            fillRect('1', 2, 14),
-        ],
-        wellLitSkullRoom: [
-            fillRect('1', 1, 1, 3, 7),
-            fillRect('1', 2, 0),
-            fillRect('1', 2, 6),
-        ],
-        wolfsHeadColumn: [
-            fillRect('1', 1, 1, 15, 3),
-            fillRect('4', 2, 4),
-            fillRect('1', 10, 4),
-            fillRect('1', 14, 4),
-        ],
-    },
-    warpRooms: {
-        warpRoomToCastleEntrance: [
-            fillRect('5', 1, 1, 3, 3),
-            fillRect('4', 2, 4),
-        ],
-        warpRoomToCastleEntrance: [
-            fillRect('5', 1, 1, 3, 3),
-            fillRect('4', 2, 0),
-        ],
-        warpRoomToCastleKeep: [
-            fillRect('5', 1, 1, 3, 3),
-            fillRect('4', 2, 0),
-        ],
-        warpRoomToOlroxsQuarters: [
-            fillRect('5', 1, 1, 3, 3),
-            fillRect('4', 2, 0),
-        ],
-        warpRoomToOuterWall: [
-            fillRect('5', 1, 1, 3, 3),
-            fillRect('4', 2, 4),
-        ],
-        warpRoomToAbandonedMine: [
-            fillRect('5', 1, 1, 3, 3),
-            fillRect('4', 2, 0),
-        ],
-    },
-}
-
 export const nodeGroups = {
     abandonedMine: {
         bend: { // triggerTeleporterToCatacombs, loadingRoomToCatacombs, bend
@@ -6918,6 +6812,332 @@ export const nodeGroups = {
         },
     },
 }
+
+export const mapPixels = {
+    abandonedMine: {
+        bend: [
+            fillRect('1', 1, 1, 7, 3),
+            fillRect('1', 2, 0),
+            fillRect('4', 6, 0),
+        ],
+        cerberusRoom: [
+            fillRect('1', 1, 1, 3, 7),
+            fillRect('1', 2, 0),
+            fillRect('1', 2, 8),
+        ],
+        demonSwitch: [
+            fillRect('1', 1, 1, 15, 3),
+            fillRect('1', 2, 0),
+            fillRect('1', 2, 4),
+            fillRect('1', 16, 2),
+        ],
+        // lowerStairwell: [
+        //     fillRect('1', 1, 1, 15, 3),
+        //     fillRect('1', 0, 2),
+        //     fillRect('1', 14, 0),
+        //     fillRect('1', 14, 4),
+        // ],
+        // demonCard: [
+        //     fillRect('1', 1, 1, 3, 7),
+        //     fillRect('1', 2, 8),
+        // ],
+        fourWayIntersection: [
+            fillRect('1', 1, 1, 3, 11),
+            fillRect('1', 0, 6),
+            fillRect('1', 2, 0),
+            fillRect('4', 2, 12),
+            fillRect('1', 4, 6),
+        ],
+        // karmaCoinRoom: [
+        //     fillRect('1', 1, 1, 3, 3),
+        //     fillRect('1', 2, 4),
+        // ],
+        loadingRoomToCatacombs: [
+            fillRect('c', 1, 1, 3, 3),
+        ],
+        loadingRoomToUndergroundCaverns: [
+            fillRect('c', 1, 1, 3, 3),
+        ],
+        loadingRoomToWarpRooms: [
+            fillRect('c', 1, 1, 3, 3),
+        ],
+        // peanutsRoom: [
+        //     fillRect('1', 1, 1, 3, 3),
+        //     fillRect('1', 2, 4),
+        // ],
+        // saveRoom: [
+        //     fillRect('4', 1, 1, 3, 3),
+        //     fillRect('1', 2, 0),
+        // ],
+        // snakeColumn: [
+        //     fillRect('1', 1, 1, 7, 3),
+        //     fillRect('1', 2, 0),
+        //     fillRect('1', 6, 0),
+        // ],
+        // venusWeedRoom: [
+        //     fillRect('1', 1, 1, 3, 15),
+        //     fillRect('1', 2, 0),
+        //     fillRect('1', 2, 14),
+        // ],
+        wellLitSkullRoom: [
+            fillRect('1', 1, 1, 3, 7),
+            fillRect('1', 2, 0),
+            fillRect('1', 2, 6),
+        ],
+        wolfsHeadColumn: [
+            fillRect('1', 1, 1, 15, 3),
+            fillRect('4', 2, 4),
+            fillRect('1', 10, 4),
+            fillRect('1', 14, 4),
+        ],
+    },
+    alchemyLaboratory: {
+        batCardRoom: [
+            fillRect('6', 1, 1, 3, 3),
+            fillRect('6', 2, 0),
+        ],
+        // bloodyZombieHallway: [
+        //     fillRect('6', 1, 1, 3, 15),
+        //     fillRect('6', 2, 0),
+        //     fillRect('6', 2, 16),
+        // ],
+        blueDoorHallway: [
+            fillRect('6', 1, 1, 3, 7),
+            fillRect('6', 2, 0),
+            fillRect('6', 2, 8),
+            fillRect('0', 2, 4), // Blue Door
+        ],
+        // boxPuzzleRoom: [
+        //     fillRect('6', 1, 1, 7, 7),
+        //     fillRect('6', 2, 0),
+        //     fillRect('6', 2, 8),
+        //     fillRect('6', 6, 8),
+        // ],
+        cannonRoom: [
+            fillRect('6', 1, 1, 3, 3),
+            fillRect('6', 2, 0),
+            fillRect('6', 2, 4),
+            fillRect('0', 2, 2), // Breakable Wall
+        ],
+        // clothCapeRoom: [
+        //     fillRect('6', 1, 1, 3, 3),
+        //     fillRect('6', 2, 4),
+        // ],
+        // corridorToElevator: [
+        //     fillRect('6', 1, 1, 3, 7),
+        //     fillRect('6', 2, 0),
+        //     fillRect('6', 2, 8),
+        // ],
+        // elevatorShaft: [
+        //     fillRect('6', 1, 1, 27, 3),
+        //     fillRect('6', 2, 0),
+        //     fillRect('6', 14, 0),
+        //     fillRect('6', 26, 0),
+        // ],
+        // emptyZigZagRoom: [
+        //     fillRect('6', 1, 1, 7, 3),
+        //     fillRect('6', 2, 0),
+        //     fillRect('6', 6, 0),
+        // ],
+        entryway: [
+            fillRect('6', 1, 1, 3, 11),
+            fillRect('6', 0, 6),
+            fillRect('4', 2, 12),
+        ],
+        exitToMarbleGallery: [
+            fillRect('6', 1, 1, 11, 7),
+            fillRect('6', 6, 0),
+            fillRect('4', 6, 8),
+        ],
+        exitToRoyalChapel: [
+            fillRect('6', 1, 1, 3, 3),
+            fillRect('4', 6, 0),
+            fillRect('6', 6, 4),
+        ],
+        // glassVats: [
+        //     fillRect('6', 1, 1, 3, 7),
+        //     fillRect('6', 2, 8),
+        //     fillRect('6', 4, 2),
+        // ],
+        // heartMaxUpRoom: [
+        //     fillRect('6', 1, 1, 3, 3),
+        //     fillRect('6', 2, 4),
+        // ],
+        loadingRoomToCastleEntrance: [
+            fillRect('c', 1, 1, 3, 3),
+        ],
+        loadingRoomToMarbleGallery: [
+            fillRect('c', 1, 1, 3, 3),
+        ],
+        loadingRoomToRoyalChapel: [
+            fillRect('c', 1, 1, 3, 3),
+        ],
+        // redSkeletonLiftRoom: [
+        //     fillRect('6', 1, 1, 7, 15),
+        //     fillRect('6', 0, 2),
+        //     fillRect('6', 2, 0),
+        //     fillRect('6', 2, 16),
+        //     fillRect('6', 6, 16),
+        //     fillRect('6', 8, 14),
+        // ],
+        // saveRoomA: [
+        //     fillRect('4', 1, 1, 3, 3),
+        //     fillRect('6', 2, 4),
+        // ],
+        // saveRoomB: [
+        //     fillRect('4', 1, 1, 3, 3),
+        //     fillRect('6', 2, 0),
+        // ],
+        // saveRoomC: [
+        //     fillRect('4', 1, 1, 3, 3),
+        //     fillRect('6', 2, 0),
+        // ],
+        // secretLifeMaxUpRoom: [
+        //     fillRect('6', 1, 1, 3, 3),
+        // ],
+        // shortZigZagRoom: [
+        //     fillRect('6', 1, 1, 3, 3),
+        // ],
+        // skillOfWolfRoom: [
+        //     fillRect('6', 1, 1, 3, 3),
+        // ],
+        slograAndGaibonRoom: [
+            fillRect('6', 1, 1, 3, 3),
+        ],
+        // sunglassesRoom: [
+        //     fillRect('6', 1, 1, 3, 3),
+        // ],
+        tallSpittleboneRoom: [
+            fillRect('6', 1, 1, 19, 3),
+            fillRect('6', 2, 4),
+            fillRect('6', 6, 0),
+            fillRect('6', 14, 0),
+            fillRect('6', 14, 4),
+        ],
+        // tallZigZagRoom: [
+        //     fillRect('6', 1, 1, 3, 3),
+        // ],
+        tetrominoRoom: [
+            fillRect('6', 1, 4, 11, 3),
+            fillRect('6', 9, 1, 3, 7),
+            fillRect('6', 2, 8),
+            fillRect('6', 6, 8),
+            fillRect('6', 10, 0),
+            fillRect('6', 10, 8),
+        ],
+    },
+    warpRooms: {
+        warpRoomToCastleEntrance: [
+            fillRect('5', 1, 1, 3, 3),
+            fillRect('4', 2, 4),
+        ],
+        warpRoomToCastleEntrance: [
+            fillRect('5', 1, 1, 3, 3),
+            fillRect('4', 2, 0),
+        ],
+        warpRoomToCastleKeep: [
+            fillRect('5', 1, 1, 3, 3),
+            fillRect('4', 2, 0),
+        ],
+        warpRoomToOlroxsQuarters: [
+            fillRect('5', 1, 1, 3, 3),
+            fillRect('4', 2, 0),
+        ],
+        warpRoomToOuterWall: [
+            fillRect('5', 1, 1, 3, 3),
+            fillRect('4', 2, 4),
+        ],
+        warpRoomToAbandonedMine: [
+            fillRect('5', 1, 1, 3, 3),
+            fillRect('4', 2, 0),
+        ],
+    },
+}
+
+Object.entries(nodeGroups)
+    .filter(() => {
+        return true
+    })
+    .forEach(([stageName, nodeGroup]) => {
+        Object.entries(nodeGroup)
+            .filter(([nodeGroupName, nodeGroupInfo]) => {
+                if (stageName in mapPixels && nodeGroupName in mapPixels[stageName]) {
+                    return false
+                }
+                if (nodeGroupInfo.rooms.length > 1) {
+                    return false
+                }
+                const cellData = nodeGroupInfo.cells.at(0).at(0)
+                for (let row = 0; row < nodeGroupInfo.cells.length; row++) {
+                    const rowData = nodeGroupInfo.cells.at(row)
+                    if (rowData !== cellData.repeat(rowData.length)) {
+                        return false
+                    }
+                }
+                return true
+            })
+            .forEach(([nodeGroupName, nodeGroupInfo]) => {
+                console.log('stageName:', stageName, 'roomName:', nodeGroupName)
+                if (!(stageName in mapPixels)) {
+                    mapPixels[stageName] = {}
+                }
+                if (!(nodeGroupName in mapPixels[stageName])) {
+                    mapPixels[stageName][nodeGroupName] = []
+                }
+                let colorIndex = '1'
+                switch (stageName) {
+                    case 'abandonedMine':
+                    case 'undergroundCaverns':
+                        colorIndex = '1'
+                        break
+                    case 'clockTower':
+                    case 'longLibrary':
+                    case 'warpRooms':
+                        colorIndex = '5'
+                        break
+                    case 'alchemyLaboratory':
+                        colorIndex = '6'
+                        break
+                    case 'castleEntrance':
+                        colorIndex = '7'
+                        break
+                    case 'catacombs':
+                        colorIndex = '8'
+                        break
+                    case 'colosseum':
+                        colorIndex = '9'
+                        break
+                    case 'castleCenter':
+                    case 'marbleGallery':
+                        colorIndex = 'A'
+                        break
+                    case 'olroxsQuarters':
+                        colorIndex = 'B'
+                        break
+                    case 'royalChapel':
+                        colorIndex = 'C'
+                        break
+                    case 'castleKeep':
+                    case 'outerWall':
+                        colorIndex = 'F'
+                        break
+                }
+                if (nodeGroupName.startsWith('saveRoom')) {
+                    colorIndex = '4'
+                }
+                const rows = nodeGroupInfo.cells.length
+                const columns = nodeGroupInfo.cells.at(0).length
+                mapPixels[stageName][nodeGroupName].push(
+                    fillRect(colorIndex, 1, 1, 4 * rows - 1, 4 * columns - 1)
+                )
+                Object.entries(nodeGroupInfo.edges)
+                    .forEach(([edgeName, edgeInfo]) => {
+                        mapPixels[stageName][nodeGroupName].push(
+                            fillRect(colorIndex, Math.floor(4 * edgeInfo.row), Math.floor(4 * edgeInfo.column))
+                        )
+                    })
+            })
+    })
 
 export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOffset, options={}) {
     const result = {
