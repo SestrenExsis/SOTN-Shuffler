@@ -45,6 +45,30 @@ function fillRect(colorIndex, top, left, rows = 1, columns = 1) {
     return result
 }
 
+const colors = {
+    loadingRoom: 'c',
+    obstacle: '0',
+    redDoor: '4',
+    saveRoom: '4',
+    wall: '0',
+    // Stage colors
+    abandonedMine: '1',
+    alchemyLaboratory: '6',
+    castleCenter: 'a',
+    castleKeep: 'f',
+    castleEntrance: '7',
+    catacombs: '8',
+    clockTower: '5',
+    colosseum: '9',
+    longLibrary: '5',
+    marbleGallery: 'a',
+    royalChapel: 'c',
+    olroxsQuarters: 'b',
+    outerWall: 'f',
+    undergroundCaverns: '1',
+    warpRooms: '5',
+}
+
 export const nodeGroups = {
     abandonedMine: {
         bend: { // triggerTeleporterToCatacombs, loadingRoomToCatacombs, bend
@@ -6816,379 +6840,843 @@ export const nodeGroups = {
 export const mapPixels = {
     abandonedMine: {
         bend: [
-            fillRect('1', 1, 1, 7, 3),
-            fillRect('1', 2, 0),
-            fillRect('4', 6, 0),
+            fillRect(colors.abandonedMine, 1, 1, 7, 3),
+            fillRect(colors.abandonedMine, 2, 0),
+            fillRect(colors.redDoor, 6, 0),
         ],
         cerberusRoom: [
-            fillRect('1', 1, 1, 3, 7),
-            fillRect('1', 2, 0),
-            fillRect('1', 2, 8),
+            fillRect(colors.abandonedMine, 1, 1, 3, 7),
+            fillRect(colors.abandonedMine, 2, 0),
+            fillRect(colors.abandonedMine, 2, 8),
         ],
         demonSwitch: [
-            fillRect('1', 1, 1, 15, 3),
-            fillRect('1', 2, 0),
-            fillRect('1', 2, 4),
-            fillRect('1', 16, 2),
+            fillRect(colors.abandonedMine, 1, 1, 15, 3),
+            fillRect(colors.abandonedMine, 2, 0),
+            fillRect(colors.abandonedMine, 2, 4),
+            fillRect(colors.abandonedMine, 16, 2),
         ],
-        // lowerStairwell: [
-        //     fillRect('1', 1, 1, 15, 3),
-        //     fillRect('1', 0, 2),
-        //     fillRect('1', 14, 0),
-        //     fillRect('1', 14, 4),
-        // ],
-        // demonCard: [
-        //     fillRect('1', 1, 1, 3, 7),
-        //     fillRect('1', 2, 8),
-        // ],
         fourWayIntersection: [
-            fillRect('1', 1, 1, 3, 11),
-            fillRect('1', 0, 6),
-            fillRect('1', 2, 0),
-            fillRect('4', 2, 12),
-            fillRect('1', 4, 6),
+            fillRect(colors.abandonedMine, 1, 1, 3, 11),
+            fillRect(colors.abandonedMine, 0, 6),
+            fillRect(colors.abandonedMine, 2, 0),
+            fillRect(colors.redDoor, 2, 12),
+            fillRect(colors.abandonedMine, 4, 6),
         ],
-        // karmaCoinRoom: [
-        //     fillRect('1', 1, 1, 3, 3),
-        //     fillRect('1', 2, 4),
-        // ],
         loadingRoomToCatacombs: [
-            fillRect('c', 1, 1, 3, 3),
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
         ],
         loadingRoomToUndergroundCaverns: [
-            fillRect('c', 1, 1, 3, 3),
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
         ],
         loadingRoomToWarpRooms: [
-            fillRect('c', 1, 1, 3, 3),
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
         ],
-        // peanutsRoom: [
-        //     fillRect('1', 1, 1, 3, 3),
-        //     fillRect('1', 2, 4),
-        // ],
-        // saveRoom: [
-        //     fillRect('4', 1, 1, 3, 3),
-        //     fillRect('1', 2, 0),
-        // ],
-        // snakeColumn: [
-        //     fillRect('1', 1, 1, 7, 3),
-        //     fillRect('1', 2, 0),
-        //     fillRect('1', 6, 0),
-        // ],
-        // venusWeedRoom: [
-        //     fillRect('1', 1, 1, 3, 15),
-        //     fillRect('1', 2, 0),
-        //     fillRect('1', 2, 14),
-        // ],
         wellLitSkullRoom: [
-            fillRect('1', 1, 1, 3, 7),
-            fillRect('1', 2, 0),
-            fillRect('1', 2, 6),
+            fillRect(colors.abandonedMine, 1, 1, 3, 7),
+            fillRect(colors.abandonedMine, 2, 0),
+            fillRect(colors.abandonedMine, 2, 6),
         ],
         wolfsHeadColumn: [
-            fillRect('1', 1, 1, 15, 3),
-            fillRect('4', 2, 4),
-            fillRect('1', 10, 4),
-            fillRect('1', 14, 4),
+            fillRect(colors.abandonedMine, 1, 1, 15, 3),
+            fillRect(colors.redDoor, 2, 4),
+            fillRect(colors.abandonedMine, 10, 4),
+            fillRect(colors.abandonedMine, 14, 4),
         ],
     },
     alchemyLaboratory: {
         batCardRoom: [
-            fillRect('6', 1, 1, 3, 3),
-            fillRect('6', 2, 0),
+            fillRect(colors.alchemyLaboratory, 1, 1, 3, 3),
+            fillRect(colors.alchemyLaboratory, 2, 0),
         ],
-        // bloodyZombieHallway: [
-        //     fillRect('6', 1, 1, 3, 15),
-        //     fillRect('6', 2, 0),
-        //     fillRect('6', 2, 16),
-        // ],
         blueDoorHallway: [
-            fillRect('6', 1, 1, 3, 7),
-            fillRect('6', 2, 0),
-            fillRect('6', 2, 8),
-            fillRect('0', 2, 4), // Blue Door
+            fillRect(colors.alchemyLaboratory, 1, 1, 3, 7),
+            fillRect(colors.alchemyLaboratory, 2, 0),
+            fillRect(colors.alchemyLaboratory, 2, 8),
+            fillRect(colors.obstacle, 2, 4), // Blue Door
         ],
-        // boxPuzzleRoom: [
-        //     fillRect('6', 1, 1, 7, 7),
-        //     fillRect('6', 2, 0),
-        //     fillRect('6', 2, 8),
-        //     fillRect('6', 6, 8),
-        // ],
         cannonRoom: [
-            fillRect('6', 1, 1, 3, 3),
-            fillRect('6', 2, 0),
-            fillRect('6', 2, 4),
-            fillRect('0', 2, 2), // Breakable Wall
+            fillRect(colors.alchemyLaboratory, 1, 1, 3, 3),
+            fillRect(colors.alchemyLaboratory, 2, 0),
+            fillRect(colors.alchemyLaboratory, 2, 4),
+            fillRect(colors.obstacle, 2, 2), // Breakable Wall
         ],
-        // clothCapeRoom: [
-        //     fillRect('6', 1, 1, 3, 3),
-        //     fillRect('6', 2, 4),
-        // ],
-        // corridorToElevator: [
-        //     fillRect('6', 1, 1, 3, 7),
-        //     fillRect('6', 2, 0),
-        //     fillRect('6', 2, 8),
-        // ],
-        // elevatorShaft: [
-        //     fillRect('6', 1, 1, 27, 3),
-        //     fillRect('6', 2, 0),
-        //     fillRect('6', 14, 0),
-        //     fillRect('6', 26, 0),
-        // ],
-        // emptyZigZagRoom: [
-        //     fillRect('6', 1, 1, 7, 3),
-        //     fillRect('6', 2, 0),
-        //     fillRect('6', 6, 0),
-        // ],
         entryway: [
-            fillRect('6', 1, 1, 3, 11),
-            fillRect('6', 0, 6),
-            fillRect('4', 2, 12),
+            fillRect(colors.alchemyLaboratory, 1, 1, 3, 11),
+            fillRect(colors.alchemyLaboratory, 0, 6),
+            fillRect(colors.redDoor, 2, 12),
         ],
         exitToMarbleGallery: [
-            fillRect('6', 1, 1, 11, 7),
-            fillRect('6', 6, 0),
-            fillRect('4', 6, 8),
+            fillRect(colors.alchemyLaboratory, 1, 1, 11, 7),
+            fillRect(colors.alchemyLaboratory, 6, 0),
+            fillRect(colors.redDoor, 6, 8),
         ],
         exitToRoyalChapel: [
-            fillRect('6', 1, 1, 3, 3),
-            fillRect('4', 6, 0),
-            fillRect('6', 6, 4),
+            fillRect(colors.alchemyLaboratory, 1, 1, 3, 3),
+            fillRect(colors.redDoor, 6, 0),
+            fillRect(colors.alchemyLaboratory, 6, 4),
         ],
-        // glassVats: [
-        //     fillRect('6', 1, 1, 3, 7),
-        //     fillRect('6', 2, 8),
-        //     fillRect('6', 4, 2),
-        // ],
-        // heartMaxUpRoom: [
-        //     fillRect('6', 1, 1, 3, 3),
-        //     fillRect('6', 2, 4),
-        // ],
         loadingRoomToCastleEntrance: [
-            fillRect('c', 1, 1, 3, 3),
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
         ],
         loadingRoomToMarbleGallery: [
-            fillRect('c', 1, 1, 3, 3),
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
         ],
         loadingRoomToRoyalChapel: [
-            fillRect('c', 1, 1, 3, 3),
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
         ],
-        // redSkeletonLiftRoom: [
-        //     fillRect('6', 1, 1, 7, 15),
-        //     fillRect('6', 0, 2),
-        //     fillRect('6', 2, 0),
-        //     fillRect('6', 2, 16),
-        //     fillRect('6', 6, 16),
-        //     fillRect('6', 8, 14),
-        // ],
-        // saveRoomA: [
-        //     fillRect('4', 1, 1, 3, 3),
-        //     fillRect('6', 2, 4),
-        // ],
-        // saveRoomB: [
-        //     fillRect('4', 1, 1, 3, 3),
-        //     fillRect('6', 2, 0),
-        // ],
-        // saveRoomC: [
-        //     fillRect('4', 1, 1, 3, 3),
-        //     fillRect('6', 2, 0),
-        // ],
-        // secretLifeMaxUpRoom: [
-        //     fillRect('6', 1, 1, 3, 3),
-        // ],
-        // shortZigZagRoom: [
-        //     fillRect('6', 1, 1, 3, 3),
-        // ],
-        // skillOfWolfRoom: [
-        //     fillRect('6', 1, 1, 3, 3),
-        // ],
         slograAndGaibonRoom: [
-            fillRect('6', 1, 1, 3, 3),
+            fillRect(colors.alchemyLaboratory, 1, 1, 3, 3),
         ],
-        // sunglassesRoom: [
-        //     fillRect('6', 1, 1, 3, 3),
-        // ],
         tallSpittleboneRoom: [
-            fillRect('6', 1, 1, 19, 3),
-            fillRect('6', 2, 4),
-            fillRect('6', 6, 0),
-            fillRect('6', 14, 0),
-            fillRect('6', 14, 4),
+            fillRect(colors.alchemyLaboratory, 1, 1, 19, 3),
+            fillRect(colors.alchemyLaboratory, 2, 4),
+            fillRect(colors.alchemyLaboratory, 6, 0),
+            fillRect(colors.alchemyLaboratory, 14, 0),
+            fillRect(colors.alchemyLaboratory, 14, 4),
         ],
-        // tallZigZagRoom: [
-        //     fillRect('6', 1, 1, 3, 3),
-        // ],
         tetrominoRoom: [
-            fillRect('6', 1, 5, 11, 3),
-            fillRect('6', 9, 1, 3, 7),
-            fillRect('6', 2, 8),
-            fillRect('6', 6, 8),
-            fillRect('6', 10, 0),
-            fillRect('6', 10, 8),
+            fillRect(colors.alchemyLaboratory, 1, 5, 11, 3),
+            fillRect(colors.alchemyLaboratory, 9, 1, 3, 7),
+            fillRect(colors.alchemyLaboratory, 2, 8),
+            fillRect(colors.alchemyLaboratory, 6, 8),
+            fillRect(colors.alchemyLaboratory, 10, 0),
+            fillRect(colors.alchemyLaboratory, 10, 8),
         ],
     },
     castleEntrance: {
         afterDrawbridge: [
-            fillRect('7', 1, 1, 11, 7),
-            fillRect('7', 10, 8),
+            fillRect(colors.castleEntrance, 1, 1, 11, 7),
+            fillRect(colors.castleEntrance, 10, 8),
         ],
         dropUnderPortcullis: [
-            fillRect('7', 1, 1, 7, 3),
-            fillRect('7', 6, 4),
+            fillRect(colors.castleEntrance, 1, 1, 7, 3),
+            fillRect(colors.castleEntrance, 6, 4),
         ],
         saveRoomA: [
-            fillRect('4', 1, 1, 3, 3),
-            fillRect('4', 2, 0),
+            fillRect(colors.saveRoom, 1, 1, 3, 3),
+            fillRect(colors.saveRoom, 2, 0),
         ],
         loadingRoomToAlchemyLaboratory: [
-            fillRect('c', 1, 1, 3, 3),
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
         ],
         cubeOfZoeRoom: [
-            fillRect('7', 1, 1, 11, 7),
-            fillRect('4', 2, 0),
-            fillRect('4', 2, 8),
-            fillRect('7', 6, 0),
-            fillRect('7', 6, 8),
-            fillRect('7', 10, 0),
-            fillRect('7', 10, 8),
+            fillRect(colors.castleEntrance, 1, 1, 11, 7),
+            fillRect(colors.redDoor, 2, 0),
+            fillRect(colors.redDoor, 2, 8),
+            fillRect(colors.castleEntrance, 6, 0),
+            fillRect(colors.castleEntrance, 6, 8),
+            fillRect(colors.castleEntrance, 10, 0),
+            fillRect(colors.castleEntrance, 10, 8),
         ],
         loadingRoomToMarbleGallery: [
-            fillRect('c', 1, 1, 3, 3),
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
         ],
         loadingRoomToWarpRooms: [
-            fillRect('c', 1, 1, 3, 3),
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
         ],
         shortcutToWarpRooms: [
-            fillRect('7', 1, 1, 3, 3),
-            fillRect('4', 2, 0),
-            fillRect('7', 2, 4),
-            fillRect('0', 2, 2), // Obstacle
+            fillRect(colors.castleEntrance, 1, 1, 3, 3),
+            fillRect(colors.redDoor, 2, 0),
+            fillRect(colors.castleEntrance, 2, 4),
+            fillRect(colors.obstacle, 2, 2), // Obstacle
         ],
         loadingRoomToUndergroundCaverns: [
-            fillRect('c', 1, 1, 3, 3),
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
         ],
         shortcutToUndergroundCaverns: [
-            fillRect('7', 1, 1, 3, 3),
-            fillRect('7', 2, 0),
-            fillRect('4', 2, 4),
-            fillRect('0', 2, 2), // Obstacle
+            fillRect(colors.castleEntrance, 1, 1, 3, 3),
+            fillRect(colors.castleEntrance, 2, 0),
+            fillRect(colors.redDoor, 2, 4),
+            fillRect(colors.obstacle, 2, 2), // Obstacle
         ],
         gargoyleRoom: [
-            fillRect('7', 1, 1, 3, 3),
-            fillRect('7', 2, 0),
-            fillRect('7', 2, 4),
-            fillRect('7', 4, 2),
+            fillRect(colors.castleEntrance, 1, 1, 3, 3),
+            fillRect(colors.castleEntrance, 2, 0),
+            fillRect(colors.castleEntrance, 2, 4),
+            fillRect(colors.castleEntrance, 4, 2),
         ],
         meetingRoomWithDeath: [
-            fillRect('7', 1, 1, 7, 3),
-            fillRect('7', 0, 2),
-            fillRect('7', 2, 0),
-            fillRect('7', 6, 0),
-            fillRect('7', 6, 4),
+            fillRect(colors.castleEntrance, 1, 1, 7, 3),
+            fillRect(colors.castleEntrance, 0, 2),
+            fillRect(colors.castleEntrance, 2, 0),
+            fillRect(colors.castleEntrance, 6, 0),
+            fillRect(colors.castleEntrance, 6, 4),
         ],
     },
     castleKeep: {
         keepArea: [
-            fillRect('f', 9, 5, 7, 3),
-            fillRect('f', 13, 5, 3, 7),
-            fillRect('f', 13, 13, 3, 3),
-            fillRect('f', 13, 17, 3, 7),
-            fillRect('f', 5, 25, 23, 7),
-            fillRect('f', 17, 5, 11, 27),
-            fillRect('f', 29, 1, 3, 31),
-            fillRect('f', 6, 32),
-            fillRect('f', 14, 12),
-            fillRect('f', 14, 16),
-            fillRect('f', 14, 24),
-            fillRect('f', 18, 32),
-            fillRect('f', 26, 32),
-            fillRect('4', 30, 0),
-            fillRect('f', 30, 32),
+            fillRect(colors.castleKeep, 9, 5, 7, 3),
+            fillRect(colors.castleKeep, 13, 5, 3, 7),
+            fillRect(colors.castleKeep, 13, 13, 3, 3),
+            fillRect(colors.castleKeep, 13, 17, 3, 7),
+            fillRect(colors.castleKeep, 5, 25, 23, 7),
+            fillRect(colors.castleKeep, 17, 5, 11, 27),
+            fillRect(colors.castleKeep, 29, 1, 3, 31),
+            fillRect(colors.castleKeep, 6, 32),
+            fillRect(colors.castleKeep, 14, 12),
+            fillRect(colors.castleKeep, 14, 16),
+            fillRect(colors.castleKeep, 14, 24),
+            fillRect(colors.castleKeep, 18, 32),
+            fillRect(colors.castleKeep, 26, 32),
+            fillRect(colors.redDoor, 30, 0),
+            fillRect(colors.castleKeep, 30, 32),
         ],
         upperAttic: [
-            fillRect('f', 1, 1, 3, 11),
-            fillRect('f', 4, 6),
+            fillRect(colors.castleKeep, 1, 1, 3, 11),
+            fillRect(colors.castleKeep, 4, 6),
         ],
         lowerAttic: [
-            fillRect('f', 1, 1, 3, 7),
-            fillRect('f', 0, 2),
-            fillRect('f', 4, 6),
+            fillRect(colors.castleKeep, 1, 1, 3, 7),
+            fillRect(colors.castleKeep, 0, 2),
+            fillRect(colors.castleKeep, 4, 6),
         ],
         loadingRoomToRoyalChapel: [
-            fillRect('c', 1, 1, 3, 3),
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
         ],
         lionTorchPlatform: [
-            fillRect('f', 1, 1, 7, 3),
-            fillRect('f', 0, 2),
-            fillRect('f', 2, 0),
-            fillRect('f', 2, 4),
-            fillRect('4', 6, 4),
-            fillRect('f', 8, 2),
+            fillRect(colors.castleKeep, 1, 1, 7, 3),
+            fillRect(colors.castleKeep, 0, 2),
+            fillRect(colors.castleKeep, 2, 0),
+            fillRect(colors.castleKeep, 2, 4),
+            fillRect(colors.redDoor, 6, 4),
+            fillRect(colors.castleKeep, 8, 2),
         ],
         loadingRoomToClockTower: [
-            fillRect('c', 1, 1, 3, 3),
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
         ],
         dualPlatforms: [
-            fillRect('f', 1, 1, 7, 3),
-            fillRect('f', 0, 2),
-            fillRect('f', 2, 0),
-            fillRect('f', 2, 4),
-            fillRect('f', 6, 0),
-            fillRect('4', 6, 4),
+            fillRect(colors.castleKeep, 1, 1, 7, 3),
+            fillRect(colors.castleKeep, 0, 2),
+            fillRect(colors.castleKeep, 2, 0),
+            fillRect(colors.castleKeep, 2, 4),
+            fillRect(colors.castleKeep, 6, 0),
+            fillRect(colors.redDoor, 6, 4),
         ],
         loadingRoomToWarpRooms: [
-            fillRect('c', 1, 1, 3, 3),
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
         ],
     },
     catacombs: {
         exitToAbandonedMine: [
-            fillRect('8', 1, 1, 7, 3),
-            fillRect('4', 2, 4),
-            fillRect('8', 6, 0),
-            fillRect('8', 6, 4),
+            fillRect(colors.catacombs, 1, 1, 7, 3),
+            fillRect(colors.redDoor, 2, 4),
+            fillRect(colors.catacombs, 6, 0),
+            fillRect(colors.catacombs, 6, 4),
         ],
         loadingRoomToAbandonedMine: [
-            fillRect('c', 1, 1, 3, 3),
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
         ],
         granfaloonsLair: [
-            fillRect('8', 1, 1, 7, 7),
-            fillRect('8', 2, 8),
-            fillRect('8', 6, 0),
+            fillRect(colors.catacombs, 1, 1, 7, 7),
+            fillRect(colors.catacombs, 2, 8),
+            fillRect(colors.catacombs, 6, 0),
         ],
         roomId04: [
-            fillRect('8', 1, 1, 3, 3),
-            fillRect('8', 2, 0),
-            fillRect('8', 2, 4),
+            fillRect(colors.catacombs, 1, 1, 3, 3),
+            fillRect(colors.catacombs, 2, 0),
+            fillRect(colors.catacombs, 2, 4),
         ],
         roomId02: [
-            fillRect('8', 1, 1, 3, 3),
-            fillRect('8', 2, 0),
-            fillRect('8', 2, 4),
+            fillRect(colors.catacombs, 1, 1, 3, 3),
+            fillRect(colors.catacombs, 2, 0),
+            fillRect(colors.catacombs, 2, 4),
+        ],
+    },
+    clockTower: {
+        loadingRoomToCastleKeep: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        karasumansRoom: [
+            fillRect(colors.clockTower, 1, 1, 3, 3),
+            fillRect(colors.redDoor, 2, 0),
+            fillRect(colors.clockTower, 2, 4),
+        ],
+        stairwellToOuterWall: [
+            fillRect(colors.clockTower, 1, 1, 7, 3),
+            fillRect(colors.clockTower, 2, 0),
+            fillRect(colors.redDoor, 2, 4),
+            fillRect(colors.clockTower, 6, 0),
+        ],
+        loadingRoomToOuterWall: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        spire: [
+            fillRect(colors.clockTower, 1, 9, 7, 3),
+            fillRect(colors.clockTower, 5, 5, 3, 11),
+            fillRect(colors.clockTower, 8, 10),
+        ],
+        belfry: [
+            fillRect(colors.clockTower, 1, 1, 3, 11),
+            fillRect(colors.clockTower, 1, 5, 7, 7),
+            fillRect(colors.clockTower, 0, 6),
+            fillRect(colors.clockTower, 6, 4),
+        ],
+        leftGearRoom: [
+            fillRect(colors.clockTower, 1, 1, 15, 3),
+            fillRect(colors.clockTower, 2, 0),
+            fillRect(colors.clockTower, 2, 4),
+            fillRect(colors.clockTower, 14, 0),
+            fillRect(colors.clockTower, 14, 4),
+        ],
+        hiddenArmory: [
+            fillRect(colors.clockTower, 1, 1, 3, 3),
+            fillRect(colors.clockTower, 2, 4),
+        ],
+        pathToKarasuman: [
+            fillRect(colors.clockTower, 1, 1, 3, 11),
+            fillRect(colors.clockTower, 2, 0),
+            fillRect(colors.clockTower, 2, 12),
+        ],
+        pendulumRoom: [
+            fillRect(colors.clockTower, 1, 5, 7, 23),
+            fillRect(colors.clockTower, 5, 1, 3, 27),
+            fillRect(colors.clockTower, 2, 4),
+            fillRect(colors.clockTower, 6, 0),
+            fillRect(colors.clockTower, 6, 28),
+        ],
+    },
+    colosseum: {
+        loadingRoomToRoyalChapel: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        passagewayBetweenArenaAndRoyalChapel: [
+            fillRect(colors.colosseum, 1, 1, 3, 19),
+            fillRect(colors.colosseum, 0, 14),
+            fillRect(colors.redDoor, 2, 0),
+            fillRect(colors.obstacle, 2, 4),
+            fillRect(colors.colosseum, 2, 19),
+            fillRect(colors.colosseum, 4, 6),
+        ],
+        arena: [
+            fillRect(colors.colosseum, 1, 1, 3, 7),
+            fillRect(colors.colosseum, 2, 0),
+            fillRect(colors.colosseum, 2, 8),
+        ],
+        topOfElevatorShaft: [
+            fillRect(colors.colosseum, 1, 1, 3, 19),
+            fillRect(colors.colosseum, 0, 6),
+            fillRect(colors.colosseum, 2, 0),
+            fillRect(colors.obstacle, 2, 4),
+            fillRect(colors.redDoor, 2, 20),
+            fillRect(colors.colosseum, 4, 2),
+            fillRect(colors.colosseum, 4, 14),
+        ],
+        loadingRoomToOlroxsQuarters: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+    },
+    longLibrary: {
+        exitToOuterWall: [
+            fillRect(colors.longLibrary, 1, 1, 3, 11),
+            fillRect(colors.longLibrary, 2, 0),
+            fillRect(colors.redDoor, 2, 12),
+        ],
+        loadingRoomToOuterWall: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        spellbookArea: [
+            fillRect(colors.longLibrary, 1, 1, 11, 27),
+            fillRect(colors.wall, 0, 24, 5, 5),
+            fillRect(colors.longLibrary, 1, 25, 3, 3),
+            fillRect(colors.longLibrary, 2, 0),
+            fillRect(colors.longLibrary, 2, 24),
+            fillRect(colors.longLibrary, 6, 0),
+            fillRect(colors.longLibrary, 10, 0),
+            fillRect(colors.longLibrary, 12, 10),
+        ],
+        footOfStaircase: [
+            fillRect(colors.longLibrary, 1, 1, 3, 3),
+            fillRect(colors.longLibrary, 0, 2),
+            fillRect(colors.longLibrary, 2, 0),
+            fillRect(colors.longLibrary, 2, 4),
+        ],
+        lesserDemonArea: [
+            fillRect(colors.longLibrary, 1, 5, 15, 15),
+            fillRect(colors.longLibrary, 9, 1, 7, 19),
+            fillRect(colors.wall, 8, 4, 5, 9),
+            fillRect(colors.wall, 12, 12, 5, 9),
+            fillRect(colors.longLibrary, 9, 5, 3, 7),
+            fillRect(colors.longLibrary, 13, 13, 3, 7),
+            fillRect(colors.longLibrary, 2, 20),
+            fillRect(colors.longLibrary, 6, 20),
+            fillRect(colors.longLibrary, 10, 4),
+            fillRect(colors.longLibrary, 10, 12),
+            fillRect(colors.longLibrary, 14, 12),
+        ],
+        threeLayerRoom: [
+            fillRect(colors.longLibrary, 1, 1, 3, 3),
+            fillRect(colors.longLibrary, 2, 0),
+            fillRect(colors.longLibrary, 2, 4),
+            fillRect(colors.longLibrary, 5, 1, 3, 3),
+            fillRect(colors.longLibrary, 6, 0),
+            fillRect(colors.longLibrary, 6, 4),
+            fillRect(colors.longLibrary, 9, 1, 3, 3),
+            fillRect(colors.longLibrary, 10, 0),
+            fillRect(colors.longLibrary, 10, 4),
+        ],
+    },
+    marbleGallery: {
+        threePaths: [
+            fillRect(colors.marbleGallery, 1, 1, 7, 3),
+            fillRect(colors.marbleGallery, 0, 2),
+            fillRect(colors.marbleGallery, 6, 0),
+            fillRect(colors.marbleGallery, 6, 4),
+            fillRect(colors.marbleGallery, 8, 2),
+        ],
+        leftOfClockRoom: [
+            fillRect(colors.marbleGallery, 1, 1, 3, 11),
+            fillRect(colors.marbleGallery, 2, 0),
+            fillRect(colors.marbleGallery, 2, 12),
+        ],
+        clockRoom: [
+            fillRect(colors.marbleGallery, 1, 1, 3, 3),
+            fillRect(colors.marbleGallery, 0, 2),
+            fillRect(colors.marbleGallery, 2, 0),
+            fillRect(colors.marbleGallery, 2, 4),
+            fillRect(colors.marbleGallery, 4, 2),
+        ],
+        rightOfClockRoom: [
+            fillRect(colors.marbleGallery, 1, 1, 3, 11),
+            fillRect(colors.marbleGallery, 2, 0),
+            fillRect(colors.marbleGallery, 2, 12),
+        ],
+        saveRoomA: [
+            fillRect(colors.saveRoom, 1, 1, 3, 3),
+            fillRect(colors.marbleGallery, 2, 4),
+        ],
+        powerUpRoom: [
+            fillRect(colors.marbleGallery, 1, 1, 3, 3),
+            fillRect(colors.marbleGallery, 2, 0),
+        ],
+        longHallway: [
+            fillRect(colors.marbleGallery, 1, 1, 3, 59),
+            fillRect(colors.marbleGallery, 2, 0),
+            fillRect(colors.redDoor, 2, 60),
+        ],
+        loadingRoomToOuterWall: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        loadingRoomToCastleEntrance: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        sShapedHallways: [
+            fillRect(colors.marbleGallery, 1, 1, 3, 23),
+            fillRect(colors.marbleGallery, 1, 1, 7, 3),
+            fillRect(colors.marbleGallery, 5, 1, 3, 23),
+            fillRect(colors.marbleGallery, 5, 21, 7, 3),
+            fillRect(colors.marbleGallery, 9, 1, 3, 23),
+            fillRect(colors.marbleGallery, 2, 24),
+            fillRect(colors.redDoor, 10, 0),
+        ],
+        loadingRoomToAlchemyLaboratory: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        entrance: [
+            fillRect(colors.marbleGallery, 1, 1, 3, 15),
+            fillRect(colors.redDoor, 2, 0),
+            fillRect(colors.marbleGallery, 2, 16),
+        ],
+        loadingRoomToOlroxsQuarters: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        pathwayAfterLeftStatue: [
+            fillRect(colors.marbleGallery, 1, 1, 3, 3),
+            fillRect(colors.redDoor, 2, 0),
+            fillRect(colors.marbleGallery, 2, 4),
+        ],
+        loadingRoomToUndergroundCaverns: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        stairwellToUndergroundCaverns: [
+            fillRect(colors.marbleGallery, 1, 1, 7, 3),
+            fillRect(colors.marbleGallery, 2, 0),
+            fillRect(colors.redDoor, 6, 0),
+        ],
+        dropoff: [
+            fillRect(colors.marbleGallery, 1, 1, 3, 11),
+            fillRect(colors.marbleGallery, 2, 0),
+            fillRect(colors.marbleGallery, 2, 12),
+            fillRect(colors.marbleGallery, 4, 6),
+            fillRect(colors.marbleGallery, 4, 10),
+        ],
+        beneathDropoff: [
+            fillRect(colors.marbleGallery, 1, 1, 3, 7),
+            fillRect(colors.marbleGallery, 0, 2),
+            fillRect(colors.marbleGallery, 0, 6),
+            fillRect(colors.marbleGallery, 2, 8),
+            fillRect(colors.marbleGallery, 4, 2),
+        ],
+        stainedGlassCorner: [
+            fillRect(colors.marbleGallery, 1, 1, 3, 3),
+            fillRect(colors.marbleGallery, 0, 2),
+            fillRect(colors.marbleGallery, 2, 0),
+        ],
+        blueDoorRoom: [
+            fillRect(colors.marbleGallery, 1, 1, 3, 7),
+            fillRect(colors.marbleGallery, 2, 0),
+            fillRect(colors.obstacle, 2, 4),
+        ],
+    },
+    olroxsQuarters: {
+        skelerangRoom: [
+            fillRect(colors.olroxsQuarters, 1, 1, 11, 3),
+            fillRect(colors.olroxsQuarters, 2, 0),
+            fillRect(colors.redDoor, 10, 4),
+        ],
+        loadingRoomToMarbleGallery: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        loadingRoomToRoyalChapel: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        catwalkCrypt: [
+            fillRect(colors.olroxsQuarters, 1, 1, 3, 27),
+            fillRect(colors.olroxsQuarters, 0, 6),
+            fillRect(colors.redDoor, 2, 0),
+            fillRect(colors.olroxsQuarters, 2, 28),
+        ],
+        loadingRoomToColosseum: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        grandStaircase: [
+            fillRect(colors.olroxsQuarters, 1, 1, 7, 11),
+            fillRect(colors.olroxsQuarters, 2, 0),
+            fillRect(colors.redDoor, 6, 0),
+            fillRect(colors.olroxsQuarters, 6, 12),
+        ],
+        bottomOfStairwell: [
+            fillRect(colors.olroxsQuarters, 1, 1, 3, 3),
+            fillRect(colors.olroxsQuarters, 0, 2),
+            fillRect(colors.olroxsQuarters, 2, 4),
+        ],
+        tallShaft: [
+            fillRect(colors.olroxsQuarters, 1, 1, 23, 3),
+            fillRect(colors.olroxsQuarters, 0, 2),
+            fillRect(colors.redDoor, 22, 4),
+        ],
+        loadingRoomToWarpRooms: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        echoOfBatRoom: [
+            fillRect(colors.olroxsQuarters, 1, 1, 3, 11),
+            fillRect(colors.olroxsQuarters, 2, 12),
+        ],
+        olroxsRoom: [
+            fillRect(colors.olroxsQuarters, 1, 1, 7, 7),
+            fillRect(colors.olroxsQuarters, 2, 0),
+            fillRect(colors.olroxsQuarters, 2, 8),
+        ],
+        narrowHallwayToOlrox: [
+            fillRect(colors.olroxsQuarters, 1, 1, 3, 15),
+            fillRect(colors.olroxsQuarters, 2, 0),
+            fillRect(colors.olroxsQuarters, 2, 16),
+        ],
+    },
+    outerWall: {
+        elevatorShaftRoom: [
+            fillRect(colors.outerWall, 1, 1, 7, 7),
+            fillRect(colors.outerWall, 13, 1, 23, 7),
+            fillRect(colors.outerWall, 1, 5, 35, 3),
+            fillRect(colors.outerWall, 0, 6),
+            fillRect(colors.redDoor, 10, 4),
+            fillRect(colors.redDoor, 26, 0),
+            fillRect(colors.outerWall, 34, 0),
+        ],
+        loadingRoomToWarpRooms: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        loadingRoomToLongLibrary: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        loadingRoomToClockTower: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        exitToClockTower: [
+            fillRect(colors.outerWall, 1, 1, 3, 3),
+            fillRect(colors.outerWall, 0, 2),
+            fillRect(colors.redDoor, 2, 0),
+            fillRect(colors.outerWall, 4, 2),
+        ],
+        loadingRoomToMarbleGallery: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        exitToMarbleGallery: [
+            fillRect(colors.outerWall, 1, 1, 3, 3),
+            fillRect(colors.outerWall, 0, 2),
+            fillRect(colors.outerWall, 2, 0),
+            fillRect(colors.outerWall, 4, 2),
+        ],
+        lowerMedusaRoom: [
+            fillRect(colors.outerWall, 1, 1, 11, 7),
+            fillRect(colors.outerWall, 0, 6),
+            fillRect(colors.outerWall, 2, 0),
+            fillRect(colors.outerWall, 6, 0),
+            fillRect(colors.outerWall, 12, 2),
+            fillRect(colors.outerWall, 12, 6),
+        ],
+        telescopeRoom: [
+            fillRect(colors.outerWall, 1, 5, 3, 7),
+            fillRect(colors.outerWall, 0, 6),
+            fillRect(colors.outerWall, 0, 10),
+        ],
+        garlicRoom: [
+            fillRect(colors.outerWall, 1, 1, 7, 3),
+            fillRect(colors.outerWall, 2, 4),
+            fillRect(colors.outerWall, 6, 0),
+            fillRect(colors.outerWall, 6, 4),
+        ],
+        doppelgangerRoom: [
+            fillRect(colors.outerWall, 1, 1, 3, 7),
+            fillRect(colors.outerWall, 2, 0),
+            fillRect(colors.outerWall, 2, 8),
+        ],
+        gladiusRoom: [
+            fillRect(colors.outerWall, 1, 1, 3, 3),
+            fillRect(colors.outerWall, 2, 0),
+            fillRect(colors.outerWall, 2, 4),
+        ],
+        secretPlatformRoom: [
+            fillRect(colors.outerWall, 1, 1, 3, 3),
+            fillRect(colors.outerWall, 2, 4),
+            fillRect(colors.outerWall, 4, 2),
+        ],
+        jewelKnucklesRoom: [
+            fillRect(colors.outerWall, 1, 1, 3, 3),
+            fillRect(colors.outerWall, 0, 2),
+            fillRect(colors.outerWall, 2, 4),
+        ],
+    },
+    royalChapel: {
+        walkwayLeftOfHippogryph: [
+            fillRect(colors.royalChapel, 1, 5, 3, 7),
+            fillRect(colors.royalChapel, 2, 4),
+            fillRect(colors.royalChapel, 2, 12),
+        ],
+        hippogryphRoom: [
+            fillRect(colors.royalChapel, 1, 1, 3, 7),
+            fillRect(colors.royalChapel, 2, 0),
+            fillRect(colors.royalChapel, 2, 8),
+        ],
+        walkwayRightOfHippogryph: [
+            fillRect(colors.royalChapel, 1, 1, 3, 7),
+            fillRect(colors.royalChapel, 2, 0),
+            fillRect(colors.royalChapel, 2, 8),
+        ],
+        rightTower: [
+            fillRect(colors.royalChapel, 1, 5, 15, 7),
+            fillRect(colors.redDoor, 10, 12),
+            fillRect(colors.royalChapel, 14, 4),
+            fillRect(colors.royalChapel, 14, 12),
+        ],
+        loadingRoomToCastleKeep: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        saveRoomB: [
+            fillRect(colors.saveRoom, 1, 1, 3, 3),
+            fillRect(colors.royalChapel, 2, 0),
+        ],
+        pushingStatueShortcut: [
+            fillRect(colors.royalChapel, 1, 1, 3, 3),
+            fillRect(colors.royalChapel, 2, 0),
+            fillRect(colors.obstacle, 2, 2),
+            fillRect(colors.redDoor, 2, 4),
+        ],
+        loadingRoomToOlroxsQuarters: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        nave: [
+            fillRect(colors.royalChapel, 1, 1, 7, 7),
+            fillRect(colors.royalChapel, 2, 0),
+            fillRect(colors.royalChapel, 2, 8),
+            fillRect(colors.royalChapel, 6, 0),
+            fillRect(colors.redDoor, 6, 8),
+        ],
+        loadingRoomToColosseum: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        saveRoomA: [
+            fillRect(colors.saveRoom, 1, 1, 3, 3),
+            fillRect(colors.royalChapel, 2, 4),
+        ],
+        statueLedge: [
+            fillRect(colors.royalChapel, 1, 1, 3, 3),
+            fillRect(colors.royalChapel, 0, 2),
+            fillRect(colors.royalChapel, 2, 0),
+            fillRect(colors.redDoor, 2, 4),
+        ],
+        loadingRoomToAlchemyLaboratory: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        chapelStaircase: [
+            fillRect(colors.royalChapel, 1, 25, 11, 7),
+            fillRect(colors.royalChapel, 5, 21, 11, 7),
+            fillRect(colors.royalChapel, 9, 17, 7, 7),
+            fillRect(colors.royalChapel, 13, 13, 7, 7),
+            fillRect(colors.royalChapel, 17, 9, 7, 7),
+            fillRect(colors.royalChapel, 21, 5, 7, 7),
+            fillRect(colors.royalChapel, 25, 1, 3, 11),
+            fillRect(colors.royalChapel, 6, 32),
+            fillRect(colors.royalChapel, 28, 6),
+        ],
+        leftTower: [
+            fillRect(colors.royalChapel, 1, 5, 39, 7),
+            fillRect(colors.royalChapel, 10, 12),
+            fillRect(colors.royalChapel, 14, 4),
+            fillRect(colors.royalChapel, 30, 12),
+            fillRect(colors.royalChapel, 38, 4),
+            fillRect(colors.royalChapel, 38, 12),
+        ],
+        middleTower: [
+            fillRect(colors.royalChapel, 1, 5, 15, 7),
+            fillRect(colors.royalChapel, 10, 12),
+            fillRect(colors.royalChapel, 14, 4),
+        ],
+        spikeHallway: [
+            fillRect(colors.royalChapel, 1, 1, 3, 15),
+            fillRect(colors.royalChapel, 2, 0),
+            fillRect(colors.obstacle, 2, 4),
+            fillRect(colors.obstacle, 2, 12),
+            fillRect(colors.royalChapel, 2, 16),
+        ],
+        walkwayBetweenTowers: [
+            fillRect(colors.royalChapel, 1, 5, 3, 11),
+            fillRect(colors.royalChapel, 2, 4),
+            fillRect(colors.royalChapel, 2, 16),
+        ],
+    },
+    undergroundCaverns: {
+        falseSaveRoom: [
+            fillRect(colors.undergroundCaverns, 1, 1, 3, 3),
+            fillRect(colors.undergroundCaverns, 2, 0),
+        ],
+        loadingRoomToCastleEntrance: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        exitToCastleEntrance: [
+            fillRect(colors.undergroundCaverns, 1, 1, 3, 7),
+            fillRect(colors.redDoor, 2, 0),
+            fillRect(colors.undergroundCaverns, 4, 6),
+        ],
+        longDrop: [
+            fillRect(colors.undergroundCaverns, 1, 1, 43, 3),
+            fillRect(colors.redDoor, 2, 4),
+            fillRect(colors.undergroundCaverns, 6, 0),
+            fillRect(colors.undergroundCaverns, 6, 4),
+            fillRect(colors.undergroundCaverns, 14, 4),
+            fillRect(colors.undergroundCaverns, 44, 2),
+        ],
+        loadingRoomToMarbleGallery: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        loadingRoomToAbandonedMine: [
+            fillRect(colors.loadingRoom, 1, 1, 3, 3),
+        ],
+        exitToAbandonedMine: [
+            fillRect(colors.undergroundCaverns, 1, 1, 3, 3),
+            fillRect(colors.undergroundCaverns, 0, 2),
+            fillRect(colors.redDoor, 2, 0),
+        ],
+        hiddenCrystalEntrance: [
+            fillRect(colors.undergroundCaverns, 1, 1, 11, 3),
+            fillRect(colors.undergroundCaverns, 0, 2),
+            fillRect(colors.undergroundCaverns, 2, 0),
+            fillRect(colors.undergroundCaverns, 2, 4),
+            fillRect(colors.undergroundCaverns, 10, 4),
+            fillRect(colors.undergroundCaverns, 12, 2),
+        ],
+        crystalCloakRoom: [
+            fillRect(colors.undergroundCaverns, 1, 1, 3, 3),
+            fillRect(colors.undergroundCaverns, 2, 4),
+        ],
+        scyllaRoom: [
+            fillRect(colors.undergroundCaverns, 1, 1, 3, 19),
+            fillRect(colors.undergroundCaverns, 2, 0),
+            fillRect(colors.undergroundCaverns, 4, 14),
+        ],
+        scyllaWyrmRoom: [
+            fillRect(colors.undergroundCaverns, 1, 1, 3, 3),
+            fillRect(colors.undergroundCaverns, 2, 0),
+            fillRect(colors.undergroundCaverns, 2, 4),
+        ],
+        risingWaterRoom: [
+            fillRect(colors.undergroundCaverns, 1, 1, 3, 19),
+            fillRect(colors.undergroundCaverns, 2, 0),
+            fillRect(colors.undergroundCaverns, 0, 14),
+        ],
+        dKButton: [
+            fillRect(colors.undergroundCaverns, 1, 1, 3, 3),
+            fillRect(colors.undergroundCaverns, 2, 4),
+        ],
+        waterfall: [
+            fillRect(colors.undergroundCaverns, 1, 1, 23, 7),
+            fillRect(colors.undergroundCaverns, 2, 0),
+            fillRect(colors.undergroundCaverns, 2, 8),
+            fillRect(colors.undergroundCaverns, 22, 0),
+            fillRect(colors.undergroundCaverns, 22, 8),
+        ],
+        pentagramRoom: [
+            fillRect(colors.undergroundCaverns, 1, 1, 3, 3),
+            fillRect(colors.undergroundCaverns, 2, 0),
+            fillRect(colors.undergroundCaverns, 2, 4),
+        ],
+        roomId19: [
+            fillRect(colors.undergroundCaverns, 1, 1, 3, 3),
+            fillRect(colors.undergroundCaverns, 2, 0),
+            fillRect(colors.undergroundCaverns, 2, 4),
+        ],
+        roomId18: [
+            fillRect(colors.undergroundCaverns, 1, 1, 3, 3),
+            fillRect(colors.undergroundCaverns, 2, 0),
+        ],
+        iceFloeRoom: [
+            fillRect(colors.undergroundCaverns, 1, 1, 7, 7),
+            fillRect(colors.undergroundCaverns, 1, 1, 3, 35),
+            fillRect(colors.undergroundCaverns, 1, 13, 7, 23),
+            fillRect(colors.undergroundCaverns, 0, 34),
+            fillRect(colors.undergroundCaverns, 2, 0),
+            fillRect(colors.undergroundCaverns, 2, 36),
+        ],
+        rightFerrymanRoute: [
+            fillRect(colors.undergroundCaverns, 1, 1, 3, 51),
+            fillRect(colors.undergroundCaverns, 1, 1, 7, 11),
+            fillRect(colors.undergroundCaverns, 1, 25, 7, 7),
+            fillRect(colors.undergroundCaverns, 1, 37, 7, 15),
+            fillRect(colors.undergroundCaverns, 2, 0),
+            fillRect(colors.obstacle, 2, 34),
+            fillRect(colors.undergroundCaverns, 2, 52),
+        ],
+        leftFerrymanRoute: [
+            fillRect(colors.undergroundCaverns, 1, 1, 3, 51),
+            fillRect(colors.undergroundCaverns, 1, 1, 7, 19),
+            fillRect(colors.undergroundCaverns, 0, 34),
+            fillRect(colors.undergroundCaverns, 2, 0),
+            fillRect(colors.undergroundCaverns, 2, 52),
         ],
     },
     warpRooms: {
         warpRoomToCastleEntrance: [
-            fillRect('5', 1, 1, 3, 3),
-            fillRect('4', 2, 4),
+            fillRect(colors.warpRooms, 1, 1, 3, 3),
+            fillRect(colors.redDoor, 2, 4),
         ],
         warpRoomToCastleEntrance: [
-            fillRect('5', 1, 1, 3, 3),
-            fillRect('4', 2, 0),
+            fillRect(colors.warpRooms, 1, 1, 3, 3),
+            fillRect(colors.redDoor, 2, 0),
         ],
         warpRoomToCastleKeep: [
-            fillRect('5', 1, 1, 3, 3),
-            fillRect('4', 2, 0),
+            fillRect(colors.warpRooms, 1, 1, 3, 3),
+            fillRect(colors.redDoor, 2, 0),
         ],
         warpRoomToOlroxsQuarters: [
-            fillRect('5', 1, 1, 3, 3),
-            fillRect('4', 2, 0),
+            fillRect(colors.warpRooms, 1, 1, 3, 3),
+            fillRect(colors.redDoor, 2, 0),
         ],
         warpRoomToOuterWall: [
-            fillRect('5', 1, 1, 3, 3),
-            fillRect('4', 2, 4),
+            fillRect(colors.warpRooms, 1, 1, 3, 3),
+            fillRect(colors.redDoor, 2, 4),
         ],
         warpRoomToAbandonedMine: [
-            fillRect('5', 1, 1, 3, 3),
-            fillRect('4', 2, 0),
+            fillRect(colors.warpRooms, 1, 1, 3, 3),
+            fillRect(colors.redDoor, 2, 0),
         ],
     },
 }
@@ -7223,46 +7711,9 @@ Object.entries(nodeGroups)
                 if (!(nodeGroupName in mapPixels[stageName])) {
                     mapPixels[stageName][nodeGroupName] = []
                 }
-                let colorIndex = '1'
-                switch (stageName) {
-                    case 'abandonedMine':
-                    case 'undergroundCaverns':
-                        colorIndex = '1'
-                        break
-                    case 'clockTower':
-                    case 'longLibrary':
-                    case 'warpRooms':
-                        colorIndex = '5'
-                        break
-                    case 'alchemyLaboratory':
-                        colorIndex = '6'
-                        break
-                    case 'castleEntrance':
-                        colorIndex = '7'
-                        break
-                    case 'catacombs':
-                        colorIndex = '8'
-                        break
-                    case 'colosseum':
-                        colorIndex = '9'
-                        break
-                    case 'castleCenter':
-                    case 'marbleGallery':
-                        colorIndex = 'a'
-                        break
-                    case 'olroxsQuarters':
-                        colorIndex = 'b'
-                        break
-                    case 'royalChapel':
-                        colorIndex = 'c'
-                        break
-                    case 'castleKeep':
-                    case 'outerWall':
-                        colorIndex = 'f'
-                        break
-                }
+                let colorIndex = colors[stageName]
                 if (nodeGroupName.startsWith('saveRoom')) {
-                    colorIndex = '4'
+                    colorIndex = colors.saveRoom
                 }
                 const rows = nodeGroupInfo.cells.length
                 const columns = nodeGroupInfo.cells.at(0).length
@@ -7524,12 +7975,6 @@ export function shuffleRooms(seed, stageName, applyNormalization) {
         if (groupIndexes.length > 0 || result.edges.length > 0) {
             // console.log('ERROR groupIndexes.length > 0 || result.edges.length > 0:', groupIndexes.length, result.edges.length)
             validInd = false
-        }
-        if (groupIndexes.length < 2) {
-            groupIndexes.forEach((groupIndex) => {
-                // console.log('stageNodeGroup:', groupIndex, stageNodeGroups.at(groupIndex))
-            })
-            // console.log('result:', result)
         }
     }
     console.log('attemptCount:', attemptCount)

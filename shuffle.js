@@ -290,24 +290,24 @@ const argv = yargs(process.argv.slice(2))
                 {
                     return
                 }
-                mapPixels[roomInfo.stage][roomInfo.room]
-                    .forEach((fillData) => {
-                        switch (fillData.command) {
-                            case 'fillRect':
-                                const MIN_MAP_COL = 0
-                                const pixelRow = 4 * (MIN_MAP_ROW + roomInfo.row) + fillData.parameters.top
-                                const pixelColumn = 4 * (MIN_MAP_COL + roomInfo.column) + fillData.parameters.left
-                                for (let rowOffset = 0; rowOffset < fillData.parameters.rows; rowOffset++) {
-                                    const leftSide = mapGrid.at(pixelRow + rowOffset).slice(0, pixelColumn)
-                                    const rightSide = mapGrid.at(pixelRow + rowOffset).slice(pixelColumn + fillData.parameters.columns)
-                                    mapGrid[pixelRow + rowOffset] = leftSide + fillData.parameters.colorIndex.repeat(fillData.parameters.columns) + rightSide
-                                }
-                                break
-                            default:
-                                console.log(`WARNING: Unknown value for command property: ${fillData.command}`)
-                                break
-                        }
-                    })
+                for (let fillIndex = 0; fillIndex < mapPixels[roomInfo.stage][roomInfo.room].length; fillIndex++) {
+                    const fillData = mapPixels[roomInfo.stage][roomInfo.room].at(fillIndex)
+                    switch (fillData.command) {
+                        case 'fillRect':
+                            const MIN_MAP_COL = 0
+                            const pixelRow = 4 * (MIN_MAP_ROW + roomInfo.row) + fillData.parameters.top
+                            const pixelColumn = 4 * (MIN_MAP_COL + roomInfo.column) + fillData.parameters.left
+                            for (let rowOffset = 0; rowOffset < fillData.parameters.rows; rowOffset++) {
+                                const leftSide = mapGrid.at(pixelRow + rowOffset).slice(0, pixelColumn)
+                                const rightSide = mapGrid.at(pixelRow + rowOffset).slice(pixelColumn + fillData.parameters.columns)
+                                mapGrid[pixelRow + rowOffset] = leftSide + fillData.parameters.colorIndex.repeat(fillData.parameters.columns) + rightSide
+                            }
+                            break
+                        default:
+                            console.log(`WARNING: Unknown value for command property: ${fillData.command}`)
+                            break
+                    }
+                }
             })
             const mapChanges = {
                 changeType: 'merge',
