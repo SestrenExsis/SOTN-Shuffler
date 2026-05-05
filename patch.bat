@@ -18,7 +18,8 @@ node shuffle multi -e "build/patcher/extraction-aliased.json" -o "build/current-
   --patcher.list="lib/BIN-Patcher/patches/normalize-underground-caverns.json" ^
   --patcher.list="lib/BIN-Patcher/patches/simplify-gear-puzzle.json" ^
   --solver.on=true ^
-  --stageShuffler.on=true
+  --stageShuffler.on=true ^
+  --roomShuffler.on=true
 
 node lib/BIN-Patcher/sotn alter -s "build/patcher/extraction-masked-aliased.json" -t "build/current-patch.json" || goto :error
 node lib/BIN-Patcher/sotn patch -p "build/current-patch.json" -c "build/current-seed.json" || goto :error

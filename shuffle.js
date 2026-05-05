@@ -16,14 +16,28 @@ import {
 } from './src/shuffle-music.js'
 
 import {
+    combineNodeGroups,
     getRoomChanges,
+    mapPixels,
+    nodeGroups,
     shuffleRooms,
 } from './src/shuffle-rooms.js'
 
 import {
     getTeleporterChanges,
+    getVanillaStageLinks,
     shuffleStages,
 } from './src/shuffle-stages.js'
+
+// TODO(sestren): Generate a hash of options used to serve as a shorthand to help in quickly verifying if a set of options has changed
+
+// NOTE(sestren): Proposed order of operations:
+//   - Shuffle the rooms within each stage
+//   - Shuffle the stage connections
+//   - Assign warp rooms to the stage they connect to
+//   - Arrange stages on the map
+
+const MIN_MAP_ROW = 5
 
 const argv = yargs(process.argv.slice(2))
     .command({ // multi
@@ -104,6 +118,7 @@ const argv = yargs(process.argv.slice(2))
             .demandOption(['extraction', 'out'])
         },
         handler: (argv) => {
+            // TODO(sestren): Add ability to turn room and stage-shuffling on or off independently of one another
             console.log(argv)
             const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
             const shuffleData = {
@@ -121,7 +136,7 @@ const argv = yargs(process.argv.slice(2))
             }
             // Translate arguments into settings
             let seedName = argv.seed
-            if (shuffleData.settings.seedName) {
+            if (seedName) {
                 shuffleData.settings.seedName = argv.seed
             }
             else {
@@ -172,35 +187,80 @@ const argv = yargs(process.argv.slice(2))
                 shuffleData.changes.push(songChanges)
                 shuffleData.debugInfo.finalSeedsUsed.musicShuffler = seed
             }
-            // Some modules (those that modify or depend on logic) must be run inside a loop because the solver must verify them
-            let solvable = false
             shuffleData.debugInfo.solverAttemptCount = 0
             let changesToAdd = []
+            let stageConnections = getVanillaStageLinks()
+            let roomArrangements = {}
+            // Some modules (those that modify or depend on logic) must be run inside a loop because the solver must verify them
+            let solvable = false
             while (!solvable) {
                 shuffleData.debugInfo.solverAttemptCount += 1
+                console.log('solverAttemptCount:', shuffleData.debugInfo.solverAttemptCount)
                 changesToAdd = []
                 if (argv.stageShuffler?.on) {
                     const seed = argv.stageShuffler.seed ?? (seedName + '_stageShuffler_' + shuffleData.debugInfo.solverAttemptCount)
-                    const shuffledStages = shuffleStages(seed)
-                    const teleporterChanges = getTeleporterChanges(extraction, shuffledStages.links)
+                    stageConnections = shuffleStages(seed)
+                    const teleporterChanges = getTeleporterChanges(extraction, stageConnections.links)
                     changesToAdd.push(teleporterChanges)
                     shuffleData.debugInfo.finalSeedsUsed.stageShuffler = seed
                 }
                 if (argv.roomShuffler?.on) {
                     const seed = argv.roomShuffler.seed ?? (seedName + '_roomShuffler_' + shuffleData.debugInfo.solverAttemptCount)
-                    // abandonedMine
-                    // alchemyLaboratory
-                    const shuffledRooms = shuffleRooms(seed, stageName, applyNormalization)
-                    const roomChanges = getRoomChanges(shuffledRooms.rooms, rowOffset, columnOffset)
+                    const stageNodeGroups = {
+                        abandonedMine: shuffleRooms(seed + '_abandonedMine', 'abandonedMine', true),
+                        alchemyLaboratory: shuffleRooms(seed + '_alchemyLaboratory', 'alchemyLaboratory', true),
+                        castleEntrance: shuffleRooms(seed + '_castleEntrance', 'castleEntrance', true),
+                        castleKeep: shuffleRooms(seed + '_castleKeep', 'castleKeep', true),
+                        catacombs: shuffleRooms(seed + '_catacombs', 'catacombs', true),
+                        clockTower: shuffleRooms(seed + '_clockTower', 'clockTower', true),
+                        colosseum: shuffleRooms(seed + '_colosseum', 'colosseum', true),
+                        longLibrary: shuffleRooms(seed + '_longLibrary', 'longLibrary', true),
+                        marbleGallery: shuffleRooms(seed + '_marbleGallery', 'marbleGallery', true),
+                        olroxsQuarters: shuffleRooms(seed + '_olroxsQuarters', 'olroxsQuarters', true),
+                        outerWall: shuffleRooms(seed + '_outerWall', 'outerWall', true),
+                        royalChapel: shuffleRooms(seed + '_royalChapel', 'royalChapel', true),
+                        undergroundCaverns: shuffleRooms(seed + '_undergroundCaverns', 'undergroundCaverns', true),
+                    }
+                    // Attach warpRooms to the stages they lead to
+                    Object.entries(stageConnections.links)
+                        .filter(([teleporterSource, teleporterTarget]) => {
+                            return teleporterSource.startsWith('fromWarpRoomsTo')
+                        })
+                        .forEach(([teleporterSource, teleporterTarget]) => {
+                            // NOTE(sestren): This hack is to avoid matching the 'To' between stage names with the 'To' in ClockTower
+                            const parts = teleporterTarget.replace('ClockTower', 'CLOCKTOWER').split('To')
+                            const firstPart = parts.at(0).replace('CLOCKTOWER', 'ClockTower').slice(4)
+                            const stageName = firstPart.at(0).toLowerCase() + firstPart.slice(1)
+                            const roomName = 'loadingRoomTo' + parts.at(1).replace('CLOCKTOWER', 'ClockTower')
+                            // NOTE(sestren): Centering on the loading room is a reliable way to match the rooms without having to know the direction
+                            let matchingRoomCount = 0
+                            stageNodeGroups[stageName].rooms
+                                .filter((roomInfo) => {
+                                    return (roomInfo.stage === stageName) && (roomInfo.room === roomName)
+                                })
+                                .forEach((roomInfo) => {
+                                    matchingRoomCount += 1
+                                    const rowOffset = roomInfo.row
+                                    const columnOffset = roomInfo.column - 1
+                                    const warpRoomGroupName = 'warpRoomTo' + teleporterSource.split('WarpRoomsTo').at(1)
+                                    const warpRoomGroup = nodeGroups.warpRooms[warpRoomGroupName]
+                                    stageNodeGroups[stageName] = combineNodeGroups(stageNodeGroups[stageName], warpRoomGroup, rowOffset, columnOffset, { allowOverlaps: true })
+                                })
+                            if (matchingRoomCount < 1)  {
+                                throw Error(`Room not found for stage '${stageName}' and room '${roomName}'`)
+                            }
+                        })
+                    roomArrangements = arrangeStages(seed + '_stageArranger', stageNodeGroups)
+                    const roomChanges = getRoomChanges(roomArrangements.rooms, MIN_MAP_ROW, 0)
                     changesToAdd.push(roomChanges)
                     shuffleData.debugInfo.finalSeedsUsed.roomShuffler = seed
                 }
                 if (argv.solver?.on) {
-                    // For now, the solver is only randomly accepting or rejecting; to be replaced with an actual solver at a later date
+                    // NOTE(sestren): For now, the solver is only randomly accepting or rejecting; to be replaced with an actual solver at a later date
                     shuffleData.debugInfo.solvable = false
                     const seed = argv.solver.seed ?? (seedName + '_solver_' + shuffleData.debugInfo.solverAttemptCount)
                     const rng = seedrandom(seed)
-                    if ((1000 * rng()) < shuffleData.debugInfo.solverAttemptCount) {
+                    if ((10 * rng()) < shuffleData.debugInfo.solverAttemptCount) {
                         solvable = true
                         shuffleData.debugInfo.solvable = true
                     }
@@ -214,6 +274,48 @@ const argv = yargs(process.argv.slice(2))
                     break
                 }
             }
+            // Redraw map
+            const mapGrid = []
+            for (let row = 0; row < 256; row++) {
+                const rowData = '0'.repeat(256)
+                mapGrid.push(rowData)
+            }
+            roomArrangements.rooms.forEach((roomInfo) => {
+                if (
+                    !(
+                        (roomInfo.stage in mapPixels) &&
+                        (roomInfo.room in mapPixels[roomInfo.stage])
+                    )
+                )
+                {
+                    return
+                }
+                for (let fillIndex = 0; fillIndex < mapPixels[roomInfo.stage][roomInfo.room].length; fillIndex++) {
+                    const fillData = mapPixels[roomInfo.stage][roomInfo.room].at(fillIndex)
+                    switch (fillData.command) {
+                        case 'fillRect':
+                            const MIN_MAP_COL = 0
+                            const pixelRow = 4 * (MIN_MAP_ROW + roomInfo.row) + fillData.parameters.top
+                            const pixelColumn = 4 * (MIN_MAP_COL + roomInfo.column) + fillData.parameters.left
+                            for (let rowOffset = 0; rowOffset < fillData.parameters.rows; rowOffset++) {
+                                const leftSide = mapGrid.at(pixelRow + rowOffset).slice(0, pixelColumn)
+                                const rightSide = mapGrid.at(pixelRow + rowOffset).slice(pixelColumn + fillData.parameters.columns)
+                                mapGrid[pixelRow + rowOffset] = leftSide + fillData.parameters.colorIndex.repeat(fillData.parameters.columns) + rightSide
+                            }
+                            break
+                        default:
+                            console.log(`WARNING: Unknown value for command property: ${fillData.command}`)
+                            break
+                    }
+                }
+            })
+            const mapChanges = {
+                changeType: 'merge',
+                merge: {
+                    'castleMap.data=': mapGrid,
+                },
+            }
+            changesToAdd.push(mapChanges)
             for (let index = 0; index < changesToAdd.length; index++) {
                 shuffleData.changes.push(changesToAdd.at(index))
             }
@@ -236,21 +338,77 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'Seed to provide for randomization',
                 type: 'string',
             })
-            .demandOption([])
+            // TODO(sestren): Add ability to turn room and stage-shuffling on or off independently of one another
+            // .option('shuffleRooms', {
+            //     describe: 'Whether or not to shuffle how rooms within a stage connect',
+            //     type: 'boolean',
+            // })
+            // .option('shuffleStages', {
+            //     describe: 'Whether or not to shuffle the connections between stages (aka, teleporters)',
+            //     type: 'boolean',
+            // })
+            .demandOption(['extraction'])
         },
         handler: (argv) => {
-            let seed = argv.seed
-            if (!seed) {
-                seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+            const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
+            let seedName
+            if (argv.seed) {
+                seedName = argv.seed
             }
-            const rng = seedrandom(seed)
-            const nodeGroups = {
-                abandonedMine: shuffleRooms(rng(), 'abandonedMine', true),
-                alchemyLaboratory: shuffleRooms(rng(), 'alchemyLaboratory', true),
-                marbleGallery: shuffleRooms(rng(), 'marbleGallery', true),
+            else {
+                const seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+                seedName = getSeedName(seed)
             }
-            const stageArrangements = arrangeStages(seed, nodeGroups)
+            const stageNodeGroups = {
+                abandonedMine: shuffleRooms(seedName + '_abandonedMine', 'abandonedMine', true),
+                alchemyLaboratory: shuffleRooms(seedName + '_alchemyLaboratory', 'alchemyLaboratory', true),
+                castleEntrance: shuffleRooms(seedName + '_castleEntrance', 'castleEntrance', true),
+                castleKeep: shuffleRooms(seedName + '_castleKeep', 'castleKeep', true),
+                catacombs: shuffleRooms(seedName + '_catacombs', 'catacombs', true),
+                clockTower: shuffleRooms(seedName + '_clockTower', 'clockTower', true),
+                colosseum: shuffleRooms(seedName + '_colosseum', 'colosseum', true),
+                longLibrary: shuffleRooms(seedName + '_longLibrary', 'longLibrary', true),
+                marbleGallery: shuffleRooms(seedName + '_marbleGallery', 'marbleGallery', true),
+                olroxsQuarters: shuffleRooms(seedName + '_olroxsQuarters', 'olroxsQuarters', true),
+                outerWall: shuffleRooms(seedName + '_outerWall', 'outerWall', true),
+                royalChapel: shuffleRooms(seedName + '_royalChapel', 'royalChapel', true),
+                undergroundCaverns: shuffleRooms(seedName + '_undergroundCaverns', 'undergroundCaverns', true),
+            }
+            const shuffledStages = shuffleStages(seedName + '_stageShuffler')
+            // Attach warpRooms to the stages they lead to
+            Object.entries(shuffledStages.links)
+                .filter(([teleporterSource, teleporterTarget]) => {
+                    return teleporterSource.startsWith('fromWarpRoomsTo')
+                })
+                .forEach(([teleporterSource, teleporterTarget]) => {
+                    // NOTE(sestren): This hack is to avoid matching the 'To' between stage names with the 'To' in ClockTower
+                    const parts = teleporterTarget.replace('ClockTower', 'CLOCKTOWER').split('To')
+                    const firstPart = parts.at(0).replace('CLOCKTOWER', 'ClockTower').slice(4)
+                    const stageName = firstPart.at(0).toLowerCase() + firstPart.slice(1)
+                    const roomName = 'loadingRoomTo' + parts.at(1).replace('CLOCKTOWER', 'ClockTower')
+                    // NOTE(sestren): Centering on the loading room is a reliable way to match the rooms without having to know the direction
+                    let matchingRoomCount = 0
+                    stageNodeGroups[stageName].rooms
+                        .filter((roomInfo) => {
+                            return (roomInfo.stage === stageName) && (roomInfo.room === roomName)
+                        })
+                        .forEach((roomInfo) => {
+                            matchingRoomCount += 1
+                            const rowOffset = roomInfo.row
+                            const columnOffset = roomInfo.column - 1
+                            const warpRoomGroupName = 'warpRoomTo' + teleporterSource.split('WarpRoomsTo').at(1)
+                            const warpRoomGroup = nodeGroups.warpRooms[warpRoomGroupName]
+                            stageNodeGroups[stageName] = combineNodeGroups(stageNodeGroups[stageName], warpRoomGroup, rowOffset, columnOffset, { allowOverlaps: true })
+                        })
+                    if (matchingRoomCount < 1)  {
+                        throw Error(`Room not found for stage '${stageName}' and room '${roomName}'`)
+                    }
+                })
+            const stageArrangements = arrangeStages(seedName + '_stageArranger', stageNodeGroups)
             console.log(stageArrangements)
+            const teleporterChanges = getTeleporterChanges(extraction, shuffledStages.links)
+            // TODO(sestren): Populate changes
+            // changesToAdd.push(teleporterChanges)
         }
     })
     .command({ // seed
@@ -325,6 +483,7 @@ const argv = yargs(process.argv.slice(2))
             }
             const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
             const shuffledRooms = shuffleRooms(seed, argv.stage, argv.norm)
+            console.log('shuffledRooms:', shuffledRooms)
             // const roomChanges = getRoomChanges(extraction, shuffledRooms.rooms, 16, 16)
             // shuffleData.changes.push(roomChanges)
             // fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))

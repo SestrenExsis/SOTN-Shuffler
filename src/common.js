@@ -19,7 +19,7 @@ export function shuffleArray(rng, array) {
 // Arrange the stages on the map so they fit together as much as possible
 // Come up with several possible arrangements, and choose the one that maximizes the number of overlapping load rooms
 // TODO(sestren): Allow overlapping load rooms if linked via teleporters
-export function arrangeStages(seed, startingNodeGroups) { //}, links) {
+export function arrangeStages(seed, startingNodeGroups) {
     const rng = seedrandom(seed)
     let validInd = false
     let result
@@ -39,7 +39,7 @@ export function arrangeStages(seed, startingNodeGroups) { //}, links) {
             const maxRows = result.cells.length + nodeGroup.cells.length
             const minColumns = -1 * nodeGroup.cells.at(0).length
             const maxColumns = result.cells.at(0).length + nodeGroup.cells.at(0).length
-            console.log('dimensions:', minRows, maxRows, minColumns, maxColumns)
+            // console.log('dimensions:', minRows, maxRows, minColumns, maxColumns)
             for (let rowOffset = minRows; rowOffset <= maxRows; rowOffset++) {
                 for (let columnOffset = minColumns; columnOffset <= maxColumns; columnOffset++) {
                     const candidate = combineNodeGroups(result, nodeGroup, rowOffset, columnOffset)
@@ -50,7 +50,7 @@ export function arrangeStages(seed, startingNodeGroups) { //}, links) {
                             candidates = []
                         }
                         if (encumbrance === minEncumbrance) {
-                            console.log(`rowOffset: ${rowOffset}, columnOffset: ${columnOffset}, minEncumbrance: ${minEncumbrance}, encumbrance: ${encumbrance}`)
+                            // console.log(`rowOffset: ${rowOffset}, columnOffset: ${columnOffset}, minEncumbrance: ${minEncumbrance}, encumbrance: ${encumbrance}`)
                             candidates.push(candidate)
                         }
                     }

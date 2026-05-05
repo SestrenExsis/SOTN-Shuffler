@@ -406,6 +406,25 @@ const stages = {
     },
 }
 
+export function getVanillaStageLinks() {
+    const result = {}
+    result.links = {}
+    Object.keys(teleporters)
+        .forEach((teleporterName) => {
+            const parts = teleporterName.replace('ClockTower', 'CLOCKTOWER').split('To')
+            const sourceStage = parts.at(0).replace('CLOCKTOWER', 'ClockTower').slice('from'.length)
+            const targetStage = parts.at(1).replace('CLOCKTOWER', 'ClockTower')
+            result.links[teleporterName] = 'from' + targetStage + 'To' + sourceStage
+        })
+    result.linkedStages = {}
+    Object.entries(stages)
+        .forEach(([stageName, linkInfo]) => {
+            result.linkedStages[stageName] = Array.from(linkInfo.teleporterNames).sort()
+        })
+    // console.log(result)
+    return result
+}
+
 export function shuffleStages(seed) {
     const rng = seedrandom(seed)
     let validInd = false
@@ -479,6 +498,7 @@ export function shuffleStages(seed) {
             })
         result.links = links
     }
+    // console.log(result)
     return result
 }
 
