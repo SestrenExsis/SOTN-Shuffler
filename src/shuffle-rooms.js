@@ -7757,7 +7757,7 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
     let right = Math.max(baseNodeGroup.cells.at(0).length, nodeGroup.cells.at(0).length + columnOffset)
     const rows = bottom - top
     const columns = right - left
-    if (rows >= 59 || columns >= 64) {
+    if (rows >= 58 || columns >= 64) {
         return null
     }
     result.cells = []
