@@ -6,8 +6,6 @@ A tool for modifying various things about SOTN, including the locations of rooms
 
 This project is still actively in the prototyping phase of development. It almost definitely has bugs, will cause softlocks, and may even corrupt the game BIN in its current state. Use at your own risk.
 
-While still in the prototyping and proof-of-concept phase, much of this project will be coded in Python. As the project matures, it may be translated to Javascript over time.
-
 ## Usage
 
 TODO
