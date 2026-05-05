@@ -274,7 +274,7 @@ const argv = yargs(process.argv.slice(2))
                     break
                 }
             }
-            // TODO(sestren): Redraw map
+            // Redraw map
             const mapGrid = []
             for (let row = 0; row < 256; row++) {
                 const rowData = '0'.repeat(256)
@@ -407,7 +407,6 @@ const argv = yargs(process.argv.slice(2))
             const stageArrangements = arrangeStages(seedName + '_stageArranger', stageNodeGroups)
             console.log(stageArrangements)
             const teleporterChanges = getTeleporterChanges(extraction, shuffledStages.links)
-            // TODO(sestren): Redraw castle map
             // TODO(sestren): Populate changes
             // changesToAdd.push(teleporterChanges)
         }
