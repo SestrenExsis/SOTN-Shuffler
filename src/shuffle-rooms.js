@@ -7704,7 +7704,7 @@ Object.entries(nodeGroups)
                 return true
             })
             .forEach(([nodeGroupName, nodeGroupInfo]) => {
-                console.log('stageName:', stageName, 'roomName:', nodeGroupName)
+                // console.log('stageName:', stageName, 'roomName:', nodeGroupName)
                 if (!(stageName in mapPixels)) {
                     mapPixels[stageName] = {}
                 }

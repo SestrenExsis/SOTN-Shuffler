@@ -29,6 +29,10 @@ import {
     shuffleStages,
 } from './src/shuffle-stages.js'
 
+import {
+    shuffleRewards,
+} from './src/shuffle-rewards.js'
+
 // TODO(sestren): Generate a hash of options used to serve as a shorthand to help in quickly verifying if a set of options has changed
 
 // NOTE(sestren): Proposed order of operations:
@@ -576,6 +580,47 @@ const argv = yargs(process.argv.slice(2))
             const songChanges = getSongChanges(shuffledSongs)
             shuffleData.changes.push(songChanges)
             fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))
+        }
+    })
+    .command({ // reward
+        command: 'reward',
+        describe: 'Shuffle rewards',
+        builder: (yargs) => {
+            return yargs
+            .option('out', {
+                alias: 'o',
+                describe: 'Path to the output file to create',
+                type: 'string',
+                normalize: true,
+            })
+            .option('seed', {
+                alias: 's',
+                describe: 'Seed to provide for randomization',
+                type: 'string',
+            })
+            .demandOption(['out'])
+        },
+        handler: (argv) => {
+            let seed = argv.seed
+            if (!seed) {
+                seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+            }
+            const shuffleData = {
+                authors: [
+                    'Sestren',
+                ],
+                changes: [],
+                description: [
+                    'Shuffle rewards',
+                ],
+                settings: {
+                    seed: argv.seed,
+                },
+            }
+            const shuffledRewards = shuffleRewards(seed)
+            // const rewardChanges = getRewardChanges(shuffledRewards)
+            // shuffleData.changes.push(rewardChanges)
+            // fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))
         }
     })
     .demandCommand(1)
