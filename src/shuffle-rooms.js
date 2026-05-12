@@ -7865,7 +7865,7 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
     if (!validInd) {
         return null
     }
-    // TODO(sestren): Verify that all open edges do not face a filled-in square
+    // Verify that all open edges do not face a filled-in square
     const blockedEdges = result.edges
         .filter((edgeInfo) => {
             let rowA = edgeInfo.row
