@@ -4,11 +4,43 @@ import {
     shuffleArray
 } from './common.js'
 
-const rewards = {
+const rewardIds = {
+    relicSoulOfBat: 0,
+    relicFireOfBat: 1,
+    relicEchoOfBat: 2,
+    relicForceOfEcho: 3,
+    relicSoulOfWolf: 4,
+    relicPowerOfWolf: 5,
+    relicSkillOfWolf: 6,
+    relicFormOfMist: 7,
+    relicPowerOfMist: 8,
+    relicGasCloud: 9,
+    relicCubeOfZoe: 10,
+    relicSpiritOrb: 11,
+    relicGravityBoots: 12,
+    relicLeapStone: 13,
+    relicHolySymbol: 14,
+    relicFaerieScroll: 15,
+    relicJewelOfOpen: 16,
+    relicMermanStatue: 17,
     relicBatCard: 18,
+    relicGhostCard: 19,
+    relicFaerieCard: 20,
+    relicDemonCard: 21,
+    relicSwordCard: 22,
+    relicSpriteCard: 23,
+    relicNosedevilCard: 24,
+    relicHeartOfVlad: 25,
+    relicToothOfVlad: 26,
+    relicRibOfVlad: 27,
+    relicRingOfVlad: 28,
+    relicEyeOfVlad: 29,
+    itemSpikeBreaker: 311,
+    itemGoldRing: 369,
+    itemSilverRing: 370,
 }
 
-const locations = {
+const locationsInfo = {
     locationBatCard: {
         defaultValue: 'relicBatCard',
         validRewardTypes: [ 'relic', ],
@@ -1190,14 +1222,14 @@ export function shuffleRewards(seed) {
             attemptCounter: 0,
         },
     }
-    const locationNames = Object.keys(locations).toSorted()
+    const locationNames = Object.keys(locationsInfo).toSorted()
     let validInd = false
     while (!validInd) {
         result.debugInfo.attemptCounter += 1
         validInd = true
         result.locations = {}
         let rewardNames = []
-        Object.entries(locations)
+        Object.entries(locationsInfo)
             .forEach(([locationName, locationInfo]) => {
                 result.locations[locationName] = null
                 rewardNames.push(locationInfo.defaultValue)
@@ -1209,7 +1241,7 @@ export function shuffleRewards(seed) {
         })
         Object.entries(result.locations)
             .forEach(([locationName, rewardName]) => {
-                const locationInfo = locations[locationName]
+                const locationInfo = locationsInfo[locationName]
                 let validRewardType = false
                 locationInfo.validRewardTypes.forEach((rewardType) => {
                     if (rewardName.startsWith(rewardType)) {
@@ -1225,40 +1257,37 @@ export function shuffleRewards(seed) {
     return result
 }
 
-export function getRewardChanges(aliases, locations) {
-    const rewardData = {}
+export function getRewardChanges(locations) {
+    const rewardChanges = {}
     Object.entries(locations)
         .forEach(([locationName, rewardName]) => {
-            const aliasType = (rewardName.startsWith('relic')) ? 'relicIds' : 'itemDropIds'
-            const rewardId = aliases._values[aliasType][rewardName]
-            switch (locations[locationName].changeType) {
-                case 'breakableContainerDrop':
-                    // rewardData['stages.STAGENAME.constants.breakableContainerDrops.batCard='] = rewardId
-                    break
-                case 'directWrite':
-                    // TODO: rewardData['XXX='] = XXX
-                    break
-                case 'enemyDefinition':
-                    // TODO: rewardData['XXX='] = XXX
-                    break
-                case 'entityLayout':
-                    // rewardData['stages.STAGENAME.entities.horizontal.LOCATIONNAME.entityTypeId='] = entityTypeId
-                    // rewardData['stages.STAGENAME.entities.horizontal.LOCATIONNAME.params='] = params
-                    // rewardData['stages.STAGENAME.entities.vertical.LOCATIONNAME.entityTypeId='] = entityTypeId
-                    // rewardData['stages.STAGENAME.entities.vertical.LOCATIONNAME.params='] = params
-                    break
-                case 'shopPurchaseOption':
-                    // rewardData['stages.STAGENAME.constants.shopRelics.jewelOfOpen='] = rewardId
-                    break
-                case 'stageItemDrop':
-                    // rewardData['stages.STAGENAME.constants.uniqueItemDrops.DROPNAME='] = rewardId
-                    break
+            const properties = {
+                rewardId: rewardIds[rewardName],
             }
+            console.log('locationName:', locationName)
+            console.log('rewardName:', rewardName)
+            const rewardType = (rewardName.startsWith('item')) ? 'item' : 'relic'
+            locationsInfo[locationName].writes[rewardType]
+                .forEach((writeInfo) => {
+                    let writeValue = 0
+                    switch (writeInfo.value.type) {
+                        case 'property':
+                            writeValue = properties[writeInfo.value.property]
+                            break
+                        case 'constant':
+                            writeValue = writeInfo.value.constant
+                            break
+                    }
+                    writeInfo.keys
+                        .forEach((writeKey) => {
+                            rewardChanges[writeKey + '='] = writeValue
+                        })
+                })
         })
     const result = {
         changeType: 'merge',
         merge: {
-            rewardData,
+            rewardChanges,
         },
     }
     return result

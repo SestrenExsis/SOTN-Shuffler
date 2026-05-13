@@ -31,6 +31,7 @@ import {
 
 import {
     shuffleRewards,
+    getRewardChanges,
 } from './src/shuffle-rewards.js'
 
 // TODO(sestren): Generate a hash of options used to serve as a shorthand to help in quickly verifying if a set of options has changed
@@ -618,9 +619,9 @@ const argv = yargs(process.argv.slice(2))
                 },
             }
             const shuffledRewards = shuffleRewards(seed)
-            // const rewardChanges = getRewardChanges(shuffledRewards)
-            // shuffleData.changes.push(rewardChanges)
-            // fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))
+            const rewardChanges = getRewardChanges(shuffledRewards.locations)
+            shuffleData.changes.push(rewardChanges)
+            fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))
         }
     })
     .demandCommand(1)
