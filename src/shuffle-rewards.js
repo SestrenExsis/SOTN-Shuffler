@@ -435,64 +435,751 @@ const locations = {
     locationGravityBoots: {
         defaultValue: 'relicGravityBoots',
         validRewardTypes: [ 'relic', ],
+        writes: {
+            relic: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 11,
+                    },
+                    keys: [
+                        'stages.marbleGallery.entities.horizontal.locationGravityBoots.entityTypeId',
+                        'stages.marbleGallery.entities.vertical.locationGravityBoots.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.marbleGallery.entities.horizontal.locationGravityBoots.params',
+                        'stages.marbleGallery.entities.vertical.locationGravityBoots.params',
+                    ],
+                },
+            ],
+        },
     },
     locationHolySymbol: {
         defaultValue: 'relicHolySymbol',
         validRewardTypes: [ 'item', 'relic', ],
+        writes: {
+            item: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 12,
+                    },
+                    keys: [
+                        'stages.undergroundCaverns.entities.horizontal.locationHolySymbol.entityTypeId',
+                        'stages.undergroundCaverns.entities.vertical.locationHolySymbol.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 3,
+                    },
+                    keys: [
+                        'stages.undergroundCaverns.entities.horizontal.locationHolySymbol.params',
+                        'stages.undergroundCaverns.entities.vertical.locationHolySymbol.params',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        // NOTE(sestren): These item drop indices appear to be unused in the vanilla game
+                        'stages.undergroundCaverns.constants.uniqueItemDrops.dropUnusedItem1',
+                        'stages.bossScylla.constants.uniqueItemDrops.dropUnusedItem1',
+                    ],
+                },
+            ],
+            relic: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 11,
+                    },
+                    keys: [
+                        'stages.undergroundCaverns.entities.horizontal.locationHolySymbol.entityTypeId',
+                        'stages.undergroundCaverns.entities.vertical.locationHolySymbol.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.undergroundCaverns.entities.horizontal.locationHolySymbol.params',
+                        'stages.undergroundCaverns.entities.vertical.locationHolySymbol.params',
+                    ],
+                },
+            ],
+        },
     },
     locationLeapStone: {
-        defaultValue: 'relicHolySymbol',
+        defaultValue: 'relicLeapStone',
         validRewardTypes: [ 'relic', ],
+        writes: {
+            relic: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 11,
+                    },
+                    keys: [
+                        'stages.castleKeep.entities.horizontal.locationLeapStone.entityTypeId',
+                        'stages.castleKeep.entities.vertical.locationLeapStone.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.castleKeep.entities.horizontal.locationLeapStone.params',
+                        'stages.castleKeep.entities.vertical.locationLeapStone.params',
+                    ],
+                },
+            ],
+        },
     },
     locationMermanStatue: {
         defaultValue: 'relicMermanStatue',
         validRewardTypes: [ 'item', 'relic', ],
+        writes: {
+            item: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 12,
+                    },
+                    keys: [
+                        'stages.undergroundCaverns.entities.horizontal.locationMermanStatue.entityTypeId',
+                        'stages.undergroundCaverns.entities.vertical.locationMermanStatue.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 8,
+                    },
+                    keys: [
+                        'stages.undergroundCaverns.entities.horizontal.locationMermanStatue.params',
+                        'stages.undergroundCaverns.entities.vertical.locationMermanStatue.params',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        // NOTE(sestren): These item drop indices appear to be unused in the vanilla game
+                        'stages.undergroundCaverns.constants.uniqueItemDrops.dropUnusedItem2',
+                        'stages.bossScylla.constants.uniqueItemDrops.dropUnusedItem2',
+                    ],
+                },
+            ],
+            relic: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 11,
+                    },
+                    keys: [
+                        'stages.undergroundCaverns.entities.horizontal.locationMermanStatue.entityTypeId',
+                        'stages.undergroundCaverns.entities.vertical.locationMermanStatue.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.undergroundCaverns.entities.horizontal.locationMermanStatue.params',
+                        'stages.undergroundCaverns.entities.vertical.locationMermanStatue.params',
+                    ],
+                },
+            ],
+        },
     },
     locationPowerOfWolf: {
         defaultValue: 'relicPowerOfWolf',
         validRewardTypes: [ 'item', 'relic', ],
+        writes: {
+            item: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 12,
+                    },
+                    keys: [
+                        'stages.castleEntrance.entities.horizontal.locationPowerOfWolf.entityTypeId',
+                        'stages.castleEntrance.entities.vertical.locationPowerOfWolf.entityTypeId',
+                        'stages.castleEntranceRevisited.entities.horizontal.locationPowerOfWolf.entityTypeId',
+                        'stages.castleEntranceRevisited.entities.vertical.locationPowerOfWolf.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 3,
+                    },
+                    keys: [
+                        'stages.castleEntrance.entities.horizontal.locationPowerOfWolf.params',
+                        'stages.castleEntrance.entities.vertical.locationPowerOfWolf.params',
+                        'stages.castleEntranceRevisited.entities.horizontal.locationPowerOfWolf.params',
+                        'stages.castleEntranceRevisited.entities.vertical.locationPowerOfWolf.params',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        // NOTE(sestren): These item drop indices appear to be unused in the vanilla game
+                        'stages.castleEntrance.constants.uniqueItemDrops.dropUnusedItem',
+                        'stages.castleEntranceRevisited.constants.uniqueItemDrops.dropUnusedItem',
+                    ],
+                },
+            ],
+            relic: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 11,
+                    },
+                    keys: [
+                        'stages.castleEntrance.entities.horizontal.locationPowerOfWolf.entityTypeId',
+                        'stages.castleEntrance.entities.vertical.locationPowerOfWolf.entityTypeId',
+                        'stages.castleEntranceRevisited.entities.horizontal.locationPowerOfWolf.entityTypeId',
+                        'stages.castleEntranceRevisited.entities.vertical.locationPowerOfWolf.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.castleEntrance.entities.horizontal.locationPowerOfWolf.params',
+                        'stages.castleEntrance.entities.vertical.locationPowerOfWolf.params',
+                        'stages.castleEntranceRevisited.entities.horizontal.locationPowerOfWolf.params',
+                        'stages.castleEntranceRevisited.entities.vertical.locationPowerOfWolf.params',
+                    ],
+                },
+            ],
+        },
     },
     locationSkillOfWolf: {
         defaultValue: 'relicSkillOfWolf',
         validRewardTypes: [ 'relic', ],
         // TODO(sestren): Allow replacing with an item (dropUnusedItem1, dropUnusedItem2)
+        writes: {
+            relic: [
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.alchemyLaboratory.constants.breakableContainerDrops.skillOfWolf',
+                    ],
+                },
+            ],
+        },
     },
     locationSoulOfBat: {
         defaultValue: 'relicSoulOfBat',
         validRewardTypes: [ 'item', 'relic', ],
+        writes: {
+            item: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 12,
+                    },
+                    keys: [
+                        'stages.longLibrary.entities.horizontal.locationSoulOfBat.entityTypeId',
+                        'stages.longLibrary.entities.vertical.locationSoulOfBat.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 0,
+                    },
+                    keys: [
+                        'stages.longLibrary.entities.horizontal.locationSoulOfBat.params',
+                        'stages.longLibrary.entities.vertical.locationSoulOfBat.params',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        // NOTE(sestren): This item drop index appears to be unused in the vanilla game
+                        'stages.longLibrary.constants.uniqueItemDrops.unusedItemDrop1',
+                    ],
+                },
+            ],
+            relic: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 11,
+                    },
+                    keys: [
+                        'stages.longLibrary.entities.horizontal.locationSoulOfBat.entityTypeId',
+                        'stages.longLibrary.entities.vertical.locationSoulOfBat.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.longLibrary.entities.horizontal.locationSoulOfBat.params',
+                        'stages.longLibrary.entities.vertical.locationSoulOfBat.params',
+                    ],
+                },
+            ],
+        },
     },
     locationSoulOfWolf: {
         defaultValue: 'relicSoulOfWolf',
         validRewardTypes: [ 'item', 'relic', ],
+        writes: {
+            item: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 12,
+                    },
+                    keys: [
+                        'stages.outerWall.entities.horizontal.locationSoulOfWolf.entityTypeId',
+                        'stages.outerWall.entities.vertical.locationSoulOfWolf.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 7,
+                    },
+                    keys: [
+                        'stages.outerWall.entities.horizontal.locationSoulOfWolf.params',
+                        'stages.outerWall.entities.vertical.locationSoulOfWolf.params',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        // NOTE(sestren): This item drop index appears to be unused in the vanilla game
+                        'stages.outerWall.constants.uniqueItemDrops.unusedItemDrop',
+                    ],
+                },
+            ],
+            relic: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 11,
+                    },
+                    keys: [
+                        'stages.outerWall.entities.horizontal.locationSoulOfWolf.entityTypeId',
+                        'stages.outerWall.entities.vertical.locationSoulOfWolf.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.outerWall.entities.horizontal.locationSoulOfWolf.params',
+                        'stages.outerWall.entities.vertical.locationSoulOfWolf.params',
+                    ],
+                },
+            ],
+        },
     },
     locationSpiritOrb: {
         defaultValue: 'relicSpiritOrb',
         validRewardTypes: [ 'relic', ],
+        writes: {
+            relic: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 11,
+                    },
+                    keys: [
+                        'stages.marbleGallery.entities.horizontal.locationSpiritOrb.entityTypeId',
+                        'stages.marbleGallery.entities.vertical.locationSpiritOrb.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.marbleGallery.entities.horizontal.locationSpiritOrb.params',
+                        'stages.marbleGallery.entities.vertical.locationSpiritOrb.params',
+                    ],
+                },
+            ],
+        },
     },
     locationSwordCard: {
         defaultValue: 'relicSwordCard',
         validRewardTypes: [ 'item', 'relic', ],
+        writes: {
+            item: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 12,
+                    },
+                    keys: [
+                        'stages.olroxsQuarters.entities.horizontal.locationSwordCard.entityTypeId',
+                        'stages.olroxsQuarters.entities.vertical.locationSwordCard.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 2,
+                    },
+                    keys: [
+                        'stages.olroxsQuarters.entities.horizontal.locationSwordCard.params',
+                        'stages.olroxsQuarters.entities.vertical.locationSwordCard.params',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        // NOTE(sestren): This item drop index appears to be unused in the vanilla game
+                        'stages.olroxsQuarters.constants.uniqueItemDrops.unusedItemDrop2',
+                    ],
+                },
+            ],
+            relic: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 11,
+                    },
+                    keys: [
+                        'stages.olroxsQuarters.entities.horizontal.locationSwordCard.entityTypeId',
+                        'stages.olroxsQuarters.entities.vertical.locationSwordCard.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.olroxsQuarters.entities.horizontal.locationSwordCard.params',
+                        'stages.olroxsQuarters.entities.vertical.locationSwordCard.params',
+                    ],
+                },
+            ],
+        },
     },
     locationFaerieCard: {
         defaultValue: 'relicFaerieCard',
         validRewardTypes: [ 'item', 'relic', ],
+        writes: {
+            item: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 12,
+                    },
+                    keys: [
+                        'stages.longLibrary.entities.horizontal.locationFaerieCard.entityTypeId',
+                        'stages.longLibrary.entities.vertical.locationFaerieCard.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 3,
+                    },
+                    keys: [
+                        'stages.longLibrary.entities.horizontal.locationFaerieCard.params',
+                        'stages.longLibrary.entities.vertical.locationFaerieCard.params',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        // NOTE(sestren): This item drop index appears to be unused in the vanilla game
+                        'stages.longLibrary.constants.uniqueItemDrops.unusedItemDrop2',
+                    ],
+                },
+            ],
+            relic: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 11,
+                    },
+                    keys: [
+                        'stages.longLibrary.entities.horizontal.locationFaerieCard.entityTypeId',
+                        'stages.longLibrary.entities.vertical.locationFaerieCard.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.longLibrary.entities.horizontal.locationFaerieCard.params',
+                        'stages.longLibrary.entities.vertical.locationFaerieCard.params',
+                    ],
+                },
+            ],
+        },
     },
     locationFaerieScroll: {
         defaultValue: 'relicFaerieScroll',
         validRewardTypes: [ 'item', 'relic', ],
+        writes: {
+            item: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 12,
+                    },
+                    keys: [
+                        'stages.longLibrary.entities.horizontal.locationFaerieScroll.entityTypeId',
+                        'stages.longLibrary.entities.vertical.locationFaerieScroll.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 11,
+                    },
+                    keys: [
+                        'stages.longLibrary.entities.horizontal.locationFaerieScroll.params',
+                        'stages.longLibrary.entities.vertical.locationFaerieScroll.params',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        // NOTE(sestren): This item drop index appears to be unused in the vanilla game
+                        'stages.longLibrary.constants.uniqueItemDrops.unusedItemDrop3',
+                    ],
+                },
+            ],
+            relic: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 11,
+                    },
+                    keys: [
+                        'stages.longLibrary.entities.horizontal.locationFaerieScroll.entityTypeId',
+                        'stages.longLibrary.entities.vertical.locationFaerieScroll.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.longLibrary.entities.horizontal.locationFaerieScroll.params',
+                        'stages.longLibrary.entities.vertical.locationFaerieScroll.params',
+                    ],
+                },
+            ],
+        },
     },
     locationSpikeBreaker: {
         defaultValue: 'itemSpikeBreaker',
         validRewardTypes: [ 'item', 'relic', ],
+        writes: {
+            item: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 12,
+                    },
+                    keys: [
+                        'stages.catacombs.entities.horizontal.locationSpikeBreaker.entityTypeId',
+                        'stages.catacombs.entities.vertical.locationSpikeBreaker.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 16,
+                    },
+                    keys: [
+                        'stages.catacombs.entities.horizontal.locationSpikeBreaker.params',
+                        'stages.catacombs.entities.vertical.locationSpikeBreaker.params',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.catacombs.constants.uniqueItemDrops.dropSpikeBreaker',
+                    ],
+                },
+            ],
+            relic: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 11,
+                    },
+                    keys: [
+                        'stages.catacombs.entities.horizontal.locationSpikeBreaker.entityTypeId',
+                        'stages.catacombs.entities.vertical.locationSpikeBreaker.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.catacombs.entities.horizontal.locationSpikeBreaker.params',
+                        'stages.catacombs.entities.vertical.locationSpikeBreaker.params',
+                    ],
+                },
+            ],
+        },
     },
     locationSilverRing: {
         defaultValue: 'itemSilverRing',
         validRewardTypes: [ 'item', 'relic', ],
+        writes: {
+            item: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 12,
+                    },
+                    keys: [
+                        'stages.royalChapel.entities.horizontal.locationSilverRing.entityTypeId',
+                        'stages.royalChapel.entities.vertical.locationSilverRing.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 2,
+                    },
+                    keys: [
+                        'stages.royalChapel.entities.horizontal.locationSilverRing.params',
+                        'stages.royalChapel.entities.vertical.locationSilverRing.params',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.royalChapel.constants.uniqueItemDrops.dropSilverRing',
+                    ],
+                },
+            ],
+            relic: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 11,
+                    },
+                    keys: [
+                        'stages.royalChapel.entities.horizontal.locationSilverRing.entityTypeId',
+                        'stages.royalChapel.entities.vertical.locationSilverRing.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.royalChapel.entities.horizontal.locationSpikeBreaker.params',
+                        'stages.royalChapel.entities.vertical.locationSpikeBreaker.params',
+                    ],
+                },
+            ],
+        },
     },
     locationGoldRing: {
         defaultValue: 'itemGoldRing',
-        // TODO(sestren): Use direct writes to allow relics at this location
-        validRewardTypes: [ 'item', ],
+        validRewardTypes: [ 'item', 'relic', ],
+        writes: {
+            item: [
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.bossScylla.constants.uniqueItemDrops.dropGoldRing',
+                        'stages.undergroundCaverns.constants.uniqueItemDrops.dropGoldRing',
+                    ],
+                },
+            ],
+            relic: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 11,
+                    },
+                    keys: [
+                        'stages.undergroundCaverns.constants.spawnGoldRing.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.undergroundCaverns.constants.spawnGoldRing.params',
+                    ],
+                },
+            ],
+        },
     },
 }
 
