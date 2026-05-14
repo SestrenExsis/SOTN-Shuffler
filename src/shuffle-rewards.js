@@ -35,9 +35,9 @@ const rewardIds = {
     relicRibOfVlad: 27,
     relicRingOfVlad: 28,
     relicEyeOfVlad: 29,
-    itemSpikeBreaker: 311,
-    itemGoldRing: 369,
-    itemSilverRing: 370,
+    itemSpikeBreaker: 'itemSpikeBreaker',
+    itemGoldRing: 'itemGoldRing',
+    itemSilverRing: 'itemSilverRing',
 }
 
 const locationsInfo = {
@@ -70,8 +70,10 @@ const locationsInfo = {
                         constant: 11,
                     },
                     keys: [
-                        'stages.abandonedMine.entities.horizontal.locationCubeOfZoe.entityTypeId',
-                        'stages.abandonedMine.entities.vertical.locationCubeOfZoe.entityTypeId',
+                        'stages.castleEntrance.entities.horizontal.locationCubeOfZoe.entityTypeId',
+                        'stages.castleEntrance.entities.vertical.locationCubeOfZoe.entityTypeId',
+                        'stages.castleEntranceRevisited.entities.horizontal.locationCubeOfZoe.entityTypeId',
+                        'stages.castleEntranceRevisited.entities.vertical.locationCubeOfZoe.entityTypeId',
                     ],
                 },
                 {
@@ -80,8 +82,10 @@ const locationsInfo = {
                         property: 'rewardId',
                     },
                     keys: [
-                        'stages.abandonedMine.entities.horizontal.locationCubeOfZoe.params',
-                        'stages.abandonedMine.entities.vertical.locationCubeOfZoe.params',
+                        'stages.castleEntrance.entities.horizontal.locationCubeOfZoe.params',
+                        'stages.castleEntrance.entities.vertical.locationCubeOfZoe.params',
+                        'stages.castleEntranceRevisited.entities.horizontal.locationCubeOfZoe.params',
+                        'stages.castleEntranceRevisited.entities.vertical.locationCubeOfZoe.params',
                     ],
                 },
             ],
@@ -1264,8 +1268,6 @@ export function getRewardChanges(locations) {
             const properties = {
                 rewardId: rewardIds[rewardName],
             }
-            console.log('locationName:', locationName)
-            console.log('rewardName:', rewardName)
             const rewardType = (rewardName.startsWith('item')) ? 'item' : 'relic'
             locationsInfo[locationName].writes[rewardType]
                 .forEach((writeInfo) => {
@@ -1286,9 +1288,7 @@ export function getRewardChanges(locations) {
         })
     const result = {
         changeType: 'merge',
-        merge: {
-            rewardChanges,
-        },
+        merge: rewardChanges,
     }
     return result
 }

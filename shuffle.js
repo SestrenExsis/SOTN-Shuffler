@@ -73,7 +73,7 @@ const argv = yargs(process.argv.slice(2))
                 type: 'boolean',
             })
             .option('musicShuffler.seed', {
-                describe: 'If supplied, this seed is alway used for supplying randomness to the music shuffler',
+                describe: 'If supplied, this seed is always used for supplying randomness to the music shuffler',
                 type: 'string',
             })
         // Patcher options
@@ -86,6 +86,24 @@ const argv = yargs(process.argv.slice(2))
             .option('patcher.list', {
                 describe: 'A list of filepaths of patches to apply, in order',
                 type: 'array',
+            })
+        // Reward shuffler options
+            .option('rewardShuffler.on', {
+                describe: 'Whether or not to shuffle quest rewards (aka, items and relicss). If disabled, all other options in this category are ignored.',
+                type: 'boolean',
+            })
+            .option('rewardShuffler.seed', {
+                describe: 'If supplied, this seed is always used for supplying randomness to the reward shuffler',
+                type: 'string',
+            })
+        // Room shuffler options
+            .option('roomShuffler.on', {
+                describe: 'Whether or not to shuffle how rooms within a stage connect. If disabled, all other options in this category are ignored.',
+                type: 'boolean',
+            })
+            .option('roomShuffler.seed', {
+                describe: 'If supplied, this seed is always used for supplying randomness to the room shuffler',
+                type: 'string',
             })
         // Solver options
             .option('solver.on', {
@@ -101,22 +119,13 @@ const argv = yargs(process.argv.slice(2))
                 type: 'number',
                 default: 1000000,
             })
-        // Room shuffler options
-            .option('roomShuffler.on', {
-                describe: 'Whether or not to shuffle how rooms within a stage connect. If disabled, all other options in this category are ignored.',
-                type: 'boolean',
-            })
-            .option('roomShuffler.seed', {
-                describe: 'If supplied, this seed is alway used for supplying randomness to the room shuffler',
-                type: 'string',
-            })
         // Stage shuffler options
             .option('stageShuffler.on', {
                 describe: 'Whether or not to shuffle the connections between stages (aka, teleporters). If disabled, all other options in this category are ignored.',
                 type: 'boolean',
             })
             .option('stageShuffler.seed', {
-                describe: 'If supplied, this seed is alway used for supplying randomness to the stage shuffler',
+                describe: 'If supplied, this seed is always used for supplying randomness to the stage shuffler',
                 type: 'string',
             })
         // The following options must be declared
@@ -154,6 +163,9 @@ const argv = yargs(process.argv.slice(2))
             }
             if (argv.patcher?.on) {
                 shuffleData.settings.patcher = argv.patcher
+            }
+            if (argv.rewardShuffler?.on) {
+                shuffleData.settings.rewardShuffler = argv.rewardShuffler
             }
             if (argv.roomShuffler?.on) {
                 shuffleData.settings.roomShuffler = argv.roomShuffler
@@ -196,6 +208,7 @@ const argv = yargs(process.argv.slice(2))
             let changesToAdd = []
             let stageConnections = getVanillaStageLinks()
             let roomArrangements = {}
+            let questRewards = {}
             // Some modules (those that modify or depend on logic) must be run inside a loop because the solver must verify them
             let solvable = false
             while (!solvable) {
@@ -259,6 +272,13 @@ const argv = yargs(process.argv.slice(2))
                     const roomChanges = getRoomChanges(roomArrangements.rooms, MIN_MAP_ROW, 0)
                     changesToAdd.push(roomChanges)
                     shuffleData.debugInfo.finalSeedsUsed.roomShuffler = seed
+                }
+                if (argv.rewardShuffler?.on) {
+                    const seed = argv.rewardShuffler.seed ?? (seedName + '_rewardShuffler_' + shuffleData.debugInfo.solverAttemptCount)
+                    questRewards = shuffleRewards(seed)
+                    const rewardChanges = getRewardChanges(questRewards.locations)
+                    changesToAdd.push(rewardChanges)
+                    shuffleData.debugInfo.finalSeedsUsed.rewardShuffler = seed
                 }
                 if (argv.solver?.on) {
                     // NOTE(sestren): For now, the solver is only randomly accepting or rejecting; to be replaced with an actual solver at a later date
