@@ -1257,7 +1257,7 @@ export function shuffleRewards(seed) {
                 }
             })
     }
-    console.log(result)
+    // console.log(result)
     return result
 }
 

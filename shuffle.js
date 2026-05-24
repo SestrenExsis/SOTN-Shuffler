@@ -1,6 +1,9 @@
 import fs from 'fs'
-import seedrandom from 'seedrandom'
 import yargs from 'yargs'
+
+import {
+    analyzeLogic,
+} from './src/analyze-logic.js'
 
 import {
     arrangeStages,
@@ -209,9 +212,11 @@ const argv = yargs(process.argv.slice(2))
             let stageConnections = getVanillaStageLinks()
             let roomArrangements = {}
             let questRewards = {}
+            let logicAnalysis = {
+                solvable: false,
+            }
             // Some modules (those that modify or depend on logic) must be run inside a loop because the solver must verify them
-            let solvable = false
-            while (!solvable) {
+            while (!logicAnalysis.solvable) {
                 shuffleData.debugInfo.solverAttemptCount += 1
                 console.log('solverAttemptCount:', shuffleData.debugInfo.solverAttemptCount)
                 changesToAdd = []
@@ -281,18 +286,20 @@ const argv = yargs(process.argv.slice(2))
                     shuffleData.debugInfo.finalSeedsUsed.rewardShuffler = seed
                 }
                 if (argv.solver?.on) {
-                    // NOTE(sestren): For now, the solver is only randomly accepting or rejecting; to be replaced with an actual solver at a later date
                     shuffleData.debugInfo.solvable = false
                     const seed = argv.solver.seed ?? (seedName + '_solver_' + shuffleData.debugInfo.solverAttemptCount)
-                    const rng = seedrandom(seed)
-                    if ((10 * rng()) < shuffleData.debugInfo.solverAttemptCount) {
-                        solvable = true
-                        shuffleData.debugInfo.solvable = true
+                    const logicSettings = {
+                        solverAttemptCount: shuffleData.debugInfo.solverAttemptCount,
+                        locationRewards: questRewards.locations,
+                        stageLinks: stageConnections.links,
+                        roomPositions: roomArrangements.rooms,
                     }
+                    logicAnalysis = analyzeLogic(seed, logicSettings)
+                    shuffleData.debugInfo.solvable = logicAnalysis.solvable
                     shuffleData.debugInfo.finalSeedsUsed.solver = seed
                 }
                 else {
-                    solvable = true
+                    logicAnalysis.solvable = true
                 }
                 if (shuffleData.debugInfo.solverAttemptCount > argv.solver.maxAttempts)  {
                     console.log('Took too many attempts to solve, abandoning ...')
@@ -430,7 +437,12 @@ const argv = yargs(process.argv.slice(2))
                     }
                 })
             const stageArrangements = arrangeStages(seedName + '_stageArranger', stageNodeGroups)
-            console.log(stageArrangements)
+            console.log('shuffledStages.links', shuffledStages.links)
+            console.log('stageArrangements.rooms[castleEntrance]:', stageArrangements.rooms
+                .filter((roomInfo) => {
+                    return roomInfo.stage === 'castleEntrance'
+                })
+            )
             const teleporterChanges = getTeleporterChanges(extraction, shuffledStages.links)
             // TODO(sestren): Populate changes
             // changesToAdd.push(teleporterChanges)
