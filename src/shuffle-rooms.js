@@ -3078,19 +3078,19 @@ export const nodeGroups = {
             edges: {
                 topLeft: {
                     roomName: 'passagewayBetweenArenaAndRoyalChapel',
-                    collision: '######....######',
+                    collision: '###........#####',
                     row: 0.0,
                     column: 5.5,
                 },
                 topRight: {
-                    roomName: 'bottomOfElevatorShaft',
-                    collision: '######....######',
+                    roomName: 'topOfElevatorShaft',
+                    collision: '#####........###',
                     row: 0.0,
                     column: 10.5,
                 },
                 bottom: {
                     roomName: 'passagewayBetweenArenaAndRoyalChapel',
-                    collision: '######....######',
+                    collision: '####........####',
                     row: 1.0,
                     column: 3.5,
                 },
@@ -3316,7 +3316,7 @@ export const nodeGroups = {
             edges: {
                 top: {
                     roomName: 'spiralStaircases',
-                    collision: '######....######',
+                    collision: '####........####',
                     row: 0.0,
                     column: 0.5,
                 },
@@ -3367,7 +3367,7 @@ export const nodeGroups = {
                 },
                 bottom: {
                     roomName: 'topOfLeftSpiralStaircase',
-                    collision: '######....######',
+                    collision: '###........#####',
                     row: 1.0,
                     column: 0.5,
                 },
@@ -3394,7 +3394,7 @@ export const nodeGroups = {
                 },
                 bottom: {
                     roomName: 'topOfRightSpiralStaircase',
-                    collision: '######....######',
+                    collision: '#####........###',
                     row: 1.0,
                     column: 0.5,
                 },
@@ -5620,7 +5620,7 @@ export const nodeGroups = {
             edges: {
                 left: {
                     roomName: 'confessionalBooth',
-                    collision: '######....######',
+                    collision: '######ssss######',
                     row: 0.5,
                     column: 0.0,
                 },
@@ -5736,8 +5736,8 @@ export const nodeGroups = {
                 },
                 rightLower: {
                     roomName: 'leftTower',
-                    collision: '######....######',
-                    row: 8.5,
+                    collision: '######ssss######',
+                    row: 9.5,
                     column: 3.0,
                 },
             },
@@ -5905,7 +5905,7 @@ export const nodeGroups = {
                     roomName: 'exitToCastleEntrance',
                     collision: '######....######',
                     row: 1.0,
-                    column: 1.5,
+                    column: 3.5,
                 },
             },
         },
