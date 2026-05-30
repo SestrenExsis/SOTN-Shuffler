@@ -4,11 +4,13 @@ import {
     shuffleArray
 } from './common.js'
 
-function getRequirement(requirementName, section, time) {
+function getMovement(requirementName, section, time) {
     const result = {
         section: section,
         outcome: {
-            time: time,
+            time: {
+                add: time,
+            },
         },
     }
     switch (requirementName) {
@@ -90,6 +92,27 @@ function getRequirement(requirementName, section, time) {
         default:
             result.outcome.movement = 'walk'
             break
+    }
+    return result
+}
+
+function getRegion(section, left, top, width, height) {
+    const result = {
+        requirements: [
+            {
+                positionX: {
+                    minimum: left,
+                    maximum: left + width - 1,
+                },
+                positionY: {
+                    minimum: top,
+                    maximum: top + height - 1,
+                },
+            }
+        ],
+        outcome: {
+            section: section,
+        },
     }
     return result
 }
@@ -1088,54 +1111,36 @@ const roomsInfo = {
                 height: 768,
             },
             regions: [
-                {
-                    region: {
-                        left: 112,
-                        top: 688,
-                        width: 32,
-                        height: 64,
-                    },
-                    outcome: {
-                        section: 'beneathTrapdoor',
-                    },
-                },
-                {
-                    region: {
-                        left: 96,
-                        top: 608,
-                        width: 416,
-                        height: 64,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
-                {
-                    region: {
-                        left: 192,
-                        top: 112,
-                        width: 192,
-                        height: 96,
-                    },
-                    outcome: {
-                        section: 'parapet',
-                    },
-                },
+                getRegion('beneathTrapdoor', 112, 688, 32, 64),
+                getRegion('main', 96, 608, 416, 64),
+                getRegion('parapet', 192, 112, 192, 96),
             ],
             commands: {
                 exitRight: {
                     outcome: {
-                        positionX: 512 + 8,
-                        positionY: 640,
+                        positionX: {
+                            operation: 'replace',
+                            value: 512 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 640,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -4.999),
+                        getMovement('basic', 'main', -4.999),
                     ],
                 },
                 exitRightWithReverseShiftLine: {
                     outcome: {
-                        positionX: 512 + 256 - 8,
-                        positionY: 640,
+                        positionX: {
+                            operation: 'replace',
+                            value: 512 + 256 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 640,
+                        },
                     },
                     requirements: [
                         { // Reverse Shift Line using Heart Refresh
@@ -1167,39 +1172,62 @@ const roomsInfo = {
                 },
                 exitBottom: {
                     outcome: {
-                        positionX: 128,
-                        positionY: 768 + 24,
+                        positionX: {
+                            operation: 'replace',
+                            value: 128,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 768 + 24,
+                        },
                     },
                     requirements: [
-                        getRequirement('fall', 'beneathTrapdoor', -1.999),
+                        getMovement('fall', 'beneathTrapdoor', -1.999),
                     ],
                 },
                 fromBeneathTrapdoorToMain: {
                     outcome: {
-                        positionX: 160,
-                        positionY: 640,
+                        positionX: {
+                            operation: 'replace',
+                            value: 160,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 640,
+                        },
                         // section: 'main',
-                        statusDoubleJumpUsed: false, // Reset double jump after landing
                     },
                     requirements: [
-                        getRequirement('doubleJumpAndLand', 'beneathTrapdoor', -0.7),
+                        getMovement('doubleJumpAndLand', 'beneathTrapdoor', -0.7),
                     ],
                 },
-                fromMainToParapet: {
+                toParapet: {
                     outcome: {
-                        positionX: 288,
-                        positionY: 160,
+                        positionX: {
+                            operation: 'replace',
+                            value: 288,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 160,
+                        },
                         // section: 'parapet',
                     },
                     requirements: [
-                        getRequirement('batFormVertical', 'main', -7.5),
-                        getRequirement('poweredMistForm', 'main', -10.5),
+                        getMovement('batFormVertical', 'main', -7.5),
+                        getMovement('poweredMistForm', 'main', -10.5),
                     ],
                 },
-                fromMainToBeneathTrapdoor: {
+                toBeneathTrapdoor: {
                     outcome: {
-                        positionX: 128,
-                        positionY: 720,
+                        positionX: {
+                            operation: 'replace',
+                            value: 128,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 720,
+                        },
                         // section: 'beneathTrapdoor',
                     },
                     requirements: [
@@ -1215,12 +1243,18 @@ const roomsInfo = {
                 },
                 fromParapetToMain: {
                     outcome: {
-                        positionX: 304,
-                        positionY: 640,
+                        positionX: {
+                            operation: 'replace',
+                            value: 304,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 640,
+                        },
                         // section: 'main',
                     },
                     requirements: [
-                        getRequirement('fall', 'parapet', -1.7),
+                        getMovement('fall', 'parapet', -1.7),
                     ],
                 },
             },
@@ -1232,67 +1266,71 @@ const roomsInfo = {
                 height: 512,
             },
             regions: [
-                {
-                    region: {
-                        left: 112,
-                        top: 16,
-                        width: 32,
-                        height: 48,
-                    },
-                    outcome: {
-                        section: 'top',
-                    },
-                },
-                {
-                    region: {
-                        left: 208,
-                        top: 352,
-                        width: 48,
-                        height: 64,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('top', 112, 16, 32, 48),
+                getRegion('main', 208, 352, 48, 64),
             ],
             commands: {
                 exitTop: {
                     outcome: {
-                        positionX: 128,
-                        positionY: 0 - 56,
+                        positionX: {
+                            operation: 'replace',
+                            value: 128,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 0 - 56,
+                        },
                         statusDoubleJumpUsed: false,
                     },
                     requirements: [
-                        getRequirement('jump', 'upperLedge', -0.7),
+                        getMovement('jump', 'upperLedge', -0.7),
                     ],
                 },
                 exitRight: {
                     outcome: {
-                        positionX: 256 + 8,
-                        positionY: 384,
+                        positionX: {
+                            operation: 'replace',
+                            value: 256 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 384,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 toMain: {
                     outcome: {
-                        positionX: 240,
-                        positionY: 384,
+                        positionX: {
+                            operation: 'replace',
+                            value: 240,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 384,
+                        },
                         // section: 'main',
                     },
                     requirements: [
-                        getRequirement('fall', 'upperLedge', -1.999),
+                        getMovement('fall', 'upperLedge', -1.999),
                     ],
                 },
                 toUpperLedge: {
                     outcome: {
-                        positionX: 128,
-                        positionY: 32,
+                        positionX: {
+                            operation: 'replace',
+                            value: 128,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 32,
+                        },
                         // section: 'upperLedge',
                     },
                     requirements: [
-                        getRequirement('doubleJumpAndLand', 'beneathTrapdoor', -1.999),
+                        getMovement('doubleJumpAndLand', 'beneathTrapdoor', -1.999),
                     ],
                 },
             },
@@ -1304,35 +1342,37 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                { // NOTE(sestren): This region has been intentionally over-simplified as a shortcut
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 1792,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 1792, 256),
             ],
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitRight: {
                     outcome: {
-                        positionX: 1792 + 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 1792 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
             },
@@ -1344,52 +1384,44 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    region: {
-                        left: 48,
-                        top: 48,
-                        width: 64,
-                        height: 48,
-                    },
-                    outcome: {
-                        section: 'ledge',
-                    },
-                },
-                {
-                    region: {
-                        left: 48,
-                        top: 96,
-                        width: 208,
-                        height: 112,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('ledge', 48, 48, 64, 48),
+                getRegion('main', 48, 96, 208, 112),
             ],
             commands: {
                 exitRight: {
                     outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 256 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 toLedge: {
                     outcome: {
-                        positionX: 80,
-                        positionY: 72,
+                        positionX: {
+                            operation: 'replace',
+                            value: 80,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 72,
+                        },
                         // section: 'ledge',
                     },
                     requirements: [
-                        getRequirement('bladeDash', 'main', -1.999),
-                        getRequirement('risingUppercut', 'main', -1.999),
-                        getRequirement('doubleJump', 'main', -1.999),
-                        getRequirement('batFormDiagonal', 'main', -1.999),
-                        getRequirement('poweredMist', 'main', -1.999),
-                        getRequirement('wolfMistRise', 'main', -1.999),
+                        getMovement('bladeDash', 'main', -1.999),
+                        getMovement('risingUppercut', 'main', -1.999),
+                        getMovement('doubleJump', 'main', -1.999),
+                        getMovement('batFormDiagonal', 'main', -1.999),
+                        getMovement('poweredMist', 'main', -1.999),
+                        getMovement('wolfMistRise', 'main', -1.999),
                         { // Precise Corner Mist
                             section: 'main',
                             progressionMistTransformation: true,
@@ -1403,12 +1435,18 @@ const roomsInfo = {
                 },
                 toMain: {
                     outcome: {
-                        positionX: 232,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 232,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                         // section: 'main',
                     },
                     requirements: [
-                        getRequirement('fall', 'ledge', -1.999),
+                        getMovement('fall', 'ledge', -1.999),
                     ],
                 },
             },
@@ -1420,44 +1458,52 @@ const roomsInfo = {
                 height: 512,
             },
             regions: [
-                { // NOTE(sestren): This region has been intentionally over-simplified as a shortcut
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 256,
-                        height: 512,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 256, 512),
             ],
             commands: {
                 exitLeftUpper: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitLeftLower: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 384,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 384,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitRight: {
                     outcome: {
-                        positionX: 256 + 8,
-                        positionY: 384,
+                        positionX: {
+                            operation: 'replace',
+                            value: 256 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 384,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
             },
@@ -1469,35 +1515,37 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                { // NOTE(sestren): This region has been intentionally over-simplified as a shortcut
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 1024,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 1024, 256),
             ],
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitRight: {
                     outcome: {
-                        positionX: 1024 + 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 1024 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
             },
@@ -1509,36 +1557,38 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                { // NOTE(sestren): This region has been intentionally over-simplified as a shortcut
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 256,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 256, 256),
             ],
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: -8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: -8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitBottom: {
                     outcome: {
-                        positionX: 128,
-                        positionY: 256 + 8,
+                        positionX: {
+                            operation: 'replace',
+                            value: 128,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 256 + 8,
+                        },
                         // statusTookLogicalRisk: true,
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
             },
@@ -1550,94 +1600,100 @@ const roomsInfo = {
                 height: 512,
             },
             regions: [
-                {
-                    region: {
-                        left: 96,
-                        top: 16,
-                        width: 32,
-                        height: 32,
-                    },
-                    outcome: {
-                        section: 'holeInCeiling',
-                    },
-                },
-                {
-                    region: {
-                        left: 0,
-                        top: 352,
-                        width: 16,
-                        height: 64,
-                    },
-                    outcome: {
-                        section: 'secretPassage',
-                    },
-                },
-                {
-                    region: {
-                        left: 0,
-                        top: 48,
-                        width: 768,
-                        height: 368,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('holeInCeiling', 96, 16, 32, 32),
+                getRegion('secretPassage', 0, 352, 16, 64),
+                getRegion('main', 0, 48, 768, 368),
             ],
             commands: {
                 exitTop: {
                     outcome: {
-                        positionX: 128,
-                        positionY: 0 - 56,
+                        positionX: {
+                            operation: 'replace',
+                            value: 128,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 0 - 56,
+                        },
                     },
                     requirements: [
-                        getRequirement('doubleJump', 'holeInCeiling', -1.999),
-                        getRequirement('batFormVertical', 'holeInCeiling', -1.999),
-                        getRequirement('risingUppercut', 'holeInCeiling', -1.999),
-                        getRequirement('poweredMistForm', 'holeInCeiling', -1.999),
-                        getRequirement('wolfMistRise', 'holeInCeiling', -1.999),
+                        getMovement('doubleJump', 'holeInCeiling', -1.999),
+                        getMovement('batFormVertical', 'holeInCeiling', -1.999),
+                        getMovement('risingUppercut', 'holeInCeiling', -1.999),
+                        getMovement('poweredMistForm', 'holeInCeiling', -1.999),
+                        getMovement('wolfMistRise', 'holeInCeiling', -1.999),
                     ],
                 },
                 exitRightUpper: {
                     outcome: {
-                        positionX: 768 + 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 768 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitRightLower: {
                     outcome: {
-                        positionX: 768 + 8,
-                        positionY: 384,
+                        positionX: {
+                            operation: 'replace',
+                            value: 768 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 384,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitLeftUpper: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitLeftLower: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 384,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 384,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'secretPassage', -1.999),
+                        getMovement('basic', 'secretPassage', -1.999),
                     ],
                 },
                 fromMainToSecretPassage: {
                     outcome: {
-                        positionX: 8,
-                        positionY: 384,
+                        positionX: {
+                            operation: 'replace',
+                            value: 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 384,
+                        },
                         // section: 'secretPassage',
                     },
                     requirements: [
@@ -1655,8 +1711,14 @@ const roomsInfo = {
                 },
                 fromSecretPassageToMain: {
                     outcome: {
-                        positionX: 64,
-                        positionY: 384,
+                        positionX: {
+                            operation: 'replace',
+                            value: 64,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 384,
+                        },
                         // section: 'main',
                     },
                     requirements: [
@@ -1672,14 +1734,20 @@ const roomsInfo = {
                 },
                 fromMainToHoleInCeiling: {
                     outcome: {
-                        positionX: 112,
-                        positionY: 176,
+                        positionX: {
+                            operation: 'replace',
+                            value: 112,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 176,
+                        },
                         // section: 'holeInCeiling',
                     },
                     requirements: [
-                        getRequirement('batFormVertical', 'main', -1.999),
-                        getRequirement('poweredMist', 'main', -1.999),
-                        getRequirement('wolfMistRiseLong', 'main', -1.999),
+                        getMovement('batFormVertical', 'main', -1.999),
+                        getMovement('poweredMist', 'main', -1.999),
+                        getMovement('wolfMistRiseLong', 'main', -1.999),
                         { // Dive Kicking off of the Bats
                             section: 'main',
                             progressionDoubleJump: true,
@@ -1695,12 +1763,18 @@ const roomsInfo = {
                 },
                 fromHoleInCeilingToMain: {
                     outcome: {
-                        positionX: 112,
-                        positionY: 176,
+                        positionX: {
+                            operation: 'replace',
+                            value: 112,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 176,
+                        },
                         // section: 'main',
                     },
                     requirements: [
-                        getRequirement('fall', 'holeInCeiling', -1.999),
+                        getMovement('fall', 'holeInCeiling', -1.999),
                     ],
                 },
             },
@@ -1712,26 +1786,22 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    region: {
-                        left: 32,
-                        top: 64,
-                        width: 224,
-                        height: 160,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 32, 64, 224, 160),
             ],
             commands: {
                 exitRight: {
                     outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 256 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
             },
@@ -1743,35 +1813,37 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    region: {
-                        left: 0,
-                        top: 48,
-                        width: 1536,
-                        height: 176,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 48, 1536, 176),
             ],
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitRight: {
                     outcome: {
-                        positionX: 1536 + 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 1536 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
             },
@@ -1783,52 +1855,50 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    region: {
-                        left: 0,
-                        top: 48,
-                        width: 96,
-                        height: 64,
-                    },
-                    outcome: {
-                        section: 'leftSide',
-                    },
-                },
-                {
-                    region: {
-                        left: 112,
-                        top: 64,
-                        width: 144,
-                        height: 144,
-                    },
-                    outcome: {
-                        section: 'rightSide',
-                    },
-                },
+                getRegion('leftSide', 0, 48, 96, 64),
+                getRegion('rightSide', 112, 64, 144, 144),
             ],
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'leftSide', -1.999),
+                        getMovement('basic', 'leftSide', -1.999),
                     ],
                 },
                 exitRight: {
                     outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 256 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'rightSide', -1.999),
+                        getMovement('basic', 'rightSide', -1.999),
                     ],
                 },
                 toRightSide: {
                     outcome: {
-                        positionX: 80,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 80,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                         // section: 'rightSide',
                     },
                     requirements: [
@@ -1844,8 +1914,14 @@ const roomsInfo = {
                 },
                 toLeftSide: {
                     outcome: {
-                        positionX: 224,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 224,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                         statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
                         // section: 'leftSide',
                     },
@@ -1868,120 +1944,132 @@ const roomsInfo = {
                 height: 512,
             },
             regions: [
-                {
-                    region: {
-                        left: 32,
-                        top: 16,
-                        width: 192,
-                        height: 64,
-                    },
-                    outcome: {
-                        section: 'highInTheAir',
-                    },
-                },
-                {
-                    region: {
-                        left: 0,
-                        top: 96,
-                        width: 64,
-                        height: 64,
-                    },
-                    outcome: {
-                        section: 'upperLeftLedge',
-                    },
-                },
-                {
-                    region: {
-                        left: 0,
-                        top: 352,
-                        width: 256,
-                        height: 128,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('highInTheAir', 32, 16, 192, 64),
+                getRegion('upperLeftLedge', 0, 96, 64, 64),
+                getRegion('main', 0, 352, 256, 128),
             ],
             commands: {
                 exitTop: {
                     outcome: {
-                        positionX: 128,
-                        positionY: 0 - 56,
+                        positionX: {
+                            operation: 'replace',
+                            value: 128,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 0 - 56,
+                        },
                     },
                     requirements: [
-                        getRequirement('doubleJump', 'highIntheAir', -1.999),
-                        getRequirement('batFormVertical', 'highIntheAir', -1.999),
-                        getRequirement('risingUppercut', 'highIntheAir', -1.999),
-                        getRequirement('poweredMistForm', 'highIntheAir', -1.999),
-                        getRequirement('wolfMistRise', 'highIntheAir', -1.999),
+                        getMovement('doubleJump', 'highIntheAir', -1.999),
+                        getMovement('batFormVertical', 'highIntheAir', -1.999),
+                        getMovement('risingUppercut', 'highIntheAir', -1.999),
+                        getMovement('poweredMistForm', 'highIntheAir', -1.999),
+                        getMovement('wolfMistRise', 'highIntheAir', -1.999),
                     ],
                 },
                 exitLeftUpper: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'upperLeftLedge', -1.999),
+                        getMovement('basic', 'upperLeftLedge', -1.999),
                     ],
                 },
                 exitLeftLower: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 384,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 384,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitRight: {
                     outcome: {
-                        positionX: 256 + 8,
-                        positionY: 384,
+                        positionX: {
+                            operation: 'replace',
+                            value: 256 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 384,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 toHighInTheAir: {
                     outcome: {
-                        positionX: 128,
-                        positionY: 48,
+                        positionX: {
+                            operation: 'replace',
+                            value: 128,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 48,
+                        },
                     },
                     requirements: [
-                        getRequirement('batFormVertical', 'main', -1.999),
-                        getRequirement('chainedRisingUppercuts', 'main', -1.999),
-                        getRequirement('multipleGravityJumps', 'main', -1.999),
-                        getRequirement('poweredMistForm', 'main', -1.999),
-                        getRequirement('wolfMistRiseVeryLong', 'main', -1.999),
-                        getRequirement('batFormVertical', 'upperLeftLedge', -1.999),
-                        getRequirement('chainedRisingUppercuts', 'upperLeftLedge', -1.999),
-                        getRequirement('multipleGravityJumps', 'upperLeftLedge', -1.999),
-                        getRequirement('poweredMistForm', 'upperLeftLedge', -1.999),
-                        getRequirement('wolfMistRiseLong', 'upperLeftLedge', -1.999),
+                        getMovement('batFormVertical', 'main', -1.999),
+                        getMovement('chainedRisingUppercuts', 'main', -1.999),
+                        getMovement('multipleGravityJumps', 'main', -1.999),
+                        getMovement('poweredMistForm', 'main', -1.999),
+                        getMovement('wolfMistRiseVeryLong', 'main', -1.999),
+                        getMovement('batFormVertical', 'upperLeftLedge', -1.999),
+                        getMovement('chainedRisingUppercuts', 'upperLeftLedge', -1.999),
+                        getMovement('multipleGravityJumps', 'upperLeftLedge', -1.999),
+                        getMovement('poweredMistForm', 'upperLeftLedge', -1.999),
+                        getMovement('wolfMistRiseLong', 'upperLeftLedge', -1.999),
                     ],
                 },
                 toMain: {
                     outcome: {
-                        positionX: 128,
-                        positionY: 448,
+                        positionX: {
+                            operation: 'replace',
+                            value: 128,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 448,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'upperLeftLedge', -1.999),
-                        getRequirement('basic', 'highInTheAir', -1.999),
+                        getMovement('basic', 'upperLeftLedge', -1.999),
+                        getMovement('basic', 'highInTheAir', -1.999),
                     ],
                 },
                 toUpperLeftLedge: {
                     outcome: {
-                        positionX: 32,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 32,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('fall', 'highInTheAir', -1.999),
-                        getRequirement('batFormVertical', 'main', -1.999),
-                        getRequirement('chainedRisingUppercuts', 'main', -1.999),
-                        getRequirement('poweredMistForm', 'main', -1.999),
-                        getRequirement('wolfMistRiseLong', 'main', -1.999),
+                        getMovement('fall', 'highInTheAir', -1.999),
+                        getMovement('batFormVertical', 'main', -1.999),
+                        getMovement('chainedRisingUppercuts', 'main', -1.999),
+                        getMovement('poweredMistForm', 'main', -1.999),
+                        getMovement('wolfMistRiseLong', 'main', -1.999),
                     ],
                 },
             },
@@ -1993,35 +2081,37 @@ const roomsInfo = {
                 height: 768,
             },
             regions: [
-                { // NOTE(sestren): This region has been intentionally over-simplified as a shortcut
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 256,
-                        height: 768,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 256, 768),
             ],
             commands: {
                 exitLeftUpper: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitLeftLower: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 640,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 640,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
             },
@@ -2033,66 +2123,86 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    region: {
-                        left: 0,
-                        top: 96,
-                        width: 256,
-                        height: 64,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 96, 256, 64),
             ],
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitRight: {
                     outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 256 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitBottom: {
                     outcome: {
-                        positionX: 128,
-                        positionY: 256 + 24,
+                        positionX: {
+                            operation: 'replace',
+                            value: 128,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 256 + 24,
+                        },
                     },
                     requirements: [
-                        getRequirement('fall', 'pit', -1.999),
+                        getMovement('fall', 'pit', -1.999),
                     ],
                 },
                 toPit: {
                     outcome: {
-                        positionX: 128,
-                        positionY: 224,
+                        positionX: {
+                            operation: 'replace',
+                            value: 128,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 224,
+                        },
                     },
                     requirements: [
-                        getRequirement('fall', 'main', -1.999),
+                        getMovement('fall', 'main', -1.999),
                     ],
                 },
                 toMain: {
                     outcome: {
-                        positionX: 128,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 128,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('batFormVertical', 'pit', -1.999),
-                        getRequirement('chainedRisingUppercuts', 'pit', -1.999),
-                        getRequirement('multipleGravityJumps', 'pit', -1.999),
-                        getRequirement('poweredMistForm', 'pit', -1.999),
-                        getRequirement('wolfMistRise', 'pit', -1.999),
+                        getMovement('batFormVertical', 'pit', -1.999),
+                        getMovement('chainedRisingUppercuts', 'pit', -1.999),
+                        getMovement('multipleGravityJumps', 'pit', -1.999),
+                        getMovement('poweredMistForm', 'pit', -1.999),
+                        getMovement('wolfMistRise', 'pit', -1.999),
                     ],
                 },
             },
@@ -2104,26 +2214,22 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                { // NOTE(sestren): This region has been intentionally over-simplified as a shortcut
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 256,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 256, 256),
             ],
             commands: {
                 exitRight: {
                     outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 256 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
             },
@@ -2135,118 +2241,120 @@ const roomsInfo = {
                 height: 768,
             },
             regions: [
-                { // NOTE(sestren): This region has been intentionally over-simplified as a shortcut
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 304,
-                        height: 672,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
-                { // NOTE(sestren): This region has been intentionally over-simplified as a shortcut
-                    region: {
-                        left: 304,
-                        top: 544,
-                        width: 208,
-                        height: 144,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
-                {
-                    region: {
-                        left: 432,
-                        top: 96,
-                        width: 80,
-                        height: 64,
-                    },
-                    outcome: {
-                        section: 'upperRightLedge',
-                    },
-                },
-                {
-                    region: {
-                        left: 464,
-                        top: 352,
-                        width: 48,
-                        height: 64,
-                    },
-                    outcome: {
-                        section: 'middleRightLedge',
-                    },
-                },
+                getRegion('main', 0, 0, 304, 672),
+                getRegion('main', 304, 544, 208, 144),
+                getRegion('upperRightLedge', 432, 96, 80, 64),
+                getRegion('middleRightLedge', 464, 352, 48, 64),
             ],
             commands: {
                 exitLeftUpper: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitRightUpper: {
                     outcome: {
-                        positionX: 512 + 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 512 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'upperRightLedge', -1.999),
+                        getMovement('basic', 'upperRightLedge', -1.999),
                     ],
                 },
                 exitLeftMiddle: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 384,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 384,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitRightMiddle: {
                     outcome: {
-                        positionX: 512 + 8,
-                        positionY: 384,
+                        positionX: {
+                            operation: 'replace',
+                            value: 512 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 384,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'middleRightLedge', -1.999),
+                        getMovement('basic', 'middleRightLedge', -1.999),
                     ],
                 },
                 exitLeftLower: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 640,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 640,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitRightLower: {
                     outcome: {
-                        positionX: 512 + 8,
-                        positionY: 640,
+                        positionX: {
+                            operation: 'replace',
+                            value: 512 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 640,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 toUpperRightLedge: {
                     outcome: {
-                        positionX: 480,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 480,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                         // section: 'upperRightLedge',
                     },
                     requirements: [
-                        getRequirement('chainedRisingUppercuts', 'main', -1.999),
-                        getRequirement('batFormVertical', 'main', -1.999),
-                        getRequirement('poweredMist', 'main', -1.999),
-                        getRequirement('multipleGravityJumps', 'main', -1.999),
-                        getRequirement('wolfMistRise', 'main', -1.999),
+                        getMovement('chainedRisingUppercuts', 'main', -1.999),
+                        getMovement('batFormVertical', 'main', -1.999),
+                        getMovement('poweredMist', 'main', -1.999),
+                        getMovement('multipleGravityJumps', 'main', -1.999),
+                        getMovement('wolfMistRise', 'main', -1.999),
                         { // Main - Using Shortcut
                             section: 'main',
                             outcome: {
@@ -2259,16 +2367,22 @@ const roomsInfo = {
                 },
                 toMiddleRightLedge: {
                     outcome: {
-                        positionX: 488,
-                        positionY: 384,
+                        positionX: {
+                            operation: 'replace',
+                            value: 488,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 384,
+                        },
                         // section: 'middleRightLedge',
                     },
                     requirements: [
-                        getRequirement('risingUppercut', 'main', -1.999),
-                        getRequirement('batFormVertical', 'main', -1.999),
-                        getRequirement('poweredMist', 'main', -1.999),
-                        getRequirement('gravityJump', 'main', -1.999),
-                        getRequirement('wolfMistRise', 'main', -1.999),
+                        getMovement('risingUppercut', 'main', -1.999),
+                        getMovement('batFormVertical', 'main', -1.999),
+                        getMovement('poweredMist', 'main', -1.999),
+                        getMovement('gravityJump', 'main', -1.999),
+                        getMovement('wolfMistRise', 'main', -1.999),
                         { // Main - Candle Dive Kick (Forgiving)
                             section: 'main',
                             progressionDoubleJump: true,
@@ -2291,13 +2405,19 @@ const roomsInfo = {
                 },
                 toMain: {
                     outcome: {
-                        positionX: 480,
-                        positionY: 640,
+                        positionX: {
+                            operation: 'replace',
+                            value: 480,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 640,
+                        },
                         // section: 'main',
                     },
                     requirements: [
-                        getRequirement('fall', 'upperRightLedge', -1.999),
-                        getRequirement('fall', 'middleRightLedge', -1.999),
+                        getMovement('fall', 'upperRightLedge', -1.999),
+                        getMovement('fall', 'middleRightLedge', -1.999),
                     ],
                 },
                 actionOpenShortcut: {
@@ -2324,52 +2444,50 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                { // NOTE(sestren): This region has been intentionally over-simplified as a shortcut
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 128,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'leftSide',
-                    },
-                },
-                { // NOTE(sestren): This region has been intentionally over-simplified as a shortcut
-                    region: {
-                        left: 144,
-                        top: 0,
-                        width: 112,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'rightSide',
-                    },
-                },
+                getRegion('leftSide', 0, 0, 128, 256),
+                getRegion('rightSide', 144, 0, 112, 256),
             ],
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('leftSide', 'main', -1.999),
+                        getMovement('leftSide', 'main', -1.999),
                     ],
                 },
                 exitRight: {
                     outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 256 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('rightSide', 'main', -1.999),
+                        getMovement('rightSide', 'main', -1.999),
                     ],
                 },
                 toRightSide: {
                     outcome: {
-                        positionX: 80,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 80,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                         statusPassageFromCastleEntranceToWarpRoomsOpened: true,
                         // section: 'rightSide',
                     },
@@ -2385,8 +2503,14 @@ const roomsInfo = {
                 },
                 toLeftSide: {
                     outcome: {
-                        positionX: 224,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 224,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                         // section: 'leftSide',
                     },
                     requirements: [
@@ -2409,26 +2533,22 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                { // NOTE(sestren): This region has been intentionally over-simplified as a shortcut
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 256,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 256, 256),
             ],
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
             },
@@ -2440,35 +2560,37 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 256,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 256, 256),
             ],
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitRight: {
                     outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 256 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
             },
@@ -2480,35 +2602,37 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 256,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 256, 256),
             ],
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitRight: {
                     outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 256 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
             },
@@ -2520,35 +2644,37 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 256,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 256, 256),
             ],
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitRight: {
                     outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 256 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
             },
@@ -2560,35 +2686,37 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 256,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 256, 256),
             ],
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitRight: {
                     outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 256 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
             },
@@ -2600,35 +2728,37 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 256,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 256, 256),
             ],
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
                 exitRight: {
                     outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 256 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
             },
@@ -2640,26 +2770,22 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 256,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 256, 256),
             ],
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 0 - 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
             },
@@ -2671,26 +2797,22 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 256,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 256, 256),
             ],
             commands: {
                 exitRight: {
                     outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 256 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
             },
@@ -2702,26 +2824,22 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 256,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 256, 256),
             ],
             commands: {
                 exitRight: {
                     outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
+                        positionX: {
+                            operation: 'replace',
+                            value: 256 + 8,
+                        },
+                        positionY: {
+                            operation: 'replace',
+                            value: 128,
+                        },
                     },
                     requirements: [
-                        getRequirement('basic', 'main', -1.999),
+                        getMovement('basic', 'main', -1.999),
                     ],
                 },
             },
@@ -2733,17 +2851,7 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 256,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 256, 256),
             ],
             commands: {},
         },
@@ -2754,17 +2862,7 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 256,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 256, 256),
             ],
             commands: {},
         },
@@ -2775,17 +2873,7 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 256,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 256, 256),
             ],
             commands: {},
         },
@@ -2796,34 +2884,154 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    region: {
-                        left: 0,
-                        top: 0,
-                        width: 256,
-                        height: 256,
-                    },
-                    outcome: {
-                        section: 'main',
-                    },
-                },
+                getRegion('main', 0, 0, 256, 256),
             ],
             commands: {},
         },
     ],
 }
 
-// 128, 704 (Normal Jump) -72, -120 if through a screen transition??
-// 128, 640 (Double Jump) -124
-
-const logic = {
-    state: {
-        stage: 'castleEntrance',
-        room: 'afterDrawbridge',
-        positionX: 136,
-        positionY: 614,
-    },
+function updateLogicWithOutcome(logic, outcome) {
+    Object.entries(outcome)
+    .forEach(([propertyKey, propertyInfo]) => {
+        console.log(propertyKey, propertyInfo)
+        switch (typeof propertyInfo) {
+            case 'boolean':
+            case 'number':
+            case 'string':
+                logic.state[propertyKey] = propertyInfo
+                break
+            case 'object':
+                switch (propertyInfo.operation) {
+                    case 'replace':
+                        logic.state[propertyKey] = propertyInfo.value
+                        break
+                    case 'add':
+                        if (!(propertyKey in logic.state)) {
+                            logic.state[propertyKey] = 0
+                        }
+                        logic.state[propertyKey] += propertyInfo.value
+                        break
+                    default:
+                        console.log('Unhandled key-value pair: ' + propertyKey + ', ' + propertyInfo)
+                        break
+                }
+                break
+            default:
+                console.log('Unhandled key-value pair: ' + propertyKey + ', ' + propertyInfo)
+                break
+        }
+    })
 }
+
+// Find the player's global position on the map
+function getGlobalPosition(logic, settings) {
+    const result = {
+        x: 0,
+        y: 0,
+    }
+    roomsInfo[logic.state.stage].find((roomInfo) => {
+        if (roomInfo.roomInfo.roomName !== logic.state.room) {
+            return false
+        }
+        settings.roomPositions.find((roomPosition) => {
+            if (
+                roomPosition.stage !== logic.state.stage ||
+                roomPosition.room !== logic.state.room
+            ) {
+                return false
+            }
+            result.x = 256 * roomPosition.column + logic.state.positionX
+            result.y = 256 * roomPosition.row + logic.state.positionY
+        })
+    })
+    return result
+}
+
+// Update the player's room-relative position on the map and find their section
+function updateRoomPosition(logic, settings) {
+    settings.roomPositions.find((roomPosition) => {
+        const roomRegion = {
+            left: 256 * roomPosition.column,
+            top: 256 * roomPosition.row,
+        }
+        if (
+            logic.globalPosition.x < roomRegion.left ||
+            logic.globalPosition.y < roomRegion.top
+        ) {
+            return false
+        }
+        roomsInfo[logic.state.stage]
+        .find((roomInfo) => {
+            if (roomInfo.roomInfo.roomName !== roomPosition.room) {
+                return false
+            }
+            roomRegion.right = roomRegion.left + roomInfo.roomInfo.width
+            roomRegion.bottom = roomRegion.top + roomInfo.roomInfo.height
+            if (
+                logic.globalPosition.x >= roomRegion.right ||
+                logic.globalPosition.y >= roomRegion.bottom
+            ) {
+                return false
+            }
+            logic.state.room = roomInfo.roomInfo.roomName
+            logic.state.positionX = logic.globalPosition.x - roomRegion.left
+            logic.state.positionY = logic.globalPosition.y - roomRegion.top
+            logic.state.section = 'NONE'
+            // Use the first requirement that is satisfied
+            roomInfo.regions
+            .find((regionInfo) => {
+                const validRequirement = Object.entries(regionInfo)
+                .every(([propertyKey, propertyInfo]) => {
+                    let stateValue
+                    let validInd = true
+                    switch (typeof propertyInfo) {
+                        case 'boolean':
+                            stateValue = false
+                            if (propertyKey in logic.state) {
+                                stateValue = logic.state[propertyKey]
+                            }
+                            validInd = (stateValue === propertyInfo)
+                        case 'string':
+                            stateValue = 'NONE'
+                            if (propertyKey in logic.state) {
+                                stateValue = logic.state[propertyKey]
+                            }
+                            validInd = (stateValue === propertyInfo)
+                            break
+                        case 'object':
+                            stateValue = 0
+                            if (propertyKey in logic.state) {
+                                stateValue = logic.state[propertyKey]
+                            }
+                            if ('minimum' in propertyInfo) {
+                                if (stateValue < propertyInfo.minimum) {
+                                    validInd = false
+                                }
+                            }
+                            if ('maximum' in propertyInfo) {
+                                if (stateValue > propertyInfo.maximum) {
+                                    validInd = false
+                                }
+                            }
+                            break
+                        default:
+                            console.log('Unhandled key-value pair: ' + propertyKey + ', ' + propertyInfo)
+                            break
+                    }
+                    return validInd
+                })
+                if (validRequirement) {
+                    updateLogicWithOutcome(logic, regionInfo.outcome)
+                    return true
+                }
+                return false
+            })
+            return true
+        })
+    })
+}
+
 // settings = {
 //     solverAttemptCount: shuffleData.debugInfo.solverAttemptCount,
 //     locationRewards: questRewards.locations,
@@ -2835,9 +3043,58 @@ export function analyzeLogic(seed, settings) {
     const result = {
         solvable: false,
     }
-    console.log('locationRewards:', settings.locationRewards)
+    const logic = {
+        state: {
+            stage: 'castleEntrance',
+            room: 'afterDrawbridge',
+            positionX: 136,
+            positionY: 640,
+        },
+    }
+    // console.log('locationRewards:', settings.locationRewards)
+    console.log('')
+    console.log('init')
+    console.log('logic:', logic)
+
+    console.log('')
+    console.log('getGlobalPosition')
+    logic.globalPosition = getGlobalPosition(logic, settings)
+    console.log('logic:', logic)
+
+    console.log('')
+    console.log('updateRoomPosition')
+    updateRoomPosition(logic, settings)
+    console.log('logic:', logic)
+
+    // Use an arbitrary command
+    const commandInfo = roomsInfo.castleEntrance[0].commands.exitRight
+    const outcome = JSON.parse(JSON.stringify(commandInfo.outcome))
+    Object.entries(commandInfo.requirements[0].outcome).forEach(([key, value]) => {
+        outcome[key] = value
+    })
+    console.log('')
+    console.log('outcome:', outcome)
+    updateLogicWithOutcome(logic, outcome)
+    console.log('logic:', logic)
+
+    // Update the player's room-relative position on the map
+    console.log('')
+    console.log('getGlobalPosition')
+    logic.globalPosition = getGlobalPosition(logic, settings)
+    console.log('logic:', logic)
+    console.log('')
+    console.log('updateRoomPosition')
+    updateRoomPosition(logic, settings)
+    console.log('logic:', logic)
+    // Update the player's section (set to 'NONE' if one can't be found)
+            // roomInfo.regions.find((regionInfo) => {
+            //     if (regionInfo.) {
+            //         return false
+            //     }
+            // })
     if ((10 * rng()) < settings.solverAttemptCount) {
         result.solvable = true
     }
+    console.log('')
     return result
 }
