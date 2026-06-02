@@ -7,90 +7,88 @@ import {
 function getMovement(requirementName, section, time) {
     const result = {
         section: section,
-        outcome: {
-            time: {
-                add: time,
-            },
+        costs: {
+            time: time,
         },
     }
     switch (requirementName) {
         case 'basic':
-            result.outcome.movement = 'basic'
+            result.costs.movement = 'basic'
             break
         case 'batForm':
         case 'batFormDiagonal':
             result.progressionBatTransformation = true
-            result.outcome.movement = 'batDiagonal'
+            result.costs.movement = 'batDiagonal'
             break
         case 'batFormHorizontal':
             result.progressionBatTransformation = true
-            result.outcome.movement = 'batHorizontal'
+            result.costs.movement = 'batHorizontal'
             break
         case 'batFormVertical':
             result.progressionBatTransformation = true
-            result.outcome.movement = 'batVertical'
+            result.costs.movement = 'batVertical'
             break
         case 'bladeDash':
             result.progressionBladeDash = true
             result.techniqueBladeDash = true
-            result.outcome.movement = 'bladeDash'
+            result.costs.movement = 'bladeDash'
             break
         case 'chainedRisingUppercuts':
             result.progressionRisingUppercut = true
             result.techniqueRisingUppercut = true
             result.techniqueChainedRisingUppercuts = true
-            result.outcome.movement = 'risingUppercut'
+            result.costs.movement = 'risingUppercut'
             break
         case 'doubleJump':
             result.progressionDoubleJump = true
             result.statusDoubleJumpUsed = false
-            result.outcome.movement = 'jump'
-            result.outcome.statusDoubleJumpUsed = true
+            result.costs.movement = 'jump'
+            result.costs.statusDoubleJumpUsed = true
             break
         case 'doubleJumpAndLand':
             result.progressionDoubleJump = true
             result.statusDoubleJumpUsed = false
-            result.outcome.movement = 'jump'
-            result.outcome.statusDoubleJumpUsed = false
+            result.costs.movement = 'jump'
+            result.costs.statusDoubleJumpUsed = false
             break
         case 'fall':
-            result.outcome.movement = 'fall'
+            result.costs.movement = 'fall'
             break
         case 'jump':
-            result.outcome.movement = 'jump'
+            result.costs.movement = 'jump'
             break
         case 'poweredMist':
         case 'poweredMistForm':
             result.progressionMistTransformation = true
             result.progressionLongerMistDuration = true
-            result.outcome.movement = 'mist'
+            result.costs.movement = 'mist'
             break
         case 'risingUppercut':
             result.progressionRisingUppercut = true
             result.techniqueRisingUppercut = true
-            result.outcome.movement = 'risingUppercut'
+            result.costs.movement = 'risingUppercut'
             break
         case 'wolfMistRise':
         case 'wolfMistRiseShort':
             result.progressionWolfTransformation = true
             result.progressionMistTransformation = true
             result.techniqueShortWolfMistRise = true
-            result.outcome.movement = 'wolfMistRise'
+            result.costs.movement = 'wolfMistRise'
             break
         case 'wolfMistRiseLong':
             result.progressionWolfTransformation = true
             result.progressionMistTransformation = true
             result.techniqueLongWolfMistRise = true
-            result.outcome.movement = 'wolfMistRise'
+            result.costs.movement = 'wolfMistRise'
             break
         case 'wolfMistRiseVeryLong':
             result.progressionWolfTransformation = true
             result.progressionMistTransformation = true
             result.techniqueVeryLongWolfMistRise = true
-            result.outcome.movement = 'wolfMistRise'
+            result.costs.movement = 'wolfMistRise'
             break
         default:
-            result.outcome.movement = 'walk'
+            result.costs.movement = 'walk'
             break
     }
     return result
@@ -120,327 +118,331 @@ function getRegion(section, left, top, width, height) {
 const locationsInfo = {
     locationDemonCard: {
         outcome: {
+            positionX: 88,
+            positionY: 185,
             locationDemonCard: true,
         },
         requirements: [
             {
                 stage: 'abandonedMine',
                 room: 'demonCardRoom',
-                positionX: 88,
-                positionY: 185,
                 locationDemonCard: false,
             },
         ],
     },
     locationBatCard: {
         outcome: {
+            positionX: 120,
+            positionY: 147,
             locationBatCard: true,
         },
         requirements: [
             {
                 stage: 'alchemyLaboratory',
                 room: 'batCardRoom',
-                positionX: 120,
-                positionY: 147,
                 locationBatCard: false,
             },
         ],
     },
     locationCubeOfZoe: {
         outcome: {
+            positionX: 272,
+            positionY: 114,
             locationCubeOfZoe: true,
         },
         requirements: [
             {
                 stage: 'castleEntrance',
                 room: 'cubeOfZoeRoom',
-                positionX: 272,
-                positionY: 114,
                 locationCubeOfZoe: false,
             },
         ],
     },
     locationPowerOfWolf: {
         outcome: {
+            positionX: 272,
+            positionY: 192,
             locationPowerOfWolf: true,
         },
         requirements: [
             {
                 stage: 'castleEntrance',
                 room: 'afterDrawbridge',
-                positionX: 272,
-                positionY: 192,
                 locationPowerOfWolf: false,
             },
         ],
     },
     locationPowerOfMist: {
         outcome: {
+            positionX: 412,
+            positionY: 1220,
             locationPowerOfMist: true,
         },
         requirements: [
             {
                 stage: 'castleKeep',
                 room: 'keepArea',
-                positionX: 412,
-                positionY: 1220,
                 locationPowerOfMist: false,
             },
         ],
     },
     locationLeapStone: {
         outcome: {
+            positionX: 412,
+            positionY: 1220,
             locationLeapStone: true,
         },
         requirements: [
             {
                 stage: 'castleKeep',
                 room: 'keepArea',
-                positionX: 412,
-                positionY: 1220,
                 locationLeapStone: false,
             },
         ],
     },
     locationGhostCard: {
         outcome: {
+            positionX: 352,
+            positionY: 672,
             locationGhostCard: true,
         },
         requirements: [
             {
                 stage: 'castleKeep',
                 room: 'ghostCardRoom',
-                positionX: 352,
-                positionY: 672,
                 locationGhostCard: false,
             },
         ],
     },
     locationSpikeBreaker: {
         outcome: {
+            positionX: 47,
+            positionY: 153,
             locationSpikeBreaker: true,
         },
         requirements: [
             {
                 stage: 'catacombs',
                 room: 'spikeBreakerRoom',
-                positionX: 47,
-                positionY: 153,
                 locationSpikeBreaker: false,
             },
         ],
     },
     locationFireOfBat: {
         outcome: {
+            positionX: 200,
+            positionY: 196,
             locationFireOfBat: true,
         },
         requirements: [
             {
                 stage: 'clockTower',
                 room: 'fireOfBatRoom',
-                positionX: 200,
-                positionY: 196,
                 locationFireOfBat: false,
             },
         ],
     },
     locationFormOfMist: {
         outcome: {
+            positionX: 232,
+            positionY: 144,
             locationFormOfMist: true,
         },
         requirements: [
             {
                 stage: 'colosseum',
                 room: 'topOfElevatorShaft',
-                positionX: 232,
-                positionY: 144,
                 locationFormOfMist: false,
             },
         ],
     },
     locationGasCloud: {
         outcome: {
+            positionX: 32,
+            positionY: 128,
             locationGasCloud: true,
         },
         requirements: [
             {
                 stage: 'floatingCatacombs',
                 room: 'mormegilRoom',
-                positionX: 32,
-                positionY: 128,
                 locationGasCloud: false,
             },
         ],
     },
     locationFaerieScroll: {
         outcome: {
+            positionX: 1680,
+            positionY: 176,
             locationFaerieScroll: true,
         },
         requirements: [
             {
                 stage: 'longLibrary',
                 room: 'spellbookArea',
-                positionX: 1680,
-                positionY: 176,
                 locationFaerieScroll: false,
             },
         ],
     },
     locationFaerieCard: {
         outcome: {
+            positionX: 48,
+            positionY: 177,
             locationFaerieCard: true,
         },
         requirements: [
             {
                 stage: 'longLibrary',
                 room: 'faerieCardRoom',
-                positionX: 48,
-                positionY: 177,
                 locationFaerieCard: false,
             },
         ],
     },
     locationSoulOfBat: {
         outcome: {
+            positionX: 1056,
+            positionY: 928,
             locationSoulOfBat: true,
         },
         requirements: [
             {
                 stage: 'longLibrary',
                 room: 'lesserDemonArea',
-                positionX: 1056,
-                positionY: 928,
                 locationSoulOfBat: false,
             },
         ],
     },
     locationGravityBoots: {
         outcome: {
+            positionX: 1168,
+            positionY: 176,
             locationGravityBoots: true,
         },
         requirements: [
             {
                 stage: 'marbleGallery',
                 room: 'gravityBootsRoom',
-                positionX: 1168,
-                positionY: 176,
                 locationGravityBoots: false,
             },
         ],
     },
     locationSpiritOrb: {
         outcome: {
+            positionX: 128,
+            positionY: 1008,
             locationSpiritOrb: true,
         },
         requirements: [
             {
                 stage: 'marbleGallery',
                 room: 'spiritOrbRoom',
-                positionX: 128,
-                positionY: 1008,
                 locationSpiritOrb: false,
             },
         ],
     },
     locationSwordCard: {
         outcome: {
+            positionX: 368,
+            positionY: 148,
             locationSwordCard: true,
         },
         requirements: [
             {
                 stage: 'olroxsQuarters',
                 room: 'swordCardRoom',
-                positionX: 368,
-                positionY: 148,
                 locationSwordCard: false,
             },
         ],
     },
     locationEchoOfBat: {
         outcome: {
+            positionX: 128,
+            positionY: 148,
             locationEchoOfBat: true,
         },
         requirements: [
             {
                 stage: 'olroxsQuarters',
                 room: 'echoOfBatRoom',
-                positionX: 128,
-                positionY: 148,
                 locationEchoOfBat: false,
             },
         ],
     },
     locationSoulOfWolf: {
         outcome: {
+            positionX: 392,
+            positionY: 808,
             locationSoulOfWolf: true,
         },
         requirements: [
             {
                 stage: 'outerWall',
                 room: 'elevatorShaftRoom',
-                positionX: 392,
-                positionY: 808,
                 locationSoulOfWolf: false,
             },
         ],
     },
     locationForceOfEcho: {
         outcome: {
+            positionX: 112,
+            positionY: 128,
             locationForceOfEcho: true,
         },
         requirements: [
             {
                 stage: 'reverseCaverns',
                 room: 'holySymbolRoom',
-                positionX: 112,
-                positionY: 128,
                 locationForceOfEcho: false,
             },
         ],
     },
     locationSilverRing: {
         outcome: {
+            positionX: 180,
+            positionY: 164,
             locationSilverRing: true,
         },
         requirements: [
             {
                 stage: 'royalChapel',
                 room: 'silverRingRoom',
-                positionX: 180,
-                positionY: 164,
                 locationSilverRing: false,
             },
         ],
     },
     locationHolySymbol: {
         outcome: {
+            positionX: 144,
+            positionY: 180,
             locationHolySymbol: true,
         },
         requirements: [
             {
                 stage: 'undergroundCaverns',
                 room: 'holySymbolRoom',
-                positionX: 144,
-                positionY: 180,
                 locationHolySymbol: false,
             },
         ],
     },
     locationMermanStatue: {
         outcome: {
+            positionX: 96,
+            positionY: 176,
             locationMermanStatue: true,
         },
         requirements: [
             {
                 stage: 'undergroundCaverns',
                 room: 'mermanStatueRoom',
-                positionX: 96,
-                positionY: 176,
                 locationMermanStatue: false,
             },
         ],
     },
 }
+
+const COST_PICKUP_ITEM = 1.0
+const COST_PICKUP_RELIC = 3.0
+const COST_QUICKGRAB_RELIC = 2.5
 
 const rewardsInfo = {
     relicSoulOfBat: {
@@ -452,15 +454,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicSoulOfBat: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicSoulOfBat: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -472,15 +474,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicFireOfBat: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicFireOfBat: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -493,15 +495,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicEchoOfBat: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicEchoOfBat: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -513,15 +515,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicForceOfEcho: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicForceOfEcho: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -535,15 +537,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicSoulOfWolf: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicSoulOfWolf: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -556,15 +558,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicPowerOfWolf: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicPowerOfWolf: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -578,15 +580,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicSkillOfWolf: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicSkillOfWolf: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -600,15 +602,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicFormOfMist: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicFormOfMist: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -621,15 +623,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicPowerOfMist: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicPowerOfMist: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -641,15 +643,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicGasCloud: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicGasCloud: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -662,15 +664,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicCubeOfZoe: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicCubeOfZoe: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -682,15 +684,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicSpiritOrb: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicSpiritOrb: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -703,15 +705,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicGravityBoots: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicGravityBoots: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -725,15 +727,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicLeapStone: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicLeapStone: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -746,15 +748,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicHolySymbol: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicHolySymbol: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -766,15 +768,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicFaerieScroll: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicFaerieScroll: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -787,15 +789,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicJewelOfOpen: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicJewelOfOpen: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -808,15 +810,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicMermanStatue: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicMermanStatue: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -828,15 +830,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicBatCard: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicBatCard: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -848,15 +850,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicGhostCard: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicGhostCard: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -868,15 +870,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicFaerieCard: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicFaerieCard: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -889,15 +891,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicDemonCard: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicDemonCard: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -909,15 +911,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicSwordCard: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicSwordCard: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -929,15 +931,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicSpriteCard: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicSpriteCard: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -950,15 +952,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicNosedevilCard: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicNosedevilCard: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -970,15 +972,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicHeartOfVlad: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicHeartOfVlad: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -990,15 +992,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicToothOfVlad: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicToothOfVlad: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -1010,15 +1012,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicRibOfVlad: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicRibOfVlad: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -1030,15 +1032,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicRingOfVlad: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicRingOfVlad: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -1050,15 +1052,15 @@ const rewardsInfo = {
         requirements: [
             {
                 relicEyeOfVlad: false,
-                time: {
-                    cost: 3.0,
+                costs: {
+                    time: COST_PICKUP_RELIC,
                 },
             },
             {
                 relicEyeOfVlad: false,
                 techniqueQuickGrab: true,
-                time: {
-                    cost: 2.5,
+                costs: {
+                    time: COST_QUICKGRAB_RELIC,
                 },
             },
         ],
@@ -1069,8 +1071,8 @@ const rewardsInfo = {
         },
         requirements: [
             {
-                time: {
-                    cost: 1.0,
+                costs: {
+                    time: COST_PICKUP_ITEM,
                 },
             },
         ],
@@ -1081,8 +1083,8 @@ const rewardsInfo = {
         },
         requirements: [
             {
-                time: {
-                    cost: 1.0,
+                costs: {
+                    time: COST_PICKUP_ITEM,
                 },
             },
         ],
@@ -1093,20 +1095,59 @@ const rewardsInfo = {
         },
         requirements: [
             {
-                time: {
-                    cost: 1.0,
+                costs: {
+                    time: COST_PICKUP_ITEM,
                 },
             },
         ],
     },
 }
 
-// NOTE(sestren): The order of rooms within a stage is determined by their room index, and is important to the game for determining where to send you during room transitions
-const roomsInfo = {
+// {
+//     section: 'main',
+//     costs: {
+//         time: 1.999,
+//         movement: 'walk',
+//     },
+// },
+
+const roomPriority = {
     castleEntrance: [
-        { // 00 - afterDrawbridge
+        'afterDrawbridge',
+        'dropUnderPortcullis',
+        'zombieHallway',
+        'holyMailRoom',
+        'atticStaircase',
+        'atticEntrance',
+        'mermanRoom',
+        'jewelSwordRoom',
+        'wargHallway',
+        'shortcutToUndergroundCaverns',
+        'meetingRoomWithDeath',
+        'stairwellAfterDeath',
+        'gargoyleRoom',
+        'heartMaxUpRoom',
+        'cubeOfZoeRoom',
+        'shortcutToWarpRooms',
+        'lifeMaxUpRoom',
+        'loadingRoomToMarbleGallery',
+        'loadingRoomToWarpRooms',
+        'loadingRoomToAlchemyLaboratory',
+        'loadingRoomToUndergroundCaverns',
+        'saveRoomA',
+        'saveRoomB',
+        'saveRoomC',
+        'triggerTeleporterToAlchemyLaboratory',
+        'triggerTeleporterToMarbleGallery',
+        'triggerTeleporterToWarpRooms',
+        'triggerTeleporterToUndergroundCaverns',
+    ]
+}
+
+const roomsInfo = {
+    castleEntrance: {
+        afterDrawbridge: {
             roomInfo: {
-                roomName: 'afterDrawbridge',
                 width: 512,
                 height: 768,
             },
@@ -1118,14 +1159,8 @@ const roomsInfo = {
             commands: {
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 512 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 640,
-                        },
+                        positionX: 512 + 8,
+                        positionY: 640,
                     },
                     requirements: [
                         getMovement('basic', 'main', -4.999),
@@ -1133,33 +1168,23 @@ const roomsInfo = {
                 },
                 exitRightWithReverseShiftLine: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 512 + 256 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 640,
-                        },
+                        positionX: 512 + 256 + 8,
+                        positionY: 640,
                     },
                     requirements: [
                         { // Reverse Shift Line using Heart Refresh
                             section: 'main',
                             techniqueReverseShiftLineUsingHeartRefresh: true,
-                            outcome: {
+                            costs: {
                                 time: -9.999,
-                                movement: 'special',
-                            },
-                            itemHeartRefresh: {
-                                cost: 1,
+                                itemHeartRefresh: 1
                             },
                         },
                         { // Reverse Shift Line using Heart Refresh and Duplicator
                             section: 'main',
                             techniqueReverseShiftLineUsingHeartRefresh: true,
-                            outcome: {
+                            costs: {
                                 time: -9.999,
-                                movement: 'special',
                             },
                             itemHeartRefresh: {
                                 minimum: 1,
@@ -1172,14 +1197,8 @@ const roomsInfo = {
                 },
                 exitBottom: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 768 + 24,
-                        },
+                        positionX: 128,
+                        positionY: 768 + 24,
                     },
                     requirements: [
                         getMovement('fall', 'beneathTrapdoor', -1.999),
@@ -1187,15 +1206,8 @@ const roomsInfo = {
                 },
                 fromBeneathTrapdoorToMain: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 160,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 640,
-                        },
-                        // section: 'main',
+                        positionX: 160,
+                        positionY: 640,
                     },
                     requirements: [
                         getMovement('doubleJumpAndLand', 'beneathTrapdoor', -0.7),
@@ -1203,15 +1215,8 @@ const roomsInfo = {
                 },
                 toParapet: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 288,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 160,
-                        },
-                        // section: 'parapet',
+                        positionX: 288,
+                        positionY: 160,
                     },
                     requirements: [
                         getMovement('batFormVertical', 'main', -7.5),
@@ -1220,38 +1225,24 @@ const roomsInfo = {
                 },
                 toBeneathTrapdoor: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 720,
-                        },
-                        // section: 'beneathTrapdoor',
+                        positionX: 128,
+                        positionY: 720,
                     },
                     requirements: [
                         { // Normal Movement with Trapdoor opened
                             section: 'main',
                             statusTrapdoorAfterDrawbridgeOpened: true,
-                            outcome: {
+                            costs: {
                                 time: -0.5,
-                                movement: 'fall',
                             },
                         },
                     ],
                 },
                 fromParapetToMain: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 304,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 640,
-                        },
-                        // section: 'main',
+                        positionX: 304,
+                        positionY: 640,
+                        // section: main,
                     },
                     requirements: [
                         getMovement('fall', 'parapet', -1.7),
@@ -1259,9 +1250,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 01 - dropUnderPortcullis
+        dropUnderPortcullis: {
             roomInfo: {
-                roomName: 'dropUnderPortcullis',
                 width: 256,
                 height: 512,
             },
@@ -1272,14 +1262,8 @@ const roomsInfo = {
             commands: {
                 exitTop: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 0 - 56,
-                        },
+                        positionX: 128,
+                        positionY: 0 - 56,
                         statusDoubleJumpUsed: false,
                     },
                     requirements: [
@@ -1288,14 +1272,8 @@ const roomsInfo = {
                 },
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 256 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 384,
-                        },
+                        positionX: 256 + 8,
+                        positionY: 384,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -1303,15 +1281,9 @@ const roomsInfo = {
                 },
                 toMain: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 240,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 384,
-                        },
-                        // section: 'main',
+                        positionX: 240,
+                        positionY: 384,
+                        // section: main,
                     },
                     requirements: [
                         getMovement('fall', 'upperLedge', -1.999),
@@ -1319,15 +1291,9 @@ const roomsInfo = {
                 },
                 toUpperLedge: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 32,
-                        },
-                        // section: 'upperLedge',
+                        positionX: 128,
+                        positionY: 32,
+                        // section: upperLedge,
                     },
                     requirements: [
                         getMovement('doubleJumpAndLand', 'beneathTrapdoor', -1.999),
@@ -1335,9 +1301,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 02 - zombieHallway
+        zombieHallway: {
             roomInfo: {
-                roomName: 'zombieHallway',
                 width: 1792,
                 height: 256,
             },
@@ -1347,14 +1312,8 @@ const roomsInfo = {
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -1362,14 +1321,8 @@ const roomsInfo = {
                 },
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 1792 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 1792 + 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -1377,9 +1330,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 03 - holyMailRoom
+        holyMailRoom: {
             roomInfo: {
-                roomName: 'holyMailRoom',
                 width: 256,
                 height: 256,
             },
@@ -1390,14 +1342,8 @@ const roomsInfo = {
             commands: {
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 256 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 256 + 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -1405,15 +1351,9 @@ const roomsInfo = {
                 },
                 toLedge: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 80,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 72,
-                        },
-                        // section: 'ledge',
+                        positionX: 80,
+                        positionY: 72,
+                        // section: ledge,
                     },
                     requirements: [
                         getMovement('bladeDash', 'main', -1.999),
@@ -1426,24 +1366,17 @@ const roomsInfo = {
                             section: 'main',
                             progressionMistTransformation: true,
                             techniquePreciseCornerMist: true,
-                            outcome: {
+                            costs: {
                                 time: -1.999,
-                                movement: 'mist',
                             },
                         },
                     ],
                 },
                 toMain: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 232,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                        // section: 'main',
+                        positionX: 232,
+                        positionY: 128,
+                        // section: main,
                     },
                     requirements: [
                         getMovement('fall', 'ledge', -1.999),
@@ -1451,9 +1384,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 04 - atticStaircase
+        atticStaircase: {
             roomInfo: {
-                roomName: 'atticStaircase',
                 width: 256,
                 height: 512,
             },
@@ -1463,14 +1395,8 @@ const roomsInfo = {
             commands: {
                 exitLeftUpper: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -1478,14 +1404,8 @@ const roomsInfo = {
                 },
                 exitLeftLower: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 384,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 384,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -1493,14 +1413,8 @@ const roomsInfo = {
                 },
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 256 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 384,
-                        },
+                        positionX: 256 + 8,
+                        positionY: 384,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -1508,9 +1422,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 05 - atticHallway
+        atticHallway: {
             roomInfo: {
-                roomName: 'atticHallway',
                 width: 1024,
                 height: 256,
             },
@@ -1520,14 +1433,8 @@ const roomsInfo = {
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -1535,14 +1442,8 @@ const roomsInfo = {
                 },
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 1024 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 1024 + 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -1550,9 +1451,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 06 - atticEntrance
+        atticEntrance: {
             roomInfo: {
-                roomName: 'atticEntrance',
                 width: 256,
                 height: 256,
             },
@@ -1562,14 +1462,8 @@ const roomsInfo = {
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: -8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: -8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -1577,14 +1471,8 @@ const roomsInfo = {
                 },
                 exitBottom: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 256 + 8,
-                        },
+                        positionX: 128,
+                        positionY: 256 + 8,
                         // statusTookLogicalRisk: true,
                     },
                     requirements: [
@@ -1593,9 +1481,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 07 - mermanRoom
+        mermanRoom: {
             roomInfo: {
-                roomName: 'mermanRoom',
                 width: 768,
                 height: 512,
             },
@@ -1607,14 +1494,8 @@ const roomsInfo = {
             commands: {
                 exitTop: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 0 - 56,
-                        },
+                        positionX: 128,
+                        positionY: 0 - 56,
                     },
                     requirements: [
                         getMovement('doubleJump', 'holeInCeiling', -1.999),
@@ -1626,14 +1507,8 @@ const roomsInfo = {
                 },
                 exitRightUpper: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 768 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 768 + 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -1641,14 +1516,8 @@ const roomsInfo = {
                 },
                 exitRightLower: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 768 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 384,
-                        },
+                        positionX: 768 + 8,
+                        positionY: 384,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -1656,14 +1525,8 @@ const roomsInfo = {
                 },
                 exitLeftUpper: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -1671,78 +1534,66 @@ const roomsInfo = {
                 },
                 exitLeftLower: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 384,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 384,
                     },
                     requirements: [
                         getMovement('basic', 'secretPassage', -1.999),
                     ],
                 },
+                openSecretPassage: {
+                    outcome: {
+                        statusSecretWallInMermanRoomOpened: true,
+                    },
+                    requirements: [
+                        {
+                            section: 'main',
+                            progressionBatTransformation: true,
+                            progressionWolfTransformation: true,
+                            statusSecretWallInMermanRoomOpened: false,
+                            costs: {
+                                time: -1.999,
+                            },
+                        },
+                    ],
+                },
                 fromMainToSecretPassage: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 384,
-                        },
-                        // section: 'secretPassage',
+                        positionX: 8,
+                        positionY: 384,
+                        // section: secretPassage,
                     },
                     requirements: [
                         { // After Opening Secret Passage
                             section: 'main',
-                            progressionBatTransformation: true,
-                            progressionWolfTransformation: true,
-                            outcome: {
-                                statusSecretWallInMermanRoomOpened: true,
+                            statusSecretWallInMermanRoomOpened: true,
+                            costs: {
                                 time: -1.999,
-                                movement: 'basic',
                             },
                         },
                     ],
                 },
                 fromSecretPassageToMain: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 64,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 384,
-                        },
-                        // section: 'main',
+                        positionX: 64,
+                        positionY: 384,
+                        // section: main,
                     },
                     requirements: [
                         { // After Opening Secret Passage
                             section: 'secretPassage',
                             statusSecretWallInMermanRoomOpened: true,
-                            outcome: {
+                            costs: {
                                 time: -1.999,
-                                movement: 'basic',
                             },
                         },
                     ],
                 },
                 fromMainToHoleInCeiling: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 112,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 176,
-                        },
-                        // section: 'holeInCeiling',
+                        positionX: 112,
+                        positionY: 176,
+                        // section: holeInCeiling,
                     },
                     requirements: [
                         getMovement('batFormVertical', 'main', -1.999),
@@ -1753,25 +1604,18 @@ const roomsInfo = {
                             progressionDoubleJump: true,
                             statusDoubleJumpUsed: false,
                             techniqueEnemyDiveKick: true,
-                            outcome: {
-                                statusDoubleJumpUsed: false, // Dive Kicking off of an enemy resets the Double Jump
+                            costs: {
                                 time: -1.999,
-                                movement: 'jump',
                             },
+                            // Dive Kicking off of an enemy resets the Double Jump
                         },
                     ],
                 },
                 fromHoleInCeilingToMain: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 112,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 176,
-                        },
-                        // section: 'main',
+                        positionX: 112,
+                        positionY: 176,
+                        // section: main,
                     },
                     requirements: [
                         getMovement('fall', 'holeInCeiling', -1.999),
@@ -1779,9 +1623,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 08 - jewelSwordRoom
+        jewelSwordRoom: {
             roomInfo: {
-                roomName: 'jewelSwordRoom',
                 width: 256,
                 height: 256,
             },
@@ -1791,14 +1634,8 @@ const roomsInfo = {
             commands: {
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 256 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 256 + 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -1806,9 +1643,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 09 - wargHallway
+        wargHallway: {
             roomInfo: {
-                roomName: 'wargHallway',
                 width: 1536,
                 height: 256,
             },
@@ -1818,14 +1654,8 @@ const roomsInfo = {
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -1833,14 +1663,8 @@ const roomsInfo = {
                 },
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 1536 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 1536 + 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -1848,9 +1672,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 10 - shortcutToUndergroundCaverns
+        shortcutToUndergroundCaverns: {
             roomInfo: {
-                roomName: 'shortcutToUndergroundCaverns',
                 width: 256,
                 height: 256,
             },
@@ -1861,14 +1684,8 @@ const roomsInfo = {
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'leftSide', -1.999),
@@ -1876,70 +1693,63 @@ const roomsInfo = {
                 },
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 256 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 256 + 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'rightSide', -1.999),
                     ],
                 },
+                openShortcut: {
+                    outcome: {
+                        statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
+                    },
+                    requirements: [
+                        {
+                            section: 'rightSide',
+                            statusPassageFromCastleEntranceToUndergroundCavernsOpened: false,
+                            costs: {
+                                time: -1.999,
+                            },
+                        },
+                    ],
+                },
                 toRightSide: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 80,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                        // section: 'rightSide',
+                        positionX: 80,
+                        positionY: 128,
+                        // section: rightSide,
                     },
                     requirements: [
                         { // After Opening Path
                             section: 'leftSide',
                             statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
-                            outcome: {
+                            costs: {
                                 time: -1.999,
-                                movement: 'basic',
                             },
                         },
                     ],
                 },
                 toLeftSide: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 224,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                        statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
-                        // section: 'leftSide',
+                        positionX: 224,
+                        positionY: 128,
+                        // section: leftSide,
                     },
                     requirements: [
                         { // Opening Path
                             section: 'rightSide',
-                            outcome: {
+                            statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
+                            costs: {
                                 time: -1.999,
-                                movement: 'basic',
                             },
                         },
                     ],
                 },
             },
         },
-        { // 11 - meetingRoomWithDeath
+        meetingRoomWithDeath: {
             roomInfo: {
-                roomName: 'meetingRoomWithDeath',
                 width: 256,
                 height: 512,
             },
@@ -1951,14 +1761,8 @@ const roomsInfo = {
             commands: {
                 exitTop: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 0 - 56,
-                        },
+                        positionX: 128,
+                        positionY: 0 - 56,
                     },
                     requirements: [
                         getMovement('doubleJump', 'highIntheAir', -1.999),
@@ -1970,14 +1774,8 @@ const roomsInfo = {
                 },
                 exitLeftUpper: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'upperLeftLedge', -1.999),
@@ -1985,14 +1783,8 @@ const roomsInfo = {
                 },
                 exitLeftLower: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 384,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 384,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2000,14 +1792,8 @@ const roomsInfo = {
                 },
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 256 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 384,
-                        },
+                        positionX: 256 + 8,
+                        positionY: 384,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2015,14 +1801,8 @@ const roomsInfo = {
                 },
                 toHighInTheAir: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 48,
-                        },
+                        positionX: 128,
+                        positionY: 48,
                     },
                     requirements: [
                         getMovement('batFormVertical', 'main', -1.999),
@@ -2039,14 +1819,8 @@ const roomsInfo = {
                 },
                 toMain: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 448,
-                        },
+                        positionX: 128,
+                        positionY: 448,
                     },
                     requirements: [
                         getMovement('basic', 'upperLeftLedge', -1.999),
@@ -2055,14 +1829,8 @@ const roomsInfo = {
                 },
                 toUpperLeftLedge: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 32,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 32,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('fall', 'highInTheAir', -1.999),
@@ -2074,9 +1842,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 12 - stairwellAfterDeath
+        stairwellAfterDeath: {
             roomInfo: {
-                roomName: 'stairwellAfterDeath',
                 width: 256,
                 height: 768,
             },
@@ -2086,14 +1853,8 @@ const roomsInfo = {
             commands: {
                 exitLeftUpper: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2101,14 +1862,8 @@ const roomsInfo = {
                 },
                 exitLeftLower: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 640,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 640,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2116,9 +1871,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 13 - gargoyleRoom
+        gargoyleRoom: {
             roomInfo: {
-                roomName: 'gargoyleRoom',
                 width: 256,
                 height: 256,
             },
@@ -2128,14 +1882,8 @@ const roomsInfo = {
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2143,14 +1891,8 @@ const roomsInfo = {
                 },
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 256 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 256 + 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2158,14 +1900,8 @@ const roomsInfo = {
                 },
                 exitBottom: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 256 + 24,
-                        },
+                        positionX: 128,
+                        positionY: 256 + 24,
                     },
                     requirements: [
                         getMovement('fall', 'pit', -1.999),
@@ -2173,14 +1909,8 @@ const roomsInfo = {
                 },
                 toPit: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 224,
-                        },
+                        positionX: 128,
+                        positionY: 224,
                     },
                     requirements: [
                         getMovement('fall', 'main', -1.999),
@@ -2188,14 +1918,8 @@ const roomsInfo = {
                 },
                 toMain: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 128,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('batFormVertical', 'pit', -1.999),
@@ -2207,9 +1931,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 14 - heartMaxUpRoom
+        heartMaxUpRoom: {
             roomInfo: {
-                roomName: 'heartMaxUpRoom',
                 width: 256,
                 height: 256,
             },
@@ -2219,14 +1942,8 @@ const roomsInfo = {
             commands: {
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 256 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 256 + 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2234,9 +1951,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 15 - cubeOfZoeRoom
+        cubeOfZoeRoom: {
             roomInfo: {
-                roomName: 'cubeOfZoeRoom',
                 width: 512,
                 height: 768,
             },
@@ -2249,14 +1965,8 @@ const roomsInfo = {
             commands: {
                 exitLeftUpper: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2264,14 +1974,8 @@ const roomsInfo = {
                 },
                 exitRightUpper: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 512 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 512 + 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'upperRightLedge', -1.999),
@@ -2279,14 +1983,8 @@ const roomsInfo = {
                 },
                 exitLeftMiddle: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 384,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 384,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2294,14 +1992,8 @@ const roomsInfo = {
                 },
                 exitRightMiddle: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 512 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 384,
-                        },
+                        positionX: 512 + 8,
+                        positionY: 384,
                     },
                     requirements: [
                         getMovement('basic', 'middleRightLedge', -1.999),
@@ -2309,14 +2001,8 @@ const roomsInfo = {
                 },
                 exitLeftLower: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 640,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 640,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2324,14 +2010,8 @@ const roomsInfo = {
                 },
                 exitRightLower: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 512 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 640,
-                        },
+                        positionX: 512 + 8,
+                        positionY: 640,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2339,15 +2019,9 @@ const roomsInfo = {
                 },
                 toUpperRightLedge: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 480,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                        // section: 'upperRightLedge',
+                        positionX: 480,
+                        positionY: 128,
+                        // section: upperRightLedge,
                     },
                     requirements: [
                         getMovement('chainedRisingUppercuts', 'main', -1.999),
@@ -2357,25 +2031,18 @@ const roomsInfo = {
                         getMovement('wolfMistRise', 'main', -1.999),
                         { // Main - Using Shortcut
                             section: 'main',
-                            outcome: {
-                                statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
+                            statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
+                            costs: {
                                 time: -1.999,
-                                movement: 'walk',
                             },
                         },
                     ],
                 },
                 toMiddleRightLedge: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 488,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 384,
-                        },
-                        // section: 'middleRightLedge',
+                        positionX: 488,
+                        positionY: 384,
+                        // section: middleRightLedge,
                     },
                     requirements: [
                         getMovement('risingUppercut', 'main', -1.999),
@@ -2387,59 +2054,49 @@ const roomsInfo = {
                             section: 'main',
                             progressionDoubleJump: true,
                             techniqueForgivingCandleDiveKick: true,
-                            outcome: {
+                            costs: {
                                 time: -1.999,
-                                movement: 'jump',
                             },
                         },
                         { // Upper Right Ledge - Precise Fall and Precise Jump Using Shortcut
                             section: 'upperRightLedge',
                             techniquePreciseJump: true,
-                            outcome: {
-                                statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
+                            statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
+                            costs: {
                                 time: -1.999,
-                                movement: 'jump',
                             },
                         },
                     ],
                 },
                 toMain: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 480,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 640,
-                        },
-                        // section: 'main',
+                        positionX: 480,
+                        positionY: 640,
+                        // section: main,
                     },
                     requirements: [
                         getMovement('fall', 'upperRightLedge', -1.999),
                         getMovement('fall', 'middleRightLedge', -1.999),
                     ],
                 },
-                actionOpenShortcut: {
+                openShortcut: {
                     outcome: {
                         statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
                     },
                     requirements: [
                         {
                             section: 'upperRightLedge',
-                            outcome: {
-                                statusPassageFromCastleEntranceToMarbleGalleryOpened: false,
+                            statusPassageFromCastleEntranceToMarbleGalleryOpened: false,
+                            costs: {
                                 time: -1.999,
-                                movement: 'special',
                             },
                         },
                     ],
                 },
             },
         },
-        { // 16 - shortcutToWarpRooms
+        shortcutToWarpRooms: {
             roomInfo: {
-                roomName: 'shortcutToWarpRooms',
                 width: 256,
                 height: 256,
             },
@@ -2450,14 +2107,8 @@ const roomsInfo = {
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('leftSide', 'main', -1.999),
@@ -2465,14 +2116,8 @@ const roomsInfo = {
                 },
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 256 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 256 + 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('rightSide', 'main', -1.999),
@@ -2480,55 +2125,53 @@ const roomsInfo = {
                 },
                 toRightSide: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 80,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                        statusPassageFromCastleEntranceToWarpRoomsOpened: true,
-                        // section: 'rightSide',
+                        positionX: 80,
+                        positionY: 128,
+                        // section: rightSide,
                     },
                     requirements: [
                         { // Opening Path
                             section: 'leftSide',
-                            outcome: {
+                            costs: {
                                 time: -1.999,
-                                movement: 'basic',
                             },
                         },
                     ],
                 },
                 toLeftSide: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 224,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                        // section: 'leftSide',
+                        positionX: 224,
+                        positionY: 128,
+                        // section: leftSide,
                     },
                     requirements: [
                         { // After Opening Path
                             section: 'rightSide',
                             statusPassageFromCastleEntranceToWarpRoomsOpened: true,
-                            outcome: {
+                            costs: {
                                 time: -1.999,
-                                movement: 'basic',
+                            },
+                        },
+                    ],
+                },
+                openShortcut: {
+                    outcome: {
+                        statusPassageFromCastleEntranceToWarpRoomsOpened: false,
+                    },
+                    requirements: [
+                        { // After Opening Path
+                            section: 'leftSide',
+                            statusPassageFromCastleEntranceToWarpRoomsOpened: false,
+                            costs: {
+                                time: -1.999,
                             },
                         },
                     ],
                 },
             },
         },
-        { // 17 - lifeMaxUpRoom
+        lifeMaxUpRoom: {
             roomInfo: {
-                roomName: 'lifeMaxUpRoom',
                 width: 256,
                 height: 256,
             },
@@ -2538,14 +2181,8 @@ const roomsInfo = {
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2553,9 +2190,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 21 - loadingRoomToMarbleGallery
+        loadingRoomToMarbleGallery: {
             roomInfo: {
-                roomName: 'loadingRoomToMarbleGallery',
                 width: 256,
                 height: 256,
             },
@@ -2565,14 +2201,8 @@ const roomsInfo = {
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2580,14 +2210,8 @@ const roomsInfo = {
                 },
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 256 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 256 + 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2595,9 +2219,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 22 - loadingRoomToWarpRooms
+        loadingRoomToWarpRooms: {
             roomInfo: {
-                roomName: 'loadingRoomToWarpRooms',
                 width: 256,
                 height: 256,
             },
@@ -2607,14 +2230,8 @@ const roomsInfo = {
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2622,14 +2239,8 @@ const roomsInfo = {
                 },
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 256 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 256 + 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2637,9 +2248,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 23 - loadingRoomToAlchemyLaboratory
+        loadingRoomToAlchemyLaboratory: {
             roomInfo: {
-                roomName: 'loadingRoomToAlchemyLaboratory',
                 width: 256,
                 height: 256,
             },
@@ -2649,14 +2259,8 @@ const roomsInfo = {
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2664,14 +2268,8 @@ const roomsInfo = {
                 },
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 256 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 256 + 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2679,9 +2277,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 24 - loadingRoomToUndergroundCaverns
+        loadingRoomToUndergroundCaverns: {
             roomInfo: {
-                roomName: 'loadingRoomToUndergroundCaverns',
                 width: 256,
                 height: 256,
             },
@@ -2691,14 +2288,8 @@ const roomsInfo = {
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2706,14 +2297,8 @@ const roomsInfo = {
                 },
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 256 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 256 + 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2721,9 +2306,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 22 - loadingRoomToWarpRooms
+        saveRoomA: {
             roomInfo: {
-                roomName: 'loadingRoomToWarpRooms',
                 width: 256,
                 height: 256,
             },
@@ -2733,29 +2317,8 @@ const roomsInfo = {
             commands: {
                 exitLeft: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                    },
-                    requirements: [
-                        getMovement('basic', 'main', -1.999),
-                    ],
-                },
-                exitRight: {
-                    outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 256 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 0 - 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2763,36 +2326,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 25 - saveRoomA
+        saveRoomB: {
             roomInfo: {
-                roomName: 'saveRoomA',
-                width: 256,
-                height: 256,
-            },
-            regions: [
-                getRegion('main', 0, 0, 256, 256),
-            ],
-            commands: {
-                exitLeft: {
-                    outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 0 - 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
-                    },
-                    requirements: [
-                        getMovement('basic', 'main', -1.999),
-                    ],
-                },
-            },
-        },
-        { // 26 - saveRoomB
-            roomInfo: {
-                roomName: 'saveRoomB',
                 width: 256,
                 height: 256,
             },
@@ -2802,14 +2337,8 @@ const roomsInfo = {
             commands: {
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 256 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 256 + 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2817,9 +2346,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 27 - saveRoomC
+        saveRoomC: {
             roomInfo: {
-                roomName: 'saveRoomC',
                 width: 256,
                 height: 256,
             },
@@ -2829,14 +2357,8 @@ const roomsInfo = {
             commands: {
                 exitRight: {
                     outcome: {
-                        positionX: {
-                            operation: 'replace',
-                            value: 256 + 8,
-                        },
-                        positionY: {
-                            operation: 'replace',
-                            value: 128,
-                        },
+                        positionX: 256 + 8,
+                        positionY: 128,
                     },
                     requirements: [
                         getMovement('basic', 'main', -1.999),
@@ -2844,9 +2366,8 @@ const roomsInfo = {
                 },
             },
         },
-        { // 28 - triggerTeleporterToAlchemyLaboratory
+        triggerTeleporterToAlchemyLaboratory: {
             roomInfo: {
-                roomName: 'triggerTeleporterToAlchemyLaboratory',
                 width: 256,
                 height: 256,
             },
@@ -2855,9 +2376,8 @@ const roomsInfo = {
             ],
             commands: {},
         },
-        { // 29 - triggerTeleporterToMarbleGallery
+        triggerTeleporterToMarbleGallery: {
             roomInfo: {
-                roomName: 'triggerTeleporterToMarbleGallery',
                 width: 256,
                 height: 256,
             },
@@ -2866,9 +2386,8 @@ const roomsInfo = {
             ],
             commands: {},
         },
-        { // 30 - triggerTeleporterToWarpRooms
+        triggerTeleporterToWarpRooms: {
             roomInfo: {
-                roomName: 'triggerTeleporterToWarpRooms',
                 width: 256,
                 height: 256,
             },
@@ -2877,9 +2396,8 @@ const roomsInfo = {
             ],
             commands: {},
         },
-        { // 31 - triggerTeleporterToUndergroundCaverns
+        triggerTeleporterToUndergroundCaverns: {
             roomInfo: {
-                roomName: 'triggerTeleporterToUndergroundCaverns',
                 width: 256,
                 height: 256,
             },
@@ -2888,148 +2406,255 @@ const roomsInfo = {
             ],
             commands: {},
         },
-    ],
+    },
 }
 
-function updateLogicWithOutcome(logic, outcome) {
+function updateStateWithOutcome(state, outcome) {
+    // console.log('state:', state)
+    // console.log('outcome:', outcome)
     Object.entries(outcome)
     .forEach(([propertyKey, propertyInfo]) => {
-        console.log(propertyKey, propertyInfo)
+        console.log(JSON.stringify(propertyKey), JSON.stringify(propertyInfo))
         switch (typeof propertyInfo) {
             case 'boolean':
             case 'number':
             case 'string':
-                logic.state[propertyKey] = propertyInfo
+                state[propertyKey] = propertyInfo
                 break
             case 'object':
+                // Objects are assumed to modify numbers
                 switch (propertyInfo.operation) {
                     case 'replace':
-                        logic.state[propertyKey] = propertyInfo.value
+                        state[propertyKey] = propertyInfo.value
                         break
                     case 'add':
-                        if (!(propertyKey in logic.state)) {
-                            logic.state[propertyKey] = 0
+                        if (!(propertyKey in state)) {
+                            state[propertyKey] = 0
                         }
-                        logic.state[propertyKey] += propertyInfo.value
+                        state[propertyKey] += propertyInfo.value
                         break
                     default:
-                        console.log('Unhandled key-value pair: ' + propertyKey + ', ' + propertyInfo)
+                        console.log('Unhandled key-value pair: ' + JSON.stringify(propertyKey) + ', ' + JSON.stringify(propertyInfo))
                         break
                 }
                 break
             default:
-                console.log('Unhandled key-value pair: ' + propertyKey + ', ' + propertyInfo)
+                console.log('Unhandled key-value pair: ' + JSON.stringify(propertyKey) + ', ' + JSON.stringify(propertyInfo))
                 break
         }
     })
+    // console.log('state:', state)
 }
 
-// Find the player's global position on the map
-function getGlobalPosition(logic, settings) {
-    const result = {
-        x: 0,
-        y: 0,
-    }
-    roomsInfo[logic.state.stage].find((roomInfo) => {
-        if (roomInfo.roomInfo.roomName !== logic.state.room) {
-            return false
+function getRoomDimensions(roomPositions) {
+    const result = {}
+    Object.entries(roomsInfo)
+    .forEach(([stageName, stageInfo]) => {
+        if (!(stageName in result)) {
+            result[stageName] = {}
         }
-        settings.roomPositions.find((roomPosition) => {
-            if (
-                roomPosition.stage !== logic.state.stage ||
-                roomPosition.room !== logic.state.room
-            ) {
-                return false
+        Object.entries(stageInfo)
+        .forEach(([roomName, roomInfo]) => {
+            if (!(roomName in result[stageName])) {
+                result[stageName][roomName] = {
+                    width: roomInfo.roomInfo.width,
+                    height: roomInfo.roomInfo.height,
+                }
             }
-            result.x = 256 * roomPosition.column + logic.state.positionX
-            result.y = 256 * roomPosition.row + logic.state.positionY
         })
+    })
+    roomPositions
+    .filter((roomPosition) => {
+        const validInd = (
+            roomPosition.stage in result && 
+            roomPosition.room in result[roomPosition.stage]
+        )
+        return validInd
+    })
+    .forEach((roomPosition) => {
+        const roomInfo = result[roomPosition.stage][roomPosition.room]
+        roomInfo.left = 256 * roomPosition.column
+        roomInfo.top = 256 * roomPosition.row
+        roomInfo.right = roomInfo.left + roomInfo.width
+        roomInfo.bottom = roomInfo.top + roomInfo.height
     })
     return result
 }
 
-// Update the player's room-relative position on the map and find their section
-function updateRoomPosition(logic, settings) {
-    settings.roomPositions.find((roomPosition) => {
-        const roomRegion = {
-            left: 256 * roomPosition.column,
-            top: 256 * roomPosition.row,
-        }
+function processLocation(state, settings) {
+    const result = {
+        stage: state.stage,
+        room: state.room,
+        section: state.section,
+        positionX: state.positionX,
+        positionY: state.positionY,
+    }
+    // Calculate global position
+    const globalPosition = {
+        x: 0,
+        y: 0,
+    }
+    settings.roomPositions
+    .find((roomPosition) => {
         if (
-            logic.globalPosition.x < roomRegion.left ||
-            logic.globalPosition.y < roomRegion.top
+            roomPosition.stage === result.stage &&
+            roomPosition.room === result.room
         ) {
-            return false
-        }
-        roomsInfo[logic.state.stage]
-        .find((roomInfo) => {
-            if (roomInfo.roomInfo.roomName !== roomPosition.room) {
-                return false
-            }
-            roomRegion.right = roomRegion.left + roomInfo.roomInfo.width
-            roomRegion.bottom = roomRegion.top + roomInfo.roomInfo.height
-            if (
-                logic.globalPosition.x >= roomRegion.right ||
-                logic.globalPosition.y >= roomRegion.bottom
-            ) {
-                return false
-            }
-            logic.state.room = roomInfo.roomInfo.roomName
-            logic.state.positionX = logic.globalPosition.x - roomRegion.left
-            logic.state.positionY = logic.globalPosition.y - roomRegion.top
-            logic.state.section = 'NONE'
-            // Use the first requirement that is satisfied
-            roomInfo.regions
-            .find((regionInfo) => {
-                const validRequirement = Object.entries(regionInfo)
-                .every(([propertyKey, propertyInfo]) => {
-                    let stateValue
-                    let validInd = true
-                    switch (typeof propertyInfo) {
-                        case 'boolean':
-                            stateValue = false
-                            if (propertyKey in logic.state) {
-                                stateValue = logic.state[propertyKey]
-                            }
-                            validInd = (stateValue === propertyInfo)
-                        case 'string':
-                            stateValue = 'NONE'
-                            if (propertyKey in logic.state) {
-                                stateValue = logic.state[propertyKey]
-                            }
-                            validInd = (stateValue === propertyInfo)
-                            break
-                        case 'object':
-                            stateValue = 0
-                            if (propertyKey in logic.state) {
-                                stateValue = logic.state[propertyKey]
-                            }
-                            if ('minimum' in propertyInfo) {
-                                if (stateValue < propertyInfo.minimum) {
-                                    validInd = false
-                                }
-                            }
-                            if ('maximum' in propertyInfo) {
-                                if (stateValue > propertyInfo.maximum) {
-                                    validInd = false
-                                }
-                            }
-                            break
-                        default:
-                            console.log('Unhandled key-value pair: ' + propertyKey + ', ' + propertyInfo)
-                            break
-                    }
-                    return validInd
-                })
-                if (validRequirement) {
-                    updateLogicWithOutcome(logic, regionInfo.outcome)
-                    return true
-                }
-                return false
-            })
+            globalPosition.x = 256 * roomPosition.column + result.positionX
+            globalPosition.y = 256 * roomPosition.row + result.positionY
             return true
+        }
+        return false
+    })
+    const roomDimensions = getRoomDimensions(settings.roomPositions)
+    // Find first room in the priority list that overlaps the global position
+    roomPriority[result.stage]
+    .find((roomName) => {
+        const roomDimension = roomDimensions[result.stage][roomName]
+        if (
+            globalPosition.x >= roomDimension.left &&
+            globalPosition.x < roomDimension.right &&
+            globalPosition.y >= roomDimension.top &&
+            globalPosition.y < roomDimension.bottom
+        ) {
+            result.room = roomName
+            result.positionX = globalPosition.x - roomDimension.left
+            result.positionY = globalPosition.y - roomDimension.top
+            return true
+        }
+        return false
+    })
+    // Find first section that satisfies requirements for the room-relative position
+    roomsInfo[result.stage][result.room].regions
+    .find((regionInfo) => {
+        result.section = 'NONE'
+        const validRequirement = Object.entries(regionInfo)
+        .every(([propertyKey, propertyInfo]) => {
+            let validInd = true
+            let stateValue
+            switch (typeof propertyInfo) {
+                case 'boolean':
+                    stateValue = false
+                    if (propertyKey in result) {
+                        stateValue = result[propertyKey]
+                    }
+                    validInd = (stateValue === propertyInfo)
+                case 'string':
+                    stateValue = 'NONE'
+                    if (propertyKey in result) {
+                        stateValue = result[propertyKey]
+                    }
+                    validInd = (stateValue === propertyInfo)
+                    break
+                case 'object':
+                    stateValue = 0
+                    if (propertyKey in result) {
+                        stateValue = result[propertyKey]
+                    }
+                    if ('minimum' in propertyInfo) {
+                        if (stateValue < propertyInfo.minimum) {
+                            validInd = false
+                        }
+                    }
+                    if ('maximum' in propertyInfo) {
+                        if (stateValue > propertyInfo.maximum) {
+                            validInd = false
+                        }
+                    }
+                    break
+                default:
+                    console.log('Unhandled key-value pair: ' + JSON.stringify(propertyKey) + ', ' + JSON.stringify(propertyInfo))
+                    break
+            }
+            return validInd
+        })
+        if (validRequirement) {
+            updateStateWithOutcome(result, regionInfo.outcome)
+            return true
+        }
+        return false
+    })
+    return result
+}
+
+// Whenever the player's positionX or postionY are updated,
+// check if their section changes, and 
+// if they are outside the bounds of the room
+
+function getPreprocessedLogic(settings) {
+    const result = {
+        global: {},
+    }
+    // For every room command, preprocess the outcome
+    Object.entries(roomsInfo)
+    .forEach(([stageName, stageInfo]) => {
+        result[stageName] = {}
+        Object.entries(stageInfo)
+        .forEach(([roomName, roomInfo]) => {
+            result[stageName][roomName] = []
+            Object.entries(roomInfo.commands)
+            .forEach(([commandName, commandInfo]) => {
+                commandInfo.requirements
+                .forEach((requirementInfo) => {
+                    const currentState = {
+                        stage: stageName,
+                        room: roomName,
+                        section: 'NONE',
+                        positionX: 0,
+                        positionY: 0,
+                    }
+                    let nextState = JSON.parse(JSON.stringify(currentState))
+                    updateStateWithOutcome(nextState, commandInfo.outcome)
+                    nextState = processLocation(nextState, settings)
+                    const command = {
+                        outcome: {},
+                        requirement: {},
+                    }
+                    Object.entries(nextState)
+                    .forEach(([propertyKey, propertyInfo]) => {
+                        if (propertyKey in currentState) {
+                            // Properties in current state are all location-based
+                            if (propertyInfo != currentState[propertyKey])
+                            {
+                                command.outcome[propertyKey] = propertyInfo
+                            }
+                        }
+                        else {
+                            command.outcome[propertyKey] = commandInfo.outcome[propertyKey]
+                        }
+                    })
+                    Object.entries(requirementInfo)
+                    .forEach(([propertyKey, propertyInfo]) => {
+                        if (propertyKey == 'costs') {
+                            Object.entries(propertyInfo)
+                            .forEach(([costKey, costValue]) => {
+                                switch (typeof costValue) {
+                                    case 'number':
+                                        command.requirement[costKey] = {
+                                            minimum: costValue,
+                                        }
+                                        console.log(command)
+                                        command.outcome[costKey] = {
+                                            operation: 'add',
+                                            value: -1 * costValue,
+                                        }
+                                        break
+                                    default:
+                                        command.outcome[costKey] = costValue
+                                        break
+                                }
+                            })
+                        }
+                        else {
+                            command.requirement[propertyKey] = propertyInfo
+                        }
+                    })
+                    result[stageName][roomName].push(command)
+                })
+            })
         })
     })
+    return result
 }
 
 // settings = {
@@ -3043,55 +2668,14 @@ export function analyzeLogic(seed, settings) {
     const result = {
         solvable: false,
     }
-    const logic = {
-        state: {
-            stage: 'castleEntrance',
-            room: 'afterDrawbridge',
-            positionX: 136,
-            positionY: 640,
-        },
+    const state = {
+        stage: 'castleEntrance',
+        room: 'afterDrawbridge',
+        positionX: 136,
+        positionY: 640,
     }
-    // console.log('locationRewards:', settings.locationRewards)
-    console.log('')
-    console.log('init')
-    console.log('logic:', logic)
-
-    console.log('')
-    console.log('getGlobalPosition')
-    logic.globalPosition = getGlobalPosition(logic, settings)
-    console.log('logic:', logic)
-
-    console.log('')
-    console.log('updateRoomPosition')
-    updateRoomPosition(logic, settings)
-    console.log('logic:', logic)
-
-    // Use an arbitrary command
-    const commandInfo = roomsInfo.castleEntrance[0].commands.exitRight
-    const outcome = JSON.parse(JSON.stringify(commandInfo.outcome))
-    Object.entries(commandInfo.requirements[0].outcome).forEach(([key, value]) => {
-        outcome[key] = value
-    })
-    console.log('')
-    console.log('outcome:', outcome)
-    updateLogicWithOutcome(logic, outcome)
-    console.log('logic:', logic)
-
-    // Update the player's room-relative position on the map
-    console.log('')
-    console.log('getGlobalPosition')
-    logic.globalPosition = getGlobalPosition(logic, settings)
-    console.log('logic:', logic)
-    console.log('')
-    console.log('updateRoomPosition')
-    updateRoomPosition(logic, settings)
-    console.log('logic:', logic)
-    // Update the player's section (set to 'NONE' if one can't be found)
-            // roomInfo.regions.find((regionInfo) => {
-            //     if (regionInfo.) {
-            //         return false
-            //     }
-            // })
+    const logic = getPreprocessedLogic(settings)
+    console.log(logic[state.stage][state.room])
     if ((10 * rng()) < settings.solverAttemptCount) {
         result.solvable = true
     }
