@@ -2414,7 +2414,7 @@ function updateStateWithOutcome(state, outcome) {
     // console.log('outcome:', outcome)
     Object.entries(outcome)
     .forEach(([propertyKey, propertyInfo]) => {
-        console.log(JSON.stringify(propertyKey), JSON.stringify(propertyInfo))
+        // console.log(JSON.stringify(propertyKey), JSON.stringify(propertyInfo))
         switch (typeof propertyInfo) {
             case 'boolean':
             case 'number':
@@ -2528,51 +2528,59 @@ function processLocation(state, settings) {
     roomsInfo[result.stage][result.room].regions
     .find((regionInfo) => {
         result.section = 'NONE'
-        const validRequirement = Object.entries(regionInfo)
-        .every(([propertyKey, propertyInfo]) => {
-            let validInd = true
-            let stateValue
-            switch (typeof propertyInfo) {
-                case 'boolean':
-                    stateValue = false
-                    if (propertyKey in result) {
-                        stateValue = result[propertyKey]
-                    }
-                    validInd = (stateValue === propertyInfo)
-                case 'string':
-                    stateValue = 'NONE'
-                    if (propertyKey in result) {
-                        stateValue = result[propertyKey]
-                    }
-                    validInd = (stateValue === propertyInfo)
-                    break
-                case 'object':
-                    stateValue = 0
-                    if (propertyKey in result) {
-                        stateValue = result[propertyKey]
-                    }
-                    if ('minimum' in propertyInfo) {
-                        if (stateValue < propertyInfo.minimum) {
-                            validInd = false
+        let validRegion = false
+        regionInfo.requirements
+        .find((requirementInfo) => {
+            const validRequirement = Object.entries(requirementInfo)
+            .every(([propertyKey, propertyInfo]) => {
+                let stateValue
+                switch (typeof propertyInfo) {
+                    case 'boolean':
+                        stateValue = false
+                        if (propertyKey in result) {
+                            stateValue = result[propertyKey]
                         }
-                    }
-                    if ('maximum' in propertyInfo) {
-                        if (stateValue > propertyInfo.maximum) {
-                            validInd = false
+                        if (stateValue !== propertyInfo) {
+                            return false
                         }
-                    }
-                    break
-                default:
-                    console.log('Unhandled key-value pair: ' + JSON.stringify(propertyKey) + ', ' + JSON.stringify(propertyInfo))
-                    break
+                    case 'string':
+                        stateValue = 'NONE'
+                        if (propertyKey in result) {
+                            stateValue = result[propertyKey]
+                        }
+                        if (stateValue !== propertyInfo) {
+                            return false
+                        }
+                        break
+                    case 'object':
+                        stateValue = 0
+                        if (propertyKey in result) {
+                            stateValue = result[propertyKey]
+                        }
+                        if ('minimum' in propertyInfo) {
+                            if (stateValue < propertyInfo.minimum) {
+                                return false
+                            }
+                        }
+                        if ('maximum' in propertyInfo) {
+                            if (stateValue > propertyInfo.maximum) {
+                                return false
+                            }
+                        }
+                        break
+                    default:
+                        console.log('Unhandled key-value pair: ' + JSON.stringify(propertyKey) + ', ' + JSON.stringify(propertyInfo))
+                        break
+                }
+                return true
+            })
+            if (validRequirement) {
+                updateStateWithOutcome(result, regionInfo.outcome)
+                validRegion = true
             }
-            return validInd
+            return validRequirement
         })
-        if (validRequirement) {
-            updateStateWithOutcome(result, regionInfo.outcome)
-            return true
-        }
-        return false
+        return validRegion
     })
     return result
 }
@@ -2603,26 +2611,18 @@ function getPreprocessedLogic(settings) {
                         positionX: 0,
                         positionY: 0,
                     }
+                    // console.log('currentState:', currentState)
                     let nextState = JSON.parse(JSON.stringify(currentState))
+                    console.log('nextState(BEFORE):', nextState)
                     updateStateWithOutcome(nextState, commandInfo.outcome)
+                    console.log('nextState(MID):', nextState)
                     nextState = processLocation(nextState, settings)
+                    console.log('nextState(AFTER):', nextState)
                     const command = {
                         outcome: {},
                         requirement: {},
                     }
-                    Object.entries(nextState)
-                    .forEach(([propertyKey, propertyInfo]) => {
-                        if (propertyKey in currentState) {
-                            // Properties in current state are all location-based
-                            if (propertyInfo != currentState[propertyKey])
-                            {
-                                command.outcome[propertyKey] = propertyInfo
-                            }
-                        }
-                        else {
-                            command.outcome[propertyKey] = commandInfo.outcome[propertyKey]
-                        }
-                    })
+                    // console.log('command.outcome:', command.outcome)
                     Object.entries(requirementInfo)
                     .forEach(([propertyKey, propertyInfo]) => {
                         if (propertyKey == 'costs') {
@@ -2633,7 +2633,7 @@ function getPreprocessedLogic(settings) {
                                         command.requirement[costKey] = {
                                             minimum: costValue,
                                         }
-                                        console.log(command)
+                                        // console.log(command)
                                         command.outcome[costKey] = {
                                             operation: 'add',
                                             value: -1 * costValue,
@@ -2647,6 +2647,28 @@ function getPreprocessedLogic(settings) {
                         }
                         else {
                             command.requirement[propertyKey] = propertyInfo
+                        }
+                    })
+                    Object.entries(nextState)
+                    .forEach(([propertyKey, propertyInfo]) => {
+                        // console.log('  propertyKey:', propertyKey)
+                        // console.log('  propertyInfo:', propertyInfo)
+                        if (propertyKey in currentState) {
+                            // console.log('    propertyKey in currentState: YES')
+                            // Properties in current state are all location-based
+                            if (propertyInfo !== currentState[propertyKey])
+                            {
+                                // console.log('      propertyInfo === currentState[propertyKey]: NO')
+                                command.outcome[propertyKey] = propertyInfo
+                            }
+                            else {
+                                // console.log('      propertyInfo === currentState[propertyKey]: YES')
+                            }
+                            // console.log('DEBUG', command)
+                        }
+                        else {
+                            // console.log('    propertyKey in currentState: NO')
+                            command.outcome[propertyKey] = commandInfo.outcome[propertyKey]
                         }
                     })
                     result[stageName][roomName].push(command)
