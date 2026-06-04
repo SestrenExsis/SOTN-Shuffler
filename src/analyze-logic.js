@@ -2703,7 +2703,31 @@ function getPreprocessedLogic(settings) {
                 Object.assign(command.outcome, locationsInfo[locationName].outcome)
                 Object.assign(command.outcome, rewardsInfo[rewardName].outcome)
                 Object.assign(command.requirement, locationRequirementInfo)
-                Object.assign(command.requirement, rewardRequirementInfo)
+                Object.entries(rewardRequirementInfo)
+                .forEach(([propertyKey, propertyInfo]) => {
+                    if (propertyKey == 'costs') {
+                        Object.entries(propertyInfo)
+                        .forEach(([costKey, costValue]) => {
+                            switch (typeof costValue) {
+                                case 'number':
+                                    command.requirement[costKey] = {
+                                        minimum: costValue,
+                                    }
+                                    command.outcome[costKey] = {
+                                        operation: 'add',
+                                        value: -1 * costValue,
+                                    }
+                                    break
+                                default:
+                                    command.outcome[costKey] = costValue
+                                    break
+                            }
+                        })
+                    }
+                    else {
+                        command.requirement[propertyKey] = propertyInfo
+                    }
+                })
                 command.requirement.section = location.section
                 result[stageName][roomName].push(command)
             })
