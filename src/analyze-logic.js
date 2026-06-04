@@ -98,20 +98,6 @@ function getRegion(section, left, top, width, height) {
 }
 
 const locationsInfo = {
-    locationDemonCard: {
-        outcome: {
-            positionX: 88,
-            positionY: 185,
-            locationDemonCard: true,
-        },
-        requirements: [
-            {
-                stage: 'abandonedMine',
-                room: 'demonCardRoom',
-                locationDemonCard: false,
-            },
-        ],
-    },
     locationBatCard: {
         outcome: {
             positionX: 120,
@@ -140,73 +126,59 @@ const locationsInfo = {
             },
         ],
     },
-    locationPowerOfWolf: {
+    locationDemonCard: {
         outcome: {
-            positionX: 272,
-            positionY: 192,
-            locationPowerOfWolf: true,
+            positionX: 88,
+            positionY: 185,
+            locationDemonCard: true,
         },
         requirements: [
             {
-                stage: 'castleEntrance',
-                room: 'afterDrawbridge',
-                locationPowerOfWolf: false,
+                stage: 'abandonedMine',
+                room: 'demonCardRoom',
+                locationDemonCard: false,
             },
         ],
     },
-    locationPowerOfMist: {
+    locationEchoOfBat: {
         outcome: {
-            positionX: 412,
-            positionY: 1220,
-            locationPowerOfMist: true,
+            positionX: 128,
+            positionY: 148,
+            locationEchoOfBat: true,
         },
         requirements: [
             {
-                stage: 'castleKeep',
-                room: 'keepArea',
-                locationPowerOfMist: false,
+                stage: 'olroxsQuarters',
+                room: 'echoOfBatRoom',
+                locationEchoOfBat: false,
             },
         ],
     },
-    locationLeapStone: {
+    locationFaerieCard: {
         outcome: {
-            positionX: 412,
-            positionY: 1220,
-            locationLeapStone: true,
+            positionX: 48,
+            positionY: 177,
+            locationFaerieCard: true,
         },
         requirements: [
             {
-                stage: 'castleKeep',
-                room: 'keepArea',
-                locationLeapStone: false,
+                stage: 'longLibrary',
+                room: 'faerieCardRoom',
+                locationFaerieCard: false,
             },
         ],
     },
-    locationGhostCard: {
+    locationFaerieScroll: {
         outcome: {
-            positionX: 352,
-            positionY: 672,
-            locationGhostCard: true,
+            positionX: 1680,
+            positionY: 176,
+            locationFaerieScroll: true,
         },
         requirements: [
             {
-                stage: 'castleKeep',
-                room: 'ghostCardRoom',
-                locationGhostCard: false,
-            },
-        ],
-    },
-    locationSpikeBreaker: {
-        outcome: {
-            positionX: 47,
-            positionY: 153,
-            locationSpikeBreaker: true,
-        },
-        requirements: [
-            {
-                stage: 'catacombs',
-                room: 'spikeBreakerRoom',
-                locationSpikeBreaker: false,
+                stage: 'longLibrary',
+                room: 'spellbookArea',
+                locationFaerieScroll: false,
             },
         ],
     },
@@ -221,6 +193,20 @@ const locationsInfo = {
                 stage: 'clockTower',
                 room: 'fireOfBatRoom',
                 locationFireOfBat: false,
+            },
+        ],
+    },
+    locationForceOfEcho: {
+        outcome: {
+            positionX: 112,
+            positionY: 128,
+            locationForceOfEcho: true,
+        },
+        requirements: [
+            {
+                stage: 'reverseCaverns',
+                room: 'holySymbolRoom',
+                locationForceOfEcho: false,
             },
         ],
     },
@@ -252,31 +238,157 @@ const locationsInfo = {
             },
         ],
     },
-    locationFaerieScroll: {
+    locationGhostCard: {
         outcome: {
-            positionX: 1680,
-            positionY: 176,
-            locationFaerieScroll: true,
+            positionX: 352,
+            positionY: 672,
+            locationGhostCard: true,
         },
         requirements: [
             {
-                stage: 'longLibrary',
-                room: 'spellbookArea',
-                locationFaerieScroll: false,
+                stage: 'castleKeep',
+                room: 'ghostCardRoom',
+                locationGhostCard: false,
             },
         ],
     },
-    locationFaerieCard: {
+    locationGoldRing: {
         outcome: {
-            positionX: 48,
-            positionY: 177,
-            locationFaerieCard: true,
+            positionX: 128,
+            positionY: 128,
+            locationGoldRing: true,
+        },
+        requirements: [
+            {
+                stage: 'undergroundCaverns',
+                room: 'falseSaveRoom',
+                locationGoldRing: false,
+            },
+        ],
+    },
+    locationGravityBoots: {
+        outcome: {
+            positionX: 1168,
+            positionY: 176,
+            locationGravityBoots: true,
+        },
+        requirements: [
+            {
+                stage: 'marbleGallery',
+                room: 'gravityBootsRoom',
+                locationGravityBoots: false,
+            },
+        ],
+    },
+    locationHolySymbol: {
+        outcome: {
+            positionX: 144,
+            positionY: 180,
+            locationHolySymbol: true,
+        },
+        requirements: [
+            {
+                stage: 'undergroundCaverns',
+                room: 'holySymbolRoom',
+                locationHolySymbol: false,
+            },
+        ],
+    },
+    locationJewelOfOpen: {
+        outcome: {
+            positionX: 128,
+            positionY: 128,
+            locationJewelOfOpen: true,
         },
         requirements: [
             {
                 stage: 'longLibrary',
-                room: 'faerieCardRoom',
-                locationFaerieCard: false,
+                room: 'shop',
+                locationJewelOfOpen: false,
+            },
+        ],
+    },
+    locationLeapStone: {
+        outcome: {
+            positionX: 412,
+            positionY: 1220,
+            locationLeapStone: true,
+        },
+        requirements: [
+            {
+                stage: 'castleKeep',
+                room: 'keepArea',
+                locationLeapStone: false,
+            },
+        ],
+    },
+    locationMermanStatue: {
+        outcome: {
+            positionX: 96,
+            positionY: 176,
+            locationMermanStatue: true,
+        },
+        requirements: [
+            {
+                stage: 'undergroundCaverns',
+                room: 'mermanStatueRoom',
+                locationMermanStatue: false,
+            },
+        ],
+    },
+    locationPowerOfMist: {
+        outcome: {
+            positionX: 412,
+            positionY: 1220,
+            locationPowerOfMist: true,
+        },
+        requirements: [
+            {
+                stage: 'castleKeep',
+                room: 'keepArea',
+                locationPowerOfMist: false,
+            },
+        ],
+    },
+    locationPowerOfWolf: {
+        outcome: {
+            positionX: 272,
+            positionY: 192,
+            locationPowerOfWolf: true,
+        },
+        requirements: [
+            {
+                stage: 'castleEntrance',
+                room: 'afterDrawbridge',
+                locationPowerOfWolf: false,
+            },
+        ],
+    },
+    locationSilverRing: {
+        outcome: {
+            positionX: 180,
+            positionY: 164,
+            locationSilverRing: true,
+        },
+        requirements: [
+            {
+                stage: 'royalChapel',
+                room: 'silverRingRoom',
+                locationSilverRing: false,
+            },
+        ],
+    },
+    locationSkillOfWolf: {
+        outcome: {
+            positionX: 128,
+            positionY: 128,
+            locationSkillOfWolf: true,
+        },
+        requirements: [
+            {
+                stage: 'alchemyLaboratory',
+                room: 'skillOfWolfRoom',
+                locationSkillOfWolf: false,
             },
         ],
     },
@@ -294,17 +406,31 @@ const locationsInfo = {
             },
         ],
     },
-    locationGravityBoots: {
+    locationSoulOfWolf: {
         outcome: {
-            positionX: 1168,
-            positionY: 176,
-            locationGravityBoots: true,
+            positionX: 392,
+            positionY: 808,
+            locationSoulOfWolf: true,
         },
         requirements: [
             {
-                stage: 'marbleGallery',
-                room: 'gravityBootsRoom',
-                locationGravityBoots: false,
+                stage: 'outerWall',
+                room: 'elevatorShaftRoom',
+                locationSoulOfWolf: false,
+            },
+        ],
+    },
+    locationSpikeBreaker: {
+        outcome: {
+            positionX: 47,
+            positionY: 153,
+            locationSpikeBreaker: true,
+        },
+        requirements: [
+            {
+                stage: 'catacombs',
+                room: 'spikeBreakerRoom',
+                locationSpikeBreaker: false,
             },
         ],
     },
@@ -333,90 +459,6 @@ const locationsInfo = {
                 stage: 'olroxsQuarters',
                 room: 'swordCardRoom',
                 locationSwordCard: false,
-            },
-        ],
-    },
-    locationEchoOfBat: {
-        outcome: {
-            positionX: 128,
-            positionY: 148,
-            locationEchoOfBat: true,
-        },
-        requirements: [
-            {
-                stage: 'olroxsQuarters',
-                room: 'echoOfBatRoom',
-                locationEchoOfBat: false,
-            },
-        ],
-    },
-    locationSoulOfWolf: {
-        outcome: {
-            positionX: 392,
-            positionY: 808,
-            locationSoulOfWolf: true,
-        },
-        requirements: [
-            {
-                stage: 'outerWall',
-                room: 'elevatorShaftRoom',
-                locationSoulOfWolf: false,
-            },
-        ],
-    },
-    locationForceOfEcho: {
-        outcome: {
-            positionX: 112,
-            positionY: 128,
-            locationForceOfEcho: true,
-        },
-        requirements: [
-            {
-                stage: 'reverseCaverns',
-                room: 'holySymbolRoom',
-                locationForceOfEcho: false,
-            },
-        ],
-    },
-    locationSilverRing: {
-        outcome: {
-            positionX: 180,
-            positionY: 164,
-            locationSilverRing: true,
-        },
-        requirements: [
-            {
-                stage: 'royalChapel',
-                room: 'silverRingRoom',
-                locationSilverRing: false,
-            },
-        ],
-    },
-    locationHolySymbol: {
-        outcome: {
-            positionX: 144,
-            positionY: 180,
-            locationHolySymbol: true,
-        },
-        requirements: [
-            {
-                stage: 'undergroundCaverns',
-                room: 'holySymbolRoom',
-                locationHolySymbol: false,
-            },
-        ],
-    },
-    locationMermanStatue: {
-        outcome: {
-            positionX: 96,
-            positionY: 176,
-            locationMermanStatue: true,
-        },
-        requirements: [
-            {
-                stage: 'undergroundCaverns',
-                room: 'mermanStatueRoom',
-                locationMermanStatue: false,
             },
         ],
     },
@@ -2560,15 +2602,11 @@ function updateLocation(location, settings) {
     })
 }
 
-// Whenever the player's positionX or postionY are updated,
-// check if their section changes, and 
-// if they are outside the bounds of the room
-
 function getPreprocessedLogic(settings) {
     const result = {
         global: {},
     }
-    // For every room command, preprocess the outcome
+    // Process every room command
     Object.entries(roomsInfo)
     .forEach(([stageName, stageInfo]) => {
         result[stageName] = {}
@@ -2634,15 +2672,46 @@ function getPreprocessedLogic(settings) {
             })
         })
     })
+    // Process every location-reward combination
+    Object.entries(settings.locationRewards)
+    .forEach(([locationName, rewardName]) => {
+        // Process every location requirement (Castle Entrance only for now)
+        console.log('locationName:', locationName)
+        console.log('rewardName:', rewardName)
+        locationsInfo[locationName].requirements
+        .filter((locationRequirementInfo) => {
+            return locationRequirementInfo.stage == 'castleEntrance'
+        })
+        .forEach((locationRequirementInfo) => {
+            const stageName = locationRequirementInfo.stage
+            const roomName = locationRequirementInfo.room
+            const location = {
+                stage: stageName,
+                room: roomName,
+                section: 'NONE',
+                positionX: locationsInfo[locationName].outcome.positionX,
+                positionY: locationsInfo[locationName].outcome.positionY,
+            }
+            updateLocation(location, settings)
+            // Process every reward requirement
+            rewardsInfo[rewardName].requirements
+            .forEach((rewardRequirementInfo) => {
+                const command = {
+                    outcome: {},
+                    requirement: {},
+                }
+                Object.assign(command.outcome, locationsInfo[locationName].outcome)
+                Object.assign(command.outcome, rewardsInfo[rewardName].outcome)
+                Object.assign(command.requirement, locationRequirementInfo)
+                Object.assign(command.requirement, rewardRequirementInfo)
+                command.requirement.section = location.section
+                result[stageName][roomName].push(command)
+            })
+        })
+    })
     return result
 }
 
-// settings = {
-//     solverAttemptCount: shuffleData.debugInfo.solverAttemptCount,
-//     locationRewards: questRewards.locations,
-//     stageLinks: stageConnections.links,
-//     roomPositions: roomArrangements.rooms,
-// }
 export function analyzeLogic(seed, settings) {
     const rng = seedrandom(seed)
     const result = {
@@ -2653,6 +2722,7 @@ export function analyzeLogic(seed, settings) {
         room: 'afterDrawbridge',
         positionX: 136,
         positionY: 640,
+        time: 60.0,
     }
     console.log('settings:', JSON.stringify(settings, null, 4))
     const logic = getPreprocessedLogic(settings)
