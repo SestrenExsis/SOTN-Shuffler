@@ -2427,6 +2427,53 @@ const roomsInfo = {
     },
 }
 
+function isValidRequirement(state, requirement) {
+    const result = Object.entries(requirement)
+    .every(([propertyKey, propertyInfo]) => {
+        let stateValue
+        switch (typeof propertyInfo) {
+            case 'boolean':
+                stateValue = false
+                if (propertyKey in state) {
+                    stateValue = state[propertyKey]
+                }
+                if (stateValue !== propertyInfo) {
+                    return false
+                }
+            case 'string':
+                stateValue = 'NONE'
+                if (propertyKey in state) {
+                    stateValue = state[propertyKey]
+                }
+                if (stateValue !== propertyInfo) {
+                    return false
+                }
+                break
+            case 'object':
+                stateValue = 0
+                if (propertyKey in state) {
+                    stateValue = state[propertyKey]
+                }
+                if ('minimum' in propertyInfo) {
+                    if (stateValue < propertyInfo.minimum) {
+                        return false
+                    }
+                }
+                if ('maximum' in propertyInfo) {
+                    if (stateValue > propertyInfo.maximum) {
+                        return false
+                    }
+                }
+                break
+            default:
+                console.log('Unhandled key-value pair: ' + JSON.stringify(propertyKey) + ', ' + JSON.stringify(propertyInfo))
+                break
+        }
+        return true
+    })
+    return result
+}
+
 function updateStateWithOutcome(state, outcome) {
     Object.entries(outcome)
     .forEach(([propertyKey, propertyInfo]) => {
@@ -2549,49 +2596,7 @@ function updateLocation(location, settings) {
         let validRegion = false
         regionInfo.requirements
         .find((requirementInfo) => {
-            const validRequirement = Object.entries(requirementInfo)
-            .every(([propertyKey, propertyInfo]) => {
-                let stateValue
-                switch (typeof propertyInfo) {
-                    case 'boolean':
-                        stateValue = false
-                        if (propertyKey in location) {
-                            stateValue = location[propertyKey]
-                        }
-                        if (stateValue !== propertyInfo) {
-                            return false
-                        }
-                    case 'string':
-                        stateValue = 'NONE'
-                        if (propertyKey in location) {
-                            stateValue = location[propertyKey]
-                        }
-                        if (stateValue !== propertyInfo) {
-                            return false
-                        }
-                        break
-                    case 'object':
-                        stateValue = 0
-                        if (propertyKey in location) {
-                            stateValue = location[propertyKey]
-                        }
-                        if ('minimum' in propertyInfo) {
-                            if (stateValue < propertyInfo.minimum) {
-                                return false
-                            }
-                        }
-                        if ('maximum' in propertyInfo) {
-                            if (stateValue > propertyInfo.maximum) {
-                                return false
-                            }
-                        }
-                        break
-                    default:
-                        console.log('Unhandled key-value pair: ' + JSON.stringify(propertyKey) + ', ' + JSON.stringify(propertyInfo))
-                        break
-                }
-                return true
-            })
+            const validRequirement = isValidRequirement(location, requirementInfo)
             if (validRequirement) {
                 updateStateWithOutcome(location, regionInfo.outcome)
                 validRegion = true
@@ -2741,16 +2746,25 @@ export function analyzeLogic(seed, settings) {
     const result = {
         solvable: false,
     }
+    console.log('settings:', JSON.stringify(settings, null, 4))
+    const logic = getPreprocessedLogic(settings)
+    console.log('logic:', JSON.stringify(logic, null, 4))
     const state = {
         stage: 'castleEntrance',
         room: 'afterDrawbridge',
+        section: 'main',
         positionX: 136,
         positionY: 640,
         time: 60.0,
     }
-    console.log('settings:', JSON.stringify(settings, null, 4))
-    const logic = getPreprocessedLogic(settings)
-    console.log('logic:', JSON.stringify(logic, null, 4))
+    // ...
+    logic[state.stage][state.room]
+    .forEach((command) => {
+        if (isValidRequirement(state, command.requirement)) {
+            console.log('command:', JSON.stringify(command, null, 4))
+        }
+    })
+    // ...
     if ((10 * rng()) < settings.solverAttemptCount) {
         result.solvable = true
     }
