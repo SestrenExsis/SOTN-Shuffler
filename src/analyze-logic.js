@@ -45,6 +45,14 @@ function getMovement(requirementName, section, time) {
             result.statusDoubleJumpUsed = false
             result.costs.statusDoubleJumpUsed = false
             break
+        case 'gravityJump':
+            result.progressionGravityJump = true
+            break
+        case 'multipleGravityJumps':
+        case 'multipleGravityJumpsWithDoubleJump':
+            result.progressionDoubleJump = true
+            result.progressionGravityJump = true
+            break
         case 'poweredMist':
         case 'poweredMistForm':
             result.progressionMistTransformation = true
@@ -71,6 +79,7 @@ function getMovement(requirementName, section, time) {
             result.techniqueVeryLongWolfMistRise = true
             break
         default:
+            result.UNKNOWN_MOVEMENT_REQUIREMENT = true
             break
     }
     return result
@@ -2440,6 +2449,7 @@ function isValidRequirement(state, requirement) {
                 if (stateValue !== propertyInfo) {
                     return false
                 }
+                break
             case 'string':
                 stateValue = 'NONE'
                 if (propertyKey in state) {
@@ -2607,7 +2617,7 @@ function updateLocation(location, settings) {
     })
 }
 
-function getPreprocessedLogic(settings) {
+function getLogic(settings) {
     const result = {
         global: {},
     }
@@ -2681,8 +2691,6 @@ function getPreprocessedLogic(settings) {
     Object.entries(settings.locationRewards)
     .forEach(([locationName, rewardName]) => {
         // Process every location requirement (Castle Entrance only for now)
-        console.log('locationName:', locationName)
-        console.log('rewardName:', rewardName)
         locationsInfo[locationName].requirements
         .filter((locationRequirementInfo) => {
             return locationRequirementInfo.stage == 'castleEntrance'
@@ -2741,32 +2749,90 @@ function getPreprocessedLogic(settings) {
     return result
 }
 
+function hashedState(state) {
+    const prefixState = JSON.stringify(state,
+        Object.keys(state).filter((key) => {
+            return (['stage', 'room', 'section'].includes(key))
+        }).sort(), 4
+    )
+    const prefix = hashedText(prefixState)
+    const suffixState = JSON.stringify(state,
+        Object.keys(state).filter((key) => {
+            return !(['stage', 'room', 'section', 'time', 'positionX', 'positionY'].includes(key))
+        }).sort(), 4
+    )
+    const suffix = hashedText(suffixState)
+    const result = prefix + '-' + suffix
+    return result
+}
+
+// Javascript implementation of DJBX33A as defined at https://stackoverflow.com/questions/10696223/reason-for-the-number-5381-in-the-djb-hash-function
+function hashedText(text) {
+    const MOD = Math.pow(2, 32)
+    let value = 5381
+    for (let i = 0; i < text.length; i++) {
+        value = ((33 * value) + text.charCodeAt(i)) % MOD
+    }
+    let result = ''
+    for (let i = 0; i < 8; i++) {
+        result += '0123456789abcdef'.at(value % 16)
+        value = Math.floor(value / 16)
+    }
+    return result
+}
+
 export function analyzeLogic(seed, settings) {
     const rng = seedrandom(seed)
     const result = {
         solvable: false,
     }
-    console.log('settings:', JSON.stringify(settings, null, 4))
-    const logic = getPreprocessedLogic(settings)
-    console.log('logic:', JSON.stringify(logic, null, 4))
-    const state = {
+    // console.log('settings:', JSON.stringify(settings, null, 4))
+    const logic = getLogic(settings)
+    // console.log('logic:', JSON.stringify(logic, null, 4))
+    const initialState = {
         stage: 'castleEntrance',
         room: 'afterDrawbridge',
         section: 'main',
         positionX: 136,
         positionY: 640,
-        time: 60.0,
+        time: 120.0,
     }
-    // ...
-    logic[state.stage][state.room]
-    .forEach((command) => {
-        if (isValidRequirement(state, command.requirement)) {
-            console.log('command:', JSON.stringify(command, null, 4))
+    const goalState = {
+        stage: 'castleEntrance',
+        room: 'loadingRoomToAlchemyLaboratory',
+        section: 'main',
+        locationCubeOfZoe: true,
+    }
+    const map = new Map()
+    const work = [initialState]
+    while (work.length > 0) {
+        if (result.solvable) {
+            break
         }
-    })
-    // ...
-    if ((10 * rng()) < settings.solverAttemptCount) {
-        result.solvable = true
+        // console.log('work.length:', work.length, 'map.size:', map.size)
+        const currentState = work.pop()
+        const currentStateHash = hashedState(currentState)
+        if (
+            map.has(currentStateHash) &&
+            map.get(currentStateHash) >= currentState.time
+        ) {
+            continue
+        }
+        map.set(currentStateHash, currentState.time)
+        logic[currentState.stage][currentState.room]
+        .forEach((command) => {
+            if (isValidRequirement(currentState, command.requirement)) {
+                const nextState = Object.assign({}, currentState)
+                hashedState(nextState)
+                updateStateWithOutcome(nextState, command.outcome)
+                if (isValidRequirement(nextState, goalState)) {
+                    result.solvable = true
+                    console.log('goalState:', nextState)
+                    return
+                }
+                work.push(nextState)
+            }
+        })
     }
     console.log('')
     return result
