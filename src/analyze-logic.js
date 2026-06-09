@@ -1167,7 +1167,28 @@ const roomPriority = {
         'triggerTeleporterToMarbleGallery',
         'triggerTeleporterToWarpRooms',
         'triggerTeleporterToUndergroundCaverns',
-    ]
+    ],
+    abandonedMine: [
+        'wolfsHeadColumn',
+        'wellLitSkullRoom',
+        'cerberusRoom',
+        'demonSwitch',
+        'venusWeedRoom',
+        'snakeColumn',
+        'peanutsRoom',
+        'fourWayIntersection',
+        'lowerStairwell',
+        'karmaCoinRoom',
+        'bend',
+        'demonCard',
+        'loadingRoomToCatacombs',
+        'loadingRoomToWarpRooms',
+        'loadingRoomToUndergroundCaverns',
+        'saveRoom',
+        'triggerTeleporterToUndergroundCaverns',
+        'triggerTeleporterToWarpRooms',
+        'triggerTeleporterToCatacombs',
+    ],
 }
 
 const roomsInfo = {
@@ -2138,7 +2159,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('leftSide', 'main', 1.999),
+                        getMovement('basic', 'main', 1.999),
                     ],
                 },
                 exitRight: {
@@ -2147,7 +2168,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('rightSide', 'main', 1.999),
+                        getMovement('basic', 'main', 1.999),
                     ],
                 },
                 toRightSide: {
@@ -2434,6 +2455,156 @@ const roomsInfo = {
             commands: {},
         },
     },
+    abandonedMine: {
+        bend: {
+            roomInfo: {
+                width: 256,
+                height: 512,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 512),
+            ],
+            commands: {
+                exitLeftUpper: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitLeftLower: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 384,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        cerberusRoom: {
+            roomInfo: {
+                width: 512,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 512, 256),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRight: {
+                    outcome: {
+                        positionX: 512 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        demonSwitch: {
+            roomInfo: {
+                width: 256,
+                height: 1024,
+            },
+            regions: [
+                getRegion('blockArea', 208, 96, 48, 64),
+                getRegion('upperLeftLedge', 0, 64, 208, 144),
+                getRegion('zigZagLedges', 16, 208, 224, 336),
+                getRegion('crumblingStairwell', 16, 544, 208, 160),
+                getRegion('tinyLedges', 16, 704, 208, 144),
+                getRegion('main', 16, 848, 208, 176),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'upperLeftLedge', 1.999),
+                    ],
+                },
+                exitRight: {
+                    outcome: {
+                        positionX: 256 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'blockArea', 1.999),
+                    ],
+                },
+                exitBottom: {
+                    outcome: {
+                        positionX: 128,
+                        positionY: 1024 + 24,
+                    },
+                    requirements: [
+                        getMovement('basic', 'lowerLedges', 1.999),
+                    ],
+                },
+                toBlockArea: {
+                    outcome: {
+                        positionX: 232,
+                        positionY: 128,
+                        // section: blockArea,
+                    },
+                    requirements: [
+                        { // After Activating Demon Switch
+                            section: 'upperLeftLedge',
+                            statusDemonSwitchActivated: true,
+                            costs: {
+                                time: 1.999,
+                            },
+                        },
+                    ],
+                },
+                activateDemonSwitch: {
+                    outcome: {
+                        statusDemonSwitchActivated: true,
+                    },
+                    requirements: [
+                        {
+                            section: 'upperLeftLedge',
+                            progressionSummonDemonFamiliar: true,
+                            statusDemonSwitchActivated: false,
+                            costs: {
+                                time: 1.999,
+                            },
+                        },
+                    ],
+                },
+            },
+        },
+        demonCard: {},
+        fourWayIntersection: {},
+        karmaCoinRoom: {},
+        loadingRoomToCatacombs: {},
+        loadingRoomToUndergroundCaverns: {},
+        loadingRoomToWarpRooms: {},
+        lowerStairwell: {},
+        peanutsRoom: {},
+        saveRoom: {},
+        snakeColumn: {},
+        triggerTeleporterToCatacombs: {},
+        triggerTeleporterToUndergroundCaverns: {},
+        triggerTeleporterToWarpRooms: {},
+        venusWeedRoom: {},
+        wellLitSkullRoom: {},
+        wolfsHeadColumn: {},
+    },
 }
 
 function isValidRequirement(state, requirement) {
@@ -2693,7 +2864,9 @@ function getLogic(settings) {
         // Process every location requirement (Castle Entrance only for now)
         locationsInfo[locationName].requirements
         .filter((locationRequirementInfo) => {
-            return locationRequirementInfo.stage == 'castleEntrance'
+            return (
+                locationRequirementInfo.stage == 'castleEntrance'
+            )
         })
         .forEach((locationRequirementInfo) => {
             const stageName = locationRequirementInfo.stage
@@ -2786,7 +2959,7 @@ export function analyzeLogic(seed, settings) {
     const result = {
         solvable: false,
     }
-    // console.log('settings:', JSON.stringify(settings, null, 4))
+    console.log('settings:', JSON.stringify(settings, null, 4))
     const logic = getLogic(settings)
     // console.log('logic:', JSON.stringify(logic, null, 4))
     const initialState = {
