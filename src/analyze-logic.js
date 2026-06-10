@@ -3226,10 +3226,11 @@ const roomsInfo = {
             },
             regions: [
                 getRegion('layer0', 176, 96, 80, 64),
-                getRegion('layer1', 16, 96, 224, 240),
-                getRegion('layer2', 32, 336, 208, 176),
-                getRegion('layer3', 0, 512, 256, 224),
-                getRegion('main', 0, 736, 256, 288),
+                getRegion('layer1', 16, 160, 208, 304),
+                getRegion('layer2', 32, 464, 96, 160),
+                getRegion('layer2', 32, 464, 208, 96),
+                getRegion('layer3', 16, 608, 240, 240),
+                getRegion('main', 32, 848, 224, 112),
             ],
             commands: {
                 exitRightUpper: {
@@ -3261,8 +3262,8 @@ const roomsInfo = {
                 },
                 toLayer0: {
                     outcome: {
-                        positionX: 128,
-                        positionY: 48,
+                        positionX: 216,
+                        positionY: 128,
                         // section: layer0,
                     },
                     requirements: [
@@ -3275,8 +3276,8 @@ const roomsInfo = {
                 },
                 toLayer1: {
                     outcome: {
-                        positionX: 32,
-                        positionY: 144,
+                        positionX: 128,
+                        positionY: 240,
                         // section: layer1,
                     },
                     requirements: [
@@ -3294,6 +3295,69 @@ const roomsInfo = {
                         getMovement('batForm', 'layer2', 1.999),
                         getMovement('poweredMist', 'layer2', 1.999),
                         getMovement('wolfMistRise', 'layer2', 1.999),
+                    ],
+                },
+                toLayer2: {
+                    outcome: {
+                        positionX: 56,
+                        positionY: 592,
+                        // section: layer2,
+                    },
+                    requirements: [
+                        // Moving downward, chance of return not guaranteed
+                        getMovement('basicRisky', 'layer1', 1.999),
+                        // Moving downward, chance of return guaranteed
+                        getMovement('risingUppercut', 'layer1', 1.999),
+                        getMovement('doubleJumpAndLand', 'layer1', 1.999),
+                        getMovement('batForm', 'layer1', 1.999),
+                        getMovement('poweredMist', 'layer1', 1.999),
+                        getMovement('wolfMistRise', 'layer1', 1.999),
+                        // Moving upward
+                        getMovement('risingUppercut', 'layer3', 1.999),
+                        getMovement('doubleJumpAndLand', 'layer3', 1.999),
+                        getMovement('batForm', 'layer3', 1.999),
+                        getMovement('poweredMist', 'layer3', 1.999),
+                        getMovement('wolfMistRise', 'layer3', 1.999),
+                    ],
+                },
+                toLayer3: {
+                    outcome: {
+                        positionX: 240,
+                        positionY: 640,
+                        // section: layer3,
+                    },
+                    requirements: [
+                        // Moving downward, chance of return not guaranteed
+                        getMovement('basicRisky', 'layer2', 1.999),
+                        // Moving downward, chance of return guaranteed
+                        getMovement('risingUppercut', 'layer2', 1.999),
+                        getMovement('doubleJumpAndLand', 'layer2', 1.999),
+                        getMovement('batForm', 'layer2', 1.999),
+                        getMovement('poweredMist', 'layer2', 1.999),
+                        getMovement('wolfMistRise', 'layer2', 1.999),
+                        // Moving upward
+                        getMovement('risingUppercut', 'main', 1.999),
+                        getMovement('doubleJumpAndLand', 'main', 1.999),
+                        getMovement('batForm', 'main', 1.999),
+                        getMovement('poweredMist', 'main', 1.999),
+                        getMovement('wolfMistRise', 'main', 1.999),
+                    ],
+                },
+                toMain: {
+                    outcome: {
+                        positionX: 240,
+                        positionY: 896,
+                        // section: main,
+                    },
+                    requirements: [
+                        // Moving downward, chance of return not guaranteed
+                        getMovement('basicRisky', 'layer3', 1.999),
+                        // Moving downward, chance of return guaranteed
+                        getMovement('risingUppercut', 'layer3', 1.999),
+                        getMovement('doubleJumpAndLand', 'layer3', 1.999),
+                        getMovement('batForm', 'layer3', 1.999),
+                        getMovement('poweredMist', 'layer3', 1.999),
+                        getMovement('wolfMistRise', 'layer3', 1.999),
                     ],
                 },
             },
