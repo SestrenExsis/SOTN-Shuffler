@@ -311,8 +311,8 @@ const locationsInfo = {
     },
     locationLeapStone: {
         outcome: {
-            positionX: 412,
-            positionY: 1220,
+            positionX: 416,
+            positionY: 1824,
             locationLeapStone: true,
         },
         requirements: [
@@ -1214,6 +1214,24 @@ const roomPriority = {
         'triggerTeleporterToMarbleGallery',
         'triggerTeleporterToWarpRooms',
         'triggerTeleporterToUndergroundCaverns',
+    ],
+    castleKeep: [
+        'upperAttic',
+        'lowerAttic',
+        'keepArea',
+        'ghostCardRoom',
+        'bend',
+        'falchionRoom',
+        'lionTorchPlatform',
+        'dualPlatforms',
+        'tyrfingRoom',
+        'saveRoomA',
+        'loadingRoomToClockTower',
+        'loadingRoomToWarpRooms',
+        'loadingRoomToRoyalChapel',
+        'triggerTeleporterToClockTower',
+        'triggerTeleporterToRoyalChapel',
+        'triggerTeleporterToWarpRooms',
     ],
 }
 
@@ -4432,6 +4450,794 @@ const roomsInfo = {
             commands: {},
         },
     },
+    castleKeep: {
+        bend: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {
+                exitRight: {
+                    outcome: {
+                        positionX: 256 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitBottom: {
+                    outcome: {
+                        positionX: 176,
+                        positionY: 256 + 24,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        dualPlatforms: {
+            roomInfo: {
+                width: 256,
+                height: 512,
+            },
+            regions: [
+                getRegion('holeInCeiling', 16, 0, 64, 64),
+                getRegion('main', 0, 0, 256, 512),
+            ],
+            commands: {
+                exitTop: {
+                    outcome: {
+                        positionX: 48,
+                        positionY: 0 - 24,
+                    },
+                    requirements: [
+                        getMovement('basic', 'holeInCeiling', 1.999),
+                    ],
+                },
+                exitLeftUpper: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitLeftLower: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 384,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRightUpper: {
+                    outcome: {
+                        positionX: 256 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRightLower: {
+                    outcome: {
+                        positionX: 256 + 8,
+                        positionY: 384,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                toHoleInCeiling: {
+                    outcome: {
+                        positionX: 48,
+                        positionY: 32,
+                        // section: holeInCeiling,
+                    },
+                    requirements: [
+                        getMovement('risingUppercut', 'main', 1.999),
+                        getMovement('batForm', 'main', 1.999),
+                        getMovement('gravityJump', 'main', 1.999),
+                        getMovement('poweredMist', 'main', 1.999),
+                        getMovement('wolfMistRise', 'main', 1.999),
+                    ],
+                },
+                toMain: {
+                    outcome: {
+                        positionX: 48,
+                        positionY: 32,
+                        // section: main,
+                    },
+                    requirements: [
+                        getMovement('basic', 'holeInCeiling', 1.999),
+                    ],
+                },
+            },
+        },
+        falchionRoom: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        ghostCardRoom: {
+            roomInfo: {
+                width: 512,
+                height: 768,
+            },
+            regions: [
+                getRegion('upperLedges', 128, 352, 160, 96),
+                getRegion('rightWindow', 368, 352, 64, 64),
+                getRegion('leftPassage', 0, 352, 48, 64),
+                getRegion('lowerLedges', 48, 448, 320, 160),
+                getRegion('main', 48, 608, 320, 80),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 384,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                toUpperLedges: {
+                    outcome: {
+                        positionX: 144,
+                        positionY: 384,
+                        // section: upperLedges,
+                    },
+                    requirements: [
+                        getMovement('doubleJumpAndLand', 'leftPassage', 1.999),
+                        getMovement('batForm', 'leftPassage', 1.999),
+                        getMovement('poweredMist', 'leftPassage', 1.999),
+                        getMovement('doubleJumpAndLand', 'rightWindow', 1.999),
+                        getMovement('batForm', 'rightWindow', 1.999),
+                        getMovement('poweredMist', 'rightWindow', 1.999),
+                        getMovement('risingUppercut', 'lowerLedges', 1.999),
+                        getMovement('batForm', 'lowerLedges', 1.999),
+                        getMovement('doubleJumpAndLand', 'lowerLedges', 1.999),
+                        getMovement('gravityJump', 'lowerLedges', 1.999),
+                        getMovement('poweredMist', 'lowerLedges', 1.999),
+                        getMovement('wolfMistRise', 'lowerLedges', 1.999),
+                    ],
+                },
+                toRightWindow: {
+                    outcome: {
+                        positionX: 400,
+                        positionY: 384,
+                        // section: rightWindow,
+                    },
+                    requirements: [
+                        getMovement('doubleJumpAndLand', 'upperLedges', 1.999),
+                        getMovement('batForm', 'upperLedges', 1.999),
+                        getMovement('poweredMist', 'upperLedges', 1.999),
+                        getMovement('risingUppercut', 'lowerLedges', 1.999),
+                        getMovement('batForm', 'lowerLedges', 1.999),
+                        getMovement('doubleJumpAndLand', 'lowerLedges', 1.999),
+                        getMovement('gravityJump', 'lowerLedges', 1.999),
+                        getMovement('poweredMist', 'lowerLedges', 1.999),
+                        getMovement('wolfMistRise', 'lowerLedges', 1.999),
+                    ],
+                },
+                toLeftPassage: {
+                    outcome: {
+                        positionX: 24,
+                        positionY: 384,
+                        // section: leftPassage,
+                    },
+                    requirements: [
+                        getMovement('doubleJumpAndLand', 'upperLedges', 1.999),
+                        getMovement('batForm', 'upperLedges', 1.999),
+                        getMovement('poweredMist', 'upperLedges', 1.999),
+                        getMovement('risingUppercut', 'lowerLedges', 1.999),
+                        getMovement('batForm', 'lowerLedges', 1.999),
+                        getMovement('doubleJumpAndLand', 'lowerLedges', 1.999),
+                        getMovement('gravityJump', 'lowerLedges', 1.999),
+                        getMovement('poweredMist', 'lowerLedges', 1.999),
+                        getMovement('wolfMistRise', 'lowerLedges', 1.999),
+                    ],
+                },
+                toLowerLedges: {
+                    outcome: {
+                        positionX: 256,
+                        positionY: 512,
+                        // section: lowerLedges,
+                    },
+                    requirements: [
+                        getMovement('basic', 'leftPassage', 1.999),
+                        getMovement('basic', 'upperLedges', 1.999),
+                        getMovement('risingUppercut', 'main', 1.999),
+                        getMovement('batForm', 'main', 1.999),
+                        getMovement('doubleJumpAndLand', 'main', 1.999),
+                        getMovement('gravityJump', 'main', 1.999),
+                        getMovement('poweredMist', 'main', 1.999),
+                        getMovement('wolfMistRise', 'main', 1.999),
+                    ],
+                },
+                toMain: {
+                    outcome: {
+                        positionX: 64,
+                        positionY: 640,
+                        // section: main,
+                    },
+                    requirements: [
+                        getMovement('basic', 'leftPassage', 1.999),
+                        getMovement('basic', 'rightWindow', 1.999),
+                        getMovement('basic', 'upperLedges', 1.999),
+                        getMovement('basic', 'lowerLedges', 1.999),
+                    ],
+                },
+            },
+        },
+        keepArea: {
+            roomInfo: {
+                width: 2048,
+                height: 2048,
+            },
+            regions: [
+                getRegion('upperRightLedge', 1984, 352, 64, 64),
+                getRegion('teleporter', 272, 704, 96, 176),
+                getRegion('throneRoom', 768, 800, 256, 176),
+                getRegion('anteroom', 1040, 800, 560, 176),
+                getRegion('topOfStairs', 1632, 768, 64, 192),
+                getRegion('bottomOfStairs', 1840, 1056, 208, 128),
+                getRegion('powerOfMistLedge', 368, 1152, 320, 128),
+                getRegion('leapStoneLedge', 368, 1680, 64, 64),
+                getRegion('main', 400, 1744, 1648, 112),
+                getRegion('main', 1392, 1632, 656, 112),
+                getRegion('hallway', 0, 1888, 2048, 80),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 1920,
+                    },
+                    requirements: [
+                        getMovement('basic', 'hallway', 1.999),
+                    ],
+                },
+                exitRightUpper: {
+                    outcome: {
+                        positionX: 2048 + 8,
+                        positionY: 384,
+                    },
+                    requirements: [
+                        getMovement('basic', 'upperRightLedge', 1.999),
+                    ],
+                },
+                exitRightMiddle: {
+                    outcome: {
+                        positionX: 2048 + 8,
+                        positionY: 1152,
+                    },
+                    requirements: [
+                        getMovement('basic', 'bottomOfStairs', 1.999),
+                    ],
+                },
+                exitRightLower: {
+                    outcome: {
+                        positionX: 2048 + 8,
+                        positionY: 1664,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRightHallway: {
+                    outcome: {
+                        positionX: 2048 + 8,
+                        positionY: 1920,
+                    },
+                    requirements: [
+                        getMovement('basic', 'hallway', 1.999),
+                    ],
+                },
+                toUpperRightLedge: {
+                    outcome: {
+                        positionX: 2016,
+                        positionY: 384,
+                        // section: upperRightLedge,
+                    },
+                    requirements: [
+                        getMovement('batForm', 'topOfStairs', 1.999),
+                        getMovement('multipleGravityJumps', 'topOfStairs', 1.999),
+                        getMovement('poweredMist', 'topOfStairs', 1.999),
+                        getMovement('wolfMistRiseVeryLong', 'topOfStairs', 1.999),
+                        getMovement('batForm', 'bottomOfStairs', 1.999),
+                        getMovement('multipleGravityJumps', 'bottomOfStairs', 1.999),
+                        getMovement('poweredMist', 'bottomOfStairs', 1.999),
+                        getMovement('wolfMistRiseVeryLong', 'bottomOfStairs', 1.999),
+                    ],
+                },
+                toTeleporter: {
+                    outcome: {
+                        positionX: 320,
+                        positionY: 848,
+                        // section: teleporter,
+                    },
+                    requirements: [
+                        {
+                            section: 'throneRoom',
+                            statusRichterSaved: true,
+                            costs: {
+                                time: 1.999,
+                            },
+                        },
+                    ],
+                },
+                toThroneRoom: {
+                    outcome: {
+                        positionX: 896,
+                        positionY: 944,
+                        // section: throneRoom,
+                    },
+                    requirements: [
+                        getMovement('basic', 'anteroom', 1.999),
+                        {
+                            section: 'teleporter',
+                            statusRichterSaved: true,
+                            costs: {
+                                time: 1.999,
+                            },
+                        },
+                    ],
+                },
+                toAnteroom: {
+                    outcome: {
+                        positionX: 1568,
+                        positionY: 896,
+                        // section: anteroom,
+                    },
+                    requirements: [
+                        getMovement('basic', 'topOfStairs', 1.999),
+                        {
+                            section: 'throneRoom',
+                            statusRichterSaved: true,
+                            costs: {
+                                time: 1.999,
+                            },
+                        },
+                    ],
+                },
+                toTopOfStairs: {
+                    outcome: {
+                        positionX: 1648,
+                        positionY: 896,
+                        // section: topOfStairs,
+                    },
+                    requirements: [
+                        getMovement('basic', 'anteroom', 1.999),
+                        getMovement('batForm', 'upperRightLedge', 1.999),
+                        getMovement('multipleGravityJumps', 'upperRightLedge', 1.999),
+                        getMovement('poweredMist', 'upperRightLedge', 1.999),
+                        getMovement('wolfMistRiseVeryLong', 'upperRightLedge', 1.999),
+                        getMovement('batForm', 'powerOfMistLedge', 1.999),
+                        getMovement('multipleGravityJumps', 'powerOfMistLedge', 1.999),
+                        getMovement('poweredMist', 'powerOfMistLedge', 1.999),
+                        getMovement('wolfMistRiseVeryLong', 'powerOfMistLedge', 1.999),
+                        getMovement('batForm', 'bottomOfStairs', 1.999),
+                        getMovement('multipleGravityJumps', 'bottomOfStairs', 1.999),
+                        getMovement('poweredMist', 'bottomOfStairs', 1.999),
+                        getMovement('wolfMistRiseVeryLong', 'bottomOfStairs', 1.999),
+                    ],
+                },
+                toBottomOfStairs: {
+                    outcome: {
+                        positionX: 2032,
+                        positionY: 1152,
+                        // section: bottomOfStairs,
+                    },
+                    requirements: [
+                        getMovement('basic', 'upperRightLedge', 1.999),
+                        getMovement('batForm', 'topOfStairs', 1.999),
+                        getMovement('multipleGravityJumps', 'topOfStairs', 1.999),
+                        getMovement('poweredMist', 'topOfStairs', 1.999),
+                        getMovement('wolfMistRiseVeryLong', 'topOfStairs', 1.999),
+                        getMovement('batForm', 'powerOfMistLedge', 1.999),
+                        getMovement('multipleGravityJumps', 'powerOfMistLedge', 1.999),
+                        getMovement('poweredMist', 'powerOfMistLedge', 1.999),
+                        getMovement('wolfMistRiseVeryLong', 'powerOfMistLedge', 1.999),
+                        getMovement('batForm', 'main', 1.999),
+                        getMovement('multipleGravityJumps', 'main', 1.999),
+                        getMovement('poweredMist', 'main', 1.999),
+                        getMovement('wolfMistRiseVeryLong', 'main', 1.999),
+                    ],
+                },
+                toPowerOfMistLedge: {
+                    outcome: {
+                        positionX: 416,
+                        positionY: 1200,
+                        // section: powerOfMistLedge,
+                    },
+                    requirements: [
+                        getMovement('batForm', 'topOfStairs', 1.999),
+                        getMovement('multipleGravityJumps', 'topOfStairs', 1.999),
+                        getMovement('poweredMist', 'topOfStairs', 1.999),
+                        getMovement('wolfMistRiseVeryLong', 'topOfStairs', 1.999),
+                        getMovement('batForm', 'bottomOfStairs', 1.999),
+                        getMovement('multipleGravityJumps', 'bottomOfStairs', 1.999),
+                        getMovement('poweredMist', 'bottomOfStairs', 1.999),
+                        getMovement('wolfMistRiseVeryLong', 'bottomOfStairs', 1.999),
+                        getMovement('batForm', 'main', 1.999),
+                        getMovement('multipleGravityJumps', 'main', 1.999),
+                        getMovement('poweredMist', 'main', 1.999),
+                        getMovement('wolfMistRiseVeryLong', 'main', 1.999),
+                    ],
+                },
+                toLeapStoneLedge: {
+                    outcome: {
+                        positionX: 400,
+                        positionY: 1712,
+                        // section: leapStoneLedge,
+                    },
+                    requirements: [
+                        getMovement('batForm', 'main', 1.999),
+                        getMovement('doubleJumpAndLand', 'main', 1.999),
+                        getMovement('gravityJump', 'main', 1.999),
+                        getMovement('poweredMist', 'main', 1.999),
+                        getMovement('wolfMistRise', 'main', 1.999),
+                    ],
+                },
+                toMain: {
+                    outcome: {
+                        positionX: 2032,
+                        positionY: 1664,
+                        // section: main,
+                    },
+                    requirements: [
+                        getMovement('basic', 'bottomOfStairs', 1.999),
+                        getMovement('basic', 'leapStoneLedge', 1.999),
+                        getMovement('basic', 'powerOfMistLedge', 1.999),
+                        getMovement('basic', 'topOfStairs', 1.999),
+                    ],
+                },
+                useSecretStaircase: {
+                    outcome: {
+                        positionX: 1432,
+                        positionY: 784 - 24,
+                        staleLocation: true,
+                    },
+                    requirements: [
+                        getMovement('basic', 'topOfStairs', 1.999),
+                        {
+                            section: 'anteroom',
+                            statusSecretStaircaseInCastleKeepOpened: true,
+                            costs: {
+                                time: 1.999,
+                            },
+                        },
+                    ],
+                },
+            },
+        },
+        lionTorchPlatform: {
+            roomInfo: {
+                width: 256,
+                height: 512,
+            },
+            regions: [
+                getRegion('holeInCeiling', 144, 0, 64, 80),
+                getRegion('main', 0, 80, 256, 368),
+                getRegion('holeInFloor', 32, 448, 32, 64),
+            ],
+            commands: {
+                exitTop: {
+                    outcome: {
+                        positionX: 176,
+                        positionY: 0 - 24,
+                    },
+                    requirements: [
+                        getMovement('basic', 'holeInCeiling', 1.999),
+                    ],
+                },
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRightUpper: {
+                    outcome: {
+                        positionX: 256 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRightLower: {
+                    outcome: {
+                        positionX: 256 + 8,
+                        positionY: 384,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitBottom: {
+                    outcome: {
+                        positionX: 48,
+                        positionY: 512 + 24,
+                    },
+                    requirements: [
+                        getMovement('basic', 'holeInFloor', 1.999),
+                    ],
+                },
+                toHoleInCeiling: {
+                    outcome: {
+                        positionX: 176,
+                        positionY: 32,
+                        // section: holeInCeiling,
+                    },
+                    requirements: [
+                        getMovement('batForm', 'main', 1.999),
+                        getMovement('doubleJumpAndLand', 'main', 1.999),
+                        getMovement('gravityJump', 'main', 1.999),
+                        getMovement('poweredMist', 'main', 1.999),
+                        getMovement('wolfMistRise', 'main', 1.999),
+                    ],
+                },
+                toMain: {
+                    outcome: {
+                        positionX: 16,
+                        positionY: 128,
+                        // section: main,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                        getMovement('batForm', 'holeInFloor', 1.999),
+                        getMovement('doubleJumpAndLand', 'holeInFloor', 1.999),
+                        getMovement('gravityJump', 'holeInFloor', 1.999),
+                        getMovement('poweredMist', 'holeInFloor', 1.999),
+                        getMovement('wolfMistRise', 'holeInFloor', 1.999),
+                    ],
+                },
+                toHoleInFloor: {
+                    outcome: {
+                        positionX: 48,
+                        positionY: 480,
+                        // section: holeInFloor,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        loadingRoomToClockTower: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRight: {
+                    outcome: {
+                        positionX: 256 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        loadingRoomToRoyalChapel: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRight: {
+                    outcome: {
+                        positionX: 256 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        loadingRoomToWarpRooms: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRight: {
+                    outcome: {
+                        positionX: 256 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        lowerAttic: {
+            roomInfo: {
+                width: 512,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 512, 256),
+            ],
+            commands: {
+                exitTop: {
+                    outcome: {
+                        positionX: 112,
+                        positionY: 0 - 24,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitBottom: {
+                    outcome: {
+                        positionX: 400,
+                        positionY: 256 + 24,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        saveRoomA: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        triggerTeleporterToClockTower: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {},
+        },
+        triggerTeleporterToRoyalChapel: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {},
+        },
+        triggerTeleporterToWarpRooms: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {},
+        },
+        tyrfingRoom: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        upperAttic: {
+            roomInfo: {
+                width: 768,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 768, 256),
+            ],
+            commands: {
+                exitBottom: {
+                    outcome: {
+                        positionX: 392,
+                        positionY: 256,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+    },
 }
 
 const teleporterTargetsInfo = {
@@ -4865,12 +5671,14 @@ function updateLocation(location, settings) {
     // console.log(location)
     // Determine which room the player is in
     if (
+        !(location.staleLocation ?? false) &&
         location.positionX >= 0 &&
         location.positionX < roomsInfo[location.stage][location.room].roomInfo.width &&
         location.positionY >= 0 &&
         location.positionY < roomsInfo[location.stage][location.room].roomInfo.height
     ) {
         // Player is inside the bounds of the current room, so current room stays the same
+        // TODO(sestren): This assumption might not work for the secret staircase in Castle Keep
     }
     else {
         // Calculate global position
@@ -4904,6 +5712,7 @@ function updateLocation(location, settings) {
                 location.room = roomName
                 location.positionX = globalPosition.x - roomDimension.left
                 location.positionY = globalPosition.y - roomDimension.top
+                location.staleLocation = false
                 return true
             }
             return false
@@ -5064,11 +5873,13 @@ function getLogic(settings) {
             (
                 sourceTeleporterName.startsWith('fromAbandonedMine') ||
                 sourceTeleporterName.startsWith('fromAlchemyLaboratory') ||
-                sourceTeleporterName.startsWith('fromCastleEntrance')
+                sourceTeleporterName.startsWith('fromCastleEntrance') ||
+                sourceTeleporterName.startsWith('fromCastleKeep')
             ) && (
                 targetTeleporterName.startsWith('fromAbandonedMine') ||
                 targetTeleporterName.startsWith('fromAlchemyLaboratory') ||
-                targetTeleporterName.startsWith('fromCastleEntrance')
+                targetTeleporterName.startsWith('fromCastleEntrance') ||
+                targetTeleporterName.startsWith('fromCastleKeep')
             )
         )
     })
@@ -5146,7 +5957,7 @@ export function analyzeLogic(seed, settings) {
         room: 'loadingRoomToAlchemyLaboratory',
         section: 'main',
         locationCubeOfZoe: true,
-        locationSkillOfWolf: true,
+        locationLeapStone: true,
     }
     const map = new Map()
     const work = [initialState]
