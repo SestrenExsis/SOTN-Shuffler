@@ -40,6 +40,9 @@ function getMovement(requirementName, section, time) {
         case 'gravityJump':
             result.progressionGravityJump = true
             break
+        case 'mistForm':
+            result.progressionMistTransformation = true
+            break
         case 'multipleGravityJumps':
         case 'multipleGravityJumpsWithDoubleJump':
             result.progressionDoubleJump = true
@@ -104,7 +107,7 @@ const locationsInfo = {
             positionX: 120,
             positionY: 147,
             locationBatCard: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -119,7 +122,7 @@ const locationsInfo = {
             positionX: 272,
             positionY: 114,
             locationCubeOfZoe: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -134,7 +137,7 @@ const locationsInfo = {
             positionX: 88,
             positionY: 185,
             locationDemonCard: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -149,7 +152,7 @@ const locationsInfo = {
             positionX: 128,
             positionY: 148,
             locationEchoOfBat: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -164,7 +167,7 @@ const locationsInfo = {
             positionX: 48,
             positionY: 177,
             locationFaerieCard: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -179,7 +182,7 @@ const locationsInfo = {
             positionX: 1680,
             positionY: 176,
             locationFaerieScroll: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -194,7 +197,7 @@ const locationsInfo = {
             positionX: 200,
             positionY: 196,
             locationFireOfBat: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -209,7 +212,7 @@ const locationsInfo = {
             positionX: 112,
             positionY: 128,
             locationForceOfEcho: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -224,7 +227,7 @@ const locationsInfo = {
             positionX: 232,
             positionY: 144,
             locationFormOfMist: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -239,7 +242,7 @@ const locationsInfo = {
             positionX: 32,
             positionY: 128,
             locationGasCloud: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -254,7 +257,7 @@ const locationsInfo = {
             positionX: 352,
             positionY: 672,
             locationGhostCard: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -269,7 +272,7 @@ const locationsInfo = {
             positionX: 128,
             positionY: 128,
             locationGoldRing: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -284,7 +287,7 @@ const locationsInfo = {
             positionX: 1168,
             positionY: 176,
             locationGravityBoots: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -299,7 +302,7 @@ const locationsInfo = {
             positionX: 144,
             positionY: 180,
             locationHolySymbol: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -314,7 +317,7 @@ const locationsInfo = {
             positionX: 128,
             positionY: 128,
             locationJewelOfOpen: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -329,7 +332,7 @@ const locationsInfo = {
             positionX: 416,
             positionY: 1824,
             locationLeapStone: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -344,7 +347,7 @@ const locationsInfo = {
             positionX: 96,
             positionY: 176,
             locationMermanStatue: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -359,7 +362,7 @@ const locationsInfo = {
             positionX: 412,
             positionY: 1220,
             locationPowerOfMist: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -374,7 +377,7 @@ const locationsInfo = {
             positionX: 272,
             positionY: 192,
             locationPowerOfWolf: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -389,7 +392,7 @@ const locationsInfo = {
             positionX: 180,
             positionY: 164,
             locationSilverRing: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -404,7 +407,7 @@ const locationsInfo = {
             positionX: 128,
             positionY: 128,
             locationSkillOfWolf: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -419,7 +422,7 @@ const locationsInfo = {
             positionX: 1056,
             positionY: 928,
             locationSoulOfBat: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -434,7 +437,7 @@ const locationsInfo = {
             positionX: 392,
             positionY: 808,
             locationSoulOfWolf: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -449,7 +452,7 @@ const locationsInfo = {
             positionX: 47,
             positionY: 153,
             locationSpikeBreaker: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -464,7 +467,7 @@ const locationsInfo = {
             positionX: 128,
             positionY: 1008,
             locationSpiritOrb: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -479,7 +482,7 @@ const locationsInfo = {
             positionX: 368,
             positionY: 148,
             locationSwordCard: true,
-            time: 120.0,
+            time: 180.0,
         },
         requirements: [
             {
@@ -1309,6 +1312,28 @@ const roomPriority = {
         'loadingRoomToCastleKeep',
         'triggerTeleporterToCastleKeep',
         'triggerTeleporterToOuterWall',
+    ],
+    colosseum: [
+        'holySwordRoom',
+        'topOfLeftSpiralStaircase',
+        'bladeMasterRoom',
+        'topOfRightSpiralStaircase',
+        'passagewayBetweenArenaAndRoyalChapel',
+        'arena',
+        'topOfElevatorShaft',
+        'spiralStaircases',
+        'valhallaKnightRoom',
+        'fountainRoom',
+        'bloodCloakRoom',
+        'bottomOfElevatorShaft',
+        'leftSideArmory',
+        'rightSideArmory',
+        'loadingRoomToRoyalChapel',
+        'loadingRoomToOlroxsQuarters',
+        'saveRoomA',
+        'saveRoomB',
+        'triggerTeleporterToRoyalChapel',
+        'triggerTeleporterToOlroxsQuarters',
     ],
     warpRooms: [
         'warpRoomToCastleKeep',
@@ -7034,6 +7059,667 @@ const roomsInfo = {
             commands: {},
         },
     },
+    colosseum: {
+        arena: {
+            roomInfo: {
+                width: 512,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 512, 256),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRight: {
+                    outcome: {
+                        positionX: 512 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        bladeMasterRoom: {
+            roomInfo: {
+                width: 1024,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 1024, 256),
+            ],
+            commands: {
+                exitTop: {
+                    outcome: {
+                        positionX: 672,
+                        positionY: 0 - 24,
+                    },
+                    requirements: [
+                        getMovement('batForm', 'main', 1.999),
+                        getMovement('gravityJump', 'main', 1.999),
+                        getMovement('poweredMist', 'main', 1.999),
+                    ],
+                },
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRight: {
+                    outcome: {
+                        positionX: 1024 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        bloodCloakRoom: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {
+                exitRight: {
+                    outcome: {
+                        positionX: 256 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        bottomOfElevatorShaft: {
+            // TODO(sestren): Handle logic for elevator
+            roomInfo: {
+                width: 1024,
+                height: 512,
+            },
+            regions: [
+                getRegion('main', 0, 0, 1024, 512),
+            ],
+            commands: {
+                // exitTopLeft: {
+                //     outcome: {
+                //         positionX: 128,
+                //         positionY: 0 - 24,
+                //     },
+                //     requirements: [
+                //         getMovement('basic', 'main', 1.999),
+                //     ],
+                // },
+                exitTopRight: {
+                    outcome: {
+                        positionX: 896,
+                        positionY: 0 - 24,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitLeftUpper: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRightUpper: {
+                    outcome: {
+                        positionX: 1024 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitLeftLower: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 384,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRightLower: {
+                    outcome: {
+                        positionX: 1024 + 8,
+                        positionY: 384,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        fountainRoom: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        holySwordRoom: {
+            roomInfo: {
+                width: 512,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 512, 256),
+            ],
+            commands: {
+                exitBottom: {
+                    outcome: {
+                        positionX: 416,
+                        positionY: 256 + 24,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        leftSideArmory: {
+            roomInfo: {
+                width: 512,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 512, 256),
+            ],
+            commands: {
+                exitRight: {
+                    outcome: {
+                        positionX: 512 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        loadingRoomToOlroxsQuarters: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRight: {
+                    outcome: {
+                        positionX: 256 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        loadingRoomToRoyalChapel: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRight: {
+                    outcome: {
+                        positionX: 256 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        passagewayBetweenArenaAndRoyalChapel: {
+            roomInfo: {
+                width: 1280,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 1280, 256),
+            ],
+            commands: {
+                exitTop: {
+                    outcome: {
+                        positionX: 880,
+                        positionY: 0 - 24,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRight: {
+                    outcome: {
+                        positionX: 1280 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitBottom: {
+                    outcome: {
+                        positionX: 384,
+                        positionY: 256 + 24,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        rightSideArmory: {
+            roomInfo: {
+                width: 512,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 512, 256),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        saveRoomA: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {
+                exitRight: {
+                    outcome: {
+                        positionX: 256 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        saveRoomB: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        spiralStaircases: {
+            roomInfo: {
+                width: 1024,
+                height: 512,
+            },
+            regions: [
+                getRegion('main', 0, 0, 1024, 512),
+            ],
+            commands: {
+                exitTop: {
+                    outcome: {
+                        positionX: 128,
+                        positionY: 0 - 24,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitLeftUpper: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRightUpper: {
+                    outcome: {
+                        positionX: 1024 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitLeftLower: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 384,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRightLower: {
+                    outcome: {
+                        positionX: 1024 + 8,
+                        positionY: 384,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        topOfElevatorShaft: {
+            // TODO(sestren): Handle logic for the elevator
+            roomInfo: {
+                width: 1280,
+                height: 256,
+            },
+            regions: [
+                getRegion('behindMistGate', 0, 96, 256, 64),
+                getRegion('main', 272, 0, 1008, 256),
+            ],
+            commands: {
+                exitTop: {
+                    outcome: {
+                        positionX: 400,
+                        positionY: 0 - 24,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'behindMistGate', 1.999),
+                    ],
+                },
+                exitRight: {
+                    outcome: {
+                        positionX: 1280 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                // exitBottomLeft: {
+                //     outcome: {
+                //         positionX: 144,
+                //         positionY: 256 + 24,
+                //     },
+                //     requirements: [
+                //         getMovement('basic', 'pit', 1.999),
+                //     ],
+                // },
+                exitBottomRight: {
+                    outcome: {
+                        positionX: 896,
+                        positionY: 256 + 24,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                toMain: {
+                    outcome: {
+                        positionX: 304,
+                        positionY: 160,
+                        // section: 'main',
+                    },
+                    requirements: [
+                        getMovement('mistForm', 'behindMistGate', 1.999),
+                    ],
+                },
+                toBehindMistGate: {
+                    outcome: {
+                        positionX: 232,
+                        positionY: 128,
+                        // section: 'behindMistGate',
+                    },
+                    requirements: [
+                        getMovement('mistForm', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        topOfLeftSpiralStaircase: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {
+                exitRight: {
+                    outcome: {
+                        positionX: 256 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitBottom: {
+                    outcome: {
+                        positionX: 128,
+                        positionY: 256 + 24,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        topOfRightSpiralStaircase: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitBottom: {
+                    outcome: {
+                        positionX: 144,
+                        positionY: 256 + 24,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        triggerTeleporterToOlroxsQuarters: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRight: {
+                    outcome: {
+                        positionX: 256 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        triggerTeleporterToRoyalChapel: {
+            roomInfo: {
+                width: 256,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 256, 256),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRight: {
+                    outcome: {
+                        positionX: 256 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+        valhallaKnightRoom: {
+            roomInfo: {
+                width: 512,
+                height: 256,
+            },
+            regions: [
+                getRegion('main', 0, 0, 512, 256),
+            ],
+            commands: {
+                exitLeft: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                exitRight: {
+                    outcome: {
+                        positionX: 512 + 8,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', 1.999),
+                    ],
+                },
+            },
+        },
+    },
     warpRooms: {
         loadingRoomToAbandonedMine: {
             roomInfo: {
@@ -8380,24 +9066,24 @@ export function analyzeLogic(seed, settings) {
     }
     console.log('settings:', JSON.stringify(settings, null, 4))
     const logic = getLogic(settings)
-    console.log('logic:', JSON.stringify(logic, null, 4))
+    // console.log('logic:', JSON.stringify(logic, null, 4))
     const initialState = {
         stage: 'castleEntrance',
         room: 'afterDrawbridge',
         section: 'main',
         positionX: 136,
         positionY: 640,
-        time: 120.0,
+        time: 180.0,
     }
     const goalState = {
-        stage: 'warpRooms',
+        // stage: 'warpRooms',
         // room: 'loadingRoomToAlchemyLaboratory',
         // section: 'main',
-        // locationCubeOfZoe: true,
-        // locationLeapStone: true,
-        // locationSkillOfWolf: true,
-        // locationSpikeBreaker: true,
-        // locationFireOfBat: true,
+        locationCubeOfZoe: true,
+        locationLeapStone: true,
+        locationSkillOfWolf: true,
+        locationSpikeBreaker: true,
+        locationFireOfBat: true,
     }
     const map = new Map()
     const work = [initialState]
