@@ -7339,7 +7339,8 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                getRegion('main', 0, 0, 1280, 256),
+                getRegion('leftOfBarrier', 0, 0, 128, 256),
+                getRegion('main', 144, 0, 1136, 256),
             ],
             commands: {
                 exitTop: {
@@ -7357,7 +7358,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'leftOfBarrier', 1.999),
                     ],
                 },
                 exitRight: {
@@ -7376,6 +7377,36 @@ const roomsInfo = {
                     },
                     requirements: [
                         getMovement('basic', 'main', 1.999),
+                    ],
+                },
+                toLeftOfBarrier: {
+                    outcome: {
+                        positionX: 96,
+                        positionY: 160,
+                        statusBarrierInColosseumOpened: true,
+                    },
+                    requirements: [
+                        {
+                            section: 'main',
+                            costs: {
+                                time: 1.999,
+                            },
+                        },
+                    ],
+                },
+                toMain: {
+                    outcome: {
+                        positionX: 176,
+                        positionY: 160,
+                    },
+                    requirements: [
+                        {
+                            section: 'leftOfBarrier',
+                            statusBarrierInColosseumOpened: true,
+                            costs: {
+                                time: 1.999,
+                            },
+                        },
                     ],
                 },
             },
@@ -8994,6 +9025,7 @@ function getLogic(settings) {
                 sourceTeleporterName.startsWith('fromCastleKeep') ||
                 sourceTeleporterName.startsWith('fromCatacombs') ||
                 sourceTeleporterName.startsWith('fromClockTower') ||
+                sourceTeleporterName.startsWith('fromColosseum') ||
                 sourceTeleporterName.startsWith('fromWarpRooms')
             ) && (
                 targetTeleporterName.startsWith('fromAbandonedMine') ||
@@ -9002,6 +9034,7 @@ function getLogic(settings) {
                 targetTeleporterName.startsWith('fromCastleKeep') ||
                 targetTeleporterName.startsWith('fromCatacombs') ||
                 targetTeleporterName.startsWith('fromClockTower') ||
+                targetTeleporterName.startsWith('fromColosseum') ||
                 targetTeleporterName.startsWith('fromWarpRooms')
             )
         )
