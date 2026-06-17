@@ -3137,7 +3137,7 @@ export const nodeGroups = {
                     roomName: 'bladeMasterRoom',
                     collision: '######....######',
                     row: 0.0,
-                    column: 3.5,
+                    column: 2.5,
                 },
                 left: {
                     roomName: 'bladeMasterRoom',
