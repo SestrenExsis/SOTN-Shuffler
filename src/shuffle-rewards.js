@@ -123,7 +123,7 @@ const locationsInfo = {
                     },
                     keys: [
                         // NOTE(sestren): This item drop index appears to be unused in the vanilla game
-                        'stages.abandonedMine.constants.uniqueItemDrops.itemStoneSword',
+                        'stages.abandonedMine.constants.uniqueItemDrops.dropUnusedItem',
                     ],
                 },
             ],
@@ -183,7 +183,7 @@ const locationsInfo = {
                     },
                     keys: [
                         // NOTE(sestren): This item drop index appears to be unused in the vanilla game
-                        'stages.olroxsQuarters.constants.uniqueItemDrops.itemLifeMaxUp',
+                        'stages.olroxsQuarters.constants.uniqueItemDrops.unusedItemDrop1',
                     ],
                 },
             ],
