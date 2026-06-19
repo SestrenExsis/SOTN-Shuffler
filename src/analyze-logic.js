@@ -471,6 +471,7 @@ const locationsInfo = {
 const COST_PICKUP_ITEM = 1.0
 const COST_PICKUP_RELIC = 3.0
 const COST_QUICKGRAB_RELIC = 2.5
+const COST_UNKNOWN = 1.999
 
 const rewardsInfo = {
     relicSoulOfBat: {
@@ -1534,7 +1535,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -1543,7 +1544,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -1563,7 +1564,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -1572,7 +1573,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -1597,7 +1598,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'upperLeftLedge', 1.999),
+                        getMovement('basic', 'upperLeftLedge', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -1606,7 +1607,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'blockArea', 1.999),
+                        getMovement('basic', 'blockArea', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -1615,7 +1616,7 @@ const roomsInfo = {
                         positionY: 1024 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'lowerLedges', 1.999),
+                        getMovement('basic', 'lowerLedges', COST_UNKNOWN),
                     ],
                 },
                 toBlockArea: {
@@ -1629,7 +1630,7 @@ const roomsInfo = {
                             section: 'upperLeftLedge',
                             statusDemonSwitchActivated: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -1641,11 +1642,11 @@ const roomsInfo = {
                         // section: upperLeftLedge,
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'zigZagLedges', 1.999),
-                        getMovement('doubleJumpAndLand', 'zigZagLedges', 1.999),
-                        getMovement('batForm', 'zigZagLedges', 1.999),
-                        getMovement('poweredMist', 'zigZagLedges', 1.999),
-                        getMovement('wolfMistRise', 'zigZagLedges', 1.999),
+                        getMovement('risingUppercut', 'zigZagLedges', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'zigZagLedges', COST_UNKNOWN),
+                        getMovement('batForm', 'zigZagLedges', COST_UNKNOWN),
+                        getMovement('poweredMist', 'zigZagLedges', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'zigZagLedges', COST_UNKNOWN),
                     ],
                 },
                 toZigZagLedges: {
@@ -1656,19 +1657,19 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'upperLeftLedge', 1.999),
+                        getMovement('basicRisky', 'upperLeftLedge', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'upperLeftLedge', 1.999),
-                        getMovement('doubleJumpAndLand', 'upperLeftLedge', 1.999),
-                        getMovement('batForm', 'upperLeftLedge', 1.999),
-                        getMovement('poweredMist', 'upperLeftLedge', 1.999),
-                        getMovement('wolfMistRise', 'upperLeftLedge', 1.999),
+                        getMovement('risingUppercut', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('poweredMist', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'upperLeftLedge', COST_UNKNOWN),
                         // Moving upward
-                        getMovement('risingUppercut', 'crumblingStairwell', 1.999),
-                        getMovement('doubleJumpAndLand', 'crumblingStairwell', 1.999),
-                        getMovement('batForm', 'crumblingStairwell', 1.999),
-                        getMovement('poweredMist', 'crumblingStairwell', 1.999),
-                        getMovement('wolfMistRise', 'crumblingStairwell', 1.999),
+                        getMovement('risingUppercut', 'crumblingStairwell', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'crumblingStairwell', COST_UNKNOWN),
+                        getMovement('batForm', 'crumblingStairwell', COST_UNKNOWN),
+                        getMovement('poweredMist', 'crumblingStairwell', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'crumblingStairwell', COST_UNKNOWN),
                     ],
                 },
                 toCrumblingStairwell: {
@@ -1679,19 +1680,19 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'zigZagLedges', 1.999),
+                        getMovement('basicRisky', 'zigZagLedges', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'zigZagLedges', 1.999),
-                        getMovement('doubleJumpAndLand', 'zigZagLedges', 1.999),
-                        getMovement('batForm', 'zigZagLedges', 1.999),
-                        getMovement('poweredMist', 'zigZagLedges', 1.999),
-                        getMovement('wolfMistRise', 'zigZagLedges', 1.999),
+                        getMovement('risingUppercut', 'zigZagLedges', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'zigZagLedges', COST_UNKNOWN),
+                        getMovement('batForm', 'zigZagLedges', COST_UNKNOWN),
+                        getMovement('poweredMist', 'zigZagLedges', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'zigZagLedges', COST_UNKNOWN),
                         // Moving upward
-                        getMovement('risingUppercut', 'tinyLedges', 1.999),
-                        getMovement('doubleJumpAndLand', 'tinyLedges', 1.999),
-                        getMovement('batForm', 'tinyLedges', 1.999),
-                        getMovement('poweredMist', 'tinyLedges', 1.999),
-                        getMovement('wolfMistRise', 'tinyLedges', 1.999),
+                        getMovement('risingUppercut', 'tinyLedges', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'tinyLedges', COST_UNKNOWN),
+                        getMovement('batForm', 'tinyLedges', COST_UNKNOWN),
+                        getMovement('poweredMist', 'tinyLedges', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'tinyLedges', COST_UNKNOWN),
                     ],
                 },
                 toTinyLedges: {
@@ -1702,19 +1703,19 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'crumblingStairwell', 1.999),
+                        getMovement('basicRisky', 'crumblingStairwell', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'crumblingStairwell', 1.999),
-                        getMovement('doubleJumpAndLand', 'crumblingStairwell', 1.999),
-                        getMovement('batForm', 'crumblingStairwell', 1.999),
-                        getMovement('poweredMist', 'crumblingStairwell', 1.999),
-                        getMovement('wolfMistRise', 'crumblingStairwell', 1.999),
+                        getMovement('risingUppercut', 'crumblingStairwell', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'crumblingStairwell', COST_UNKNOWN),
+                        getMovement('batForm', 'crumblingStairwell', COST_UNKNOWN),
+                        getMovement('poweredMist', 'crumblingStairwell', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'crumblingStairwell', COST_UNKNOWN),
                         // Moving upward
-                        getMovement('risingUppercut', 'main', 1.999),
-                        getMovement('doubleJumpAndLand', 'main', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRise', 'main', 1.999),
+                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -1725,13 +1726,13 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'tinyLedges', 1.999),
+                        getMovement('basicRisky', 'tinyLedges', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'tinyLedges', 1.999),
-                        getMovement('doubleJumpAndLand', 'tinyLedges', 1.999),
-                        getMovement('batForm', 'tinyLedges', 1.999),
-                        getMovement('poweredMist', 'tinyLedges', 1.999),
-                        getMovement('wolfMistRise', 'tinyLedges', 1.999),
+                        getMovement('risingUppercut', 'tinyLedges', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'tinyLedges', COST_UNKNOWN),
+                        getMovement('batForm', 'tinyLedges', COST_UNKNOWN),
+                        getMovement('poweredMist', 'tinyLedges', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'tinyLedges', COST_UNKNOWN),
                     ],
                 },
                 activateDemonSwitch: {
@@ -1744,7 +1745,7 @@ const roomsInfo = {
                             progressionSummonDemonFamiliar: true,
                             statusDemonSwitchActivated: false,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         {
@@ -1752,7 +1753,7 @@ const roomsInfo = {
                             progressionSummonDemonFamiliar: true,
                             statusDemonSwitchActivated: false,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -1774,7 +1775,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -1794,7 +1795,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -1803,7 +1804,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -1812,7 +1813,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -1821,7 +1822,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -1841,7 +1842,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -1861,7 +1862,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -1870,7 +1871,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -1890,7 +1891,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -1899,7 +1900,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -1919,7 +1920,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -1928,7 +1929,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -1952,7 +1953,7 @@ const roomsInfo = {
                         positionY: 896,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -1961,7 +1962,7 @@ const roomsInfo = {
                         positionY: 896,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitTop: {
@@ -1970,7 +1971,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'layer0', 1.999),
+                        getMovement('basic', 'layer0', COST_UNKNOWN),
                     ],
                 },
                 toLayer0: {
@@ -1980,11 +1981,11 @@ const roomsInfo = {
                         // section: layer0,
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'layer1', 1.999),
-                        getMovement('doubleJumpAndLand', 'layer1', 1.999),
-                        getMovement('batForm', 'layer1', 1.999),
-                        getMovement('poweredMist', 'layer1', 1.999),
-                        getMovement('wolfMistRise', 'layer1', 1.999),
+                        getMovement('risingUppercut', 'layer1', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'layer1', COST_UNKNOWN),
+                        getMovement('batForm', 'layer1', COST_UNKNOWN),
+                        getMovement('poweredMist', 'layer1', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'layer1', COST_UNKNOWN),
                     ],
                 },
                 toLayer1: {
@@ -1995,19 +1996,19 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'layer0', 1.999),
+                        getMovement('basicRisky', 'layer0', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'layer0', 1.999),
-                        getMovement('doubleJumpAndLand', 'layer0', 1.999),
-                        getMovement('batForm', 'layer0', 1.999),
-                        getMovement('poweredMist', 'layer0', 1.999),
-                        getMovement('wolfMistRise', 'layer0', 1.999),
+                        getMovement('risingUppercut', 'layer0', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'layer0', COST_UNKNOWN),
+                        getMovement('batForm', 'layer0', COST_UNKNOWN),
+                        getMovement('poweredMist', 'layer0', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'layer0', COST_UNKNOWN),
                         // Moving upward
-                        getMovement('risingUppercut', 'layer2', 1.999),
-                        getMovement('doubleJumpAndLand', 'layer2', 1.999),
-                        getMovement('batForm', 'layer2', 1.999),
-                        getMovement('poweredMist', 'layer2', 1.999),
-                        getMovement('wolfMistRise', 'layer2', 1.999),
+                        getMovement('risingUppercut', 'layer2', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'layer2', COST_UNKNOWN),
+                        getMovement('batForm', 'layer2', COST_UNKNOWN),
+                        getMovement('poweredMist', 'layer2', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'layer2', COST_UNKNOWN),
                     ],
                 },
                 toLayer2: {
@@ -2018,19 +2019,19 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'layer1', 1.999),
+                        getMovement('basicRisky', 'layer1', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'layer1', 1.999),
-                        getMovement('doubleJumpAndLand', 'layer1', 1.999),
-                        getMovement('batForm', 'layer1', 1.999),
-                        getMovement('poweredMist', 'layer1', 1.999),
-                        getMovement('wolfMistRise', 'layer1', 1.999),
+                        getMovement('risingUppercut', 'layer1', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'layer1', COST_UNKNOWN),
+                        getMovement('batForm', 'layer1', COST_UNKNOWN),
+                        getMovement('poweredMist', 'layer1', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'layer1', COST_UNKNOWN),
                         // Moving upward
-                        getMovement('risingUppercut', 'layer3', 1.999),
-                        getMovement('doubleJumpAndLand', 'layer3', 1.999),
-                        getMovement('batForm', 'layer3', 1.999),
-                        getMovement('poweredMist', 'layer3', 1.999),
-                        getMovement('wolfMistRise', 'layer3', 1.999),
+                        getMovement('risingUppercut', 'layer3', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'layer3', COST_UNKNOWN),
+                        getMovement('batForm', 'layer3', COST_UNKNOWN),
+                        getMovement('poweredMist', 'layer3', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'layer3', COST_UNKNOWN),
                     ],
                 },
                 toLayer3: {
@@ -2041,19 +2042,19 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'layer2', 1.999),
+                        getMovement('basicRisky', 'layer2', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'layer2', 1.999),
-                        getMovement('doubleJumpAndLand', 'layer2', 1.999),
-                        getMovement('batForm', 'layer2', 1.999),
-                        getMovement('poweredMist', 'layer2', 1.999),
-                        getMovement('wolfMistRise', 'layer2', 1.999),
+                        getMovement('risingUppercut', 'layer2', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'layer2', COST_UNKNOWN),
+                        getMovement('batForm', 'layer2', COST_UNKNOWN),
+                        getMovement('poweredMist', 'layer2', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'layer2', COST_UNKNOWN),
                         // Moving upward
-                        getMovement('risingUppercut', 'main', 1.999),
-                        getMovement('doubleJumpAndLand', 'main', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRise', 'main', 1.999),
+                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -2064,13 +2065,13 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'layer3', 1.999),
+                        getMovement('basicRisky', 'layer3', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'layer3', 1.999),
-                        getMovement('doubleJumpAndLand', 'layer3', 1.999),
-                        getMovement('batForm', 'layer3', 1.999),
-                        getMovement('poweredMist', 'layer3', 1.999),
-                        getMovement('wolfMistRise', 'layer3', 1.999),
+                        getMovement('risingUppercut', 'layer3', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'layer3', COST_UNKNOWN),
+                        getMovement('batForm', 'layer3', COST_UNKNOWN),
+                        getMovement('poweredMist', 'layer3', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'layer3', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2090,7 +2091,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2110,7 +2111,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2131,7 +2132,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -2140,7 +2141,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'breakableWall', 1.999),
+                        getMovement('basic', 'breakableWall', COST_UNKNOWN),
                     ],
                 },
                 toBreakableWall: {
@@ -2154,7 +2155,7 @@ const roomsInfo = {
                             section: 'main',
                             statusSecretPassageInSnakeColumnOpened: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -2170,7 +2171,7 @@ const roomsInfo = {
                             section: 'breakableWall',
                             statusSecretPassageInSnakeColumnOpened: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -2184,14 +2185,14 @@ const roomsInfo = {
                             section: 'breakableWall',
                             statusSecretPassageInSnakeColumnOpened: false,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         {
                             section: 'main',
                             statusSecretPassageInSnakeColumnOpened: false,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -2243,7 +2244,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -2252,7 +2253,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2272,7 +2273,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -2281,7 +2282,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2306,7 +2307,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'layer0', 1.999),
+                        getMovement('basic', 'layer0', COST_UNKNOWN),
                     ],
                 },
                 exitRightMiddle: {
@@ -2315,7 +2316,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'layer3', 1.999),
+                        getMovement('basic', 'layer3', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -2324,7 +2325,7 @@ const roomsInfo = {
                         positionY: 896,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toLayer0: {
@@ -2334,11 +2335,11 @@ const roomsInfo = {
                         // section: layer0,
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'layer1', 1.999),
-                        getMovement('doubleJumpAndLand', 'layer1', 1.999),
-                        getMovement('batForm', 'layer1', 1.999),
-                        getMovement('poweredMist', 'layer1', 1.999),
-                        getMovement('wolfMistRise', 'layer1', 1.999),
+                        getMovement('risingUppercut', 'layer1', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'layer1', COST_UNKNOWN),
+                        getMovement('batForm', 'layer1', COST_UNKNOWN),
+                        getMovement('poweredMist', 'layer1', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'layer1', COST_UNKNOWN),
                     ],
                 },
                 toLayer1: {
@@ -2349,19 +2350,19 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'layer0', 1.999),
+                        getMovement('basicRisky', 'layer0', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'layer0', 1.999),
-                        getMovement('doubleJumpAndLand', 'layer0', 1.999),
-                        getMovement('batForm', 'layer0', 1.999),
-                        getMovement('poweredMist', 'layer0', 1.999),
-                        getMovement('wolfMistRise', 'layer0', 1.999),
+                        getMovement('risingUppercut', 'layer0', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'layer0', COST_UNKNOWN),
+                        getMovement('batForm', 'layer0', COST_UNKNOWN),
+                        getMovement('poweredMist', 'layer0', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'layer0', COST_UNKNOWN),
                         // Moving upward
-                        getMovement('risingUppercut', 'layer2', 1.999),
-                        getMovement('doubleJumpAndLand', 'layer2', 1.999),
-                        getMovement('batForm', 'layer2', 1.999),
-                        getMovement('poweredMist', 'layer2', 1.999),
-                        getMovement('wolfMistRise', 'layer2', 1.999),
+                        getMovement('risingUppercut', 'layer2', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'layer2', COST_UNKNOWN),
+                        getMovement('batForm', 'layer2', COST_UNKNOWN),
+                        getMovement('poweredMist', 'layer2', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'layer2', COST_UNKNOWN),
                     ],
                 },
                 toLayer2: {
@@ -2372,19 +2373,19 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'layer1', 1.999),
+                        getMovement('basicRisky', 'layer1', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'layer1', 1.999),
-                        getMovement('doubleJumpAndLand', 'layer1', 1.999),
-                        getMovement('batForm', 'layer1', 1.999),
-                        getMovement('poweredMist', 'layer1', 1.999),
-                        getMovement('wolfMistRise', 'layer1', 1.999),
+                        getMovement('risingUppercut', 'layer1', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'layer1', COST_UNKNOWN),
+                        getMovement('batForm', 'layer1', COST_UNKNOWN),
+                        getMovement('poweredMist', 'layer1', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'layer1', COST_UNKNOWN),
                         // Moving upward
-                        getMovement('risingUppercut', 'layer3', 1.999),
-                        getMovement('doubleJumpAndLand', 'layer3', 1.999),
-                        getMovement('batForm', 'layer3', 1.999),
-                        getMovement('poweredMist', 'layer3', 1.999),
-                        getMovement('wolfMistRise', 'layer3', 1.999),
+                        getMovement('risingUppercut', 'layer3', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'layer3', COST_UNKNOWN),
+                        getMovement('batForm', 'layer3', COST_UNKNOWN),
+                        getMovement('poweredMist', 'layer3', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'layer3', COST_UNKNOWN),
                     ],
                 },
                 toLayer3: {
@@ -2395,19 +2396,19 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'layer2', 1.999),
+                        getMovement('basicRisky', 'layer2', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'layer2', 1.999),
-                        getMovement('doubleJumpAndLand', 'layer2', 1.999),
-                        getMovement('batForm', 'layer2', 1.999),
-                        getMovement('poweredMist', 'layer2', 1.999),
-                        getMovement('wolfMistRise', 'layer2', 1.999),
+                        getMovement('risingUppercut', 'layer2', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'layer2', COST_UNKNOWN),
+                        getMovement('batForm', 'layer2', COST_UNKNOWN),
+                        getMovement('poweredMist', 'layer2', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'layer2', COST_UNKNOWN),
                         // Moving upward
-                        getMovement('risingUppercut', 'main', 1.999),
-                        getMovement('doubleJumpAndLand', 'main', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRise', 'main', 1.999),
+                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -2418,13 +2419,13 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'layer3', 1.999),
+                        getMovement('basicRisky', 'layer3', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'layer3', 1.999),
-                        getMovement('doubleJumpAndLand', 'layer3', 1.999),
-                        getMovement('batForm', 'layer3', 1.999),
-                        getMovement('poweredMist', 'layer3', 1.999),
-                        getMovement('wolfMistRise', 'layer3', 1.999),
+                        getMovement('risingUppercut', 'layer3', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'layer3', COST_UNKNOWN),
+                        getMovement('batForm', 'layer3', COST_UNKNOWN),
+                        getMovement('poweredMist', 'layer3', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'layer3', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2446,7 +2447,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2466,7 +2467,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -2475,7 +2476,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2496,7 +2497,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'leftSide', 1.999),
+                        getMovement('basic', 'leftSide', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -2505,7 +2506,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'rightSide', 1.999),
+                        getMovement('basic', 'rightSide', COST_UNKNOWN),
                     ],
                 },
                 toLeftSide: {
@@ -2519,7 +2520,7 @@ const roomsInfo = {
                             section: 'rightSide',
                             progressionUnlockBlueDoors: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -2535,7 +2536,7 @@ const roomsInfo = {
                             section: 'leftSide',
                             progressionUnlockBlueDoors: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -2558,7 +2559,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -2567,7 +2568,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'upperRightLedge', 1.999),
+                        getMovement('basic', 'upperRightLedge', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -2576,7 +2577,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toUpperRightLedge: {
@@ -2586,16 +2587,16 @@ const roomsInfo = {
                         // section: upperRightLedge,
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'main', 1.999),
-                        getMovement('doubleJumpAndLand', 'main', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRise', 'main', 1.999),
+                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                         { // Solve Box Puzzle
                             section: 'main',
                             techniqueSolveBoxPuzzle: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -2607,7 +2608,7 @@ const roomsInfo = {
                         // section: main,
                     },
                     requirements: [
-                        getMovement('basic', 'upperRightLedge', 1.999),
+                        getMovement('basic', 'upperRightLedge', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2628,7 +2629,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'leftSide', 1.999),
+                        getMovement('basic', 'leftSide', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -2637,7 +2638,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'rightSide', 1.999),
+                        getMovement('basic', 'rightSide', COST_UNKNOWN),
                     ],
                 },
                 toLeftSide: {
@@ -2651,7 +2652,7 @@ const roomsInfo = {
                         { // Jewel of Open
                             section: 'rightSide',
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -2667,7 +2668,7 @@ const roomsInfo = {
                             section: 'leftSide',
                             statusCannonActivated: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -2689,7 +2690,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2709,7 +2710,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -2718,7 +2719,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2738,7 +2739,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftMiddle: {
@@ -2747,7 +2748,7 @@ const roomsInfo = {
                         positionY: 896,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -2756,7 +2757,7 @@ const roomsInfo = {
                         positionY: 1664,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2776,7 +2777,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -2785,7 +2786,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2805,7 +2806,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -2814,7 +2815,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2834,7 +2835,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -2843,7 +2844,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2863,7 +2864,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -2872,7 +2873,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2892,7 +2893,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -2901,7 +2902,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2921,7 +2922,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2941,7 +2942,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -2950,7 +2951,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2970,7 +2971,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -2979,7 +2980,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2999,7 +3000,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -3008,7 +3009,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3030,7 +3031,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'holeInCeiling', 1.999),
+                        getMovement('basic', 'holeInCeiling', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -3039,7 +3040,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -3048,7 +3049,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'upperRightLedge', 1.999),
+                        getMovement('basic', 'upperRightLedge', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -3057,7 +3058,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -3066,7 +3067,7 @@ const roomsInfo = {
                         positionY: 512 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toUpperRightLedge: {
@@ -3076,16 +3077,16 @@ const roomsInfo = {
                         // section: upperRightLedge,
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'main', 1.999),
-                        getMovement('doubleJumpAndLand', 'main', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRise', 'main', 1.999),
+                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                         { // Solve Red Skeleton Lift Puzzle
                             section: 'main',
                             techniqueSolveRedSkeletonLiftPuzzle: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -3097,8 +3098,8 @@ const roomsInfo = {
                         // section: main,
                     },
                     requirements: [
-                        getMovement('basic', 'holeInCeiling', 1.999),
-                        getMovement('basic', 'upperRightLedge', 1.999),
+                        getMovement('basic', 'holeInCeiling', COST_UNKNOWN),
+                        getMovement('basic', 'upperRightLedge', COST_UNKNOWN),
                     ],
                 },
                 toHoleInCeiling: {
@@ -3108,11 +3109,11 @@ const roomsInfo = {
                         // section: holeInCeiling,
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'main', 1.999),
-                        getMovement('doubleJumpAndLand', 'main', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRise', 'main', 1.999),
+                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3132,7 +3133,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3152,7 +3153,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3172,7 +3173,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3192,7 +3193,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3212,7 +3213,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -3221,7 +3222,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3241,7 +3242,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3262,7 +3263,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -3271,7 +3272,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'alcove', 1.999),
+                        getMovement('basic', 'alcove', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -3280,7 +3281,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3300,7 +3301,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3320,7 +3321,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -3329,7 +3330,7 @@ const roomsInfo = {
                         positionY: 896,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -3338,7 +3339,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -3347,7 +3348,7 @@ const roomsInfo = {
                         positionY: 896,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3367,7 +3368,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -3376,7 +3377,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3397,7 +3398,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'batCardRoomDuplicate', 1.999),
+                        getMovement('basic', 'batCardRoomDuplicate', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -3406,7 +3407,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -3415,7 +3416,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightMiddle: {
@@ -3424,7 +3425,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -3433,7 +3434,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3525,7 +3526,7 @@ const roomsInfo = {
                         positionY: 768 + 24,
                     },
                     requirements: [
-                        getMovement('fall', 'beneathTrapdoor', 1.999),
+                        getMovement('fall', 'beneathTrapdoor', COST_UNKNOWN),
                     ],
                 },
                 fromBeneathTrapdoorToMain: {
@@ -3600,7 +3601,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -3610,7 +3611,7 @@ const roomsInfo = {
                         // section: main,
                     },
                     requirements: [
-                        getMovement('fall', 'upperLedge', 1.999),
+                        getMovement('fall', 'upperLedge', COST_UNKNOWN),
                     ],
                 },
                 toUpperLedge: {
@@ -3620,7 +3621,7 @@ const roomsInfo = {
                         // section: upperLedge,
                     },
                     requirements: [
-                        getMovement('doubleJumpAndLand', 'beneathTrapdoor', 1.999),
+                        getMovement('doubleJumpAndLand', 'beneathTrapdoor', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3640,7 +3641,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -3649,7 +3650,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3670,7 +3671,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toLedge: {
@@ -3680,18 +3681,18 @@ const roomsInfo = {
                         // section: ledge,
                     },
                     requirements: [
-                        getMovement('bladeDash', 'main', 1.999),
-                        getMovement('risingUppercut', 'main', 1.999),
-                        getMovement('doubleJumpAndLand', 'main', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRise', 'main', 1.999),
+                        getMovement('bladeDash', 'main', COST_UNKNOWN),
+                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                         { // Precise Corner Mist
                             section: 'main',
                             progressionMistTransformation: true,
                             techniquePreciseCornerMist: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -3703,7 +3704,7 @@ const roomsInfo = {
                         // section: main,
                     },
                     requirements: [
-                        getMovement('fall', 'ledge', 1.999),
+                        getMovement('fall', 'ledge', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3723,7 +3724,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -3732,7 +3733,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -3741,7 +3742,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3761,7 +3762,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -3770,7 +3771,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3790,7 +3791,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -3800,7 +3801,7 @@ const roomsInfo = {
                         // statusTookLogicalRisk: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3822,11 +3823,11 @@ const roomsInfo = {
                         positionY: 0 - 56,
                     },
                     requirements: [
-                        getMovement('doubleJump', 'holeInCeiling', 1.999),
-                        getMovement('batForm', 'holeInCeiling', 1.999),
-                        getMovement('risingUppercut', 'holeInCeiling', 1.999),
-                        getMovement('poweredMistForm', 'holeInCeiling', 1.999),
-                        getMovement('wolfMistRise', 'holeInCeiling', 1.999),
+                        getMovement('doubleJump', 'holeInCeiling', COST_UNKNOWN),
+                        getMovement('batForm', 'holeInCeiling', COST_UNKNOWN),
+                        getMovement('risingUppercut', 'holeInCeiling', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'holeInCeiling', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'holeInCeiling', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -3835,7 +3836,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -3844,7 +3845,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftUpper: {
@@ -3853,7 +3854,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -3862,7 +3863,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'secretPassage', 1.999),
+                        getMovement('basic', 'secretPassage', COST_UNKNOWN),
                     ],
                 },
                 openSecretPassage: {
@@ -3876,7 +3877,7 @@ const roomsInfo = {
                             progressionWolfTransformation: true,
                             statusSecretWallInMermanRoomOpened: false,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -3892,7 +3893,7 @@ const roomsInfo = {
                             section: 'main',
                             statusSecretWallInMermanRoomOpened: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -3908,7 +3909,7 @@ const roomsInfo = {
                             section: 'secretPassage',
                             statusSecretWallInMermanRoomOpened: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -3920,16 +3921,16 @@ const roomsInfo = {
                         // section: holeInCeiling,
                     },
                     requirements: [
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRiseLong', 'main', 1.999),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRiseLong', 'main', COST_UNKNOWN),
                         { // Dive Kicking off of the Bats
                             section: 'main',
                             progressionDoubleJump: true,
                             statusDoubleJumpUsed: false,
                             techniqueEnemyDiveKick: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                             // Dive Kicking off of an enemy resets the Double Jump
                         },
@@ -3942,7 +3943,7 @@ const roomsInfo = {
                         // section: main,
                     },
                     requirements: [
-                        getMovement('fall', 'holeInCeiling', 1.999),
+                        getMovement('fall', 'holeInCeiling', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3962,7 +3963,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3982,7 +3983,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -3991,7 +3992,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -4012,7 +4013,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'leftSide', 1.999),
+                        getMovement('basic', 'leftSide', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -4021,7 +4022,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'rightSide', 1.999),
+                        getMovement('basic', 'rightSide', COST_UNKNOWN),
                     ],
                 },
                 openShortcut: {
@@ -4033,7 +4034,7 @@ const roomsInfo = {
                             section: 'rightSide',
                             statusPassageFromCastleEntranceToUndergroundCavernsOpened: false,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -4049,7 +4050,7 @@ const roomsInfo = {
                             section: 'leftSide',
                             statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -4065,7 +4066,7 @@ const roomsInfo = {
                             section: 'rightSide',
                             statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -4089,11 +4090,11 @@ const roomsInfo = {
                         positionY: 0 - 56,
                     },
                     requirements: [
-                        getMovement('doubleJump', 'highIntheAir', 1.999),
-                        getMovement('batForm', 'highIntheAir', 1.999),
-                        getMovement('risingUppercut', 'highIntheAir', 1.999),
-                        getMovement('poweredMistForm', 'highIntheAir', 1.999),
-                        getMovement('wolfMistRise', 'highIntheAir', 1.999),
+                        getMovement('doubleJump', 'highIntheAir', COST_UNKNOWN),
+                        getMovement('batForm', 'highIntheAir', COST_UNKNOWN),
+                        getMovement('risingUppercut', 'highIntheAir', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'highIntheAir', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'highIntheAir', COST_UNKNOWN),
                     ],
                 },
                 exitLeftUpper: {
@@ -4102,7 +4103,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'upperLeftLedge', 1.999),
+                        getMovement('basic', 'upperLeftLedge', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -4111,7 +4112,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -4120,7 +4121,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toHighInTheAir: {
@@ -4129,16 +4130,16 @@ const roomsInfo = {
                         positionY: 48,
                     },
                     requirements: [
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('chainedRisingUppercuts', 'main', 1.999),
-                        getMovement('multipleGravityJumps', 'main', 1.999),
-                        getMovement('poweredMistForm', 'main', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'main', 1.999),
-                        getMovement('batForm', 'upperLeftLedge', 1.999),
-                        getMovement('chainedRisingUppercuts', 'upperLeftLedge', 1.999),
-                        getMovement('multipleGravityJumps', 'upperLeftLedge', 1.999),
-                        getMovement('poweredMistForm', 'upperLeftLedge', 1.999),
-                        getMovement('wolfMistRiseLong', 'upperLeftLedge', 1.999),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('chainedRisingUppercuts', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('chainedRisingUppercuts', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('wolfMistRiseLong', 'upperLeftLedge', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -4147,8 +4148,8 @@ const roomsInfo = {
                         positionY: 448,
                     },
                     requirements: [
-                        getMovement('basic', 'upperLeftLedge', 1.999),
-                        getMovement('basic', 'highInTheAir', 1.999),
+                        getMovement('basic', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('basic', 'highInTheAir', COST_UNKNOWN),
                     ],
                 },
                 toUpperLeftLedge: {
@@ -4157,11 +4158,11 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('fall', 'highInTheAir', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('chainedRisingUppercuts', 'main', 1.999),
-                        getMovement('poweredMistForm', 'main', 1.999),
-                        getMovement('wolfMistRiseLong', 'main', 1.999),
+                        getMovement('fall', 'highInTheAir', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('chainedRisingUppercuts', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRiseLong', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -4181,7 +4182,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -4190,7 +4191,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -4211,7 +4212,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -4220,7 +4221,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -4229,7 +4230,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('fall', 'pit', 1.999),
+                        getMovement('fall', 'pit', COST_UNKNOWN),
                     ],
                 },
                 toPit: {
@@ -4238,7 +4239,7 @@ const roomsInfo = {
                         positionY: 224,
                     },
                     requirements: [
-                        getMovement('fall', 'main', 1.999),
+                        getMovement('fall', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -4247,11 +4248,11 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('batForm', 'pit', 1.999),
-                        getMovement('chainedRisingUppercuts', 'pit', 1.999),
-                        getMovement('multipleGravityJumps', 'pit', 1.999),
-                        getMovement('poweredMistForm', 'pit', 1.999),
-                        getMovement('wolfMistRise', 'pit', 1.999),
+                        getMovement('batForm', 'pit', COST_UNKNOWN),
+                        getMovement('chainedRisingUppercuts', 'pit', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'pit', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'pit', COST_UNKNOWN),
                     ],
                 },
             },
@@ -4271,7 +4272,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -4294,7 +4295,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -4303,7 +4304,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'upperRightLedge', 1.999),
+                        getMovement('basic', 'upperRightLedge', COST_UNKNOWN),
                     ],
                 },
                 exitLeftMiddle: {
@@ -4312,7 +4313,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightMiddle: {
@@ -4321,7 +4322,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'middleRightLedge', 1.999),
+                        getMovement('basic', 'middleRightLedge', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -4330,7 +4331,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -4339,7 +4340,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toUpperRightLedge: {
@@ -4349,16 +4350,16 @@ const roomsInfo = {
                         // section: upperRightLedge,
                     },
                     requirements: [
-                        getMovement('chainedRisingUppercuts', 'main', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('multipleGravityJumps', 'main', 1.999),
-                        getMovement('wolfMistRise', 'main', 1.999),
+                        getMovement('chainedRisingUppercuts', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                         { // Main - Using Shortcut
                             section: 'main',
                             statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -4370,17 +4371,17 @@ const roomsInfo = {
                         // section: middleRightLedge,
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'main', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('gravityJump', 'main', 1.999),
-                        getMovement('wolfMistRise', 'main', 1.999),
+                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                         { // Main - Candle Dive Kick (Forgiving)
                             section: 'main',
                             progressionDoubleJump: true,
                             techniqueForgivingCandleDiveKick: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         { // Upper Right Ledge - Precise Fall and Precise Jump Using Shortcut
@@ -4388,7 +4389,7 @@ const roomsInfo = {
                             techniquePreciseJump: true,
                             statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -4400,8 +4401,8 @@ const roomsInfo = {
                         // section: main,
                     },
                     requirements: [
-                        getMovement('fall', 'upperRightLedge', 1.999),
-                        getMovement('fall', 'middleRightLedge', 1.999),
+                        getMovement('fall', 'upperRightLedge', COST_UNKNOWN),
+                        getMovement('fall', 'middleRightLedge', COST_UNKNOWN),
                     ],
                 },
                 openShortcut: {
@@ -4413,7 +4414,7 @@ const roomsInfo = {
                             section: 'upperRightLedge',
                             statusPassageFromCastleEntranceToMarbleGalleryOpened: false,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -4436,7 +4437,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -4445,7 +4446,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toRightSide: {
@@ -4458,7 +4459,7 @@ const roomsInfo = {
                         { // Opening Path
                             section: 'leftSide',
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -4474,7 +4475,7 @@ const roomsInfo = {
                             section: 'rightSide',
                             statusPassageFromCastleEntranceToWarpRoomsOpened: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -4488,7 +4489,7 @@ const roomsInfo = {
                             section: 'leftSide',
                             statusPassageFromCastleEntranceToWarpRoomsOpened: false,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -4510,7 +4511,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -4530,7 +4531,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -4539,7 +4540,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -4559,7 +4560,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -4568,7 +4569,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -4588,7 +4589,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -4597,7 +4598,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -4617,7 +4618,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -4626,7 +4627,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -4646,7 +4647,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -4666,7 +4667,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -4686,7 +4687,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -4748,7 +4749,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -4757,7 +4758,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -4778,7 +4779,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'holeInCeiling', 1.999),
+                        getMovement('basic', 'holeInCeiling', COST_UNKNOWN),
                     ],
                 },
                 exitLeftUpper: {
@@ -4787,7 +4788,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -4796,7 +4797,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -4805,7 +4806,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -4814,7 +4815,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toHoleInCeiling: {
@@ -4824,11 +4825,11 @@ const roomsInfo = {
                         // section: holeInCeiling,
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'main', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('gravityJump', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRise', 'main', 1.999),
+                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -4838,7 +4839,7 @@ const roomsInfo = {
                         // section: main,
                     },
                     requirements: [
-                        getMovement('basic', 'holeInCeiling', 1.999),
+                        getMovement('basic', 'holeInCeiling', COST_UNKNOWN),
                     ],
                 },
             },
@@ -4858,7 +4859,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -4882,7 +4883,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toUpperLedges: {
@@ -4892,18 +4893,18 @@ const roomsInfo = {
                         // section: upperLedges,
                     },
                     requirements: [
-                        getMovement('doubleJumpAndLand', 'leftPassage', 1.999),
-                        getMovement('batForm', 'leftPassage', 1.999),
-                        getMovement('poweredMist', 'leftPassage', 1.999),
-                        getMovement('doubleJumpAndLand', 'rightWindow', 1.999),
-                        getMovement('batForm', 'rightWindow', 1.999),
-                        getMovement('poweredMist', 'rightWindow', 1.999),
-                        getMovement('risingUppercut', 'lowerLedges', 1.999),
-                        getMovement('batForm', 'lowerLedges', 1.999),
-                        getMovement('doubleJumpAndLand', 'lowerLedges', 1.999),
-                        getMovement('gravityJump', 'lowerLedges', 1.999),
-                        getMovement('poweredMist', 'lowerLedges', 1.999),
-                        getMovement('wolfMistRise', 'lowerLedges', 1.999),
+                        getMovement('doubleJumpAndLand', 'leftPassage', COST_UNKNOWN),
+                        getMovement('batForm', 'leftPassage', COST_UNKNOWN),
+                        getMovement('poweredMist', 'leftPassage', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'rightWindow', COST_UNKNOWN),
+                        getMovement('batForm', 'rightWindow', COST_UNKNOWN),
+                        getMovement('poweredMist', 'rightWindow', COST_UNKNOWN),
+                        getMovement('risingUppercut', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('batForm', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('gravityJump', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('poweredMist', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'lowerLedges', COST_UNKNOWN),
                     ],
                 },
                 toRightWindow: {
@@ -4913,15 +4914,15 @@ const roomsInfo = {
                         // section: rightWindow,
                     },
                     requirements: [
-                        getMovement('doubleJumpAndLand', 'upperLedges', 1.999),
-                        getMovement('batForm', 'upperLedges', 1.999),
-                        getMovement('poweredMist', 'upperLedges', 1.999),
-                        getMovement('risingUppercut', 'lowerLedges', 1.999),
-                        getMovement('batForm', 'lowerLedges', 1.999),
-                        getMovement('doubleJumpAndLand', 'lowerLedges', 1.999),
-                        getMovement('gravityJump', 'lowerLedges', 1.999),
-                        getMovement('poweredMist', 'lowerLedges', 1.999),
-                        getMovement('wolfMistRise', 'lowerLedges', 1.999),
+                        getMovement('doubleJumpAndLand', 'upperLedges', COST_UNKNOWN),
+                        getMovement('batForm', 'upperLedges', COST_UNKNOWN),
+                        getMovement('poweredMist', 'upperLedges', COST_UNKNOWN),
+                        getMovement('risingUppercut', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('batForm', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('gravityJump', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('poweredMist', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'lowerLedges', COST_UNKNOWN),
                     ],
                 },
                 toLeftPassage: {
@@ -4931,15 +4932,15 @@ const roomsInfo = {
                         // section: leftPassage,
                     },
                     requirements: [
-                        getMovement('doubleJumpAndLand', 'upperLedges', 1.999),
-                        getMovement('batForm', 'upperLedges', 1.999),
-                        getMovement('poweredMist', 'upperLedges', 1.999),
-                        getMovement('risingUppercut', 'lowerLedges', 1.999),
-                        getMovement('batForm', 'lowerLedges', 1.999),
-                        getMovement('doubleJumpAndLand', 'lowerLedges', 1.999),
-                        getMovement('gravityJump', 'lowerLedges', 1.999),
-                        getMovement('poweredMist', 'lowerLedges', 1.999),
-                        getMovement('wolfMistRise', 'lowerLedges', 1.999),
+                        getMovement('doubleJumpAndLand', 'upperLedges', COST_UNKNOWN),
+                        getMovement('batForm', 'upperLedges', COST_UNKNOWN),
+                        getMovement('poweredMist', 'upperLedges', COST_UNKNOWN),
+                        getMovement('risingUppercut', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('batForm', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('gravityJump', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('poweredMist', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'lowerLedges', COST_UNKNOWN),
                     ],
                 },
                 toLowerLedges: {
@@ -4949,14 +4950,14 @@ const roomsInfo = {
                         // section: lowerLedges,
                     },
                     requirements: [
-                        getMovement('basic', 'leftPassage', 1.999),
-                        getMovement('basic', 'upperLedges', 1.999),
-                        getMovement('risingUppercut', 'main', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('doubleJumpAndLand', 'main', 1.999),
-                        getMovement('gravityJump', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRise', 'main', 1.999),
+                        getMovement('basic', 'leftPassage', COST_UNKNOWN),
+                        getMovement('basic', 'upperLedges', COST_UNKNOWN),
+                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -4966,10 +4967,10 @@ const roomsInfo = {
                         // section: main,
                     },
                     requirements: [
-                        getMovement('basic', 'leftPassage', 1.999),
-                        getMovement('basic', 'rightWindow', 1.999),
-                        getMovement('basic', 'upperLedges', 1.999),
-                        getMovement('basic', 'lowerLedges', 1.999),
+                        getMovement('basic', 'leftPassage', COST_UNKNOWN),
+                        getMovement('basic', 'rightWindow', COST_UNKNOWN),
+                        getMovement('basic', 'upperLedges', COST_UNKNOWN),
+                        getMovement('basic', 'lowerLedges', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5000,12 +5001,12 @@ const roomsInfo = {
                         staleLocation: true,
                     },
                     requirements: [
-                        getMovement('basic', 'topOfStairs', 1.999),
+                        getMovement('basic', 'topOfStairs', COST_UNKNOWN),
                         {
                             section: 'anteroom',
                             statusSecretStaircaseInCastleKeepOpened: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -5016,7 +5017,7 @@ const roomsInfo = {
                         positionY: 1920,
                     },
                     requirements: [
-                        getMovement('basic', 'hallway', 1.999),
+                        getMovement('basic', 'hallway', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -5025,7 +5026,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'upperRightLedge', 1.999),
+                        getMovement('basic', 'upperRightLedge', COST_UNKNOWN),
                     ],
                 },
                 exitRightMiddle: {
@@ -5034,7 +5035,7 @@ const roomsInfo = {
                         positionY: 1152,
                     },
                     requirements: [
-                        getMovement('basic', 'bottomOfStairs', 1.999),
+                        getMovement('basic', 'bottomOfStairs', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -5043,7 +5044,7 @@ const roomsInfo = {
                         positionY: 1664,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightHallway: {
@@ -5052,7 +5053,7 @@ const roomsInfo = {
                         positionY: 1920,
                     },
                     requirements: [
-                        getMovement('basic', 'hallway', 1.999),
+                        getMovement('basic', 'hallway', COST_UNKNOWN),
                     ],
                 },
                 toUpperRightLedge: {
@@ -5062,14 +5063,14 @@ const roomsInfo = {
                         // section: upperRightLedge,
                     },
                     requirements: [
-                        getMovement('batForm', 'topOfStairs', 1.999),
-                        getMovement('multipleGravityJumps', 'topOfStairs', 1.999),
-                        getMovement('poweredMist', 'topOfStairs', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'topOfStairs', 1.999),
-                        getMovement('batForm', 'bottomOfStairs', 1.999),
-                        getMovement('multipleGravityJumps', 'bottomOfStairs', 1.999),
-                        getMovement('poweredMist', 'bottomOfStairs', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'bottomOfStairs', 1.999),
+                        getMovement('batForm', 'topOfStairs', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'topOfStairs', COST_UNKNOWN),
+                        getMovement('poweredMist', 'topOfStairs', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'topOfStairs', COST_UNKNOWN),
+                        getMovement('batForm', 'bottomOfStairs', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'bottomOfStairs', COST_UNKNOWN),
+                        getMovement('poweredMist', 'bottomOfStairs', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'bottomOfStairs', COST_UNKNOWN),
                     ],
                 },
                 toTeleporter: {
@@ -5083,7 +5084,7 @@ const roomsInfo = {
                             section: 'throneRoom',
                             statusRichterSaved: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -5095,12 +5096,12 @@ const roomsInfo = {
                         // section: throneRoom,
                     },
                     requirements: [
-                        getMovement('basic', 'anteroom', 1.999),
+                        getMovement('basic', 'anteroom', COST_UNKNOWN),
                         {
                             section: 'teleporter',
                             statusRichterSaved: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -5112,12 +5113,12 @@ const roomsInfo = {
                         // section: anteroom,
                     },
                     requirements: [
-                        getMovement('basic', 'topOfStairs', 1.999),
+                        getMovement('basic', 'topOfStairs', COST_UNKNOWN),
                         {
                             section: 'throneRoom',
                             statusRichterSaved: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -5129,19 +5130,19 @@ const roomsInfo = {
                         // section: topOfStairs,
                     },
                     requirements: [
-                        getMovement('basic', 'anteroom', 1.999),
-                        getMovement('batForm', 'upperRightLedge', 1.999),
-                        getMovement('multipleGravityJumps', 'upperRightLedge', 1.999),
-                        getMovement('poweredMist', 'upperRightLedge', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'upperRightLedge', 1.999),
-                        getMovement('batForm', 'powerOfMistLedge', 1.999),
-                        getMovement('multipleGravityJumps', 'powerOfMistLedge', 1.999),
-                        getMovement('poweredMist', 'powerOfMistLedge', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'powerOfMistLedge', 1.999),
-                        getMovement('batForm', 'bottomOfStairs', 1.999),
-                        getMovement('multipleGravityJumps', 'bottomOfStairs', 1.999),
-                        getMovement('poweredMist', 'bottomOfStairs', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'bottomOfStairs', 1.999),
+                        getMovement('basic', 'anteroom', COST_UNKNOWN),
+                        getMovement('batForm', 'upperRightLedge', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'upperRightLedge', COST_UNKNOWN),
+                        getMovement('poweredMist', 'upperRightLedge', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'upperRightLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'powerOfMistLedge', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'powerOfMistLedge', COST_UNKNOWN),
+                        getMovement('poweredMist', 'powerOfMistLedge', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'powerOfMistLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'bottomOfStairs', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'bottomOfStairs', COST_UNKNOWN),
+                        getMovement('poweredMist', 'bottomOfStairs', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'bottomOfStairs', COST_UNKNOWN),
                     ],
                 },
                 toBottomOfStairs: {
@@ -5151,19 +5152,19 @@ const roomsInfo = {
                         // section: bottomOfStairs,
                     },
                     requirements: [
-                        getMovement('basic', 'upperRightLedge', 1.999),
-                        getMovement('batForm', 'topOfStairs', 1.999),
-                        getMovement('multipleGravityJumps', 'topOfStairs', 1.999),
-                        getMovement('poweredMist', 'topOfStairs', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'topOfStairs', 1.999),
-                        getMovement('batForm', 'powerOfMistLedge', 1.999),
-                        getMovement('multipleGravityJumps', 'powerOfMistLedge', 1.999),
-                        getMovement('poweredMist', 'powerOfMistLedge', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'powerOfMistLedge', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('multipleGravityJumps', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'main', 1.999),
+                        getMovement('basic', 'upperRightLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'topOfStairs', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'topOfStairs', COST_UNKNOWN),
+                        getMovement('poweredMist', 'topOfStairs', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'topOfStairs', COST_UNKNOWN),
+                        getMovement('batForm', 'powerOfMistLedge', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'powerOfMistLedge', COST_UNKNOWN),
+                        getMovement('poweredMist', 'powerOfMistLedge', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'powerOfMistLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 toPowerOfMistLedge: {
@@ -5173,18 +5174,18 @@ const roomsInfo = {
                         // section: powerOfMistLedge,
                     },
                     requirements: [
-                        getMovement('batForm', 'topOfStairs', 1.999),
-                        getMovement('multipleGravityJumps', 'topOfStairs', 1.999),
-                        getMovement('poweredMist', 'topOfStairs', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'topOfStairs', 1.999),
-                        getMovement('batForm', 'bottomOfStairs', 1.999),
-                        getMovement('multipleGravityJumps', 'bottomOfStairs', 1.999),
-                        getMovement('poweredMist', 'bottomOfStairs', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'bottomOfStairs', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('multipleGravityJumps', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'main', 1.999),
+                        getMovement('batForm', 'topOfStairs', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'topOfStairs', COST_UNKNOWN),
+                        getMovement('poweredMist', 'topOfStairs', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'topOfStairs', COST_UNKNOWN),
+                        getMovement('batForm', 'bottomOfStairs', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'bottomOfStairs', COST_UNKNOWN),
+                        getMovement('poweredMist', 'bottomOfStairs', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'bottomOfStairs', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 toLeapStoneLedge: {
@@ -5194,11 +5195,11 @@ const roomsInfo = {
                         // section: leapStoneLedge,
                     },
                     requirements: [
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('doubleJumpAndLand', 'main', 1.999),
-                        getMovement('gravityJump', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRise', 'main', 1.999),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -5208,10 +5209,10 @@ const roomsInfo = {
                         // section: main,
                     },
                     requirements: [
-                        getMovement('basic', 'bottomOfStairs', 1.999),
-                        getMovement('basic', 'leapStoneLedge', 1.999),
-                        getMovement('basic', 'powerOfMistLedge', 1.999),
-                        getMovement('basic', 'topOfStairs', 1.999),
+                        getMovement('basic', 'bottomOfStairs', COST_UNKNOWN),
+                        getMovement('basic', 'leapStoneLedge', COST_UNKNOWN),
+                        getMovement('basic', 'powerOfMistLedge', COST_UNKNOWN),
+                        getMovement('basic', 'topOfStairs', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5233,7 +5234,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'holeInCeiling', 1.999),
+                        getMovement('basic', 'holeInCeiling', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -5242,7 +5243,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -5251,7 +5252,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -5260,7 +5261,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -5269,7 +5270,7 @@ const roomsInfo = {
                         positionY: 512 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'holeInFloor', 1.999),
+                        getMovement('basic', 'holeInFloor', COST_UNKNOWN),
                     ],
                 },
                 toHoleInCeiling: {
@@ -5279,11 +5280,11 @@ const roomsInfo = {
                         // section: holeInCeiling,
                     },
                     requirements: [
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('doubleJumpAndLand', 'main', 1.999),
-                        getMovement('gravityJump', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRise', 'main', 1.999),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -5293,12 +5294,12 @@ const roomsInfo = {
                         // section: main,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
-                        getMovement('batForm', 'holeInFloor', 1.999),
-                        getMovement('doubleJumpAndLand', 'holeInFloor', 1.999),
-                        getMovement('gravityJump', 'holeInFloor', 1.999),
-                        getMovement('poweredMist', 'holeInFloor', 1.999),
-                        getMovement('wolfMistRise', 'holeInFloor', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'holeInFloor', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'holeInFloor', COST_UNKNOWN),
+                        getMovement('gravityJump', 'holeInFloor', COST_UNKNOWN),
+                        getMovement('poweredMist', 'holeInFloor', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'holeInFloor', COST_UNKNOWN),
                     ],
                 },
                 toHoleInFloor: {
@@ -5308,7 +5309,7 @@ const roomsInfo = {
                         // section: holeInFloor,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5328,7 +5329,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -5337,7 +5338,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5357,7 +5358,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -5366,7 +5367,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5386,7 +5387,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -5395,7 +5396,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5415,7 +5416,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -5424,7 +5425,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5444,7 +5445,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5494,7 +5495,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5514,7 +5515,7 @@ const roomsInfo = {
                         positionY: 256,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5536,7 +5537,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -5545,7 +5546,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5565,7 +5566,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -5574,7 +5575,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5594,7 +5595,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5614,7 +5615,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -5623,7 +5624,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightULower: {
@@ -5632,7 +5633,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5652,7 +5653,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -5661,7 +5662,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5681,7 +5682,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -5690,7 +5691,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5710,7 +5711,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5730,7 +5731,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -5739,7 +5740,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5759,7 +5760,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -5768,7 +5769,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5788,7 +5789,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5810,7 +5811,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -5819,7 +5820,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toLeftSide: {
@@ -5834,7 +5835,7 @@ const roomsInfo = {
                             progressionBatTransformation: true,
                             progressionEcholocation: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         {
@@ -5842,7 +5843,7 @@ const roomsInfo = {
                             progressionBatTransformation: true,
                             statusLightInSpikeMazeActivated: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         {
@@ -5852,7 +5853,7 @@ const roomsInfo = {
                                 minimum: 1,
                             },
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         {
@@ -5863,7 +5864,7 @@ const roomsInfo = {
                                 minimum: 1,
                             },
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         {
@@ -5872,7 +5873,7 @@ const roomsInfo = {
                             progressionLongerMistDuration: true,
                             statusLightInSpikeMazeActivated: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -5888,7 +5889,7 @@ const roomsInfo = {
                         {
                             section: 'rightSide',
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -5905,7 +5906,7 @@ const roomsInfo = {
                             progressionBatTransformation: true,
                             progressionEcholocation: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         {
@@ -5913,7 +5914,7 @@ const roomsInfo = {
                             progressionBatTransformation: true,
                             statusLightInSpikeMazeActivated: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         {
@@ -5923,7 +5924,7 @@ const roomsInfo = {
                                 minimum: 1,
                             },
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         {
@@ -5934,7 +5935,7 @@ const roomsInfo = {
                                 minimum: 1,
                             },
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         {
@@ -5943,7 +5944,7 @@ const roomsInfo = {
                             progressionLongerMistDuration: true,
                             statusLightInSpikeMazeActivated: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -5960,7 +5961,7 @@ const roomsInfo = {
                             progressionBatTransformation: true,
                             progressionEcholocation: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         {
@@ -5968,7 +5969,7 @@ const roomsInfo = {
                             progressionBatTransformation: true,
                             statusLightInSpikeMazeActivated: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         {
@@ -5978,7 +5979,7 @@ const roomsInfo = {
                                 minimum: 1,
                             },
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         {
@@ -5989,7 +5990,7 @@ const roomsInfo = {
                                 minimum: 1,
                             },
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         {
@@ -5998,7 +5999,7 @@ const roomsInfo = {
                             progressionLongerMistDuration: true,
                             statusLightInSpikeMazeActivated: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -6020,7 +6021,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -6029,7 +6030,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6049,7 +6050,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -6058,7 +6059,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6078,7 +6079,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -6087,7 +6088,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6107,7 +6108,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -6116,7 +6117,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6136,7 +6137,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6156,7 +6157,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -6165,7 +6166,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6185,7 +6186,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -6194,7 +6195,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6214,7 +6215,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -6223,7 +6224,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6243,7 +6244,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -6252,7 +6253,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -6261,7 +6262,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6281,7 +6282,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -6290,7 +6291,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6310,7 +6311,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -6319,7 +6320,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6339,7 +6340,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -6348,7 +6349,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6368,7 +6369,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitTop: { // TODO(sestren): Put logic here
@@ -6377,7 +6378,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6397,7 +6398,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -6406,7 +6407,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6426,7 +6427,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -6435,7 +6436,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6455,7 +6456,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -6464,7 +6465,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -6473,7 +6474,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -6482,7 +6483,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6502,7 +6503,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6532,7 +6533,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6554,7 +6555,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -6564,7 +6565,7 @@ const roomsInfo = {
                         staleLocation: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6584,7 +6585,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -6593,7 +6594,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -6602,7 +6603,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6622,7 +6623,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6642,7 +6643,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6662,7 +6663,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6682,7 +6683,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -6691,7 +6692,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6714,7 +6715,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -6723,7 +6724,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -6732,7 +6733,7 @@ const roomsInfo = {
                         positionY: 896,
                     },
                     requirements: [
-                        getMovement('basic', 'secretPassage', 1.999),
+                        getMovement('basic', 'secretPassage', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -6741,7 +6742,7 @@ const roomsInfo = {
                         positionY: 896,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 // toBrokenWall: {},
@@ -6756,7 +6757,7 @@ const roomsInfo = {
                             statusLeftGearRoomSolved: true,
                             statusRightGearRoomSolved: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -6772,7 +6773,7 @@ const roomsInfo = {
                             statusLeftGearRoomSolved: true,
                             statusRightGearRoomSolved: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -6786,7 +6787,7 @@ const roomsInfo = {
                             section: 'main',
                             statusLeftGearRoomSolved: false,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -6808,7 +6809,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -6817,7 +6818,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6837,7 +6838,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -6846,7 +6847,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6871,7 +6872,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'upperLeftLedge', 1.999),
+                        getMovement('basic', 'upperLeftLedge', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -6880,7 +6881,7 @@ const roomsInfo = {
                         positionY: 896,
                     },
                     requirements: [
-                        getMovement('basic', 'lowerLeftLedge', 1.999),
+                        getMovement('basic', 'lowerLeftLedge', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -6889,7 +6890,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'upperRightLedge', 1.999),
+                        getMovement('basic', 'upperRightLedge', COST_UNKNOWN),
                     ],
                 },
                 exitRightMiddle: {
@@ -6898,7 +6899,7 @@ const roomsInfo = {
                         positionY: 896,
                     },
                     requirements: [
-                        getMovement('basic', 'middleRightLedge', 1.999),
+                        getMovement('basic', 'middleRightLedge', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -6907,7 +6908,7 @@ const roomsInfo = {
                         positionY: 1152,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toCenterArea: {
@@ -6917,30 +6918,30 @@ const roomsInfo = {
                         // section: 'centerArea',
                     },
                     requirements: [
-                        getMovement('batForm', 'upperLeftLedge', 1.999),
-                        getMovement('doubleJumpAndLand', 'upperLeftLedge', 1.999),
-                        getMovement('multipleGravityJumps', 'upperLeftLedge', 1.999),
-                        getMovement('poweredMist', 'upperLeftLedge', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'upperLeftLedge', 1.999),
-                        getMovement('batForm', 'lowerLeftLedge', 1.999),
-                        getMovement('doubleJumpAndLand', 'lowerLeftLedge', 1.999),
-                        getMovement('multipleGravityJumps', 'lowerLeftLedge', 1.999),
-                        getMovement('poweredMist', 'lowerLeftLedge', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'lowerLeftLedge', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('multipleGravityJumps', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'main', 1.999),
-                        getMovement('batForm', 'upperRightLedge', 1.999),
-                        getMovement('doubleJumpAndLand', 'upperRightLedge', 1.999),
-                        getMovement('multipleGravityJumps', 'upperRightLedge', 1.999),
-                        getMovement('poweredMist', 'upperRightLedge', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'upperRightLedge', 1.999),
-                        getMovement('batForm', 'middleRightLedge', 1.999),
-                        getMovement('doubleJumpAndLand', 'middleRightLedge', 1.999),
-                        getMovement('multipleGravityJumps', 'middleRightLedge', 1.999),
-                        getMovement('poweredMist', 'middleRightLedge', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'middleRightLedge', 1.999),
+                        getMovement('batForm', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('poweredMist', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'lowerLeftLedge', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'lowerLeftLedge', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'lowerLeftLedge', COST_UNKNOWN),
+                        getMovement('poweredMist', 'lowerLeftLedge', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'lowerLeftLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'upperRightLedge', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'upperRightLedge', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'upperRightLedge', COST_UNKNOWN),
+                        getMovement('poweredMist', 'upperRightLedge', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'upperRightLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'middleRightLedge', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'middleRightLedge', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'middleRightLedge', COST_UNKNOWN),
+                        getMovement('poweredMist', 'middleRightLedge', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'middleRightLedge', COST_UNKNOWN),
                     ],
                 },
                 toUpperLeftLedge: {
@@ -6950,15 +6951,15 @@ const roomsInfo = {
                         // section: 'upperLeftLedge',
                     },
                     requirements: [
-                        getMovement('batForm', 'lowerLeftLedge', 1.999),
-                        getMovement('doubleJumpAndLand', 'lowerLeftLedge', 1.999),
-                        getMovement('multipleGravityJumps', 'lowerLeftLedge', 1.999),
-                        getMovement('poweredMist', 'lowerLeftLedge', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'lowerLeftLedge', 1.999),
-                        getMovement('batForm', 'centerArea', 1.999),
-                        getMovement('multipleGravityJumps', 'centerArea', 1.999),
-                        getMovement('poweredMist', 'centerArea', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'centerArea', 1.999),
+                        getMovement('batForm', 'lowerLeftLedge', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'lowerLeftLedge', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'lowerLeftLedge', COST_UNKNOWN),
+                        getMovement('poweredMist', 'lowerLeftLedge', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'lowerLeftLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'centerArea', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'centerArea', COST_UNKNOWN),
+                        getMovement('poweredMist', 'centerArea', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'centerArea', COST_UNKNOWN),
                     ],
                 },
                 toUpperRightLedge: {
@@ -6968,15 +6969,15 @@ const roomsInfo = {
                         // section: 'upperRightLedge',
                     },
                     requirements: [
-                        getMovement('batForm', 'middleRightLedge', 1.999),
-                        getMovement('doubleJumpAndLand', 'middleRightLedge', 1.999),
-                        getMovement('multipleGravityJumps', 'middleRightLedge', 1.999),
-                        getMovement('poweredMist', 'middleRightLedge', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'middleRightLedge', 1.999),
-                        getMovement('batForm', 'centerArea', 1.999),
-                        getMovement('multipleGravityJumps', 'centerArea', 1.999),
-                        getMovement('poweredMist', 'centerArea', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'centerArea', 1.999),
+                        getMovement('batForm', 'middleRightLedge', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'middleRightLedge', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'middleRightLedge', COST_UNKNOWN),
+                        getMovement('poweredMist', 'middleRightLedge', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'middleRightLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'centerArea', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'centerArea', COST_UNKNOWN),
+                        getMovement('poweredMist', 'centerArea', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'centerArea', COST_UNKNOWN),
                     ],
                 },
                 toLowerLeftLedge: {
@@ -6986,16 +6987,16 @@ const roomsInfo = {
                         // section: 'lowerLeftLedge',
                     },
                     requirements: [
-                        getMovement('basic', 'upperLeftLedge', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('multipleGravityJumps', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'main', 1.999),
-                        getMovement('batForm', 'centerArea', 1.999),
-                        getMovement('doubleJumpAndLand', 'centerArea', 1.999),
-                        getMovement('multipleGravityJumps', 'centerArea', 1.999),
-                        getMovement('poweredMist', 'centerArea', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'centerArea', 1.999),
+                        getMovement('basic', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'centerArea', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'centerArea', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'centerArea', COST_UNKNOWN),
+                        getMovement('poweredMist', 'centerArea', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'centerArea', COST_UNKNOWN),
                     ],
                 },
                 toMiddleRightLedge: {
@@ -7005,16 +7006,16 @@ const roomsInfo = {
                         // section: 'middleRightLedge',
                     },
                     requirements: [
-                        getMovement('basic', 'upperRightLedge', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('multipleGravityJumps', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'main', 1.999),
-                        getMovement('batForm', 'centerArea', 1.999),
-                        getMovement('doubleJumpAndLand', 'centerArea', 1.999),
-                        getMovement('multipleGravityJumps', 'centerArea', 1.999),
-                        getMovement('poweredMist', 'centerArea', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'centerArea', 1.999),
+                        getMovement('basic', 'upperRightLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'centerArea', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'centerArea', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'centerArea', COST_UNKNOWN),
+                        getMovement('poweredMist', 'centerArea', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'centerArea', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -7024,9 +7025,9 @@ const roomsInfo = {
                         // section: 'main',
                     },
                     requirements: [
-                        getMovement('basic', 'lowerLeftLedge', 1.999),
-                        getMovement('basic', 'main', 1.999),
-                        getMovement('basic', 'middleRightLedge', 1.999),
+                        getMovement('basic', 'lowerLeftLedge', COST_UNKNOWN),
+                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('basic', 'middleRightLedge', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7046,7 +7047,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -7055,7 +7056,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7076,7 +7077,7 @@ const roomsInfo = {
                         staleLocation: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -7086,7 +7087,7 @@ const roomsInfo = {
                         // TODO(sestren): Handle breakable wall
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -7095,7 +7096,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7115,7 +7116,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -7124,7 +7125,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 solveRightGear: {
@@ -7136,7 +7137,7 @@ const roomsInfo = {
                             section: 'main',
                             statusRightGearRoomSolved: false,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -7158,7 +7159,7 @@ const roomsInfo = {
                         positionY: 512 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7178,7 +7179,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -7187,7 +7188,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -7196,7 +7197,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7238,7 +7239,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -7247,7 +7248,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7267,9 +7268,9 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('gravityJump', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -7278,7 +7279,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -7287,7 +7288,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7307,7 +7308,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7328,7 +7329,7 @@ const roomsInfo = {
                 //         positionY: 0 - 24,
                 //     },
                 //     requirements: [
-                //         getMovement('basic', 'main', 1.999),
+                //         getMovement('basic', 'main', COST_UNKNOWN),
                 //     ],
                 // },
                 exitTopRight: {
@@ -7337,7 +7338,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftUpper: {
@@ -7346,7 +7347,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -7355,7 +7356,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -7364,7 +7365,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -7373,7 +7374,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7393,7 +7394,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7413,7 +7414,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7433,7 +7434,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7453,7 +7454,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -7462,7 +7463,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7482,7 +7483,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -7491,7 +7492,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7512,7 +7513,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -7521,7 +7522,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'leftOfBarrier', 1.999),
+                        getMovement('basic', 'leftOfBarrier', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -7530,7 +7531,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -7539,7 +7540,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toLeftOfBarrier: {
@@ -7552,7 +7553,7 @@ const roomsInfo = {
                         {
                             section: 'main',
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -7567,7 +7568,7 @@ const roomsInfo = {
                             section: 'leftOfBarrier',
                             statusBarrierInColosseumOpened: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -7589,7 +7590,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7609,7 +7610,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7629,7 +7630,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7649,7 +7650,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftUpper: {
@@ -7658,7 +7659,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -7667,7 +7668,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -7676,7 +7677,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -7685,7 +7686,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7707,7 +7708,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -7716,7 +7717,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'behindMistGate', 1.999),
+                        getMovement('basic', 'behindMistGate', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -7725,7 +7726,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 // exitBottomLeft: {
@@ -7734,7 +7735,7 @@ const roomsInfo = {
                 //         positionY: 256 + 24,
                 //     },
                 //     requirements: [
-                //         getMovement('basic', 'pit', 1.999),
+                //         getMovement('basic', 'pit', COST_UNKNOWN),
                 //     ],
                 // },
                 exitBottomRight: {
@@ -7743,7 +7744,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -7753,7 +7754,7 @@ const roomsInfo = {
                         // section: 'main',
                     },
                     requirements: [
-                        getMovement('mistForm', 'behindMistGate', 1.999),
+                        getMovement('mistForm', 'behindMistGate', COST_UNKNOWN),
                     ],
                 },
                 toBehindMistGate: {
@@ -7763,7 +7764,7 @@ const roomsInfo = {
                         // section: 'behindMistGate',
                     },
                     requirements: [
-                        getMovement('mistForm', 'main', 1.999),
+                        getMovement('mistForm', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7783,7 +7784,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -7792,7 +7793,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7812,7 +7813,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -7821,7 +7822,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7841,7 +7842,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -7850,7 +7851,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7870,7 +7871,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -7879,7 +7880,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7899,7 +7900,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -7908,7 +7909,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7930,7 +7931,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -7939,7 +7940,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7959,7 +7960,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -7968,7 +7969,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7988,7 +7989,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -7997,7 +7998,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -8017,7 +8018,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -8037,7 +8038,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -8046,7 +8047,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -8066,7 +8067,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -8075,7 +8076,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -8084,7 +8085,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -8104,7 +8105,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -8131,7 +8132,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'topRightLedge', 1.999),
+                        getMovement('basic', 'topRightLedge', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -8140,7 +8141,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'middleLevel', 1.999),
+                        getMovement('basic', 'middleLevel', COST_UNKNOWN),
                     ],
                 },
                 toTopRightLedge: {
@@ -8150,12 +8151,12 @@ const roomsInfo = {
                         // section: 'topRightLedge',
                     },
                     requirements: [
-                        getMovement('preciseJump', 'upperLevel', 1.999),
-                        getMovement('risingUppercut', 'upperLevel', 1.999),
-                        getMovement('batForm', 'upperLevel', 1.999),
-                        getMovement('doubleJumpAndLand', 'upperLevel', 1.999),
-                        getMovement('poweredMist', 'upperLevel', 1.999),
-                        getMovement('wolfMistRise', 'upperLevel', 1.999),
+                        getMovement('preciseJump', 'upperLevel', COST_UNKNOWN),
+                        getMovement('risingUppercut', 'upperLevel', COST_UNKNOWN),
+                        getMovement('batForm', 'upperLevel', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'upperLevel', COST_UNKNOWN),
+                        getMovement('poweredMist', 'upperLevel', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'upperLevel', COST_UNKNOWN),
                     ],
                 },
                 toUpperLevel: {
@@ -8165,13 +8166,13 @@ const roomsInfo = {
                         // section: 'upperLevel',
                     },
                     requirements: [
-                        getMovement('fall', 'topRightLedge', 1.999),
-                        getMovement('risingUppercut', 'middleLevel', 1.999),
-                        getMovement('batForm', 'middleLevel', 1.999),
-                        getMovement('doubleJumpAndLand', 'middleLevel', 1.999),
-                        getMovement('gravityJump', 'middleLevel', 1.999),
-                        getMovement('poweredMist', 'middleLevel', 1.999),
-                        getMovement('wolfMistRise', 'middleLevel', 1.999),
+                        getMovement('fall', 'topRightLedge', COST_UNKNOWN),
+                        getMovement('risingUppercut', 'middleLevel', COST_UNKNOWN),
+                        getMovement('batForm', 'middleLevel', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'middleLevel', COST_UNKNOWN),
+                        getMovement('gravityJump', 'middleLevel', COST_UNKNOWN),
+                        getMovement('poweredMist', 'middleLevel', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'middleLevel', COST_UNKNOWN),
                     ],
                 },
                 toMiddleLevel: {
@@ -8181,13 +8182,13 @@ const roomsInfo = {
                         // section: 'middleLevel',
                     },
                     requirements: [
-                        getMovement('fall', 'upperLevel', 1.999),
-                        getMovement('risingUppercut', 'lowerLevel', 1.999),
-                        getMovement('batForm', 'lowerLevel', 1.999),
-                        getMovement('doubleJumpAndLand', 'lowerLevel', 1.999),
-                        getMovement('gravityJump', 'lowerLevel', 1.999),
-                        getMovement('poweredMist', 'lowerLevel', 1.999),
-                        getMovement('wolfMistRise', 'lowerLevel', 1.999),
+                        getMovement('fall', 'upperLevel', COST_UNKNOWN),
+                        getMovement('risingUppercut', 'lowerLevel', COST_UNKNOWN),
+                        getMovement('batForm', 'lowerLevel', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'lowerLevel', COST_UNKNOWN),
+                        getMovement('gravityJump', 'lowerLevel', COST_UNKNOWN),
+                        getMovement('poweredMist', 'lowerLevel', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'lowerLevel', COST_UNKNOWN),
                     ],
                 },
                 toLowerLevel: {
@@ -8197,13 +8198,13 @@ const roomsInfo = {
                         // section: 'lowerLevel',
                     },
                     requirements: [
-                        getMovement('fall', 'middleLevel', 1.999),
-                        getMovement('risingUppercut', 'main', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('doubleJumpAndLand', 'main', 1.999),
-                        getMovement('gravityJump', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRise', 'main', 1.999),
+                        getMovement('fall', 'middleLevel', COST_UNKNOWN),
+                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -8213,8 +8214,8 @@ const roomsInfo = {
                         // section: 'main',
                     },
                     requirements: [
-                        getMovement('fall', 'lowerLevel', 1.999),
-                        getMovement('mistForm', 'behindMistGate', 1.999),
+                        getMovement('fall', 'lowerLevel', COST_UNKNOWN),
+                        getMovement('mistForm', 'behindMistGate', COST_UNKNOWN),
                     ],
                 },
                 toBehindMistGate: {
@@ -8224,7 +8225,7 @@ const roomsInfo = {
                         // section: 'behindMistGate',
                     },
                     requirements: [
-                        getMovement('mistForm', 'main', 1.999),
+                        getMovement('mistForm', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -8244,7 +8245,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -8253,7 +8254,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -8273,7 +8274,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -8282,7 +8283,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -8302,7 +8303,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -8311,7 +8312,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -8332,7 +8333,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -8341,7 +8342,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -8362,7 +8363,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -8371,7 +8372,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'beneathShop', 1.999),
+                        getMovement('basic', 'beneathShop', COST_UNKNOWN),
                     ],
                 },
             },
@@ -8393,7 +8394,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'upperLeftLedge', 1.999),
+                        getMovement('basic', 'upperLeftLedge', COST_UNKNOWN),
                     ],
                 },
                 exitLeftMiddle: {
@@ -8402,7 +8403,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'middleLeftLedge', 1.999),
+                        getMovement('basic', 'middleLeftLedge', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -8411,7 +8412,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -8420,7 +8421,7 @@ const roomsInfo = {
                         positionY: 768 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toUpperLeftLedge: {
@@ -8431,11 +8432,11 @@ const roomsInfo = {
                         // section: 'upperLeftLedge',
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'main', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('gravityJump', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRiseLong', 'main', 1.999),
+                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRiseLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMiddleLeftLedge: {
@@ -8445,12 +8446,12 @@ const roomsInfo = {
                         // section: 'middleLeftLedge',
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'main', 1.999),
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('gravityJump', 'main', 1.999),
-                        getMovement('doubleJumpAndLand', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRise', 'main', 1.999),
+                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -8460,8 +8461,8 @@ const roomsInfo = {
                         // section: 'main',
                     },
                     requirements: [
-                        getMovement('fall', 'upperLeftLedge', 1.999),
-                        getMovement('fall', 'middleLeftLedge', 1.999),
+                        getMovement('fall', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('fall', 'middleLeftLedge', COST_UNKNOWN),
                     ],
                 },
             },
@@ -8483,7 +8484,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'topLayer', 1.999),
+                        getMovement('basic', 'topLayer', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -8492,7 +8493,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'topLayer', 1.999),
+                        getMovement('basic', 'topLayer', COST_UNKNOWN),
                     ],
                 },
                 exitLeftMiddle: {
@@ -8501,7 +8502,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightMiddle: {
@@ -8510,7 +8511,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -8519,7 +8520,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'bottomLayer', 1.999),
+                        getMovement('basic', 'bottomLayer', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -8528,7 +8529,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'bottomLayer', 1.999),
+                        getMovement('basic', 'bottomLayer', COST_UNKNOWN),
                     ],
                 },
             },
@@ -8560,7 +8561,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -8581,7 +8582,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitTopRight: {
@@ -8590,7 +8591,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -8599,7 +8600,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -8608,7 +8609,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -8628,7 +8629,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -8637,7 +8638,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -8657,7 +8658,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -8678,7 +8679,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'leftSide', 1.999),
+                        getMovement('basic', 'leftSide', COST_UNKNOWN),
                     ],
                 },
                 toLeftSide: {
@@ -8691,7 +8692,7 @@ const roomsInfo = {
                             section: 'rightSide',
                             progressionUnlockBlueDoors: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -8706,7 +8707,7 @@ const roomsInfo = {
                             section: 'leftSide',
                             progressionUnlockBlueDoors: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -8720,7 +8721,7 @@ const roomsInfo = {
                             section: 'rightSide',
                             statusPressurePlateInMarbleGalleryActivated: false,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -8745,7 +8746,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'upperLeftLedge', 1.999),
+                        getMovement('basic', 'upperLeftLedge', COST_UNKNOWN),
                     ],
                 },
                 exitTopMiddle: {
@@ -8754,9 +8755,9 @@ const roomsInfo = {
                         positionY: 0 - 200,
                     },
                     requirements: [
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('poweredMistForm', 'main', 1.999),
-                        getMovement('gravityJump', 'main', 1.999),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitTopRight: {
@@ -8765,7 +8766,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'upperRightLedge', 1.999),
+                        getMovement('basic', 'upperRightLedge', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -8774,7 +8775,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -8783,7 +8784,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -8792,7 +8793,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'pit', 1.999),
+                        getMovement('basic', 'pit', COST_UNKNOWN),
                     ],
                 },
                 toUpperLeftLedge: {
@@ -8802,11 +8803,11 @@ const roomsInfo = {
                         // section: 'upperLeftLedge',
                     },
                     requirements: [
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('doubleJumpAndLand', 'main', 1.999),
-                        getMovement('gravityJump', 'main', 1.999),
-                        getMovement('poweredMistForm', 'main', 1.999),
-                        getMovement('wolfMistRise', 'main', 1.999),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                     ],
                 },
                 toUpperRightLedge: {
@@ -8821,7 +8822,7 @@ const roomsInfo = {
                             progressionBatTransformation: true,
                             progressionItemMaterialization: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         {
@@ -8829,7 +8830,7 @@ const roomsInfo = {
                             progressionDoubleJump: true,
                             progressionItemMaterialization: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         {
@@ -8837,7 +8838,7 @@ const roomsInfo = {
                             progressionGravityJump: true,
                             progressionItemMaterialization: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         {
@@ -8846,7 +8847,7 @@ const roomsInfo = {
                             progressionLongerMistDuration: true,
                             progressionItemMaterialization: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                         {
@@ -8855,7 +8856,7 @@ const roomsInfo = {
                             progressionWolfTransformation: true,
                             progressionItemMaterialization: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -8871,7 +8872,7 @@ const roomsInfo = {
                             section: 'main',
                             statusSecretFloorInClockRoomOpened: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -8883,9 +8884,9 @@ const roomsInfo = {
                         // section: 'main',
                     },
                     requirements: [
-                        getMovement('basic', 'pit', 1.999),
-                        getMovement('basic', 'upperLeftLedge', 1.999),
-                        getMovement('basic', 'upperRightLedge', 1.999),
+                        getMovement('basic', 'pit', COST_UNKNOWN),
+                        getMovement('basic', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('basic', 'upperRightLedge', COST_UNKNOWN),
                     ],
                 },
                 openSecretFloor: {
@@ -8900,7 +8901,7 @@ const roomsInfo = {
                                 minimum: 2,
                             },
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -8923,7 +8924,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'leftLedge', 1.999),
+                        getMovement('basic', 'leftLedge', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -8932,7 +8933,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -8941,7 +8942,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toLeftLedge: {
@@ -8951,9 +8952,9 @@ const roomsInfo = {
                         // section: 'leftLedge',
                     },
                     requirements: [
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('poweredMist', 'main', 1.999),
-                        getMovement('wolfMistRiseLong', 'main', 1.999),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRiseLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -8963,7 +8964,7 @@ const roomsInfo = {
                         // section: 'main',
                     },
                     requirements: [
-                        getMovement('basic', 'leftLedge', 1.999),
+                        getMovement('basic', 'leftLedge', COST_UNKNOWN),
                     ],
                 },
             },
@@ -8983,7 +8984,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -8992,7 +8993,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9001,7 +9002,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -9010,7 +9011,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9030,7 +9031,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9039,7 +9040,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9059,7 +9060,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9068,7 +9069,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9088,7 +9089,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9108,7 +9109,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9117,7 +9118,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9137,7 +9138,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9146,7 +9147,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9166,7 +9167,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9175,7 +9176,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9195,7 +9196,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9204,7 +9205,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9224,7 +9225,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9233,7 +9234,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9253,7 +9254,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9262,7 +9263,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9282,7 +9283,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9291,7 +9292,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9311,7 +9312,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9320,7 +9321,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9340,7 +9341,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9349,7 +9350,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9369,7 +9370,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9378,7 +9379,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9398,7 +9399,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9418,7 +9419,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9427,7 +9428,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9447,7 +9448,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9456,7 +9457,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9476,7 +9477,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9496,7 +9497,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9517,7 +9518,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -9526,7 +9527,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -9535,7 +9536,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -9544,7 +9545,7 @@ const roomsInfo = {
                         positionY: 512 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'pit', 1.999),
+                        getMovement('basic', 'pit', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -9558,7 +9559,7 @@ const roomsInfo = {
                             section: 'pit',
                             statusPressurePlateInMarbleGalleryActivated: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -9574,7 +9575,7 @@ const roomsInfo = {
                             section: 'main',
                             statusPressurePlateInMarbleGalleryActivated: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -9596,7 +9597,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -9605,7 +9606,7 @@ const roomsInfo = {
                         positionY: 1152,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9625,7 +9626,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -9634,7 +9635,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9654,7 +9655,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -9663,7 +9664,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9684,7 +9685,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9693,7 +9694,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -9702,7 +9703,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'pit', 1.999),
+                        getMovement('basic', 'pit', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -9716,7 +9717,7 @@ const roomsInfo = {
                             section: 'pit',
                             statusPressurePlateInMarbleGalleryActivated: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -9732,7 +9733,7 @@ const roomsInfo = {
                             section: 'main',
                             statusPressurePlateInMarbleGalleryActivated: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -9754,7 +9755,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -9763,7 +9764,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9786,7 +9787,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'middlePath', 1.999),
+                        getMovement('basic', 'middlePath', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -9795,7 +9796,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'leftPath', 1.999),
+                        getMovement('basic', 'leftPath', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9804,7 +9805,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'rightPath', 1.999),
+                        getMovement('basic', 'rightPath', COST_UNKNOWN),
                     ],
                 },
                 exitBottomLeft: {
@@ -9813,7 +9814,7 @@ const roomsInfo = {
                         positionY: 512 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'leftPath', 1.999),
+                        getMovement('basic', 'leftPath', COST_UNKNOWN),
                     ],
                 },
                 exitBottomMiddle: {
@@ -9822,7 +9823,7 @@ const roomsInfo = {
                         positionY: 512 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottomRight: {
@@ -9831,7 +9832,7 @@ const roomsInfo = {
                         positionY: 512 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'rightPath', 1.999),
+                        getMovement('basic', 'rightPath', COST_UNKNOWN),
                     ],
                 },
                 toMiddlePath: {
@@ -9841,10 +9842,10 @@ const roomsInfo = {
                         // section: 'middlePath',
                     },
                     requirements: [
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('multipleGravityJumps', 'main', 1.999),
-                        getMovement('poweredMistForm', 'main', 1.999),
-                        getMovement('wolfMistRiseVeryLong', 'main', 1.999),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -9854,7 +9855,7 @@ const roomsInfo = {
                         // section: 'main',
                     },
                     requirements: [
-                        getMovement('fall', 'middlePath', 1.999),
+                        getMovement('fall', 'middlePath', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9936,7 +9937,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9945,7 +9946,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -9966,9 +9967,9 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('gravityJump', 'main', 1.999),
-                        getMovement('poweredMistForm', 'main', 1.999),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -9977,7 +9978,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -9986,7 +9987,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10006,7 +10007,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10026,7 +10027,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -10035,7 +10036,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10055,7 +10056,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -10064,7 +10065,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10084,7 +10085,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10104,7 +10105,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -10113,7 +10114,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: { // TODO(sestren): Handle logic for breakable wall
@@ -10122,7 +10123,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10142,7 +10143,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -10151,7 +10152,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10171,7 +10172,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -10180,7 +10181,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10200,7 +10201,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -10209,7 +10210,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10229,7 +10230,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -10238,7 +10239,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10258,7 +10259,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -10267,7 +10268,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10288,7 +10289,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'leftOfTunnel', 1.999),
+                        getMovement('basic', 'leftOfTunnel', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -10297,7 +10298,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toLeftOfTunnel: {
@@ -10307,7 +10308,7 @@ const roomsInfo = {
                         // section: 'leftOfTunnel',
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -10317,7 +10318,7 @@ const roomsInfo = {
                         // section: 'main',
                     },
                     requirements: [
-                        getMovement('basic', 'leftOfTunnel', 1.999),
+                        getMovement('basic', 'leftOfTunnel', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10337,7 +10338,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -10346,7 +10347,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10367,9 +10368,9 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('multipleGravityJumps', 'main', 1.999),
-                        getMovement('poweredMistForm', 'main', 1.999),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftUpper: {
@@ -10378,9 +10379,9 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('multipleGravityJumps', 'main', 1.999),
-                        getMovement('poweredMistForm', 'main', 1.999),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -10389,9 +10390,9 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('multipleGravityJumps', 'main', 1.999),
-                        getMovement('poweredMistForm', 'main', 1.999),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -10400,7 +10401,7 @@ const roomsInfo = {
                         positionY: 896,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -10409,9 +10410,9 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('multipleGravityJumps', 'main', 1.999),
-                        getMovement('poweredMistForm', 'main', 1.999),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10431,7 +10432,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottomRight: {
@@ -10440,7 +10441,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10460,7 +10461,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10480,7 +10481,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10500,7 +10501,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -10509,7 +10510,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10529,7 +10530,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10551,9 +10552,9 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('multipleGravityJumps', 'main', 1.999),
-                        getMovement('poweredMistForm', 'main', 1.999),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -10562,7 +10563,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -10571,7 +10572,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toHoleInCeiling: {
@@ -10581,9 +10582,9 @@ const roomsInfo = {
                         // section: 'holeInCeiling',
                     },
                     requirements: [
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('multipleGravityJumps', 'main', 1.999),
-                        getMovement('poweredMistForm', 'main', 1.999),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -10593,7 +10594,7 @@ const roomsInfo = {
                         // section: 'main',
                     },
                     requirements: [
-                        getMovement('basic', 'holeInCeiling', 1.999),
+                        getMovement('basic', 'holeInCeiling', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10655,7 +10656,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -10664,7 +10665,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10684,7 +10685,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -10693,7 +10694,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10713,7 +10714,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftUpper: {
@@ -10723,7 +10724,7 @@ const roomsInfo = {
                         staleLocation: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftMiddle: {
@@ -10732,7 +10733,7 @@ const roomsInfo = {
                         positionY: 1664,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -10741,7 +10742,7 @@ const roomsInfo = {
                         positionY: 1920,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -10750,7 +10751,7 @@ const roomsInfo = {
                         positionY: 2048 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10770,7 +10771,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitTop: {
@@ -10779,7 +10780,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -10788,7 +10789,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10808,7 +10809,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -10817,7 +10818,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -10826,7 +10827,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10846,7 +10847,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -10855,7 +10856,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -10864,7 +10865,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10885,9 +10886,9 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('gravityJump', 'main', 1.999),
-                        getMovement('poweredMistForm', 'main', 1.999),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -10896,7 +10897,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -10905,7 +10906,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10925,7 +10926,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -10934,7 +10935,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10954,7 +10955,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -10963,7 +10964,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10983,7 +10984,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -10992,7 +10993,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11012,7 +11013,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -11021,7 +11022,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11041,7 +11042,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -11050,7 +11051,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11070,7 +11071,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -11079,7 +11080,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11099,7 +11100,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftUpper: {
@@ -11108,7 +11109,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -11118,7 +11119,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -11127,7 +11128,7 @@ const roomsInfo = {
                         positionY: 768 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11147,7 +11148,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11167,7 +11168,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11187,7 +11188,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -11196,7 +11197,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11216,7 +11217,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11236,7 +11237,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -11245,7 +11246,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11308,7 +11309,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -11317,7 +11318,7 @@ const roomsInfo = {
                         positionY: 1792 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11337,7 +11338,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11357,7 +11358,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -11366,7 +11367,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11387,7 +11388,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'upperRightLedge', 1.999),
+                        getMovement('basic', 'upperRightLedge', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -11396,7 +11397,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -11405,7 +11406,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -11415,7 +11416,7 @@ const roomsInfo = {
                         // section: 'main',
                     },
                     requirements: [
-                        getMovement('basic', 'upperRightLedge', 1.999),
+                        getMovement('basic', 'upperRightLedge', COST_UNKNOWN),
                     ],
                 },
                 toUpperRightLedge: {
@@ -11425,9 +11426,9 @@ const roomsInfo = {
                         // section: 'upperRightLedge',
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
-                        getMovement('gravityJump', 'main', 1.999),
-                        getMovement('poweredMistForm', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11447,7 +11448,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -11456,7 +11457,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11477,7 +11478,7 @@ const roomsInfo = {
                         staleLocation: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -11487,7 +11488,7 @@ const roomsInfo = {
                         staleLocation: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightMiddle: {
@@ -11497,7 +11498,7 @@ const roomsInfo = {
                         staleLocation: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -11507,7 +11508,7 @@ const roomsInfo = {
                         staleLocation: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -11517,7 +11518,7 @@ const roomsInfo = {
                         staleLocation: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11537,7 +11538,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -11546,7 +11547,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11566,7 +11567,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -11575,7 +11576,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11595,7 +11596,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -11604,7 +11605,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11624,7 +11625,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -11633,7 +11634,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11654,7 +11655,7 @@ const roomsInfo = {
                         staleLocation: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -11664,7 +11665,7 @@ const roomsInfo = {
                         staleLocation: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11684,7 +11685,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -11693,7 +11694,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -11702,7 +11703,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -11711,7 +11712,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11732,7 +11733,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'leftOfStatue', 1.999),
+                        getMovement('basic', 'leftOfStatue', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -11741,7 +11742,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toLeftOfStatue: {
@@ -11755,7 +11756,7 @@ const roomsInfo = {
                         {
                             section: 'main',
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -11771,7 +11772,7 @@ const roomsInfo = {
                             section: 'leftOfStatue',
                             statusStatueInRoyalChapelMoved: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -11794,7 +11795,7 @@ const roomsInfo = {
                         staleLocation: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -11804,7 +11805,7 @@ const roomsInfo = {
                         staleLocation: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -11814,7 +11815,7 @@ const roomsInfo = {
                         staleLocation: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11834,7 +11835,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11854,7 +11855,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11874,7 +11875,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11895,7 +11896,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'leftOfSpikeHallway', 1.999),
+                        getMovement('basic', 'leftOfSpikeHallway', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -11905,7 +11906,7 @@ const roomsInfo = {
                         staleLocation: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toLeftOfSpikeHallway: {
@@ -11923,7 +11924,7 @@ const roomsInfo = {
                                 minimum: 1,
                             },
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -11943,7 +11944,7 @@ const roomsInfo = {
                                 minimum: 1,
                             },
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         },
                     ],
@@ -11965,7 +11966,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -11974,7 +11975,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -11983,7 +11984,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12044,7 +12045,7 @@ const roomsInfo = {
                         staleLocation: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -12054,7 +12055,7 @@ const roomsInfo = {
                         staleLocation: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12074,7 +12075,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -12083,7 +12084,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12103,7 +12104,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -12113,7 +12114,7 @@ const roomsInfo = {
                         staleLocation: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12135,7 +12136,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12155,7 +12156,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -12164,7 +12165,7 @@ const roomsInfo = {
                         positionY: 896,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12184,7 +12185,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -12193,7 +12194,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12213,7 +12214,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12234,7 +12235,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -12243,7 +12244,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -12252,7 +12253,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12273,7 +12274,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12293,7 +12294,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -12302,7 +12303,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12322,7 +12323,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -12331,7 +12332,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12351,7 +12352,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12371,9 +12372,9 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('batForm', 'main', 1.999),
-                        getMovement('gravityJump', 'main', 1.999),
-                        getMovement('poweredMistForm', 'main', 1.999),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -12382,7 +12383,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -12391,7 +12392,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -12400,7 +12401,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -12410,7 +12411,7 @@ const roomsInfo = {
                         positionY: 768 + 24,
                     },
                     requirements: [
-                        getMovement('fall', 'main', 1.999),
+                        getMovement('fall', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12430,7 +12431,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12450,7 +12451,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitTop: {
@@ -12459,7 +12460,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -12468,7 +12469,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12488,7 +12489,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -12497,7 +12498,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -12506,7 +12507,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12526,7 +12527,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -12535,7 +12536,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12555,7 +12556,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -12564,7 +12565,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12584,7 +12585,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -12593,7 +12594,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12616,7 +12617,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -12625,7 +12626,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightMiddle: {
@@ -12634,7 +12635,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -12643,7 +12644,7 @@ const roomsInfo = {
                         positionY: 896,
                     },
                     requirements: [
-                        getMovement('basic', 'rightLedge', 1.999),
+                        getMovement('basic', 'rightLedge', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -12652,7 +12653,7 @@ const roomsInfo = {
                         positionY: 2792,
                     },
                     requirements: [
-                        getMovement('fall', 'pit', 1.999),
+                        getMovement('fall', 'pit', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -12662,15 +12663,15 @@ const roomsInfo = {
                         // section: 'main',
                     },
                     requirements: [
-                        getMovement('batForm', 'leftLedge', 1.999),
-                        getMovement('multipleGravityJumps', 'leftLedge', 1.999),
-                        getMovement('poweredMistForm', 'leftLedge', 1.999),
-                        getMovement('batForm', 'rightLedge', 1.999),
-                        getMovement('multipleGravityJumps', 'rightLedge', 1.999),
-                        getMovement('poweredMistForm', 'rightLedge', 1.999),
-                        getMovement('batForm', 'pit', 1.999),
-                        getMovement('multipleGravityJumps', 'pit', 1.999),
-                        getMovement('poweredMistForm', 'pit', 1.999),
+                        getMovement('batForm', 'leftLedge', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'leftLedge', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'leftLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'rightLedge', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'rightLedge', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'rightLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'pit', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'pit', COST_UNKNOWN),
                     ],
                 },
                 toLeftLedge: {
@@ -12680,13 +12681,13 @@ const roomsInfo = {
                         // section: 'leftLedge',
                     },
                     requirements: [
-                        getMovement('fall', 'main', 1.999),
-                        getMovement('batForm', 'rightLedge', 1.999),
-                        getMovement('multipleGravityJumps', 'rightLedge', 1.999),
-                        getMovement('poweredMistForm', 'rightLedge', 1.999),
-                        getMovement('batForm', 'pit', 1.999),
-                        getMovement('multipleGravityJumps', 'pit', 1.999),
-                        getMovement('poweredMistForm', 'pit', 1.999),
+                        getMovement('fall', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'rightLedge', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'rightLedge', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'rightLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'pit', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'pit', COST_UNKNOWN),
                     ],
                 },
                 toRightLedge: {
@@ -12696,12 +12697,12 @@ const roomsInfo = {
                         // section: 'rightLedge',
                     },
                     requirements: [
-                        getMovement('batForm', 'leftLedge', 1.999),
-                        getMovement('multipleGravityJumps', 'leftLedge', 1.999),
-                        getMovement('poweredMistForm', 'leftLedge', 1.999),
-                        getMovement('batForm', 'pit', 1.999),
-                        getMovement('multipleGravityJumps', 'pit', 1.999),
-                        getMovement('poweredMistForm', 'pit', 1.999),
+                        getMovement('batForm', 'leftLedge', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'leftLedge', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'leftLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'pit', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMistForm', 'pit', COST_UNKNOWN),
                     ],
                 },
                 toPit: {
@@ -12711,9 +12712,9 @@ const roomsInfo = {
                         // section: 'pit',
                     },
                     requirements: [
-                        getMovement('fall', 'main', 1.999),
-                        getMovement('fall', 'leftLedge', 1.999),
-                        getMovement('fall', 'rightLedge', 1.999),
+                        getMovement('fall', 'main', COST_UNKNOWN),
+                        getMovement('fall', 'leftLedge', COST_UNKNOWN),
+                        getMovement('fall', 'rightLedge', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12733,7 +12734,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -12742,7 +12743,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -12751,7 +12752,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12771,7 +12772,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12791,7 +12792,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -12800,7 +12801,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12821,7 +12822,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -12830,7 +12831,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12850,7 +12851,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('fall', 'main', 1.999),
+                        getMovement('fall', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12871,7 +12872,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -12880,7 +12881,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12900,7 +12901,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitTop: {
@@ -12909,7 +12910,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12929,7 +12930,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -12938,7 +12939,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -12947,7 +12948,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12967,7 +12968,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -12976,7 +12977,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -12996,7 +12997,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -13005,7 +13006,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13025,7 +13026,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -13034,7 +13035,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13054,7 +13055,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13074,7 +13075,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -13083,7 +13084,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13103,7 +13104,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13123,7 +13124,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13143,7 +13144,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13163,7 +13164,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -13172,7 +13173,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13192,7 +13193,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -13201,7 +13202,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13221,7 +13222,7 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -13230,7 +13231,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13250,7 +13251,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -13259,7 +13260,7 @@ const roomsInfo = {
                         positionY: 1664,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -13268,7 +13269,7 @@ const roomsInfo = {
                         positionY: 2304 + 24,
                     },
                     requirements: [
-                        getMovement('fall', 'main', 1.999),
+                        getMovement('fall', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13288,7 +13289,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -13297,7 +13298,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13317,7 +13318,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -13326,7 +13327,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13346,7 +13347,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -13355,7 +13356,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13375,7 +13376,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -13384,7 +13385,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13405,7 +13406,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -13414,7 +13415,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -13423,7 +13424,7 @@ const roomsInfo = {
                         positionY: 1408,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightLower: {
@@ -13432,7 +13433,7 @@ const roomsInfo = {
                         positionY: 1408,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13454,7 +13455,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -13463,7 +13464,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13483,7 +13484,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -13492,7 +13493,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13512,7 +13513,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -13521,7 +13522,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13541,7 +13542,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -13550,7 +13551,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13570,7 +13571,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -13579,7 +13580,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13666,7 +13667,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 teleportToOuterWall: {
@@ -13681,7 +13682,7 @@ const roomsInfo = {
                             section: 'main',
                             statusWarpRoomToOuterWallUnlocked: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         }
                     ],
@@ -13699,7 +13700,7 @@ const roomsInfo = {
                             statusWarpRoomToOuterWallUnlocked: false,
                             statusWarpRoomToCastleKeepUnlocked: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         }
                     ],
@@ -13718,7 +13719,7 @@ const roomsInfo = {
                             statusWarpRoomToCastleKeepUnlocked: false,
                             statusWarpRoomToOlroxsQuartersUnlocked: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         }
                     ],
@@ -13737,7 +13738,7 @@ const roomsInfo = {
                             statusWarpRoomToCastleKeepUnlocked: false,
                             statusWarpRoomToOlroxsQuartersUnlocked: false,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         }
                     ],
@@ -13759,7 +13760,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 teleportToAbandonedMine: {
@@ -13774,7 +13775,7 @@ const roomsInfo = {
                             section: 'main',
                             statusWarpRoomToAbandonedMineUnlocked: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         }
                     ],
@@ -13792,7 +13793,7 @@ const roomsInfo = {
                             statusWarpRoomToAbandonedMineUnlocked: false,
                             statusWarpRoomToOuterWallUnlocked: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         }
                     ],
@@ -13811,7 +13812,7 @@ const roomsInfo = {
                             statusWarpRoomToOuterWallUnlocked: false,
                             statusWarpRoomToCastleKeepUnlocked: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         }
                     ],
@@ -13831,7 +13832,7 @@ const roomsInfo = {
                             statusWarpRoomToCastleKeepUnlocked: false,
                             statusWarpRoomToOlroxsQuartersUnlocked: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         }
                     ],
@@ -13851,7 +13852,7 @@ const roomsInfo = {
                             statusWarpRoomToCastleKeepUnlocked: false,
                             statusWarpRoomToOlroxsQuartersUnlocked: false,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         }
                     ],
@@ -13890,7 +13891,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 teleportToOlroxsQuarters: {
@@ -13905,7 +13906,7 @@ const roomsInfo = {
                             section: 'main',
                             statusWarpRoomToOlroxsQuartersUnlocked: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         }
                     ],
@@ -13922,7 +13923,7 @@ const roomsInfo = {
                             section: 'main',
                             statusWarpRoomToOlroxsQuartersUnlocked: false,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         }
                     ],
@@ -13961,7 +13962,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 teleportToCastleEntrance: {
@@ -13975,7 +13976,7 @@ const roomsInfo = {
                         {
                             section: 'main',
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         }
                     ],
@@ -14014,7 +14015,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', 1.999),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 teleportToCastleKeep: {
@@ -14029,7 +14030,7 @@ const roomsInfo = {
                             section: 'main',
                             statusWarpRoomToCastleKeepUnlocked: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         }
                     ],
@@ -14047,7 +14048,7 @@ const roomsInfo = {
                             statusWarpRoomToCastleKeepUnlocked: false,
                             statusWarpRoomToOlroxsQuartersUnlocked: true,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         }
                     ],
@@ -14065,7 +14066,7 @@ const roomsInfo = {
                             statusWarpRoomToCastleKeepUnlocked: false,
                             statusWarpRoomToOlroxsQuartersUnlocked: false,
                             costs: {
-                                time: 1.999,
+                                time: COST_UNKNOWN,
                             },
                         }
                     ],
@@ -14821,14 +14822,142 @@ const goalLocations = [
     'locationSwordCard',
 ]
 
+const requirements = [
+    {
+        goalStates: [
+            {
+                stage: 'longLibrary',
+                room: 'threeLayerRoom',
+                section: 'topLayer',
+            },
+            {
+                stage: 'longLibrary',
+                room: 'threeLayerRoom',
+                section: 'main',
+            },
+            {
+                stage: 'longLibrary',
+                room: 'threeLayerRoom',
+                section: 'bottomLayer',
+            },
+        ],
+        initialStates: [
+            {
+                stage: 'longLibrary',
+                room: 'outsideShop',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionMistTransformation: true,
+                time: 120.0,
+            },
+        ],
+        requirementType: 'all',
+    },
+    {
+        description: 'It should be possible to leave the Library without any progression after using a Library Card',
+        goalStates: [
+            {
+                stage: 'longLibrary',
+                room: 'loadingRoomToOuterWall',
+                section: 'main',
+            },
+        ],
+        initialStates: [
+            {
+                stage: 'longLibrary',
+                room: 'outsideShop',
+                section: 'main',
+                time: 120.0,
+            },
+        ],
+        requirementType: 'any',
+    },
+    {
+        goalStates: [
+            {
+                stage: 'longLibrary',
+                room: 'outsideShop',
+                section: 'main',
+            },
+            {
+                locationFaerieCard: true,
+            },
+            {
+                locationFaerieScroll: true,
+            },
+            {
+                locationJewelOfOpen: true,
+            },
+            {
+                locationSoulOfBat: true,
+            },
+        ],
+        initialStates: [
+            {
+                stage: 'longLibrary',
+                room: 'loadingRoomToOuterWall',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionMistTransformation: true,
+                time: 120.0,
+            },
+        ],
+        requirementType: 'all',
+    },
+    // {
+    //     goals: [],
+    //     initialState: {},
+    //     requirementType: 'none',
+    // },
+]
+
+function findGoal(logic, startingState, goalState) {
+    let result = null
+    const map = new Map()
+    const subWork = [
+        Object.assign({}, startingState),
+    ]
+    while (subWork.length > 0) {
+        // console.log('subWork.length:', subWork.length, 'map.size:', map.size)
+        const currentState = subWork.pop()
+        const currentStateHash = hashedState(currentState)
+        if (
+            map.has(currentStateHash) &&
+            map.get(currentStateHash) >= currentState.time
+        ) {
+            continue
+        }
+        map.set(currentStateHash, currentState.time)
+        logic[currentState.stage][currentState.room]
+        .find((command) => {
+            if (isValidRequirement(currentState, command.requirement)) {
+                const nextState = Object.assign({}, currentState)
+                hashedState(nextState)
+                updateStateWithOutcome(nextState, command.outcome)
+                if (isValidRequirement(nextState, goalState)) {
+                    result = nextState
+                    console.log('result:', JSON.stringify(nextState, Object.keys(nextState).sort(), 4))
+                    return true
+                }
+                subWork.push(nextState)
+            }
+            return false
+        })
+        if (result !== null) {
+            break
+        }
+    }
+    return result
+}
+
 export function analyzeLogic(seed, settings) {
     const rng = seedrandom(seed)
     const result = {
         solvable: false,
     }
-    // console.log('settings:', JSON.stringify(settings, null, 4))
+    console.log('settings:', JSON.stringify(settings, null, 4))
     const logic = getLogic(settings)
-    // console.log('logic:', JSON.stringify(logic, null, 4))
+    console.log('logic:', JSON.stringify(logic, null, 4))
     const mainWork = [
         {
             stage: 'castleEntrance',
@@ -14850,50 +14979,16 @@ export function analyzeLogic(seed, settings) {
                 goalCompletionCount += 1
                 return
             }
-            let successfulState = null
             const goalState = {}
             goalState[locationName] = true
-            const map = new Map()
-            const subWork = [
-                Object.assign({}, startingState),
-            ]
-            while (subWork.length > 0) {
-                // console.log('subWork.length:', subWork.length, 'map.size:', map.size)
-                const currentState = subWork.pop()
-                const currentStateHash = hashedState(currentState)
-                if (
-                    map.has(currentStateHash) &&
-                    map.get(currentStateHash) >= currentState.time
-                ) {
-                    continue
-                }
-                map.set(currentStateHash, currentState.time)
-                logic[currentState.stage][currentState.room]
-                .find((command) => {
-                    if (isValidRequirement(currentState, command.requirement)) {
-                        const nextState = Object.assign({}, currentState)
-                        hashedState(nextState)
-                        updateStateWithOutcome(nextState, command.outcome)
-                        if (isValidRequirement(nextState, goalState)) {
-                            successfulState = nextState
-                            console.log('successfulState:', JSON.stringify(nextState, Object.keys(nextState).sort(), 4))
-                            return true
-                        }
-                        subWork.push(nextState)
-                    }
-                    return false
-                })
-                if (successfulState !== null) {
-                    break
-                }
-            }
+            let successfulState = findGoal(logic, startingState, goalState)
             if (successfulState) {
                 successfulState.time = 90.0
                 mainWork.push(successfulState)
             }
         })
         console.log('goalCompletionCount:', goalCompletionCount)
-        if (goalCompletionCount >= 12) {
+        if (goalCompletionCount >= 8) {
             result.solvable = true
         }
     }
