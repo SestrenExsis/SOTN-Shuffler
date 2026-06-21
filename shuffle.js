@@ -3,6 +3,7 @@ import yargs from 'yargs'
 
 import {
     analyzeLogic,
+    validate,
 } from './src/analyze-logic.js'
 
 import {
@@ -46,6 +47,155 @@ import {
 //   - Arrange stages on the map
 
 const MIN_MAP_ROW = 5
+
+const STAGE_NAMES = [
+    'abandonedMine',
+    'alchemyLaboratory',
+    'castleEntrance',
+    'castleKeep',
+    'catacombs',
+    'clockTower',
+    'colosseum',
+    'longLibrary',
+    'marbleGallery',
+    'olroxsQuarters',
+    'outerWall',
+    'royalChapel',
+    'undergroundCaverns',
+]
+
+const VALIDATIONS = {
+    longLibrary: [
+        {
+            startingState: {
+                stage: 'longLibrary',
+                room: 'outsideShop',
+                section: 'main',
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+            },
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionMistTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'longLibrary',
+                room: 'outsideShop',
+                section: 'main',
+            },
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionMistTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'longLibrary',
+                room: 'threeLayerRoom',
+                section: 'topLayer',
+            },
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionMistTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'longLibrary',
+                room: 'threeLayerRoom',
+                section: 'main',
+            },
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionMistTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'longLibrary',
+                room: 'threeLayerRoom',
+                section: 'bottomLayer',
+            },
+        },
+        // {
+        //     startingState: {
+        //         stage: 'elsewhere',
+        //         room: 'hub',
+        //         section: 'main',
+        //         progressionDoubleJump: true,
+        //         progressionMistTransformation: true,
+        //         time: 120.0,
+        //     },
+        //     goalState: {
+        //         locationFaerieCard: true,
+        //     },
+        // },
+        // {
+        //     startingState: {
+        //         stage: 'elsewhere',
+        //         room: 'hub',
+        //         section: 'main',
+        //         progressionDoubleJump: true,
+        //         progressionMistTransformation: true,
+        //         time: 120.0,
+        //     },
+        //     goalState: {
+        //         locationFaerieScroll: true,
+        //     },
+        // },
+        // {
+        //     startingState: {
+        //         stage: 'elsewhere',
+        //         room: 'hub',
+        //         section: 'main',
+        //         progressionDoubleJump: true,
+        //         progressionMistTransformation: true,
+        //         time: 120.0,
+        //     },
+        //     goalState: {
+        //         locationSoulOfBat: true,
+        //     },
+        // },
+    ],
+    marbleGallery: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionItemMaterialization: true,
+                progressionUnlockBlueDoors: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusPressurePlateInMarbleGalleryActivated: true,
+            },
+        },
+    ]
+}
 
 const argv = yargs(process.argv.slice(2))
     .command({ // multi
@@ -201,7 +351,7 @@ const argv = yargs(process.argv.slice(2))
                 }
             }
             if (argv.musicShuffler?.on) {
-                const seed = argv.musicShuffler.seed ?? (seedName + '_musicShuffler')
+                const seed = argv.musicShuffler.seed ?? (seedName + '.musicShuffler')
                 const shuffledSongs = shuffleSongs(seed)
                 const songChanges = getSongChanges(shuffledSongs)
                 shuffleData.changes.push(songChanges)
@@ -221,29 +371,49 @@ const argv = yargs(process.argv.slice(2))
                 console.log('solverAttemptCount:', shuffleData.debugInfo.solverAttemptCount)
                 changesToAdd = []
                 if (argv.stageShuffler?.on) {
-                    const seed = argv.stageShuffler.seed ?? (seedName + '_stageShuffler_' + shuffleData.debugInfo.solverAttemptCount)
+                    const seed = argv.stageShuffler.seed ?? (seedName + '.stageShuffler.' + shuffleData.debugInfo.solverAttemptCount)
                     stageConnections = shuffleStages(seed)
                     const teleporterChanges = getTeleporterChanges(extraction, stageConnections.links)
                     changesToAdd.push(teleporterChanges)
                     shuffleData.debugInfo.finalSeedsUsed.stageShuffler = seed
                 }
                 if (argv.roomShuffler?.on) {
-                    const seed = argv.roomShuffler.seed ?? (seedName + '_roomShuffler_' + shuffleData.debugInfo.solverAttemptCount)
-                    const stageNodeGroups = {
-                        abandonedMine: shuffleRooms(seed + '_abandonedMine', 'abandonedMine', true),
-                        alchemyLaboratory: shuffleRooms(seed + '_alchemyLaboratory', 'alchemyLaboratory', true),
-                        castleEntrance: shuffleRooms(seed + '_castleEntrance', 'castleEntrance', true),
-                        castleKeep: shuffleRooms(seed + '_castleKeep', 'castleKeep', true),
-                        catacombs: shuffleRooms(seed + '_catacombs', 'catacombs', true),
-                        clockTower: shuffleRooms(seed + '_clockTower', 'clockTower', true),
-                        colosseum: shuffleRooms(seed + '_colosseum', 'colosseum', true),
-                        longLibrary: shuffleRooms(seed + '_longLibrary', 'longLibrary', true),
-                        marbleGallery: shuffleRooms(seed + '_marbleGallery', 'marbleGallery', true),
-                        olroxsQuarters: shuffleRooms(seed + '_olroxsQuarters', 'olroxsQuarters', true),
-                        outerWall: shuffleRooms(seed + '_outerWall', 'outerWall', true),
-                        royalChapel: shuffleRooms(seed + '_royalChapel', 'royalChapel', true),
-                        undergroundCaverns: shuffleRooms(seed + '_undergroundCaverns', 'undergroundCaverns', true),
-                    }
+                    const seed = argv.roomShuffler.seed ?? (seedName + '.roomShuffler.' + shuffleData.debugInfo.solverAttemptCount)
+                    const stageNodeGroups = {}
+                    shuffleData.debugInfo.finalSeedsUsed.stages = {}
+                    STAGE_NAMES.forEach((stageName) => {
+                        let stageAttemptCount = 0
+                        while (true) {
+                            const stageSeed = seed + '.' + stageName + '.' + stageAttemptCount
+                            console.log('stageSeed:', stageSeed)
+                            const shuffledRooms = shuffleRooms(stageSeed, stageName, true)
+                            let validInd = true
+                            if (stageName in VALIDATIONS) {
+                                console.log('stageName:', stageName)
+                                validInd = VALIDATIONS[stageName]
+                                .every((validation) => {
+                                    // console.log('validation:', validation)
+                                    // console.log('stage:', validation.startingState.stage)
+                                    // console.log('room:', validation.startingState.room)
+                                    const logicSettings = {
+                                        solverAttemptCount: shuffleData.debugInfo.solverAttemptCount,
+                                        locationRewards: {},
+                                        stageLinks: {},
+                                        roomPositions: shuffledRooms.rooms,
+                                    }
+                                    const validationResult = validate(stageSeed, logicSettings, validation.startingState, validation.goalState)
+                                    // console.log('validationResult:', validationResult)
+                                    return validationResult.solvable
+                                })
+                            }
+                            if (validInd) {
+                                stageNodeGroups[stageName] = shuffledRooms
+                                shuffleData.debugInfo.finalSeedsUsed.stages[stageName] = stageSeed
+                                break
+                            }
+                            stageAttemptCount += 1
+                        }
+                    })
                     // Attach warpRooms to the stages they lead to
                     Object.entries(stageConnections.links)
                         .filter(([teleporterSource, teleporterTarget]) => {
@@ -273,13 +443,13 @@ const argv = yargs(process.argv.slice(2))
                                 throw Error(`Room not found for stage '${stageName}' and room '${roomName}'`)
                             }
                         })
-                    roomArrangements = arrangeStages(seed + '_stageArranger', stageNodeGroups)
+                    roomArrangements = arrangeStages(seed + '.stageArranger', stageNodeGroups)
                     const roomChanges = getRoomChanges(roomArrangements.rooms, MIN_MAP_ROW, 0)
                     changesToAdd.push(roomChanges)
                     shuffleData.debugInfo.finalSeedsUsed.roomShuffler = seed
                 }
                 if (argv.rewardShuffler?.on) {
-                    const seed = argv.rewardShuffler.seed ?? (seedName + '_rewardShuffler_' + shuffleData.debugInfo.solverAttemptCount)
+                    const seed = argv.rewardShuffler.seed ?? (seedName + '.rewardShuffler.' + shuffleData.debugInfo.solverAttemptCount)
                     questRewards = shuffleRewards(seed)
                     const rewardChanges = getRewardChanges(questRewards.locations)
                     changesToAdd.push(rewardChanges)
@@ -287,7 +457,7 @@ const argv = yargs(process.argv.slice(2))
                 }
                 if (argv.solver?.on) {
                     shuffleData.debugInfo.solvable = false
-                    const seed = argv.solver.seed ?? (seedName + '_solver_' + shuffleData.debugInfo.solverAttemptCount)
+                    const seed = argv.solver.seed ?? (seedName + '.solver.' + shuffleData.debugInfo.solverAttemptCount)
                     const logicSettings = {
                         solverAttemptCount: shuffleData.debugInfo.solverAttemptCount,
                         locationRewards: questRewards.locations,
@@ -391,22 +561,41 @@ const argv = yargs(process.argv.slice(2))
                 const seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
                 seedName = getSeedName(seed)
             }
-            const stageNodeGroups = {
-                abandonedMine: shuffleRooms(seedName + '_abandonedMine', 'abandonedMine', true),
-                alchemyLaboratory: shuffleRooms(seedName + '_alchemyLaboratory', 'alchemyLaboratory', true),
-                castleEntrance: shuffleRooms(seedName + '_castleEntrance', 'castleEntrance', true),
-                castleKeep: shuffleRooms(seedName + '_castleKeep', 'castleKeep', true),
-                catacombs: shuffleRooms(seedName + '_catacombs', 'catacombs', true),
-                clockTower: shuffleRooms(seedName + '_clockTower', 'clockTower', true),
-                colosseum: shuffleRooms(seedName + '_colosseum', 'colosseum', true),
-                longLibrary: shuffleRooms(seedName + '_longLibrary', 'longLibrary', true),
-                marbleGallery: shuffleRooms(seedName + '_marbleGallery', 'marbleGallery', true),
-                olroxsQuarters: shuffleRooms(seedName + '_olroxsQuarters', 'olroxsQuarters', true),
-                outerWall: shuffleRooms(seedName + '_outerWall', 'outerWall', true),
-                royalChapel: shuffleRooms(seedName + '_royalChapel', 'royalChapel', true),
-                undergroundCaverns: shuffleRooms(seedName + '_undergroundCaverns', 'undergroundCaverns', true),
-            }
-            const shuffledStages = shuffleStages(seedName + '_stageShuffler')
+            const stageNodeGroups = {}
+            STAGE_NAMES.forEach((stageName) => {
+                let stageAttemptCount = 0
+                while (true) {
+                    const stageSeed = seed + '.' + stageName + '.' + stageAttemptCount
+                    console.log('stageSeed:', stageSeed)
+                    const shuffledRooms = shuffleRooms(stageSeed, stageName, true)
+                    let validInd = true
+                    if (stageName in VALIDATIONS) {
+                        console.log('stageName:', stageName)
+                        validInd = VALIDATIONS[stageName]
+                        .every((validation) => {
+                            // console.log('validation:', validation)
+                            // console.log('stage:', validation.startingState.stage)
+                            // console.log('room:', validation.startingState.room)
+                            const logicSettings = {
+                                solverAttemptCount: shuffleData.debugInfo.solverAttemptCount,
+                                locationRewards: {},
+                                stageLinks: {},
+                                roomPositions: shuffledRooms.rooms,
+                            }
+                            const validationResult = validate(stageSeed, logicSettings, validation.startingState, validation.goalState)
+                            // console.log('validationResult:', validationResult)
+                            return validationResult.solvable
+                        })
+                    }
+                    if (validInd) {
+                        stageNodeGroups[stageName] = shuffledRooms
+                        shuffleData.debugInfo.finalSeedsUsed.stages[stageName] = stageSeed
+                        break
+                    }
+                    stageAttemptCount += 1
+                }
+            })
+            const shuffledStages = shuffleStages(seedName + '.stageShuffler')
             // Attach warpRooms to the stages they lead to
             Object.entries(shuffledStages.links)
                 .filter(([teleporterSource, teleporterTarget]) => {
@@ -436,7 +625,7 @@ const argv = yargs(process.argv.slice(2))
                         throw Error(`Room not found for stage '${stageName}' and room '${roomName}'`)
                     }
                 })
-            const stageArrangements = arrangeStages(seedName + '_stageArranger', stageNodeGroups)
+            const stageArrangements = arrangeStages(seedName + '.stageArranger', stageNodeGroups)
             console.log('shuffledStages.links', shuffledStages.links)
             console.log('stageArrangements.rooms[castleEntrance]:', stageArrangements.rooms
                 .filter((roomInfo) => {

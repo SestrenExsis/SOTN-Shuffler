@@ -2487,7 +2487,7 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                getRegion('leftSide', 0, 0, 240, 256),
+                getRegion('main', 0, 0, 240, 256),
                 getRegion('rightSide', 256, 0, 256, 256),
             ],
             commands: {
@@ -2497,7 +2497,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'leftSide', COST_UNKNOWN),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -2509,11 +2509,11 @@ const roomsInfo = {
                         getMovement('basic', 'rightSide', COST_UNKNOWN),
                     ],
                 },
-                toLeftSide: {
+                toMain: {
                     outcome: {
                         positionX: 24,
                         positionY: 128,
-                        // section: leftSide,
+                        // section: main,
                     },
                     requirements: [
                         { // Jewel of Open
@@ -2533,7 +2533,7 @@ const roomsInfo = {
                     },
                     requirements: [
                         { // Jewel of Open
-                            section: 'leftSide',
+                            section: 'main',
                             progressionUnlockBlueDoors: true,
                             costs: {
                                 time: COST_UNKNOWN,
@@ -2619,7 +2619,7 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                getRegion('leftSide', 0, 0, 96, 256),
+                getRegion('main', 0, 0, 96, 256),
                 getRegion('rightSide', 112, 0, 144, 256),
             ],
             commands: {
@@ -2629,7 +2629,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'leftSide', COST_UNKNOWN),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -2641,12 +2641,12 @@ const roomsInfo = {
                         getMovement('basic', 'rightSide', COST_UNKNOWN),
                     ],
                 },
-                toLeftSide: {
+                toMain: {
                     outcome: {
                         positionX: 24,
                         positionY: 128,
                         statusCannonActivated: true,
-                        // section: leftSide,
+                        // section: main,
                     },
                     requirements: [
                         { // Jewel of Open
@@ -2665,7 +2665,7 @@ const roomsInfo = {
                     },
                     requirements: [
                         { // Cannon Activated
-                            section: 'leftSide',
+                            section: 'main',
                             statusCannonActivated: true,
                             costs: {
                                 time: COST_UNKNOWN,
@@ -4003,7 +4003,7 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                getRegion('leftSide', 0, 96, 96, 64),
+                getRegion('main', 0, 96, 96, 64),
                 getRegion('rightSide', 112, 64, 144, 144),
             ],
             commands: {
@@ -4013,7 +4013,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'leftSide', COST_UNKNOWN),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRight: {
@@ -4047,7 +4047,7 @@ const roomsInfo = {
                     },
                     requirements: [
                         { // After Opening Path
-                            section: 'leftSide',
+                            section: 'main',
                             statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
                             costs: {
                                 time: COST_UNKNOWN,
@@ -4055,11 +4055,11 @@ const roomsInfo = {
                         },
                     ],
                 },
-                toLeftSide: {
+                toMain: {
                     outcome: {
                         positionX: 224,
                         positionY: 128,
-                        // section: leftSide,
+                        // section: main,
                     },
                     requirements: [
                         { // Opening Path
@@ -4427,7 +4427,7 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                getRegion('leftSide', 0, 0, 128, 256),
+                getRegion('main', 0, 0, 128, 256),
                 getRegion('rightSide', 144, 0, 112, 256),
             ],
             commands: {
@@ -4457,18 +4457,18 @@ const roomsInfo = {
                     },
                     requirements: [
                         { // Opening Path
-                            section: 'leftSide',
+                            section: 'main',
                             costs: {
                                 time: COST_UNKNOWN,
                             },
                         },
                     ],
                 },
-                toLeftSide: {
+                toMain: {
                     outcome: {
                         positionX: 80,
                         positionY: 128,
-                        // section: leftSide,
+                        // section: main,
                     },
                     requirements: [
                         { // After Opening Path
@@ -4486,7 +4486,7 @@ const roomsInfo = {
                     },
                     requirements: [
                         { // After Opening Path
-                            section: 'leftSide',
+                            section: 'main',
                             statusPassageFromCastleEntranceToWarpRoomsOpened: false,
                             costs: {
                                 time: COST_UNKNOWN,
@@ -8470,7 +8470,7 @@ const roomsInfo = {
         threeLayerRoom: {
             roomInfo: {
                 width: 256,
-                height: 256,
+                height: 768,
             },
             regions: [
                 getRegion('topLayer', 0, 0, 256, 256),
@@ -8679,7 +8679,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'leftSide', COST_UNKNOWN),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toLeftSide: {
@@ -8704,7 +8704,7 @@ const roomsInfo = {
                     },
                     requirements: [
                         { // Jewel of Open
-                            section: 'leftSide',
+                            section: 'main',
                             progressionUnlockBlueDoors: true,
                             costs: {
                                 time: COST_UNKNOWN,
@@ -14573,11 +14573,9 @@ function updateLocation(location, settings) {
 }
 
 function getLogic(settings) {
-    const result = {
-        global: {},
-    }
+    const result = {}
     // Process every room command
-    Object.entries(roomsInfo)
+    Object.entries(roomsInfo ?? {})
     .forEach(([stageName, stageInfo]) => {
         result[stageName] = {}
         Object.entries(stageInfo)
@@ -14644,7 +14642,7 @@ function getLogic(settings) {
         })
     })
     // Process every location-reward combination
-    Object.entries(settings.locationRewards)
+    Object.entries(settings.locationRewards ?? {})
     .forEach(([locationName, rewardName]) => {
         // Process every location requirement (Only certain stages for now)
         locationsInfo[locationName].requirements
@@ -14703,9 +14701,8 @@ function getLogic(settings) {
         })
     })
     // Process every stage link
-    Object.entries(settings.stageLinks)
+    Object.entries(settings.stageLinks ?? {})
     .filter(([sourceTeleporterName, targetTeleporterName]) => {
-        // TODO(sestren): Process more teleporters
         return (
             (
                 sourceTeleporterName.startsWith('fromAbandonedMine') ||
@@ -14757,6 +14754,57 @@ function getLogic(settings) {
         const otherStageName = teleporterTargetsInfo[sourceTeleporterName].targetStage
         const sourceRoomName = 'triggerTeleporterTo' + otherStageName.at(0).toUpperCase() + otherStageName.slice(1)
         result[sourceStageName][sourceRoomName].push(command)
+    })
+    // Link any unlinked stages to a universal hub for testing purposes
+    result.elsewhere = {
+        hub: [],
+    }
+    Object.entries(roomPriority)
+    .filter(([stageName, roomNames]) => {
+        return stageName in result
+    })
+    .forEach(([stageName, roomNames]) => {
+        roomNames
+        .filter((roomName) => {
+            return roomName.startsWith('loadingRoomTo') && roomName in result[stageName]
+        })
+        .filter((roomName) => {
+            let linkCount = -1
+            result[stageName][roomName]
+            .find((command) => {
+                if (command.outcome.room.startsWith('triggerTeleporterTo')) {
+                    linkCount = result[stageName][command.outcome.room].length
+                    // console.log(command.outcome.room, ':', result[stageName][command.outcome.room])
+                }
+            })
+            return linkCount === 0
+        })
+        .forEach((roomName) => {
+            // console.log(`Add link to universal hub for (${stageName}.${roomName})`)
+            result.elsewhere.hub.push({
+                outcome: {
+                    stage: stageName,
+                    room: roomName,
+                    section: 'main',
+                },
+                requirement: {
+                    stage: 'elsewhere',
+                    room: 'hub',
+                },
+            })
+            result[stageName][roomName].push({
+                outcome: {
+                    stage: 'elsewhere',
+                    room: 'hub',
+                    section: 'main',
+                },
+                requirement: {
+                    stage: stageName,
+                    room: roomName,
+                    section: 'main',
+                },
+            })
+        })
     })
     return result
 }
@@ -14822,96 +14870,7 @@ const goalLocations = [
     'locationSwordCard',
 ]
 
-const requirements = [
-    {
-        goalStates: [
-            {
-                stage: 'longLibrary',
-                room: 'threeLayerRoom',
-                section: 'topLayer',
-            },
-            {
-                stage: 'longLibrary',
-                room: 'threeLayerRoom',
-                section: 'main',
-            },
-            {
-                stage: 'longLibrary',
-                room: 'threeLayerRoom',
-                section: 'bottomLayer',
-            },
-        ],
-        initialStates: [
-            {
-                stage: 'longLibrary',
-                room: 'outsideShop',
-                section: 'main',
-                progressionDoubleJump: true,
-                progressionMistTransformation: true,
-                time: 120.0,
-            },
-        ],
-        requirementType: 'all',
-    },
-    {
-        description: 'It should be possible to leave the Library without any progression after using a Library Card',
-        goalStates: [
-            {
-                stage: 'longLibrary',
-                room: 'loadingRoomToOuterWall',
-                section: 'main',
-            },
-        ],
-        initialStates: [
-            {
-                stage: 'longLibrary',
-                room: 'outsideShop',
-                section: 'main',
-                time: 120.0,
-            },
-        ],
-        requirementType: 'any',
-    },
-    {
-        goalStates: [
-            {
-                stage: 'longLibrary',
-                room: 'outsideShop',
-                section: 'main',
-            },
-            {
-                locationFaerieCard: true,
-            },
-            {
-                locationFaerieScroll: true,
-            },
-            {
-                locationJewelOfOpen: true,
-            },
-            {
-                locationSoulOfBat: true,
-            },
-        ],
-        initialStates: [
-            {
-                stage: 'longLibrary',
-                room: 'loadingRoomToOuterWall',
-                section: 'main',
-                progressionDoubleJump: true,
-                progressionMistTransformation: true,
-                time: 120.0,
-            },
-        ],
-        requirementType: 'all',
-    },
-    // {
-    //     goals: [],
-    //     initialState: {},
-    //     requirementType: 'none',
-    // },
-]
-
-function findGoal(logic, startingState, goalState) {
+export function findGoal(logic, startingState, goalState) {
     let result = null
     const map = new Map()
     const subWork = [
@@ -14928,6 +14887,7 @@ function findGoal(logic, startingState, goalState) {
             continue
         }
         map.set(currentStateHash, currentState.time)
+        // console.log('currentState:', currentState)
         logic[currentState.stage][currentState.room]
         .find((command) => {
             if (isValidRequirement(currentState, command.requirement)) {
@@ -14936,9 +14896,10 @@ function findGoal(logic, startingState, goalState) {
                 updateStateWithOutcome(nextState, command.outcome)
                 if (isValidRequirement(nextState, goalState)) {
                     result = nextState
-                    console.log('result:', JSON.stringify(nextState, Object.keys(nextState).sort(), 4))
+                    // console.log('result:', JSON.stringify(nextState, Object.keys(nextState).sort(), 4))
                     return true
                 }
+                // console.log('nextState:', nextState)
                 subWork.push(nextState)
             }
             return false
@@ -14947,6 +14908,23 @@ function findGoal(logic, startingState, goalState) {
             break
         }
     }
+    return result
+}
+
+export function validate(seed, settings, startingState, goalState) {
+    const rng = seedrandom(seed)
+    const result = {
+        solvable: false,
+    }
+    // console.log('settings:', JSON.stringify(settings, null, 4))
+    const logic = getLogic(settings)
+    // console.log('logic:', JSON.stringify(logic, null, 4))
+    let successfulState = findGoal(logic, startingState, goalState)
+    if (successfulState) {
+        result.solvable = true
+    }
+    // console.log('result:', JSON.stringify(result, null, 4))
+    // console.log('')
     return result
 }
 
@@ -14968,6 +14946,7 @@ export function analyzeLogic(seed, settings) {
             time: 90.0,
         },
     ]
+    const map = new Map()
     while (mainWork.length > 0) {
         if (result.solvable) {
             break
@@ -14983,12 +14962,17 @@ export function analyzeLogic(seed, settings) {
             goalState[locationName] = true
             let successfulState = findGoal(logic, startingState, goalState)
             if (successfulState) {
-                successfulState.time = 90.0
-                mainWork.push(successfulState)
+                const successfulStateHash = hashedState(successfulState)
+                if (!map.has(successfulStateHash)) {
+                    map.set(successfulStateHash, successfulState.time)
+                    successfulState.time = 90.0
+                    mainWork.push(successfulState)
+                    console.log('**************************')
+                }
             }
         })
         console.log('goalCompletionCount:', goalCompletionCount)
-        if (goalCompletionCount >= 8) {
+        if (goalCompletionCount >= 10) {
             result.solvable = true
         }
     }
