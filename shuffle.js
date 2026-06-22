@@ -65,6 +65,92 @@ const STAGE_NAMES = [
 ]
 
 const VALIDATIONS = {
+    abandonedMine: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionSummonDemonFamiliar: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusDemonSwitchActivated: true,
+            },
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionSummonDemonFamiliar: true,
+                statusDemonSwitchActivated: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationDemonCard: true,
+            },
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionSummonDemonFamiliar: true,
+                statusDemonSwitchActivated: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'abandonedMine',
+                room: 'cerberusRoom',
+                section: 'main',
+            },
+        },
+    ],
+    alchemyLaboratory: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionUnlockBlueDoors: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusCannonActivated: true,
+            },
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionUnlockBlueDoors: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationBatCard: true,
+            },
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionUnlockBlueDoors: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSkillOfWolf: true,
+            },
+        },
+    ],
     longLibrary: [
         {
             startingState: {
@@ -205,6 +291,66 @@ const VALIDATIONS = {
             },
             goalState: {
                 statusPressurePlateInMarbleGalleryActivated: true,
+            },
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionItemMaterialization: true,
+                progressionUnlockBlueDoors: true,
+                statusPressurePlateInMarbleGalleryActivated: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationGravityBoots: true,
+            },
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionItemMaterialization: true,
+                progressionUnlockBlueDoors: true,
+                statusPressurePlateInMarbleGalleryActivated: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSpiritOrb: true,
+            },
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionItemMaterialization: true,
+                progressionUnlockBlueDoors: true,
+                statusPressurePlateInMarbleGalleryActivated: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'marbleGallery',
+                room: 'clockRoom',
+                section: 'main',
+            },
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'marbleGallery',
+                room: 'clockRoom',
+                section: 'main',
             },
         },
     ]

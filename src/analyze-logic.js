@@ -3284,6 +3284,27 @@ const roomsInfo = {
                         getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
+                toAlcove: {
+                    outcome: {
+                        positionX: 1008,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                    ],
+                },
+                toMain: {
+                    outcome: {
+                        positionX: 784,
+                        positionY: 416,
+                    },
+                    requirements: [
+                        getMovement('fall', 'alcove', COST_UNKNOWN),
+                    ],
+                },
             },
         },
         sunglassesRoom: {
