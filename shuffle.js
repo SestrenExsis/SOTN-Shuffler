@@ -139,45 +139,58 @@ const VALIDATIONS = {
                 section: 'bottomLayer',
             },
         },
-        // {
-        //     startingState: {
-        //         stage: 'elsewhere',
-        //         room: 'hub',
-        //         section: 'main',
-        //         progressionDoubleJump: true,
-        //         progressionMistTransformation: true,
-        //         time: 120.0,
-        //     },
-        //     goalState: {
-        //         locationFaerieCard: true,
-        //     },
-        // },
-        // {
-        //     startingState: {
-        //         stage: 'elsewhere',
-        //         room: 'hub',
-        //         section: 'main',
-        //         progressionDoubleJump: true,
-        //         progressionMistTransformation: true,
-        //         time: 120.0,
-        //     },
-        //     goalState: {
-        //         locationFaerieScroll: true,
-        //     },
-        // },
-        // {
-        //     startingState: {
-        //         stage: 'elsewhere',
-        //         room: 'hub',
-        //         section: 'main',
-        //         progressionDoubleJump: true,
-        //         progressionMistTransformation: true,
-        //         time: 120.0,
-        //     },
-        //     goalState: {
-        //         locationSoulOfBat: true,
-        //     },
-        // },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionMistTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationFaerieCard: true,
+            },
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionMistTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationFaerieScroll: true,
+            },
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionMistTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationJewelOfOpen: true,
+            },
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionMistTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSoulOfBat: true,
+            },
+        },
     ],
     marbleGallery: [
         {

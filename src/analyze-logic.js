@@ -14642,10 +14642,10 @@ function getLogic(settings) {
         })
     })
     // Process every location-reward combination
-    Object.entries(settings.locationRewards ?? {})
-    .forEach(([locationName, rewardName]) => {
+    Object.entries(locationsInfo ?? {})
+    .forEach(([locationName, locationInfo]) => {
         // Process every location requirement (Only certain stages for now)
-        locationsInfo[locationName].requirements
+        locationInfo.requirements
         .filter((locationRequirementInfo) => {
             return locationRequirementInfo.stage in roomPriority
         })
@@ -14656,19 +14656,29 @@ function getLogic(settings) {
                 stage: stageName,
                 room: roomName,
                 section: 'NONE',
-                positionX: locationsInfo[locationName].outcome.positionX,
-                positionY: locationsInfo[locationName].outcome.positionY,
+                positionX: locationInfo.outcome.positionX,
+                positionY: locationInfo.outcome.positionY,
             }
             updateLocation(location, settings)
             // Process every reward requirement
-            rewardsInfo[rewardName].requirements
+            let rewardInfo = {
+                outcome: {},
+                requirements: [
+                    {},
+                ],
+            }
+            if (locationName in settings.locationRewards) {
+                const rewardName = settings.locationRewards[locationName]
+                rewardInfo = rewardsInfo[rewardName]
+            }
+            rewardInfo.requirements
             .forEach((rewardRequirementInfo) => {
                 const command = {
                     outcome: {},
                     requirement: {},
                 }
-                Object.assign(command.outcome, locationsInfo[locationName].outcome)
-                Object.assign(command.outcome, rewardsInfo[rewardName].outcome)
+                Object.assign(command.outcome, locationInfo.outcome)
+                Object.assign(command.outcome, rewardInfo.outcome)
                 Object.assign(command.requirement, locationRequirementInfo)
                 Object.entries(rewardRequirementInfo)
                 .forEach(([propertyKey, propertyInfo]) => {
@@ -14700,6 +14710,7 @@ function getLogic(settings) {
             })
         })
     })
+
     // Process every stage link
     Object.entries(settings.stageLinks ?? {})
     .filter(([sourceTeleporterName, targetTeleporterName]) => {
