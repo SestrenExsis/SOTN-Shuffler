@@ -4122,6 +4122,7 @@ const roomsInfo = {
                     outcome: {
                         positionX: 0 - 8,
                         positionY: 128,
+                        statusMetDeathInCastleEntrance: true,
                     },
                     requirements: [
                         getMovement('basic', 'upperLeftLedge', COST_UNKNOWN),
@@ -4131,6 +4132,7 @@ const roomsInfo = {
                     outcome: {
                         positionX: 0 - 8,
                         positionY: 384,
+                        statusMetDeathInCastleEntrance: true,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
@@ -4140,6 +4142,7 @@ const roomsInfo = {
                     outcome: {
                         positionX: 256 + 8,
                         positionY: 384,
+                        statusMetDeathInCastleEntrance: true,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
@@ -7856,26 +7859,7 @@ const roomsInfo = {
             regions: [
                 getRegion('main', 0, 0, 256, 256),
             ],
-            commands: {
-                exitLeft: {
-                    outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
-                    },
-                    requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
-                    ],
-                },
-                exitRight: {
-                    outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
-                    },
-                    requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
-                    ],
-                },
-            },
+            commands: {},
         },
         triggerTeleporterToRoyalChapel: {
             roomInfo: {
@@ -7885,26 +7869,7 @@ const roomsInfo = {
             regions: [
                 getRegion('main', 0, 0, 256, 256),
             ],
-            commands: {
-                exitLeft: {
-                    outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
-                    },
-                    requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
-                    ],
-                },
-                exitRight: {
-                    outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
-                    },
-                    requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
-                    ],
-                },
-            },
+            commands: {},
         },
         valhallaKnightRoom: {
             roomInfo: {
@@ -14731,7 +14696,6 @@ function getLogic(settings) {
             })
         })
     })
-
     // Process every stage link
     Object.entries(settings.stageLinks ?? {})
     .filter(([sourceTeleporterName, targetTeleporterName]) => {
@@ -14943,20 +14907,18 @@ export function findGoal(logic, startingState, goalState) {
     return result
 }
 
-export function validate(seed, settings, startingState, goalState) {
-    const rng = seedrandom(seed)
-    const result = {
-        solvable: false,
-    }
-    // console.log('settings:', JSON.stringify(settings, null, 4))
+export function validate(settings, validation) {
     const logic = getLogic(settings)
-    // console.log('logic:', JSON.stringify(logic, null, 4))
-    let successfulState = findGoal(logic, startingState, goalState)
-    if (successfulState) {
-        result.solvable = true
+    let goalFound = findGoal(logic, validation.startingState, validation.goalState)
+    let result = true
+    switch (validation.goalType) {
+        case 'required':
+            result = goalFound
+            break
+        case 'forbidden':
+            result = !goalFound
+            break
     }
-    // console.log('result:', JSON.stringify(result, null, 4))
-    // console.log('')
     return result
 }
 

@@ -78,6 +78,7 @@ const VALIDATIONS = {
             goalState: {
                 statusDemonSwitchActivated: true,
             },
+            goalType: 'required',
         },
         {
             startingState: {
@@ -92,6 +93,7 @@ const VALIDATIONS = {
             goalState: {
                 locationDemonCard: true,
             },
+            goalType: 'required',
         },
         {
             startingState: {
@@ -108,6 +110,7 @@ const VALIDATIONS = {
                 room: 'cerberusRoom',
                 section: 'main',
             },
+            goalType: 'required',
         },
     ],
     alchemyLaboratory: [
@@ -123,6 +126,7 @@ const VALIDATIONS = {
             goalState: {
                 statusCannonActivated: true,
             },
+            goalType: 'required',
         },
         {
             startingState: {
@@ -136,6 +140,7 @@ const VALIDATIONS = {
             goalState: {
                 locationBatCard: true,
             },
+            goalType: 'required',
         },
         {
             startingState: {
@@ -149,6 +154,257 @@ const VALIDATIONS = {
             goalState: {
                 locationSkillOfWolf: true,
             },
+            goalType: 'required',
+        },
+    ],
+    castleEntrance: [
+        {
+            startingState: {
+                stage: 'castleEntrance',
+                room: 'afterDrawbridge',
+                section: 'main',
+                time: 360.0,
+            },
+            goalState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                statusMetDeathInCastleEntrance: false,
+            },
+            goalType: 'forbidden',
+        },
+        {
+            startingState: {
+                stage: 'castleEntrance',
+                room: 'afterDrawbridge',
+                section: 'main',
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionWolfTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionWolfTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionWolfTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusPassageFromCastleEntranceToWarpRoomsOpened: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionWolfTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusSecretWallInMermanRoomOpened: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionWolfTransformation: true,
+                statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
+                statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
+                statusPassageFromCastleEntranceToWarpRoomsOpened: true,
+                statusSecretWallInMermanRoomOpened: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationCubeOfZoe: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionWolfTransformation: true,
+                statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
+                statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
+                statusPassageFromCastleEntranceToWarpRoomsOpened: true,
+                statusSecretWallInMermanRoomOpened: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationPowerOfWolf: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    castleKeep: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationGhostCard: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationLeapStone: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationPowerOfMist: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    catacombs: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                itemSpikeBreaker: 1,
+                progressionBatTransformation: true,
+                progressionEcholocation: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSpikeBreaker: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    clockTower: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusLeftGearRoomSolved: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusRightGearRoomSolved: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                statusLeftGearRoomSolved: true,
+                statusRightGearRoomSolved: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationFireOfBat: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    colosseum: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                time: 120.0,
+            },
+            goalState: {
+                locationFormOfMist: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                time: 120.0,
+            },
+            goalState: {
+                statusBarrierInColosseumOpened: true,
+            },
+            goalType: 'required',
         },
     ],
     longLibrary: [
@@ -164,6 +420,7 @@ const VALIDATIONS = {
                 room: 'hub',
                 section: 'main',
             },
+            goalType: 'required',
         },
         {
             startingState: {
@@ -179,6 +436,7 @@ const VALIDATIONS = {
                 room: 'outsideShop',
                 section: 'main',
             },
+            goalType: 'required',
         },
         {
             startingState: {
@@ -194,6 +452,7 @@ const VALIDATIONS = {
                 room: 'threeLayerRoom',
                 section: 'topLayer',
             },
+            goalType: 'required',
         },
         {
             startingState: {
@@ -209,6 +468,7 @@ const VALIDATIONS = {
                 room: 'threeLayerRoom',
                 section: 'main',
             },
+            goalType: 'required',
         },
         {
             startingState: {
@@ -224,6 +484,7 @@ const VALIDATIONS = {
                 room: 'threeLayerRoom',
                 section: 'bottomLayer',
             },
+            goalType: 'required',
         },
         {
             startingState: {
@@ -237,6 +498,7 @@ const VALIDATIONS = {
             goalState: {
                 locationFaerieCard: true,
             },
+            goalType: 'required',
         },
         {
             startingState: {
@@ -250,6 +512,7 @@ const VALIDATIONS = {
             goalState: {
                 locationFaerieScroll: true,
             },
+            goalType: 'required',
         },
         {
             startingState: {
@@ -263,6 +526,7 @@ const VALIDATIONS = {
             goalState: {
                 locationJewelOfOpen: true,
             },
+            goalType: 'required',
         },
         {
             startingState: {
@@ -276,6 +540,7 @@ const VALIDATIONS = {
             goalState: {
                 locationSoulOfBat: true,
             },
+            goalType: 'required',
         },
     ],
     marbleGallery: [
@@ -292,6 +557,7 @@ const VALIDATIONS = {
             goalState: {
                 statusPressurePlateInMarbleGalleryActivated: true,
             },
+            goalType: 'required',
         },
         {
             startingState: {
@@ -307,6 +573,7 @@ const VALIDATIONS = {
             goalState: {
                 locationGravityBoots: true,
             },
+            goalType: 'required',
         },
         {
             startingState: {
@@ -322,6 +589,7 @@ const VALIDATIONS = {
             goalState: {
                 locationSpiritOrb: true,
             },
+            goalType: 'required',
         },
         {
             startingState: {
@@ -339,6 +607,7 @@ const VALIDATIONS = {
                 room: 'clockRoom',
                 section: 'main',
             },
+            goalType: 'required',
         },
         {
             startingState: {
@@ -352,8 +621,9 @@ const VALIDATIONS = {
                 room: 'clockRoom',
                 section: 'main',
             },
+            goalType: 'required',
         },
-    ]
+    ],
 }
 
 const argv = yargs(process.argv.slice(2))
@@ -551,18 +821,13 @@ const argv = yargs(process.argv.slice(2))
                                 console.log('stageName:', stageName)
                                 validInd = VALIDATIONS[stageName]
                                 .every((validation) => {
-                                    // console.log('validation:', validation)
-                                    // console.log('stage:', validation.startingState.stage)
-                                    // console.log('room:', validation.startingState.room)
                                     const logicSettings = {
                                         solverAttemptCount: shuffleData.debugInfo.solverAttemptCount,
                                         locationRewards: {},
                                         stageLinks: {},
                                         roomPositions: shuffledRooms.rooms,
                                     }
-                                    const validationResult = validate(stageSeed, logicSettings, validation.startingState, validation.goalState)
-                                    // console.log('validationResult:', validationResult)
-                                    return validationResult.solvable
+                                    return validate(logicSettings, validation)
                                 })
                             }
                             if (validInd) {
@@ -741,9 +1006,7 @@ const argv = yargs(process.argv.slice(2))
                                 stageLinks: {},
                                 roomPositions: shuffledRooms.rooms,
                             }
-                            const validationResult = validate(stageSeed, logicSettings, validation.startingState, validation.goalState)
-                            // console.log('validationResult:', validationResult)
-                            return validationResult.solvable
+                            return validate(logicSettings, validation)
                         })
                     }
                     if (validInd) {
