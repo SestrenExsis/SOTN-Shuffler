@@ -6092,7 +6092,7 @@ export const nodeGroups = {
                     stage: 'undergroundCaverns',
                     room: 'roomId19',
                     row: 5,
-                    column: 1,
+                    column: 0,
                 },
                 {
                     stage: 'undergroundCaverns',
@@ -7978,7 +7978,7 @@ export function shuffleRooms(seed, stageName, applyNormalization) {
         }
     }
     // console.log('attemptCount:', attemptCount)
-    // console.log('result:', result)
+    console.log('result.cells:', result.cells)
     return result
 }
 

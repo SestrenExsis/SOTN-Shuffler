@@ -624,6 +624,183 @@ const VALIDATIONS = {
             goalType: 'required',
         },
     ],
+    olroxsQuarters: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationEchoOfBat: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSwordCard: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'olroxsQuarters',
+                room: 'olroxsRoom',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+    ],
+    outerWall: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'outerWall',
+                room: 'doppelgangerRoom',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                time: 120.0,
+            },
+            goalState: {
+                locationSoulOfWolf: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    royalChapel: [
+        // TODO(sestren): Fix bugs with jumps between towers
+        // {
+        //     startingState: {
+        //         stage: 'elsewhere',
+        //         room: 'hub',
+        //         section: 'main',
+        //         itemSpikeBreaker: 1,
+        //         progressionBatTransformation: true,
+        //         progressionMistTransformation: true,
+        //         progressionUnlockBlueDoors: true,
+        //         time: 120.0,
+        //     },
+        //     goalState: {
+        //         statusStatueInRoyalChapelMoved: true,
+        //     },
+        //     goalType: 'required',
+        // },
+        // {
+        //     startingState: {
+        //         stage: 'elsewhere',
+        //         room: 'hub',
+        //         section: 'main',
+        //         itemSpikeBreaker: 1,
+        //         progressionBatTransformation: true,
+        //         progressionMistTransformation: true,
+        //         progressionUnlockBlueDoors: true,
+        //         statusStatueInRoyalChapelMoved: true,
+        //         time: 120.0,
+        //     },
+        //     goalState: {
+        //         stage: 'royalChapel',
+        //         // room: 'walkwayRightOfHippogryph',
+        //         room: 'hippogryphRoom',
+        //         section: 'main',
+        //     },
+        //     goalType: 'required',
+        //     debug: true,
+        // },
+        // {
+        //     startingState: {
+        //         stage: 'elsewhere',
+        //         room: 'hub',
+        //         section: 'main',
+        //         itemSpikeBreaker: 1,
+        //         progressionBatTransformation: true,
+        //         progressionMistTransformation: true,
+        //         progressionUnlockBlueDoors: true,
+        //         statusStatueInRoyalChapelMoved: true,
+        //         time: 120.0,
+        //     },
+        //     goalState: {
+        //         locationSilverRing: true,
+        //     },
+        //     goalType: 'required',
+        // },
+    ],
+    undergroundCaverns: [
+        // TODO(sestren): Add requirements for opening Ferryman gate
+        // TODO(sestren): Add requirements for DK button and bridge
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionProtectionFromWater: true,
+                progressionSummonFerryman: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationGoldRing: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionProtectionFromWater: true,
+                progressionSummonFerryman: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationHolySymbol: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionProtectionFromWater: true,
+                progressionSummonFerryman: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationMermanStatue: true,
+            },
+            goalType: 'required',
+        },
+    ],
 }
 
 const argv = yargs(process.argv.slice(2))

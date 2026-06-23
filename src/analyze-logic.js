@@ -10088,7 +10088,7 @@ const roomsInfo = {
                 exitLeft: {
                     outcome: {
                         positionX: 0 - 8,
-                        positionY: 128,
+                        positionY: 384,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
@@ -10315,7 +10315,7 @@ const roomsInfo = {
                 height: 512,
             },
             regions: [
-                getRegion('main', 0, 0, 256, 256),
+                getRegion('main', 0, 0, 512, 512),
             ],
             commands: {
                 exitLeft: {
@@ -10546,7 +10546,7 @@ const roomsInfo = {
                 exitLeft: {
                     outcome: {
                         positionX: 0 - 8,
-                        positionY: 128,
+                        positionY: 1408,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
@@ -10555,7 +10555,7 @@ const roomsInfo = {
                 exitRight: {
                     outcome: {
                         positionX: 256 + 8,
-                        positionY: 128,
+                        positionY: 1408,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
@@ -11210,7 +11210,7 @@ const roomsInfo = {
         },
         topOfOuterWall: {
             roomInfo: {
-                width: 256,
+                width: 512,
                 height: 256,
             },
             regions: [
@@ -11280,13 +11280,14 @@ const roomsInfo = {
     },
     royalChapel: {
         // NOTE(sestren): Royal Chapel has unusual overlapping room transitions
+        // TODO(sestren): Stale locations don't work sufficiently?
         chapelStaircase: {
             roomInfo: {
-                width: 2018,
+                width: 2048,
                 height: 1792,
             },
             regions: [
-                getRegion('main', 0, 0, 256, 256),
+                getRegion('main', 0, 0, 2048, 1792),
             ],
             commands: {
                 exitRight: {
@@ -11365,7 +11366,7 @@ const roomsInfo = {
             },
             regions: [
                 getRegion('upperRightLedge', 144, 352, 112, 64),
-                getRegion('main', 0, 0, 256, 256),
+                getRegion('main', 0, 0, 256, 768),
             ],
             commands: {
                 exitRightUpper: {
@@ -11631,7 +11632,7 @@ const roomsInfo = {
                 height: 1024,
             },
             regions: [
-                getRegion('main', 0, 0, 256, 256),
+                getRegion('main', 0, 0, 1024, 1024),
             ],
             commands: {
                 exitLeft: {
@@ -11771,7 +11772,7 @@ const roomsInfo = {
                 height: 1024,
             },
             regions: [
-                getRegion('main', 0, 0, 256, 256),
+                getRegion('main', 0, 0, 1024, 1024),
             ],
             commands: {
                 exitLeft: {
@@ -11786,7 +11787,7 @@ const roomsInfo = {
                 },
                 exitRightUpper: {
                     outcome: {
-                        positionX: 256 + 8 - 384,
+                        positionX: 1024 + 8 - 384,
                         positionY: 640,
                         staleLocation: true,
                     },
@@ -11796,7 +11797,7 @@ const roomsInfo = {
                 },
                 exitRightLower: {
                     outcome: {
-                        positionX: 256 + 8 - 384,
+                        positionX: 1024 + 8 - 384,
                         positionY: 896,
                         staleLocation: true,
                     },
@@ -12095,7 +12096,7 @@ const roomsInfo = {
                 },
                 exitRight: {
                     outcome: {
-                        positionX: 256 + 8 - 128,
+                        positionX: 768 + 8 - 128,
                         positionY: 128,
                         staleLocation: true,
                     },
@@ -13268,26 +13269,7 @@ const roomsInfo = {
             regions: [
                 getRegion('main', 0, 0, 256, 256),
             ],
-            commands: {
-                exitLeft: {
-                    outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
-                    },
-                    requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
-                    ],
-                },
-                exitRight: {
-                    outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
-                    },
-                    requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
-                    ],
-                },
-            },
+            commands: {},
         },
         triggerTeleporterToBossSuccubus: {
             roomInfo: {
@@ -13297,26 +13279,7 @@ const roomsInfo = {
             regions: [
                 getRegion('main', 0, 0, 256, 256),
             ],
-            commands: {
-                exitLeft: {
-                    outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
-                    },
-                    requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
-                    ],
-                },
-                exitRight: {
-                    outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
-                    },
-                    requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
-                    ],
-                },
-            },
+            commands: {},
         },
         triggerTeleporterToCastleEntrance: {
             roomInfo: {
@@ -13326,26 +13289,7 @@ const roomsInfo = {
             regions: [
                 getRegion('main', 0, 0, 256, 256),
             ],
-            commands: {
-                exitLeft: {
-                    outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
-                    },
-                    requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
-                    ],
-                },
-                exitRight: {
-                    outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
-                    },
-                    requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
-                    ],
-                },
-            },
+            commands: {},
         },
         triggerTeleporterToMarbleGallery: {
             roomInfo: {
@@ -13355,26 +13299,7 @@ const roomsInfo = {
             regions: [
                 getRegion('main', 0, 0, 256, 256),
             ],
-            commands: {
-                exitLeft: {
-                    outcome: {
-                        positionX: 0 - 8,
-                        positionY: 128,
-                    },
-                    requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
-                    ],
-                },
-                exitRight: {
-                    outcome: {
-                        positionX: 256 + 8,
-                        positionY: 128,
-                    },
-                    requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
-                    ],
-                },
-            },
+            commands: {},
         },
         waterfall: {
             // TODO(sestren): Add flight logic
@@ -14909,6 +14834,9 @@ export function findGoal(logic, startingState, goalState) {
 
 export function validate(settings, validation) {
     const logic = getLogic(settings)
+    if (validation.debug ?? false) {
+        console.log('logic:', JSON.stringify(logic, null, 4))
+    }
     let goalFound = findGoal(logic, validation.startingState, validation.goalState)
     let result = true
     switch (validation.goalType) {
