@@ -696,61 +696,58 @@ const VALIDATIONS = {
         },
     ],
     royalChapel: [
-        // TODO(sestren): Fix bugs with jumps between towers
-        // {
-        //     startingState: {
-        //         stage: 'elsewhere',
-        //         room: 'hub',
-        //         section: 'main',
-        //         itemSpikeBreaker: 1,
-        //         progressionBatTransformation: true,
-        //         progressionMistTransformation: true,
-        //         progressionUnlockBlueDoors: true,
-        //         time: 120.0,
-        //     },
-        //     goalState: {
-        //         statusStatueInRoyalChapelMoved: true,
-        //     },
-        //     goalType: 'required',
-        // },
-        // {
-        //     startingState: {
-        //         stage: 'elsewhere',
-        //         room: 'hub',
-        //         section: 'main',
-        //         itemSpikeBreaker: 1,
-        //         progressionBatTransformation: true,
-        //         progressionMistTransformation: true,
-        //         progressionUnlockBlueDoors: true,
-        //         statusStatueInRoyalChapelMoved: true,
-        //         time: 120.0,
-        //     },
-        //     goalState: {
-        //         stage: 'royalChapel',
-        //         // room: 'walkwayRightOfHippogryph',
-        //         room: 'hippogryphRoom',
-        //         section: 'main',
-        //     },
-        //     goalType: 'required',
-        //     debug: true,
-        // },
-        // {
-        //     startingState: {
-        //         stage: 'elsewhere',
-        //         room: 'hub',
-        //         section: 'main',
-        //         itemSpikeBreaker: 1,
-        //         progressionBatTransformation: true,
-        //         progressionMistTransformation: true,
-        //         progressionUnlockBlueDoors: true,
-        //         statusStatueInRoyalChapelMoved: true,
-        //         time: 120.0,
-        //     },
-        //     goalState: {
-        //         locationSilverRing: true,
-        //     },
-        //     goalType: 'required',
-        // },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                itemSpikeBreaker: 1,
+                progressionBatTransformation: true,
+                progressionMistTransformation: true,
+                progressionUnlockBlueDoors: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusStatueInRoyalChapelMoved: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                itemSpikeBreaker: 1,
+                progressionBatTransformation: true,
+                progressionMistTransformation: true,
+                progressionUnlockBlueDoors: true,
+                statusStatueInRoyalChapelMoved: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'royalChapel',
+                room: 'hippogryphRoom',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                itemSpikeBreaker: 1,
+                progressionBatTransformation: true,
+                progressionMistTransformation: true,
+                progressionUnlockBlueDoors: true,
+                statusStatueInRoyalChapelMoved: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSilverRing: true,
+            },
+            goalType: 'required',
+        },
     ],
     undergroundCaverns: [
         // TODO(sestren): Add requirements for opening Ferryman gate

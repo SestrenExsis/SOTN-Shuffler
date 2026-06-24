@@ -10688,10 +10688,10 @@ const roomsInfo = {
         elevatorShaftRoom: {
             roomInfo: {
                 width: 768,
-                height: 2048,
+                height: 2304,
             },
             regions: [
-                getRegion('main', 0, 0, 512, 2048),
+                getRegion('main', 0, 0, 512, 2304),
             ],
             commands: {
                 exitTop: {
@@ -10725,7 +10725,7 @@ const roomsInfo = {
                 exitLeftLower: {
                     outcome: {
                         positionX: 0 - 8,
-                        positionY: 1920,
+                        positionY: 2176,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
@@ -10734,7 +10734,7 @@ const roomsInfo = {
                 exitBottom: {
                     outcome: {
                         positionX: 224,
-                        positionY: 2048 + 24,
+                        positionY: 2304 + 24,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
@@ -10830,7 +10830,7 @@ const roomsInfo = {
                 exitLeft: {
                     outcome: {
                         positionX: 0 - 8,
-                        positionY: 128,
+                        positionY: 384,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
@@ -11490,7 +11490,7 @@ const roomsInfo = {
                 },
                 exitLeftLower: {
                     outcome: {
-                        positionX: 0 - 8 + 384,
+                        positionX: 0 - 8 + 256,
                         positionY: 2432,
                         staleLocation: true,
                     },
@@ -14418,11 +14418,11 @@ function updateLocation(location, settings) {
     // console.log(location)
     // Determine which room the player is in
     if (
-        !(location.staleLocation ?? false) &&
         location.positionX >= 0 &&
         location.positionX < roomsInfo[location.stage][location.room].roomInfo.width &&
         location.positionY >= 0 &&
-        location.positionY < roomsInfo[location.stage][location.room].roomInfo.height
+        location.positionY < roomsInfo[location.stage][location.room].roomInfo.height &&
+        !(location.staleLocation ?? false)
     ) {
         // Player is inside the bounds of the current room, so current room stays the same
         // TODO(sestren): This assumption might not work for the secret staircase in Castle Keep
@@ -14454,7 +14454,12 @@ function updateLocation(location, settings) {
                 globalPosition.x >= roomDimension.left &&
                 globalPosition.x < roomDimension.right &&
                 globalPosition.y >= roomDimension.top &&
-                globalPosition.y < roomDimension.bottom
+                globalPosition.y < roomDimension.bottom &&
+                // Stale location processing must result in a different room
+                !(
+                    (location.staleLocation ?? false) &&
+                    (roomName === location.room)
+                )
             ) {
                 location.room = roomName
                 location.positionX = globalPosition.x - roomDimension.left
@@ -14531,7 +14536,8 @@ function getLogic(settings) {
                         'room' in command.outcome ||
                         'section' in command.outcome ||
                         'positionX' in command.outcome ||
-                        'positionY' in command.outcome
+                        'positionY' in command.outcome ||
+                        'staleLocation' in command.outcome
                     ) {
                         const location = {
                             stage: stageName,
@@ -14539,8 +14545,8 @@ function getLogic(settings) {
                             section: command.outcome.section ?? command.requirement.section ?? 'NONE',
                             positionX: command.outcome.positionX ?? 0,
                             positionY: command.outcome.positionY ?? 0,
+                            staleLocation: command.outcome.staleLocation ?? false,
                         }
-
                         updateLocation(location, settings)
                         Object.entries(location)
                         .forEach(([propertyKey, propertyValue]) => {
@@ -14855,9 +14861,9 @@ export function analyzeLogic(seed, settings) {
     const result = {
         solvable: false,
     }
-    console.log('settings:', JSON.stringify(settings, null, 4))
+    // console.log('settings:', JSON.stringify(settings, null, 4))
     const logic = getLogic(settings)
-    console.log('logic:', JSON.stringify(logic, null, 4))
+    // console.log('logic:', JSON.stringify(logic, null, 4))
     const mainWork = [
         {
             stage: 'castleEntrance',

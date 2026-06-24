@@ -7978,7 +7978,7 @@ export function shuffleRooms(seed, stageName, applyNormalization) {
         }
     }
     // console.log('attemptCount:', attemptCount)
-    console.log('result.cells:', result.cells)
+    // console.log('result.cells:', result.cells)
     return result
 }
 
