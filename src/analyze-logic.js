@@ -1791,8 +1791,8 @@ const roomsInfo = {
             commands: {
                 exitTop: {
                     outcome: {
-                        positionX: 0 - 24,
-                        positionY: 384,
+                        positionX: 384,
+                        positionY: 0 - 24,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
@@ -5008,7 +5008,7 @@ const roomsInfo = {
                 getRegion('upperRightLedge', 1984, 352, 64, 64),
                 getRegion('teleporter', 272, 704, 96, 176),
                 getRegion('throneRoom', 768, 800, 256, 176),
-                getRegion('anteroom', 1040, 800, 560, 176),
+                getRegion('anteroom', 1040, 768, 560, 208),
                 getRegion('topOfStairs', 1632, 768, 64, 192),
                 getRegion('bottomOfStairs', 1840, 1056, 208, 128),
                 getRegion('powerOfMistLedge', 368, 1152, 320, 128),
@@ -5548,29 +5548,61 @@ const roomsInfo = {
     catacombs: {
         ballroomMaskRoom: {
             roomInfo: {
-                width: 256,
+                width: 512,
                 height: 512,
             },
             regions: [
-                getRegion('main', 0, 0, 256, 512),
+                getRegion('upperLedges', 0, 0, 512, 256),
+                getRegion('main', 0, 256, 512, 256),
             ],
             commands: {
-                exitRightUpper: {
+                exitLeftUpper: {
                     outcome: {
-                        positionX: 256 + 8,
+                        positionX: 0 - 8,
                         positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'upperLedges', COST_UNKNOWN),
+                    ],
+                },
+                exitRight: {
+                    outcome: {
+                        positionX: 512 + 8,
+                        positionY: 384,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
-                exitRightLower: {
+                exitLeftLower: {
                     outcome: {
-                        positionX: 256 + 8,
+                        positionX: 0 - 8,
                         positionY: 384,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
+                    ],
+                },
+                toMain: {
+                    outcome: {
+                        positionX: 496,
+                        positionY: 384,
+                        // section: 'main',
+                    },
+                    requirements: [
+                        getMovement('fall', 'upperLedges', COST_UNKNOWN),
+                    ],
+                },
+                toUpperLedges: {
+                    outcome: {
+                        positionX: 32,
+                        positionY: 128,
+                        // section: 'upperLedges',
+                    },
+                    requirements: [
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -5630,7 +5662,7 @@ const roomsInfo = {
                 height: 512,
             },
             regions: [
-                getRegion('main', 0, 0, 256, 256),
+                getRegion('main', 0, 0, 256, 512),
             ],
             commands: {
                 exitLeft: {
@@ -5651,7 +5683,7 @@ const roomsInfo = {
                         getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
-                exitRightULower: {
+                exitRightLower: {
                     outcome: {
                         positionX: 256 + 8,
                         positionY: 384,
@@ -5825,7 +5857,7 @@ const roomsInfo = {
             },
             regions: [
                 getRegion('leftSide', 0, 96, 48, 64),
-                getRegion('main', 48, 0, 256, 592),
+                getRegion('main', 48, 0, 592, 256),
                 getRegion('rightSide', 640, 80, 128, 80),
             ],
             commands: {
@@ -6402,7 +6434,9 @@ const roomsInfo = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6878,13 +6912,13 @@ const roomsInfo = {
         },
         openCourtyard: {
             roomInfo: {
-                width: 2048,
-                height: 2048,
+                width: 1536,
+                height: 1280,
             },
             regions: [
                 getRegion('centerArea', 480, 0, 592, 848),
                 getRegion('upperLeftLedge', 0, 304, 208, 112),
-                getRegion('upperRightLedge', 1408, 408, 128, 112),
+                getRegion('upperRightLedge', 1408, 48, 128, 112),
                 getRegion('middleRightLedge', 1280, 816, 256, 112),
                 getRegion('lowerLeftLedge', 0, 816, 128, 112),
                 getRegion('main', 0, 1104, 1536, 176),
@@ -6910,7 +6944,7 @@ const roomsInfo = {
                 },
                 exitRightUpper: {
                     outcome: {
-                        positionX: 2048 + 8,
+                        positionX: 1536 + 8,
                         positionY: 128,
                     },
                     requirements: [
@@ -6919,7 +6953,7 @@ const roomsInfo = {
                 },
                 exitRightMiddle: {
                     outcome: {
-                        positionX: 2048 + 8,
+                        positionX: 1536 + 8,
                         positionY: 896,
                     },
                     requirements: [
@@ -6928,7 +6962,7 @@ const roomsInfo = {
                 },
                 exitRightLower: {
                     outcome: {
-                        positionX: 2048 + 8,
+                        positionX: 1536 + 8,
                         positionY: 1152,
                     },
                     requirements: [
@@ -8901,6 +8935,7 @@ const roomsInfo = {
             },
             regions: [
                 getRegion('leftLedge', 0, 0, 304, 192),
+                getRegion('pit', 288, 0, 208, 256),
                 getRegion('main', 496, 0, 272, 256),
             ],
             commands: {
@@ -8928,6 +8963,7 @@ const roomsInfo = {
                         positionY: 256 + 24,
                     },
                     requirements: [
+                        getMovement('pit', 'fall', COST_UNKNOWN),
                         getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -8938,6 +8974,9 @@ const roomsInfo = {
                         // section: 'leftLedge',
                     },
                     requirements: [
+                        getMovement('batForm', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMist', 'pit', COST_UNKNOWN),
+                        getMovement('wolfMistRiseLong', 'pit', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseLong', 'main', COST_UNKNOWN),
@@ -8950,6 +8989,20 @@ const roomsInfo = {
                         // section: 'main',
                     },
                     requirements: [
+                        getMovement('batForm', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMist', 'pit', COST_UNKNOWN),
+                        getMovement('wolfMistRiseLong', 'pit', COST_UNKNOWN),
+                        getMovement('basic', 'leftLedge', COST_UNKNOWN),
+                    ],
+                },
+                toPit: {
+                    outcome: {
+                        positionX: 384,
+                        positionY: 224,
+                        // section: 'pit',
+                    },
+                    requirements: [
+                        getMovement('fall', 'main', COST_UNKNOWN),
                         getMovement('basic', 'leftLedge', COST_UNKNOWN),
                     ],
                 },
@@ -11077,6 +11130,7 @@ const roomsInfo = {
                 height: 768,
             },
             regions: [
+                getRegion('behindMistGate', 0, 352, 32, 64),
                 getRegion('main', 0, 0, 512, 768),
             ],
             commands: {
@@ -11099,13 +11153,12 @@ const roomsInfo = {
                     ],
                 },
                 exitLeftLower: {
-                    // TODO(sestren): Add mist gate here
                     outcome: {
                         positionX: 0 - 8,
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('basic', 'behindMistGate', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -11115,6 +11168,26 @@ const roomsInfo = {
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
+                    ],
+                },
+                toBehindMistGate: {
+                    outcome: {
+                        positionX: 16,
+                        positionY: 384,
+                        // section: 'behindMistGate',
+                    },
+                    requirements: [
+                        getMovement('mistForm', 'main', COST_UNKNOWN),
+                    ],
+                },
+                toMain: {
+                    outcome: {
+                        positionX: 80,
+                        positionY: 384,
+                        // section: 'main',
+                    },
+                    requirements: [
+                        getMovement('mistForm', 'behindMistGate', COST_UNKNOWN),
                     ],
                 },
             },
@@ -14717,6 +14790,7 @@ function getLogic(settings) {
                 requirement: {
                     stage: 'elsewhere',
                     room: 'hub',
+                    debugEnableElsewhere: true,
                 },
             })
             result[stageName][roomName].push({
@@ -14729,6 +14803,7 @@ function getLogic(settings) {
                     stage: stageName,
                     room: roomName,
                     section: 'main',
+                    debugEnableElsewhere: true,
                 },
             })
         })
@@ -14768,6 +14843,70 @@ function hashedText(text) {
     return result
 }
 
+const GOAL_STATES = {
+    spk: {
+        itemSpikeBreaker: {
+            minimum: 1,
+        },
+    },
+    // silverRingOrGoldRing: {
+    //     itemInscribedRing: {
+    //         minimum: 1,
+    //     },
+    // },
+    // silverRingAndGoldRing: {
+    //     itemInscribedRing: {
+    //         minimum: 2,
+    //     },
+    // },
+    bat: {
+        progressionBatTransformation: true,
+    },
+    jmp: {
+        progressionDoubleJump: true,
+    },
+    eko: {
+        progressionEcholocation: true,
+    },
+    itm: {
+        progressionItemMaterialization: true,
+    },
+    mst: {
+        progressionMistTransformation: true,
+    },
+    wtr: {
+        progressionProtectionFromWater: true,
+    },
+    dmn: {
+        progressionSummonDemonFamiliar: true,
+    },
+    fry: {
+        progressionSummonFerryman: true,
+    },
+    blu: {
+        progressionUnlockBlueDoors: true,
+    },
+    wlf: {
+        progressionWolfTransformation: true,
+    },
+}
+
+const WINNING_STATE = {
+    itemSpikeBreaker: {
+        minimum: 1,
+    },
+    progressionBatTransformation: true,
+    progressionDoubleJump: true,
+    progressionEcholocation: true,
+    progressionItemMaterialization: true,
+    progressionMistTransformation: true,
+    progressionProtectionFromWater: true,
+    progressionSummonDemonFamiliar: true,
+    progressionSummonFerryman: true,
+    progressionUnlockBlueDoors: true,
+    progressionWolfTransformation: true,
+}
+
 const goalLocations = [
     'locationBatCard',
     'locationCubeOfZoe',
@@ -14797,7 +14936,7 @@ const goalLocations = [
     'locationSwordCard',
 ]
 
-export function findGoal(logic, startingState, goalState) {
+export function findGoal(logic, startingState, goalState, debug=false) {
     let result = null
     const map = new Map()
     const subWork = [
@@ -14815,12 +14954,19 @@ export function findGoal(logic, startingState, goalState) {
         }
         map.set(currentStateHash, currentState.time)
         // console.log('currentState:', currentState)
+        let nextStateFound = false
         logic[currentState.stage][currentState.room]
         .find((command) => {
             if (isValidRequirement(currentState, command.requirement)) {
+                nextStateFound = true
                 const nextState = Object.assign({}, currentState)
-                hashedState(nextState)
+                // hashedState(nextState)
                 updateStateWithOutcome(nextState, command.outcome)
+                if (debug && nextState.section === 'NONE') {
+                    console.log('currentState:', currentState)
+                    console.log('nextState:', nextState)
+                    throw Error('')
+                }
                 if (isValidRequirement(nextState, goalState)) {
                     result = nextState
                     // console.log('result:', JSON.stringify(nextState, Object.keys(nextState).sort(), 4))
@@ -14834,6 +14980,9 @@ export function findGoal(logic, startingState, goalState) {
         if (result !== null) {
             break
         }
+        // if (debug && !nextStateFound && currentState.time >= 5) {
+        //     console.log('  FAIL:', currentState)
+        // }
     }
     return result
 }
@@ -14871,7 +15020,7 @@ export function analyzeLogic(seed, settings) {
             section: 'main',
             positionX: 136,
             positionY: 640,
-            time: 90.0,
+            time: 120.0,
         },
     ]
     const map = new Map()
@@ -14880,29 +15029,41 @@ export function analyzeLogic(seed, settings) {
             break
         }
         const startingState = mainWork.pop()
-        let goalCompletionCount = 0
-        goalLocations.forEach((locationName) => {
-            if (startingState[locationName] ?? false) {
-                goalCompletionCount += 1
-                return
+        let goalCompletions = []
+        Object.entries(GOAL_STATES)
+        .filter(([goalName, goalRequirement]) => {
+            const validRequirement = isValidRequirement(startingState, goalRequirement)
+            if (validRequirement) {
+                goalCompletions.push(goalName)
             }
-            const goalState = {}
-            goalState[locationName] = true
-            let successfulState = findGoal(logic, startingState, goalState)
+            return !validRequirement
+        })
+        .forEach(([goalName, goalRequirement]) => {
+            let successfulState = findGoal(logic, startingState, goalRequirement, true)
             if (successfulState) {
+                if (isValidRequirement(successfulState, WINNING_STATE)) {
+                    result.solvable = true
+                    console.log('solvedState:', successfulState)
+                    return result
+                }
                 const successfulStateHash = hashedState(successfulState)
-                if (!map.has(successfulStateHash)) {
+                if (map.has(successfulStateHash)) {
+                    console.log('**************************', mainWork.length)
+                }
+                else {
                     map.set(successfulStateHash, successfulState.time)
-                    successfulState.time = 90.0
+                    successfulState.time = 120.0
                     mainWork.push(successfulState)
-                    console.log('**************************')
                 }
             }
         })
-        console.log('goalCompletionCount:', goalCompletionCount)
-        if (goalCompletionCount >= 10) {
-            result.solvable = true
+        console.log('goalCompletionCount:', goalCompletions.length, 'out of', Object.entries(GOAL_STATES).length)
+        if (goalCompletions.length >= 7) {
+            console.log(goalCompletions.join(', '))
         }
+        // if (goalCompletions.length >= GOAL_STATES.length) {
+        //     result.solvable = true
+        // }
     }
     console.log('')
     return result

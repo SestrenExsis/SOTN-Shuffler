@@ -73,6 +73,7 @@ const VALIDATIONS = {
                 section: 'main',
                 progressionDoubleJump: true,
                 progressionSummonDemonFamiliar: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -88,6 +89,7 @@ const VALIDATIONS = {
                 progressionDoubleJump: true,
                 progressionSummonDemonFamiliar: true,
                 statusDemonSwitchActivated: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -103,6 +105,7 @@ const VALIDATIONS = {
                 progressionDoubleJump: true,
                 progressionSummonDemonFamiliar: true,
                 statusDemonSwitchActivated: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -121,6 +124,7 @@ const VALIDATIONS = {
                 section: 'main',
                 progressionBatTransformation: true,
                 progressionUnlockBlueDoors: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -135,6 +139,7 @@ const VALIDATIONS = {
                 section: 'main',
                 progressionBatTransformation: true,
                 progressionUnlockBlueDoors: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -149,6 +154,7 @@ const VALIDATIONS = {
                 section: 'main',
                 progressionBatTransformation: true,
                 progressionUnlockBlueDoors: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -163,6 +169,7 @@ const VALIDATIONS = {
                 stage: 'castleEntrance',
                 room: 'afterDrawbridge',
                 section: 'main',
+                debugEnableElsewhere: true,
                 time: 360.0,
             },
             goalState: {
@@ -178,6 +185,7 @@ const VALIDATIONS = {
                 stage: 'castleEntrance',
                 room: 'afterDrawbridge',
                 section: 'main',
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -194,6 +202,7 @@ const VALIDATIONS = {
                 section: 'main',
                 progressionBatTransformation: true,
                 progressionWolfTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -208,6 +217,7 @@ const VALIDATIONS = {
                 section: 'main',
                 progressionBatTransformation: true,
                 progressionWolfTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -222,6 +232,7 @@ const VALIDATIONS = {
                 section: 'main',
                 progressionBatTransformation: true,
                 progressionWolfTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -236,6 +247,7 @@ const VALIDATIONS = {
                 section: 'main',
                 progressionBatTransformation: true,
                 progressionWolfTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -254,6 +266,7 @@ const VALIDATIONS = {
                 statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
                 statusPassageFromCastleEntranceToWarpRoomsOpened: true,
                 statusSecretWallInMermanRoomOpened: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -272,6 +285,7 @@ const VALIDATIONS = {
                 statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
                 statusPassageFromCastleEntranceToWarpRoomsOpened: true,
                 statusSecretWallInMermanRoomOpened: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -287,6 +301,7 @@ const VALIDATIONS = {
                 room: 'hub',
                 section: 'main',
                 progressionBatTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -300,6 +315,7 @@ const VALIDATIONS = {
                 room: 'hub',
                 section: 'main',
                 progressionBatTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -313,6 +329,7 @@ const VALIDATIONS = {
                 room: 'hub',
                 section: 'main',
                 progressionBatTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -330,6 +347,7 @@ const VALIDATIONS = {
                 itemSpikeBreaker: 1,
                 progressionBatTransformation: true,
                 progressionEcholocation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -345,6 +363,7 @@ const VALIDATIONS = {
                 room: 'hub',
                 section: 'main',
                 progressionBatTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -358,6 +377,7 @@ const VALIDATIONS = {
                 room: 'hub',
                 section: 'main',
                 progressionBatTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -373,6 +393,7 @@ const VALIDATIONS = {
                 progressionBatTransformation: true,
                 statusLeftGearRoomSolved: true,
                 statusRightGearRoomSolved: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -387,6 +408,7 @@ const VALIDATIONS = {
                 stage: 'elsewhere',
                 room: 'hub',
                 section: 'main',
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -399,6 +421,7 @@ const VALIDATIONS = {
                 stage: 'elsewhere',
                 room: 'hub',
                 section: 'main',
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -413,6 +436,7 @@ const VALIDATIONS = {
                 stage: 'longLibrary',
                 room: 'outsideShop',
                 section: 'main',
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -429,6 +453,7 @@ const VALIDATIONS = {
                 section: 'main',
                 progressionDoubleJump: true,
                 progressionMistTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -445,6 +470,7 @@ const VALIDATIONS = {
                 section: 'main',
                 progressionDoubleJump: true,
                 progressionMistTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -461,6 +487,7 @@ const VALIDATIONS = {
                 section: 'main',
                 progressionDoubleJump: true,
                 progressionMistTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -477,6 +504,7 @@ const VALIDATIONS = {
                 section: 'main',
                 progressionDoubleJump: true,
                 progressionMistTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -493,6 +521,7 @@ const VALIDATIONS = {
                 section: 'main',
                 progressionDoubleJump: true,
                 progressionMistTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -507,6 +536,7 @@ const VALIDATIONS = {
                 section: 'main',
                 progressionDoubleJump: true,
                 progressionMistTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -521,6 +551,7 @@ const VALIDATIONS = {
                 section: 'main',
                 progressionDoubleJump: true,
                 progressionMistTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -535,6 +566,7 @@ const VALIDATIONS = {
                 section: 'main',
                 progressionDoubleJump: true,
                 progressionMistTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -552,6 +584,7 @@ const VALIDATIONS = {
                 progressionBatTransformation: true,
                 progressionItemMaterialization: true,
                 progressionUnlockBlueDoors: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -568,6 +601,7 @@ const VALIDATIONS = {
                 progressionItemMaterialization: true,
                 progressionUnlockBlueDoors: true,
                 statusPressurePlateInMarbleGalleryActivated: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -584,6 +618,7 @@ const VALIDATIONS = {
                 progressionItemMaterialization: true,
                 progressionUnlockBlueDoors: true,
                 statusPressurePlateInMarbleGalleryActivated: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -600,6 +635,7 @@ const VALIDATIONS = {
                 progressionItemMaterialization: true,
                 progressionUnlockBlueDoors: true,
                 statusPressurePlateInMarbleGalleryActivated: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -614,6 +650,7 @@ const VALIDATIONS = {
                 stage: 'elsewhere',
                 room: 'hub',
                 section: 'main',
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -631,6 +668,7 @@ const VALIDATIONS = {
                 room: 'hub',
                 section: 'main',
                 progressionBatTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -644,6 +682,7 @@ const VALIDATIONS = {
                 room: 'hub',
                 section: 'main',
                 progressionBatTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -657,6 +696,7 @@ const VALIDATIONS = {
                 room: 'hub',
                 section: 'main',
                 progressionBatTransformation: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -673,6 +713,7 @@ const VALIDATIONS = {
                 stage: 'elsewhere',
                 room: 'hub',
                 section: 'main',
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -687,6 +728,7 @@ const VALIDATIONS = {
                 stage: 'elsewhere',
                 room: 'hub',
                 section: 'main',
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -705,6 +747,7 @@ const VALIDATIONS = {
                 progressionBatTransformation: true,
                 progressionMistTransformation: true,
                 progressionUnlockBlueDoors: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -722,6 +765,7 @@ const VALIDATIONS = {
                 progressionMistTransformation: true,
                 progressionUnlockBlueDoors: true,
                 statusStatueInRoyalChapelMoved: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -741,6 +785,7 @@ const VALIDATIONS = {
                 progressionMistTransformation: true,
                 progressionUnlockBlueDoors: true,
                 statusStatueInRoyalChapelMoved: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -760,6 +805,7 @@ const VALIDATIONS = {
                 progressionBatTransformation: true,
                 progressionProtectionFromWater: true,
                 progressionSummonFerryman: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -775,6 +821,7 @@ const VALIDATIONS = {
                 progressionBatTransformation: true,
                 progressionProtectionFromWater: true,
                 progressionSummonFerryman: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -790,6 +837,7 @@ const VALIDATIONS = {
                 progressionBatTransformation: true,
                 progressionProtectionFromWater: true,
                 progressionSummonFerryman: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -988,11 +1036,11 @@ const argv = yargs(process.argv.slice(2))
                         let stageAttemptCount = 0
                         while (true) {
                             const stageSeed = seed + '.' + stageName + '.' + stageAttemptCount
-                            console.log('stageSeed:', stageSeed)
+                            // console.log('stageSeed:', stageSeed)
                             const shuffledRooms = shuffleRooms(stageSeed, stageName, true)
                             let validInd = true
                             if (stageName in VALIDATIONS) {
-                                console.log('stageName:', stageName)
+                                // console.log('stageName:', stageName)
                                 validInd = VALIDATIONS[stageName]
                                 .every((validation) => {
                                     const logicSettings = {
@@ -1054,6 +1102,7 @@ const argv = yargs(process.argv.slice(2))
                     shuffleData.debugInfo.finalSeedsUsed.rewardShuffler = seed
                 }
                 if (argv.solver?.on) {
+                    console.log('seedsUsedWhenSolving', shuffleData.debugInfo.finalSeedsUsed)
                     shuffleData.debugInfo.solvable = false
                     const seed = argv.solver.seed ?? (seedName + '.solver.' + shuffleData.debugInfo.solverAttemptCount)
                     const logicSettings = {
