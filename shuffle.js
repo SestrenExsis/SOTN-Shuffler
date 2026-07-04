@@ -3,6 +3,7 @@ import yargs from 'yargs'
 
 import {
     analyzeLogic,
+    analyzeStagePaths,
     validate,
 } from './src/analyze-logic.js'
 
@@ -1051,6 +1052,15 @@ const argv = yargs(process.argv.slice(2))
                                     }
                                     return validate(logicSettings, validation)
                                 })
+                                if (stageName === 'abandonedMine') {
+                                    const logicSettings = {
+                                        solverAttemptCount: shuffleData.debugInfo.solverAttemptCount,
+                                        // locationRewards: {},
+                                        stageLinks: {},
+                                        roomPositions: shuffledRooms.rooms,
+                                    }
+                                    analyzeStagePaths(logicSettings)
+                                }
                             }
                             if (validInd) {
                                 stageNodeGroups[stageName] = shuffledRooms

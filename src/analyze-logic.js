@@ -12,6 +12,9 @@ function getMovement(requirementName, section, time) {
         case 'fall':
         case 'jump':
             break
+        case 'basicRisky':
+            result.techniqueLogicalRisks = true
+            break
         case 'preciseJump':
             result.techniquePreciseJump = true
             break
@@ -29,13 +32,6 @@ function getMovement(requirementName, section, time) {
             break
         case 'doubleJump':
             result.progressionDoubleJump = true
-            result.statusDoubleJumpUsed = false
-            result.costs.statusDoubleJumpUsed = true
-            break
-        case 'doubleJumpAndLand':
-            result.progressionDoubleJump = true
-            result.statusDoubleJumpUsed = false
-            result.costs.statusDoubleJumpUsed = false
             break
         case 'gravityJump':
             result.progressionGravityJump = true
@@ -1642,8 +1638,8 @@ const roomsInfo = {
                         // section: upperLeftLedge,
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'zigZagLedges', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'zigZagLedges', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'zigZagLedges', COST_UNKNOWN),
+                        getMovement('doubleJump', 'zigZagLedges', COST_UNKNOWN),
                         getMovement('batForm', 'zigZagLedges', COST_UNKNOWN),
                         getMovement('poweredMist', 'zigZagLedges', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'zigZagLedges', COST_UNKNOWN),
@@ -1657,16 +1653,16 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'upperLeftLedge', COST_UNKNOWN),
+                        // getMovement('basicRisky', 'upperLeftLedge', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'upperLeftLedge', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'upperLeftLedge', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('doubleJump', 'upperLeftLedge', COST_UNKNOWN),
                         getMovement('batForm', 'upperLeftLedge', COST_UNKNOWN),
                         getMovement('poweredMist', 'upperLeftLedge', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'upperLeftLedge', COST_UNKNOWN),
                         // Moving upward
-                        getMovement('risingUppercut', 'crumblingStairwell', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'crumblingStairwell', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'crumblingStairwell', COST_UNKNOWN),
+                        getMovement('doubleJump', 'crumblingStairwell', COST_UNKNOWN),
                         getMovement('batForm', 'crumblingStairwell', COST_UNKNOWN),
                         getMovement('poweredMist', 'crumblingStairwell', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'crumblingStairwell', COST_UNKNOWN),
@@ -1680,16 +1676,16 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'zigZagLedges', COST_UNKNOWN),
+                        // getMovement('basicRisky', 'zigZagLedges', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'zigZagLedges', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'zigZagLedges', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'zigZagLedges', COST_UNKNOWN),
+                        getMovement('doubleJump', 'zigZagLedges', COST_UNKNOWN),
                         getMovement('batForm', 'zigZagLedges', COST_UNKNOWN),
                         getMovement('poweredMist', 'zigZagLedges', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'zigZagLedges', COST_UNKNOWN),
                         // Moving upward
-                        getMovement('risingUppercut', 'tinyLedges', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'tinyLedges', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'tinyLedges', COST_UNKNOWN),
+                        getMovement('doubleJump', 'tinyLedges', COST_UNKNOWN),
                         getMovement('batForm', 'tinyLedges', COST_UNKNOWN),
                         getMovement('poweredMist', 'tinyLedges', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'tinyLedges', COST_UNKNOWN),
@@ -1703,16 +1699,16 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'crumblingStairwell', COST_UNKNOWN),
+                        // getMovement('basicRisky', 'crumblingStairwell', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'crumblingStairwell', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'crumblingStairwell', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'crumblingStairwell', COST_UNKNOWN),
+                        getMovement('doubleJump', 'crumblingStairwell', COST_UNKNOWN),
                         getMovement('batForm', 'crumblingStairwell', COST_UNKNOWN),
                         getMovement('poweredMist', 'crumblingStairwell', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'crumblingStairwell', COST_UNKNOWN),
                         // Moving upward
-                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('doubleJump', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
@@ -1726,10 +1722,10 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'tinyLedges', COST_UNKNOWN),
+                        // getMovement('basicRisky', 'tinyLedges', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'tinyLedges', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'tinyLedges', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'tinyLedges', COST_UNKNOWN),
+                        getMovement('doubleJump', 'tinyLedges', COST_UNKNOWN),
                         getMovement('batForm', 'tinyLedges', COST_UNKNOWN),
                         getMovement('poweredMist', 'tinyLedges', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'tinyLedges', COST_UNKNOWN),
@@ -1981,8 +1977,8 @@ const roomsInfo = {
                         // section: layer0,
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'layer1', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'layer1', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'layer1', COST_UNKNOWN),
+                        getMovement('doubleJump', 'layer1', COST_UNKNOWN),
                         getMovement('batForm', 'layer1', COST_UNKNOWN),
                         getMovement('poweredMist', 'layer1', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'layer1', COST_UNKNOWN),
@@ -1996,16 +1992,16 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'layer0', COST_UNKNOWN),
+                        // getMovement('basicRisky', 'layer0', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'layer0', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'layer0', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'layer0', COST_UNKNOWN),
+                        getMovement('doubleJump', 'layer0', COST_UNKNOWN),
                         getMovement('batForm', 'layer0', COST_UNKNOWN),
                         getMovement('poweredMist', 'layer0', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'layer0', COST_UNKNOWN),
                         // Moving upward
-                        getMovement('risingUppercut', 'layer2', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'layer2', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'layer2', COST_UNKNOWN),
+                        getMovement('doubleJump', 'layer2', COST_UNKNOWN),
                         getMovement('batForm', 'layer2', COST_UNKNOWN),
                         getMovement('poweredMist', 'layer2', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'layer2', COST_UNKNOWN),
@@ -2019,16 +2015,16 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'layer1', COST_UNKNOWN),
+                        // getMovement('basicRisky', 'layer1', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'layer1', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'layer1', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'layer1', COST_UNKNOWN),
+                        getMovement('doubleJump', 'layer1', COST_UNKNOWN),
                         getMovement('batForm', 'layer1', COST_UNKNOWN),
                         getMovement('poweredMist', 'layer1', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'layer1', COST_UNKNOWN),
                         // Moving upward
-                        getMovement('risingUppercut', 'layer3', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'layer3', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'layer3', COST_UNKNOWN),
+                        getMovement('doubleJump', 'layer3', COST_UNKNOWN),
                         getMovement('batForm', 'layer3', COST_UNKNOWN),
                         getMovement('poweredMist', 'layer3', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'layer3', COST_UNKNOWN),
@@ -2042,16 +2038,16 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'layer2', COST_UNKNOWN),
+                        // getMovement('basicRisky', 'layer2', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'layer2', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'layer2', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'layer2', COST_UNKNOWN),
+                        getMovement('doubleJump', 'layer2', COST_UNKNOWN),
                         getMovement('batForm', 'layer2', COST_UNKNOWN),
                         getMovement('poweredMist', 'layer2', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'layer2', COST_UNKNOWN),
                         // Moving upward
-                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('doubleJump', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
@@ -2065,10 +2061,10 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'layer3', COST_UNKNOWN),
+                        // getMovement('basicRisky', 'layer3', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'layer3', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'layer3', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'layer3', COST_UNKNOWN),
+                        getMovement('doubleJump', 'layer3', COST_UNKNOWN),
                         getMovement('batForm', 'layer3', COST_UNKNOWN),
                         getMovement('poweredMist', 'layer3', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'layer3', COST_UNKNOWN),
@@ -2122,7 +2118,6 @@ const roomsInfo = {
                 height: 512,
             },
             regions: [
-                getRegion('breakableWall', 0, 352, 48, 64),
                 getRegion('main', 0, 0, 256, 512),
             ],
             commands: {
@@ -2141,60 +2136,7 @@ const roomsInfo = {
                         positionY: 384,
                     },
                     requirements: [
-                        getMovement('basic', 'breakableWall', COST_UNKNOWN),
-                    ],
-                },
-                toBreakableWall: {
-                    outcome: {
-                        positionX: 24,
-                        positionY: 384,
-                        // section: breakableWall,
-                    },
-                    requirements: [
-                        { // After Breaking Wall
-                            section: 'main',
-                            statusSecretPassageInSnakeColumnOpened: true,
-                            costs: {
-                                time: COST_UNKNOWN,
-                            },
-                        },
-                    ],
-                },
-                toMain: {
-                    outcome: {
-                        positionX: 24,
-                        positionY: 128,
-                        // section: main,
-                    },
-                    requirements: [
-                        { // After Breaking Wall
-                            section: 'breakableWall',
-                            statusSecretPassageInSnakeColumnOpened: true,
-                            costs: {
-                                time: COST_UNKNOWN,
-                            },
-                        },
-                    ],
-                },
-                openSecretPassage: {
-                    outcome: {
-                        statusSecretPassageInSnakeColumnOpened: true,
-                    },
-                    requirements: [
-                        {
-                            section: 'breakableWall',
-                            statusSecretPassageInSnakeColumnOpened: false,
-                            costs: {
-                                time: COST_UNKNOWN,
-                            },
-                        },
-                        {
-                            section: 'main',
-                            statusSecretPassageInSnakeColumnOpened: false,
-                            costs: {
-                                time: COST_UNKNOWN,
-                            },
-                        },
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2335,8 +2277,8 @@ const roomsInfo = {
                         // section: layer0,
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'layer1', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'layer1', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'layer1', COST_UNKNOWN),
+                        getMovement('doubleJump', 'layer1', COST_UNKNOWN),
                         getMovement('batForm', 'layer1', COST_UNKNOWN),
                         getMovement('poweredMist', 'layer1', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'layer1', COST_UNKNOWN),
@@ -2350,16 +2292,16 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'layer0', COST_UNKNOWN),
+                        // getMovement('basicRisky', 'layer0', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'layer0', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'layer0', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'layer0', COST_UNKNOWN),
+                        getMovement('doubleJump', 'layer0', COST_UNKNOWN),
                         getMovement('batForm', 'layer0', COST_UNKNOWN),
                         getMovement('poweredMist', 'layer0', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'layer0', COST_UNKNOWN),
                         // Moving upward
-                        getMovement('risingUppercut', 'layer2', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'layer2', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'layer2', COST_UNKNOWN),
+                        getMovement('doubleJump', 'layer2', COST_UNKNOWN),
                         getMovement('batForm', 'layer2', COST_UNKNOWN),
                         getMovement('poweredMist', 'layer2', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'layer2', COST_UNKNOWN),
@@ -2373,16 +2315,16 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'layer1', COST_UNKNOWN),
+                        // getMovement('basicRisky', 'layer1', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'layer1', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'layer1', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'layer1', COST_UNKNOWN),
+                        getMovement('doubleJump', 'layer1', COST_UNKNOWN),
                         getMovement('batForm', 'layer1', COST_UNKNOWN),
                         getMovement('poweredMist', 'layer1', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'layer1', COST_UNKNOWN),
                         // Moving upward
-                        getMovement('risingUppercut', 'layer3', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'layer3', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'layer3', COST_UNKNOWN),
+                        getMovement('doubleJump', 'layer3', COST_UNKNOWN),
                         getMovement('batForm', 'layer3', COST_UNKNOWN),
                         getMovement('poweredMist', 'layer3', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'layer3', COST_UNKNOWN),
@@ -2396,16 +2338,16 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'layer2', COST_UNKNOWN),
+                        // getMovement('basicRisky', 'layer2', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'layer2', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'layer2', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'layer2', COST_UNKNOWN),
+                        getMovement('doubleJump', 'layer2', COST_UNKNOWN),
                         getMovement('batForm', 'layer2', COST_UNKNOWN),
                         getMovement('poweredMist', 'layer2', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'layer2', COST_UNKNOWN),
                         // Moving upward
-                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('doubleJump', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
@@ -2419,10 +2361,10 @@ const roomsInfo = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        getMovement('basicRisky', 'layer3', COST_UNKNOWN),
+                        // getMovement('basicRisky', 'layer3', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
-                        getMovement('risingUppercut', 'layer3', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'layer3', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'layer3', COST_UNKNOWN),
+                        getMovement('doubleJump', 'layer3', COST_UNKNOWN),
                         getMovement('batForm', 'layer3', COST_UNKNOWN),
                         getMovement('poweredMist', 'layer3', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'layer3', COST_UNKNOWN),
@@ -2587,8 +2529,8 @@ const roomsInfo = {
                         // section: upperRightLedge,
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('doubleJump', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
@@ -3077,8 +3019,8 @@ const roomsInfo = {
                         // section: upperRightLedge,
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('doubleJump', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
@@ -3109,8 +3051,8 @@ const roomsInfo = {
                         // section: holeInCeiling,
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('doubleJump', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
@@ -3290,7 +3232,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
@@ -3512,35 +3454,35 @@ const roomsInfo = {
                         getMovement('basic', 'main', 4.999),
                     ],
                 },
-                exitRightWithReverseShiftLine: {
-                    outcome: {
-                        positionX: 512 + 256 + 8,
-                        positionY: 640,
-                    },
-                    requirements: [
-                        { // Reverse Shift Line using Heart Refresh
-                            section: 'main',
-                            techniqueReverseShiftLineUsingHeartRefresh: true,
-                            costs: {
-                                time: 9.999,
-                                itemHeartRefresh: 1
-                            },
-                        },
-                        { // Reverse Shift Line using Heart Refresh and Duplicator
-                            section: 'main',
-                            techniqueReverseShiftLineUsingHeartRefresh: true,
-                            costs: {
-                                time: 9.999,
-                            },
-                            itemHeartRefresh: {
-                                minimum: 1,
-                            },
-                            itemDuplicator: {
-                                minimum: 1,
-                            },
-                        },
-                    ],
-                },
+                // exitRightWithReverseShiftLine: {
+                //     outcome: {
+                //         positionX: 512 + 256 + 8,
+                //         positionY: 640,
+                //     },
+                //     requirements: [
+                //         { // Reverse Shift Line using Heart Refresh
+                //             section: 'main',
+                //             techniqueReverseShiftLineUsingHeartRefresh: true,
+                //             costs: {
+                //                 time: 9.999,
+                //                 itemHeartRefresh: 1
+                //             },
+                //         },
+                //         { // Reverse Shift Line using Heart Refresh and Duplicator
+                //             section: 'main',
+                //             techniqueReverseShiftLineUsingHeartRefresh: true,
+                //             costs: {
+                //                 time: 9.999,
+                //             },
+                //             itemHeartRefresh: {
+                //                 minimum: 1,
+                //             },
+                //             itemDuplicator: {
+                //                 minimum: 1,
+                //             },
+                //         },
+                //     ],
+                // },
                 exitBottom: {
                     outcome: {
                         positionX: 128,
@@ -3556,7 +3498,7 @@ const roomsInfo = {
                         positionY: 640,
                     },
                     requirements: [
-                        getMovement('doubleJumpAndLand', 'beneathTrapdoor', 0.7),
+                        getMovement('doubleJump', 'beneathTrapdoor', 0.7),
                     ],
                 },
                 toParapet: {
@@ -3642,7 +3584,7 @@ const roomsInfo = {
                         // section: upperLedge,
                     },
                     requirements: [
-                        getMovement('doubleJumpAndLand', 'beneathTrapdoor', COST_UNKNOWN),
+                        getMovement('doubleJump', 'beneathTrapdoor', COST_UNKNOWN),
                     ],
                 },
             },
@@ -3703,8 +3645,8 @@ const roomsInfo = {
                     },
                     requirements: [
                         getMovement('bladeDash', 'main', COST_UNKNOWN),
-                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        getMovement('doubleJump', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
@@ -3844,9 +3786,8 @@ const roomsInfo = {
                         positionY: 0 - 56,
                     },
                     requirements: [
-                        getMovement('doubleJump', 'holeInCeiling', COST_UNKNOWN),
                         getMovement('batForm', 'holeInCeiling', COST_UNKNOWN),
-                        getMovement('risingUppercut', 'holeInCeiling', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'holeInCeiling', COST_UNKNOWN),
                         getMovement('poweredMistForm', 'holeInCeiling', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'holeInCeiling', COST_UNKNOWN),
                     ],
@@ -3945,16 +3886,6 @@ const roomsInfo = {
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseLong', 'main', COST_UNKNOWN),
-                        { // Dive Kicking off of the Bats
-                            section: 'main',
-                            progressionDoubleJump: true,
-                            statusDoubleJumpUsed: false,
-                            techniqueEnemyDiveKick: true,
-                            costs: {
-                                time: COST_UNKNOWN,
-                            },
-                            // Dive Kicking off of an enemy resets the Double Jump
-                        },
                     ],
                 },
                 fromHoleInCeilingToMain: {
@@ -4111,9 +4042,8 @@ const roomsInfo = {
                         positionY: 0 - 56,
                     },
                     requirements: [
-                        getMovement('doubleJump', 'highIntheAir', COST_UNKNOWN),
                         getMovement('batForm', 'highIntheAir', COST_UNKNOWN),
-                        getMovement('risingUppercut', 'highIntheAir', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'highIntheAir', COST_UNKNOWN),
                         getMovement('poweredMistForm', 'highIntheAir', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'highIntheAir', COST_UNKNOWN),
                     ],
@@ -4395,7 +4325,7 @@ const roomsInfo = {
                         // section: middleRightLedge,
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
@@ -4849,7 +4779,7 @@ const roomsInfo = {
                         // section: holeInCeiling,
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
@@ -4917,15 +4847,15 @@ const roomsInfo = {
                         // section: upperLedges,
                     },
                     requirements: [
-                        getMovement('doubleJumpAndLand', 'leftPassage', COST_UNKNOWN),
+                        getMovement('doubleJump', 'leftPassage', COST_UNKNOWN),
                         getMovement('batForm', 'leftPassage', COST_UNKNOWN),
                         getMovement('poweredMist', 'leftPassage', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'rightWindow', COST_UNKNOWN),
+                        getMovement('doubleJump', 'rightWindow', COST_UNKNOWN),
                         getMovement('batForm', 'rightWindow', COST_UNKNOWN),
                         getMovement('poweredMist', 'rightWindow', COST_UNKNOWN),
-                        getMovement('risingUppercut', 'lowerLedges', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'lowerLedges', COST_UNKNOWN),
                         getMovement('batForm', 'lowerLedges', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('doubleJump', 'lowerLedges', COST_UNKNOWN),
                         getMovement('gravityJump', 'lowerLedges', COST_UNKNOWN),
                         getMovement('poweredMist', 'lowerLedges', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'lowerLedges', COST_UNKNOWN),
@@ -4938,12 +4868,12 @@ const roomsInfo = {
                         // section: rightWindow,
                     },
                     requirements: [
-                        getMovement('doubleJumpAndLand', 'upperLedges', COST_UNKNOWN),
+                        getMovement('doubleJump', 'upperLedges', COST_UNKNOWN),
                         getMovement('batForm', 'upperLedges', COST_UNKNOWN),
                         getMovement('poweredMist', 'upperLedges', COST_UNKNOWN),
-                        getMovement('risingUppercut', 'lowerLedges', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'lowerLedges', COST_UNKNOWN),
                         getMovement('batForm', 'lowerLedges', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('doubleJump', 'lowerLedges', COST_UNKNOWN),
                         getMovement('gravityJump', 'lowerLedges', COST_UNKNOWN),
                         getMovement('poweredMist', 'lowerLedges', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'lowerLedges', COST_UNKNOWN),
@@ -4956,12 +4886,12 @@ const roomsInfo = {
                         // section: leftPassage,
                     },
                     requirements: [
-                        getMovement('doubleJumpAndLand', 'upperLedges', COST_UNKNOWN),
+                        getMovement('doubleJump', 'upperLedges', COST_UNKNOWN),
                         getMovement('batForm', 'upperLedges', COST_UNKNOWN),
                         getMovement('poweredMist', 'upperLedges', COST_UNKNOWN),
-                        getMovement('risingUppercut', 'lowerLedges', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'lowerLedges', COST_UNKNOWN),
                         getMovement('batForm', 'lowerLedges', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('doubleJump', 'lowerLedges', COST_UNKNOWN),
                         getMovement('gravityJump', 'lowerLedges', COST_UNKNOWN),
                         getMovement('poweredMist', 'lowerLedges', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'lowerLedges', COST_UNKNOWN),
@@ -4976,9 +4906,9 @@ const roomsInfo = {
                     requirements: [
                         getMovement('basic', 'leftPassage', COST_UNKNOWN),
                         getMovement('basic', 'upperLedges', COST_UNKNOWN),
-                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('doubleJump', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
@@ -5028,7 +4958,6 @@ const roomsInfo = {
                         getMovement('basic', 'topOfStairs', COST_UNKNOWN),
                         {
                             section: 'anteroom',
-                            statusSecretStaircaseInCastleKeepOpened: true,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
@@ -5220,7 +5149,7 @@ const roomsInfo = {
                     },
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('doubleJump', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
@@ -5305,7 +5234,7 @@ const roomsInfo = {
                     },
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('doubleJump', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
@@ -5320,7 +5249,7 @@ const roomsInfo = {
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'holeInFloor', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'holeInFloor', COST_UNKNOWN),
+                        getMovement('doubleJump', 'holeInFloor', COST_UNKNOWN),
                         getMovement('gravityJump', 'holeInFloor', COST_UNKNOWN),
                         getMovement('poweredMist', 'holeInFloor', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'holeInFloor', COST_UNKNOWN),
@@ -6977,12 +6906,12 @@ const roomsInfo = {
                     },
                     requirements: [
                         getMovement('batForm', 'upperLeftLedge', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('doubleJump', 'upperLeftLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'upperLeftLedge', COST_UNKNOWN),
                         getMovement('poweredMist', 'upperLeftLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'upperLeftLedge', COST_UNKNOWN),
                         getMovement('batForm', 'lowerLeftLedge', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'lowerLeftLedge', COST_UNKNOWN),
+                        getMovement('doubleJump', 'lowerLeftLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'lowerLeftLedge', COST_UNKNOWN),
                         getMovement('poweredMist', 'lowerLeftLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'lowerLeftLedge', COST_UNKNOWN),
@@ -6991,12 +6920,12 @@ const roomsInfo = {
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'upperRightLedge', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'upperRightLedge', COST_UNKNOWN),
+                        getMovement('doubleJump', 'upperRightLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'upperRightLedge', COST_UNKNOWN),
                         getMovement('poweredMist', 'upperRightLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'upperRightLedge', COST_UNKNOWN),
                         getMovement('batForm', 'middleRightLedge', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'middleRightLedge', COST_UNKNOWN),
+                        getMovement('doubleJump', 'middleRightLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'middleRightLedge', COST_UNKNOWN),
                         getMovement('poweredMist', 'middleRightLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'middleRightLedge', COST_UNKNOWN),
@@ -7010,7 +6939,7 @@ const roomsInfo = {
                     },
                     requirements: [
                         getMovement('batForm', 'lowerLeftLedge', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'lowerLeftLedge', COST_UNKNOWN),
+                        getMovement('doubleJump', 'lowerLeftLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'lowerLeftLedge', COST_UNKNOWN),
                         getMovement('poweredMist', 'lowerLeftLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'lowerLeftLedge', COST_UNKNOWN),
@@ -7028,7 +6957,7 @@ const roomsInfo = {
                     },
                     requirements: [
                         getMovement('batForm', 'middleRightLedge', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'middleRightLedge', COST_UNKNOWN),
+                        getMovement('doubleJump', 'middleRightLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'middleRightLedge', COST_UNKNOWN),
                         getMovement('poweredMist', 'middleRightLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'middleRightLedge', COST_UNKNOWN),
@@ -7051,7 +6980,7 @@ const roomsInfo = {
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'centerArea', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'centerArea', COST_UNKNOWN),
+                        getMovement('doubleJump', 'centerArea', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'centerArea', COST_UNKNOWN),
                         getMovement('poweredMist', 'centerArea', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'centerArea', COST_UNKNOWN),
@@ -7070,7 +6999,7 @@ const roomsInfo = {
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'centerArea', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'centerArea', COST_UNKNOWN),
+                        getMovement('doubleJump', 'centerArea', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'centerArea', COST_UNKNOWN),
                         getMovement('poweredMist', 'centerArea', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'centerArea', COST_UNKNOWN),
@@ -8172,9 +8101,9 @@ const roomsInfo = {
                     },
                     requirements: [
                         getMovement('preciseJump', 'upperLevel', COST_UNKNOWN),
-                        getMovement('risingUppercut', 'upperLevel', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'upperLevel', COST_UNKNOWN),
                         getMovement('batForm', 'upperLevel', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'upperLevel', COST_UNKNOWN),
+                        getMovement('doubleJump', 'upperLevel', COST_UNKNOWN),
                         getMovement('poweredMist', 'upperLevel', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'upperLevel', COST_UNKNOWN),
                     ],
@@ -8187,9 +8116,9 @@ const roomsInfo = {
                     },
                     requirements: [
                         getMovement('fall', 'topRightLedge', COST_UNKNOWN),
-                        getMovement('risingUppercut', 'middleLevel', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'middleLevel', COST_UNKNOWN),
                         getMovement('batForm', 'middleLevel', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'middleLevel', COST_UNKNOWN),
+                        getMovement('doubleJump', 'middleLevel', COST_UNKNOWN),
                         getMovement('gravityJump', 'middleLevel', COST_UNKNOWN),
                         getMovement('poweredMist', 'middleLevel', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'middleLevel', COST_UNKNOWN),
@@ -8203,9 +8132,9 @@ const roomsInfo = {
                     },
                     requirements: [
                         getMovement('fall', 'upperLevel', COST_UNKNOWN),
-                        getMovement('risingUppercut', 'lowerLevel', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'lowerLevel', COST_UNKNOWN),
                         getMovement('batForm', 'lowerLevel', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'lowerLevel', COST_UNKNOWN),
+                        getMovement('doubleJump', 'lowerLevel', COST_UNKNOWN),
                         getMovement('gravityJump', 'lowerLevel', COST_UNKNOWN),
                         getMovement('poweredMist', 'lowerLevel', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'lowerLevel', COST_UNKNOWN),
@@ -8219,9 +8148,9 @@ const roomsInfo = {
                     },
                     requirements: [
                         getMovement('fall', 'middleLevel', COST_UNKNOWN),
-                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('doubleJump', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
@@ -8452,7 +8381,7 @@ const roomsInfo = {
                         // section: 'upperLeftLedge',
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
@@ -8466,10 +8395,10 @@ const roomsInfo = {
                         // section: 'middleLeftLedge',
                     },
                     requirements: [
-                        getMovement('risingUppercut', 'main', COST_UNKNOWN),
+                        // getMovement('risingUppercut', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('doubleJump', 'main', COST_UNKNOWN),
                         getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                     ],
@@ -8824,7 +8753,7 @@ const roomsInfo = {
                     },
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
-                        getMovement('doubleJumpAndLand', 'main', COST_UNKNOWN),
+                        getMovement('doubleJump', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
                         getMovement('poweredMistForm', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
@@ -14377,28 +14306,17 @@ function isValidRequirement(state, requirement) {
         let stateValue
         switch (typeof propertyInfo) {
             case 'boolean':
-                stateValue = false
-                if (propertyKey in state) {
-                    stateValue = state[propertyKey]
-                }
-                if (stateValue !== propertyInfo) {
+                if ((state[propertyKey] ?? false) !== propertyInfo) {
                     return false
                 }
                 break
             case 'string':
-                stateValue = 'NONE'
-                if (propertyKey in state) {
-                    stateValue = state[propertyKey]
-                }
-                if (stateValue !== propertyInfo) {
+                if ((state[propertyKey] ?? 'NONE') !== propertyInfo) {
                     return false
                 }
                 break
             case 'object':
-                stateValue = 0
-                if (propertyKey in state) {
-                    stateValue = state[propertyKey]
-                }
+                stateValue = state[propertyKey] ?? 0
                 if ('minimum' in propertyInfo) {
                     if (stateValue < propertyInfo.minimum) {
                         return false
@@ -14417,6 +14335,82 @@ function isValidRequirement(state, requirement) {
         return true
     })
     return result
+}
+
+function combineRequirements(requirementA, requirementB, includeTimeAndLocation=true) {
+    const result = Object.assign({}, requirementA)
+    let validInd = true
+    Object.entries(requirementB)
+    .filter(([propertyKey, propertyInfo]) => {
+        return (
+            includeTimeAndLocation ||
+            !(['stage', 'room', 'section', 'time', 'positionX', 'positionY', 'requirements'].includes(propertyKey))
+        )
+    })
+    .forEach(([propertyKey, propertyInfo]) => {
+        let value
+        // If the combined requirements contradict one another, mark as invalid
+        switch (typeof propertyInfo) {
+            case 'boolean':
+            case 'string':
+                if (propertyKey in result && result[propertyKey] !== propertyInfo) {
+                    validInd = false
+                }
+                result[propertyKey] = propertyInfo
+                break
+            case 'object':
+                if (!(propertyKey in result)) {
+                    result[propertyKey] = {}
+                }
+                if ('minimum' in propertyInfo) {
+                    value = result[propertyKey].minimum ?? propertyInfo.minimum
+                    result[propertyKey].minimum = Math.max(value, propertyInfo.minimum)
+                }
+                if ('maximum' in propertyInfo) {
+                    value = result[propertyKey].maximum ?? propertyInfo.maximum
+                    result[propertyKey].maximum = Math.min(value, propertyInfo.maximum)
+                }
+                if (
+                    ('minimum' in propertyInfo) &&
+                    ('maximum' in propertyInfo) &&
+                    propertyInfo.minimum > propertyInfo.maximum
+                ) {
+                    validInd = false
+                }
+                break
+            default:
+                console.log('Unhandled key-value pair: ' + JSON.stringify(propertyKey) + ', ' + JSON.stringify(propertyInfo))
+                break
+        }
+    })
+    if (!validInd) {
+        return null
+    }
+    return result
+}
+
+function simplify(state) {
+    Object.entries(state)
+    .filter(([propertyKey, propertyInfo]) => {
+        return !(['stage', 'room', 'section', 'time', 'positionX', 'positionY', 'debugEnableElsewhere'].includes(propertyKey))
+    })
+    .forEach(([propertyKey, propertyInfo]) => {
+        switch (typeof propertyInfo) {
+            case 'boolean':
+                if (state[propertyKey] === false) {
+                    delete state[propertyKey]
+                }
+            case 'number':
+                if (state[propertyKey] === 0) {
+                    delete state[propertyKey]
+                }
+            case 'string':
+                if (state[propertyKey] === 'NONE') {
+                    delete state[propertyKey]
+                }
+                break
+        }
+    })
 }
 
 function updateStateWithOutcome(state, outcome) {
@@ -14561,7 +14555,7 @@ function updateLocation(location, settings) {
     })
 }
 
-function getLogic(settings) {
+function getLogic(settings, enableElsewhere=false) {
     const result = {}
     // Process every room command
     Object.entries(roomsInfo ?? {})
@@ -14632,74 +14626,76 @@ function getLogic(settings) {
         })
     })
     // Process every location-reward combination
-    Object.entries(locationsInfo ?? {})
-    .forEach(([locationName, locationInfo]) => {
-        // Process every location requirement (Only certain stages for now)
-        locationInfo.requirements
-        .filter((locationRequirementInfo) => {
-            return locationRequirementInfo.stage in roomPriority
-        })
-        .forEach((locationRequirementInfo) => {
-            const stageName = locationRequirementInfo.stage
-            const roomName = locationRequirementInfo.room
-            const location = {
-                stage: stageName,
-                room: roomName,
-                section: 'NONE',
-                positionX: locationInfo.outcome.positionX,
-                positionY: locationInfo.outcome.positionY,
-            }
-            updateLocation(location, settings)
-            // Process every reward requirement
-            let rewardInfo = {
-                outcome: {},
-                requirements: [
-                    {},
-                ],
-            }
-            if (locationName in settings.locationRewards) {
-                const rewardName = settings.locationRewards[locationName]
-                rewardInfo = rewardsInfo[rewardName]
-            }
-            rewardInfo.requirements
-            .forEach((rewardRequirementInfo) => {
-                const command = {
-                    outcome: {},
-                    requirement: {},
+    if ('locationRewards' in settings) {
+        Object.entries(locationsInfo ?? {})
+        .forEach(([locationName, locationInfo]) => {
+            // Process every location requirement (Only certain stages for now)
+            locationInfo.requirements
+            .filter((locationRequirementInfo) => {
+                return locationRequirementInfo.stage in roomPriority
+            })
+            .forEach((locationRequirementInfo) => {
+                const stageName = locationRequirementInfo.stage
+                const roomName = locationRequirementInfo.room
+                const location = {
+                    stage: stageName,
+                    room: roomName,
+                    section: 'NONE',
+                    positionX: locationInfo.outcome.positionX,
+                    positionY: locationInfo.outcome.positionY,
                 }
-                Object.assign(command.outcome, locationInfo.outcome)
-                Object.assign(command.outcome, rewardInfo.outcome)
-                Object.assign(command.requirement, locationRequirementInfo)
-                Object.entries(rewardRequirementInfo)
-                .forEach(([propertyKey, propertyInfo]) => {
-                    if (propertyKey == 'costs') {
-                        Object.entries(propertyInfo)
-                        .forEach(([costKey, costValue]) => {
-                            switch (typeof costValue) {
-                                case 'number':
-                                    command.requirement[costKey] = {
-                                        minimum: costValue,
-                                    }
-                                    command.outcome[costKey] = {
-                                        operation: 'add',
-                                        value: -1 * costValue,
-                                    }
-                                    break
-                                default:
-                                    command.outcome[costKey] = costValue
-                                    break
-                            }
-                        })
+                updateLocation(location, settings)
+                // Process every reward requirement
+                let rewardInfo = {
+                    outcome: {},
+                    requirements: [
+                        {},
+                    ],
+                }
+                if (locationName in settings.locationRewards) {
+                    const rewardName = settings.locationRewards[locationName]
+                    rewardInfo = rewardsInfo[rewardName]
+                }
+                rewardInfo.requirements
+                .forEach((rewardRequirementInfo) => {
+                    const command = {
+                        outcome: {},
+                        requirement: {},
                     }
-                    else {
-                        command.requirement[propertyKey] = propertyInfo
-                    }
+                    Object.assign(command.outcome, locationInfo.outcome)
+                    Object.assign(command.outcome, rewardInfo.outcome)
+                    Object.assign(command.requirement, locationRequirementInfo)
+                    Object.entries(rewardRequirementInfo)
+                    .forEach(([propertyKey, propertyInfo]) => {
+                        if (propertyKey == 'costs') {
+                            Object.entries(propertyInfo)
+                            .forEach(([costKey, costValue]) => {
+                                switch (typeof costValue) {
+                                    case 'number':
+                                        command.requirement[costKey] = {
+                                            minimum: costValue,
+                                        }
+                                        command.outcome[costKey] = {
+                                            operation: 'add',
+                                            value: -1 * costValue,
+                                        }
+                                        break
+                                    default:
+                                        command.outcome[costKey] = costValue
+                                        break
+                                }
+                            })
+                        }
+                        else {
+                            command.requirement[propertyKey] = propertyInfo
+                        }
+                    })
+                    command.requirement.section = location.section
+                    result[stageName][roomName].push(command)
                 })
-                command.requirement.section = location.section
-                result[stageName][roomName].push(command)
             })
         })
-    })
+    }
     // Process every stage link
     Object.entries(settings.stageLinks ?? {})
     .filter(([sourceTeleporterName, targetTeleporterName]) => {
@@ -14756,75 +14752,97 @@ function getLogic(settings) {
         result[sourceStageName][sourceRoomName].push(command)
     })
     // Link any unlinked stages to a universal hub for testing purposes
-    result.elsewhere = {
-        hub: [],
+    if (enableElsewhere) {
+        result.elsewhere = {
+            hub: [],
+        }
+        Object.entries(roomPriority)
+        .filter(([stageName, roomNames]) => {
+            return stageName in result
+        })
+        .forEach(([stageName, roomNames]) => {
+            roomNames
+            .filter((roomName) => {
+                return roomName.startsWith('loadingRoomTo') && roomName in result[stageName]
+            })
+            .filter((roomName) => {
+                let linkCount = -1
+                result[stageName][roomName]
+                .find((command) => {
+                    if (command.outcome.room.startsWith('triggerTeleporterTo')) {
+                        linkCount = result[stageName][command.outcome.room].length
+                        // console.log(command.outcome.room, ':', result[stageName][command.outcome.room])
+                    }
+                })
+                return linkCount === 0
+            })
+            .forEach((roomName) => {
+                // console.log(`Add link to universal hub for (${stageName}.${roomName})`)
+                result.elsewhere.hub.push({
+                    outcome: {
+                        stage: stageName,
+                        room: roomName,
+                        section: 'main',
+                    },
+                    requirement: {
+                        stage: 'elsewhere',
+                        room: 'hub',
+                        debugEnableElsewhere: true,
+                    },
+                })
+                result[stageName][roomName].push({
+                    outcome: {
+                        stage: 'elsewhere',
+                        room: 'hub',
+                        section: 'main',
+                    },
+                    requirement: {
+                        stage: stageName,
+                        room: roomName,
+                        section: 'main',
+                        debugEnableElsewhere: true,
+                    },
+                })
+            })
+        })
     }
-    Object.entries(roomPriority)
-    .filter(([stageName, roomNames]) => {
-        return stageName in result
-    })
-    .forEach(([stageName, roomNames]) => {
-        roomNames
-        .filter((roomName) => {
-            return roomName.startsWith('loadingRoomTo') && roomName in result[stageName]
-        })
-        .filter((roomName) => {
-            let linkCount = -1
-            result[stageName][roomName]
-            .find((command) => {
-                if (command.outcome.room.startsWith('triggerTeleporterTo')) {
-                    linkCount = result[stageName][command.outcome.room].length
-                    // console.log(command.outcome.room, ':', result[stageName][command.outcome.room])
-                }
-            })
-            return linkCount === 0
-        })
-        .forEach((roomName) => {
-            // console.log(`Add link to universal hub for (${stageName}.${roomName})`)
-            result.elsewhere.hub.push({
-                outcome: {
-                    stage: stageName,
-                    room: roomName,
-                    section: 'main',
-                },
-                requirement: {
-                    stage: 'elsewhere',
-                    room: 'hub',
-                    debugEnableElsewhere: true,
-                },
-            })
-            result[stageName][roomName].push({
-                outcome: {
-                    stage: 'elsewhere',
-                    room: 'hub',
-                    section: 'main',
-                },
-                requirement: {
-                    stage: stageName,
-                    room: roomName,
-                    section: 'main',
-                    debugEnableElsewhere: true,
-                },
-            })
-        })
-    })
     return result
 }
 
 function hashedState(state) {
-    const prefixState = JSON.stringify(state,
-        Object.keys(state).filter((key) => {
-            return (['stage', 'room', 'section'].includes(key))
-        }).sort(), 4
-    )
-    const prefix = hashedText(prefixState)
-    const suffixState = JSON.stringify(state,
-        Object.keys(state).filter((key) => {
-            return !(['stage', 'room', 'section', 'time', 'positionX', 'positionY'].includes(key))
-        }).sort(), 4
-    )
-    const suffix = hashedText(suffixState)
-    const result = prefix + '-' + suffix
+    // Example: abandonedMine.bend.main.b8e6fb7c
+    const elements = []
+    elements.push(state.stage ?? 'NONE')
+    elements.push(state.room ?? 'NONE')
+    elements.push(state.section ?? 'NONE')
+    elements.push(hashedObject(state, ['stage', 'room', 'section', 'time', 'positionX', 'positionY']))
+    const result = elements.join('.')
+    return result
+}
+
+function hashedObject(object, ignoredProperties) {
+    const elements = []
+    Object.keys(object)
+    .filter((key) => {
+        return !(ignoredProperties.includes(key))
+    })
+    .sort()
+    .forEach((key) => {
+        switch (typeof object[key]) {
+            case 'boolean':
+            case 'number':
+            case 'string':
+                elements.push([key, object[key]].join('='))
+                break
+            case 'object':
+                elements.push([key, hashedObject(object[key], [])].join('='))
+                break
+            default:
+                console.log('Unhandled key-value pair: ' + JSON.stringify(key) + ', ' + JSON.stringify(object[key]))
+                break
+        }
+    })
+    const result = hashedText(elements.join('|'))
     return result
 }
 
@@ -14936,59 +14954,54 @@ const goalLocations = [
     'locationSwordCard',
 ]
 
-export function findGoal(logic, startingState, goalState, debug=false) {
+export function findGoal(logic, startingState, goalState) {
+    console.log('findGoal')
     let result = null
     const map = new Map()
     const subWork = [
         Object.assign({}, startingState),
     ]
+    map.set(hashedState(startingState), startingState)
     while (subWork.length > 0) {
         // console.log('subWork.length:', subWork.length, 'map.size:', map.size)
         const currentState = subWork.pop()
-        const currentStateHash = hashedState(currentState)
-        if (
-            map.has(currentStateHash) &&
-            map.get(currentStateHash) >= currentState.time
-        ) {
-            continue
-        }
-        map.set(currentStateHash, currentState.time)
         // console.log('currentState:', currentState)
-        let nextStateFound = false
         logic[currentState.stage][currentState.room]
         .find((command) => {
             if (isValidRequirement(currentState, command.requirement)) {
-                nextStateFound = true
                 const nextState = Object.assign({}, currentState)
-                // hashedState(nextState)
                 updateStateWithOutcome(nextState, command.outcome)
-                if (debug && nextState.section === 'NONE') {
+                if (nextState.section === 'NONE') {
                     console.log('currentState:', currentState)
                     console.log('nextState:', nextState)
                     throw Error('')
                 }
-                if (isValidRequirement(nextState, goalState)) {
-                    result = nextState
-                    // console.log('result:', JSON.stringify(nextState, Object.keys(nextState).sort(), 4))
-                    return true
+                const nextStateHash = hashedState(nextState)
+                if (
+                    !map.has(nextStateHash) ||
+                    map.get(nextStateHash).time < nextState.time
+                ) {
+                    map.set(nextStateHash, nextState)
+                    if (isValidRequirement(nextState, goalState)) {
+                        result = nextState
+                        return true
+                    } else {
+                        subWork.push(nextState)
+                    }
                 }
-                // console.log('nextState:', nextState)
-                subWork.push(nextState)
+                return false
             }
             return false
         })
         if (result !== null) {
             break
         }
-        // if (debug && !nextStateFound && currentState.time >= 5) {
-        //     console.log('  FAIL:', currentState)
-        // }
     }
     return result
 }
 
 export function validate(settings, validation) {
-    const logic = getLogic(settings)
+    const logic = getLogic(settings, true)
     if (validation.debug ?? false) {
         console.log('logic:', JSON.stringify(logic, null, 4))
     }
@@ -15003,6 +15016,32 @@ export function validate(settings, validation) {
             break
     }
     return result
+}
+
+export function analyzeStagePaths(settings) {
+    // console.log('settings:', JSON.stringify(settings, null, 4))
+    const startingTime = 180.0
+    console.log('settings:', settings)
+    const logic = getLogic(settings)
+    console.log('logic:', JSON.stringify(logic, null, 4))
+    const startingState = {
+        stage: 'abandonedMine',
+        room: 'loadingRoomToCatacombs',
+        section: 'main',
+        time: startingTime,
+    }
+    const goalState = {
+        stage: 'abandonedMine',
+        room: 'loadingRoomToWarpRooms',
+        section: 'main',
+    }
+    findAllPaths(logic, startingState, goalState)
+    .forEach((successfulState) => {
+        const elapsedTime = startingTime - successfulState.time
+        console.log('elapsedTime:', elapsedTime)
+        console.log('successfulState:', successfulState)
+    })
+    throw Error('')
 }
 
 export function analyzeLogic(seed, settings) {
@@ -15039,7 +15078,7 @@ export function analyzeLogic(seed, settings) {
             return !validRequirement
         })
         .forEach(([goalName, goalRequirement]) => {
-            let successfulState = findGoal(logic, startingState, goalRequirement, true)
+            let successfulState = findGoal(logic, startingState, goalRequirement)
             if (successfulState) {
                 if (isValidRequirement(successfulState, WINNING_STATE)) {
                     result.solvable = true
@@ -15066,5 +15105,119 @@ export function analyzeLogic(seed, settings) {
         // }
     }
     console.log('')
+    return result
+}
+
+export function findAllPaths(logic, startingState, goalState) {
+    console.log('findAllPaths()')
+    console.log('logic:', logic)
+    // compare starting state to final state to get requirements
+    const startingTime = startingState.time
+    const map = new Map()
+    const subWork = [
+        Object.assign({}, startingState),
+    ]
+    map.set(hashedState(startingState), startingState)
+    while (subWork.length > 0) {
+        // console.log('subWork:', subWork.length)
+        const currentState = subWork.pop()
+        if (
+            currentState.time <= 0.0
+        ) {
+            continue
+        }
+        console.log('currentState:', currentState)
+        logic[currentState.stage][currentState.room]
+        .filter((command) => {
+            if ('section' in command.requirement) {
+                return currentState.section === command.requirement.section
+            }
+            else {
+                return true
+            }
+        })
+        .forEach((command) => {
+            // Update state with outcome regardless of requirement (even negatives are allowed)
+            const nextState = Object.assign({}, currentState)
+            const requirements = combineRequirements(nextState.requirements || {}, command.requirement, false)
+            if (requirements === null) {
+                return
+            }
+            simplify(requirements)
+            nextState.requirements = requirements
+            updateStateWithOutcome(nextState, command.outcome)
+            simplify(nextState)
+            const nextStateHash = hashedState(nextState)
+            let prefix = '-'
+            if (
+                !map.has(nextStateHash) ||
+                map.get(nextStateHash).time < nextState.time
+            ) {
+                map.set(nextStateHash, nextState)
+                if (!isValidRequirement(nextState, goalState)) {
+                    prefix = 'Y'
+                    subWork.push(nextState)
+                }
+            }
+            console.log('  nextState:', prefix, nextStateHash, nextState)
+        })
+    }
+    console.log('************************************')
+    const result = []
+    console.log('goalState:', goalState)
+    map.values()
+    .filter((finalState) => {
+        return isValidRequirement(finalState, goalState)
+    })
+    .forEach((finalState) => {
+        console.log('finalState:', finalState)
+        const prospectiveStartingState = Object.assign({}, startingState)
+        // TODO(sestren): Apply requirements to final state
+        const finalOutcome = {}
+        Object.entries(finalState)
+        .filter(([propertyKey, propertyInfo]) => {
+            return !(['stage', 'room', 'section', 'time', 'positionX', 'positionY', 'requirements'].includes(propertyKey))
+        })
+        .forEach(([propertyKey, propertyInfo]) => {
+            finalOutcome[propertyKey] = propertyInfo
+        })
+        Object.entries(finalState.requirements)
+        .forEach(([propertyKey, propertyInfo]) => {
+            let value
+            switch (typeof propertyInfo) {
+                case 'boolean':
+                case 'number':
+                case 'string':
+                    finalOutcome[propertyKey] = propertyInfo
+                    break
+                case 'object':
+                    value = finalOutcome[propertyKey] ?? 0
+                    if ('minimum' in propertyInfo) {
+                        if (value < propertyInfo.minimum) {
+                            finalOutcome[propertyKey] = propertyInfo.minimum
+                        }
+                    }
+                    if ('maximum' in propertyInfo) {
+                        if (value > propertyInfo.maximum) {
+                            finalOutcome[propertyKey] = propertyInfo.maximum
+                        }
+                    }
+                    break
+                default:
+                    console.log('Unhandled key-value pair: ' + JSON.stringify(propertyKey) + ', ' + JSON.stringify(propertyInfo))
+                    break
+            }
+        })
+        updateStateWithOutcome(prospectiveStartingState, finalOutcome)
+        simplify(prospectiveStartingState)
+        prospectiveStartingState.time = startingTime
+        console.log('prospectiveStartingState:', prospectiveStartingState)
+        const successfulState = findGoal(logic, prospectiveStartingState, goalState)
+        if (successfulState !== null) {
+            successfulState.requirements = finalState.requirements
+            result.push(successfulState)
+        }
+    })
+    console.log('************************************')
     return result
 }
