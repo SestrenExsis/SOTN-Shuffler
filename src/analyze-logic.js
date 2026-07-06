@@ -7195,7 +7195,26 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                getRegion('main', 0, 0, 256, 256),
+                {
+                    requirements: [
+                        {
+                            positionX: {
+                                minimum: 0,
+                                maximum: 256 - 1,
+                            },
+                            positionY: {
+                                minimum: 0,
+                                maximum: 256 - 1,
+                            },
+                        }
+                    ],
+                    outcome: {
+                        section: 'main',
+                        // NOTE(sestren): Leaving Clock Tower resets the Gear Puzzle
+                        statusLeftGearRoomSolved: false,
+                        statusRightGearRoomSolved: false,
+                    },
+                },
             ],
             commands: {},
         },
@@ -7205,7 +7224,26 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                getRegion('main', 0, 0, 256, 256),
+                {
+                    requirements: [
+                        {
+                            positionX: {
+                                minimum: 0,
+                                maximum: 256 - 1,
+                            },
+                            positionY: {
+                                minimum: 0,
+                                maximum: 256 - 1,
+                            },
+                        }
+                    ],
+                    outcome: {
+                        section: 'main',
+                        // NOTE(sestren): Leaving Clock Tower resets the Gear Puzzle
+                        statusLeftGearRoomSolved: false,
+                        statusRightGearRoomSolved: false,
+                    },
+                },
             ],
             commands: {},
         },
@@ -14955,7 +14993,7 @@ const goalLocations = [
 ]
 
 export function findGoal(logic, startingState, goalState) {
-    console.log('findGoal')
+    // console.log('findGoal')
     let result = null
     const map = new Map()
     const subWork = [
@@ -15025,14 +15063,14 @@ export function analyzeStagePaths(settings) {
     const logic = getLogic(settings)
     console.log('logic:', JSON.stringify(logic, null, 4))
     const startingState = {
-        stage: 'abandonedMine',
-        room: 'loadingRoomToCatacombs',
+        stage: 'clockTower',
+        room: 'loadingRoomToOuterWall',
         section: 'main',
         time: startingTime,
     }
     const goalState = {
-        stage: 'abandonedMine',
-        room: 'loadingRoomToWarpRooms',
+        stage: 'clockTower',
+        room: 'loadingRoomToCastleKeep',
         section: 'main',
     }
     findAllPaths(logic, startingState, goalState)
@@ -15109,6 +15147,8 @@ export function analyzeLogic(seed, settings) {
 }
 
 export function findAllPaths(logic, startingState, goalState) {
+    // TODO(sestren): If requirements property is already sufficient to achieve the same outcome for that command, don't compound the requirements
+    // Example, if you have Bat, you probably don't need Power of Mist
     console.log('findAllPaths()')
     console.log('logic:', logic)
     // compare starting state to final state to get requirements

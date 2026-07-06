@@ -402,6 +402,39 @@ const VALIDATIONS = {
             },
             goalType: 'required',
         },
+        // NOTE(sestren): It should be possible to traverse the stage both ways without solving the Gear Puzzle
+        {
+            startingState: {
+                stage: 'clockTower',
+                room: 'loadingRoomToOuterWall',
+                section: 'main',
+                progressionBatTransformation: true,
+                debugEnableElsewhere: false,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'clockTower',
+                room: 'loadingRoomToCastleKeep',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'clockTower',
+                room: 'loadingRoomToCastleKeep',
+                section: 'main',
+                progressionBatTransformation: true,
+                debugEnableElsewhere: false,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'clockTower',
+                room: 'loadingRoomToOuterWall',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
     ],
     colosseum: [
         {
@@ -1052,7 +1085,8 @@ const argv = yargs(process.argv.slice(2))
                                     }
                                     return validate(logicSettings, validation)
                                 })
-                                if (stageName === 'abandonedMine') {
+                                if (stageName === 'clockTower') {
+                                    console.log('stageAttemptCount:', stageAttemptCount)
                                     const logicSettings = {
                                         solverAttemptCount: shuffleData.debugInfo.solverAttemptCount,
                                         // locationRewards: {},
