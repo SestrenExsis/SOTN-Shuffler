@@ -1,4 +1,5 @@
 import seedrandom from 'seedrandom'
+import { inspect } from 'node:util'
 
 function getMovement(requirementName, section, time) {
     const result = {
@@ -1580,7 +1581,8 @@ const roomsInfo = {
                 height: 1024,
             },
             regions: [
-                getRegion('blockArea', 208, 96, 48, 64),
+                getRegion('behindDemonBlock', 240, 96, 16, 64),
+                getRegion('demonBlock', 208, 96, 32, 64),
                 getRegion('upperLeftLedge', 0, 64, 208, 144),
                 getRegion('zigZagLedges', 16, 208, 224, 336),
                 getRegion('crumblingStairwell', 16, 544, 208, 160),
@@ -1603,7 +1605,7 @@ const roomsInfo = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'blockArea', COST_UNKNOWN),
+                        getMovement('basic', 'behindDemonBlock', COST_UNKNOWN),
                     ],
                 },
                 exitBottom: {
@@ -1615,15 +1617,32 @@ const roomsInfo = {
                         getMovement('basic', 'lowerLedges', COST_UNKNOWN),
                     ],
                 },
-                toBlockArea: {
+                toBehindDemonBlock: {
+                    outcome: {
+                        positionX: 248,
+                        positionY: 128,
+                        // section: behindDemonBlock,
+                    },
+                    requirements: [
+                        getMovement('basic', 'demonBlock', COST_UNKNOWN),
+                    ],
+                },
+                toDemonBlock: {
                     outcome: {
                         positionX: 232,
                         positionY: 128,
-                        // section: blockArea,
+                        // section: demonBlock,
                     },
                     requirements: [
                         { // After Activating Demon Switch
                             section: 'upperLeftLedge',
+                            statusDemonSwitchActivated: true,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
+                        { // After Activating Demon Switch
+                            section: 'behindDemonBlock',
                             statusDemonSwitchActivated: true,
                             costs: {
                                 time: COST_UNKNOWN,
@@ -1638,6 +1657,7 @@ const roomsInfo = {
                         // section: upperLeftLedge,
                     },
                     requirements: [
+                        getMovement('basic', 'demonBlock', COST_UNKNOWN),
                         // getMovement('risingUppercut', 'zigZagLedges', COST_UNKNOWN),
                         getMovement('doubleJump', 'zigZagLedges', COST_UNKNOWN),
                         getMovement('batForm', 'zigZagLedges', COST_UNKNOWN),
@@ -1737,7 +1757,7 @@ const roomsInfo = {
                     },
                     requirements: [
                         {
-                            section: 'blockArea',
+                            section: 'behindDemonBlock',
                             progressionSummonDemonFamiliar: true,
                             statusDemonSwitchActivated: false,
                             costs: {
@@ -15010,8 +15030,8 @@ export function findGoal(logic, startingState, goalState) {
                 const nextState = Object.assign({}, currentState)
                 updateStateWithOutcome(nextState, command.outcome)
                 if (nextState.section === 'NONE') {
-                    console.log('currentState:', currentState)
-                    console.log('nextState:', nextState)
+                    // console.log('currentState:', currentState)
+                    // console.log('nextState:', nextState)
                     throw Error('')
                 }
                 const nextStateHash = hashedState(nextState)
@@ -15057,20 +15077,19 @@ export function validate(settings, validation) {
 }
 
 export function analyzeStagePaths(settings) {
-    // console.log('settings:', JSON.stringify(settings, null, 4))
+    console.log('settings:', inspect(settings))
     const startingTime = 180.0
-    console.log('settings:', settings)
     const logic = getLogic(settings)
-    console.log('logic:', JSON.stringify(logic, null, 4))
+    console.log('logic:', inspect(logic, { depth: 5, }))
     const startingState = {
-        stage: 'clockTower',
-        room: 'loadingRoomToOuterWall',
+        stage: 'abandonedMine',
+        room: 'loadingRoomToCatacombs',
         section: 'main',
         time: startingTime,
     }
     const goalState = {
-        stage: 'clockTower',
-        room: 'loadingRoomToCastleKeep',
+        stage: 'abandonedMine',
+        room: 'loadingRoomToWarpRooms',
         section: 'main',
     }
     findAllPaths(logic, startingState, goalState)
@@ -15166,7 +15185,7 @@ export function findAllPaths(logic, startingState, goalState) {
         ) {
             continue
         }
-        console.log('currentState:', currentState)
+        // console.log('currentState:', currentState)
         logic[currentState.stage][currentState.room]
         .filter((command) => {
             if ('section' in command.requirement) {
@@ -15199,7 +15218,7 @@ export function findAllPaths(logic, startingState, goalState) {
                     subWork.push(nextState)
                 }
             }
-            console.log('  nextState:', prefix, nextStateHash, nextState)
+            // console.log('  nextState:', prefix, nextStateHash, nextState)
         })
     }
     console.log('************************************')

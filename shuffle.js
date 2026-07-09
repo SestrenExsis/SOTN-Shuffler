@@ -1,5 +1,6 @@
 import fs from 'fs'
 import yargs from 'yargs'
+import { inspect } from 'node:util'
 
 import {
     analyzeLogic,
@@ -1085,7 +1086,7 @@ const argv = yargs(process.argv.slice(2))
                                     }
                                     return validate(logicSettings, validation)
                                 })
-                                if (stageName === 'clockTower') {
+                                if (stageName === 'abandonedMine') {
                                     console.log('stageAttemptCount:', stageAttemptCount)
                                     const logicSettings = {
                                         solverAttemptCount: shuffleData.debugInfo.solverAttemptCount,
