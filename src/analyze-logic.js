@@ -58,16 +58,19 @@ function getMovement(requirementName, section, time) {
         case 'wolfMistRiseShort':
             result.progressionWolfTransformation = true
             result.progressionMistTransformation = true
-            result.techniqueShortWolfMistRise = true
+            result.techniqueWolfMistRise = true
             break
         case 'wolfMistRiseLong':
             result.progressionWolfTransformation = true
             result.progressionMistTransformation = true
+            result.techniqueWolfMistRise = true
             result.techniqueLongWolfMistRise = true
             break
         case 'wolfMistRiseVeryLong':
             result.progressionWolfTransformation = true
             result.progressionMistTransformation = true
+            result.techniqueWolfMistRise = true
+            result.techniqueLongWolfMistRise = true
             result.techniqueVeryLongWolfMistRise = true
             break
         default:
@@ -14358,8 +14361,11 @@ const teleporterTargetsInfo = {
     },
 }
 
-function isValidRequirement(state, requirement) {
+function isValidRequirement(state, requirement, properties=null) {
     const result = Object.entries(requirement)
+    .filter(([propertyKey, propertyInfo]) => {
+        return properties === null || properties.includes(propertyKey)
+    })
     .every(([propertyKey, propertyInfo]) => {
         let stateValue
         switch (typeof propertyInfo) {
@@ -14458,10 +14464,12 @@ function simplify(state) {
                 if (state[propertyKey] === false) {
                     delete state[propertyKey]
                 }
+                break
             case 'number':
                 if (state[propertyKey] === 0) {
                     delete state[propertyKey]
                 }
+                break
             case 'string':
                 if (state[propertyKey] === 'NONE') {
                     delete state[propertyKey]
@@ -14502,6 +14510,7 @@ function updateStateWithOutcome(state, outcome) {
                 break
         }
     })
+    simplify(state)
 }
 
 function getRoomDimensions(roomPositions) {
@@ -15093,10 +15102,8 @@ export function analyzeStagePaths(settings) {
         section: 'main',
     }
     findAllPaths(logic, startingState, goalState)
-    .forEach((successfulState) => {
-        const elapsedTime = startingTime - successfulState.time
-        console.log('elapsedTime:', elapsedTime)
-        console.log('successfulState:', successfulState)
+    .forEach((path) => {
+        console.log('path:', path)
     })
     throw Error('')
 }
@@ -15166,10 +15173,8 @@ export function analyzeLogic(seed, settings) {
 }
 
 export function findAllPaths(logic, startingState, goalState) {
-    // TODO(sestren): If requirements property is already sufficient to achieve the same outcome for that command, don't compound the requirements
-    // Example, if you have Bat, you probably don't need Power of Mist
-    console.log('findAllPaths()')
-    console.log('logic:', logic)
+    // console.log('findAllPaths()')
+    // console.log('logic:', logic)
     // compare starting state to final state to get requirements
     const startingTime = startingState.time
     const map = new Map()
@@ -15180,23 +15185,20 @@ export function findAllPaths(logic, startingState, goalState) {
     while (subWork.length > 0) {
         // console.log('subWork:', subWork.length)
         const currentState = subWork.pop()
-        if (
-            currentState.time <= 0.0
-        ) {
-            continue
-        }
         // console.log('currentState:', currentState)
         logic[currentState.stage][currentState.room]
         .filter((command) => {
-            if ('section' in command.requirement) {
-                return currentState.section === command.requirement.section
-            }
-            else {
-                return true
-            }
+            return isValidRequirement(currentState, command.requirement, [
+                'section',
+                'techniqueBladeDash',
+                'techniqueLogicalRisks',
+                'techniquePreciseJump',
+                'techniqueRisingUppercut',
+                'techniqueWolfMistRise',
+                'time',
+            ])
         })
         .forEach((command) => {
-            // Update state with outcome regardless of requirement (even negatives are allowed)
             const nextState = Object.assign({}, currentState)
             const requirements = combineRequirements(nextState.requirements || {}, command.requirement, false)
             if (requirements === null) {
@@ -15205,7 +15207,6 @@ export function findAllPaths(logic, startingState, goalState) {
             simplify(requirements)
             nextState.requirements = requirements
             updateStateWithOutcome(nextState, command.outcome)
-            simplify(nextState)
             const nextStateHash = hashedState(nextState)
             let prefix = '-'
             if (
@@ -15268,13 +15269,30 @@ export function findAllPaths(logic, startingState, goalState) {
             }
         })
         updateStateWithOutcome(prospectiveStartingState, finalOutcome)
-        simplify(prospectiveStartingState)
         prospectiveStartingState.time = startingTime
         console.log('prospectiveStartingState:', prospectiveStartingState)
         const successfulState = findGoal(logic, prospectiveStartingState, goalState)
         if (successfulState !== null) {
+            const path = {
+                requirement: {
+                    stage: startingState.stage,
+                    room: startingState.room,
+                    section: startingState.section,
+                    time: {
+                        minimum: startingTime - successfulState.time,
+                    },
+                },
+                outcome: {
+                    time: {
+                        operation: 'add',
+                        value: successfulState.time - startingTime,
+                    },
+                },
+            }
+            Object.assign(path.requirement, finalState.requirements)
+            Object.assign(path.outcome, goalState)
             successfulState.requirements = finalState.requirements
-            result.push(successfulState)
+            result.push(path)
         }
     })
     console.log('************************************')
