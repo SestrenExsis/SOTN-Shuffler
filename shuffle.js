@@ -1075,7 +1075,7 @@ const argv = yargs(process.argv.slice(2))
                             const shuffledRooms = shuffleRooms(stageSeed, stageName, true)
                             let validInd = true
                             if (stageName in VALIDATIONS) {
-                                // console.log('stageName:', stageName)
+                                console.log('stageName:', stageName)
                                 validInd = VALIDATIONS[stageName]
                                 .every((validation) => {
                                     const logicSettings = {
@@ -1086,16 +1086,16 @@ const argv = yargs(process.argv.slice(2))
                                     }
                                     return validate(logicSettings, validation)
                                 })
-                                if (stageName === 'abandonedMine') {
-                                    console.log('stageAttemptCount:', stageAttemptCount)
-                                    const logicSettings = {
-                                        solverAttemptCount: shuffleData.debugInfo.solverAttemptCount,
-                                        // locationRewards: {},
-                                        stageLinks: {},
-                                        roomPositions: shuffledRooms.rooms,
-                                    }
-                                    analyzeStagePaths(logicSettings)
-                                }
+                                // if (stageName === 'abandonedMine') {
+                                //     console.log('stageAttemptCount:', stageAttemptCount)
+                                //     const logicSettings = {
+                                //         solverAttemptCount: shuffleData.debugInfo.solverAttemptCount,
+                                //         // locationRewards: {},
+                                //         stageLinks: {},
+                                //         roomPositions: shuffledRooms.rooms,
+                                //     }
+                                //     // analyzeStagePaths(logicSettings)
+                                // }
                             }
                             if (validInd) {
                                 stageNodeGroups[stageName] = shuffledRooms
@@ -1156,7 +1156,7 @@ const argv = yargs(process.argv.slice(2))
                         stageLinks: stageConnections.links,
                         roomPositions: roomArrangements.rooms,
                     }
-                    logicAnalysis = analyzeLogic(seed, logicSettings)
+                    logicAnalysis = analyzeLogic(logicSettings)
                     shuffleData.debugInfo.solvable = logicAnalysis.solvable
                     shuffleData.debugInfo.finalSeedsUsed.solver = seed
                 }
@@ -1254,7 +1254,8 @@ const argv = yargs(process.argv.slice(2))
                 seedName = getSeedName(seed)
             }
             const stageNodeGroups = {}
-            STAGE_NAMES.forEach((stageName) => {
+            STAGE_NAMES
+            .forEach((stageName) => {
                 let stageAttemptCount = 0
                 while (true) {
                     const stageSeed = seed + '.' + stageName + '.' + stageAttemptCount
@@ -1265,9 +1266,9 @@ const argv = yargs(process.argv.slice(2))
                         console.log('stageName:', stageName)
                         validInd = VALIDATIONS[stageName]
                         .every((validation) => {
-                            // console.log('validation:', validation)
-                            // console.log('stage:', validation.startingState.stage)
-                            // console.log('room:', validation.startingState.room)
+                            console.log('validation:', validation)
+                            console.log('stage:', validation.startingState.stage)
+                            console.log('room:', validation.startingState.room)
                             const logicSettings = {
                                 solverAttemptCount: shuffleData.debugInfo.solverAttemptCount,
                                 locationRewards: {},

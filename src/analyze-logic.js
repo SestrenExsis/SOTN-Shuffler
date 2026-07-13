@@ -1617,7 +1617,7 @@ const roomsInfo = {
                         positionY: 1024 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'lowerLedges', COST_UNKNOWN),
+                        getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
                 toBehindDemonBlock: {
@@ -1632,19 +1632,34 @@ const roomsInfo = {
                 },
                 toDemonBlock: {
                     outcome: {
-                        positionX: 232,
+                        positionX: 224,
                         positionY: 128,
+                        statusDemonSwitchActivated: true,
                         // section: demonBlock,
                     },
                     requirements: [
-                        { // After Activating Demon Switch
+                        {
+                            section: 'upperLeftLedge',
+                            progressionSummonDemonFamiliar: true,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
+                        {
+                            section: 'behindDemonBlock',
+                            progressionSummonDemonFamiliar: true,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
+                        {
                             section: 'upperLeftLedge',
                             statusDemonSwitchActivated: true,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
                         },
-                        { // After Activating Demon Switch
+                        {
                             section: 'behindDemonBlock',
                             statusDemonSwitchActivated: true,
                             costs: {
@@ -1752,29 +1767,6 @@ const roomsInfo = {
                         getMovement('batForm', 'tinyLedges', COST_UNKNOWN),
                         getMovement('poweredMist', 'tinyLedges', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'tinyLedges', COST_UNKNOWN),
-                    ],
-                },
-                activateDemonSwitch: {
-                    outcome: {
-                        statusDemonSwitchActivated: true,
-                    },
-                    requirements: [
-                        {
-                            section: 'behindDemonBlock',
-                            progressionSummonDemonFamiliar: true,
-                            statusDemonSwitchActivated: false,
-                            costs: {
-                                time: COST_UNKNOWN,
-                            },
-                        },
-                        {
-                            section: 'upperLeftLedge',
-                            progressionSummonDemonFamiliar: true,
-                            statusDemonSwitchActivated: false,
-                            costs: {
-                                time: COST_UNKNOWN,
-                            },
-                        },
                     ],
                 },
             },
@@ -3575,7 +3567,6 @@ const roomsInfo = {
                     outcome: {
                         positionX: 128,
                         positionY: 0 - 56,
-                        statusDoubleJumpUsed: false,
                     },
                     requirements: [
                         getMovement('jump', 'upperLedge', 0.7),
@@ -3860,7 +3851,7 @@ const roomsInfo = {
                             section: 'main',
                             progressionBatTransformation: true,
                             progressionWolfTransformation: true,
-                            statusSecretWallInMermanRoomOpened: false,
+                            // statusSecretWallInMermanRoomOpened: false,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
@@ -4007,7 +3998,7 @@ const roomsInfo = {
                     requirements: [
                         {
                             section: 'rightSide',
-                            statusPassageFromCastleEntranceToUndergroundCavernsOpened: false,
+                            // statusPassageFromCastleEntranceToUndergroundCavernsOpened: false,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
@@ -4389,7 +4380,7 @@ const roomsInfo = {
                     requirements: [
                         {
                             section: 'upperRightLedge',
-                            statusPassageFromCastleEntranceToMarbleGalleryOpened: false,
+                            // statusPassageFromCastleEntranceToMarbleGalleryOpened: false,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
@@ -4464,7 +4455,7 @@ const roomsInfo = {
                     requirements: [
                         { // After Opening Path
                             section: 'main',
-                            statusPassageFromCastleEntranceToWarpRoomsOpened: false,
+                            // statusPassageFromCastleEntranceToWarpRoomsOpened: false,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
@@ -6795,7 +6786,7 @@ const roomsInfo = {
                     requirements: [
                         {
                             section: 'main',
-                            statusLeftGearRoomSolved: false,
+                            // statusLeftGearRoomSolved: false,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
@@ -7145,7 +7136,7 @@ const roomsInfo = {
                     requirements: [
                         {
                             section: 'main',
-                            statusRightGearRoomSolved: false,
+                            // statusRightGearRoomSolved: false,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
@@ -8729,7 +8720,7 @@ const roomsInfo = {
                     requirements: [
                         {
                             section: 'rightSide',
-                            statusPressurePlateInMarbleGalleryActivated: false,
+                            // statusPressurePlateInMarbleGalleryActivated: false,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
@@ -8906,7 +8897,7 @@ const roomsInfo = {
                     requirements: [
                         {
                             section: 'main',
-                            statusSecretFloorInClockRoomOpened: false,
+                            // statusSecretFloorInClockRoomOpened: false,
                             itemInscribedRing: {
                                 minimum: 2,
                             },
@@ -11343,7 +11334,6 @@ const roomsInfo = {
     },
     royalChapel: {
         // NOTE(sestren): Royal Chapel has unusual overlapping room transitions
-        // TODO(sestren): Stale locations don't work sufficiently?
         chapelStaircase: {
             roomInfo: {
                 width: 2048,
@@ -14418,7 +14408,8 @@ function combineRequirements(requirementA, requirementB, includeTimeAndLocation=
             case 'boolean':
             case 'string':
                 if (propertyKey in result && result[propertyKey] !== propertyInfo) {
-                    validInd = false
+                    // validInd = false
+                    // NOTE(sestren): This might be the wrong approach
                 }
                 result[propertyKey] = propertyInfo
                 break
@@ -14622,6 +14613,82 @@ function updateLocation(location, settings) {
     })
 }
 
+function getLocationRewardCommands(settings) {
+    const result = []
+    Object.entries(locationsInfo ?? {})
+    .forEach(([locationName, locationInfo]) => {
+        // Process every location requirement (Only certain stages for now)
+        locationInfo.requirements
+        .filter((locationRequirementInfo) => {
+            return locationRequirementInfo.stage in roomPriority
+        })
+        .forEach((locationRequirementInfo) => {
+            const stageName = locationRequirementInfo.stage
+            const roomName = locationRequirementInfo.room
+            const location = {
+                stage: stageName,
+                room: roomName,
+                section: 'NONE',
+                positionX: locationInfo.outcome.positionX,
+                positionY: locationInfo.outcome.positionY,
+            }
+            updateLocation(location, settings)
+            // Process every reward requirement
+            let rewardInfo = {
+                outcome: {},
+                requirements: [
+                    {},
+                ],
+            }
+            if (locationName in settings.locationRewards) {
+                const rewardName = settings.locationRewards[locationName]
+                rewardInfo = rewardsInfo[rewardName]
+            }
+            rewardInfo.requirements
+            .forEach((rewardRequirementInfo) => {
+                const command = {
+                    outcome: {},
+                    requirement: {
+                        stage: stageName,
+                        room: roomName,
+                    },
+                }
+                Object.assign(command.outcome, locationInfo.outcome)
+                Object.assign(command.outcome, rewardInfo.outcome)
+                Object.assign(command.requirement, locationRequirementInfo)
+                Object.entries(rewardRequirementInfo)
+                .forEach(([propertyKey, propertyInfo]) => {
+                    if (propertyKey == 'costs') {
+                        Object.entries(propertyInfo)
+                        .forEach(([costKey, costValue]) => {
+                            switch (typeof costValue) {
+                                case 'number':
+                                    command.requirement[costKey] = {
+                                        minimum: costValue,
+                                    }
+                                    command.outcome[costKey] = {
+                                        operation: 'add',
+                                        value: -1 * costValue,
+                                    }
+                                    break
+                                default:
+                                    command.outcome[costKey] = costValue
+                                    break
+                            }
+                        })
+                    }
+                    else {
+                        command.requirement[propertyKey] = propertyInfo
+                    }
+                })
+                command.requirement.section = location.section
+                result.push(command)
+            })
+        })
+    })
+    return result
+}
+
 function getLogic(settings, enableElsewhere=false) {
     const result = {}
     // Process every room command
@@ -14694,73 +14761,20 @@ function getLogic(settings, enableElsewhere=false) {
     })
     // Process every location-reward combination
     if ('locationRewards' in settings) {
-        Object.entries(locationsInfo ?? {})
-        .forEach(([locationName, locationInfo]) => {
-            // Process every location requirement (Only certain stages for now)
-            locationInfo.requirements
-            .filter((locationRequirementInfo) => {
-                return locationRequirementInfo.stage in roomPriority
-            })
-            .forEach((locationRequirementInfo) => {
-                const stageName = locationRequirementInfo.stage
-                const roomName = locationRequirementInfo.room
-                const location = {
-                    stage: stageName,
-                    room: roomName,
-                    section: 'NONE',
-                    positionX: locationInfo.outcome.positionX,
-                    positionY: locationInfo.outcome.positionY,
-                }
-                updateLocation(location, settings)
-                // Process every reward requirement
-                let rewardInfo = {
-                    outcome: {},
-                    requirements: [
-                        {},
-                    ],
-                }
-                if (locationName in settings.locationRewards) {
-                    const rewardName = settings.locationRewards[locationName]
-                    rewardInfo = rewardsInfo[rewardName]
-                }
-                rewardInfo.requirements
-                .forEach((rewardRequirementInfo) => {
-                    const command = {
-                        outcome: {},
-                        requirement: {},
-                    }
-                    Object.assign(command.outcome, locationInfo.outcome)
-                    Object.assign(command.outcome, rewardInfo.outcome)
-                    Object.assign(command.requirement, locationRequirementInfo)
-                    Object.entries(rewardRequirementInfo)
-                    .forEach(([propertyKey, propertyInfo]) => {
-                        if (propertyKey == 'costs') {
-                            Object.entries(propertyInfo)
-                            .forEach(([costKey, costValue]) => {
-                                switch (typeof costValue) {
-                                    case 'number':
-                                        command.requirement[costKey] = {
-                                            minimum: costValue,
-                                        }
-                                        command.outcome[costKey] = {
-                                            operation: 'add',
-                                            value: -1 * costValue,
-                                        }
-                                        break
-                                    default:
-                                        command.outcome[costKey] = costValue
-                                        break
-                                }
-                            })
-                        }
-                        else {
-                            command.requirement[propertyKey] = propertyInfo
-                        }
-                    })
-                    command.requirement.section = location.section
-                    result[stageName][roomName].push(command)
-                })
-            })
+        getLocationRewardCommands(settings)
+        .forEach((command) => {
+            const reducedCommand = Object.assign({}, command)
+            const stageName = reducedCommand.requirement.stage
+            const roomName = reducedCommand.requirement.room
+            delete reducedCommand.requirement.stage
+            delete reducedCommand.requirement.room
+            if (!(stageName in result)) {
+                result[stageName] = {}
+            }
+            if (!(roomName in result[stageName])) {
+                result[stageName][roomName] = []
+            }
+            result[stageName][roomName].push(reducedCommand)
         })
     }
     // Process every stage link
@@ -15076,10 +15090,10 @@ export function validate(settings, validation) {
     let result = true
     switch (validation.goalType) {
         case 'required':
-            result = goalFound
+            result = (goalFound !== null)
             break
         case 'forbidden':
-            result = !goalFound
+            result = (goalFound === null)
             break
     }
     return result
@@ -15101,20 +15115,417 @@ export function analyzeStagePaths(settings) {
         room: 'loadingRoomToWarpRooms',
         section: 'main',
     }
-    findAllPaths(logic, startingState, goalState)
-    .forEach((path) => {
-        console.log('path:', path)
+    getPathCommands(logic, startingState, goalState)
+    .forEach((command) => {
+        console.log('command:', command)
     })
     throw Error('')
 }
 
-export function analyzeLogic(seed, settings) {
-    const rng = seedrandom(seed)
+const REGIONS = {
+    abandonedMine: [
+        {
+            room: 'demonSwitch',
+            section: 'demonBlock',
+        },
+        {
+            room: 'demonCard',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToCatacombs',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToWarpRooms',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToUndergroundCaverns',
+            section: 'main',
+        },
+    ],
+    alchemyLaboratory: [
+        {
+            room: 'batCardRoom',
+            section: 'main',
+        },
+        {
+            room: 'cannonRoom',
+            section: 'main',
+        },
+        {
+            room: 'skillOfWolfRoom',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToMarbleGallery',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToRoyalChapel',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToCastleEntrance',
+            section: 'main',
+        },
+    ],
+    castleEntrance: [
+        {
+            room: 'afterDrawbridge',
+            section: 'main',
+        },
+        {
+            room: 'afterDrawbridge',
+            section: 'parapet',
+        },
+        {
+            room: 'cubeOfZoeRoom',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToMarbleGallery',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToWarpRooms',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToAlchemyLaboratory',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToUndergroundCaverns',
+            section: 'main',
+        },
+        {
+            room: 'mermanRoom',
+            section: 'secretPassage',
+        },
+        {
+            room: 'shortcutToUndergroundCaverns',
+            section: 'main',
+        },
+        {
+            room: 'shortcutToWarpRooms',
+            section: 'rightSide',
+        },
+    ],
+    castleKeep: [
+        {
+            room: 'keepArea',
+            section: 'leapStoneLedge',
+        },
+        {
+            room: 'keepArea',
+            section: 'powerOfMistLedge',
+        },
+        {
+            room: 'keepArea',
+            section: 'anteroom',
+        },
+        {
+            room: 'ghostCardRoom',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToClockTower',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToWarpRooms',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToRoyalChapel',
+            section: 'main',
+        },
+    ],
+    catacombs: [
+        {
+            room: 'spikeBreakerRoom',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToAbandonedMine',
+            section: 'main',
+        },
+    ],
+    clockTower: [
+        {
+            room: 'fireOfBatRoom',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToCastleKeep',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToOuterWall',
+            section: 'main',
+        },
+    ],
+    colosseum: [
+        {
+            room: 'topOfElevatorShaft',
+            section: 'behindMistGate',
+        },
+        {
+            room: 'loadingRoomToRoyalChapel',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToOlroxsQuarters',
+            section: 'main',
+        },
+    ],
+    longLibrary: [
+        {
+            room: 'lesserDemonArea',
+            section: 'behindMistGate',
+        },
+        {
+            room: 'shop',
+            section: 'main',
+        },
+        {
+            room: 'faerieCardRoom',
+            section: 'main',
+        },
+        {
+            room: 'spellbookArea',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToOuterWall',
+            section: 'main',
+        },
+    ],
+    marbleGallery: [
+        {
+            room: 'spiritOrbRoom',
+            section: 'main',
+        },
+        {
+            room: 'stopwatchRoom',
+            section: 'main',
+        },
+        {
+            room: 'clockRoom',
+            section: 'main',
+        },
+        {
+            room: 'blueDoorRoom',
+            section: 'rightSide',
+        },
+        {
+            room: 'gravityBootsRoom',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToOuterWall',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToUndergroundCaverns',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToAlchemyLaboratory',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToOlroxsQuarters',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToCastleEntrance',
+            section: 'main',
+        },
+    ],
+    olroxsQuarters: [
+        {
+            room: 'echoOfBatRoom',
+            section: 'main',
+        },
+        {
+            room: 'swordCardRoom',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToMarbleGallery',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToColosseum',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToWarpRooms',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToRoyalChapel',
+            section: 'main',
+        },
+    ],
+    outerWall: [
+        {
+            room: 'loadingRoomToWarpRooms',
+            section: 'main',
+        },
+        {
+            room: 'elevatorShaftRoom',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToClockTower',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToLongLibrary',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToMarbleGallery',
+            section: 'main',
+        },
+    ],
+    royalChapel: [
+        {
+            room: 'silverRingRoom',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToCastleKeep',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToAlchemyLaboratory',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToColosseum',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToOlroxsQuarters',
+            section: 'main',
+        },
+        {
+            room: 'pushingStatueShortcut',
+            section: 'leftOfStatue',
+        },
+    ],
+    undergroundCaverns: [
+        // {
+        //     room: 'dkBridge',
+        //     section: 'main',
+        // },
+        // {
+        //     room: 'dKButton',
+        //     section: 'main',
+        // },
+        {
+            room: 'holySymbolRoom',
+            section: 'main',
+        },
+        {
+            room: 'mermanStatueRoom',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToCastleEntrance',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToMarbleGallery',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToAbandonedMine',
+            section: 'main',
+        },
+        {
+            room: 'falseSaveRoom',
+            section: 'main',
+        },
+    ],
+    warpRooms: [
+        {
+            room: 'loadingRoomToAbandonedMine',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToCastleEntrance',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToOlroxsQuarters',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToOuterWall',
+            section: 'main',
+        },
+        {
+            room: 'loadingRoomToCastleKeep',
+            section: 'main',
+        },
+    ],
+}
+
+export function analyzeLogic(settings) {
     const result = {
         solvable: false,
     }
-    // console.log('settings:', JSON.stringify(settings, null, 4))
-    const logic = getLogic(settings)
+    console.log('settings:', JSON.stringify(settings, null, 4))
+    const fullLogic = getLogic(settings)
+    console.log('fullLogic:', inspect(fullLogic, { depth: 5, }))
+    const reducedLogic = {}
+    Object.entries(REGIONS)
+    .forEach(([stageName, regions]) => {
+        console.log('stageName:', stageName)
+        reducedLogic[stageName] = {}
+        regions
+        .forEach((startingRegion, startingIndex) => {
+            console.log('startingRegion:', startingRegion)
+            if (!(startingRegion.room in reducedLogic[stageName])) {
+                reducedLogic[stageName][startingRegion.room] = []
+            }
+            regions
+            .filter((goalRegion, goalIndex) => {
+                return goalIndex !== startingIndex
+            })
+            .forEach((goalRegion, goalIndex) => {
+                console.log('goalRegion:', goalRegion)
+                const startingState = {
+                    stage: stageName,
+                    room: startingRegion.room,
+                    section: startingRegion.section,
+                    time: 180.0,
+                }
+                const goalState = {
+                    stage: stageName,
+                    room: goalRegion.room,
+                    section: goalRegion.section,
+                }
+                getPathCommands(fullLogic, startingState, goalState)
+                .forEach((command) => {
+                    console.log('command:', command)
+                    reducedLogic[stageName][region.room].push(command)
+                })
+            })
+        })
+    })
+    console.log('reducedLogic:', reducedLogic)
+    throw Error('')
+    // getLocationRewardCommands(settings)
+    // .forEach((command) => {
+    //     // ... reducedLogic
+    // })
     // console.log('logic:', JSON.stringify(logic, null, 4))
     const mainWork = [
         {
@@ -15172,9 +15583,8 @@ export function analyzeLogic(seed, settings) {
     return result
 }
 
-export function findAllPaths(logic, startingState, goalState) {
-    // console.log('findAllPaths()')
-    // console.log('logic:', logic)
+export function getPathCommands(logic, startingState, goalState) {
+    console.log('getPathCommands()')
     // compare starting state to final state to get requirements
     const startingTime = startingState.time
     const map = new Map()
@@ -15183,9 +15593,10 @@ export function findAllPaths(logic, startingState, goalState) {
     ]
     map.set(hashedState(startingState), startingState)
     while (subWork.length > 0) {
-        // console.log('subWork:', subWork.length)
         const currentState = subWork.pop()
-        // console.log('currentState:', currentState)
+        if (currentState.stage !== startingState.stage) {
+            continue
+        }
         logic[currentState.stage][currentState.room]
         .filter((command) => {
             return isValidRequirement(currentState, command.requirement, [
@@ -15219,20 +15630,15 @@ export function findAllPaths(logic, startingState, goalState) {
                     subWork.push(nextState)
                 }
             }
-            // console.log('  nextState:', prefix, nextStateHash, nextState)
         })
     }
-    console.log('************************************')
     const result = []
-    console.log('goalState:', goalState)
     map.values()
     .filter((finalState) => {
         return isValidRequirement(finalState, goalState)
     })
     .forEach((finalState) => {
-        console.log('finalState:', finalState)
         const prospectiveStartingState = Object.assign({}, startingState)
-        // TODO(sestren): Apply requirements to final state
         const finalOutcome = {}
         Object.entries(finalState)
         .filter(([propertyKey, propertyInfo]) => {
@@ -15270,7 +15676,6 @@ export function findAllPaths(logic, startingState, goalState) {
         })
         updateStateWithOutcome(prospectiveStartingState, finalOutcome)
         prospectiveStartingState.time = startingTime
-        console.log('prospectiveStartingState:', prospectiveStartingState)
         const successfulState = findGoal(logic, prospectiveStartingState, goalState)
         if (successfulState !== null) {
             const path = {
@@ -15291,10 +15696,8 @@ export function findAllPaths(logic, startingState, goalState) {
             }
             Object.assign(path.requirement, finalState.requirements)
             Object.assign(path.outcome, goalState)
-            successfulState.requirements = finalState.requirements
             result.push(path)
         }
     })
-    console.log('************************************')
     return result
 }
