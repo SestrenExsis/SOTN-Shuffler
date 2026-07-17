@@ -14409,7 +14409,7 @@ function combineRequirements(requirementA, requirementB, includeTimeAndLocation=
             case 'string':
                 if (propertyKey in result && result[propertyKey] !== propertyInfo) {
                     // validInd = false
-                    // NOTE(sestren): This might be the wrong approach
+                    // NOTE(sestren): This might be the wrong approach?
                 }
                 result[propertyKey] = propertyInfo
                 break
@@ -15035,7 +15035,7 @@ const goalLocations = [
     'locationSwordCard',
 ]
 
-export function findGoal(logic, startingState, goalState) {
+export function findGoal(logic, startingState, goalState, sameStage=false) {
     // console.log('findGoal')
     let result = null
     const map = new Map()
@@ -15046,6 +15046,9 @@ export function findGoal(logic, startingState, goalState) {
     while (subWork.length > 0) {
         // console.log('subWork.length:', subWork.length, 'map.size:', map.size)
         const currentState = subWork.pop()
+        if (sameStage && (currentState.stage !== startingState.stage)) {
+            continue
+        }
         // console.log('currentState:', currentState)
         logic[currentState.stage][currentState.room]
         .find((command) => {
@@ -15491,7 +15494,7 @@ export function analyzeLogic(settings) {
         reducedLogic[stageName] = {}
         regions
         .forEach((startingRegion, startingIndex) => {
-            console.log('startingRegion:', startingRegion)
+            console.log('  startingRegion:', startingRegion)
             if (!(startingRegion.room in reducedLogic[stageName])) {
                 reducedLogic[stageName][startingRegion.room] = []
             }
@@ -15500,7 +15503,7 @@ export function analyzeLogic(settings) {
                 return goalIndex !== startingIndex
             })
             .forEach((goalRegion, goalIndex) => {
-                console.log('goalRegion:', goalRegion)
+                console.log('    goalRegion:', goalRegion)
                 const startingState = {
                     stage: stageName,
                     room: startingRegion.room,
@@ -15514,8 +15517,13 @@ export function analyzeLogic(settings) {
                 }
                 getPathCommands(fullLogic, startingState, goalState)
                 .forEach((command) => {
-                    console.log('command:', command)
-                    reducedLogic[stageName][region.room].push(command)
+                    // console.log('command:', command)
+                    const reducedCommand = Object.assign({}, command)
+                    const stageName = reducedCommand.requirement.stage
+                    const roomName = reducedCommand.requirement.room
+                    delete reducedCommand.requirement.stage
+                    delete reducedCommand.requirement.room
+                    reducedLogic[stageName][roomName].push(reducedCommand)
                 })
             })
         })
@@ -15583,8 +15591,8 @@ export function analyzeLogic(settings) {
     return result
 }
 
-export function getPathCommands(logic, startingState, goalState) {
-    console.log('getPathCommands()')
+export function getPathCommands(logic, startingState, goalState, sameStage=true) {
+    // console.log('getPathCommands()')
     // compare starting state to final state to get requirements
     const startingTime = startingState.time
     const map = new Map()
@@ -15594,7 +15602,7 @@ export function getPathCommands(logic, startingState, goalState) {
     map.set(hashedState(startingState), startingState)
     while (subWork.length > 0) {
         const currentState = subWork.pop()
-        if (currentState.stage !== startingState.stage) {
+        if (sameStage && (currentState.stage !== startingState.stage)) {
             continue
         }
         logic[currentState.stage][currentState.room]
@@ -15606,6 +15614,7 @@ export function getPathCommands(logic, startingState, goalState) {
                 'techniquePreciseJump',
                 'techniqueRisingUppercut',
                 'techniqueWolfMistRise',
+                'locationPowerOfWolf', // Locations need to be added to avoid infinite item pickups?
                 'time',
             ])
         })
@@ -15676,7 +15685,7 @@ export function getPathCommands(logic, startingState, goalState) {
         })
         updateStateWithOutcome(prospectiveStartingState, finalOutcome)
         prospectiveStartingState.time = startingTime
-        const successfulState = findGoal(logic, prospectiveStartingState, goalState)
+        const successfulState = findGoal(logic, prospectiveStartingState, goalState, true)
         if (successfulState !== null) {
             const path = {
                 requirement: {
