@@ -14890,18 +14890,18 @@ function getLogic(settings, enableElsewhere=false) {
     return result
 }
 
-function hashedState(state) {
+function hashedState(state, ignoredProperty=null, ignoredRequirement=null) {
     // Example: abandonedMine.bend.main.b8e6fb7c
     const elements = []
     elements.push(state.stage ?? 'NONE')
     elements.push(state.room ?? 'NONE')
     elements.push(state.section ?? 'NONE')
-    elements.push(hashedObject(state, ['stage', 'room', 'section', 'time', 'positionX', 'positionY']))
+    elements.push(hashedObject(state, ['stage', 'room', 'section', 'time', 'positionX', 'positionY', ignoredProperty], ignoredRequirement))
     const result = elements.join('.')
     return result
 }
 
-function hashedObject(object, ignoredProperties) {
+function hashedObject(object, ignoredProperties, ignoredSubProperty=null) {
     const elements = []
     Object.keys(object)
     .filter((key) => {
@@ -14916,7 +14916,7 @@ function hashedObject(object, ignoredProperties) {
                 elements.push([key, object[key]].join('='))
                 break
             case 'object':
-                elements.push([key, hashedObject(object[key], [])].join('='))
+                elements.push([key, hashedObject(object[key], [ignoredSubProperty])].join('='))
                 break
             default:
                 console.log('Unhandled key-value pair: ' + JSON.stringify(key) + ', ' + JSON.stringify(object[key]))
@@ -15182,7 +15182,7 @@ const REGIONS = {
         {
             room: 'afterDrawbridge',
             section: 'parapet',
-            lockedBehind: [
+            allowedConnections: [
                 {
                     room: 'afterDrawbridge',
                     section: 'main',
@@ -15196,7 +15196,7 @@ const REGIONS = {
         {
             room: 'loadingRoomToMarbleGallery',
             section: 'main',
-            lockedBehind: [
+            allowedConnections: [
                 {
                     room: 'cubeOfZoeRoom',
                     section: 'main',
@@ -15206,11 +15206,17 @@ const REGIONS = {
         {
             room: 'loadingRoomToWarpRooms',
             section: 'main',
+            allowedConnections: [
+                {
+                    room: 'shortcutToWarpRooms',
+                    section: 'rightSide',
+                },
+            ],
         },
         {
             room: 'loadingRoomToAlchemyLaboratory',
             section: 'main',
-            lockedBehind: [
+            allowedConnections: [
                 {
                     room: 'cubeOfZoeRoom',
                     section: 'main',
@@ -15220,6 +15226,12 @@ const REGIONS = {
         {
             room: 'loadingRoomToUndergroundCaverns',
             section: 'main',
+            allowedConnections: [
+                {
+                    room: 'shortcutToUndergroundCaverns',
+                    section: 'main',
+                },
+            ],
         },
         {
             room: 'mermanRoom',
@@ -15434,7 +15446,7 @@ const REGIONS = {
         {
             room: 'loadingRoomToOlroxsQuarters',
             section: 'main',
-            lockedBehind: [
+            allowedConnections: [
                 {
                     room: 'pushingStatueShortcut',
                     section: 'leftOfStatue',
@@ -15528,12 +15540,21 @@ export function analyzeLogic(settings) {
             })
             .filter((goalRegion) => {
                 let validInd = true
-                if ('lockedBehind' in startingRegion) {
-                    validInd = startingRegion.lockedBehind
+                if (validInd && 'allowedConnections' in startingRegion) {
+                    validInd = startingRegion.allowedConnections
                     .find((lockRegion) => {
                         return (
                             lockRegion.stage === goalRegion.stage &&
                             lockRegion.room === goalRegion.room
+                        )
+                    })
+                }
+                if (validInd && 'allowedConnections' in goalRegion) {
+                    validInd = goalRegion.allowedConnections
+                    .find((lockRegion) => {
+                        return (
+                            lockRegion.stage === startingRegion.stage &&
+                            lockRegion.room === startingRegion.room
                         )
                     })
                 }
@@ -15552,25 +15573,45 @@ export function analyzeLogic(settings) {
                     room: goalRegion.room,
                     section: goalRegion.section,
                 }
+                const map = new Map()
                 getPathCommands(fullLogic, startingState, goalState)
                 .forEach((command) => {
                     // console.log('command:', command)
-                    const reducedCommand = Object.assign({}, command)
-                    const stageName = reducedCommand.requirement.stage
-                    const roomName = reducedCommand.requirement.room
-                    delete reducedCommand.requirement.stage
-                    delete reducedCommand.requirement.room
-                    reducedLogic[stageName][roomName].push(reducedCommand)
+                    const simplerPathExists = Object.entries(command.requirement)
+                    .filter(([propertyKey, propertyValue]) => {
+                        return !['stage', 'room', 'section', 'time', 'positionX', 'positionY'].includes(propertyKey)
+                    })
+                    .find(([propertyKey, propertyValue]) => {
+                        const simplerStateHash = hashedState(command.requirement, propertyKey)
+                        // console.log('  simplerStateHash:', propertyKey, simplerStateHash)
+                        return (
+                            map.has(simplerStateHash) &&
+                            (map.get(simplerStateHash).time.minimum ?? Number.MAX_SAFE_INTEGER) <= command.requirement.time.minimum
+                        )
+                    })
+                    if (simplerPathExists) {
+                        // console.log('*** simplerPathExists for:', command)
+                    }
+                    else {
+                        map.set(hashedState(command.requirement), command.requirement)
+                        // console.log('hashedState:', hashedState(command.requirement))
+                        const reducedCommand = Object.assign({}, command)
+                        const stageName = reducedCommand.requirement.stage
+                        const roomName = reducedCommand.requirement.room
+                        delete reducedCommand.requirement.stage
+                        delete reducedCommand.requirement.room
+                        reducedLogic[stageName][roomName].push(reducedCommand)
+                    }
                 })
             })
         })
     })
     console.log('reducedLogic:', inspect(reducedLogic, { depth: 5, }))
-    throw Error('')
-    // getLocationRewardCommands(settings)
-    // .forEach((command) => {
-    //     // ... reducedLogic
-    // })
+    // throw Error('')
+    getLocationRewardCommands(settings)
+    .forEach((command) => {
+        // ... reducedLogic
+    })
     // console.log('logic:', JSON.stringify(logic, null, 4))
     const mainWork = [
         {
@@ -15579,7 +15620,7 @@ export function analyzeLogic(settings) {
             section: 'main',
             positionX: 136,
             positionY: 640,
-            time: 120.0,
+            time: 3600.0,
         },
     ]
     const map = new Map()
@@ -15587,42 +15628,44 @@ export function analyzeLogic(settings) {
         if (result.solvable) {
             break
         }
-        const startingState = mainWork.pop()
-        let goalCompletions = []
-        Object.entries(GOAL_STATES)
-        .filter(([goalName, goalRequirement]) => {
-            const validRequirement = isValidRequirement(startingState, goalRequirement)
-            if (validRequirement) {
-                goalCompletions.push(goalName)
-            }
-            return !validRequirement
-        })
-        .forEach(([goalName, goalRequirement]) => {
-            let successfulState = findGoal(logic, startingState, goalRequirement)
-            if (successfulState) {
-                if (isValidRequirement(successfulState, WINNING_STATE)) {
-                    result.solvable = true
-                    console.log('solvedState:', successfulState)
-                    return result
-                }
-                const successfulStateHash = hashedState(successfulState)
-                if (map.has(successfulStateHash)) {
-                    console.log('**************************', mainWork.length)
-                }
-                else {
-                    map.set(successfulStateHash, successfulState.time)
-                    successfulState.time = 120.0
-                    mainWork.push(successfulState)
-                }
-            }
-        })
-        console.log('goalCompletionCount:', goalCompletions.length, 'out of', Object.entries(GOAL_STATES).length)
-        if (goalCompletions.length >= 7) {
-            console.log(goalCompletions.join(', '))
+        const currentState = mainWork.pop()
+        if (isValidRequirement(currentState, WINNING_STATE)) {
+            result.solvable = true
+            break
         }
-        // if (goalCompletions.length >= GOAL_STATES.length) {
-        //     result.solvable = true
-        // }
+        map.set(hashedState(currentState), currentState)
+        while (subWork.length > 0) {
+            const currentState = subWork.pop()
+            logic[currentState.stage][currentState.room]
+            .find((command) => {
+                if (isValidRequirement(currentState, command.requirement)) {
+                    const nextState = Object.assign({}, currentState)
+                    updateStateWithOutcome(nextState, command.outcome)
+                    if (nextState.section === 'NONE') {
+                        throw Error('')
+                    }
+                    const nextStateHash = hashedState(nextState)
+                    if (
+                        !map.has(nextStateHash) ||
+                        map.get(nextStateHash).time < nextState.time
+                    ) {
+                        map.set(nextStateHash, nextState)
+                        if (isValidRequirement(nextState, goalState)) {
+                            result = nextState
+                            return true
+                        } else {
+                            subWork.push(nextState)
+                        }
+                    }
+                    return false
+                }
+                return false
+            })
+            if (result !== null) {
+                break
+            }
+        }
+        return result
     }
     console.log('')
     return result
@@ -15644,14 +15687,17 @@ export function getPathCommands(logic, startingState, goalState, sameStage=true)
         }
         logic[currentState.stage][currentState.room]
         .filter((command) => {
+            // TODO(sestren): Only consider commands that are not obsoleted by other commands
             return isValidRequirement(currentState, command.requirement, [
+                'locationFireOfBat', // TODO(sestren): Locations need to be added to avoid infinite item pickups?
+                'locationPowerOfWolf', // TODO(sestren): Locations need to be added to avoid infinite item pickups?
                 'section',
                 'techniqueBladeDash',
                 'techniqueLogicalRisks',
                 'techniquePreciseJump',
+                'techniqueQuickGrab',
                 'techniqueRisingUppercut',
                 'techniqueWolfMistRise',
-                'locationPowerOfWolf', // Locations need to be added to avoid infinite item pickups?
                 'time',
             ])
         })
@@ -15671,9 +15717,30 @@ export function getPathCommands(logic, startingState, goalState, sameStage=true)
                 map.get(nextStateHash).time < nextState.time
             ) {
                 map.set(nextStateHash, nextState)
-                if (!isValidRequirement(nextState, goalState)) {
-                    prefix = 'Y'
-                    subWork.push(nextState)
+                if (isValidRequirement(nextState, goalState)) {
+                    // No need to branch from the goal
+                }
+                else {
+                    // console.log('nextState:', nextState)
+                    const simplerPathExists = Object.entries(nextState.requirements)
+                    .filter(([propertyKey, propertyValue]) => {
+                        return !['stage', 'room', 'section', 'time', 'positionX', 'positionY'].includes(propertyKey)
+                    })
+                    .find(([propertyKey, propertyValue]) => {
+                        const simplerStateHash = hashedState(nextState, null, propertyKey)
+                        // console.log('  simplerStateHash:', propertyKey, simplerStateHash)
+                        return (
+                            map.has(simplerStateHash) &&
+                            (map.get(simplerStateHash).time ?? -1) >= nextState.time
+                        )
+                    })
+                    if (simplerPathExists) {
+                        // console.log('simplerPathExists for:', nextStateHash)
+                    }
+                    else {
+                        prefix = 'Y'
+                        subWork.push(nextState)
+                    }
                 }
             }
         })
