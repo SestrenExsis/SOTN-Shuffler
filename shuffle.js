@@ -4,7 +4,6 @@ import { inspect } from 'node:util'
 
 import {
     analyzeLogic,
-    analyzeStagePaths,
     validate,
 } from './src/analyze-logic.js'
 
@@ -1049,10 +1048,11 @@ const argv = yargs(process.argv.slice(2))
             let roomArrangements = {}
             let questRewards = {}
             let logicAnalysis = {
-                solvable: false,
+                solved: false,
+                solvedState: null,
             }
             // Some modules (those that modify or depend on logic) must be run inside a loop because the solver must verify them
-            while (!logicAnalysis.solvable) {
+            while (!logicAnalysis.solved) {
                 shuffleData.debugInfo.solverAttemptCount += 1
                 console.log('solverAttemptCount:', shuffleData.debugInfo.solverAttemptCount)
                 changesToAdd = []
@@ -1075,7 +1075,7 @@ const argv = yargs(process.argv.slice(2))
                             const shuffledRooms = shuffleRooms(stageSeed, stageName, true)
                             let validInd = true
                             if (stageName in VALIDATIONS) {
-                                console.log('stageName:', stageName)
+                                // console.log('stageName:', stageName)
                                 validInd = VALIDATIONS[stageName]
                                 .every((validation) => {
                                     const logicSettings = {
@@ -1086,16 +1086,6 @@ const argv = yargs(process.argv.slice(2))
                                     }
                                     return validate(logicSettings, validation)
                                 })
-                                // if (stageName === 'abandonedMine') {
-                                //     console.log('stageAttemptCount:', stageAttemptCount)
-                                //     const logicSettings = {
-                                //         solverAttemptCount: shuffleData.debugInfo.solverAttemptCount,
-                                //         // locationRewards: {},
-                                //         stageLinks: {},
-                                //         roomPositions: shuffledRooms.rooms,
-                                //     }
-                                //     // analyzeStagePaths(logicSettings)
-                                // }
                             }
                             if (validInd) {
                                 stageNodeGroups[stageName] = shuffledRooms
@@ -1157,11 +1147,12 @@ const argv = yargs(process.argv.slice(2))
                         roomPositions: roomArrangements.rooms,
                     }
                     logicAnalysis = analyzeLogic(logicSettings)
-                    shuffleData.debugInfo.solvable = logicAnalysis.solvable
+                    console.log('logicAnalysis:', logicAnalysis)
+                    shuffleData.debugInfo.solved = logicAnalysis.solved
                     shuffleData.debugInfo.finalSeedsUsed.solver = seed
                 }
                 else {
-                    logicAnalysis.solvable = true
+                    logicAnalysis.solved = true
                 }
                 if (shuffleData.debugInfo.solverAttemptCount > argv.solver.maxAttempts)  {
                     console.log('Took too many attempts to solve, abandoning ...')
@@ -1263,7 +1254,7 @@ const argv = yargs(process.argv.slice(2))
                     const shuffledRooms = shuffleRooms(stageSeed, stageName, true)
                     let validInd = true
                     if (stageName in VALIDATIONS) {
-                        console.log('stageName:', stageName)
+                        // console.log('stageName:', stageName)
                         validInd = VALIDATIONS[stageName]
                         .every((validation) => {
                             console.log('validation:', validation)

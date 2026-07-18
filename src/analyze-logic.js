@@ -14942,54 +14942,6 @@ function hashedText(text) {
     return result
 }
 
-const GOAL_STATES = {
-    spk: {
-        itemSpikeBreaker: {
-            minimum: 1,
-        },
-    },
-    // silverRingOrGoldRing: {
-    //     itemInscribedRing: {
-    //         minimum: 1,
-    //     },
-    // },
-    // silverRingAndGoldRing: {
-    //     itemInscribedRing: {
-    //         minimum: 2,
-    //     },
-    // },
-    bat: {
-        progressionBatTransformation: true,
-    },
-    jmp: {
-        progressionDoubleJump: true,
-    },
-    eko: {
-        progressionEcholocation: true,
-    },
-    itm: {
-        progressionItemMaterialization: true,
-    },
-    mst: {
-        progressionMistTransformation: true,
-    },
-    wtr: {
-        progressionProtectionFromWater: true,
-    },
-    dmn: {
-        progressionSummonDemonFamiliar: true,
-    },
-    fry: {
-        progressionSummonFerryman: true,
-    },
-    blu: {
-        progressionUnlockBlueDoors: true,
-    },
-    wlf: {
-        progressionWolfTransformation: true,
-    },
-}
-
 const WINNING_STATE = {
     itemSpikeBreaker: {
         minimum: 1,
@@ -15005,35 +14957,6 @@ const WINNING_STATE = {
     progressionUnlockBlueDoors: true,
     progressionWolfTransformation: true,
 }
-
-const goalLocations = [
-    'locationBatCard',
-    'locationCubeOfZoe',
-    'locationDemonCard',
-    'locationEchoOfBat',
-    'locationFaerieCard',
-    'locationFaerieScroll',
-    'locationFireOfBat',
-    // SKIP 'locationForceOfEcho',
-    'locationFormOfMist',
-    // SKIP 'locationGasCloud',
-    'locationGhostCard',
-    'locationGoldRing',
-    'locationGravityBoots',
-    'locationHolySymbol',
-    'locationJewelOfOpen',
-    'locationLeapStone',
-    'locationMermanStatue',
-    'locationPowerOfMist',
-    'locationPowerOfWolf',
-    'locationSilverRing',
-    'locationSkillOfWolf',
-    'locationSoulOfBat',
-    'locationSoulOfWolf',
-    'locationSpikeBreaker',
-    'locationSpiritOrb',
-    'locationSwordCard',
-]
 
 export function findGoal(logic, startingState, goalState, sameStage=false) {
     // console.log('findGoal')
@@ -15102,715 +15025,520 @@ export function validate(settings, validation) {
     return result
 }
 
-export function analyzeStagePaths(settings) {
-    console.log('settings:', inspect(settings))
-    const startingTime = 180.0
-    const logic = getLogic(settings)
-    console.log('logic:', inspect(logic, { depth: 5, }))
-    const startingState = {
-        stage: 'abandonedMine',
-        room: 'loadingRoomToCatacombs',
-        section: 'main',
-        time: startingTime,
-    }
-    const goalState = {
-        stage: 'abandonedMine',
-        room: 'loadingRoomToWarpRooms',
-        section: 'main',
-    }
-    getPathCommands(logic, startingState, goalState)
-    .forEach((command) => {
-        console.log('command:', command)
-    })
-    throw Error('')
-}
-
 const REGIONS = {
-    abandonedMine: [
-        {
-            room: 'demonSwitch',
-            section: 'demonBlock',
-        },
-        {
-            room: 'demonCard',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToCatacombs',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToWarpRooms',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToUndergroundCaverns',
-            section: 'main',
-        },
-    ],
-    alchemyLaboratory: [
-        {
-            room: 'batCardRoom',
-            section: 'main',
-        },
-        {
-            room: 'cannonRoom',
-            section: 'main',
-        },
-        {
-            room: 'skillOfWolfRoom',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToMarbleGallery',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToRoyalChapel',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToCastleEntrance',
-            section: 'main',
-        },
-    ],
-    castleEntrance: [
-        {
-            room: 'afterDrawbridge',
-            section: 'main',
-        },
-        {
-            room: 'afterDrawbridge',
-            section: 'parapet',
-            allowedConnections: [
-                {
-                    room: 'afterDrawbridge',
-                    section: 'main',
-                },
-            ],
-        },
-        {
-            room: 'cubeOfZoeRoom',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToMarbleGallery',
-            section: 'main',
-            allowedConnections: [
-                {
-                    room: 'cubeOfZoeRoom',
-                    section: 'main',
-                },
-            ],
-        },
-        {
-            room: 'loadingRoomToWarpRooms',
-            section: 'main',
-            allowedConnections: [
-                {
-                    room: 'shortcutToWarpRooms',
-                    section: 'rightSide',
-                },
-            ],
-        },
-        {
-            room: 'loadingRoomToAlchemyLaboratory',
-            section: 'main',
-            allowedConnections: [
-                {
-                    room: 'cubeOfZoeRoom',
-                    section: 'main',
-                },
-            ],
-        },
-        {
-            room: 'loadingRoomToUndergroundCaverns',
-            section: 'main',
-            allowedConnections: [
-                {
-                    room: 'shortcutToUndergroundCaverns',
-                    section: 'main',
-                },
-            ],
-        },
-        {
-            room: 'mermanRoom',
-            section: 'secretPassage',
-        },
-        {
-            room: 'shortcutToUndergroundCaverns',
-            section: 'main',
-        },
-        {
-            room: 'shortcutToWarpRooms',
-            section: 'rightSide',
-        },
-    ],
-    castleKeep: [
-        {
-            room: 'keepArea',
-            section: 'leapStoneLedge',
-        },
-        {
-            room: 'keepArea',
-            section: 'powerOfMistLedge',
-        },
-        {
-            room: 'keepArea',
-            section: 'anteroom',
-        },
-        {
-            room: 'ghostCardRoom',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToClockTower',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToWarpRooms',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToRoyalChapel',
-            section: 'main',
-        },
-    ],
-    catacombs: [
-        {
-            room: 'spikeBreakerRoom',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToAbandonedMine',
-            section: 'main',
-        },
-    ],
-    clockTower: [
-        {
-            room: 'fireOfBatRoom',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToCastleKeep',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToOuterWall',
-            section: 'main',
-        },
-    ],
-    colosseum: [
-        {
-            room: 'topOfElevatorShaft',
-            section: 'behindMistGate',
-        },
-        {
-            room: 'loadingRoomToRoyalChapel',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToOlroxsQuarters',
-            section: 'main',
-        },
-    ],
-    longLibrary: [
-        {
-            room: 'lesserDemonArea',
-            section: 'behindMistGate',
-        },
-        {
-            room: 'shop',
-            section: 'main',
-        },
-        {
-            room: 'faerieCardRoom',
-            section: 'main',
-        },
-        {
-            room: 'spellbookArea',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToOuterWall',
-            section: 'main',
-        },
-    ],
-    marbleGallery: [
-        {
-            room: 'spiritOrbRoom',
-            section: 'main',
-        },
-        {
-            room: 'stopwatchRoom',
-            section: 'main',
-        },
-        {
-            room: 'clockRoom',
-            section: 'main',
-        },
-        {
-            room: 'blueDoorRoom',
-            section: 'rightSide',
-        },
-        {
-            room: 'gravityBootsRoom',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToOuterWall',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToUndergroundCaverns',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToAlchemyLaboratory',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToOlroxsQuarters',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToCastleEntrance',
-            section: 'main',
-        },
-    ],
-    olroxsQuarters: [
-        {
-            room: 'echoOfBatRoom',
-            section: 'main',
-        },
-        {
-            room: 'swordCardRoom',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToMarbleGallery',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToColosseum',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToWarpRooms',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToRoyalChapel',
-            section: 'main',
-        },
-    ],
-    outerWall: [
-        {
-            room: 'loadingRoomToWarpRooms',
-            section: 'main',
-        },
-        {
-            room: 'elevatorShaftRoom',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToClockTower',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToLongLibrary',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToMarbleGallery',
-            section: 'main',
-        },
-    ],
-    royalChapel: [
-        {
-            room: 'silverRingRoom',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToCastleKeep',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToAlchemyLaboratory',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToColosseum',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToOlroxsQuarters',
-            section: 'main',
-            allowedConnections: [
-                {
-                    room: 'pushingStatueShortcut',
-                    section: 'leftOfStatue',
-                },
-            ],
-        },
-        {
-            room: 'pushingStatueShortcut',
-            section: 'leftOfStatue',
-        },
-    ],
-    undergroundCaverns: [
-        // {
-        //     room: 'dkBridge',
-        //     section: 'main',
-        // },
-        // {
-        //     room: 'dKButton',
-        //     section: 'main',
-        // },
-        {
-            room: 'holySymbolRoom',
-            section: 'main',
-        },
-        {
-            room: 'mermanStatueRoom',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToCastleEntrance',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToMarbleGallery',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToAbandonedMine',
-            section: 'main',
-        },
-        {
-            room: 'falseSaveRoom',
-            section: 'main',
-        },
-    ],
-    warpRooms: [
-        {
-            room: 'loadingRoomToAbandonedMine',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToCastleEntrance',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToOlroxsQuarters',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToOuterWall',
-            section: 'main',
-        },
-        {
-            room: 'loadingRoomToCastleKeep',
-            section: 'main',
-        },
-    ],
+    abandonedMine: {
+        checks: [
+            {
+                statusDemonSwitchActivated: true,
+            },
+            {
+                locationDemonCard: true,
+            },
+        ],
+        nodes: [
+            {
+                room: 'loadingRoomToCatacombs',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToWarpRooms',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToUndergroundCaverns',
+                section: 'main',
+            },
+        ],
+    },
+    alchemyLaboratory: {
+        checks: [
+            {
+                locationBatCard: true,
+            },
+            {
+                statusCannonActivated: true,
+            },
+            {
+                locationSkillOfWolf: true,
+            },
+        ],
+        nodes: [
+            {
+                room: 'loadingRoomToMarbleGallery',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToRoyalChapel',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToCastleEntrance',
+                section: 'main',
+            },
+        ],
+    },
+    castleEntrance: {
+        checks: [
+            // {
+            //     room: 'afterDrawbridge',
+            //     section: 'main',
+            // },
+            {
+                locationPowerOfWolf: true,
+            },
+            {
+                locationCubeOfZoe: true,
+            },
+            {
+                statusSecretWallInMermanRoomOpened: true,
+            },
+            {
+                statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
+            },
+            {
+                statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
+            },
+            {
+                statusPassageFromCastleEntranceToWarpRoomsOpened: true,
+            },
+        ],
+        nodes: [
+            {
+                room: 'loadingRoomToMarbleGallery',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToWarpRooms',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToAlchemyLaboratory',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToUndergroundCaverns',
+                section: 'main',
+            },
+        ],
+    },
+    castleKeep: {
+        checks: [
+            {
+                locationLeapStone: true,
+            },
+            {
+                locationPowerOfMist: true,
+            },
+            // {
+            //     room: 'keepArea',
+            //     section: 'anteroom',
+            // },
+            {
+                locationGhostCard: true,
+            },
+        ],
+        nodes: [
+            {
+                room: 'loadingRoomToClockTower',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToWarpRooms',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToRoyalChapel',
+                section: 'main',
+            },
+        ],
+    },
+    catacombs: {
+        checks: [
+            {
+                locationSpikeBreaker: true,
+            },
+        ],
+        nodes: [
+            {
+                room: 'loadingRoomToAbandonedMine',
+                section: 'main',
+            },
+        ],
+    },
+    clockTower: {
+        checks: [
+            {
+                locationFireOfBat: true,
+            },
+        ],
+        nodes: [
+            {
+                room: 'loadingRoomToCastleKeep',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToOuterWall',
+                section: 'main',
+            },
+        ],
+    },
+    colosseum: {
+        checks: [
+            {
+                locationFormOfMist: true,
+            },
+            {
+                statusBarrierInColosseumOpened: true,
+            },
+        ],
+        nodes: [
+            {
+                room: 'loadingRoomToRoyalChapel',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToOlroxsQuarters',
+                section: 'main',
+            },
+        ],
+    },
+    longLibrary: {
+        checks: [
+            {
+                locationSoulOfBat: true,
+            },
+            {
+                locationJewelOfOpen: true,
+            },
+            {
+                locationFaerieCard: true,
+            },
+            {
+                locationFaerieScroll: true,
+            },
+        ],
+        nodes: [
+            {
+                room: 'loadingRoomToOuterWall',
+                section: 'main',
+            },
+        ],
+    },
+    marbleGallery: {
+        checks: [
+            {
+                locationSpiritOrb: true,
+            },
+            // {
+            //     locationMarbleGalleryStopwatch: true,
+            // },
+            // {
+            //     room: 'clockRoom',
+            //     section: 'main',
+            // },
+            {
+                statusPressurePlateInMarbleGalleryActivated: true,
+            },
+            {
+                locationGravityBoots: true,
+            },
+        ],
+        nodes: [
+            {
+                room: 'loadingRoomToOuterWall',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToUndergroundCaverns',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToAlchemyLaboratory',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToOlroxsQuarters',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToCastleEntrance',
+                section: 'main',
+            },
+        ],
+    },
+    olroxsQuarters: {
+        checks: [
+            {
+                locationEchoOfBat: true,
+            },
+            {
+                locationSwordCard: true,
+            },
+        ],
+        nodes: [
+            {
+                room: 'loadingRoomToMarbleGallery',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToColosseum',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToWarpRooms',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToRoyalChapel',
+                section: 'main',
+            },
+        ],
+    },
+    outerWall: {
+        checks: [
+            {
+                locationSoulOfWolf: true,
+            },
+        ],
+        nodes: [
+            {
+                room: 'loadingRoomToWarpRooms',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToClockTower',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToLongLibrary',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToMarbleGallery',
+                section: 'main',
+            },
+        ],
+    },
+    royalChapel: {
+        checks: [
+            {
+                locationSilverRing: true,
+            },
+            {
+                statusStatueInRoyalChapelMoved: true,
+            },
+        ],
+        nodes: [
+            {
+                room: 'loadingRoomToCastleKeep',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToAlchemyLaboratory',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToColosseum',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToOlroxsQuarters',
+                section: 'main',
+            },
+        ],
+    },
+    undergroundCaverns: {
+        checks: [
+            // {
+            //     room: 'dkBridge',
+            //     section: 'main',
+            // },
+            // {
+            //     room: 'dKButton',
+            //     section: 'main',
+            // },
+            {
+                locationHolySymbol: true,
+            },
+            {
+                locationMermanStatue: true,
+            },
+            {
+                locationGoldRing: true,
+            },
+        ],
+        nodes: [
+            {
+                room: 'loadingRoomToCastleEntrance',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToMarbleGallery',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToAbandonedMine',
+                section: 'main',
+            },
+        ],
+    },
+    warpRooms: {
+        checks: [],
+        nodes: [
+            {
+                room: 'loadingRoomToAbandonedMine',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToCastleEntrance',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToOlroxsQuarters',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToOuterWall',
+                section: 'main',
+            },
+            {
+                room: 'loadingRoomToCastleKeep',
+                section: 'main',
+            },
+        ],
+    },
 }
 
 export function analyzeLogic(settings) {
     const result = {
-        solvable: false,
+        solved: false,
+        solvedState: null,
     }
-    console.log('settings:', JSON.stringify(settings, null, 4))
-    const fullLogic = getLogic(settings)
-    console.log('fullLogic:', inspect(fullLogic, { depth: 5, }))
-    const reducedLogic = {}
-    Object.entries(REGIONS)
-    .forEach(([stageName, regions]) => {
-        console.log('stageName:', stageName)
-        reducedLogic[stageName] = {}
-        regions
-        .forEach((startingRegion, startingIndex) => {
-            console.log('  startingRegion:', [startingRegion.room, startingRegion.section].join('.'))
-            if (!(startingRegion.room in reducedLogic[stageName])) {
-                reducedLogic[stageName][startingRegion.room] = []
-            }
-            regions
-            .filter((goalRegion, goalIndex) => {
-                return goalIndex !== startingIndex
-            })
-            .filter((goalRegion) => {
-                let validInd = true
-                if (validInd && 'allowedConnections' in startingRegion) {
-                    validInd = startingRegion.allowedConnections
-                    .find((lockRegion) => {
-                        return (
-                            lockRegion.stage === goalRegion.stage &&
-                            lockRegion.room === goalRegion.room
-                        )
-                    })
-                }
-                if (validInd && 'allowedConnections' in goalRegion) {
-                    validInd = goalRegion.allowedConnections
-                    .find((lockRegion) => {
-                        return (
-                            lockRegion.stage === startingRegion.stage &&
-                            lockRegion.room === startingRegion.room
-                        )
-                    })
-                }
-                return validInd
-            })
-            .forEach((goalRegion, goalIndex) => {
-                console.log('    goalRegion:', [goalRegion.room, goalRegion.section].join('.'))
-                const startingState = {
-                    stage: stageName,
-                    room: startingRegion.room,
-                    section: startingRegion.section,
-                    time: 180.0,
-                }
-                const goalState = {
-                    stage: stageName,
-                    room: goalRegion.room,
-                    section: goalRegion.section,
-                }
-                const map = new Map()
-                getPathCommands(fullLogic, startingState, goalState)
-                .forEach((command) => {
-                    // console.log('command:', command)
-                    const simplerPathExists = Object.entries(command.requirement)
-                    .filter(([propertyKey, propertyValue]) => {
-                        return !['stage', 'room', 'section', 'time', 'positionX', 'positionY'].includes(propertyKey)
-                    })
-                    .find(([propertyKey, propertyValue]) => {
-                        const simplerStateHash = hashedState(command.requirement, propertyKey)
-                        // console.log('  simplerStateHash:', propertyKey, simplerStateHash)
-                        return (
-                            map.has(simplerStateHash) &&
-                            (map.get(simplerStateHash).time.minimum ?? Number.MAX_SAFE_INTEGER) <= command.requirement.time.minimum
-                        )
-                    })
-                    if (simplerPathExists) {
-                        // console.log('*** simplerPathExists for:', command)
-                    }
-                    else {
-                        map.set(hashedState(command.requirement), command.requirement)
-                        // console.log('hashedState:', hashedState(command.requirement))
-                        const reducedCommand = Object.assign({}, command)
-                        const stageName = reducedCommand.requirement.stage
-                        const roomName = reducedCommand.requirement.room
-                        delete reducedCommand.requirement.stage
-                        delete reducedCommand.requirement.room
-                        reducedLogic[stageName][roomName].push(reducedCommand)
-                    }
-                })
-            })
-        })
-    })
-    console.log('reducedLogic:', inspect(reducedLogic, { depth: 5, }))
-    // throw Error('')
-    getLocationRewardCommands(settings)
-    .forEach((command) => {
-        // ... reducedLogic
-    })
-    // console.log('logic:', JSON.stringify(logic, null, 4))
-    const mainWork = [
-        {
-            stage: 'castleEntrance',
-            room: 'afterDrawbridge',
-            section: 'main',
-            positionX: 136,
-            positionY: 640,
-            time: 3600.0,
-        },
+    // console.log('settings:', JSON.stringify(settings, null, 4))
+    const logic = getLogic(settings)
+    // console.log('logic:', inspect(logic, { depth: 5, }))
+    const startingState = {
+        stage: 'castleEntrance',
+        room: 'afterDrawbridge',
+        section: 'main',
+        positionX: 136,
+        positionY: 640,
+        time: 3600.0,
+    }
+    const work = [
+        startingState,
     ]
     const map = new Map()
-    while (mainWork.length > 0) {
-        if (result.solvable) {
-            break
-        }
-        const currentState = mainWork.pop()
-        if (isValidRequirement(currentState, WINNING_STATE)) {
-            result.solvable = true
-            break
-        }
-        map.set(hashedState(currentState), currentState)
-        while (subWork.length > 0) {
-            const currentState = subWork.pop()
-            logic[currentState.stage][currentState.room]
-            .find((command) => {
-                if (isValidRequirement(currentState, command.requirement)) {
-                    const nextState = Object.assign({}, currentState)
-                    updateStateWithOutcome(nextState, command.outcome)
-                    if (nextState.section === 'NONE') {
-                        throw Error('')
-                    }
-                    const nextStateHash = hashedState(nextState)
-                    if (
-                        !map.has(nextStateHash) ||
-                        map.get(nextStateHash).time < nextState.time
-                    ) {
-                        map.set(nextStateHash, nextState)
-                        if (isValidRequirement(nextState, goalState)) {
-                            result = nextState
-                            return true
-                        } else {
-                            subWork.push(nextState)
-                        }
-                    }
-                    return false
-                }
-                return false
-            })
-            if (result !== null) {
-                break
-            }
-        }
-        return result
-    }
-    console.log('')
-    return result
-}
-
-export function getPathCommands(logic, startingState, goalState, sameStage=true) {
-    // console.log('getPathCommands()')
-    // compare starting state to final state to get requirements
-    const startingTime = startingState.time
-    const map = new Map()
-    const subWork = [
-        Object.assign({}, startingState),
-    ]
     map.set(hashedState(startingState), startingState)
-    while (subWork.length > 0) {
-        const currentState = subWork.pop()
-        if (sameStage && (currentState.stage !== startingState.stage)) {
-            continue
+    while (work.length > 0) {
+        let currentState = work.pop()
+        if (isValidRequirement(currentState, WINNING_STATE)) {
+            result.solvedState = currentState
+            result.solved = true
+            break
         }
-        logic[currentState.stage][currentState.room]
-        .filter((command) => {
-            // TODO(sestren): Only consider commands that are not obsoleted by other commands
-            return isValidRequirement(currentState, command.requirement, [
-                'locationFireOfBat', // TODO(sestren): Locations need to be added to avoid infinite item pickups?
-                'locationPowerOfWolf', // TODO(sestren): Locations need to be added to avoid infinite item pickups?
-                'section',
-                'techniqueBladeDash',
-                'techniqueLogicalRisks',
-                'techniquePreciseJump',
-                'techniqueQuickGrab',
-                'techniqueRisingUppercut',
-                'techniqueWolfMistRise',
-                'time',
-            ])
+        const currentRequirement = {
+            stage: currentState.stage,
+            room: currentState.room,
+            section: currentState.section,
+        }
+        // Attempt to "there-and-back" every available check until no more checks can be obtained
+        let newCheckFound = true
+        while (newCheckFound) {
+            newCheckFound = false
+            REGIONS[currentState.stage].checks
+            .filter((checkRequirement) => {
+                // Only attempt checks not already obtained
+                return !isValidRequirement(currentState, checkRequirement)
+            })
+            .forEach((checkRequirement) => {
+                const thereState = findGoal(logic, currentState, checkRequirement, true)
+                if (thereState !== null) {
+                    const backState = findGoal(logic, thereState, currentRequirement, true)
+                    if (backState !== null) {
+                        currentState = backState
+                        newCheckFound = true
+                    }
+                }
+            })
+        }
+        if (isValidRequirement(currentState, WINNING_STATE)) {
+            result.solvedState = currentState
+            result.solved = true
+            break
+        }
+        // Then, add every available check to the work stack
+        // (NOTE: This should be only the "one-way" checks at this point)
+        REGIONS[currentState.stage].checks
+        .filter((checkRequirement) => {
+            // Only attempt checks not already obtained
+            return !isValidRequirement(currentState, checkRequirement)
         })
-        .forEach((command) => {
-            const nextState = Object.assign({}, currentState)
-            const requirements = combineRequirements(nextState.requirements || {}, command.requirement, false)
-            if (requirements === null) {
-                return
-            }
-            simplify(requirements)
-            nextState.requirements = requirements
-            updateStateWithOutcome(nextState, command.outcome)
-            const nextStateHash = hashedState(nextState)
-            let prefix = '-'
-            if (
-                !map.has(nextStateHash) ||
-                map.get(nextStateHash).time < nextState.time
-            ) {
-                map.set(nextStateHash, nextState)
-                if (isValidRequirement(nextState, goalState)) {
-                    // No need to branch from the goal
+        .forEach((checkRequirement) => {
+            const nextState = findGoal(logic, currentState, checkRequirement, true)
+            if (nextState !== null) {
+                const nextStateHash = hashedState(nextState)
+                if (
+                    map.has(nextStateHash) &&
+                    (map.get(nextStateHash).time >= nextState.time)
+                ) {
+                    // Faster route already traversed
                 }
                 else {
-                    // console.log('nextState:', nextState)
-                    const simplerPathExists = Object.entries(nextState.requirements)
-                    .filter(([propertyKey, propertyValue]) => {
-                        return !['stage', 'room', 'section', 'time', 'positionX', 'positionY'].includes(propertyKey)
-                    })
-                    .find(([propertyKey, propertyValue]) => {
-                        const simplerStateHash = hashedState(nextState, null, propertyKey)
-                        // console.log('  simplerStateHash:', propertyKey, simplerStateHash)
-                        return (
-                            map.has(simplerStateHash) &&
-                            (map.get(simplerStateHash).time ?? -1) >= nextState.time
-                        )
-                    })
-                    if (simplerPathExists) {
-                        // console.log('simplerPathExists for:', nextStateHash)
-                    }
-                    else {
-                        prefix = 'Y'
-                        subWork.push(nextState)
+                    if (isValidRequirement(nextState, WINNING_STATE)) {
+                        result.solved = true
+                        result.solvedState = pairedState
+                        return
+                    } else {
+                        work.push(nextState)
+                        map.set(nextStateHash, nextState)
                     }
                 }
             }
         })
-    }
-    const result = []
-    map.values()
-    .filter((finalState) => {
-        return isValidRequirement(finalState, goalState)
-    })
-    .forEach((finalState) => {
-        const prospectiveStartingState = Object.assign({}, startingState)
-        const finalOutcome = {}
-        Object.entries(finalState)
-        .filter(([propertyKey, propertyInfo]) => {
-            return !(['stage', 'room', 'section', 'time', 'positionX', 'positionY', 'requirements'].includes(propertyKey))
-        })
-        .forEach(([propertyKey, propertyInfo]) => {
-            finalOutcome[propertyKey] = propertyInfo
-        })
-        Object.entries(finalState.requirements)
-        .forEach(([propertyKey, propertyInfo]) => {
-            let value
-            switch (typeof propertyInfo) {
-                case 'boolean':
-                case 'number':
-                case 'string':
-                    finalOutcome[propertyKey] = propertyInfo
-                    break
-                case 'object':
-                    value = finalOutcome[propertyKey] ?? 0
-                    if ('minimum' in propertyInfo) {
-                        if (value < propertyInfo.minimum) {
-                            finalOutcome[propertyKey] = propertyInfo.minimum
-                        }
-                    }
-                    if ('maximum' in propertyInfo) {
-                        if (value > propertyInfo.maximum) {
-                            finalOutcome[propertyKey] = propertyInfo.maximum
-                        }
-                    }
-                    break
-                default:
-                    console.log('Unhandled key-value pair: ' + JSON.stringify(propertyKey) + ', ' + JSON.stringify(propertyInfo))
-                    break
-            }
-        })
-        updateStateWithOutcome(prospectiveStartingState, finalOutcome)
-        prospectiveStartingState.time = startingTime
-        const successfulState = findGoal(logic, prospectiveStartingState, goalState, true)
-        if (successfulState !== null) {
-            const path = {
-                requirement: {
-                    stage: startingState.stage,
-                    room: startingState.room,
-                    section: startingState.section,
-                    time: {
-                        minimum: startingTime - successfulState.time,
-                    },
-                },
-                outcome: {
-                    time: {
-                        operation: 'add',
-                        value: successfulState.time - startingTime,
-                    },
-                },
-            }
-            Object.assign(path.requirement, finalState.requirements)
-            Object.assign(path.outcome, goalState)
-            result.push(path)
+        if (result.solved) {
+            break
         }
-    })
+        // Add every available node to the work stack
+        REGIONS[currentState.stage].nodes
+        .forEach((nodeRequirement) => {
+            const nextState = findGoal(logic, currentState, nodeRequirement, true)
+            if (nextState !== null) {
+                const nextStateHash = hashedState(nextState)
+                // Process only the loading room that leads to the trigger
+                logic[nextState.stage][nextState.room]
+                .filter((command) => {
+                    return command.outcome.room.startsWith('triggerTeleporterTo')
+                })
+                .forEach((command) => {
+                    if (isValidRequirement(nextState, command.requirement)) {
+                        const pairedState = Object.assign({}, nextState)
+                        updateStateWithOutcome(pairedState, command.outcome)
+                        // Trigger the teleporter
+                        const triggerCommand = logic[pairedState.stage][pairedState.room].at(0)
+                        updateStateWithOutcome(pairedState, triggerCommand.outcome)
+                        const pairedStateHash = hashedState(pairedState)
+                        if (
+                            map.has(nextStateHash) && (map.get(nextStateHash).time >= nextState.time) ||
+                            map.has(pairedStateHash) && (map.get(pairedStateHash).time >= pairedState.time)
+                        ) {
+                            // Faster route already traversed
+                        } else if (isValidRequirement(pairedState, WINNING_STATE)) {
+                            result.solved = true
+                            result.solvedState = pairedState
+                        } else {
+                            work.push(pairedState)
+                            map.set(nextStateHash, nextState)
+                            map.set(pairedStateHash, pairedState)
+                        }
+                    }
+                })
+            }
+        })
+        if (result.solved) {
+            break
+        }
+    }
+    console.log('')
     return result
 }
