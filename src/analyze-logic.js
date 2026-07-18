@@ -15182,6 +15182,12 @@ const REGIONS = {
         {
             room: 'afterDrawbridge',
             section: 'parapet',
+            lockedBehind: [
+                {
+                    room: 'afterDrawbridge',
+                    section: 'main',
+                },
+            ],
         },
         {
             room: 'cubeOfZoeRoom',
@@ -15190,6 +15196,12 @@ const REGIONS = {
         {
             room: 'loadingRoomToMarbleGallery',
             section: 'main',
+            lockedBehind: [
+                {
+                    room: 'cubeOfZoeRoom',
+                    section: 'main',
+                },
+            ],
         },
         {
             room: 'loadingRoomToWarpRooms',
@@ -15198,6 +15210,12 @@ const REGIONS = {
         {
             room: 'loadingRoomToAlchemyLaboratory',
             section: 'main',
+            lockedBehind: [
+                {
+                    room: 'cubeOfZoeRoom',
+                    section: 'main',
+                },
+            ],
         },
         {
             room: 'loadingRoomToUndergroundCaverns',
@@ -15416,6 +15434,12 @@ const REGIONS = {
         {
             room: 'loadingRoomToOlroxsQuarters',
             section: 'main',
+            lockedBehind: [
+                {
+                    room: 'pushingStatueShortcut',
+                    section: 'leftOfStatue',
+                },
+            ],
         },
         {
             room: 'pushingStatueShortcut',
@@ -15494,7 +15518,7 @@ export function analyzeLogic(settings) {
         reducedLogic[stageName] = {}
         regions
         .forEach((startingRegion, startingIndex) => {
-            console.log('  startingRegion:', startingRegion)
+            console.log('  startingRegion:', [startingRegion.room, startingRegion.section].join('.'))
             if (!(startingRegion.room in reducedLogic[stageName])) {
                 reducedLogic[stageName][startingRegion.room] = []
             }
@@ -15502,8 +15526,21 @@ export function analyzeLogic(settings) {
             .filter((goalRegion, goalIndex) => {
                 return goalIndex !== startingIndex
             })
+            .filter((goalRegion) => {
+                let validInd = true
+                if ('lockedBehind' in startingRegion) {
+                    validInd = startingRegion.lockedBehind
+                    .find((lockRegion) => {
+                        return (
+                            lockRegion.stage === goalRegion.stage &&
+                            lockRegion.room === goalRegion.room
+                        )
+                    })
+                }
+                return validInd
+            })
             .forEach((goalRegion, goalIndex) => {
-                console.log('    goalRegion:', goalRegion)
+                console.log('    goalRegion:', [goalRegion.room, goalRegion.section].join('.'))
                 const startingState = {
                     stage: stageName,
                     room: startingRegion.room,
@@ -15528,7 +15565,7 @@ export function analyzeLogic(settings) {
             })
         })
     })
-    console.log('reducedLogic:', reducedLogic)
+    console.log('reducedLogic:', inspect(reducedLogic, { depth: 5, }))
     throw Error('')
     // getLocationRewardCommands(settings)
     // .forEach((command) => {
