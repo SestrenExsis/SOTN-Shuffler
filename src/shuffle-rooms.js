@@ -7730,6 +7730,7 @@ Object.entries(nodeGroups)
     })
 
 export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOffset, options={}) {
+    // TODO(sestren): Improve the performance of this function
     const result = {
         rooms: [],
         cells: [],

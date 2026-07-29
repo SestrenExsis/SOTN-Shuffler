@@ -3,6 +3,7 @@ import yargs from 'yargs'
 import { inspect } from 'node:util'
 
 import {
+    NODES,
     analyzeLogic,
     validate,
 } from './src/analyze-logic.js'
@@ -1049,7 +1050,7 @@ const argv = yargs(process.argv.slice(2))
             let questRewards = {}
             let logicAnalysis = {
                 solved: false,
-                solvedState: null,
+                scenarios: [],
             }
             // Some modules (those that modify or depend on logic) must be run inside a loop because the solver must verify them
             while (!logicAnalysis.solved) {
@@ -1146,9 +1147,74 @@ const argv = yargs(process.argv.slice(2))
                         stageLinks: stageConnections.links,
                         roomPositions: roomArrangements.rooms,
                     }
-                    logicAnalysis = analyzeLogic(logicSettings)
-                    console.log('logicAnalysis:', logicAnalysis)
+                    const scenarios = [
+                        {
+                            name: 'Start with all checks and verify that all actions are reachable',
+                            startingState: {
+                                stage: 'castleEntrance',
+                                room: 'afterDrawbridge',
+                                section: 'main',
+                                positionX: 136,
+                                positionY: 640,
+                                time: 120.0,
+                            },
+                            startingNodes: [],
+                            goalNodes: [],
+                            result: null,
+                        },
+                        {
+                            name: 'Start with no checks and verify that all checks are reachable',
+                            startingState: {
+                                stage: 'castleEntrance',
+                                room: 'afterDrawbridge',
+                                section: 'main',
+                                positionX: 136,
+                                positionY: 640,
+                                time: 120.0,
+                            },
+                            startingNodes: [],
+                            goalNodes: [],
+                            result: null,
+                        },
+                    ]
+                    Object.entries(NODES)
+                    .forEach(([stageName, nodes]) => {
+                        Object.entries(nodes)
+                        .forEach(([nodeName, node]) => {
+                            const nodeId = {
+                                stageName: stageName,
+                                nodeName: nodeName,
+                            }
+                            switch (node.nodeType) {
+                                case 'action':
+                                    scenarios.at(0).goalNodes.push(nodeId)
+                                    scenarios.at(1).goalNodes.push(nodeId)
+                                    break
+                                case 'check':
+                                    scenarios.at(0).startingNodes.push(nodeId)
+                                    scenarios.at(1).goalNodes.push(nodeId)
+                                    break
+                                default:
+                                    break
+                            }
+                        })
+                    })
+                    logicAnalysis.scenarios = []
+                    logicAnalysis.scenarios.push({
+                        id: 0,
+                        name: scenarios.at(0).name,
+                        result: analyzeLogic(logicSettings, scenarios.at(0)),
+                    })
+                    if (logicAnalysis.scenarios.at(0).result.solved) {
+                        logicAnalysis.scenarios.push({
+                            id: 1,
+                            name: scenarios.at(1).name,
+                            result: analyzeLogic(logicSettings, scenarios.at(1)),
+                        })
+                    }
+                    console.log('logicAnalysis:', inspect(logicAnalysis, { depth: 4 }))
                     console.log('')
+                    logicAnalysis.solved = logicAnalysis.scenarios.at(-1).result.solved
                     shuffleData.debugInfo.solved = logicAnalysis.solved
                     shuffleData.debugInfo.finalSeedsUsed.solver = seed
                 }

@@ -1,107 +1,6 @@
-import seedrandom from 'seedrandom'
 import { inspect } from 'node:util'
 
-function getMovement(requirementName, section, time) {
-    const result = {
-        section: section,
-        costs: {
-            time: time,
-        },
-    }
-    switch (requirementName) {
-        case 'basic':
-        case 'fall':
-        case 'jump':
-            break
-        case 'basicRisky':
-            result.techniqueLogicalRisks = true
-            break
-        case 'preciseJump':
-            result.techniquePreciseJump = true
-            break
-        case 'batForm':
-            result.progressionBatTransformation = true
-            break
-        case 'bladeDash':
-            result.progressionBladeDash = true
-            result.techniqueBladeDash = true
-            break
-        case 'chainedRisingUppercuts':
-            result.progressionRisingUppercut = true
-            result.techniqueRisingUppercut = true
-            result.techniqueChainedRisingUppercuts = true
-            break
-        case 'doubleJump':
-            result.progressionDoubleJump = true
-            break
-        case 'gravityJump':
-            result.progressionGravityJump = true
-            break
-        case 'mistForm':
-            result.progressionMistTransformation = true
-            break
-        case 'multipleGravityJumps':
-        case 'multipleGravityJumpsWithDoubleJump':
-            result.progressionDoubleJump = true
-            result.progressionGravityJump = true
-            break
-        case 'poweredMist':
-        case 'poweredMistForm':
-            result.progressionMistTransformation = true
-            result.progressionLongerMistDuration = true
-            break
-        case 'risingUppercut':
-            result.progressionRisingUppercut = true
-            result.techniqueRisingUppercut = true
-            break
-        case 'wolfMistRise':
-        case 'wolfMistRiseShort':
-            result.progressionWolfTransformation = true
-            result.progressionMistTransformation = true
-            result.techniqueWolfMistRise = true
-            break
-        case 'wolfMistRiseLong':
-            result.progressionWolfTransformation = true
-            result.progressionMistTransformation = true
-            result.techniqueWolfMistRise = true
-            result.techniqueLongWolfMistRise = true
-            break
-        case 'wolfMistRiseVeryLong':
-            result.progressionWolfTransformation = true
-            result.progressionMistTransformation = true
-            result.techniqueWolfMistRise = true
-            result.techniqueLongWolfMistRise = true
-            result.techniqueVeryLongWolfMistRise = true
-            break
-        default:
-            result.UNKNOWN_MOVEMENT_REQUIREMENT = true
-            break
-    }
-    return result
-}
-
-function getRegion(section, left, top, width, height) {
-    const result = {
-        requirements: [
-            {
-                positionX: {
-                    minimum: left,
-                    maximum: left + width - 1,
-                },
-                positionY: {
-                    minimum: top,
-                    maximum: top + height - 1,
-                },
-            }
-        ],
-        outcome: {
-            section: section,
-        },
-    }
-    return result
-}
-
-const locationsInfo = {
+const LOCATIONS = {
     locationBatCard: {
         outcome: {
             positionX: 120,
@@ -473,7 +372,7 @@ const COST_PICKUP_RELIC = 3.0
 const COST_QUICKGRAB_RELIC = 2.5
 const COST_UNKNOWN = 1.999
 
-const rewardsInfo = {
+const REWARDS = {
     relicSoulOfBat: {
         outcome: {
             relicSoulOfBat: true,
@@ -1201,7 +1100,7 @@ const rewardsInfo = {
     },
 }
 
-const roomPriority = {
+const ROOM_PRIORITY = {
     abandonedMine: [
         'wolfsHeadColumn',
         'wellLitSkullRoom',
@@ -1579,6 +1478,1010 @@ const roomPriority = {
         'triggerTeleporterToCastleEntrance',
         'triggerTeleporterToAbandonedMine',
     ],
+}
+
+const TELEPORTERS = {
+    fromAbandonedMineToCatacombs: { // fromCatacombsToAbandonedMine
+        sourceStage: 'abandonedMine',
+        targetStage: 'catacombs',
+        room: 'bend',
+        positionX: 16,
+        positionY: 388,
+    },
+    fromAbandonedMineToUndergroundCaverns: { // fromUndergroundCavernsToAbandonedMine
+        sourceStage: 'abandonedMine',
+        targetStage: 'undergroundCaverns',
+        room: 'wolfsHeadColumn',
+        positionX: 240,
+        positionY: 132,
+    },
+    fromAbandonedMineToWarpRooms: { // fromWarpRoomsToAbandonedMine
+        sourceStage: 'abandonedMine',
+        targetStage: 'warpRooms',
+        room: 'fourWayIntersection',
+        positionX: 752,
+        positionY: 132,
+    },
+    fromAlchemyLaboratoryToCastleEntrance: { // fromCastleEntranceToAlchemyLaboratory
+        sourceStage: 'alchemyLaboratory',
+        targetStage: 'castleEntrance',
+        room: 'entryway',
+        positionX: 752,
+        positionY: 132,
+    },
+    fromAlchemyLaboratoryToMarbleGallery: { // fromMarbleGalleryToAlchemyLaboratory
+        sourceStage: 'alchemyLaboratory',
+        targetStage: 'marbleGallery',
+        room: 'exitToMarbleGallery',
+        positionX: 496,
+        positionY: 392,
+    },
+    fromAlchemyLaboratoryToRoyalChapel: { // fromRoyalChapelToAlchemyLaboratory
+        sourceStage: 'alchemyLaboratory',
+        targetStage: 'royalChapel',
+        room: 'exitToRoyalChapel',
+        positionX: 16,
+        positionY: 132,
+    },
+    fromCastleEntranceToAlchemyLaboratory: { // fromAlchemyLaboratoryToCastleEntrance
+        sourceStage: 'castleEntrance',
+        targetStage: 'alchemyLaboratory',
+        room: 'cubeOfZoeRoom',
+        positionX: 16,
+        positionY: 132,
+    },
+    fromCastleEntranceToMarbleGallery: { // fromMarbleGalleryToCastleEntrance
+        sourceStage: 'castleEntrance',
+        targetStage: 'marbleGallery',
+        room: 'cubeOfZoeRoom',
+        positionX: 496,
+        positionY: 132,
+    },
+    fromCastleEntranceToUndergroundCaverns: { // fromUndergroundCavernsToCastleEntrance
+        sourceStage: 'castleEntrance',
+        targetStage: 'undergroundCaverns',
+        room: 'shortcutToUndergroundCaverns',
+        positionX: 240,
+        positionY: 132,
+    },
+    fromCastleEntranceToWarpRooms: { // fromWarpRoomsToCastleEntrance
+        sourceStage: 'castleEntrance',
+        targetStage: 'warpRooms',
+        room: 'shortcutToWarpRooms',
+        positionX: 16,
+        positionY: 132,
+    },
+    fromCastleKeepToClockTower: { // fromClockTowerToCastleKeep
+        sourceStage: 'castleKeep',
+        targetStage: 'clockTower',
+        room: 'lionTorchPlatform',
+        positionX: 240,
+        positionY: 388,
+    },
+    fromCastleKeepToRoyalChapel: { // fromRoyalChapelToCastleKeep
+        sourceStage: 'castleKeep',
+        targetStage: 'royalChapel',
+        room: 'keepArea',
+        positionX: 16,
+        positionY: 1924,
+    },
+    fromCastleKeepToWarpRooms: { // fromWarpRoomsToCastleKeep
+        sourceStage: 'castleKeep',
+        targetStage: 'warpRooms',
+        room: 'dualPlatforms',
+        positionX: 240,
+        positionY: 388,
+    },
+    fromCatacombsToAbandonedMine: { // fromAbandonedMineToCatacombs
+        sourceStage: 'catacombs',
+        targetStage: 'abandonedMine',
+        room: 'exitToAbandonedMine',
+        positionX: 240,
+        positionY: 132,
+    },
+    fromClockTowerToCastleKeep: { // fromCastleKeepToClockTower
+        sourceStage: 'clockTower',
+        targetStage: 'castleKeep',
+        room: 'karasumansRoom',
+        positionX: 16,
+        positionY: 132,
+    },
+    fromClockTowerToOuterWall: { // fromOuterWallToClockTower
+        sourceStage: 'clockTower',
+        targetStage: 'outerWall',
+        room: 'stairwellToOuterWall',
+        positionX: 240,
+        positionY: 132,
+    },
+    fromColosseumToOlroxsQuarters: { // fromOlroxsQuartersToColosseum
+        sourceStage: 'colosseum',
+        targetStage: 'olroxsQuarters',
+        room: 'topOfElevatorShaft',
+        positionX: 1264,
+        positionY: 132,
+    },
+    fromColosseumToRoyalChapel: { // fromRoyalChapelToColosseum
+        sourceStage: 'colosseum',
+        targetStage: 'royalChapel',
+        room: 'passagewayBetweenArenaAndRoyalChapel',
+        positionX: 16,
+        positionY: 132,
+    },
+    fromLongLibraryToOuterWall: { // fromOuterWallToLongLibrary
+        sourceStage: 'longLibrary',
+        targetStage: 'outerWall',
+        room: 'exitToOuterWall',
+        positionX: 752,
+        positionY: 132,
+    },
+    fromMarbleGalleryToAlchemyLaboratory: { // fromAlchemyLaboratoryToMarbleGallery
+        sourceStage: 'marbleGallery',
+        targetStage: 'alchemyLaboratory',
+        room: 'entrance',
+        positionX: 16,
+        positionY: 132,
+    },
+    fromMarbleGalleryToCastleEntrance: { // fromCastleEntranceToMarbleGallery
+        sourceStage: 'marbleGallery',
+        targetStage: 'castleEntrance',
+        room: 'sShapedHallways',
+        positionX: 16,
+        positionY: 644,
+    },
+    fromMarbleGalleryToOlroxsQuarters: { // fromOlroxsQuartersToMarbleGallery
+        sourceStage: 'marbleGallery',
+        targetStage: 'olroxsQuarters',
+        room: 'pathwayAfterLeftStatue',
+        positionX: 16,
+        positionY: 132,
+    },
+    fromMarbleGalleryToOuterWall: { // fromOuterWallToMarbleGallery
+        sourceStage: 'marbleGallery',
+        targetStage: 'outerWall',
+        room: 'longHallway',
+        positionX: 3824,
+        positionY: 132,
+    },
+    fromMarbleGalleryToUndergroundCaverns: { // fromUndergroundCavernsToMarbleGallery
+        sourceStage: 'marbleGallery',
+        targetStage: 'undergroundCaverns',
+        room: 'stairwellToUndergroundCaverns',
+        positionX: 16,
+        positionY: 388,
+    },
+    fromOlroxsQuartersToColosseum: { // fromColosseumToOlroxsQuarters
+        sourceStage: 'olroxsQuarters',
+        targetStage: 'colosseum',
+        room: 'grandStaircase',
+        positionX: 16,
+        positionY: 388,
+    },
+    fromOlroxsQuartersToMarbleGallery: { // fromMarbleGalleryToOlroxsQuarters
+        sourceStage: 'olroxsQuarters',
+        targetStage: 'marbleGallery',
+        room: 'skelerangRoom',
+        positionX: 240,
+        positionY: 648,
+    },
+    fromOlroxsQuartersToRoyalChapel: { // fromRoyalChapelToOlroxsQuarters
+        sourceStage: 'olroxsQuarters',
+        targetStage: 'royalChapel',
+        room: 'catwalkCrypt',
+        positionX: 16,
+        positionY: 132,
+    },
+    fromOlroxsQuartersToWarpRooms: { // fromWarpRoomsToOlroxsQuarters
+        sourceStage: 'olroxsQuarters',
+        targetStage: 'warpRooms',
+        room: 'tallShaft',
+        positionX: 240,
+        positionY: 1412,
+    },
+    fromOuterWallToClockTower: { // fromClockTowerToOuterWall
+        sourceStage: 'outerWall',
+        targetStage: 'clockTower',
+        room: 'exitToClockTower',
+        positionX: 16,
+        positionY: 132,
+    },
+    fromOuterWallToLongLibrary: { // fromLongLibraryToOuterWall
+        sourceStage: 'outerWall',
+        targetStage: 'longLibrary',
+        room: 'elevatorShaftRoom',
+        positionX: 16,
+        positionY: 1672,
+    },
+    fromOuterWallToMarbleGallery: { // fromMarbleGalleryToOuterWall
+        sourceStage: 'outerWall',
+        targetStage: 'marbleGallery',
+        room: 'exitToMarbleGallery',
+        positionX: 16,
+        positionY: 132,
+    },
+    fromOuterWallToWarpRooms: { // fromWarpRoomsToOuterWall
+        sourceStage: 'outerWall',
+        targetStage: 'warpRooms',
+        room: 'elevatorShaftRoom',
+        positionX: 272,
+        positionY: 644,
+    },
+    fromRoyalChapelToAlchemyLaboratory: { // fromAlchemyLaboratoryToRoyalChapel
+        sourceStage: 'royalChapel',
+        targetStage: 'alchemyLaboratory',
+        room: 'statueLedge',
+        positionX: 240,
+        positionY: 132,
+    },
+    fromRoyalChapelToCastleKeep: { // fromCastleKeepToRoyalChapel
+        sourceStage: 'royalChapel',
+        targetStage: 'castleKeep',
+        room: 'rightTower',
+        positionX: 752,
+        positionY: 648,
+    },
+    fromRoyalChapelToColosseum: { // fromColosseumToRoyalChapel
+        sourceStage: 'royalChapel',
+        targetStage: 'colosseum',
+        room: 'nave',
+        positionX: 496,
+        positionY: 388,
+    },
+    fromRoyalChapelToOlroxsQuarters: { // fromOlroxsQuartersToRoyalChapel
+        sourceStage: 'royalChapel',
+        targetStage: 'olroxsQuarters',
+        room: 'pushingStatueShortcut',
+        positionX: 240,
+        positionY: 132,
+    },
+    fromUndergroundCavernsToAbandonedMine: { // fromAbandonedMineToUndergroundCaverns
+        sourceStage: 'undergroundCaverns',
+        targetStage: 'abandonedMine',
+        room: 'exitToAbandonedMine',
+        positionX: 16,
+        positionY: 132,
+    },
+    fromUndergroundCavernsToCastleEntrance: { // fromCastleEntranceToUndergroundCaverns
+        sourceStage: 'undergroundCaverns',
+        targetStage: 'castleEntrance',
+        room: 'exitToCastleEntrance',
+        positionX: 16,
+        positionY: 132,
+    },
+    fromUndergroundCavernsToMarbleGallery: { // fromMarbleGalleryToUndergroundCaverns
+        sourceStage: 'undergroundCaverns',
+        targetStage: 'marbleGallery',
+        room: 'longDrop',
+        positionX: 240,
+        positionY: 132,
+    },
+    fromWarpRoomsToAbandonedMine: { // fromAbandonedMineToWarpRooms
+        sourceStage: 'warpRooms',
+        targetStage: 'abandonedMine',
+        room: 'warpRoomToAbandonedMine',
+        positionX: 16,
+        positionY: 132,
+    },
+    fromWarpRoomsToCastleEntrance: { // fromCastleEntranceToWarpRooms
+        sourceStage: 'warpRooms',
+        targetStage: 'castleEntrance',
+        room: 'warpRoomToCastleEntrance',
+        positionX: 240,
+        positionY: 132,
+    },
+    fromWarpRoomsToCastleKeep: { // fromCastleKeepToWarpRooms
+        sourceStage: 'warpRooms',
+        targetStage: 'castleKeep',
+        room: 'warpRoomToCastleKeep',
+        positionX: 16,
+        positionY: 132,
+    },
+    fromWarpRoomsToOlroxsQuarters: { // fromOlroxsQuartersToWarpRooms
+        sourceStage: 'warpRooms',
+        targetStage: 'olroxsQuarters',
+        room: 'warpRoomToOlroxsQuarters',
+        positionX: 16,
+        positionY: 132,
+    },
+    fromWarpRoomsToOuterWall: { // fromOuterWallToWarpRooms
+        sourceStage: 'warpRooms',
+        targetStage: 'outerWall',
+        room: 'warpRoomToOuterWall',
+        positionX: 240,
+        positionY: 132,
+    },
+}
+
+export const NODES = {
+    abandonedMine: {
+        locationDemonCard: {
+            nodeType: 'check',
+            requirement: {
+                locationDemonCard: true,
+            },
+        },
+        loadingRoomToCatacombs: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToCatacombs',
+                section: 'main',
+            },
+        },
+        loadingRoomToWarpRooms: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToWarpRooms',
+                section: 'main',
+            },
+        },
+        loadingRoomToUndergroundCaverns: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToUndergroundCaverns',
+                section: 'main',
+            },
+        },
+    },
+    alchemyLaboratory: {
+        statusCannonActivated: {
+            nodeType: 'action',
+            requirement: {
+                statusCannonActivated: true,
+            },
+        },
+        locationBatCard: {
+            nodeType: 'check',
+            requirement: {
+                locationBatCard: true,
+            },
+        },
+        locationSkillOfWolf: {
+            nodeType: 'check',
+            requirement: {
+                locationSkillOfWolf: true,
+            },
+        },
+        loadingRoomToMarbleGallery: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToMarbleGallery',
+                section: 'main',
+            },
+        },
+        loadingRoomToRoyalChapel: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToRoyalChapel',
+                section: 'main',
+            },
+        },
+        loadingRoomToCastleEntrance: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToCastleEntrance',
+                section: 'main',
+            },
+        },
+    },
+    castleEntrance: {
+        // start: {
+        //     nodeType: 'UNKNOWN',
+        //     requirement: {
+        //         room: 'afterDrawbridge',
+        //         section: 'main',
+        //     },
+        // },
+        statusSecretWallInMermanRoomOpened: {
+            nodeType: 'action',
+            requirement: {
+                statusSecretWallInMermanRoomOpened: true,
+            },
+        },
+        statusPassageFromCastleEntranceToMarbleGalleryOpened: {
+            nodeType: 'action',
+            requirement: {
+                statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
+            },
+        },
+        statusPassageFromCastleEntranceToUndergroundCavernsOpened: {
+            nodeType: 'action',
+            requirement: {
+                statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
+            },
+        },
+        statusPassageFromCastleEntranceToWarpRoomsOpened: {
+            nodeType: 'action',
+            requirement: {
+                statusPassageFromCastleEntranceToWarpRoomsOpened: true,
+            },
+        },
+        locationPowerOfWolf: {
+            nodeType: 'check',
+            requirement: {
+                locationPowerOfWolf: true,
+            },
+        },
+        locationCubeOfZoe: {
+            nodeType: 'check',
+            requirement: {
+                locationCubeOfZoe: true,
+            },
+        },
+        loadingRoomToMarbleGallery: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToMarbleGallery',
+                section: 'main',
+            },
+        },
+        loadingRoomToWarpRooms: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToWarpRooms',
+                section: 'main',
+            },
+        },
+        loadingRoomToAlchemyLaboratory: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToAlchemyLaboratory',
+                section: 'main',
+            },
+        },
+        loadingRoomToUndergroundCaverns: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToUndergroundCaverns',
+                section: 'main',
+            },
+        },
+    },
+    castleKeep: {
+        // {
+        //     name: 'badEnding',
+        //     nodeType: 'UNKNOWN',
+        //     requirement: {
+        //         room: 'keepArea',
+        //         section: 'anteroom',
+        //     },
+        // },
+        locationLeapStone: {
+            nodeType: 'check',
+            requirement: {
+                locationLeapStone: true,
+            },
+        },
+        locationPowerOfMist: {
+            nodeType: 'check',
+            requirement: {
+                locationPowerOfMist: true,
+            },
+        },
+        locationGhostCard: {
+            nodeType: 'check',
+            requirement: {
+                locationGhostCard: true,
+            },
+        },
+        loadingRoomToClockTower: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToClockTower',
+                section: 'main',
+            },
+        },
+        loadingRoomToWarpRooms: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToWarpRooms',
+                section: 'main',
+            },
+        },
+        loadingRoomToRoyalChapel: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToRoyalChapel',
+                section: 'main',
+            },
+        },
+    },
+    catacombs: {
+        locationSpikeBreaker: {
+            nodeType: 'check',
+            requirement: {
+                locationSpikeBreaker: true,
+            },
+        },
+        loadingRoomToAbandonedMine: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToAbandonedMine',
+                section: 'main',
+            },
+        },
+    },
+    clockTower: {
+        locationFireOfBat: {
+            nodeType: 'check',
+            requirement: {
+                locationFireOfBat: true,
+            },
+        },
+        loadingRoomToCastleKeep: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToCastleKeep',
+                section: 'main',
+            },
+        },
+        loadingRoomToOuterWall: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToOuterWall',
+                section: 'main',
+            },
+        },
+    },
+    colosseum: {
+        statusBarrierInColosseumOpened: {
+            nodeType: 'action',
+            requirement: {
+                statusBarrierInColosseumOpened: true,
+            },
+        },
+        locationFormOfMist: {
+            nodeType: 'check',
+            requirement: {
+                locationFormOfMist: true,
+            },
+        },
+        loadingRoomToRoyalChapel: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToRoyalChapel',
+                section: 'main',
+            },
+        },
+        loadingRoomToOlroxsQuarters: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToOlroxsQuarters',
+                section: 'main',
+            },
+        },
+    },
+    longLibrary: {
+        locationSoulOfBat: {
+            nodeType: 'check',
+            requirement: {
+                locationSoulOfBat: true,
+            },
+        },
+        locationJewelOfOpen: {
+            nodeType: 'check',
+            requirement: {
+                locationJewelOfOpen: true,
+            },
+        },
+        locationFaerieCard: {
+            nodeType: 'check',
+            requirement: {
+                locationFaerieCard: true,
+            },
+        },
+        locationFaerieScroll: {
+            nodeType: 'check',
+            requirement: {
+                locationFaerieScroll: true,
+            },
+        },
+        loadingRoomToOuterWall: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToOuterWall',
+                section: 'main',
+            },
+        },
+    },
+    marbleGallery: {
+        // {
+        //     name: 'locationMarbleGalleryStopwatch',
+        //     nodeType: 'UNKNOWN',
+        //     requirement: {
+        //         locationMarbleGalleryStopwatch: true,
+        //     },
+        // },
+        // {
+        //     name: 'clockRoom',
+        //     nodeType: 'UNKNOWN',
+        //     requirement: {
+        //         room: 'clockRoom',
+        //         section: 'main',
+        //     },
+        // },
+        statusPressurePlateInMarbleGalleryActivated: {
+            nodeType: 'action',
+            requirement: {
+                statusPressurePlateInMarbleGalleryActivated: true,
+            },
+        },
+        locationSpiritOrb: {
+            nodeType: 'check',
+            requirement: {
+                locationSpiritOrb: true,
+            },
+        },
+        locationGravityBoots: {
+            nodeType: 'check',
+            requirement: {
+                locationGravityBoots: true,
+            },
+        },
+        loadingRoomToOuterWall: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToOuterWall',
+                section: 'main',
+            },
+        },
+        loadingRoomToUndergroundCaverns: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToUndergroundCaverns',
+                section: 'main',
+            },
+        },
+        loadingRoomToAlchemyLaboratory: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToAlchemyLaboratory',
+                section: 'main',
+            },
+        },
+        loadingRoomToOlroxsQuarters: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToOlroxsQuarters',
+                section: 'main',
+            },
+        },
+        loadingRoomToCastleEntrance: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToCastleEntrance',
+                section: 'main',
+            },
+        },
+    },
+    olroxsQuarters: {
+        locationEchoOfBat: {
+            nodeType: 'check',
+            requirement: {
+                locationEchoOfBat: true,
+            },
+        },
+        locationSwordCard: {
+            nodeType: 'check',
+            requirement: {
+                locationSwordCard: true,
+            },
+        },
+        loadingRoomToMarbleGallery: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToMarbleGallery',
+                section: 'main',
+            },
+        },
+        loadingRoomToColosseum: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToColosseum',
+                section: 'main',
+            },
+        },
+        loadingRoomToWarpRooms: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToWarpRooms',
+                section: 'main',
+            },
+        },
+        loadingRoomToRoyalChapel: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToRoyalChapel',
+                section: 'main',
+            },
+        },
+    },
+    outerWall: {
+        locationSoulOfWolf: {
+            nodeType: 'check',
+            requirement: {
+                locationSoulOfWolf: true,
+            },
+        },
+        loadingRoomToWarpRooms: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToWarpRooms',
+                section: 'main',
+            },
+        },
+        loadingRoomToClockTower: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToClockTower',
+                section: 'main',
+            },
+        },
+        loadingRoomToLongLibrary: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToLongLibrary',
+                section: 'main',
+            },
+        },
+        loadingRoomToMarbleGallery: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToMarbleGallery',
+                section: 'main',
+            },
+        },
+    },
+    royalChapel: {
+        statusStatueInRoyalChapelMoved: {
+            nodeType: 'action',
+            requirement: {
+                statusStatueInRoyalChapelMoved: true,
+            },
+        },
+        locationSilverRing: {
+            nodeType: 'check',
+            requirement: {
+                locationSilverRing: true,
+            },
+        },
+        loadingRoomToCastleKeep: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToCastleKeep',
+                section: 'main',
+            },
+        },
+        loadingRoomToAlchemyLaboratory: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToAlchemyLaboratory',
+                section: 'main',
+            },
+        },
+        loadingRoomToColosseum: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToColosseum',
+                section: 'main',
+            },
+        },
+        loadingRoomToOlroxsQuarters: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToOlroxsQuarters',
+                section: 'main',
+            },
+        },
+    },
+    undergroundCaverns: {
+        // {
+        //     room: 'dkBridge',
+        //     section: 'main',
+        // },
+        // {
+        //     room: 'dKButton',
+        //     section: 'main',
+        // },
+        locationHolySymbol: {
+            nodeType: 'check',
+            requirement: {
+                locationHolySymbol: true,
+            },
+        },
+        locationMermanStatue: {
+            nodeType: 'check',
+            requirement: {
+                locationMermanStatue: true,
+            },
+        },
+        locationGoldRing: {
+            nodeType: 'check',
+            requirement: {
+                locationGoldRing: true,
+            },
+        },
+        loadingRoomToCastleEntrance: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToCastleEntrance',
+                section: 'main',
+            },
+        },
+        loadingRoomToMarbleGallery: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToMarbleGallery',
+                section: 'main',
+            },
+        },
+        loadingRoomToAbandonedMine: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToAbandonedMine',
+                section: 'main',
+            },
+        },
+    },
+    warpRooms: {
+        statusWarpRoomToAbandonedMineUnlocked: {
+            nodeType: 'action',
+            requirement: {
+                statusWarpRoomToAbandonedMineUnlocked: true,
+            },
+        },
+        statusWarpRoomToOuterWallUnlocked: {
+            nodeType: 'action',
+            requirement: {
+                statusWarpRoomToOuterWallUnlocked: true,
+            },
+        },
+        statusWarpRoomToCastleKeepUnlocked: {
+            nodeType: 'action',
+            requirement: {
+                statusWarpRoomToCastleKeepUnlocked: true,
+            },
+        },
+        statusWarpRoomToOlroxsQuartersUnlocked: {
+            nodeType: 'action',
+            requirement: {
+                statusWarpRoomToOlroxsQuartersUnlocked: true,
+            },
+        },
+        loadingRoomToAbandonedMine: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToAbandonedMine',
+                section: 'main',
+            },
+        },
+        loadingRoomToCastleEntrance: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToCastleEntrance',
+                section: 'main',
+            },
+        },
+        loadingRoomToOlroxsQuarters: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToOlroxsQuarters',
+                section: 'main',
+            },
+        },
+        loadingRoomToOuterWall: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToOuterWall',
+                section: 'main',
+            },
+        },
+        loadingRoomToCastleKeep: {
+            nodeType: 'exit',
+            requirement: {
+                room: 'loadingRoomToCastleKeep',
+                section: 'main',
+            },
+        },
+    },
+}
+
+function getMovement(requirementName, section, time) {
+    const result = {
+        section: section,
+        costs: {
+            time: time,
+        },
+    }
+    switch (requirementName) {
+        case 'basic':
+        case 'fall':
+        case 'jump':
+            break
+        case 'basicRisky':
+            result.techniqueLogicalRisks = true
+            break
+        case 'preciseJump':
+            result.techniquePreciseJump = true
+            break
+        case 'batForm':
+            result.progressionBatTransformation = true
+            break
+        case 'bladeDash':
+            result.progressionBladeDash = true
+            result.techniqueBladeDash = true
+            break
+        case 'chainedRisingUppercuts':
+            result.progressionRisingUppercut = true
+            result.techniqueRisingUppercut = true
+            result.techniqueChainedRisingUppercuts = true
+            break
+        case 'doubleJump':
+            result.progressionDoubleJump = true
+            break
+        case 'gravityJump':
+            result.progressionGravityJump = true
+            break
+        case 'mistForm':
+            result.progressionMistTransformation = true
+            break
+        case 'multipleGravityJumps':
+        case 'multipleGravityJumpsWithDoubleJump':
+            result.progressionDoubleJump = true
+            result.progressionGravityJump = true
+            break
+        case 'poweredMist':
+        case 'poweredMistForm':
+            result.progressionMistTransformation = true
+            result.progressionLongerMistDuration = true
+            break
+        case 'risingUppercut':
+            result.progressionRisingUppercut = true
+            result.techniqueRisingUppercut = true
+            break
+        case 'wolfMistRise':
+        case 'wolfMistRiseShort':
+            result.progressionWolfTransformation = true
+            result.progressionMistTransformation = true
+            result.techniqueWolfMistRise = true
+            break
+        case 'wolfMistRiseLong':
+            result.progressionWolfTransformation = true
+            result.progressionMistTransformation = true
+            result.techniqueWolfMistRise = true
+            result.techniqueLongWolfMistRise = true
+            break
+        case 'wolfMistRiseVeryLong':
+            result.progressionWolfTransformation = true
+            result.progressionMistTransformation = true
+            result.techniqueWolfMistRise = true
+            result.techniqueLongWolfMistRise = true
+            result.techniqueVeryLongWolfMistRise = true
+            break
+        default:
+            result.UNKNOWN_MOVEMENT_REQUIREMENT = true
+            break
+    }
+    return result
+}
+
+function getRegion(section, left, top, width, height) {
+    const result = {
+        requirements: [
+            {
+                positionX: {
+                    minimum: left,
+                    maximum: left + width - 1,
+                },
+                positionY: {
+                    minimum: top,
+                    maximum: top + height - 1,
+                },
+            }
+        ],
+        outcome: {
+            section: section,
+        },
+    }
+    return result
 }
 
 const roomsInfo = {
@@ -14125,317 +15028,6 @@ const roomsInfo = {
     },
 }
 
-const teleporterTargetsInfo = {
-    fromAbandonedMineToCatacombs: { // fromCatacombsToAbandonedMine
-        sourceStage: 'abandonedMine',
-        targetStage: 'catacombs',
-        room: 'bend',
-        positionX: 16,
-        positionY: 388,
-    },
-    fromAbandonedMineToUndergroundCaverns: { // fromUndergroundCavernsToAbandonedMine
-        sourceStage: 'abandonedMine',
-        targetStage: 'undergroundCaverns',
-        room: 'wolfsHeadColumn',
-        positionX: 240,
-        positionY: 132,
-    },
-    fromAbandonedMineToWarpRooms: { // fromWarpRoomsToAbandonedMine
-        sourceStage: 'abandonedMine',
-        targetStage: 'warpRooms',
-        room: 'fourWayIntersection',
-        positionX: 752,
-        positionY: 132,
-    },
-    fromAlchemyLaboratoryToCastleEntrance: { // fromCastleEntranceToAlchemyLaboratory
-        sourceStage: 'alchemyLaboratory',
-        targetStage: 'castleEntrance',
-        room: 'entryway',
-        positionX: 752,
-        positionY: 132,
-    },
-    fromAlchemyLaboratoryToMarbleGallery: { // fromMarbleGalleryToAlchemyLaboratory
-        sourceStage: 'alchemyLaboratory',
-        targetStage: 'marbleGallery',
-        room: 'exitToMarbleGallery',
-        positionX: 496,
-        positionY: 392,
-    },
-    fromAlchemyLaboratoryToRoyalChapel: { // fromRoyalChapelToAlchemyLaboratory
-        sourceStage: 'alchemyLaboratory',
-        targetStage: 'royalChapel',
-        room: 'exitToRoyalChapel',
-        positionX: 16,
-        positionY: 132,
-    },
-    fromCastleEntranceToAlchemyLaboratory: { // fromAlchemyLaboratoryToCastleEntrance
-        sourceStage: 'castleEntrance',
-        targetStage: 'alchemyLaboratory',
-        room: 'cubeOfZoeRoom',
-        positionX: 16,
-        positionY: 132,
-    },
-    fromCastleEntranceToMarbleGallery: { // fromMarbleGalleryToCastleEntrance
-        sourceStage: 'castleEntrance',
-        targetStage: 'marbleGallery',
-        room: 'cubeOfZoeRoom',
-        positionX: 496,
-        positionY: 132,
-    },
-    fromCastleEntranceToUndergroundCaverns: { // fromUndergroundCavernsToCastleEntrance
-        sourceStage: 'castleEntrance',
-        targetStage: 'undergroundCaverns',
-        room: 'shortcutToUndergroundCaverns',
-        positionX: 240,
-        positionY: 132,
-    },
-    fromCastleEntranceToWarpRooms: { // fromWarpRoomsToCastleEntrance
-        sourceStage: 'castleEntrance',
-        targetStage: 'warpRooms',
-        room: 'shortcutToWarpRooms',
-        positionX: 16,
-        positionY: 132,
-    },
-    fromCastleKeepToClockTower: { // fromClockTowerToCastleKeep
-        sourceStage: 'castleKeep',
-        targetStage: 'clockTower',
-        room: 'lionTorchPlatform',
-        positionX: 240,
-        positionY: 388,
-    },
-    fromCastleKeepToRoyalChapel: { // fromRoyalChapelToCastleKeep
-        sourceStage: 'castleKeep',
-        targetStage: 'royalChapel',
-        room: 'keepArea',
-        positionX: 16,
-        positionY: 1924,
-    },
-    fromCastleKeepToWarpRooms: { // fromWarpRoomsToCastleKeep
-        sourceStage: 'castleKeep',
-        targetStage: 'warpRooms',
-        room: 'dualPlatforms',
-        positionX: 240,
-        positionY: 388,
-    },
-    fromCatacombsToAbandonedMine: { // fromAbandonedMineToCatacombs
-        sourceStage: 'catacombs',
-        targetStage: 'abandonedMine',
-        room: 'exitToAbandonedMine',
-        positionX: 240,
-        positionY: 132,
-    },
-    fromClockTowerToCastleKeep: { // fromCastleKeepToClockTower
-        sourceStage: 'clockTower',
-        targetStage: 'castleKeep',
-        room: 'karasumansRoom',
-        positionX: 16,
-        positionY: 132,
-    },
-    fromClockTowerToOuterWall: { // fromOuterWallToClockTower
-        sourceStage: 'clockTower',
-        targetStage: 'outerWall',
-        room: 'stairwellToOuterWall',
-        positionX: 240,
-        positionY: 132,
-    },
-    fromColosseumToOlroxsQuarters: { // fromOlroxsQuartersToColosseum
-        sourceStage: 'colosseum',
-        targetStage: 'olroxsQuarters',
-        room: 'topOfElevatorShaft',
-        positionX: 1264,
-        positionY: 132,
-    },
-    fromColosseumToRoyalChapel: { // fromRoyalChapelToColosseum
-        sourceStage: 'colosseum',
-        targetStage: 'royalChapel',
-        room: 'passagewayBetweenArenaAndRoyalChapel',
-        positionX: 16,
-        positionY: 132,
-    },
-    fromLongLibraryToOuterWall: { // fromOuterWallToLongLibrary
-        sourceStage: 'longLibrary',
-        targetStage: 'outerWall',
-        room: 'exitToOuterWall',
-        positionX: 752,
-        positionY: 132,
-    },
-    fromMarbleGalleryToAlchemyLaboratory: { // fromAlchemyLaboratoryToMarbleGallery
-        sourceStage: 'marbleGallery',
-        targetStage: 'alchemyLaboratory',
-        room: 'entrance',
-        positionX: 16,
-        positionY: 132,
-    },
-    fromMarbleGalleryToCastleEntrance: { // fromCastleEntranceToMarbleGallery
-        sourceStage: 'marbleGallery',
-        targetStage: 'castleEntrance',
-        room: 'sShapedHallways',
-        positionX: 16,
-        positionY: 644,
-    },
-    fromMarbleGalleryToOlroxsQuarters: { // fromOlroxsQuartersToMarbleGallery
-        sourceStage: 'marbleGallery',
-        targetStage: 'olroxsQuarters',
-        room: 'pathwayAfterLeftStatue',
-        positionX: 16,
-        positionY: 132,
-    },
-    fromMarbleGalleryToOuterWall: { // fromOuterWallToMarbleGallery
-        sourceStage: 'marbleGallery',
-        targetStage: 'outerWall',
-        room: 'longHallway',
-        positionX: 3824,
-        positionY: 132,
-    },
-    fromMarbleGalleryToUndergroundCaverns: { // fromUndergroundCavernsToMarbleGallery
-        sourceStage: 'marbleGallery',
-        targetStage: 'undergroundCaverns',
-        room: 'stairwellToUndergroundCaverns',
-        positionX: 16,
-        positionY: 388,
-    },
-    fromOlroxsQuartersToColosseum: { // fromColosseumToOlroxsQuarters
-        sourceStage: 'olroxsQuarters',
-        targetStage: 'colosseum',
-        room: 'grandStaircase',
-        positionX: 16,
-        positionY: 388,
-    },
-    fromOlroxsQuartersToMarbleGallery: { // fromMarbleGalleryToOlroxsQuarters
-        sourceStage: 'olroxsQuarters',
-        targetStage: 'marbleGallery',
-        room: 'skelerangRoom',
-        positionX: 240,
-        positionY: 648,
-    },
-    fromOlroxsQuartersToRoyalChapel: { // fromRoyalChapelToOlroxsQuarters
-        sourceStage: 'olroxsQuarters',
-        targetStage: 'royalChapel',
-        room: 'catwalkCrypt',
-        positionX: 16,
-        positionY: 132,
-    },
-    fromOlroxsQuartersToWarpRooms: { // fromWarpRoomsToOlroxsQuarters
-        sourceStage: 'olroxsQuarters',
-        targetStage: 'warpRooms',
-        room: 'tallShaft',
-        positionX: 240,
-        positionY: 1412,
-    },
-    fromOuterWallToClockTower: { // fromClockTowerToOuterWall
-        sourceStage: 'outerWall',
-        targetStage: 'clockTower',
-        room: 'exitToClockTower',
-        positionX: 16,
-        positionY: 132,
-    },
-    fromOuterWallToLongLibrary: { // fromLongLibraryToOuterWall
-        sourceStage: 'outerWall',
-        targetStage: 'longLibrary',
-        room: 'elevatorShaftRoom',
-        positionX: 16,
-        positionY: 1672,
-    },
-    fromOuterWallToMarbleGallery: { // fromMarbleGalleryToOuterWall
-        sourceStage: 'outerWall',
-        targetStage: 'marbleGallery',
-        room: 'exitToMarbleGallery',
-        positionX: 16,
-        positionY: 132,
-    },
-    fromOuterWallToWarpRooms: { // fromWarpRoomsToOuterWall
-        sourceStage: 'outerWall',
-        targetStage: 'warpRooms',
-        room: 'elevatorShaftRoom',
-        positionX: 272,
-        positionY: 644,
-    },
-    fromRoyalChapelToAlchemyLaboratory: { // fromAlchemyLaboratoryToRoyalChapel
-        sourceStage: 'royalChapel',
-        targetStage: 'alchemyLaboratory',
-        room: 'statueLedge',
-        positionX: 240,
-        positionY: 132,
-    },
-    fromRoyalChapelToCastleKeep: { // fromCastleKeepToRoyalChapel
-        sourceStage: 'royalChapel',
-        targetStage: 'castleKeep',
-        room: 'rightTower',
-        positionX: 752,
-        positionY: 648,
-    },
-    fromRoyalChapelToColosseum: { // fromColosseumToRoyalChapel
-        sourceStage: 'royalChapel',
-        targetStage: 'colosseum',
-        room: 'nave',
-        positionX: 496,
-        positionY: 388,
-    },
-    fromRoyalChapelToOlroxsQuarters: { // fromOlroxsQuartersToRoyalChapel
-        sourceStage: 'royalChapel',
-        targetStage: 'olroxsQuarters',
-        room: 'pushingStatueShortcut',
-        positionX: 240,
-        positionY: 132,
-    },
-    fromUndergroundCavernsToAbandonedMine: { // fromAbandonedMineToUndergroundCaverns
-        sourceStage: 'undergroundCaverns',
-        targetStage: 'abandonedMine',
-        room: 'exitToAbandonedMine',
-        positionX: 16,
-        positionY: 132,
-    },
-    fromUndergroundCavernsToCastleEntrance: { // fromCastleEntranceToUndergroundCaverns
-        sourceStage: 'undergroundCaverns',
-        targetStage: 'castleEntrance',
-        room: 'exitToCastleEntrance',
-        positionX: 16,
-        positionY: 132,
-    },
-    fromUndergroundCavernsToMarbleGallery: { // fromMarbleGalleryToUndergroundCaverns
-        sourceStage: 'undergroundCaverns',
-        targetStage: 'marbleGallery',
-        room: 'longDrop',
-        positionX: 240,
-        positionY: 132,
-    },
-    fromWarpRoomsToAbandonedMine: { // fromAbandonedMineToWarpRooms
-        sourceStage: 'warpRooms',
-        targetStage: 'abandonedMine',
-        room: 'warpRoomToAbandonedMine',
-        positionX: 16,
-        positionY: 132,
-    },
-    fromWarpRoomsToCastleEntrance: { // fromCastleEntranceToWarpRooms
-        sourceStage: 'warpRooms',
-        targetStage: 'castleEntrance',
-        room: 'warpRoomToCastleEntrance',
-        positionX: 240,
-        positionY: 132,
-    },
-    fromWarpRoomsToCastleKeep: { // fromCastleKeepToWarpRooms
-        sourceStage: 'warpRooms',
-        targetStage: 'castleKeep',
-        room: 'warpRoomToCastleKeep',
-        positionX: 16,
-        positionY: 132,
-    },
-    fromWarpRoomsToOlroxsQuarters: { // fromOlroxsQuartersToWarpRooms
-        sourceStage: 'warpRooms',
-        targetStage: 'olroxsQuarters',
-        room: 'warpRoomToOlroxsQuarters',
-        positionX: 16,
-        positionY: 132,
-    },
-    fromWarpRoomsToOuterWall: { // fromOuterWallToWarpRooms
-        sourceStage: 'warpRooms',
-        targetStage: 'outerWall',
-        room: 'warpRoomToOuterWall',
-        positionX: 240,
-        positionY: 132,
-    },
-}
-
 function isValidRequirement(state, requirement) {
     const result = Object.entries(requirement)
     .every(([propertyKey, propertyInfo]) => {
@@ -14656,7 +15248,7 @@ function updateLocation(location, settings, simplifyState=true) {
         })
         const roomDimensions = getRoomDimensions(settings.roomPositions)
         // Find first room in the priority list that overlaps the global position
-        roomPriority[location.stage]
+        ROOM_PRIORITY[location.stage]
         .find((roomName) => {
             const roomDimension = roomDimensions[location.stage][roomName]
             if (
@@ -14699,12 +15291,12 @@ function updateLocation(location, settings, simplifyState=true) {
 
 function getLocationRewardCommands(settings) {
     const result = []
-    Object.entries(locationsInfo ?? {})
+    Object.entries(LOCATIONS ?? {})
     .forEach(([locationName, locationInfo]) => {
         // Process every location requirement (Only certain stages for now)
         locationInfo.requirements
         .filter((locationRequirementInfo) => {
-            return locationRequirementInfo.stage in roomPriority
+            return locationRequirementInfo.stage in ROOM_PRIORITY
         })
         .forEach((locationRequirementInfo) => {
             const stageName = locationRequirementInfo.stage
@@ -14726,14 +15318,14 @@ function getLocationRewardCommands(settings) {
             result.push(command)
             if (locationName in settings.locationRewards) {
                 const rewardName = settings.locationRewards[locationName]
-                rewardsInfo[rewardName].requirements
+                REWARDS[rewardName].requirements
                 .forEach((rewardRequirementInfo) => {
                     const command = {
                         outcome: {},
                         requirement: {},
                     }
                     Object.assign(command.outcome, locationInfo.outcome)
-                    Object.assign(command.outcome, rewardsInfo[rewardName].outcome)
+                    Object.assign(command.outcome, REWARDS[rewardName].outcome)
                     Object.assign(command.requirement, locationRequirementInfo)
                     Object.entries(rewardRequirementInfo)
                     .forEach(([propertyKey, propertyInfo]) => {
@@ -14906,19 +15498,19 @@ function getLogic(settings, enableElsewhere=false) {
     })
     .forEach(([sourceTeleporterName, targetTeleporterName]) => {
         const location = {
-            stage: teleporterTargetsInfo[targetTeleporterName].sourceStage,
-            room: teleporterTargetsInfo[targetTeleporterName].room,
+            stage: TELEPORTERS[targetTeleporterName].sourceStage,
+            room: TELEPORTERS[targetTeleporterName].room,
             section: 'NONE',
-            positionX: teleporterTargetsInfo[targetTeleporterName].positionX,
-            positionY: teleporterTargetsInfo[targetTeleporterName].positionY,
+            positionX: TELEPORTERS[targetTeleporterName].positionX,
+            positionY: TELEPORTERS[targetTeleporterName].positionY,
         }
         updateLocation(location, settings)
         const command = {
             outcome: location,
             requirement: {},
         }
-        const sourceStageName = teleporterTargetsInfo[sourceTeleporterName].sourceStage
-        const otherStageName = teleporterTargetsInfo[sourceTeleporterName].targetStage
+        const sourceStageName = TELEPORTERS[sourceTeleporterName].sourceStage
+        const otherStageName = TELEPORTERS[sourceTeleporterName].targetStage
         const sourceRoomName = 'triggerTeleporterTo' + otherStageName.at(0).toUpperCase() + otherStageName.slice(1)
         result[sourceStageName][sourceRoomName].push(command)
     })
@@ -14927,7 +15519,7 @@ function getLogic(settings, enableElsewhere=false) {
         result.elsewhere = {
             hub: [],
         }
-        Object.entries(roomPriority)
+        Object.entries(ROOM_PRIORITY)
         .filter(([stageName, roomNames]) => {
             return stageName in result
         })
@@ -15034,22 +15626,6 @@ function hashedText(text) {
     return result
 }
 
-const WINNING_STATE = {
-    itemSpikeBreaker: {
-        minimum: 1,
-    },
-    progressionBatTransformation: true,
-    progressionDoubleJump: true,
-    progressionEcholocation: true,
-    progressionItemMaterialization: true,
-    progressionMistTransformation: true,
-    progressionProtectionFromWater: true,
-    progressionSummonDemonFamiliar: true,
-    progressionSummonFerryman: true,
-    progressionUnlockBlueDoors: true,
-    progressionWolfTransformation: true,
-}
-
 export function findGoal(logic, startingState, goalState, sameStage=false) {
     // console.log('findGoal')
     let result = null
@@ -15115,599 +15691,6 @@ export function validate(settings, validation) {
             break
     }
     return result
-}
-
-const NODES = {
-    abandonedMine: {
-        locationDemonCard: {
-            nodeType: 'check',
-            requirement: {
-                locationDemonCard: true,
-            },
-        },
-        loadingRoomToCatacombs: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToCatacombs',
-                section: 'main',
-            },
-        },
-        loadingRoomToWarpRooms: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToWarpRooms',
-                section: 'main',
-            },
-        },
-        loadingRoomToUndergroundCaverns: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToUndergroundCaverns',
-                section: 'main',
-            },
-        },
-    },
-    alchemyLaboratory: {
-        statusCannonActivated: {
-            nodeType: 'action',
-            requirement: {
-                statusCannonActivated: true,
-            },
-        },
-        locationBatCard: {
-            nodeType: 'check',
-            requirement: {
-                locationBatCard: true,
-            },
-        },
-        locationSkillOfWolf: {
-            nodeType: 'check',
-            requirement: {
-                locationSkillOfWolf: true,
-            },
-        },
-        loadingRoomToMarbleGallery: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToMarbleGallery',
-                section: 'main',
-            },
-        },
-        loadingRoomToRoyalChapel: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToRoyalChapel',
-                section: 'main',
-            },
-        },
-        loadingRoomToCastleEntrance: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToCastleEntrance',
-                section: 'main',
-            },
-        },
-    },
-    castleEntrance: {
-        // start: {
-        //     nodeType: 'UNKNOWN',
-        //     requirement: {
-        //         room: 'afterDrawbridge',
-        //         section: 'main',
-        //     },
-        // },
-        statusSecretWallInMermanRoomOpened: {
-            nodeType: 'action',
-            requirement: {
-                statusSecretWallInMermanRoomOpened: true,
-            },
-        },
-        statusPassageFromCastleEntranceToMarbleGalleryOpened: {
-            nodeType: 'action',
-            requirement: {
-                statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
-            },
-        },
-        statusPassageFromCastleEntranceToUndergroundCavernsOpened: {
-            nodeType: 'action',
-            requirement: {
-                statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
-            },
-        },
-        statusPassageFromCastleEntranceToWarpRoomsOpened: {
-            nodeType: 'action',
-            requirement: {
-                statusPassageFromCastleEntranceToWarpRoomsOpened: true,
-            },
-        },
-        locationPowerOfWolf: {
-            nodeType: 'check',
-            requirement: {
-                locationPowerOfWolf: true,
-            },
-        },
-        locationCubeOfZoe: {
-            nodeType: 'check',
-            requirement: {
-                locationCubeOfZoe: true,
-            },
-        },
-        loadingRoomToMarbleGallery: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToMarbleGallery',
-                section: 'main',
-            },
-        },
-        loadingRoomToWarpRooms: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToWarpRooms',
-                section: 'main',
-            },
-        },
-        loadingRoomToAlchemyLaboratory: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToAlchemyLaboratory',
-                section: 'main',
-            },
-        },
-        loadingRoomToUndergroundCaverns: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToUndergroundCaverns',
-                section: 'main',
-            },
-        },
-    },
-    castleKeep: {
-        // {
-        //     name: 'badEnding',
-        //     nodeType: 'UNKNOWN',
-        //     requirement: {
-        //         room: 'keepArea',
-        //         section: 'anteroom',
-        //     },
-        // },
-        locationLeapStone: {
-            nodeType: 'check',
-            requirement: {
-                locationLeapStone: true,
-            },
-        },
-        locationPowerOfMist: {
-            nodeType: 'check',
-            requirement: {
-                locationPowerOfMist: true,
-            },
-        },
-        locationGhostCard: {
-            nodeType: 'check',
-            requirement: {
-                locationGhostCard: true,
-            },
-        },
-        loadingRoomToClockTower: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToClockTower',
-                section: 'main',
-            },
-        },
-        loadingRoomToWarpRooms: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToWarpRooms',
-                section: 'main',
-            },
-        },
-        loadingRoomToRoyalChapel: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToRoyalChapel',
-                section: 'main',
-            },
-        },
-    },
-    catacombs: {
-        locationSpikeBreaker: {
-            nodeType: 'check',
-            requirement: {
-                locationSpikeBreaker: true,
-            },
-        },
-        loadingRoomToAbandonedMine: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToAbandonedMine',
-                section: 'main',
-            },
-        },
-    },
-    clockTower: {
-        locationFireOfBat: {
-            nodeType: 'check',
-            requirement: {
-                locationFireOfBat: true,
-            },
-        },
-        loadingRoomToCastleKeep: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToCastleKeep',
-                section: 'main',
-            },
-        },
-        loadingRoomToOuterWall: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToOuterWall',
-                section: 'main',
-            },
-        },
-    },
-    colosseum: {
-        statusBarrierInColosseumOpened: {
-            nodeType: 'action',
-            requirement: {
-                statusBarrierInColosseumOpened: true,
-            },
-        },
-        locationFormOfMist: {
-            nodeType: 'check',
-            requirement: {
-                locationFormOfMist: true,
-            },
-        },
-        loadingRoomToRoyalChapel: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToRoyalChapel',
-                section: 'main',
-            },
-        },
-        loadingRoomToOlroxsQuarters: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToOlroxsQuarters',
-                section: 'main',
-            },
-        },
-    },
-    longLibrary: {
-        locationSoulOfBat: {
-            nodeType: 'check',
-            requirement: {
-                locationSoulOfBat: true,
-            },
-        },
-        locationJewelOfOpen: {
-            nodeType: 'check',
-            requirement: {
-                locationJewelOfOpen: true,
-            },
-        },
-        locationFaerieCard: {
-            nodeType: 'check',
-            requirement: {
-                locationFaerieCard: true,
-            },
-        },
-        locationFaerieScroll: {
-            nodeType: 'check',
-            requirement: {
-                locationFaerieScroll: true,
-            },
-        },
-        loadingRoomToOuterWall: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToOuterWall',
-                section: 'main',
-            },
-        },
-    },
-    marbleGallery: {
-        // {
-        //     name: 'locationMarbleGalleryStopwatch',
-        //     nodeType: 'UNKNOWN',
-        //     requirement: {
-        //         locationMarbleGalleryStopwatch: true,
-        //     },
-        // },
-        // {
-        //     name: 'clockRoom',
-        //     nodeType: 'UNKNOWN',
-        //     requirement: {
-        //         room: 'clockRoom',
-        //         section: 'main',
-        //     },
-        // },
-        statusPressurePlateInMarbleGalleryActivated: {
-            nodeType: 'action',
-            requirement: {
-                statusPressurePlateInMarbleGalleryActivated: true,
-            },
-        },
-        locationSpiritOrb: {
-            nodeType: 'check',
-            requirement: {
-                locationSpiritOrb: true,
-            },
-        },
-        locationGravityBoots: {
-            nodeType: 'check',
-            requirement: {
-                locationGravityBoots: true,
-            },
-        },
-        loadingRoomToOuterWall: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToOuterWall',
-                section: 'main',
-            },
-        },
-        loadingRoomToUndergroundCaverns: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToUndergroundCaverns',
-                section: 'main',
-            },
-        },
-        loadingRoomToAlchemyLaboratory: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToAlchemyLaboratory',
-                section: 'main',
-            },
-        },
-        loadingRoomToOlroxsQuarters: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToOlroxsQuarters',
-                section: 'main',
-            },
-        },
-        loadingRoomToCastleEntrance: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToCastleEntrance',
-                section: 'main',
-            },
-        },
-    },
-    olroxsQuarters: {
-        locationEchoOfBat: {
-            nodeType: 'check',
-            requirement: {
-                locationEchoOfBat: true,
-            },
-        },
-        locationSwordCard: {
-            nodeType: 'check',
-            requirement: {
-                locationSwordCard: true,
-            },
-        },
-        loadingRoomToMarbleGallery: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToMarbleGallery',
-                section: 'main',
-            },
-        },
-        loadingRoomToColosseum: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToColosseum',
-                section: 'main',
-            },
-        },
-        loadingRoomToWarpRooms: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToWarpRooms',
-                section: 'main',
-            },
-        },
-        loadingRoomToRoyalChapel: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToRoyalChapel',
-                section: 'main',
-            },
-        },
-    },
-    outerWall: {
-        locationSoulOfWolf: {
-            nodeType: 'check',
-            requirement: {
-                locationSoulOfWolf: true,
-            },
-        },
-        loadingRoomToWarpRooms: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToWarpRooms',
-                section: 'main',
-            },
-        },
-        loadingRoomToClockTower: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToClockTower',
-                section: 'main',
-            },
-        },
-        loadingRoomToLongLibrary: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToLongLibrary',
-                section: 'main',
-            },
-        },
-        loadingRoomToMarbleGallery: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToMarbleGallery',
-                section: 'main',
-            },
-        },
-    },
-    royalChapel: {
-        statusStatueInRoyalChapelMoved: {
-            nodeType: 'action',
-            requirement: {
-                statusStatueInRoyalChapelMoved: true,
-            },
-        },
-        locationSilverRing: {
-            nodeType: 'check',
-            requirement: {
-                locationSilverRing: true,
-            },
-        },
-        loadingRoomToCastleKeep: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToCastleKeep',
-                section: 'main',
-            },
-        },
-        loadingRoomToAlchemyLaboratory: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToAlchemyLaboratory',
-                section: 'main',
-            },
-        },
-        loadingRoomToColosseum: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToColosseum',
-                section: 'main',
-            },
-        },
-        loadingRoomToOlroxsQuarters: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToOlroxsQuarters',
-                section: 'main',
-            },
-        },
-    },
-    undergroundCaverns: {
-        // {
-        //     room: 'dkBridge',
-        //     section: 'main',
-        // },
-        // {
-        //     room: 'dKButton',
-        //     section: 'main',
-        // },
-        locationHolySymbol: {
-            nodeType: 'check',
-            requirement: {
-                locationHolySymbol: true,
-            },
-        },
-        locationMermanStatue: {
-            nodeType: 'check',
-            requirement: {
-                locationMermanStatue: true,
-            },
-        },
-        locationGoldRing: {
-            nodeType: 'check',
-            requirement: {
-                locationGoldRing: true,
-            },
-        },
-        loadingRoomToCastleEntrance: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToCastleEntrance',
-                section: 'main',
-            },
-        },
-        loadingRoomToMarbleGallery: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToMarbleGallery',
-                section: 'main',
-            },
-        },
-        loadingRoomToAbandonedMine: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToAbandonedMine',
-                section: 'main',
-            },
-        },
-    },
-    warpRooms: {
-        statusWarpRoomToAbandonedMineUnlocked: {
-            nodeType: 'action',
-            requirement: {
-                statusWarpRoomToAbandonedMineUnlocked: true,
-            },
-        },
-        statusWarpRoomToOuterWallUnlocked: {
-            nodeType: 'action',
-            requirement: {
-                statusWarpRoomToOuterWallUnlocked: true,
-            },
-        },
-        statusWarpRoomToCastleKeepUnlocked: {
-            nodeType: 'action',
-            requirement: {
-                statusWarpRoomToCastleKeepUnlocked: true,
-            },
-        },
-        statusWarpRoomToOlroxsQuartersUnlocked: {
-            nodeType: 'action',
-            requirement: {
-                statusWarpRoomToOlroxsQuartersUnlocked: true,
-            },
-        },
-        loadingRoomToAbandonedMine: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToAbandonedMine',
-                section: 'main',
-            },
-        },
-        loadingRoomToCastleEntrance: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToCastleEntrance',
-                section: 'main',
-            },
-        },
-        loadingRoomToOlroxsQuarters: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToOlroxsQuarters',
-                section: 'main',
-            },
-        },
-        loadingRoomToOuterWall: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToOuterWall',
-                section: 'main',
-            },
-        },
-        loadingRoomToCastleKeep: {
-            nodeType: 'exit',
-            requirement: {
-                room: 'loadingRoomToCastleKeep',
-                section: 'main',
-            },
-        },
-    },
 }
 
 function getEdges(logic, startingState) {
@@ -15810,44 +15793,54 @@ function getEdges(logic, startingState) {
     return result
 }
 
-export function analyzeLogic(settings) {
+export function analyzeLogic(settings, scenario) {
     const result = {
         solved: false,
         solvedState: null,
     }
-    // REPEAT until GOAL is met or no more checks/actions can be processed:
-    //   - Calculate edges between nodes that are reachable from the starting node
-    //   - For each node:
-    //       - find out how many are bidirectionally-reachable from the start
-    //         using the edges
-    //   - For each bidirectionally-reachable check node or action node:
-    //       - add its outcome to current state
-    const logic = getLogic(settings)
-    console.log(inspect(logic, { depth: 5 }))
-    const startingState = {
-        stage: 'castleEntrance',
-        room: 'afterDrawbridge',
-        section: 'main',
-        positionX: 136,
-        positionY: 640,
-        time: 120.0,
-    }
-    const winningState = {}
-    Object.entries(NODES)
-    .forEach(([stageName, nodes]) => {
-        Object.entries(nodes)
-        .filter(([nodeName, node]) => {
-            return ['action', 'check'].includes(node.nodeType)
-        })
-        .forEach(([nodeName, node]) => {
-            winningState[nodeName] = true
-        })
+    scenario.startingNodes
+    .forEach((nodeId) => {
+        switch (NODES[nodeId.stageName][nodeId.nodeName].nodeType) {
+            case 'action':
+                updateStateWithOutcome(scenario.startingState, NODES[nodeId.stageName][nodeId.nodeName].requirement)
+                break
+            case 'check':
+                const rewardName = settings.locationRewards[nodeId.nodeName]
+                const locationOutcome = {}
+                locationOutcome[nodeId.nodeName] = true
+                updateStateWithOutcome(scenario.startingState, locationOutcome)
+                updateStateWithOutcome(scenario.startingState, REWARDS[rewardName].outcome)
+                break
+            default:
+                break
+        }
     })
+    const goalState = {}
+    scenario.goalNodes
+    .forEach((nodeId) => {
+        switch (NODES[nodeId.stageName][nodeId.nodeName].nodeType) {
+            case 'action':
+                updateStateWithOutcome(goalState, NODES[nodeId.stageName][nodeId.nodeName].requirement)
+                break
+            case 'check':
+                const locationOutcome = {}
+                locationOutcome[nodeId.nodeName] = true
+                updateStateWithOutcome(goalState, locationOutcome)
+                break
+            default:
+                break
+        }
+    })
+    // REPEAT until all action/check nodes found or no more can be found:
+    //   - Calculate edges between nodes that are reachable from the starting state
+    //   - For each action node or check node that can reach the start:
+    //       - add its outcome to starting state
+    const logic = getLogic(settings)
     const nodesFound = new Map()
     let newNodeFound = true
     while (newNodeFound) {
         newNodeFound = false
-        const edges = getEdges(logic, startingState)
+        const edges = getEdges(logic, scenario.startingState)
         Object.entries(edges)
         .filter(([currentNodeName, nextNodeNames]) => {
             return currentNodeName !== 'castleEntrance.start'
@@ -15872,14 +15865,14 @@ export function analyzeLogic(settings) {
                         newNodeFound = true
                         switch (NODES[stageName][nodeName].nodeType) {
                             case 'action':
-                                updateStateWithOutcome(startingState, NODES[stageName][nodeName].requirement)
+                                updateStateWithOutcome(scenario.startingState, NODES[stageName][nodeName].requirement)
                                 break
                             case 'check':
                                 const rewardName = settings.locationRewards[nodeName]
                                 const locationOutcome = {}
                                 locationOutcome[nodeName] = true
-                                updateStateWithOutcome(startingState, locationOutcome)
-                                updateStateWithOutcome(startingState, rewardsInfo[rewardName].outcome)
+                                updateStateWithOutcome(scenario.startingState, locationOutcome)
+                                updateStateWithOutcome(scenario.startingState, REWARDS[rewardName].outcome)
                                 break
                         }
                         break
@@ -15900,9 +15893,9 @@ export function analyzeLogic(settings) {
             }
         })
         if (!newNodeFound) {
-            if (isValidRequirement(startingState, winningState)) {
+            if (isValidRequirement(scenario.startingState, goalState)) {
                 result.solved = true
-                result.solvedState = startingState
+                result.solvedState = scenario.startingState
             }
             else {
                 result.solved = false
@@ -15911,8 +15904,7 @@ export function analyzeLogic(settings) {
             break
         }
     }
-    console.log('startingState:', inspect(startingState, { depth: 4 }))
-    console.log('result:', inspect(result, { depth: 4 }))
-    // edges['castleEntrance.locationCubeOfZoe']
+    // console.log('startingState:', inspect(scenario.startingState, { depth: 4 }))
+    // console.log('result:', inspect(result, { depth: 4 }))
     return result
 }
