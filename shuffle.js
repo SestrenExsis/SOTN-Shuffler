@@ -358,34 +358,34 @@ const VALIDATIONS = {
         },
     ],
     clockTower: [
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                statusLeftGearRoomSolved: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                statusRightGearRoomSolved: true,
-            },
-            goalType: 'required',
-        },
+        // {
+        //     startingState: {
+        //         stage: 'elsewhere',
+        //         room: 'hub',
+        //         section: 'main',
+        //         progressionBatTransformation: true,
+        //         debugEnableElsewhere: true,
+        //         time: 120.0,
+        //     },
+        //     goalState: {
+        //         statusLeftGearRoomSolved: true,
+        //     },
+        //     goalType: 'required',
+        // },
+        // {
+        //     startingState: {
+        //         stage: 'elsewhere',
+        //         room: 'hub',
+        //         section: 'main',
+        //         progressionBatTransformation: true,
+        //         debugEnableElsewhere: true,
+        //         time: 120.0,
+        //     },
+        //     goalState: {
+        //         statusRightGearRoomSolved: true,
+        //     },
+        //     goalType: 'required',
+        // },
         {
             startingState: {
                 stage: 'elsewhere',
@@ -1148,6 +1148,7 @@ const argv = yargs(process.argv.slice(2))
                     }
                     logicAnalysis = analyzeLogic(logicSettings)
                     console.log('logicAnalysis:', logicAnalysis)
+                    console.log('')
                     shuffleData.debugInfo.solved = logicAnalysis.solved
                     shuffleData.debugInfo.finalSeedsUsed.solver = seed
                 }

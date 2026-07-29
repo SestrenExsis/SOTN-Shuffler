@@ -482,12 +482,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicSoulOfBat: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicSoulOfBat: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -502,12 +504,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicFireOfBat: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicFireOfBat: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -523,12 +527,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicEchoOfBat: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicEchoOfBat: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -543,12 +549,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicForceOfEcho: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicForceOfEcho: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -565,12 +573,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicSoulOfWolf: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicSoulOfWolf: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -586,12 +596,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicPowerOfWolf: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicPowerOfWolf: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -608,12 +620,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicSkillOfWolf: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicSkillOfWolf: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -630,12 +644,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicFormOfMist: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicFormOfMist: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -651,12 +667,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicPowerOfMist: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicPowerOfMist: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -671,12 +689,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicGasCloud: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicGasCloud: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -692,12 +712,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicCubeOfZoe: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicCubeOfZoe: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -712,12 +734,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicSpiritOrb: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicSpiritOrb: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -733,12 +757,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicGravityBoots: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicGravityBoots: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -755,12 +781,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicLeapStone: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicLeapStone: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -776,12 +804,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicHolySymbol: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicHolySymbol: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -796,12 +826,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicFaerieScroll: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicFaerieScroll: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -817,12 +849,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicJewelOfOpen: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicJewelOfOpen: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -838,12 +872,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicMermanStatue: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicMermanStatue: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -858,12 +894,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicBatCard: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicBatCard: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -878,12 +916,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicGhostCard: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicGhostCard: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -898,12 +938,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicFaerieCard: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicFaerieCard: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -919,12 +961,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicDemonCard: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicDemonCard: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -939,12 +983,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicSwordCard: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicSwordCard: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -959,12 +1005,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicSpriteCard: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicSpriteCard: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -980,12 +1028,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicNosedevilCard: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicNosedevilCard: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -1000,12 +1050,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicHeartOfVlad: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicHeartOfVlad: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -1020,12 +1072,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicToothOfVlad: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicToothOfVlad: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -1040,12 +1094,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicRibOfVlad: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicRibOfVlad: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -1060,12 +1116,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicRingOfVlad: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicRingOfVlad: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -1080,12 +1138,14 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 relicEyeOfVlad: false,
                 costs: {
                     time: COST_PICKUP_RELIC,
                 },
             },
             {
+                progressionRewardTracking: true,
                 relicEyeOfVlad: false,
                 techniqueQuickGrab: true,
                 costs: {
@@ -1100,6 +1160,7 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 costs: {
                     time: COST_PICKUP_ITEM,
                 },
@@ -1115,6 +1176,7 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 costs: {
                     time: COST_PICKUP_ITEM,
                 },
@@ -1130,6 +1192,7 @@ const rewardsInfo = {
         },
         requirements: [
             {
+                progressionRewardTracking: true,
                 costs: {
                     time: COST_PICKUP_ITEM,
                 },
@@ -3340,10 +3403,21 @@ const roomsInfo = {
                 getRegion('main', 0, 0, 256, 768),
             ],
             commands: {
-                exitLeft: {
+                // TODO(sestren): Add breakable wall
+                // TODO(sestren): Add breakable floor
+                exitLeftUpper: {
                     outcome: {
                         positionX: 0 - 8,
                         positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', COST_UNKNOWN),
+                    ],
+                },
+                exitLeftLower: {
+                    outcome: {
+                        positionX: 0 - 8,
+                        positionY: 640,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
@@ -3356,6 +3430,15 @@ const roomsInfo = {
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
+                    ],
+                },
+                exitBottom: {
+                    outcome: {
+                        positionX: 128,
+                        positionY: 768 + 24,
+                    },
+                    requirements: [
+                        getMovement('fall', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -6755,8 +6838,8 @@ const roomsInfo = {
                     requirements: [
                         {
                             section: 'main',
-                            statusLeftGearRoomSolved: true,
-                            statusRightGearRoomSolved: true,
+                            // statusLeftGearRoomSolved: true,
+                            // statusRightGearRoomSolved: true,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
@@ -6771,28 +6854,28 @@ const roomsInfo = {
                     requirements: [
                         {
                             section: 'secretPassage',
-                            statusLeftGearRoomSolved: true,
-                            statusRightGearRoomSolved: true,
+                            // statusLeftGearRoomSolved: true,
+                            // statusRightGearRoomSolved: true,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
                         },
                     ],
                 },
-                solveLeftGear: {
-                    outcome: {
-                        statusLeftGearRoomSolved: true,
-                    },
-                    requirements: [
-                        {
-                            section: 'main',
-                            // statusLeftGearRoomSolved: false,
-                            costs: {
-                                time: COST_UNKNOWN,
-                            },
-                        },
-                    ],
-                },
+                // solveLeftGear: {
+                //     outcome: {
+                //         statusLeftGearRoomSolved: true,
+                //     },
+                //     requirements: [
+                //         {
+                //             section: 'main',
+                //             // statusLeftGearRoomSolved: false,
+                //             costs: {
+                //                 time: COST_UNKNOWN,
+                //             },
+                //         },
+                //     ],
+                // },
             },
         },
         loadingRoomToCastleKeep: {
@@ -7129,20 +7212,20 @@ const roomsInfo = {
                         getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
-                solveRightGear: {
-                    outcome: {
-                        statusRightGearRoomSolved: true,
-                    },
-                    requirements: [
-                        {
-                            section: 'main',
-                            // statusRightGearRoomSolved: false,
-                            costs: {
-                                time: COST_UNKNOWN,
-                            },
-                        },
-                    ],
-                },
+                // solveRightGear: {
+                //     outcome: {
+                //         statusRightGearRoomSolved: true,
+                //     },
+                //     requirements: [
+                //         {
+                //             section: 'main',
+                //             // statusRightGearRoomSolved: false,
+                //             costs: {
+                //                 time: COST_UNKNOWN,
+                //             },
+                //         },
+                //     ],
+                // },
             },
         },
         spire: {
@@ -7209,26 +7292,27 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    requirements: [
-                        {
-                            positionX: {
-                                minimum: 0,
-                                maximum: 256 - 1,
-                            },
-                            positionY: {
-                                minimum: 0,
-                                maximum: 256 - 1,
-                            },
-                        }
-                    ],
-                    outcome: {
-                        section: 'main',
-                        // NOTE(sestren): Leaving Clock Tower resets the Gear Puzzle
-                        statusLeftGearRoomSolved: false,
-                        statusRightGearRoomSolved: false,
-                    },
-                },
+                getRegion('main', 0, 0, 256, 256),
+                // {
+                //     requirements: [
+                //         {
+                //             positionX: {
+                //                 minimum: 0,
+                //                 maximum: 256 - 1,
+                //             },
+                //             positionY: {
+                //                 minimum: 0,
+                //                 maximum: 256 - 1,
+                //             },
+                //         }
+                //     ],
+                //     outcome: {
+                //         section: 'main',
+                //         // NOTE(sestren): Leaving Clock Tower resets the Gear Puzzle
+                //         statusLeftGearRoomSolved: false,
+                //         statusRightGearRoomSolved: false,
+                //     },
+                // },
             ],
             commands: {},
         },
@@ -7238,26 +7322,27 @@ const roomsInfo = {
                 height: 256,
             },
             regions: [
-                {
-                    requirements: [
-                        {
-                            positionX: {
-                                minimum: 0,
-                                maximum: 256 - 1,
-                            },
-                            positionY: {
-                                minimum: 0,
-                                maximum: 256 - 1,
-                            },
-                        }
-                    ],
-                    outcome: {
-                        section: 'main',
-                        // NOTE(sestren): Leaving Clock Tower resets the Gear Puzzle
-                        statusLeftGearRoomSolved: false,
-                        statusRightGearRoomSolved: false,
-                    },
-                },
+                getRegion('main', 0, 0, 256, 256),
+                // {
+                //     requirements: [
+                //         {
+                //             positionX: {
+                //                 minimum: 0,
+                //                 maximum: 256 - 1,
+                //             },
+                //             positionY: {
+                //                 minimum: 0,
+                //                 maximum: 256 - 1,
+                //             },
+                //         }
+                //     ],
+                //     outcome: {
+                //         section: 'main',
+                //         // NOTE(sestren): Leaving Clock Tower resets the Gear Puzzle
+                //         statusLeftGearRoomSolved: false,
+                //         statusRightGearRoomSolved: false,
+                //     },
+                // },
             ],
             commands: {},
         },
@@ -11730,7 +11815,7 @@ const roomsInfo = {
                 },
                 exitRightUpper: {
                     outcome: {
-                        positionX: 256 + 8,
+                        positionX: 512 + 8,
                         positionY: 128,
                     },
                     requirements: [
@@ -11748,7 +11833,7 @@ const roomsInfo = {
                 },
                 exitRightLower: {
                     outcome: {
-                        positionX: 256 + 8,
+                        positionX: 512 + 8,
                         positionY: 384,
                     },
                     requirements: [
@@ -11840,7 +11925,7 @@ const roomsInfo = {
                 },
                 exitRightUpper: {
                     outcome: {
-                        positionX: 1024 + 8 - 384,
+                        positionX: 1024 + 8 - 256,
                         positionY: 640,
                         staleLocation: true,
                     },
@@ -11850,7 +11935,7 @@ const roomsInfo = {
                 },
                 exitRightLower: {
                     outcome: {
-                        positionX: 1024 + 8 - 384,
+                        positionX: 1024 + 8 - 256,
                         positionY: 896,
                         staleLocation: true,
                     },
@@ -14351,11 +14436,8 @@ const teleporterTargetsInfo = {
     },
 }
 
-function isValidRequirement(state, requirement, properties=null) {
+function isValidRequirement(state, requirement) {
     const result = Object.entries(requirement)
-    .filter(([propertyKey, propertyInfo]) => {
-        return properties === null || properties.includes(propertyKey)
-    })
     .every(([propertyKey, propertyInfo]) => {
         let stateValue
         switch (typeof propertyInfo) {
@@ -14470,7 +14552,7 @@ function simplify(state) {
     })
 }
 
-function updateStateWithOutcome(state, outcome) {
+function updateStateWithOutcome(state, outcome, simplifyState=true) {
     Object.entries(outcome)
     .forEach(([propertyKey, propertyInfo]) => {
         switch (typeof propertyInfo) {
@@ -14501,7 +14583,9 @@ function updateStateWithOutcome(state, outcome) {
                 break
         }
     })
-    simplify(state)
+    if (simplifyState) {
+        simplify(state)
+    }
 }
 
 function getRoomDimensions(roomPositions) {
@@ -14539,7 +14623,7 @@ function getRoomDimensions(roomPositions) {
     return result
 }
 
-function updateLocation(location, settings) {
+function updateLocation(location, settings, simplifyState=true) {
     // console.log(location)
     // Determine which room the player is in
     if (
@@ -14604,7 +14688,7 @@ function updateLocation(location, settings) {
         .find((requirementInfo) => {
             const validRequirement = isValidRequirement(location, requirementInfo)
             if (validRequirement) {
-                updateStateWithOutcome(location, regionInfo.outcome)
+                updateStateWithOutcome(location, regionInfo.outcome, simplifyState)
                 validRegion = true
             }
             return validRequirement
@@ -14634,79 +14718,24 @@ function getLocationRewardCommands(settings) {
             }
             updateLocation(location, settings)
             // Process every reward requirement
-            let rewardInfo = {
-                outcome: {},
-                requirements: [
-                    {},
-                ],
+            const command = {
+                outcome: Object.assign({}, locationInfo.outcome),
+                requirement: Object.assign({}, locationRequirementInfo),
             }
+            command.requirement.section = location.section
+            result.push(command)
             if (locationName in settings.locationRewards) {
                 const rewardName = settings.locationRewards[locationName]
-                rewardInfo = rewardsInfo[rewardName]
-            }
-            rewardInfo.requirements
-            .forEach((rewardRequirementInfo) => {
-                const command = {
-                    outcome: {},
-                    requirement: {
-                        stage: stageName,
-                        room: roomName,
-                    },
-                }
-                Object.assign(command.outcome, locationInfo.outcome)
-                Object.assign(command.outcome, rewardInfo.outcome)
-                Object.assign(command.requirement, locationRequirementInfo)
-                Object.entries(rewardRequirementInfo)
-                .forEach(([propertyKey, propertyInfo]) => {
-                    if (propertyKey == 'costs') {
-                        Object.entries(propertyInfo)
-                        .forEach(([costKey, costValue]) => {
-                            switch (typeof costValue) {
-                                case 'number':
-                                    command.requirement[costKey] = {
-                                        minimum: costValue,
-                                    }
-                                    command.outcome[costKey] = {
-                                        operation: 'add',
-                                        value: -1 * costValue,
-                                    }
-                                    break
-                                default:
-                                    command.outcome[costKey] = costValue
-                                    break
-                            }
-                        })
-                    }
-                    else {
-                        command.requirement[propertyKey] = propertyInfo
-                    }
-                })
-                command.requirement.section = location.section
-                result.push(command)
-            })
-        })
-    })
-    return result
-}
-
-function getLogic(settings, enableElsewhere=false) {
-    const result = {}
-    // Process every room command
-    Object.entries(roomsInfo ?? {})
-    .forEach(([stageName, stageInfo]) => {
-        result[stageName] = {}
-        Object.entries(stageInfo)
-        .forEach(([roomName, roomInfo]) => {
-            result[stageName][roomName] = []
-            Object.entries(roomInfo.commands)
-            .forEach(([commandName, commandInfo]) => {
-                commandInfo.requirements
-                .forEach((requirementInfo) => {
+                rewardsInfo[rewardName].requirements
+                .forEach((rewardRequirementInfo) => {
                     const command = {
-                        outcome: JSON.parse(JSON.stringify(commandInfo.outcome)),
+                        outcome: {},
                         requirement: {},
                     }
-                    Object.entries(requirementInfo)
+                    Object.assign(command.outcome, locationInfo.outcome)
+                    Object.assign(command.outcome, rewardsInfo[rewardName].outcome)
+                    Object.assign(command.requirement, locationRequirementInfo)
+                    Object.entries(rewardRequirementInfo)
                     .forEach(([propertyKey, propertyInfo]) => {
                         if (propertyKey == 'costs') {
                             Object.entries(propertyInfo)
@@ -14731,31 +14760,92 @@ function getLogic(settings, enableElsewhere=false) {
                             command.requirement[propertyKey] = propertyInfo
                         }
                     })
-                    // NOTE(sestren): Location is the only "weird" set of properties
-                    if (
-                        'stage' in command.outcome ||
-                        'room' in command.outcome ||
-                        'section' in command.outcome ||
-                        'positionX' in command.outcome ||
-                        'positionY' in command.outcome ||
-                        'staleLocation' in command.outcome
-                    ) {
-                        const location = {
-                            stage: stageName,
-                            room: roomName,
-                            section: command.outcome.section ?? command.requirement.section ?? 'NONE',
-                            positionX: command.outcome.positionX ?? 0,
-                            positionY: command.outcome.positionY ?? 0,
-                            staleLocation: command.outcome.staleLocation ?? false,
-                        }
-                        updateLocation(location, settings)
-                        Object.entries(location)
-                        .forEach(([propertyKey, propertyValue]) => {
-                            command.outcome[propertyKey] = propertyValue
+                    command.requirement.section = location.section
+                    result.push(command)
+                })
+            }
+        })
+    })
+    return result
+}
+
+function getLogic(settings, enableElsewhere=false) {
+    const result = {}
+    const roomPositions = settings.roomPositions ?? []
+    // Process every location-reward combination
+    roomPositions
+    .forEach((roomPosition) => {
+        if (!(roomPosition.stage in result)) {
+            result[roomPosition.stage] = {}
+        }
+        if (!(roomPosition.room in result[roomPosition.stage])) {
+            result[roomPosition.stage][roomPosition.room] = []
+        }
+        if (
+            !(roomPosition.stage in roomsInfo) ||
+            !(roomPosition.room in roomsInfo[roomPosition.stage]) ||
+            !('commands' in roomsInfo[roomPosition.stage][roomPosition.room])
+        ) {
+            // console.log('***', roomPosition.stage, roomPosition.room)
+            return
+        }
+        Object.entries(roomsInfo[roomPosition.stage][roomPosition.room].commands)
+        .forEach(([commandName, commandInfo]) => {
+            commandInfo.requirements
+            .forEach((requirementInfo) => {
+                const command = {
+                    outcome: JSON.parse(JSON.stringify(commandInfo.outcome)),
+                    requirement: {},
+                }
+                Object.entries(requirementInfo)
+                .forEach(([propertyKey, propertyInfo]) => {
+                    if (propertyKey == 'costs') {
+                        Object.entries(propertyInfo)
+                        .forEach(([costKey, costValue]) => {
+                            switch (typeof costValue) {
+                                case 'number':
+                                    command.requirement[costKey] = {
+                                        minimum: costValue,
+                                    }
+                                    command.outcome[costKey] = {
+                                        operation: 'add',
+                                        value: -1 * costValue,
+                                    }
+                                    break
+                                default:
+                                    command.outcome[costKey] = costValue
+                                    break
+                            }
                         })
                     }
-                    result[stageName][roomName].push(command)
+                    else {
+                        command.requirement[propertyKey] = propertyInfo
+                    }
                 })
+                // NOTE(sestren): Location is the only "weird" set of properties
+                if (
+                    'stage' in command.outcome ||
+                    'room' in command.outcome ||
+                    'section' in command.outcome ||
+                    'positionX' in command.outcome ||
+                    'positionY' in command.outcome ||
+                    'staleLocation' in command.outcome
+                ) {
+                    const location = {
+                        stage: roomPosition.stage,
+                        room: roomPosition.room,
+                        section: command.outcome.section ?? command.requirement.section ?? 'NONE',
+                        positionX: command.outcome.positionX ?? 0,
+                        positionY: command.outcome.positionY ?? 0,
+                        staleLocation: command.outcome.staleLocation ?? false,
+                    }
+                    updateLocation(location, settings, false)
+                    Object.entries(location)
+                    .forEach(([propertyKey, propertyValue]) => {
+                        command.outcome[propertyKey] = propertyValue
+                    })
+                }
+                result[roomPosition.stage][roomPosition.room].push(command)
             })
         })
     })
@@ -14890,18 +14980,20 @@ function getLogic(settings, enableElsewhere=false) {
     return result
 }
 
-function hashedState(state, ignoredProperty=null, ignoredRequirement=null) {
+function hashedState(state, simple=false) {
     // Example: abandonedMine.bend.main.b8e6fb7c
     const elements = []
     elements.push(state.stage ?? 'NONE')
     elements.push(state.room ?? 'NONE')
     elements.push(state.section ?? 'NONE')
-    elements.push(hashedObject(state, ['stage', 'room', 'section', 'time', 'positionX', 'positionY', ignoredProperty], ignoredRequirement))
+    if (!simple) {
+        elements.push(hashedObject(state, ['stage', 'room', 'section', 'time', 'positionX', 'positionY']))
+    }
     const result = elements.join('.')
     return result
 }
 
-function hashedObject(object, ignoredProperties, ignoredSubProperty=null) {
+function hashedObject(object, ignoredProperties) {
     const elements = []
     Object.keys(object)
     .filter((key) => {
@@ -14916,7 +15008,7 @@ function hashedObject(object, ignoredProperties, ignoredSubProperty=null) {
                 elements.push([key, object[key]].join('='))
                 break
             case 'object':
-                elements.push([key, hashedObject(object[key], [ignoredSubProperty])].join('='))
+                elements.push([key, hashedObject(object[key])].join('='))
                 break
             default:
                 console.log('Unhandled key-value pair: ' + JSON.stringify(key) + ', ' + JSON.stringify(object[key]))
@@ -14965,7 +15057,7 @@ export function findGoal(logic, startingState, goalState, sameStage=false) {
     const subWork = [
         Object.assign({}, startingState),
     ]
-    map.set(hashedState(startingState), startingState)
+    // map.set(hashedState(startingState), startingState)
     while (subWork.length > 0) {
         // console.log('subWork.length:', subWork.length, 'map.size:', map.size)
         const currentState = subWork.pop()
@@ -15025,388 +15117,697 @@ export function validate(settings, validation) {
     return result
 }
 
-const REGIONS = {
+const NODES = {
     abandonedMine: {
-        checks: [
-            {
-                statusDemonSwitchActivated: true,
-            },
-            {
+        locationDemonCard: {
+            nodeType: 'check',
+            requirement: {
                 locationDemonCard: true,
             },
-        ],
-        nodes: [
-            {
+        },
+        loadingRoomToCatacombs: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToCatacombs',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToWarpRooms: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToWarpRooms',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToUndergroundCaverns: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToUndergroundCaverns',
                 section: 'main',
             },
-        ],
+        },
     },
     alchemyLaboratory: {
-        checks: [
-            {
-                locationBatCard: true,
-            },
-            {
+        statusCannonActivated: {
+            nodeType: 'action',
+            requirement: {
                 statusCannonActivated: true,
             },
-            {
+        },
+        locationBatCard: {
+            nodeType: 'check',
+            requirement: {
+                locationBatCard: true,
+            },
+        },
+        locationSkillOfWolf: {
+            nodeType: 'check',
+            requirement: {
                 locationSkillOfWolf: true,
             },
-        ],
-        nodes: [
-            {
+        },
+        loadingRoomToMarbleGallery: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToMarbleGallery',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToRoyalChapel: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToRoyalChapel',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToCastleEntrance: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToCastleEntrance',
                 section: 'main',
             },
-        ],
+        },
     },
     castleEntrance: {
-        checks: [
-            // {
-            //     room: 'afterDrawbridge',
-            //     section: 'main',
-            // },
-            {
-                locationPowerOfWolf: true,
-            },
-            {
-                locationCubeOfZoe: true,
-            },
-            {
+        // start: {
+        //     nodeType: 'UNKNOWN',
+        //     requirement: {
+        //         room: 'afterDrawbridge',
+        //         section: 'main',
+        //     },
+        // },
+        statusSecretWallInMermanRoomOpened: {
+            nodeType: 'action',
+            requirement: {
                 statusSecretWallInMermanRoomOpened: true,
             },
-            {
+        },
+        statusPassageFromCastleEntranceToMarbleGalleryOpened: {
+            nodeType: 'action',
+            requirement: {
                 statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
             },
-            {
+        },
+        statusPassageFromCastleEntranceToUndergroundCavernsOpened: {
+            nodeType: 'action',
+            requirement: {
                 statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
             },
-            {
+        },
+        statusPassageFromCastleEntranceToWarpRoomsOpened: {
+            nodeType: 'action',
+            requirement: {
                 statusPassageFromCastleEntranceToWarpRoomsOpened: true,
             },
-        ],
-        nodes: [
-            {
+        },
+        locationPowerOfWolf: {
+            nodeType: 'check',
+            requirement: {
+                locationPowerOfWolf: true,
+            },
+        },
+        locationCubeOfZoe: {
+            nodeType: 'check',
+            requirement: {
+                locationCubeOfZoe: true,
+            },
+        },
+        loadingRoomToMarbleGallery: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToMarbleGallery',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToWarpRooms: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToWarpRooms',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToAlchemyLaboratory: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToAlchemyLaboratory',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToUndergroundCaverns: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToUndergroundCaverns',
                 section: 'main',
             },
-        ],
+        },
     },
     castleKeep: {
-        checks: [
-            {
+        // {
+        //     name: 'badEnding',
+        //     nodeType: 'UNKNOWN',
+        //     requirement: {
+        //         room: 'keepArea',
+        //         section: 'anteroom',
+        //     },
+        // },
+        locationLeapStone: {
+            nodeType: 'check',
+            requirement: {
                 locationLeapStone: true,
             },
-            {
+        },
+        locationPowerOfMist: {
+            nodeType: 'check',
+            requirement: {
                 locationPowerOfMist: true,
             },
-            // {
-            //     room: 'keepArea',
-            //     section: 'anteroom',
-            // },
-            {
+        },
+        locationGhostCard: {
+            nodeType: 'check',
+            requirement: {
                 locationGhostCard: true,
             },
-        ],
-        nodes: [
-            {
+        },
+        loadingRoomToClockTower: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToClockTower',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToWarpRooms: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToWarpRooms',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToRoyalChapel: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToRoyalChapel',
                 section: 'main',
             },
-        ],
+        },
     },
     catacombs: {
-        checks: [
-            {
+        locationSpikeBreaker: {
+            nodeType: 'check',
+            requirement: {
                 locationSpikeBreaker: true,
             },
-        ],
-        nodes: [
-            {
+        },
+        loadingRoomToAbandonedMine: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToAbandonedMine',
                 section: 'main',
             },
-        ],
+        },
     },
     clockTower: {
-        checks: [
-            {
+        locationFireOfBat: {
+            nodeType: 'check',
+            requirement: {
                 locationFireOfBat: true,
             },
-        ],
-        nodes: [
-            {
+        },
+        loadingRoomToCastleKeep: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToCastleKeep',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToOuterWall: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToOuterWall',
                 section: 'main',
             },
-        ],
+        },
     },
     colosseum: {
-        checks: [
-            {
-                locationFormOfMist: true,
-            },
-            {
+        statusBarrierInColosseumOpened: {
+            nodeType: 'action',
+            requirement: {
                 statusBarrierInColosseumOpened: true,
             },
-        ],
-        nodes: [
-            {
+        },
+        locationFormOfMist: {
+            nodeType: 'check',
+            requirement: {
+                locationFormOfMist: true,
+            },
+        },
+        loadingRoomToRoyalChapel: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToRoyalChapel',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToOlroxsQuarters: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToOlroxsQuarters',
                 section: 'main',
             },
-        ],
+        },
     },
     longLibrary: {
-        checks: [
-            {
+        locationSoulOfBat: {
+            nodeType: 'check',
+            requirement: {
                 locationSoulOfBat: true,
             },
-            {
+        },
+        locationJewelOfOpen: {
+            nodeType: 'check',
+            requirement: {
                 locationJewelOfOpen: true,
             },
-            {
+        },
+        locationFaerieCard: {
+            nodeType: 'check',
+            requirement: {
                 locationFaerieCard: true,
             },
-            {
+        },
+        locationFaerieScroll: {
+            nodeType: 'check',
+            requirement: {
                 locationFaerieScroll: true,
             },
-        ],
-        nodes: [
-            {
+        },
+        loadingRoomToOuterWall: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToOuterWall',
                 section: 'main',
             },
-        ],
+        },
     },
     marbleGallery: {
-        checks: [
-            {
-                locationSpiritOrb: true,
-            },
-            // {
-            //     locationMarbleGalleryStopwatch: true,
-            // },
-            // {
-            //     room: 'clockRoom',
-            //     section: 'main',
-            // },
-            {
+        // {
+        //     name: 'locationMarbleGalleryStopwatch',
+        //     nodeType: 'UNKNOWN',
+        //     requirement: {
+        //         locationMarbleGalleryStopwatch: true,
+        //     },
+        // },
+        // {
+        //     name: 'clockRoom',
+        //     nodeType: 'UNKNOWN',
+        //     requirement: {
+        //         room: 'clockRoom',
+        //         section: 'main',
+        //     },
+        // },
+        statusPressurePlateInMarbleGalleryActivated: {
+            nodeType: 'action',
+            requirement: {
                 statusPressurePlateInMarbleGalleryActivated: true,
             },
-            {
+        },
+        locationSpiritOrb: {
+            nodeType: 'check',
+            requirement: {
+                locationSpiritOrb: true,
+            },
+        },
+        locationGravityBoots: {
+            nodeType: 'check',
+            requirement: {
                 locationGravityBoots: true,
             },
-        ],
-        nodes: [
-            {
+        },
+        loadingRoomToOuterWall: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToOuterWall',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToUndergroundCaverns: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToUndergroundCaverns',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToAlchemyLaboratory: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToAlchemyLaboratory',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToOlroxsQuarters: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToOlroxsQuarters',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToCastleEntrance: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToCastleEntrance',
                 section: 'main',
             },
-        ],
+        },
     },
     olroxsQuarters: {
-        checks: [
-            {
+        locationEchoOfBat: {
+            nodeType: 'check',
+            requirement: {
                 locationEchoOfBat: true,
             },
-            {
+        },
+        locationSwordCard: {
+            nodeType: 'check',
+            requirement: {
                 locationSwordCard: true,
             },
-        ],
-        nodes: [
-            {
+        },
+        loadingRoomToMarbleGallery: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToMarbleGallery',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToColosseum: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToColosseum',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToWarpRooms: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToWarpRooms',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToRoyalChapel: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToRoyalChapel',
                 section: 'main',
             },
-        ],
+        },
     },
     outerWall: {
-        checks: [
-            {
+        locationSoulOfWolf: {
+            nodeType: 'check',
+            requirement: {
                 locationSoulOfWolf: true,
             },
-        ],
-        nodes: [
-            {
+        },
+        loadingRoomToWarpRooms: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToWarpRooms',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToClockTower: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToClockTower',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToLongLibrary: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToLongLibrary',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToMarbleGallery: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToMarbleGallery',
                 section: 'main',
             },
-        ],
+        },
     },
     royalChapel: {
-        checks: [
-            {
-                locationSilverRing: true,
-            },
-            {
+        statusStatueInRoyalChapelMoved: {
+            nodeType: 'action',
+            requirement: {
                 statusStatueInRoyalChapelMoved: true,
             },
-        ],
-        nodes: [
-            {
+        },
+        locationSilverRing: {
+            nodeType: 'check',
+            requirement: {
+                locationSilverRing: true,
+            },
+        },
+        loadingRoomToCastleKeep: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToCastleKeep',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToAlchemyLaboratory: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToAlchemyLaboratory',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToColosseum: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToColosseum',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToOlroxsQuarters: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToOlroxsQuarters',
                 section: 'main',
             },
-        ],
+        },
     },
     undergroundCaverns: {
-        checks: [
-            // {
-            //     room: 'dkBridge',
-            //     section: 'main',
-            // },
-            // {
-            //     room: 'dKButton',
-            //     section: 'main',
-            // },
-            {
+        // {
+        //     room: 'dkBridge',
+        //     section: 'main',
+        // },
+        // {
+        //     room: 'dKButton',
+        //     section: 'main',
+        // },
+        locationHolySymbol: {
+            nodeType: 'check',
+            requirement: {
                 locationHolySymbol: true,
             },
-            {
+        },
+        locationMermanStatue: {
+            nodeType: 'check',
+            requirement: {
                 locationMermanStatue: true,
             },
-            {
+        },
+        locationGoldRing: {
+            nodeType: 'check',
+            requirement: {
                 locationGoldRing: true,
             },
-        ],
-        nodes: [
-            {
+        },
+        loadingRoomToCastleEntrance: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToCastleEntrance',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToMarbleGallery: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToMarbleGallery',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToAbandonedMine: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToAbandonedMine',
                 section: 'main',
             },
-        ],
+        },
     },
     warpRooms: {
-        checks: [],
-        nodes: [
-            {
+        statusWarpRoomToAbandonedMineUnlocked: {
+            nodeType: 'action',
+            requirement: {
+                statusWarpRoomToAbandonedMineUnlocked: true,
+            },
+        },
+        statusWarpRoomToOuterWallUnlocked: {
+            nodeType: 'action',
+            requirement: {
+                statusWarpRoomToOuterWallUnlocked: true,
+            },
+        },
+        statusWarpRoomToCastleKeepUnlocked: {
+            nodeType: 'action',
+            requirement: {
+                statusWarpRoomToCastleKeepUnlocked: true,
+            },
+        },
+        statusWarpRoomToOlroxsQuartersUnlocked: {
+            nodeType: 'action',
+            requirement: {
+                statusWarpRoomToOlroxsQuartersUnlocked: true,
+            },
+        },
+        loadingRoomToAbandonedMine: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToAbandonedMine',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToCastleEntrance: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToCastleEntrance',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToOlroxsQuarters: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToOlroxsQuarters',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToOuterWall: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToOuterWall',
                 section: 'main',
             },
-            {
+        },
+        loadingRoomToCastleKeep: {
+            nodeType: 'exit',
+            requirement: {
                 room: 'loadingRoomToCastleKeep',
                 section: 'main',
             },
-        ],
+        },
     },
+}
+
+function getEdges(logic, startingState) {
+    // NOTE(sestren): Starting state is assumed to be in Castle Entrance for now, and will probably not work for other stages yet
+    const TIME_BUDGET = startingState.time
+    // Calculate edges between nodes that are traversable from the starting node
+    const visits = new Map()
+    const work = [
+        {
+            stageName: 'castleEntrance',
+            nodeName: 'locationCubeOfZoe',
+            state: findGoal(logic, startingState, NODES.castleEntrance.locationCubeOfZoe.requirement, true),
+        },
+    ]
+    visits.set([work.at(-1).stageName, work.at(-1).nodeName].join('.'), work.at(-1))
+    const result = {
+        'castleEntrance.start': {
+            'castleEntrance.locationCubeOfZoe': TIME_BUDGET - work.at(-1).state.time,
+        },
+    }
+    while (work.length > 0) {
+        const prevVisitInfo = work.pop()
+        const prevVisitId = [prevVisitInfo.stageName, prevVisitInfo.nodeName].join('.')
+        // traverse from previous node to every other node (current) in the stage
+        Object.entries(NODES[prevVisitInfo.stageName])
+        .filter(([currentNodeName, currentNode]) => {
+            return (prevVisitInfo.nodeName !== currentNodeName)
+        })
+        .forEach(([currentNodeName, currentNode]) => {
+            const currentVisitId = [prevVisitInfo.stageName, currentNodeName].join('.')
+            prevVisitInfo.state.time = TIME_BUDGET
+            const currentState = findGoal(logic, prevVisitInfo.state, currentNode.requirement, true)
+            if (currentState !== null) {
+                const currentVisitInfo = {
+                    stageName: currentState.stage,
+                    nodeName: currentNodeName,
+                    state: currentState,
+                }
+                if (!(visits.has(currentVisitId))) {
+                    work.push(currentVisitInfo)
+                    visits.set(currentVisitId, currentVisitInfo)
+                }
+                if (!(prevVisitId in result)) {
+                    result[prevVisitId] = {}
+                }
+                result[prevVisitId][currentVisitId] = TIME_BUDGET - currentState.time
+            }
+        })
+        // if previous node is an exit, push the node paired with it to the work stack
+        const prevNode = NODES[prevVisitInfo.stageName][prevVisitInfo.nodeName]
+        if (prevNode.nodeType === 'exit') {
+            const prevState = prevVisitInfo.state
+            const currentState = Object.assign({}, prevState)
+            currentState.time = TIME_BUDGET
+            logic[prevState.stage][prevState.room]
+            .filter((command) => {
+                return (
+                    command.outcome.room.startsWith('triggerTeleporterTo') &&
+                    isValidRequirement(prevState, command.requirement)
+                )
+            })
+            .find((command) => {
+                // Exit the loading room toward the paired room
+                updateStateWithOutcome(currentState, command.outcome)
+                // Trigger the teleporter
+                const triggerCommand = logic[currentState.stage][currentState.room].at(0)
+                updateStateWithOutcome(currentState, triggerCommand.outcome)
+                return true
+            })
+            const nextState = Object.assign({}, currentState)
+            logic[currentState.stage][currentState.room]
+            .filter((command) => {
+                return (
+                    'room' in command.outcome &&
+                    command.outcome.room.startsWith('loadingRoomTo') &&
+                    isValidRequirement(currentState, command.requirement)
+                )
+            })
+            .find((command) => {
+                // Exit the paired room toward the loading room
+                updateStateWithOutcome(nextState, command.outcome)
+                return true
+            })
+            const nextVisitInfo = {
+                stageName: nextState.stage,
+                nodeName: nextState.room,
+                state: nextState,
+            }
+            const nextVisitId = [nextVisitInfo.stageName, nextVisitInfo.nodeName].join('.')
+            if (!(visits.has(nextVisitId))) {
+                work.push(nextVisitInfo)
+                visits.set(nextVisitId, nextVisitInfo)
+            }
+            if (!(prevVisitId in result)) {
+                result[prevVisitId] = {}
+            }
+            result[prevVisitId][nextVisitId] = TIME_BUDGET - nextState.time
+        }
+    }
+    return result
 }
 
 export function analyzeLogic(settings) {
@@ -15414,131 +15815,104 @@ export function analyzeLogic(settings) {
         solved: false,
         solvedState: null,
     }
-    // console.log('settings:', JSON.stringify(settings, null, 4))
+    // REPEAT until GOAL is met or no more checks/actions can be processed:
+    //   - Calculate edges between nodes that are reachable from the starting node
+    //   - For each node:
+    //       - find out how many are bidirectionally-reachable from the start
+    //         using the edges
+    //   - For each bidirectionally-reachable check node or action node:
+    //       - add its outcome to current state
     const logic = getLogic(settings)
-    // console.log('logic:', inspect(logic, { depth: 5, }))
+    console.log(inspect(logic, { depth: 5 }))
     const startingState = {
         stage: 'castleEntrance',
         room: 'afterDrawbridge',
         section: 'main',
         positionX: 136,
         positionY: 640,
-        time: 3600.0,
+        time: 120.0,
     }
-    const work = [
-        startingState,
-    ]
-    const map = new Map()
-    map.set(hashedState(startingState), startingState)
-    while (work.length > 0) {
-        let currentState = work.pop()
-        if (isValidRequirement(currentState, WINNING_STATE)) {
-            result.solvedState = currentState
-            result.solved = true
-            break
-        }
-        const currentRequirement = {
-            stage: currentState.stage,
-            room: currentState.room,
-            section: currentState.section,
-        }
-        // Attempt to "there-and-back" every available check until no more checks can be obtained
-        let newCheckFound = true
-        while (newCheckFound) {
-            newCheckFound = false
-            REGIONS[currentState.stage].checks
-            .filter((checkRequirement) => {
-                // Only attempt checks not already obtained
-                return !isValidRequirement(currentState, checkRequirement)
-            })
-            .forEach((checkRequirement) => {
-                const thereState = findGoal(logic, currentState, checkRequirement, true)
-                if (thereState !== null) {
-                    const backState = findGoal(logic, thereState, currentRequirement, true)
-                    if (backState !== null) {
-                        currentState = backState
-                        newCheckFound = true
-                    }
-                }
-            })
-        }
-        if (isValidRequirement(currentState, WINNING_STATE)) {
-            result.solvedState = currentState
-            result.solved = true
-            break
-        }
-        // Then, add every available check to the work stack
-        // (NOTE: This should be only the "one-way" checks at this point)
-        REGIONS[currentState.stage].checks
-        .filter((checkRequirement) => {
-            // Only attempt checks not already obtained
-            return !isValidRequirement(currentState, checkRequirement)
+    const winningState = {}
+    Object.entries(NODES)
+    .forEach(([stageName, nodes]) => {
+        Object.entries(nodes)
+        .filter(([nodeName, node]) => {
+            return ['action', 'check'].includes(node.nodeType)
         })
-        .forEach((checkRequirement) => {
-            const nextState = findGoal(logic, currentState, checkRequirement, true)
-            if (nextState !== null) {
-                const nextStateHash = hashedState(nextState)
-                if (
-                    map.has(nextStateHash) &&
-                    (map.get(nextStateHash).time >= nextState.time)
-                ) {
-                    // Faster route already traversed
-                }
-                else {
-                    if (isValidRequirement(nextState, WINNING_STATE)) {
-                        result.solved = true
-                        result.solvedState = pairedState
-                        return
-                    } else {
-                        work.push(nextState)
-                        map.set(nextStateHash, nextState)
-                    }
-                }
+        .forEach(([nodeName, node]) => {
+            winningState[nodeName] = true
+        })
+    })
+    const nodesFound = new Map()
+    let newNodeFound = true
+    while (newNodeFound) {
+        newNodeFound = false
+        const edges = getEdges(logic, startingState)
+        Object.entries(edges)
+        .filter(([currentNodeName, nextNodeNames]) => {
+            return currentNodeName !== 'castleEntrance.start'
+        })
+        .forEach(([currentNodeName, nextNodeNames]) => {
+            if (nodesFound.has(currentNodeName)) {
+                return
             }
-        })
-        if (result.solved) {
-            break
-        }
-        // Add every available node to the work stack
-        REGIONS[currentState.stage].nodes
-        .forEach((nodeRequirement) => {
-            const nextState = findGoal(logic, currentState, nodeRequirement, true)
-            if (nextState !== null) {
-                const nextStateHash = hashedState(nextState)
-                // Process only the loading room that leads to the trigger
-                logic[nextState.stage][nextState.room]
-                .filter((command) => {
-                    return command.outcome.room.startsWith('triggerTeleporterTo')
-                })
-                .forEach((command) => {
-                    if (isValidRequirement(nextState, command.requirement)) {
-                        const pairedState = Object.assign({}, nextState)
-                        updateStateWithOutcome(pairedState, command.outcome)
-                        // Trigger the teleporter
-                        const triggerCommand = logic[pairedState.stage][pairedState.room].at(0)
-                        updateStateWithOutcome(pairedState, triggerCommand.outcome)
-                        const pairedStateHash = hashedState(pairedState)
-                        if (
-                            map.has(nextStateHash) && (map.get(nextStateHash).time >= nextState.time) ||
-                            map.has(pairedStateHash) && (map.get(pairedStateHash).time >= pairedState.time)
-                        ) {
-                            // Faster route already traversed
-                        } else if (isValidRequirement(pairedState, WINNING_STATE)) {
-                            result.solved = true
-                            result.solvedState = pairedState
-                        } else {
-                            work.push(pairedState)
-                            map.set(nextStateHash, nextState)
-                            map.set(pairedStateHash, pairedState)
+            const parts = currentNodeName.split('.')
+            const stageName = parts.at(0)
+            const nodeName = parts.at(1)
+            if (['action', 'check'].includes(NODES[stageName][nodeName].nodeType)) {
+                const visits = new Map()
+                const work = [
+                    currentNodeName,
+                ]
+                visits.set(currentNodeName, true)
+                while (work.length > 0) {
+                    const currentNode = work.pop()
+                    if (currentNode === 'castleEntrance.locationCubeOfZoe') {
+                        nodesFound.set(currentNodeName, true)
+                        newNodeFound = true
+                        switch (NODES[stageName][nodeName].nodeType) {
+                            case 'action':
+                                updateStateWithOutcome(startingState, NODES[stageName][nodeName].requirement)
+                                break
+                            case 'check':
+                                const rewardName = settings.locationRewards[nodeName]
+                                const locationOutcome = {}
+                                locationOutcome[nodeName] = true
+                                updateStateWithOutcome(startingState, locationOutcome)
+                                updateStateWithOutcome(startingState, rewardsInfo[rewardName].outcome)
+                                break
                         }
+                        break
                     }
-                })
+                    if (currentNode in edges) {
+                        Object.entries(edges[currentNode])
+                        .forEach(([nextNode, time]) => {
+                            if (visits.has(nextNode)) {
+                                return
+                            }
+                            else {
+                                work.push(nextNode)
+                                visits.set(nextNode, true)
+                            }
+                        })
+                    }
+                }
             }
         })
-        if (result.solved) {
+        if (!newNodeFound) {
+            if (isValidRequirement(startingState, winningState)) {
+                result.solved = true
+                result.solvedState = startingState
+            }
+            else {
+                result.solved = false
+                result.solvedState = null
+            }
             break
         }
     }
-    console.log('')
+    console.log('startingState:', inspect(startingState, { depth: 4 }))
+    console.log('result:', inspect(result, { depth: 4 }))
+    // edges['castleEntrance.locationCubeOfZoe']
     return result
 }
