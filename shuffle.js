@@ -3,7 +3,6 @@ import yargs from 'yargs'
 import { inspect } from 'node:util'
 
 import {
-    NODES,
     analyzeLogic,
     validate,
 } from './src/analyze-logic.js'
@@ -11,6 +10,10 @@ import {
 import {
     arrangeStages,
 } from './src/common.js'
+
+import {
+    NODES,
+} from './src/constants.js'
 
 import {
     getSeedName,
@@ -830,8 +833,6 @@ const VALIDATIONS = {
         },
     ],
     undergroundCaverns: [
-        // TODO(sestren): Add requirements for opening Ferryman gate
-        // TODO(sestren): Add requirements for DK button and bridge
         {
             startingState: {
                 stage: 'elsewhere',
@@ -877,6 +878,39 @@ const VALIDATIONS = {
             },
             goalState: {
                 locationMermanStatue: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionProtectionFromWater: true,
+                progressionSummonFerryman: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusButtonInUndergroundCavernsActivated: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionProtectionFromWater: true,
+                progressionSummonFerryman: true,
+                statusButtonInUndergroundCavernsActivated: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusBridgeInUndergroundCavernsBroken: true,
             },
             goalType: 'required',
         },
