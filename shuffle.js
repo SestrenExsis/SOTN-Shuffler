@@ -25,7 +25,7 @@ import {
     combineNodeGroups,
     getRoomChanges,
     mapPixels,
-    nodeGroups,
+    NODE_GROUPS,
     shuffleRooms,
 } from './src/shuffle-rooms.js'
 
@@ -1118,7 +1118,7 @@ const argv = yargs(process.argv.slice(2))
                                     const rowOffset = roomInfo.row
                                     const columnOffset = roomInfo.column - 1
                                     const warpRoomGroupName = 'warpRoomTo' + teleporterSource.split('WarpRoomsTo').at(1)
-                                    const warpRoomGroup = nodeGroups.warpRooms[warpRoomGroupName]
+                                    const warpRoomGroup = NODE_GROUPS.warpRooms[warpRoomGroupName]
                                     stageNodeGroups[stageName] = combineNodeGroups(stageNodeGroups[stageName], warpRoomGroup, rowOffset, columnOffset, { allowOverlaps: true })
                                 })
                             if (matchingRoomCount < 1)  {
@@ -1367,7 +1367,7 @@ const argv = yargs(process.argv.slice(2))
                             const rowOffset = roomInfo.row
                             const columnOffset = roomInfo.column - 1
                             const warpRoomGroupName = 'warpRoomTo' + teleporterSource.split('WarpRoomsTo').at(1)
-                            const warpRoomGroup = nodeGroups.warpRooms[warpRoomGroupName]
+                            const warpRoomGroup = NODE_GROUPS.warpRooms[warpRoomGroupName]
                             stageNodeGroups[stageName] = combineNodeGroups(stageNodeGroups[stageName], warpRoomGroup, rowOffset, columnOffset, { allowOverlaps: true })
                         })
                     if (matchingRoomCount < 1)  {
