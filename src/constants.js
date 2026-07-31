@@ -2272,14 +2272,18 @@ export const NODES = {
         },
     },
     undergroundCaverns: {
-        // {
-        //     room: 'dkBridge',
-        //     section: 'main',
-        // },
-        // {
-        //     room: 'dKButton',
-        //     section: 'main',
-        // },
+        statusButtonInUndergroundCavernsActivated: {
+            nodeType: 'action',
+            requirement: {
+                statusButtonInUndergroundCavernsActivated: true,
+            },
+        },
+        statusBridgeInUndergroundCavernsBroken: {
+            nodeType: 'action',
+            requirement: {
+                statusBridgeInUndergroundCavernsBroken: true,
+            },
+        },
         locationHolySymbol: {
             nodeType: 'check',
             requirement: {
@@ -13247,12 +13251,12 @@ export const ROOMS_INFO = {
             },
         },
         dKBridge: {
-            // TODO(sestren): Add logic for bridge break
             roomInfo: {
                 width: 1024,
                 height: 256,
             },
             regions: [
+                getRegion('beneathBridge', 816, 176, 160, 80),
                 getRegion('main', 0, 0, 1024, 256),
             ],
             commands: {
@@ -13280,13 +13284,50 @@ export const ROOMS_INFO = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        {
+                            section: 'beneathBridge',
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
+                    ],
+                },
+                toMain: {
+                    outcome: {
+                        positionX: 24,
+                        positionY: 128,
+                        // section: main,
+                    },
+                    requirements: [
+                        { // Bridge Broken
+                            section: 'beneathBridge',
+                            statusBridgeInUndergroundCavernsBroken: true,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
+                    ],
+                },
+                toBeneathBridge: {
+                    outcome: {
+                        positionX: 960,
+                        positionY: 192,
+                        statusBridgeInUndergroundCavernsBroken: true,
+                        // section: beneathBridge,
+                    },
+                    requirements: [
+                        { // DK Button
+                            section: 'main',
+                            statusButtonInUndergroundCavernsActivated: true,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
                     ],
                 },
             },
         },
         dKButton: {
-            // TODO(sestren): Add logic for DK button
             roomInfo: {
                 width: 256,
                 height: 256,
@@ -13302,6 +13343,19 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
+                    ],
+                },
+                pressButton: {
+                    outcome: {
+                        statusButtonInUndergroundCavernsActivated: true,
+                    },
+                    requirements: [
+                        {
+                            section: 'main',
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
                     ],
                 },
             },
@@ -13884,13 +13938,13 @@ export const ROOMS_INFO = {
             },
         },
         rightFerrymanRoute: {
-            // TODO(sestren): Add logic for Ferryman gate
             roomInfo: {
                 width: 3328,
                 height: 512,
             },
             regions: [
-                getRegion('main', 0, 0, 3328, 256),
+                getRegion('main', 0, 0, 2896, 512),
+                getRegion('rightSide', 2928, 0, 400, 512),
             ],
             commands: {
                 exitLeft: {
@@ -13908,7 +13962,39 @@ export const ROOMS_INFO = {
                         positionY: 128,
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('basic', 'rightSide', COST_UNKNOWN),
+                    ],
+                },
+                toMain: {
+                    outcome: {
+                        positionX: 24,
+                        positionY: 128,
+                        // section: main,
+                    },
+                    requirements: [
+                        { // Merman Statue
+                            section: 'rightSide',
+                            progressionSummonFerryman: true,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
+                    ],
+                },
+                toRightSide: {
+                    outcome: {
+                        positionX: 3328,
+                        positionY: 128,
+                        // section: rightSide,
+                    },
+                    requirements: [
+                        { // Merman Statue
+                            section: 'main',
+                            progressionSummonFerryman: true,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
                     ],
                 },
             },
