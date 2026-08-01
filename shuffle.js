@@ -1222,7 +1222,6 @@ const argv = yargs(process.argv.slice(2))
                             switch (node.nodeType) {
                                 case 'action':
                                     scenarios.at(0).goalNodes.push(nodeId)
-                                    scenarios.at(1).goalNodes.push(nodeId)
                                     break
                                 case 'check':
                                     scenarios.at(0).startingNodes.push(nodeId)
@@ -1239,16 +1238,17 @@ const argv = yargs(process.argv.slice(2))
                         name: scenarios.at(0).name,
                         result: analyzeLogic(logicSettings, scenarios.at(0)),
                     })
-                    if (logicAnalysis.scenarios.at(0).result.solved) {
-                        logicAnalysis.scenarios.push({
-                            id: 1,
-                            name: scenarios.at(1).name,
-                            result: analyzeLogic(logicSettings, scenarios.at(1)),
-                        })
-                    }
+                    logicAnalysis.scenarios.push({
+                        id: 1,
+                        name: scenarios.at(1).name,
+                        result: analyzeLogic(logicSettings, scenarios.at(1)),
+                    })
                     console.log('logicAnalysis:', inspect(logicAnalysis, { depth: 4 }))
                     console.log('')
-                    logicAnalysis.solved = logicAnalysis.scenarios.at(-1).result.solved
+                    logicAnalysis.solved = logicAnalysis.scenarios
+                    .every((scenario) => {
+                        return scenario.result.solved
+                    })
                     shuffleData.debugInfo.solved = logicAnalysis.solved
                     shuffleData.debugInfo.finalSeedsUsed.solver = seed
                 }

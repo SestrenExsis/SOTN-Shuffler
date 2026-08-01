@@ -404,8 +404,8 @@ function getLogic(settings, enableElsewhere=false) {
                     'staleLocation' in command.outcome
                 ) {
                     const location = {
-                        stage: roomPosition.stage,
-                        room: roomPosition.room,
+                        stage: command.outcome.stage ?? roomPosition.stage ?? 'NONE',
+                        room: command.outcome.room ?? roomPosition.room ?? 'NONE',
                         section: command.outcome.section ?? command.requirement.section ?? 'NONE',
                         positionX: command.outcome.positionX ?? 0,
                         positionY: command.outcome.positionY ?? 0,
@@ -778,8 +778,10 @@ export function analyzeLogic(settings, scenario) {
         solved: false,
         solvedState: null,
     }
+    const nodesFound = new Map()
     scenario.startingNodes
     .forEach((nodeId) => {
+        nodesFound.set([nodeId.stageName, nodeId.nodeName].join('.'), true)
         switch (NODES[nodeId.stageName][nodeId.nodeName].nodeType) {
             case 'action':
                 updateStateWithOutcome(scenario.startingState, NODES[nodeId.stageName][nodeId.nodeName].requirement)
@@ -816,7 +818,6 @@ export function analyzeLogic(settings, scenario) {
     //   - For each action node or check node that can reach the start:
     //       - add its outcome to starting state
     const logic = getLogic(settings)
-    const nodesFound = new Map()
     let newNodeFound = true
     while (newNodeFound) {
         newNodeFound = false
@@ -878,8 +879,27 @@ export function analyzeLogic(settings, scenario) {
                 result.solvedState = scenario.startingState
             }
             else {
+                console.log('**** FAILED ****')
+                const goalsRemaining = {}
+                Object.entries(goalState)
+                .filter(([propertyKey, propertyInfo]) => {
+                    return (
+                        !(propertyKey in scenario.startingState) ||
+                        (
+                            scenario.startingState[propertyKey] != propertyInfo
+                        )
+                    )
+                })
+                .forEach(([propertyKey, propertyInfo]) => {
+                    goalsRemaining[propertyKey] = propertyInfo
+                })
                 result.solved = false
                 result.solvedState = null
+                console.log('scenario.startingState:', inspect(scenario.startingState, { depth: 3 }))
+                // console.log('goalState:', inspect(goalState, { depth: 2 }))
+                console.log('goalsRemaining:', inspect(goalsRemaining, { depth: 2 }))
+                console.log('edges:', inspect(edges, { depth: 6 }))
+                // console.log('logic:', inspect(logic, { depth: 6 }))
             }
             break
         }
