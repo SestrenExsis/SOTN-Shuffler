@@ -778,50 +778,63 @@ export function analyzeLogic(settings, scenario) {
         solved: false,
         solvedState: null,
     }
-    const nodesFound = new Map()
-    scenario.startingNodes
-    .forEach((nodeId) => {
-        nodesFound.set([nodeId.stageName, nodeId.nodeName].join('.'), true)
-        switch (NODES[nodeId.stageName][nodeId.nodeName].nodeType) {
-            case 'action':
-                updateStateWithOutcome(scenario.startingState, NODES[nodeId.stageName][nodeId.nodeName].requirement)
-                break
-            case 'check':
-                const rewardName = settings.locationRewards[nodeId.nodeName]
-                const locationOutcome = {}
-                locationOutcome[nodeId.nodeName] = true
-                updateStateWithOutcome(scenario.startingState, locationOutcome)
-                updateStateWithOutcome(scenario.startingState, REWARDS[rewardName].outcome)
-                break
-            default:
-                break
-        }
-    })
+    const startingState = Object.assign({}, scenario.startingState)
     const goalState = {}
-    scenario.goalNodes
-    .forEach((nodeId) => {
-        switch (NODES[nodeId.stageName][nodeId.nodeName].nodeType) {
-            case 'action':
-                updateStateWithOutcome(goalState, NODES[nodeId.stageName][nodeId.nodeName].requirement)
-                break
-            case 'check':
-                const locationOutcome = {}
-                locationOutcome[nodeId.nodeName] = true
-                updateStateWithOutcome(goalState, locationOutcome)
-                break
-            default:
-                break
-        }
+    Object.entries(NODES)
+    .forEach(([stageName, nodes]) => {
+        Object.entries(nodes)
+        .forEach(([nodeName, node]) => {
+            const nodeId = {
+                stageName: stageName,
+                nodeName: nodeName,
+            }
+            if (scenario.startingNodeTypes.includes(node.nodeType)) {
+                switch (node.nodeType) {
+                    case 'action':
+                        updateStateWithOutcome(startingState, NODES[stageName][nodeName].requirement)
+                        break
+                    case 'check':
+                        const rewardName = settings.locationRewards[nodeId.nodeName]
+                        const locationOutcome = {}
+                        locationOutcome[nodeId.nodeName] = true
+                        updateStateWithOutcome(startingState, locationOutcome)
+                        updateStateWithOutcome(startingState, REWARDS[rewardName].outcome)
+                        break
+                    case 'warp':
+                        updateStateWithOutcome(startingState, NODES[stageName][nodeName].requirement)
+                        break
+                    default:
+                        break
+                }
+            }
+            if (scenario.goalNodeTypes.includes(node.nodeType)) {
+                switch (node.nodeType) {
+                    case 'action':
+                        updateStateWithOutcome(goalState, NODES[stageName][nodeName].requirement)
+                        break
+                    case 'check':
+                        const locationOutcome = {}
+                        locationOutcome[nodeId.nodeName] = true
+                        updateStateWithOutcome(goalState, locationOutcome)
+                        break
+                    case 'warp':
+                        updateStateWithOutcome(goalState, NODES[stageName][nodeName].requirement)
+                    default:
+                        break
+                }
+            }
+        })
     })
     // REPEAT until all action/check nodes found or no more can be found:
     //   - Calculate edges between nodes that are reachable from the starting state
     //   - For each action node or check node that can reach the start:
     //       - add its outcome to starting state
     const logic = getLogic(settings)
+    const nodesFound = new Map()
     let newNodeFound = true
     while (newNodeFound) {
         newNodeFound = false
-        const edges = getEdges(logic, scenario.startingState)
+        const edges = getEdges(logic, startingState)
         Object.entries(edges)
         .filter(([currentNodeName, nextNodeNames]) => {
             return currentNodeName !== 'castleEntrance.start'
@@ -833,7 +846,7 @@ export function analyzeLogic(settings, scenario) {
             const parts = currentNodeName.split('.')
             const stageName = parts.at(0)
             const nodeName = parts.at(1)
-            if (['action', 'check'].includes(NODES[stageName][nodeName].nodeType)) {
+            if (['action', 'check', 'warp'].includes(NODES[stageName][nodeName].nodeType)) {
                 const visits = new Map()
                 const work = [
                     currentNodeName,
@@ -846,14 +859,17 @@ export function analyzeLogic(settings, scenario) {
                         newNodeFound = true
                         switch (NODES[stageName][nodeName].nodeType) {
                             case 'action':
-                                updateStateWithOutcome(scenario.startingState, NODES[stageName][nodeName].requirement)
+                                updateStateWithOutcome(startingState, NODES[stageName][nodeName].requirement)
                                 break
                             case 'check':
                                 const rewardName = settings.locationRewards[nodeName]
                                 const locationOutcome = {}
                                 locationOutcome[nodeName] = true
-                                updateStateWithOutcome(scenario.startingState, locationOutcome)
-                                updateStateWithOutcome(scenario.startingState, REWARDS[rewardName].outcome)
+                                updateStateWithOutcome(startingState, locationOutcome)
+                                updateStateWithOutcome(startingState, REWARDS[rewardName].outcome)
+                                break
+                            case 'warp':
+                                updateStateWithOutcome(startingState, NODES[stageName][nodeName].requirement)
                                 break
                         }
                         break
@@ -874,9 +890,9 @@ export function analyzeLogic(settings, scenario) {
             }
         })
         if (!newNodeFound) {
-            if (isValidRequirement(scenario.startingState, goalState)) {
+            if (isValidRequirement(startingState, goalState)) {
                 result.solved = true
-                result.solvedState = scenario.startingState
+                result.solvedState = startingState
             }
             else {
                 console.log('**** FAILED ****')
@@ -884,9 +900,9 @@ export function analyzeLogic(settings, scenario) {
                 Object.entries(goalState)
                 .filter(([propertyKey, propertyInfo]) => {
                     return (
-                        !(propertyKey in scenario.startingState) ||
+                        !(propertyKey in startingState) ||
                         (
-                            scenario.startingState[propertyKey] != propertyInfo
+                            startingState[propertyKey] != propertyInfo
                         )
                     )
                 })
@@ -895,7 +911,7 @@ export function analyzeLogic(settings, scenario) {
                 })
                 result.solved = false
                 result.solvedState = null
-                console.log('scenario.startingState:', inspect(scenario.startingState, { depth: 3 }))
+                // console.log('startingState:', inspect(startingState, { depth: 3 }))
                 // console.log('goalState:', inspect(goalState, { depth: 2 }))
                 console.log('goalsRemaining:', inspect(goalsRemaining, { depth: 2 }))
                 console.log('edges:', inspect(edges, { depth: 6 }))
@@ -904,7 +920,7 @@ export function analyzeLogic(settings, scenario) {
             break
         }
     }
-    // console.log('startingState:', inspect(scenario.startingState, { depth: 4 }))
+    // console.log('startingState:', inspect(startingState, { depth: 4 }))
     // console.log('result:', inspect(result, { depth: 4 }))
     return result
 }

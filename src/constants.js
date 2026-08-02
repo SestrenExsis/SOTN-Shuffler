@@ -2326,25 +2326,25 @@ export const NODES = {
     },
     warpRooms: {
         statusWarpRoomToAbandonedMineUnlocked: {
-            nodeType: 'action',
+            nodeType: 'warp',
             requirement: {
                 statusWarpRoomToAbandonedMineUnlocked: true,
             },
         },
         statusWarpRoomToOuterWallUnlocked: {
-            nodeType: 'action',
+            nodeType: 'warp',
             requirement: {
                 statusWarpRoomToOuterWallUnlocked: true,
             },
         },
         statusWarpRoomToCastleKeepUnlocked: {
-            nodeType: 'action',
+            nodeType: 'warp',
             requirement: {
                 statusWarpRoomToCastleKeepUnlocked: true,
             },
         },
         statusWarpRoomToOlroxsQuartersUnlocked: {
-            nodeType: 'action',
+            nodeType: 'warp',
             requirement: {
                 statusWarpRoomToOlroxsQuartersUnlocked: true,
             },
@@ -3946,7 +3946,6 @@ export const ROOMS_INFO = {
                 height: 512,
             },
             regions: [
-                getRegion('holeInCeiling', 80, 0, 32, 48),
                 getRegion('upperRightLedge', 640, 96, 128, 64),
                 getRegion('main', 0, 0, 768, 512),
             ],
@@ -3957,7 +3956,9 @@ export const ROOMS_INFO = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'holeInCeiling', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -4980,20 +4981,6 @@ export const ROOMS_INFO = {
                         getMovement('basic', 'rightSide', COST_UNKNOWN),
                     ],
                 },
-                openShortcut: {
-                    outcome: {
-                        statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
-                    },
-                    requirements: [
-                        {
-                            section: 'rightSide',
-                            // statusPassageFromCastleEntranceToUndergroundCavernsOpened: false,
-                            costs: {
-                                time: COST_UNKNOWN,
-                            },
-                        },
-                    ],
-                },
                 toRightSide: {
                     outcome: {
                         positionX: 80,
@@ -5014,12 +5001,12 @@ export const ROOMS_INFO = {
                     outcome: {
                         positionX: 224,
                         positionY: 128,
+                        statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
                         // section: main,
                     },
                     requirements: [
                         { // Opening Path
                             section: 'rightSide',
-                            statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
@@ -9693,25 +9680,12 @@ export const ROOMS_INFO = {
                     outcome: {
                         positionX: 304,
                         positionY: 160,
+                        statusPressurePlateInMarbleGalleryActivated: true,
                     },
                     requirements: [
                         { // Jewel of Open
                             section: 'main',
                             progressionUnlockBlueDoors: true,
-                            costs: {
-                                time: COST_UNKNOWN,
-                            },
-                        },
-                    ],
-                },
-                activatePressurePlate: {
-                    outcome: {
-                        statusPressurePlateInMarbleGalleryActivated: true,
-                    },
-                    requirements: [
-                        {
-                            section: 'rightSide',
-                            // statusPressurePlateInMarbleGalleryActivated: false,
                             costs: {
                                 time: COST_UNKNOWN,
                             },

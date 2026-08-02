@@ -1077,7 +1077,7 @@ const argv = yargs(process.argv.slice(2))
                 shuffleData.changes.push(songChanges)
                 shuffleData.debugInfo.finalSeedsUsed.musicShuffler = seed
             }
-            shuffleData.debugInfo.solverAttemptCount = 0
+            shuffleData.debugInfo.solverAttemptId = -1
             let changesToAdd = []
             let stageConnections = getVanillaStageLinks()
             let roomArrangements = {}
@@ -1088,18 +1088,18 @@ const argv = yargs(process.argv.slice(2))
             }
             // Some modules (those that modify or depend on logic) must be run inside a loop because the solver must verify them
             while (!logicAnalysis.solved) {
-                shuffleData.debugInfo.solverAttemptCount += 1
-                console.log('solverAttemptCount:', shuffleData.debugInfo.solverAttemptCount)
+                shuffleData.debugInfo.solverAttemptId += 1
+                console.log('solverAttemptId:', shuffleData.debugInfo.solverAttemptId)
                 changesToAdd = []
                 if (argv.stageShuffler?.on) {
-                    const seed = argv.stageShuffler.seed ?? (seedName + '.stageShuffler.' + shuffleData.debugInfo.solverAttemptCount)
+                    const seed = argv.stageShuffler.seed ?? (seedName + '.stageShuffler.' + shuffleData.debugInfo.solverAttemptId)
                     stageConnections = shuffleStages(seed)
                     const teleporterChanges = getTeleporterChanges(extraction, stageConnections.links)
                     changesToAdd.push(teleporterChanges)
                     shuffleData.debugInfo.finalSeedsUsed.stageShuffler = seed
                 }
                 if (argv.roomShuffler?.on) {
-                    const seed = argv.roomShuffler.seed ?? (seedName + '.roomShuffler.' + shuffleData.debugInfo.solverAttemptCount)
+                    const seed = argv.roomShuffler.seed ?? (seedName + '.roomShuffler.' + shuffleData.debugInfo.solverAttemptId)
                     const stageNodeGroups = {}
                     shuffleData.debugInfo.finalSeedsUsed.stages = {}
                     STAGE_NAMES.forEach((stageName) => {
@@ -1114,7 +1114,7 @@ const argv = yargs(process.argv.slice(2))
                                 validInd = VALIDATIONS[stageName]
                                 .every((validation) => {
                                     const logicSettings = {
-                                        solverAttemptCount: shuffleData.debugInfo.solverAttemptCount,
+                                        solverAttemptId: shuffleData.debugInfo.solverAttemptId,
                                         locationRewards: {},
                                         stageLinks: {},
                                         roomPositions: shuffledRooms.rooms,
@@ -1124,6 +1124,7 @@ const argv = yargs(process.argv.slice(2))
                             }
                             if (validInd) {
                                 stageNodeGroups[stageName] = shuffledRooms
+                                console.log('stageNodeGroup.cells for ', stageName, ':', stageNodeGroups[stageName].cells)
                                 shuffleData.debugInfo.finalSeedsUsed.stages[stageName] = stageSeed
                                 break
                             }
@@ -1165,7 +1166,7 @@ const argv = yargs(process.argv.slice(2))
                     shuffleData.debugInfo.finalSeedsUsed.roomShuffler = seed
                 }
                 if (argv.rewardShuffler?.on) {
-                    const seed = argv.rewardShuffler.seed ?? (seedName + '.rewardShuffler.' + shuffleData.debugInfo.solverAttemptCount)
+                    const seed = argv.rewardShuffler.seed ?? (seedName + '.rewardShuffler.' + shuffleData.debugInfo.solverAttemptId)
                     questRewards = shuffleRewards(seed)
                     const rewardChanges = getRewardChanges(questRewards.locations)
                     changesToAdd.push(rewardChanges)
@@ -1174,74 +1175,56 @@ const argv = yargs(process.argv.slice(2))
                 if (argv.solver?.on) {
                     console.log('seedsUsedWhenSolving', shuffleData.debugInfo.finalSeedsUsed)
                     shuffleData.debugInfo.solvable = false
-                    const seed = argv.solver.seed ?? (seedName + '.solver.' + shuffleData.debugInfo.solverAttemptCount)
+                    const seed = argv.solver.seed ?? (seedName + '.solver.' + shuffleData.debugInfo.solverAttemptId)
                     const logicSettings = {
-                        solverAttemptCount: shuffleData.debugInfo.solverAttemptCount,
+                        solverAttemptId: shuffleData.debugInfo.solverAttemptId,
                         locationRewards: questRewards.locations,
                         stageLinks: stageConnections.links,
                         roomPositions: roomArrangements.rooms,
                     }
-                    const scenarios = [
-                        {
-                            name: 'Start with all checks and verify that all actions are reachable',
-                            startingState: {
-                                stage: 'castleEntrance',
-                                room: 'afterDrawbridge',
-                                section: 'main',
-                                positionX: 136,
-                                positionY: 640,
-                                time: 120.0,
-                            },
-                            startingNodes: [],
-                            goalNodes: [],
-                            result: null,
-                        },
-                        {
-                            name: 'Start with no checks and verify that all checks are reachable',
-                            startingState: {
-                                stage: 'castleEntrance',
-                                room: 'afterDrawbridge',
-                                section: 'main',
-                                positionX: 136,
-                                positionY: 640,
-                                time: 120.0,
-                            },
-                            startingNodes: [],
-                            goalNodes: [],
-                            result: null,
-                        },
-                    ]
-                    Object.entries(NODES)
-                    .forEach(([stageName, nodes]) => {
-                        Object.entries(nodes)
-                        .forEach(([nodeName, node]) => {
-                            const nodeId = {
-                                stageName: stageName,
-                                nodeName: nodeName,
-                            }
-                            switch (node.nodeType) {
-                                case 'action':
-                                    scenarios.at(0).goalNodes.push(nodeId)
-                                    break
-                                case 'check':
-                                    scenarios.at(0).startingNodes.push(nodeId)
-                                    scenarios.at(1).goalNodes.push(nodeId)
-                                    break
-                                default:
-                                    break
-                            }
-                        })
-                    })
+                    const startingState = {
+                        stage: 'castleEntrance',
+                        room: 'afterDrawbridge',
+                        section: 'main',
+                        positionX: 136,
+                        positionY: 640,
+                        time: 120.0,
+                    }
                     logicAnalysis.scenarios = []
                     logicAnalysis.scenarios.push({
-                        id: 0,
-                        name: scenarios.at(0).name,
-                        result: analyzeLogic(logicSettings, scenarios.at(0)),
+                        name: 'Start with all checks and actions and verify that all warps are reachable',
+                        result: analyzeLogic(logicSettings, {
+                            startingState: startingState,
+                            startingNodeTypes: [
+                                'check',
+                                'action',
+                            ],
+                            goalNodeTypes: [
+                                'warp'
+                            ],
+                        }),
                     })
                     logicAnalysis.scenarios.push({
-                        id: 1,
-                        name: scenarios.at(1).name,
-                        result: analyzeLogic(logicSettings, scenarios.at(1)),
+                        name: 'Start with all checks and verify that all actions are reachable',
+                        result: analyzeLogic(logicSettings, {
+                            startingState: startingState,
+                            startingNodeTypes: [
+                                'check',
+                            ],
+                            goalNodeTypes: [
+                                'action'
+                            ],
+                        }),
+                    })
+                    logicAnalysis.scenarios.push({
+                        name: 'Start with no checks and verify that all checks are reachable',
+                        result: analyzeLogic(logicSettings, {
+                            startingState: startingState,
+                            startingNodeTypes: [],
+                            goalNodeTypes: [
+                                'check'
+                            ],
+                        }),
                     })
                     console.log('logicAnalysis:', inspect(logicAnalysis, { depth: 4 }))
                     console.log('')
@@ -1255,7 +1238,7 @@ const argv = yargs(process.argv.slice(2))
                 else {
                     logicAnalysis.solved = true
                 }
-                if (shuffleData.debugInfo.solverAttemptCount > argv.solver.maxAttempts)  {
+                if (shuffleData.debugInfo.solverAttemptId > argv.solver.maxAttempts)  {
                     console.log('Took too many attempts to solve, abandoning ...')
                     break
                 }
@@ -1362,7 +1345,7 @@ const argv = yargs(process.argv.slice(2))
                             console.log('stage:', validation.startingState.stage)
                             console.log('room:', validation.startingState.room)
                             const logicSettings = {
-                                solverAttemptCount: shuffleData.debugInfo.solverAttemptCount,
+                                solverAttemptId: shuffleData.debugInfo.solverAttemptId,
                                 locationRewards: {},
                                 stageLinks: {},
                                 roomPositions: shuffledRooms.rooms,
