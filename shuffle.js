@@ -1192,31 +1192,6 @@ const argv = yargs(process.argv.slice(2))
                     }
                     logicAnalysis.scenarios = []
                     logicAnalysis.scenarios.push({
-                        name: 'Start with all checks and actions and verify that all warps are reachable',
-                        result: analyzeLogic(logicSettings, {
-                            startingState: startingState,
-                            startingNodeTypes: [
-                                'check',
-                                'action',
-                            ],
-                            goalNodeTypes: [
-                                'warp'
-                            ],
-                        }),
-                    })
-                    logicAnalysis.scenarios.push({
-                        name: 'Start with all checks and verify that all actions are reachable',
-                        result: analyzeLogic(logicSettings, {
-                            startingState: startingState,
-                            startingNodeTypes: [
-                                'check',
-                            ],
-                            goalNodeTypes: [
-                                'action'
-                            ],
-                        }),
-                    })
-                    logicAnalysis.scenarios.push({
                         name: 'Start with no checks and verify that all checks are reachable',
                         result: analyzeLogic(logicSettings, {
                             startingState: startingState,
@@ -1226,6 +1201,33 @@ const argv = yargs(process.argv.slice(2))
                             ],
                         }),
                     })
+                    if (logicAnalysis.scenarios.at(-1).result.solved) {
+                        logicAnalysis.scenarios.push({
+                            name: 'Start with all checks and actions and verify that all warps are reachable',
+                            result: analyzeLogic(logicSettings, {
+                                startingState: startingState,
+                                startingNodeTypes: [
+                                    'check',
+                                    'action',
+                                ],
+                                goalNodeTypes: [
+                                    'warp'
+                                ],
+                            }),
+                        })
+                        logicAnalysis.scenarios.push({
+                            name: 'Start with all checks and verify that all actions are reachable',
+                            result: analyzeLogic(logicSettings, {
+                                startingState: startingState,
+                                startingNodeTypes: [
+                                    'check',
+                                ],
+                                goalNodeTypes: [
+                                    'action'
+                                ],
+                            }),
+                        })
+                    }
                     console.log('logicAnalysis:', inspect(logicAnalysis, { depth: 4 }))
                     console.log('')
                     logicAnalysis.solved = logicAnalysis.scenarios
