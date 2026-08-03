@@ -4,6 +4,10 @@ import {
     shuffleArray
 } from './common.js'
 
+// Stages with two or fewer connections are referenced in comments as follows:
+// Dead-end : A stage that has only one stage connection
+// Hallway : A stage that has exactly two stage connections
+
 const teleporters = {
     fromAbandonedMineToCatacombs: {
         stage: 'abandonedMine',
@@ -45,20 +49,26 @@ const teleporters = {
         stage: 'castleEntrance',
         direction: 'left',
         forbiddenConnections: new Set([
-            // NOTE(sestren): The only available connection at the start of the game should not lead to a Warp
+            // NOTE(sestren): The only available connection at the start of the game should not link to a Warp
             'fromWarpRoomsToAbandonedMine',
             'fromWarpRoomsToCastleEntrance',
             'fromWarpRoomsToCastleKeep',
             'fromWarpRoomsToOlroxsQuarters',
             'fromWarpRoomsToOuterWall',
         ]),
-        // NOTE(sestren): The only available connection at the start of the game should not lead to a "dead end" stage
-        minimumTargetLinkCount: 2,
+        // NOTE(sestren): The only available connection at the start of the game should NOT link to a "dead-end" or "hallway" stage
+        minimumTargetLinkCount: 3,
     },
     fromCastleEntranceToMarbleGallery: {
         stage: 'castleEntrance',
         direction: 'right',
-        forbiddenConnections: new Set(),
+        forbiddenConnections: new Set([
+            // NOTE(sestren): Do not pair with initially-locked locations, even though it's not strictly-speaking a one-way
+            'fromWarpRoomsToAbandonedMine',
+            'fromWarpRoomsToCastleKeep',
+            'fromWarpRoomsToOlroxsQuarters',
+            'fromWarpRoomsToOuterWall',
+        ]),
         minimumTargetLinkCount: 1,
     },
     fromCastleEntranceToUndergroundCaverns: {
@@ -119,25 +129,29 @@ const teleporters = {
         stage: 'clockTower',
         direction: 'left',
         forbiddenConnections: new Set(),
-        minimumTargetLinkCount: 1,
+        // NOTE(sestren): "Hallway" stages should NOT link to other "hallway" stages or to "dead-end" stages
+        minimumTargetLinkCount: 3,
     },
     fromClockTowerToOuterWall: {
         stage: 'clockTower',
         direction: 'right',
         forbiddenConnections: new Set(),
-        minimumTargetLinkCount: 1,
+        // NOTE(sestren): "Hallway" stages should NOT link to other "hallway" stages or to "dead-end" stages
+        minimumTargetLinkCount: 3,
     },
     fromColosseumToOlroxsQuarters: {
         stage: 'colosseum',
         direction: 'right',
         forbiddenConnections: new Set(),
-        minimumTargetLinkCount: 1,
+        // NOTE(sestren): "Hallway" stages should NOT link to other "hallway" stages or to "dead-end" stages
+        minimumTargetLinkCount: 3,
     },
     fromColosseumToRoyalChapel: {
         stage: 'colosseum',
         direction: 'left',
         forbiddenConnections: new Set(),
-        minimumTargetLinkCount: 1,
+        // NOTE(sestren): "Hallway" stages should NOT link to other "hallway" stages or to "dead-end" stages
+        minimumTargetLinkCount: 3,
     },
     fromLongLibraryToOuterWall: {
         stage: 'longLibrary',

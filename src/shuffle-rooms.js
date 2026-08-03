@@ -69,7 +69,7 @@ const colors = {
     warpRooms: '5',
 }
 
-export const nodeGroups = {
+export const NODE_GROUPS = {
     abandonedMine: {
         bend: { // triggerTeleporterToCatacombs, loadingRoomToCatacombs, bend
             rooms: [
@@ -3137,7 +3137,7 @@ export const nodeGroups = {
                     roomName: 'bladeMasterRoom',
                     collision: '######....######',
                     row: 0.0,
-                    column: 3.5,
+                    column: 2.5,
                 },
                 left: {
                     roomName: 'bladeMasterRoom',
@@ -6092,7 +6092,7 @@ export const nodeGroups = {
                     stage: 'undergroundCaverns',
                     room: 'roomId19',
                     row: 5,
-                    column: 1,
+                    column: 0,
                 },
                 {
                     stage: 'undergroundCaverns',
@@ -7681,7 +7681,7 @@ export const mapPixels = {
     },
 }
 
-Object.entries(nodeGroups)
+Object.entries(NODE_GROUPS)
     .filter(() => {
         return true
     })
@@ -7764,9 +7764,9 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
     for (let row = 0; row < rows; row++) {
         const rowData = []
         for (let column = 0; column < columns; column++) {
-            const values = ['.']
             const rowA = row - Math.max(0, -rowOffset)
             const columnA = column - Math.max(0, -columnOffset)
+            let charA = null
             if (
                 (rowA >= 0) &&
                 (rowA < baseNodeGroup.cells.length) &&
@@ -7775,10 +7775,11 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
                 (baseNodeGroup.cells.at(rowA).at(columnA)) !== '.'
             )
             {
-                values.push(baseNodeGroup.cells.at(rowA).at(columnA))
+                charA = baseNodeGroup.cells.at(rowA).at(columnA)
             }
             const rowB = row - Math.max(0, rowOffset)
             const columnB = column - Math.max(0, columnOffset)
+            let charB = null
             if (
                 (rowB >= 0) &&
                 (rowB < nodeGroup.cells.length) &&
@@ -7787,14 +7788,14 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
                 (nodeGroup.cells.at(rowB).at(columnB)) !== '.'
             )
             {
-                values.push(nodeGroup.cells.at(rowB).at(columnB))
+                charB = nodeGroup.cells.at(rowB).at(columnB)
             }
-            if (values.length > 2) {
+            if (charA !== null && charB !== null) {
                 if (!(options.allowOverlaps ?? false)) {
                     return null
                 }
             }
-            rowData.push(values.at(-1))
+            rowData.push(charA ?? charB ?? '.')
         }
         result.cells.push(rowData.join(''))
     }
@@ -7910,7 +7911,7 @@ export function shuffleRooms(seed, stageName, applyNormalization) {
     if (applyNormalization) {
         if (stageName in normalizationPatches) {
             Object.entries(normalizationPatches[stageName]).forEach(([patchKey, patchValue]) => {
-                let context = nodeGroups[stageName]
+                let context = NODE_GROUPS[stageName]
                 const properties = patchKey.split('.')
                 for (let propertyIndex = 0; propertyIndex < properties.length - 1; propertyIndex++) {
                     context = context[properties.at(propertyIndex)]
@@ -7919,7 +7920,7 @@ export function shuffleRooms(seed, stageName, applyNormalization) {
             })
         }
     }
-    const stageNodeGroups = JSON.parse(JSON.stringify(Object.values(nodeGroups[stageName]).sort()))
+    const stageNodeGroups = JSON.parse(JSON.stringify(Object.values(NODE_GROUPS[stageName]).sort()))
     stageNodeGroups.forEach((stageNodeGroup) => {
         stageNodeGroup.edges = Object.values(stageNodeGroup.edges).sort()
     })
@@ -7942,7 +7943,7 @@ export function shuffleRooms(seed, stageName, applyNormalization) {
             }
             const edgeIndex = Math.floor(rng() * result.edges.length)
             const baseEdge = result.edges.at(edgeIndex)
-            const nextResults = []
+            const candidatePlacements = []
             for (let i = 0; i < groupIndexes.length; i++) {
                 const groupIndex = groupIndexes.at(i)
                 const nodeGroup = stageNodeGroups.at(groupIndex)
@@ -7952,33 +7953,45 @@ export function shuffleRooms(seed, stageName, applyNormalization) {
                     const columnOffset = baseEdge.column - edge.column
                     // A non-integer offset implies a horizontal edge being matched with a vertical edge
                     if (Number.isInteger(rowOffset) && Number.isInteger(columnOffset)) {
-                        const nextResult = combineNodeGroups(result, nodeGroup, rowOffset, columnOffset)
-                        if (nextResult !== null) {
-                            nextResults.push({
-                                groupIndex: groupIndex,
-                                nextResult: nextResult,
-                            })
-                        }
+                        candidatePlacements.push({
+                            groupIndex: groupIndex,
+                            rowOffset: rowOffset,
+                            columnOffset: columnOffset,
+                        })
+                        // const nextResult = combineNodeGroups(result, nodeGroup, rowOffset, columnOffset)
                     }
                 }
             }
-            shuffleArray(rng, nextResults)
-            if (nextResults.length < 1) {
+            if (candidatePlacements.length < 1) {
                 // console.log('ERROR nextResults.length < 1:', nextResults.length)
                 validInd = false
                 break
             }
-            const spliceIndex = groupIndexes.indexOf(nextResults.at(-1).groupIndex)
-            groupIndexes.splice(spliceIndex, 1)
-            result = nextResults.at(-1).nextResult
+            shuffleArray(rng, candidatePlacements)
+            validInd = false
+            for (let i = 0; i < candidatePlacements.length; i++) {
+                const placement = candidatePlacements.at(i)
+                const nodeGroup = stageNodeGroups.at(placement.groupIndex)
+                const nextResult = combineNodeGroups(result, nodeGroup, placement.rowOffset, placement.columnOffset)
+                if (nextResult !== null) {
+                    const spliceIndex = groupIndexes.indexOf(placement.groupIndex)
+                    groupIndexes.splice(spliceIndex, 1)
+                    result = nextResult
+                    validInd = true
+                    break
+                }
+            }
+            if (!validInd) {
+                break
+            }
         }
         if (groupIndexes.length > 0 || result.edges.length > 0) {
             // console.log('ERROR groupIndexes.length > 0 || result.edges.length > 0:', groupIndexes.length, result.edges.length)
             validInd = false
         }
     }
-    console.log('attemptCount:', attemptCount)
-    // console.log('result:', result)
+    // console.log('attemptCount:', attemptCount)
+    // console.log('result.cells:', result.cells)
     return result
 }
 
