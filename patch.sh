@@ -1,3 +1,4 @@
+date
 node shuffle multi -e "build/patcher/extraction-aliased.json" -o "build/current-seed.json" \
   --musicShuffler.on=true \
   --patcher.on=true \
@@ -17,10 +18,12 @@ node shuffle multi -e "build/patcher/extraction-aliased.json" -o "build/current-
   --patcher.list="lib/BIN-Patcher/patches/simplify-gear-puzzle.json" \
   --rewardShuffler.on=true \
   --roomShuffler.on=true \
-  --solver.on=true \
-  --stageShuffler.on=true
+  --stageShuffler.on=true \
+  --stageShuffler.labels=true \
+  --solver.on=true
 
 node lib/BIN-Patcher/sotn alter -s "build/patcher/extraction-masked-aliased.json" -t "build/current-patch.json"
 node lib/BIN-Patcher/sotn patch -p "build/current-patch.json" -c "build/current-seed.json"
 node lib/BIN-Patcher/sotn patch -p "build/current-patch.json" -c "build/patcher/change-dependencies.json"
 node lib/BIN-Patcher/sotn ppf   -p "build/current-patch.json" -t "build/current-patch.ppf"
+date

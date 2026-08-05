@@ -9,11 +9,8 @@ import {
 
 import {
     arrangeStages,
+    getStageAndRoomFromLink,
 } from './src/common.js'
-
-import {
-    NODES,
-} from './src/constants.js'
 
 import {
     getSeedName,
@@ -26,8 +23,9 @@ import {
 
 import {
     combineNodeGroups,
+    getMapPixels,
     getRoomChanges,
-    mapPixels,
+    MAP_PIXELS,
     NODE_GROUPS,
     shuffleRooms,
 } from './src/shuffle-rooms.js'
@@ -51,6 +49,7 @@ import {
 //   - Assign warp rooms to the stage they connect to
 //   - Arrange stages on the map
 
+const MIN_MAP_COL = 0
 const MIN_MAP_ROW = 5
 
 const STAGE_NAMES = [
@@ -1001,6 +1000,10 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'If supplied, this seed is always used for supplying randomness to the stage shuffler',
                 type: 'string',
             })
+            .option('stageShuffler.labels', {
+                describe: 'Whether or not to add a label identifying each pair of loading rooms on the castle map',
+                type: 'boolean',
+            })
         // The following options must be declared
             .demandOption(['extraction', 'out'])
         },
@@ -1102,7 +1105,8 @@ const argv = yargs(process.argv.slice(2))
                     const seed = argv.roomShuffler.seed ?? (seedName + '.roomShuffler.' + shuffleData.debugInfo.solverAttemptId)
                     const stageNodeGroups = {}
                     shuffleData.debugInfo.finalSeedsUsed.stages = {}
-                    STAGE_NAMES.forEach((stageName) => {
+                    STAGE_NAMES
+                    .forEach((stageName) => {
                         let stageAttemptCount = 0
                         while (true) {
                             const stageSeed = seed + '.' + stageName + '.' + stageAttemptCount
@@ -1133,33 +1137,29 @@ const argv = yargs(process.argv.slice(2))
                     })
                     // Attach warpRooms to the stages they lead to
                     Object.entries(stageConnections.links)
-                        .filter(([teleporterSource, teleporterTarget]) => {
-                            return teleporterSource.startsWith('fromWarpRoomsTo')
+                    .filter(([teleporterSource, teleporterTarget]) => {
+                        return teleporterSource.startsWith('fromWarpRoomsTo')
+                    })
+                    .forEach(([teleporterSource, teleporterTarget]) => {
+                        const stageAndRoom = getStageAndRoomFromLink(teleporterTarget)
+                        // NOTE(sestren): Centering on the loading room is a reliable way to match the rooms without having to know the direction
+                        let matchingRoomCount = 0
+                        stageNodeGroups[stageAndRoom.stage].rooms
+                        .filter((roomInfo) => {
+                            return (roomInfo.stage === stageAndRoom.stage) && (roomInfo.room === stageAndRoom.room)
                         })
-                        .forEach(([teleporterSource, teleporterTarget]) => {
-                            // NOTE(sestren): This hack is to avoid matching the 'To' between stage names with the 'To' in ClockTower
-                            const parts = teleporterTarget.replace('ClockTower', 'CLOCKTOWER').split('To')
-                            const firstPart = parts.at(0).replace('CLOCKTOWER', 'ClockTower').slice(4)
-                            const stageName = firstPart.at(0).toLowerCase() + firstPart.slice(1)
-                            const roomName = 'loadingRoomTo' + parts.at(1).replace('CLOCKTOWER', 'ClockTower')
-                            // NOTE(sestren): Centering on the loading room is a reliable way to match the rooms without having to know the direction
-                            let matchingRoomCount = 0
-                            stageNodeGroups[stageName].rooms
-                                .filter((roomInfo) => {
-                                    return (roomInfo.stage === stageName) && (roomInfo.room === roomName)
-                                })
-                                .forEach((roomInfo) => {
-                                    matchingRoomCount += 1
-                                    const rowOffset = roomInfo.row
-                                    const columnOffset = roomInfo.column - 1
-                                    const warpRoomGroupName = 'warpRoomTo' + teleporterSource.split('WarpRoomsTo').at(1)
-                                    const warpRoomGroup = NODE_GROUPS.warpRooms[warpRoomGroupName]
-                                    stageNodeGroups[stageName] = combineNodeGroups(stageNodeGroups[stageName], warpRoomGroup, rowOffset, columnOffset, { allowOverlaps: true })
-                                })
-                            if (matchingRoomCount < 1)  {
-                                throw Error(`Room not found for stage '${stageName}' and room '${roomName}'`)
-                            }
+                        .forEach((roomInfo) => {
+                            matchingRoomCount += 1
+                            const rowOffset = roomInfo.row
+                            const columnOffset = roomInfo.column - 1
+                            const warpRoomGroupName = 'warpRoomTo' + teleporterSource.split('WarpRoomsTo').at(1)
+                            const warpRoomGroup = NODE_GROUPS.warpRooms[warpRoomGroupName]
+                            stageNodeGroups[stageAndRoom.stage] = combineNodeGroups(stageNodeGroups[stageAndRoom.stage], warpRoomGroup, rowOffset, columnOffset, { allowOverlaps: true })
                         })
+                        if (matchingRoomCount < 1)  {
+                            throw Error(`Room not found for stage '${stageAndRoom.stage}' and room '${stageAndRoom.room}'`)
+                        }
+                    })
                     roomArrangements = arrangeStages(seed + '.stageArranger', stageNodeGroups)
                     const roomChanges = getRoomChanges(roomArrangements.rooms, MIN_MAP_ROW, 0)
                     changesToAdd.push(roomChanges)
@@ -1245,27 +1245,31 @@ const argv = yargs(process.argv.slice(2))
                     break
                 }
             }
+            // Add labels to map
+            let mapPixels = MAP_PIXELS
+            if (argv.stageShuffler?.labels && (
+                argv.stageShuffler?.on || argv.roomShuffler?.on
+            )) {
+                mapPixels = getMapPixels(stageConnections.links, roomArrangements.rooms)
+            }
             // Redraw map
             const mapGrid = []
             for (let row = 0; row < 256; row++) {
                 const rowData = '0'.repeat(256)
                 mapGrid.push(rowData)
             }
-            roomArrangements.rooms.forEach((roomInfo) => {
-                if (
-                    !(
-                        (roomInfo.stage in mapPixels) &&
-                        (roomInfo.room in mapPixels[roomInfo.stage])
-                    )
+            roomArrangements.rooms
+            .filter((roomInfo) => {
+                return (
+                    roomInfo.stage in mapPixels &&
+                    roomInfo.room in mapPixels[roomInfo.stage]
                 )
-                {
-                    return
-                }
+            })
+            .forEach((roomInfo) => {
                 for (let fillIndex = 0; fillIndex < mapPixels[roomInfo.stage][roomInfo.room].length; fillIndex++) {
                     const fillData = mapPixels[roomInfo.stage][roomInfo.room].at(fillIndex)
                     switch (fillData.command) {
                         case 'fillRect':
-                            const MIN_MAP_COL = 0
                             const pixelRow = 4 * (MIN_MAP_ROW + roomInfo.row) + fillData.parameters.top
                             const pixelColumn = 4 * (MIN_MAP_COL + roomInfo.column) + fillData.parameters.left
                             for (let rowOffset = 0; rowOffset < fillData.parameters.rows; rowOffset++) {
@@ -1273,6 +1277,22 @@ const argv = yargs(process.argv.slice(2))
                                 const rightSide = mapGrid.at(pixelRow + rowOffset).slice(pixelColumn + fillData.parameters.columns)
                                 mapGrid[pixelRow + rowOffset] = leftSide + fillData.parameters.colorIndex.repeat(fillData.parameters.columns) + rightSide
                             }
+                            break
+                        case 'drawGlyph':
+                            fillData.parameters.glyph
+                            .forEach((rowData, rowOffset) => {
+                                Array.from(rowData)
+                                .forEach((char, colOffset) => {
+                                    if (char === '.') {
+                                        return
+                                    }
+                                    const pixelRow = 4 * (MIN_MAP_ROW + roomInfo.row) + rowOffset + fillData.parameters.top
+                                    const pixelColumn = 4 * (MIN_MAP_COL + roomInfo.column) + colOffset + fillData.parameters.left
+                                    const leftSide = mapGrid.at(pixelRow).slice(0, pixelColumn)
+                                    const rightSide = mapGrid.at(pixelRow).slice(pixelColumn + 1)
+                                    mapGrid[pixelRow] = leftSide + fillData.parameters.colorIndex + rightSide
+                                })
+                            })
                             break
                         default:
                             console.log(`WARNING: Unknown value for command property: ${fillData.command}`)
@@ -1370,16 +1390,12 @@ const argv = yargs(process.argv.slice(2))
                     return teleporterSource.startsWith('fromWarpRoomsTo')
                 })
                 .forEach(([teleporterSource, teleporterTarget]) => {
-                    // NOTE(sestren): This hack is to avoid matching the 'To' between stage names with the 'To' in ClockTower
-                    const parts = teleporterTarget.replace('ClockTower', 'CLOCKTOWER').split('To')
-                    const firstPart = parts.at(0).replace('CLOCKTOWER', 'ClockTower').slice(4)
-                    const stageName = firstPart.at(0).toLowerCase() + firstPart.slice(1)
-                    const roomName = 'loadingRoomTo' + parts.at(1).replace('CLOCKTOWER', 'ClockTower')
+                    const stageAndRoom = getStageAndRoomFromLink(teleporterTarget)
                     // NOTE(sestren): Centering on the loading room is a reliable way to match the rooms without having to know the direction
                     let matchingRoomCount = 0
-                    stageNodeGroups[stageName].rooms
+                    stageNodeGroups[stageAndRoom.stage].rooms
                         .filter((roomInfo) => {
-                            return (roomInfo.stage === stageName) && (roomInfo.room === roomName)
+                            return (roomInfo.stage === stageAndRoom.stage) && (roomInfo.room === stageAndRoom.room)
                         })
                         .forEach((roomInfo) => {
                             matchingRoomCount += 1
@@ -1387,10 +1403,10 @@ const argv = yargs(process.argv.slice(2))
                             const columnOffset = roomInfo.column - 1
                             const warpRoomGroupName = 'warpRoomTo' + teleporterSource.split('WarpRoomsTo').at(1)
                             const warpRoomGroup = NODE_GROUPS.warpRooms[warpRoomGroupName]
-                            stageNodeGroups[stageName] = combineNodeGroups(stageNodeGroups[stageName], warpRoomGroup, rowOffset, columnOffset, { allowOverlaps: true })
+                            stageNodeGroups[stageAndRoom.stage] = combineNodeGroups(stageNodeGroups[stageAndRoom.stage], warpRoomGroup, rowOffset, columnOffset, { allowOverlaps: true })
                         })
                     if (matchingRoomCount < 1)  {
-                        throw Error(`Room not found for stage '${stageName}' and room '${roomName}'`)
+                        throw Error(`Room not found for stage '${stageAndRoom.stage}' and room '${stageAndRoom.room}'`)
                     }
                 })
             const stageArrangements = arrangeStages(seedName + '.stageArranger', stageNodeGroups)
