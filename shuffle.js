@@ -945,6 +945,12 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'Whether or not to display the seed value on the file select screen',
                 type: 'boolean',
             })
+            .option('hinter.settings', {
+                describe: 'Whether or not to display a hash value of the settings used on the file select screen',
+                type: 'boolean',
+                // The hash value can be used to demonstrate that two separate PPFs were very likely generated with the same settings.
+                // It is only meant to help in catching accidental settings changes, and may not help in catching well-crafted, malicious ones.
+            })
             .option('hinter.stageLinks', {
                 describe: 'Whether or not to add a label identifying each pair of loading rooms on the castle map; will only apply to loading room pairs that do not occupy the same map position already',
                 type: 'boolean',
@@ -1316,19 +1322,21 @@ const argv = yargs(process.argv.slice(2))
                 },
             }
             changesToAdd.push(mapChanges)
-            // Add hints
-            if (argv.hinter?.seedName) {
+            // Add hints to the file select menu
+            if (argv.hinter?.seedName || argv.hinter?.settings) {
+                const hintMessages = [
+                    (argv.hinter?.seedName) ? seedName : '',
+                    (argv.hinter?.settings) ? hashedObject(shuffleData.settings, ['seedName']) : '',
+                ]
                 const hintChanges = {
                     changeType: 'merge',
                     merge: {
-                        'messages.richterModeInstructions1.data=': seedName,
-                        'messages.richterModeInstructions2.data=': hashedObject(shuffleData.settings, ['seedName']),
+                        'messages.richterModeInstructions1.data=': hintMessages.at(0),
+                        'messages.richterModeInstructions2.data=': hintMessages.at(1),
                     },
                 }
                 changesToAdd.push(hintChanges)
             }
-            console.log('hashedObject(...):', hashedObject(shuffleData.settings, ['seedName']))
-            console.log('shuffleData.settings:', shuffleData.settings)
             // Transfer accumulated changes
             for (let index = 0; index < changesToAdd.length; index++) {
                 shuffleData.changes.push(changesToAdd.at(index))
