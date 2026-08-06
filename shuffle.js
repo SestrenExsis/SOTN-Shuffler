@@ -10,6 +10,7 @@ import {
 import {
     arrangeStages,
     getStageAndRoomFromLink,
+    hashedObject,
 } from './src/common.js'
 
 import {
@@ -939,6 +940,15 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'Seed to provide for randomization',
                 type: 'string',
             })
+        // Hinter options
+            .option('hinter.seedName', {
+                describe: 'Whether or not to display the seed value on the file select screen',
+                type: 'boolean',
+            })
+            .option('hinter.stageLinks', {
+                describe: 'Whether or not to add a label identifying each pair of loading rooms on the castle map; will only apply to loading room pairs that do not occupy the same map position already',
+                type: 'boolean',
+            })
         // Music shuffler options
             .option('musicShuffler.on', {
                 describe: 'Whether or not to enable shuffling of in-game music; if disabled, all other options in this category are ignored',
@@ -1000,10 +1010,6 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'If supplied, this seed is always used for supplying randomness to the stage shuffler',
                 type: 'string',
             })
-            .option('stageShuffler.labels', {
-                describe: 'Whether or not to add a label identifying each pair of loading rooms on the castle map',
-                type: 'boolean',
-            })
         // The following options must be declared
             .demandOption(['extraction', 'out'])
         },
@@ -1034,6 +1040,9 @@ const argv = yargs(process.argv.slice(2))
                 seedName = getSeedName(seed)
             }
             shuffleData.debugInfo.seedName = seedName
+            if (argv.hinter) {
+                shuffleData.settings.hinter = argv.hinter
+            }
             if (argv.musicShuffler?.on) {
                 shuffleData.settings.musicShuffler = argv.musicShuffler
             }
@@ -1247,7 +1256,7 @@ const argv = yargs(process.argv.slice(2))
             }
             // Add labels to map
             let mapPixels = MAP_PIXELS
-            if (argv.stageShuffler?.labels && (
+            if (argv.hinter?.stageLinks && (
                 argv.stageShuffler?.on || argv.roomShuffler?.on
             )) {
                 mapPixels = getMapPixels(stageConnections.links, roomArrangements.rooms)
@@ -1307,6 +1316,20 @@ const argv = yargs(process.argv.slice(2))
                 },
             }
             changesToAdd.push(mapChanges)
+            // Add hints
+            if (argv.hinter?.seedName) {
+                const hintChanges = {
+                    changeType: 'merge',
+                    merge: {
+                        'messages.richterModeInstructions1.data=': seedName,
+                        'messages.richterModeInstructions2.data=': hashedObject(shuffleData.settings, ['seedName']),
+                    },
+                }
+                changesToAdd.push(hintChanges)
+            }
+            console.log('hashedObject(...):', hashedObject(shuffleData.settings, ['seedName']))
+            console.log('shuffleData.settings:', shuffleData.settings)
+            // Transfer accumulated changes
             for (let index = 0; index < changesToAdd.length; index++) {
                 shuffleData.changes.push(changesToAdd.at(index))
             }
