@@ -1,4 +1,5 @@
 import { inspect } from 'node:util'
+
 import {
     LOCATIONS,
     NODES,
@@ -7,6 +8,10 @@ import {
     ROOMS_INFO,
     TELEPORTERS,
 } from './constants.js'
+
+import {
+    hashedState,
+} from './common.js'
 
 function isValidRequirement(state, requirement) {
     const result = Object.entries(requirement)
@@ -548,60 +553,6 @@ function getLogic(settings, enableElsewhere=false) {
                 })
             })
         })
-    }
-    return result
-}
-
-function hashedState(state, simple=false) {
-    // Example: abandonedMine.bend.main.b8e6fb7c
-    const elements = []
-    elements.push(state.stage ?? 'NONE')
-    elements.push(state.room ?? 'NONE')
-    elements.push(state.section ?? 'NONE')
-    if (!simple) {
-        elements.push(hashedObject(state, ['stage', 'room', 'section', 'time', 'positionX', 'positionY']))
-    }
-    const result = elements.join('.')
-    return result
-}
-
-function hashedObject(object, ignoredProperties) {
-    const elements = []
-    Object.keys(object)
-    .filter((key) => {
-        return !(ignoredProperties.includes(key))
-    })
-    .sort()
-    .forEach((key) => {
-        switch (typeof object[key]) {
-            case 'boolean':
-            case 'number':
-            case 'string':
-                elements.push([key, object[key]].join('='))
-                break
-            case 'object':
-                elements.push([key, hashedObject(object[key])].join('='))
-                break
-            default:
-                console.log('Unhandled key-value pair: ' + JSON.stringify(key) + ', ' + JSON.stringify(object[key]))
-                break
-        }
-    })
-    const result = hashedText(elements.join('|'))
-    return result
-}
-
-// Javascript implementation of DJBX33A as defined at https://stackoverflow.com/questions/10696223/reason-for-the-number-5381-in-the-djb-hash-function
-function hashedText(text) {
-    const MOD = Math.pow(2, 32)
-    let value = 5381
-    for (let i = 0; i < text.length; i++) {
-        value = ((33 * value) + text.charCodeAt(i)) % MOD
-    }
-    let result = ''
-    for (let i = 0; i < 8; i++) {
-        result += '0123456789abcdef'.at(value % 16)
-        value = Math.floor(value / 16)
     }
     return result
 }

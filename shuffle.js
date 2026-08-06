@@ -10,6 +10,7 @@ import {
 import {
     arrangeStages,
     getStageAndRoomFromLink,
+    hashedObject,
 } from './src/common.js'
 
 import {
@@ -939,6 +940,21 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'Seed to provide for randomization',
                 type: 'string',
             })
+        // Hinter options
+            .option('hinter.seedName', {
+                describe: 'Whether or not to display the seed value on the file select screen',
+                type: 'boolean',
+            })
+            .option('hinter.settings', {
+                describe: 'Whether or not to display a hash value of the settings used on the file select screen',
+                type: 'boolean',
+                // The hash value can be used to demonstrate that two separate PPFs were very likely generated with the same settings.
+                // It is only meant to help in catching accidental settings changes, and may not help in catching well-crafted, malicious ones.
+            })
+            .option('hinter.stageLinks', {
+                describe: 'Whether or not to add a label identifying each pair of loading rooms on the castle map; will only apply to loading room pairs that do not occupy the same map position already',
+                type: 'boolean',
+            })
         // Music shuffler options
             .option('musicShuffler.on', {
                 describe: 'Whether or not to enable shuffling of in-game music; if disabled, all other options in this category are ignored',
@@ -1000,10 +1016,6 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'If supplied, this seed is always used for supplying randomness to the stage shuffler',
                 type: 'string',
             })
-            .option('stageShuffler.labels', {
-                describe: 'Whether or not to add a label identifying each pair of loading rooms on the castle map',
-                type: 'boolean',
-            })
         // The following options must be declared
             .demandOption(['extraction', 'out'])
         },
@@ -1034,6 +1046,9 @@ const argv = yargs(process.argv.slice(2))
                 seedName = getSeedName(seed)
             }
             shuffleData.debugInfo.seedName = seedName
+            if (argv.hinter) {
+                shuffleData.settings.hinter = argv.hinter
+            }
             if (argv.musicShuffler?.on) {
                 shuffleData.settings.musicShuffler = argv.musicShuffler
             }
@@ -1247,7 +1262,7 @@ const argv = yargs(process.argv.slice(2))
             }
             // Add labels to map
             let mapPixels = MAP_PIXELS
-            if (argv.stageShuffler?.labels && (
+            if (argv.hinter?.stageLinks && (
                 argv.stageShuffler?.on || argv.roomShuffler?.on
             )) {
                 mapPixels = getMapPixels(stageConnections.links, roomArrangements.rooms)
@@ -1307,6 +1322,22 @@ const argv = yargs(process.argv.slice(2))
                 },
             }
             changesToAdd.push(mapChanges)
+            // Add hints to the file select menu
+            if (argv.hinter?.seedName || argv.hinter?.settings) {
+                const hintMessages = [
+                    (argv.hinter?.seedName) ? seedName : '',
+                    (argv.hinter?.settings) ? hashedObject(shuffleData.settings, ['seedName']) : '',
+                ]
+                const hintChanges = {
+                    changeType: 'merge',
+                    merge: {
+                        'messages.richterModeInstructions1.data=': hintMessages.at(0),
+                        'messages.richterModeInstructions2.data=': hintMessages.at(1),
+                    },
+                }
+                changesToAdd.push(hintChanges)
+            }
+            // Transfer accumulated changes
             for (let index = 0; index < changesToAdd.length; index++) {
                 shuffleData.changes.push(changesToAdd.at(index))
             }

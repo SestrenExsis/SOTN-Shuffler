@@ -19,8 +19,10 @@ node shuffle multi -e "build/patcher/extraction-aliased.json" -o "build/current-
   --rewardShuffler.on=true \
   --roomShuffler.on=true \
   --stageShuffler.on=true \
-  --stageShuffler.labels=true \
-  --solver.on=true
+  --solver.on=true \
+  --hinter.seedName=true \
+  --hinter.settings=true \
+  --hinter.stageLinks=true
 
 node lib/BIN-Patcher/sotn alter -s "build/patcher/extraction-masked-aliased.json" -t "build/current-patch.json"
 node lib/BIN-Patcher/sotn patch -p "build/current-patch.json" -c "build/current-seed.json"
