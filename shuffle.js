@@ -9,9 +9,12 @@ import {
 
 import {
     arrangeStages,
-    getStageAndRoomFromLink,
     hashedObject,
 } from './src/common.js'
+
+import {
+    TELEPORTERS,
+} from './src/constants.js'
 
 import {
     getSeedName,
@@ -41,8 +44,6 @@ import {
     shuffleRewards,
     getRewardChanges,
 } from './src/shuffle-rewards.js'
-
-// TODO(sestren): Generate a hash of options used to serve as a shorthand to help in quickly verifying if a set of options has changed
 
 // NOTE(sestren): Proposed order of operations:
 //   - Shuffle the rooms within each stage
@@ -1156,12 +1157,14 @@ const argv = yargs(process.argv.slice(2))
                         return teleporterSource.startsWith('fromWarpRoomsTo')
                     })
                     .forEach(([teleporterSource, teleporterTarget]) => {
-                        const stageAndRoom = getStageAndRoomFromLink(teleporterTarget)
+                        const stageName = TELEPORTERS[teleporterTarget].sourceStage
+                        const targetStage = TELEPORTERS[teleporterTarget].targetStage
+                        const roomName = 'loadingRoomTo' + targetStage.at(0).toUpperCase() + targetStage.slice(1)
                         // NOTE(sestren): Centering on the loading room is a reliable way to match the rooms without having to know the direction
                         let matchingRoomCount = 0
-                        stageNodeGroups[stageAndRoom.stage].rooms
+                        stageNodeGroups[stageName].rooms
                         .filter((roomInfo) => {
-                            return (roomInfo.stage === stageAndRoom.stage) && (roomInfo.room === stageAndRoom.room)
+                            return (roomInfo.stage === stageName) && (roomInfo.room === roomName)
                         })
                         .forEach((roomInfo) => {
                             matchingRoomCount += 1
@@ -1169,10 +1172,10 @@ const argv = yargs(process.argv.slice(2))
                             const columnOffset = roomInfo.column - 1
                             const warpRoomGroupName = 'warpRoomTo' + teleporterSource.split('WarpRoomsTo').at(1)
                             const warpRoomGroup = NODE_GROUPS.warpRooms[warpRoomGroupName]
-                            stageNodeGroups[stageAndRoom.stage] = combineNodeGroups(stageNodeGroups[stageAndRoom.stage], warpRoomGroup, rowOffset, columnOffset, { allowOverlaps: true })
+                            stageNodeGroups[stageName] = combineNodeGroups(stageNodeGroups[stageName], warpRoomGroup, rowOffset, columnOffset, { allowOverlaps: true })
                         })
                         if (matchingRoomCount < 1)  {
-                            throw Error(`Room not found for stage '${stageAndRoom.stage}' and room '${stageAndRoom.room}'`)
+                            throw Error(`Room not found for stage '${stageName}' and room '${roomName}'`)
                         }
                     })
                     roomArrangements = arrangeStages(seed + '.stageArranger', stageNodeGroups)
@@ -1421,12 +1424,14 @@ const argv = yargs(process.argv.slice(2))
                     return teleporterSource.startsWith('fromWarpRoomsTo')
                 })
                 .forEach(([teleporterSource, teleporterTarget]) => {
-                    const stageAndRoom = getStageAndRoomFromLink(teleporterTarget)
+                    const stageName = TELEPORTERS[teleporterTarget].sourceStage
+                    const targetStage = TELEPORTERS[teleporterTarget].targetStage
+                    const roomName = 'loadingRoomTo' + targetStage.at(0).toUpperCase() + targetStage.slice(1)
                     // NOTE(sestren): Centering on the loading room is a reliable way to match the rooms without having to know the direction
                     let matchingRoomCount = 0
-                    stageNodeGroups[stageAndRoom.stage].rooms
+                    stageNodeGroups[stageName].rooms
                         .filter((roomInfo) => {
-                            return (roomInfo.stage === stageAndRoom.stage) && (roomInfo.room === stageAndRoom.room)
+                            return (roomInfo.stage === stageName) && (roomInfo.room === roomName)
                         })
                         .forEach((roomInfo) => {
                             matchingRoomCount += 1
@@ -1434,10 +1439,10 @@ const argv = yargs(process.argv.slice(2))
                             const columnOffset = roomInfo.column - 1
                             const warpRoomGroupName = 'warpRoomTo' + teleporterSource.split('WarpRoomsTo').at(1)
                             const warpRoomGroup = NODE_GROUPS.warpRooms[warpRoomGroupName]
-                            stageNodeGroups[stageAndRoom.stage] = combineNodeGroups(stageNodeGroups[stageAndRoom.stage], warpRoomGroup, rowOffset, columnOffset, { allowOverlaps: true })
+                            stageNodeGroups[stageName] = combineNodeGroups(stageNodeGroups[stageName], warpRoomGroup, rowOffset, columnOffset, { allowOverlaps: true })
                         })
                     if (matchingRoomCount < 1)  {
-                        throw Error(`Room not found for stage '${stageAndRoom.stage}' and room '${stageAndRoom.room}'`)
+                        throw Error(`Room not found for stage '${stageName}' and room '${roomName}'`)
                     }
                 })
             const stageArrangements = arrangeStages(seedName + '.stageArranger', stageNodeGroups)

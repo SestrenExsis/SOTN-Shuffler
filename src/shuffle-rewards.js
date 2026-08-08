@@ -4,7 +4,10 @@ import {
     shuffleArray
 } from './common.js'
 
-const rewardIds = {
+// TODO(sestren): solver-reward interactivity
+// Solver asks for a random reward that is left that satisfies a constraint (e.g., gives progression) and returns the location it placed it into
+
+const REWARD_IDS = {
     relicSoulOfBat: 0,
     relicFireOfBat: 1,
     relicEchoOfBat: 2,
@@ -40,7 +43,7 @@ const rewardIds = {
     itemSilverRing: 'itemSilverRing',
 }
 
-const locationsInfo = {
+const LOCATIONS = {
     locationBatCard: {
         defaultValue: 'relicBatCard',
         validRewardTypes: [ 'relic', ],
@@ -1226,36 +1229,38 @@ export function shuffleRewards(seed) {
             attemptCounter: 0,
         },
     }
-    const locationNames = Object.keys(locationsInfo).toSorted()
+    const locationNames = Object.keys(LOCATIONS).toSorted()
     let validInd = false
     while (!validInd) {
         result.debugInfo.attemptCounter += 1
         validInd = true
         result.locations = {}
         let rewardNames = []
-        Object.entries(locationsInfo)
-            .forEach(([locationName, locationInfo]) => {
-                result.locations[locationName] = null
-                rewardNames.push(locationInfo.defaultValue)
-            })
+        Object.entries(LOCATIONS)
+        .forEach(([locationName, locationInfo]) => {
+            result.locations[locationName] = null
+            rewardNames.push(locationInfo.defaultValue)
+        })
         rewardNames = shuffleArray(rng, rewardNames.sort())
         // Try to assign a random valid reward to every location
-        locationNames.forEach((locationName, index) => {
+        locationNames
+        .forEach((locationName, index) => {
             result.locations[locationName] = rewardNames.at(index)
         })
         Object.entries(result.locations)
-            .forEach(([locationName, rewardName]) => {
-                const locationInfo = locationsInfo[locationName]
-                let validRewardType = false
-                locationInfo.validRewardTypes.forEach((rewardType) => {
-                    if (rewardName.startsWith(rewardType)) {
-                        validRewardType = true
-                    }
-                })
-                if (!validRewardType) {
-                    validInd = false
+        .forEach(([locationName, rewardName]) => {
+            const locationInfo = LOCATIONS[locationName]
+            let validRewardType = false
+            locationInfo.validRewardTypes
+            .forEach((rewardType) => {
+                if (rewardName.startsWith(rewardType)) {
+                    validRewardType = true
                 }
             })
+            if (!validRewardType) {
+                validInd = false
+            }
+        })
     }
     // console.log(result)
     return result
@@ -1264,28 +1269,28 @@ export function shuffleRewards(seed) {
 export function getRewardChanges(locations) {
     const rewardChanges = {}
     Object.entries(locations)
-        .forEach(([locationName, rewardName]) => {
-            const properties = {
-                rewardId: rewardIds[rewardName],
+    .forEach(([locationName, rewardName]) => {
+        const properties = {
+            rewardId: REWARD_IDS[rewardName],
+        }
+        const rewardType = (rewardName.startsWith('item')) ? 'item' : 'relic'
+        LOCATIONS[locationName].writes[rewardType]
+        .forEach((writeInfo) => {
+            let writeValue = 0
+            switch (writeInfo.value.type) {
+                case 'property':
+                    writeValue = properties[writeInfo.value.property]
+                    break
+                case 'constant':
+                    writeValue = writeInfo.value.constant
+                    break
             }
-            const rewardType = (rewardName.startsWith('item')) ? 'item' : 'relic'
-            locationsInfo[locationName].writes[rewardType]
-                .forEach((writeInfo) => {
-                    let writeValue = 0
-                    switch (writeInfo.value.type) {
-                        case 'property':
-                            writeValue = properties[writeInfo.value.property]
-                            break
-                        case 'constant':
-                            writeValue = writeInfo.value.constant
-                            break
-                    }
-                    writeInfo.keys
-                        .forEach((writeKey) => {
-                            rewardChanges[writeKey + '='] = writeValue
-                        })
-                })
+            writeInfo.keys
+            .forEach((writeKey) => {
+                rewardChanges[writeKey + '='] = writeValue
+            })
         })
+    })
     const result = {
         changeType: 'merge',
         merge: rewardChanges,

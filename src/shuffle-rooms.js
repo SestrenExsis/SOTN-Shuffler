@@ -1,9 +1,12 @@
 import seedrandom from 'seedrandom'
 
 import {
-    getStageAndRoomFromLink,
     shuffleArray,
 } from './common.js'
+
+import {
+    TELEPORTERS,
+} from './constants.js'
 
 const normalizationPatches = {
     alchemyLaboratory: {
@@ -7808,29 +7811,28 @@ export function getMapPixels(stageLinks, roomPositions) {
     const assignments = new Map()
     const result = structuredClone(MAP_PIXELS)
     Object.entries(stageLinks)
+    .filter(([sourceTeleporterName, targetTeleporterName]) => {
+        // TODO(sestren): Don't draw labels if the loading rooms overlap (not just for Warp Rooms, will need roomPositions)
+        return [
+            TELEPORTERS[sourceTeleporterName].sourceStage,
+            TELEPORTERS[targetTeleporterName].sourceStage,
+        ].includes('warpRooms')
+    })
     .forEach(([sourceTeleporterName, targetTeleporterName]) => {
-        const sourceStageAndRoom = getStageAndRoomFromLink(sourceTeleporterName)
-        const sourceStage = sourceStageAndRoom.stage
-        const sourceRoom = sourceStageAndRoom.room
-        const sourceColorIndex = COLORS[sourceStage]
-        const targetStageAndRoom = getStageAndRoomFromLink(targetTeleporterName)
-        const targetStage = targetStageAndRoom.stage
-        const targetRoom = targetStageAndRoom.room
-        const targetColorIndex = COLORS[targetStage]
         const charIndex = Math.floor(assignments.size / 2)
         const glyphName = chars.at(charIndex)
-        if (
-            sourceStage === 'warpRooms' ||
-            targetStage === 'warpRooms'
-        ) {
-            return
-        }
         if (!assignments.has(sourceTeleporterName)) {
-            result[sourceStage][sourceRoom].push(drawGlyph(targetColorIndex, glyphName, 1, 1))
+            const sourceStage = TELEPORTERS[sourceTeleporterName].sourceStage
+            const targetStage = TELEPORTERS[sourceTeleporterName].targetStage
+            const targetRoom = 'loadingRoomTo' + targetStage.at(0).toUpperCase() + targetStage.slice(1)
+            result[sourceStage][targetRoom].push(drawGlyph(COLORS[targetStage], glyphName, 1, 1))
             assignments.set(sourceTeleporterName, glyphName)
         }
         if (!assignments.has(targetTeleporterName)) {
-            result[targetStage][targetRoom].push(drawGlyph(sourceColorIndex, glyphName, 1, 1))
+            const sourceStage = TELEPORTERS[targetTeleporterName].sourceStage
+            const targetStage = TELEPORTERS[targetTeleporterName].targetStage
+            const targetRoom = 'loadingRoomTo' + targetStage.at(0).toUpperCase() + targetStage.slice(1)
+            result[targetStage][targetRoom].push(drawGlyph(COLORS[sourceStage], glyphName, 1, 1))
             assignments.set(targetTeleporterName, glyphName)
         }
     })
@@ -7888,7 +7890,8 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
         cells: [],
         edges: [],
     }
-    baseNodeGroup.rooms.forEach((roomInfo) => {
+    baseNodeGroup.rooms
+    .forEach((roomInfo) => {
         result.rooms.push({
             stage: roomInfo.stage,
             room: roomInfo.room,
@@ -7896,7 +7899,8 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
             column: roomInfo.column + Math.max(0, -columnOffset),
         })
     })
-    nodeGroup.rooms.forEach((roomInfo) => {
+    nodeGroup.rooms
+    .forEach((roomInfo) => {
         result.rooms.push({
             stage: roomInfo.stage,
             room: roomInfo.room,
@@ -7959,12 +7963,13 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
         const baseRow = baseEdgeInfo.row + Math.max(0, -rowOffset)
         const baseColumn = baseEdgeInfo.column + Math.max(0, -columnOffset)
         const matchingEdgesFound = nodeGroup.edges
-            .filter((edgeInfo) => {
-                const row = edgeInfo.row + Math.max(0, rowOffset)
-                const column = edgeInfo.column + Math.max(0, columnOffset)
-                return baseRow == row && baseColumn == column
-            })
-        const mismatchedEdges = matchingEdgesFound.filter((edgeInfo) => {
+        .filter((edgeInfo) => {
+            const row = edgeInfo.row + Math.max(0, rowOffset)
+            const column = edgeInfo.column + Math.max(0, columnOffset)
+            return baseRow == row && baseColumn == column
+        })
+        const mismatchedEdges = matchingEdgesFound
+        .filter((edgeInfo) => {
             return baseEdgeInfo.collision != edgeInfo.collision
         })
         if (mismatchedEdges.length > 0) {
@@ -7993,12 +7998,13 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
         const row = edgeInfo.row + Math.max(0, rowOffset)
         const column = edgeInfo.column + Math.max(0, columnOffset)
         const matchingEdgesFound = baseNodeGroup.edges
-            .filter((baseEdgeInfo) => {
-                const baseRow = baseEdgeInfo.row + Math.max(0, -rowOffset)
-                const baseColumn = baseEdgeInfo.column + Math.max(0, -columnOffset)
-                return row == baseRow && column == baseColumn
-            })
-        const mismatchedEdges = matchingEdgesFound.filter((baseEdgeInfo) => {
+        .filter((baseEdgeInfo) => {
+            const baseRow = baseEdgeInfo.row + Math.max(0, -rowOffset)
+            const baseColumn = baseEdgeInfo.column + Math.max(0, -columnOffset)
+            return row == baseRow && column == baseColumn
+        })
+        const mismatchedEdges = matchingEdgesFound
+        .filter((baseEdgeInfo) => {
             return edgeInfo.collisions != baseEdgeInfo.collisions
         })
         if (mismatchedEdges.length > 0) {
@@ -8063,7 +8069,8 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
 export function shuffleRooms(seed, stageName, applyNormalization) {
     if (applyNormalization) {
         if (stageName in normalizationPatches) {
-            Object.entries(normalizationPatches[stageName]).forEach(([patchKey, patchValue]) => {
+            Object.entries(normalizationPatches[stageName])
+            .forEach(([patchKey, patchValue]) => {
                 let context = NODE_GROUPS[stageName]
                 const properties = patchKey.split('.')
                 for (let propertyIndex = 0; propertyIndex < properties.length - 1; propertyIndex++) {
@@ -8074,7 +8081,8 @@ export function shuffleRooms(seed, stageName, applyNormalization) {
         }
     }
     const stageNodeGroups = JSON.parse(JSON.stringify(Object.values(NODE_GROUPS[stageName]).sort()))
-    stageNodeGroups.forEach((stageNodeGroup) => {
+    stageNodeGroups
+    .forEach((stageNodeGroup) => {
         stageNodeGroup.edges = Object.values(stageNodeGroup.edges).sort()
     })
     const rng = seedrandom(seed)

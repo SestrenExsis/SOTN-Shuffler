@@ -1,9 +1,8 @@
 import { inspect } from 'node:util'
 
 import {
-    LOCATIONS,
+    LOGIC,
     NODES,
-    REWARDS,
     ROOM_PRIORITY,
     ROOMS_INFO,
     TELEPORTERS,
@@ -47,59 +46,6 @@ function isValidRequirement(state, requirement) {
         }
         return true
     })
-    return result
-}
-
-function combineRequirements(requirementA, requirementB, includeTimeAndLocation=true) {
-    const result = Object.assign({}, requirementA)
-    let validInd = true
-    Object.entries(requirementB)
-    .filter(([propertyKey, propertyInfo]) => {
-        return (
-            includeTimeAndLocation ||
-            !(['stage', 'room', 'section', 'time', 'positionX', 'positionY', 'requirements'].includes(propertyKey))
-        )
-    })
-    .forEach(([propertyKey, propertyInfo]) => {
-        let value
-        // If the combined requirements contradict one another, mark as invalid
-        switch (typeof propertyInfo) {
-            case 'boolean':
-            case 'string':
-                if (propertyKey in result && result[propertyKey] !== propertyInfo) {
-                    // validInd = false
-                    // NOTE(sestren): This might be the wrong approach?
-                }
-                result[propertyKey] = propertyInfo
-                break
-            case 'object':
-                if (!(propertyKey in result)) {
-                    result[propertyKey] = {}
-                }
-                if ('minimum' in propertyInfo) {
-                    value = result[propertyKey].minimum ?? propertyInfo.minimum
-                    result[propertyKey].minimum = Math.max(value, propertyInfo.minimum)
-                }
-                if ('maximum' in propertyInfo) {
-                    value = result[propertyKey].maximum ?? propertyInfo.maximum
-                    result[propertyKey].maximum = Math.min(value, propertyInfo.maximum)
-                }
-                if (
-                    ('minimum' in propertyInfo) &&
-                    ('maximum' in propertyInfo) &&
-                    propertyInfo.minimum > propertyInfo.maximum
-                ) {
-                    validInd = false
-                }
-                break
-            default:
-                console.log('Unhandled key-value pair: ' + JSON.stringify(propertyKey) + ', ' + JSON.stringify(propertyInfo))
-                break
-        }
-    })
-    if (!validInd) {
-        return null
-    }
     return result
 }
 
@@ -276,7 +222,7 @@ function updateLocation(location, settings, simplifyState=true) {
 
 function getLocationRewardCommands(settings) {
     const result = []
-    Object.entries(LOCATIONS ?? {})
+    Object.entries(LOGIC.locations ?? {})
     .forEach(([locationName, locationInfo]) => {
         // Process every location requirement (Only certain stages for now)
         locationInfo.requirements
@@ -303,14 +249,14 @@ function getLocationRewardCommands(settings) {
             result.push(command)
             if (locationName in settings.locationRewards) {
                 const rewardName = settings.locationRewards[locationName]
-                REWARDS[rewardName].requirements
+                LOGIC.rewards[rewardName].requirements
                 .forEach((rewardRequirementInfo) => {
                     const command = {
                         outcome: {},
                         requirement: {},
                     }
                     Object.assign(command.outcome, locationInfo.outcome)
-                    Object.assign(command.outcome, REWARDS[rewardName].outcome)
+                    Object.assign(command.outcome, LOGIC.rewards[rewardName].outcome)
                     Object.assign(command.requirement, locationRequirementInfo)
                     Object.entries(rewardRequirementInfo)
                     .forEach(([propertyKey, propertyInfo]) => {
@@ -749,7 +695,7 @@ export function analyzeLogic(settings, scenario) {
                         const locationOutcome = {}
                         locationOutcome[nodeId.nodeName] = true
                         updateStateWithOutcome(startingState, locationOutcome)
-                        updateStateWithOutcome(startingState, REWARDS[rewardName].outcome)
+                        updateStateWithOutcome(startingState, LOGIC.rewards[rewardName].outcome)
                         break
                     case 'warp':
                         updateStateWithOutcome(startingState, NODES[stageName][nodeName].requirement)
@@ -817,7 +763,7 @@ export function analyzeLogic(settings, scenario) {
                                 const locationOutcome = {}
                                 locationOutcome[nodeName] = true
                                 updateStateWithOutcome(startingState, locationOutcome)
-                                updateStateWithOutcome(startingState, REWARDS[rewardName].outcome)
+                                updateStateWithOutcome(startingState, LOGIC.rewards[rewardName].outcome)
                                 break
                             case 'warp':
                                 updateStateWithOutcome(startingState, NODES[stageName][nodeName].requirement)
