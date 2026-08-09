@@ -7813,7 +7813,7 @@ export function getMapPixels(stageLinks, roomPositions) {
     Object.entries(stageLinks)
     .filter(([sourceTeleporterName, targetTeleporterName]) => {
         // TODO(sestren): Don't draw labels if the loading rooms overlap (not just for Warp Rooms, will need roomPositions)
-        return [
+        return ![
             TELEPORTERS[sourceTeleporterName].sourceStage,
             TELEPORTERS[targetTeleporterName].sourceStage,
         ].includes('warpRooms')
@@ -7821,20 +7821,18 @@ export function getMapPixels(stageLinks, roomPositions) {
     .forEach(([sourceTeleporterName, targetTeleporterName]) => {
         const charIndex = Math.floor(assignments.size / 2)
         const glyphName = chars.at(charIndex)
-        if (!assignments.has(sourceTeleporterName)) {
-            const sourceStage = TELEPORTERS[sourceTeleporterName].sourceStage
-            const targetStage = TELEPORTERS[sourceTeleporterName].targetStage
-            const targetRoom = 'loadingRoomTo' + targetStage.at(0).toUpperCase() + targetStage.slice(1)
-            result[sourceStage][targetRoom].push(drawGlyph(COLORS[targetStage], glyphName, 1, 1))
-            assignments.set(sourceTeleporterName, glyphName)
-        }
-        if (!assignments.has(targetTeleporterName)) {
-            const sourceStage = TELEPORTERS[targetTeleporterName].sourceStage
-            const targetStage = TELEPORTERS[targetTeleporterName].targetStage
-            const targetRoom = 'loadingRoomTo' + targetStage.at(0).toUpperCase() + targetStage.slice(1)
-            result[targetStage][targetRoom].push(drawGlyph(COLORS[sourceStage], glyphName, 1, 1))
-            assignments.set(targetTeleporterName, glyphName)
-        }
+        Array.from([
+            sourceTeleporterName,
+            targetTeleporterName,
+        ]).forEach((teleporterName) => {
+            if (!assignments.has(teleporterName)) {
+                const sourceStage = TELEPORTERS[teleporterName].sourceStage
+                const targetStage = TELEPORTERS[teleporterName].targetStage
+                const targetRoom = 'loadingRoomTo' + targetStage.at(0).toUpperCase() + targetStage.slice(1)
+                result[sourceStage][targetRoom].push(drawGlyph(COLORS[targetStage], glyphName, 1, 1))
+                assignments.set(sourceTeleporterName, glyphName)
+            }
+        })
     })
     return result
 }
