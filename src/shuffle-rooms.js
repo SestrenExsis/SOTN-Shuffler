@@ -6117,7 +6117,7 @@ export const NODE_GROUPS = {
                 },
             ],
             cells: [
-                '2=#',
+                '#=2',
             ],
             edges: {
                 top: {

@@ -2326,63 +2326,52 @@ export const NODES = {
         },
     },
     warpRooms: {
-        statusWarpRoomToAbandonedMineUnlocked: {
-            nodeType: 'warp',
-            requirement: {
-                statusWarpRoomToAbandonedMineUnlocked: true,
-            },
-        },
-        statusWarpRoomToOuterWallUnlocked: {
-            nodeType: 'warp',
-            requirement: {
-                statusWarpRoomToOuterWallUnlocked: true,
-            },
-        },
-        statusWarpRoomToCastleKeepUnlocked: {
-            nodeType: 'warp',
-            requirement: {
-                statusWarpRoomToCastleKeepUnlocked: true,
-            },
-        },
-        statusWarpRoomToOlroxsQuartersUnlocked: {
-            nodeType: 'warp',
-            requirement: {
-                statusWarpRoomToOlroxsQuartersUnlocked: true,
-            },
-        },
         loadingRoomToAbandonedMine: {
-            nodeType: 'exit',
+            nodeType: 'warp',
             requirement: {
                 room: 'loadingRoomToAbandonedMine',
                 section: 'main',
             },
+            outcome: {
+                statusWarpRoomToAbandonedMineUnlocked: true,
+            },
         },
         loadingRoomToCastleEntrance: {
-            nodeType: 'exit',
+            nodeType: 'warp',
             requirement: {
                 room: 'loadingRoomToCastleEntrance',
                 section: 'main',
             },
+            outcome: {},
         },
         loadingRoomToOlroxsQuarters: {
-            nodeType: 'exit',
+            nodeType: 'warp',
             requirement: {
                 room: 'loadingRoomToOlroxsQuarters',
                 section: 'main',
             },
+            outcome: {
+                statusWarpRoomToOlroxsQuartersUnlocked: true,
+            },
         },
         loadingRoomToOuterWall: {
-            nodeType: 'exit',
+            nodeType: 'warp',
             requirement: {
                 room: 'loadingRoomToOuterWall',
                 section: 'main',
             },
+            outcome: {
+                statusWarpRoomToOuterWallUnlocked: true,
+            },
         },
         loadingRoomToCastleKeep: {
-            nodeType: 'exit',
+            nodeType: 'warp',
             requirement: {
                 room: 'loadingRoomToCastleKeep',
                 section: 'main',
+            },
+            outcome: {
+                statusWarpRoomToCastleKeepUnlocked: true,
             },
         },
     },
@@ -13705,8 +13694,8 @@ export const ROOMS_INFO = {
                 },
                 exitBottom: {
                     outcome: {
-                        positionX: 136,
-                        positionY: 2792,
+                        positionX: 128,
+                        positionY: 2816 + 24,
                     },
                     requirements: [
                         getMovement('fall', 'pit', COST_UNKNOWN),

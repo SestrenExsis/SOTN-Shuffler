@@ -618,7 +618,7 @@ function getEdges(logic, startingState) {
         })
         // if previous node is an exit, push the node paired with it to the work stack
         const prevNode = NODES[prevVisitInfo.stageName][prevVisitInfo.nodeName]
-        if (prevNode.nodeType === 'exit') {
+        if (['exit', 'warp'].includes(prevNode.nodeType)) {
             const prevState = prevVisitInfo.state
             const currentState = Object.assign({}, prevState)
             currentState.time = TIME_BUDGET
@@ -676,7 +676,7 @@ export function analyzeLogic(settings, scenario) {
         solvedState: null,
     }
     const startingState = Object.assign({}, scenario.startingState)
-    const goalState = {}
+    const goalState = Object.assign({}, scenario.goalState)
     Object.entries(NODES)
     .forEach(([stageName, nodes]) => {
         Object.entries(nodes)
@@ -697,9 +697,6 @@ export function analyzeLogic(settings, scenario) {
                         updateStateWithOutcome(startingState, locationOutcome)
                         updateStateWithOutcome(startingState, LOGIC.rewards[rewardName].outcome)
                         break
-                    case 'warp':
-                        updateStateWithOutcome(startingState, NODES[stageName][nodeName].requirement)
-                        break
                     default:
                         break
                 }
@@ -714,8 +711,6 @@ export function analyzeLogic(settings, scenario) {
                         locationOutcome[nodeId.nodeName] = true
                         updateStateWithOutcome(goalState, locationOutcome)
                         break
-                    case 'warp':
-                        updateStateWithOutcome(goalState, NODES[stageName][nodeName].requirement)
                     default:
                         break
                 }
@@ -766,7 +761,7 @@ export function analyzeLogic(settings, scenario) {
                                 updateStateWithOutcome(startingState, LOGIC.rewards[rewardName].outcome)
                                 break
                             case 'warp':
-                                updateStateWithOutcome(startingState, NODES[stageName][nodeName].requirement)
+                                updateStateWithOutcome(startingState, NODES[stageName][nodeName].outcome)
                                 break
                         }
                         break
@@ -808,11 +803,15 @@ export function analyzeLogic(settings, scenario) {
                 })
                 result.solved = false
                 result.solvedState = null
-                // console.log('startingState:', inspect(startingState, { depth: 3 }))
-                // console.log('goalState:', inspect(goalState, { depth: 2 }))
-                console.log('goalsRemaining:', inspect(goalsRemaining, { depth: 2 }))
-                console.log('edges:', inspect(edges, { depth: 6 }))
-                // console.log('logic:', inspect(logic, { depth: 6 }))
+                // const debug = {
+                //     edges: edges,
+                //     settings: settings,
+                //     startingState: startingState,
+                //     goalState: goalState,
+                //     goalsRemaining: goalsRemaining,
+                //     logic: logic,
+                // }
+                // console.log('debug:', inspect(debug, { depth: 7 }))
             }
             break
         }

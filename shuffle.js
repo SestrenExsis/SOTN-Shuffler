@@ -1117,6 +1117,7 @@ const argv = yargs(process.argv.slice(2))
                     changesToAdd.push(teleporterChanges)
                     shuffleData.debugInfo.finalSeedsUsed.stageShuffler = seed
                 }
+                const debug = {}
                 if (argv.roomShuffler?.on) {
                     const seed = argv.roomShuffler.seed ?? (seedName + '.roomShuffler.' + shuffleData.debugInfo.solverAttemptId)
                     const stageNodeGroups = {}
@@ -1144,13 +1145,14 @@ const argv = yargs(process.argv.slice(2))
                             }
                             if (validInd) {
                                 stageNodeGroups[stageName] = shuffledRooms
-                                console.log('stageNodeGroup.cells for ', stageName, ':', stageNodeGroups[stageName].cells)
+                                debug[stageName] = stageNodeGroups[stageName].cells
                                 shuffleData.debugInfo.finalSeedsUsed.stages[stageName] = stageSeed
                                 break
                             }
                             stageAttemptCount += 1
                         }
                     })
+                    console.log('debug:', inspect(debug, { depth: 4 }))
                     // Attach warpRooms to the stages they lead to
                     Object.entries(stageConnections.links)
                     .filter(([teleporterSource, teleporterTarget]) => {
@@ -1207,6 +1209,7 @@ const argv = yargs(process.argv.slice(2))
                         positionX: 136,
                         positionY: 640,
                         time: 120.0,
+                        techniqueSolveBoxPuzzle: true,
                     }
                     logicAnalysis.scenarios = []
                     logicAnalysis.scenarios.push({
@@ -1214,6 +1217,7 @@ const argv = yargs(process.argv.slice(2))
                         result: analyzeLogic(logicSettings, {
                             startingState: startingState,
                             startingNodeTypes: [],
+                            goalState: {},
                             goalNodeTypes: [
                                 'check'
                             ],
@@ -1228,9 +1232,13 @@ const argv = yargs(process.argv.slice(2))
                                     'check',
                                     'action',
                                 ],
-                                goalNodeTypes: [
-                                    'warp'
-                                ],
+                                goalState: {
+                                    statusWarpRoomToAbandonedMineUnlocked: true,
+                                    statusWarpRoomToOuterWallUnlocked: true,
+                                    statusWarpRoomToCastleKeepUnlocked: true,
+                                    statusWarpRoomToOlroxsQuartersUnlocked: true,
+                                },
+                                goalNodeTypes: [],
                             }),
                         })
                         logicAnalysis.scenarios.push({
@@ -1240,18 +1248,19 @@ const argv = yargs(process.argv.slice(2))
                                 startingNodeTypes: [
                                     'check',
                                 ],
+                                goalState: {},
                                 goalNodeTypes: [
                                     'action'
                                 ],
                             }),
                         })
                     }
-                    console.log('logicAnalysis:', inspect(logicAnalysis, { depth: 4 }))
-                    console.log('')
                     logicAnalysis.solved = logicAnalysis.scenarios
                     .every((scenario) => {
                         return scenario.result.solved
                     })
+                    console.log('logicAnalysis:', inspect(logicAnalysis, { depth: 4 }))
+                    console.log('')
                     shuffleData.debugInfo.solved = logicAnalysis.solved
                     shuffleData.debugInfo.finalSeedsUsed.solver = seed
                 }
