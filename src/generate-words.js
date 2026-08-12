@@ -335,6 +335,7 @@ const words = {
         'kick',
         'leaf',
         'lint',
+        'lion',
         'loom',
         'miser',
         'moat',

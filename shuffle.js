@@ -51,7 +51,7 @@ import {
 //   - Assign warp rooms to the stage they connect to
 //   - Arrange stages on the map
 
-const MIN_MAP_COL = 0
+const MIN_MAP_COL = 1
 const MIN_MAP_ROW = 5
 
 const STAGE_NAMES = [
@@ -1181,7 +1181,7 @@ const argv = yargs(process.argv.slice(2))
                         }
                     })
                     roomArrangements = arrangeStages(seed + '.stageArranger', stageNodeGroups)
-                    const roomChanges = getRoomChanges(roomArrangements.rooms, MIN_MAP_ROW, 0)
+                    const roomChanges = getRoomChanges(roomArrangements.rooms, MIN_MAP_ROW, MIN_MAP_COL)
                     changesToAdd.push(roomChanges)
                     shuffleData.debugInfo.finalSeedsUsed.roomShuffler = seed
                 }
