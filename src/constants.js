@@ -1,1101 +1,1102 @@
 
-export const LOCATIONS = {
-    locationBatCard: {
-        outcome: {
-            positionX: 120,
-            positionY: 147,
-            locationBatCard: true,
-        },
-        requirements: [
-            {
-                stage: 'alchemyLaboratory',
-                room: 'batCardRoom',
-                locationBatCard: false,
-            },
-        ],
-    },
-    locationCubeOfZoe: {
-        outcome: {
-            positionX: 272,
-            positionY: 114,
-            locationCubeOfZoe: true,
-        },
-        requirements: [
-            {
-                stage: 'castleEntrance',
-                room: 'cubeOfZoeRoom',
-                locationCubeOfZoe: false,
-            },
-        ],
-    },
-    locationDemonCard: {
-        outcome: {
-            positionX: 88,
-            positionY: 185,
-            locationDemonCard: true,
-        },
-        requirements: [
-            {
-                stage: 'abandonedMine',
-                room: 'demonCard',
-                locationDemonCard: false,
-            },
-        ],
-    },
-    locationEchoOfBat: {
-        outcome: {
-            positionX: 128,
-            positionY: 148,
-            locationEchoOfBat: true,
-        },
-        requirements: [
-            {
-                stage: 'olroxsQuarters',
-                room: 'echoOfBatRoom',
-                locationEchoOfBat: false,
-            },
-        ],
-    },
-    locationFaerieCard: {
-        outcome: {
-            positionX: 48,
-            positionY: 177,
-            locationFaerieCard: true,
-        },
-        requirements: [
-            {
-                stage: 'longLibrary',
-                room: 'faerieCardRoom',
-                locationFaerieCard: false,
-            },
-        ],
-    },
-    locationFaerieScroll: {
-        outcome: {
-            positionX: 1680,
-            positionY: 176,
-            locationFaerieScroll: true,
-        },
-        requirements: [
-            {
-                stage: 'longLibrary',
-                room: 'spellbookArea',
-                locationFaerieScroll: false,
-            },
-        ],
-    },
-    locationFireOfBat: {
-        outcome: {
-            positionX: 200,
-            positionY: 196,
-            locationFireOfBat: true,
-        },
-        requirements: [
-            {
-                stage: 'clockTower',
-                room: 'fireOfBatRoom',
-                locationFireOfBat: false,
-            },
-        ],
-    },
-    locationForceOfEcho: {
-        outcome: {
-            positionX: 112,
-            positionY: 128,
-            locationForceOfEcho: true,
-        },
-        requirements: [
-            {
-                stage: 'reverseCaverns',
-                room: 'holySymbolRoom',
-                locationForceOfEcho: false,
-            },
-        ],
-    },
-    locationFormOfMist: {
-        outcome: {
-            positionX: 232,
-            positionY: 144,
-            locationFormOfMist: true,
-        },
-        requirements: [
-            {
-                stage: 'colosseum',
-                room: 'topOfElevatorShaft',
-                locationFormOfMist: false,
-            },
-        ],
-    },
-    locationGasCloud: {
-        outcome: {
-            positionX: 32,
-            positionY: 128,
-            locationGasCloud: true,
-        },
-        requirements: [
-            {
-                stage: 'floatingCatacombs',
-                room: 'mormegilRoom',
-                locationGasCloud: false,
-            },
-        ],
-    },
-    locationGhostCard: {
-        outcome: {
-            positionX: 352,
-            positionY: 672,
-            locationGhostCard: true,
-        },
-        requirements: [
-            {
-                stage: 'castleKeep',
-                room: 'ghostCardRoom',
-                locationGhostCard: false,
-            },
-        ],
-    },
-    locationGoldRing: {
-        outcome: {
-            positionX: 128,
-            positionY: 128,
-            locationGoldRing: true,
-        },
-        requirements: [
-            {
-                stage: 'undergroundCaverns',
-                room: 'falseSaveRoom',
-                locationGoldRing: false,
-            },
-        ],
-    },
-    locationGravityBoots: {
-        outcome: {
-            positionX: 1168,
-            positionY: 176,
-            locationGravityBoots: true,
-        },
-        requirements: [
-            {
-                stage: 'marbleGallery',
-                room: 'gravityBootsRoom',
-                locationGravityBoots: false,
-            },
-        ],
-    },
-    locationHolySymbol: {
-        outcome: {
-            positionX: 144,
-            positionY: 180,
-            locationHolySymbol: true,
-        },
-        requirements: [
-            {
-                stage: 'undergroundCaverns',
-                room: 'holySymbolRoom',
-                locationHolySymbol: false,
-            },
-        ],
-    },
-    locationJewelOfOpen: {
-        outcome: {
-            positionX: 128,
-            positionY: 128,
-            locationJewelOfOpen: true,
-        },
-        requirements: [
-            {
-                stage: 'longLibrary',
-                room: 'shop',
-                locationJewelOfOpen: false,
-            },
-        ],
-    },
-    locationLeapStone: {
-        outcome: {
-            positionX: 416,
-            positionY: 1824,
-            locationLeapStone: true,
-        },
-        requirements: [
-            {
-                stage: 'castleKeep',
-                room: 'keepArea',
-                locationLeapStone: false,
-            },
-        ],
-    },
-    locationMermanStatue: {
-        outcome: {
-            positionX: 96,
-            positionY: 176,
-            locationMermanStatue: true,
-        },
-        requirements: [
-            {
-                stage: 'undergroundCaverns',
-                room: 'mermanStatueRoom',
-                locationMermanStatue: false,
-            },
-        ],
-    },
-    locationPowerOfMist: {
-        outcome: {
-            positionX: 412,
-            positionY: 1220,
-            locationPowerOfMist: true,
-        },
-        requirements: [
-            {
-                stage: 'castleKeep',
-                room: 'keepArea',
-                locationPowerOfMist: false,
-            },
-        ],
-    },
-    locationPowerOfWolf: {
-        outcome: {
-            positionX: 272,
-            positionY: 192,
-            locationPowerOfWolf: true,
-        },
-        requirements: [
-            {
-                stage: 'castleEntrance',
-                room: 'afterDrawbridge',
-                locationPowerOfWolf: false,
-            },
-        ],
-    },
-    locationSilverRing: {
-        outcome: {
-            positionX: 180,
-            positionY: 164,
-            locationSilverRing: true,
-        },
-        requirements: [
-            {
-                stage: 'royalChapel',
-                room: 'silverRingRoom',
-                locationSilverRing: false,
-            },
-        ],
-    },
-    locationSkillOfWolf: {
-        outcome: {
-            positionX: 128,
-            positionY: 128,
-            locationSkillOfWolf: true,
-        },
-        requirements: [
-            {
-                stage: 'alchemyLaboratory',
-                room: 'skillOfWolfRoom',
-                locationSkillOfWolf: false,
-            },
-        ],
-    },
-    locationSoulOfBat: {
-        outcome: {
-            positionX: 1056,
-            positionY: 928,
-            locationSoulOfBat: true,
-        },
-        requirements: [
-            {
-                stage: 'longLibrary',
-                room: 'lesserDemonArea',
-                locationSoulOfBat: false,
-            },
-        ],
-    },
-    locationSoulOfWolf: {
-        outcome: {
-            positionX: 392,
-            positionY: 808,
-            locationSoulOfWolf: true,
-        },
-        requirements: [
-            {
-                stage: 'outerWall',
-                room: 'elevatorShaftRoom',
-                locationSoulOfWolf: false,
-            },
-        ],
-    },
-    locationSpikeBreaker: {
-        outcome: {
-            positionX: 47,
-            positionY: 153,
-            locationSpikeBreaker: true,
-        },
-        requirements: [
-            {
-                stage: 'catacombs',
-                room: 'spikeBreakerRoom',
-                locationSpikeBreaker: false,
-            },
-        ],
-    },
-    locationSpiritOrb: {
-        outcome: {
-            positionX: 128,
-            positionY: 1008,
-            locationSpiritOrb: true,
-        },
-        requirements: [
-            {
-                stage: 'marbleGallery',
-                room: 'spiritOrbRoom',
-                locationSpiritOrb: false,
-            },
-        ],
-    },
-    locationSwordCard: {
-        outcome: {
-            positionX: 368,
-            positionY: 148,
-            locationSwordCard: true,
-        },
-        requirements: [
-            {
-                stage: 'olroxsQuarters',
-                room: 'swordCardRoom',
-                locationSwordCard: false,
-            },
-        ],
-    },
-}
-
 const COST_PICKUP_ITEM = 1.0
 const COST_PICKUP_RELIC = 3.0
 const COST_QUICKGRAB_RELIC = 2.5
 const COST_UNKNOWN = 1.999
 
-export const REWARDS = {
-    relicSoulOfBat: {
-        outcome: {
-            relicSoulOfBat: true,
-            progressionBatTransformation: true,
-            progressionMidAirReset: true,
+export const LOGIC = {
+    locations: {
+        locationBatCard: {
+            outcome: {
+                positionX: 120,
+                positionY: 147,
+                locationBatCard: true,
+            },
+            requirements: [
+                {
+                    stage: 'alchemyLaboratory',
+                    room: 'batCardRoom',
+                    locationBatCard: false,
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicSoulOfBat: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        locationCubeOfZoe: {
+            outcome: {
+                positionX: 272,
+                positionY: 114,
+                locationCubeOfZoe: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicSoulOfBat: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'cubeOfZoeRoom',
+                    locationCubeOfZoe: false,
                 },
+            ],
+        },
+        locationDemonCard: {
+            outcome: {
+                positionX: 88,
+                positionY: 185,
+                locationDemonCard: true,
             },
-        ],
+            requirements: [
+                {
+                    stage: 'abandonedMine',
+                    room: 'demonCard',
+                    locationDemonCard: false,
+                },
+            ],
+        },
+        locationEchoOfBat: {
+            outcome: {
+                positionX: 128,
+                positionY: 148,
+                locationEchoOfBat: true,
+            },
+            requirements: [
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'echoOfBatRoom',
+                    locationEchoOfBat: false,
+                },
+            ],
+        },
+        locationFaerieCard: {
+            outcome: {
+                positionX: 48,
+                positionY: 177,
+                locationFaerieCard: true,
+            },
+            requirements: [
+                {
+                    stage: 'longLibrary',
+                    room: 'faerieCardRoom',
+                    locationFaerieCard: false,
+                },
+            ],
+        },
+        locationFaerieScroll: {
+            outcome: {
+                positionX: 1680,
+                positionY: 176,
+                locationFaerieScroll: true,
+            },
+            requirements: [
+                {
+                    stage: 'longLibrary',
+                    room: 'spellbookArea',
+                    locationFaerieScroll: false,
+                },
+            ],
+        },
+        locationFireOfBat: {
+            outcome: {
+                positionX: 200,
+                positionY: 196,
+                locationFireOfBat: true,
+            },
+            requirements: [
+                {
+                    stage: 'clockTower',
+                    room: 'fireOfBatRoom',
+                    locationFireOfBat: false,
+                },
+            ],
+        },
+        locationForceOfEcho: {
+            outcome: {
+                positionX: 112,
+                positionY: 128,
+                locationForceOfEcho: true,
+            },
+            requirements: [
+                {
+                    stage: 'reverseCaverns',
+                    room: 'holySymbolRoom',
+                    locationForceOfEcho: false,
+                },
+            ],
+        },
+        locationFormOfMist: {
+            outcome: {
+                positionX: 232,
+                positionY: 144,
+                locationFormOfMist: true,
+            },
+            requirements: [
+                {
+                    stage: 'colosseum',
+                    room: 'topOfElevatorShaft',
+                    locationFormOfMist: false,
+                },
+            ],
+        },
+        locationGasCloud: {
+            outcome: {
+                positionX: 32,
+                positionY: 128,
+                locationGasCloud: true,
+            },
+            requirements: [
+                {
+                    stage: 'floatingCatacombs',
+                    room: 'mormegilRoom',
+                    locationGasCloud: false,
+                },
+            ],
+        },
+        locationGhostCard: {
+            outcome: {
+                positionX: 352,
+                positionY: 672,
+                locationGhostCard: true,
+            },
+            requirements: [
+                {
+                    stage: 'castleKeep',
+                    room: 'ghostCardRoom',
+                    locationGhostCard: false,
+                },
+            ],
+        },
+        locationGoldRing: {
+            outcome: {
+                positionX: 128,
+                positionY: 128,
+                locationGoldRing: true,
+            },
+            requirements: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'falseSaveRoom',
+                    locationGoldRing: false,
+                },
+            ],
+        },
+        locationGravityBoots: {
+            outcome: {
+                positionX: 1168,
+                positionY: 176,
+                locationGravityBoots: true,
+            },
+            requirements: [
+                {
+                    stage: 'marbleGallery',
+                    room: 'gravityBootsRoom',
+                    locationGravityBoots: false,
+                },
+            ],
+        },
+        locationHolySymbol: {
+            outcome: {
+                positionX: 144,
+                positionY: 180,
+                locationHolySymbol: true,
+            },
+            requirements: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'holySymbolRoom',
+                    locationHolySymbol: false,
+                },
+            ],
+        },
+        locationJewelOfOpen: {
+            outcome: {
+                positionX: 128,
+                positionY: 128,
+                locationJewelOfOpen: true,
+            },
+            requirements: [
+                {
+                    stage: 'longLibrary',
+                    room: 'shop',
+                    locationJewelOfOpen: false,
+                },
+            ],
+        },
+        locationLeapStone: {
+            outcome: {
+                positionX: 416,
+                positionY: 1824,
+                locationLeapStone: true,
+            },
+            requirements: [
+                {
+                    stage: 'castleKeep',
+                    room: 'keepArea',
+                    locationLeapStone: false,
+                },
+            ],
+        },
+        locationMermanStatue: {
+            outcome: {
+                positionX: 96,
+                positionY: 176,
+                locationMermanStatue: true,
+            },
+            requirements: [
+                {
+                    stage: 'undergroundCaverns',
+                    room: 'mermanStatueRoom',
+                    locationMermanStatue: false,
+                },
+            ],
+        },
+        locationPowerOfMist: {
+            outcome: {
+                positionX: 412,
+                positionY: 1220,
+                locationPowerOfMist: true,
+            },
+            requirements: [
+                {
+                    stage: 'castleKeep',
+                    room: 'keepArea',
+                    locationPowerOfMist: false,
+                },
+            ],
+        },
+        locationPowerOfWolf: {
+            outcome: {
+                positionX: 272,
+                positionY: 192,
+                locationPowerOfWolf: true,
+            },
+            requirements: [
+                {
+                    stage: 'castleEntrance',
+                    room: 'afterDrawbridge',
+                    locationPowerOfWolf: false,
+                },
+            ],
+        },
+        locationSilverRing: {
+            outcome: {
+                positionX: 180,
+                positionY: 164,
+                locationSilverRing: true,
+            },
+            requirements: [
+                {
+                    stage: 'royalChapel',
+                    room: 'silverRingRoom',
+                    locationSilverRing: false,
+                },
+            ],
+        },
+        locationSkillOfWolf: {
+            outcome: {
+                positionX: 128,
+                positionY: 128,
+                locationSkillOfWolf: true,
+            },
+            requirements: [
+                {
+                    stage: 'alchemyLaboratory',
+                    room: 'skillOfWolfRoom',
+                    locationSkillOfWolf: false,
+                },
+            ],
+        },
+        locationSoulOfBat: {
+            outcome: {
+                positionX: 1056,
+                positionY: 928,
+                locationSoulOfBat: true,
+            },
+            requirements: [
+                {
+                    stage: 'longLibrary',
+                    room: 'lesserDemonArea',
+                    locationSoulOfBat: false,
+                },
+            ],
+        },
+        locationSoulOfWolf: {
+            outcome: {
+                positionX: 392,
+                positionY: 808,
+                locationSoulOfWolf: true,
+            },
+            requirements: [
+                {
+                    stage: 'outerWall',
+                    room: 'elevatorShaftRoom',
+                    locationSoulOfWolf: false,
+                },
+            ],
+        },
+        locationSpikeBreaker: {
+            outcome: {
+                positionX: 47,
+                positionY: 153,
+                locationSpikeBreaker: true,
+            },
+            requirements: [
+                {
+                    stage: 'catacombs',
+                    room: 'spikeBreakerRoom',
+                    locationSpikeBreaker: false,
+                },
+            ],
+        },
+        locationSpiritOrb: {
+            outcome: {
+                positionX: 128,
+                positionY: 1008,
+                locationSpiritOrb: true,
+            },
+            requirements: [
+                {
+                    stage: 'marbleGallery',
+                    room: 'spiritOrbRoom',
+                    locationSpiritOrb: false,
+                },
+            ],
+        },
+        locationSwordCard: {
+            outcome: {
+                positionX: 368,
+                positionY: 148,
+                locationSwordCard: true,
+            },
+            requirements: [
+                {
+                    stage: 'olroxsQuarters',
+                    room: 'swordCardRoom',
+                    locationSwordCard: false,
+                },
+            ],
+        },
     },
-    relicFireOfBat: {
-        outcome: {
-            relicFireOfBat: true,
+    rewards: {
+        relicSoulOfBat: {
+            outcome: {
+                relicSoulOfBat: true,
+                progressionBatTransformation: true,
+                progressionMidAirReset: true,
+            },
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicSoulOfBat: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
+                },
+                {
+                    progressionRewardTracking: true,
+                    relicSoulOfBat: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicFireOfBat: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicFireOfBat: {
+            outcome: {
+                relicFireOfBat: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicFireOfBat: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicFireOfBat: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicEchoOfBat: {
-        outcome: {
-            relicEchoOfBat: true,
-            progressionEcholocation: true,
+                {
+                    progressionRewardTracking: true,
+                    relicFireOfBat: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicEchoOfBat: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicEchoOfBat: {
+            outcome: {
+                relicEchoOfBat: true,
+                progressionEcholocation: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicEchoOfBat: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicEchoOfBat: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicForceOfEcho: {
-        outcome: {
-            relicForceOfEcho: true,
+                {
+                    progressionRewardTracking: true,
+                    relicEchoOfBat: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicForceOfEcho: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicForceOfEcho: {
+            outcome: {
+                relicForceOfEcho: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicForceOfEcho: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicForceOfEcho: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicSoulOfWolf: {
-        outcome: {
-            relicSoulOfWolf: true,
-            progressionMidAirReset: true,
-            progressionWolfTransformation: true,
+                {
+                    progressionRewardTracking: true,
+                    relicForceOfEcho: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicSoulOfWolf: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicSoulOfWolf: {
+            outcome: {
+                relicSoulOfWolf: true,
+                progressionMidAirReset: true,
+                progressionWolfTransformation: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicSoulOfWolf: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicSoulOfWolf: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicPowerOfWolf: {
-        outcome: {
-            progressionFasterWolfRunSpeed: true,
-            relicPowerOfWolf: true,
+                {
+                    progressionRewardTracking: true,
+                    relicSoulOfWolf: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicPowerOfWolf: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicPowerOfWolf: {
+            outcome: {
+                progressionFasterWolfRunSpeed: true,
+                relicPowerOfWolf: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicPowerOfWolf: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicPowerOfWolf: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicSkillOfWolf: {
-        outcome: {
-            relicSkillOfWolf: true,
-            progressionWolfChargeAttack: true,
-            progressionWolfSwimMovement: true,
+                {
+                    progressionRewardTracking: true,
+                    relicPowerOfWolf: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicSkillOfWolf: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicSkillOfWolf: {
+            outcome: {
+                relicSkillOfWolf: true,
+                progressionWolfChargeAttack: true,
+                progressionWolfSwimMovement: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicSkillOfWolf: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicSkillOfWolf: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicFormOfMist: {
-        outcome: {
-            relicFormOfMist: true,
-            progressionMidAirReset: true,
-            progressionMistTransformation: true,
+                {
+                    progressionRewardTracking: true,
+                    relicSkillOfWolf: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicFormOfMist: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicFormOfMist: {
+            outcome: {
+                relicFormOfMist: true,
+                progressionMidAirReset: true,
+                progressionMistTransformation: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicFormOfMist: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicFormOfMist: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicPowerOfMist: {
-        outcome: {
-            relicPowerOfMist: true,
-            progressionLongerMistDuration: true,
+                {
+                    progressionRewardTracking: true,
+                    relicFormOfMist: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicPowerOfMist: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicPowerOfMist: {
+            outcome: {
+                relicPowerOfMist: true,
+                progressionLongerMistDuration: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicPowerOfMist: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicPowerOfMist: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicGasCloud: {
-        outcome: {
-            relicGasCloud: true,
+                {
+                    progressionRewardTracking: true,
+                    relicPowerOfMist: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicGasCloud: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicGasCloud: {
+            outcome: {
+                relicGasCloud: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicGasCloud: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicGasCloud: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicCubeOfZoe: {
-        outcome: {
-            progressionItemMaterialization: true,
-            relicCubeOfZoe: true,
+                {
+                    progressionRewardTracking: true,
+                    relicGasCloud: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicCubeOfZoe: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicCubeOfZoe: {
+            outcome: {
+                progressionItemMaterialization: true,
+                relicCubeOfZoe: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicCubeOfZoe: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicCubeOfZoe: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicSpiritOrb: {
-        outcome: {
-            relicSpiritOrb: true,
+                {
+                    progressionRewardTracking: true,
+                    relicCubeOfZoe: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicSpiritOrb: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicSpiritOrb: {
+            outcome: {
+                relicSpiritOrb: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicSpiritOrb: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicSpiritOrb: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicGravityBoots: {
-        outcome: {
-            relicGravityBoots: true,
-            progressionGravityJump: true,
+                {
+                    progressionRewardTracking: true,
+                    relicSpiritOrb: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicGravityBoots: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicGravityBoots: {
+            outcome: {
+                relicGravityBoots: true,
+                progressionGravityJump: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicGravityBoots: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicGravityBoots: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicLeapStone: {
-        outcome: {
-            relicLeapStone: true,
-            progressionDoubleJump: true,
-            progressionMidAirReset: true,
+                {
+                    progressionRewardTracking: true,
+                    relicGravityBoots: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicLeapStone: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicLeapStone: {
+            outcome: {
+                relicLeapStone: true,
+                progressionDoubleJump: true,
+                progressionMidAirReset: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicLeapStone: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicLeapStone: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicHolySymbol: {
-        outcome: {
-            relicHolySymbol: true,
-            progressionProtectionFromWater: true,
+                {
+                    progressionRewardTracking: true,
+                    relicLeapStone: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicHolySymbol: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicHolySymbol: {
+            outcome: {
+                relicHolySymbol: true,
+                progressionProtectionFromWater: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicHolySymbol: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicHolySymbol: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicFaerieScroll: {
-        outcome: {
-            relicFaerieScroll: true,
+                {
+                    progressionRewardTracking: true,
+                    relicHolySymbol: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicFaerieScroll: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicFaerieScroll: {
+            outcome: {
+                relicFaerieScroll: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicFaerieScroll: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicFaerieScroll: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicJewelOfOpen: {
-        outcome: {
-            relicJewelOfOpen: true,
-            progressionUnlockBlueDoors: true,
+                {
+                    progressionRewardTracking: true,
+                    relicFaerieScroll: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicJewelOfOpen: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicJewelOfOpen: {
+            outcome: {
+                relicJewelOfOpen: true,
+                progressionUnlockBlueDoors: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicJewelOfOpen: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicJewelOfOpen: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicMermanStatue: {
-        outcome: {
-            relicMermanStatue: true,
-            progressionSummonFerryman: true,
+                {
+                    progressionRewardTracking: true,
+                    relicJewelOfOpen: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicMermanStatue: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicMermanStatue: {
+            outcome: {
+                relicMermanStatue: true,
+                progressionSummonFerryman: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicMermanStatue: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicMermanStatue: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicBatCard: {
-        outcome: {
-            relicBatCard: true,
+                {
+                    progressionRewardTracking: true,
+                    relicMermanStatue: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicBatCard: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicBatCard: {
+            outcome: {
+                relicBatCard: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicBatCard: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicBatCard: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicGhostCard: {
-        outcome: {
-            relicGhostCard: true,
+                {
+                    progressionRewardTracking: true,
+                    relicBatCard: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicGhostCard: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicGhostCard: {
+            outcome: {
+                relicGhostCard: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicGhostCard: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicGhostCard: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicFaerieCard: {
-        outcome: {
-            relicFaerieCard: true,
+                {
+                    progressionRewardTracking: true,
+                    relicGhostCard: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicFaerieCard: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicFaerieCard: {
+            outcome: {
+                relicFaerieCard: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicFaerieCard: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicFaerieCard: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicDemonCard: {
-        outcome: {
-            relicDemonCard: true,
-            progressionSummonDemonFamiliar: true,
+                {
+                    progressionRewardTracking: true,
+                    relicFaerieCard: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicDemonCard: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicDemonCard: {
+            outcome: {
+                relicDemonCard: true,
+                progressionSummonDemonFamiliar: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicDemonCard: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicDemonCard: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicSwordCard: {
-        outcome: {
-            relicSwordCard: true,
+                {
+                    progressionRewardTracking: true,
+                    relicDemonCard: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicSwordCard: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicSwordCard: {
+            outcome: {
+                relicSwordCard: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicSwordCard: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicSwordCard: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicSpriteCard: {
-        outcome: {
-            relicSpriteCard: true,
+                {
+                    progressionRewardTracking: true,
+                    relicSwordCard: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicSpriteCard: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicSpriteCard: {
+            outcome: {
+                relicSpriteCard: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicSpriteCard: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicSpriteCard: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicNosedevilCard: {
-        outcome: {
-            relicNosedevilCard: true,
-            progressionSummonDemonFamiliar: true,
+                {
+                    progressionRewardTracking: true,
+                    relicSpriteCard: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicNosedevilCard: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicNosedevilCard: {
+            outcome: {
+                relicNosedevilCard: true,
+                progressionSummonDemonFamiliar: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicNosedevilCard: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicNosedevilCard: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicHeartOfVlad: {
-        outcome: {
-            relicHeartOfVlad: true,
+                {
+                    progressionRewardTracking: true,
+                    relicNosedevilCard: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicHeartOfVlad: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicHeartOfVlad: {
+            outcome: {
+                relicHeartOfVlad: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicHeartOfVlad: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicHeartOfVlad: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicToothOfVlad: {
-        outcome: {
-            relicToothOfVlad: true,
+                {
+                    progressionRewardTracking: true,
+                    relicHeartOfVlad: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicToothOfVlad: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicToothOfVlad: {
+            outcome: {
+                relicToothOfVlad: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicToothOfVlad: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicToothOfVlad: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicRibOfVlad: {
-        outcome: {
-            relicRibOfVlad: true,
+                {
+                    progressionRewardTracking: true,
+                    relicToothOfVlad: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicRibOfVlad: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicRibOfVlad: {
+            outcome: {
+                relicRibOfVlad: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicRibOfVlad: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicRibOfVlad: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicRingOfVlad: {
-        outcome: {
-            relicRingOfVlad: true,
+                {
+                    progressionRewardTracking: true,
+                    relicRibOfVlad: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicRingOfVlad: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicRingOfVlad: {
+            outcome: {
+                relicRingOfVlad: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicRingOfVlad: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicRingOfVlad: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    relicEyeOfVlad: {
-        outcome: {
-            relicEyeOfVlad: true,
+                {
+                    progressionRewardTracking: true,
+                    relicRingOfVlad: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                relicEyeOfVlad: false,
-                costs: {
-                    time: COST_PICKUP_RELIC,
-                },
+        relicEyeOfVlad: {
+            outcome: {
+                relicEyeOfVlad: true,
             },
-            {
-                progressionRewardTracking: true,
-                relicEyeOfVlad: false,
-                techniqueQuickGrab: true,
-                costs: {
-                    time: COST_QUICKGRAB_RELIC,
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    relicEyeOfVlad: false,
+                    costs: {
+                        time: COST_PICKUP_RELIC,
+                    },
                 },
-            },
-        ],
-    },
-    itemSpikeBreaker: {
-        outcome: {
-            itemSpikeBreaker: 1,
+                {
+                    progressionRewardTracking: true,
+                    relicEyeOfVlad: false,
+                    techniqueQuickGrab: true,
+                    costs: {
+                        time: COST_QUICKGRAB_RELIC,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                costs: {
-                    time: COST_PICKUP_ITEM,
+        itemSpikeBreaker: {
+            outcome: {
+                itemSpikeBreaker: 1,
+            },
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    costs: {
+                        time: COST_PICKUP_ITEM,
+                    },
                 },
-            },
-        ],
-    },
-    itemGoldRing: {
-        outcome: {
-            itemInscribedRing: {
-                operation: 'add',
-                value: 1,
-            },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                costs: {
-                    time: COST_PICKUP_ITEM,
+        itemGoldRing: {
+            outcome: {
+                itemInscribedRing: {
+                    operation: 'add',
+                    value: 1,
                 },
             },
-        ],
-    },
-    itemSilverRing: {
-        outcome: {
-            itemInscribedRing: {
-                operation: 'add',
-                value: 1,
-            },
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    costs: {
+                        time: COST_PICKUP_ITEM,
+                    },
+                },
+            ],
         },
-        requirements: [
-            {
-                progressionRewardTracking: true,
-                costs: {
-                    time: COST_PICKUP_ITEM,
+        itemSilverRing: {
+            outcome: {
+                itemInscribedRing: {
+                    operation: 'add',
+                    value: 1,
                 },
             },
-        ],
+            requirements: [
+                {
+                    progressionRewardTracking: true,
+                    costs: {
+                        time: COST_PICKUP_ITEM,
+                    },
+                },
+            ],
+        },
     },
 }
 
@@ -2325,63 +2326,52 @@ export const NODES = {
         },
     },
     warpRooms: {
-        statusWarpRoomToAbandonedMineUnlocked: {
-            nodeType: 'warp',
-            requirement: {
-                statusWarpRoomToAbandonedMineUnlocked: true,
-            },
-        },
-        statusWarpRoomToOuterWallUnlocked: {
-            nodeType: 'warp',
-            requirement: {
-                statusWarpRoomToOuterWallUnlocked: true,
-            },
-        },
-        statusWarpRoomToCastleKeepUnlocked: {
-            nodeType: 'warp',
-            requirement: {
-                statusWarpRoomToCastleKeepUnlocked: true,
-            },
-        },
-        statusWarpRoomToOlroxsQuartersUnlocked: {
-            nodeType: 'warp',
-            requirement: {
-                statusWarpRoomToOlroxsQuartersUnlocked: true,
-            },
-        },
         loadingRoomToAbandonedMine: {
-            nodeType: 'exit',
+            nodeType: 'warp',
             requirement: {
                 room: 'loadingRoomToAbandonedMine',
                 section: 'main',
             },
+            outcome: {
+                statusWarpRoomToAbandonedMineUnlocked: true,
+            },
         },
         loadingRoomToCastleEntrance: {
-            nodeType: 'exit',
+            nodeType: 'warp',
             requirement: {
                 room: 'loadingRoomToCastleEntrance',
                 section: 'main',
             },
+            outcome: {},
         },
         loadingRoomToOlroxsQuarters: {
-            nodeType: 'exit',
+            nodeType: 'warp',
             requirement: {
                 room: 'loadingRoomToOlroxsQuarters',
                 section: 'main',
             },
+            outcome: {
+                statusWarpRoomToOlroxsQuartersUnlocked: true,
+            },
         },
         loadingRoomToOuterWall: {
-            nodeType: 'exit',
+            nodeType: 'warp',
             requirement: {
                 room: 'loadingRoomToOuterWall',
                 section: 'main',
             },
+            outcome: {
+                statusWarpRoomToOuterWallUnlocked: true,
+            },
         },
         loadingRoomToCastleKeep: {
-            nodeType: 'exit',
+            nodeType: 'warp',
             requirement: {
                 room: 'loadingRoomToCastleKeep',
                 section: 'main',
+            },
+            outcome: {
+                statusWarpRoomToCastleKeepUnlocked: true,
             },
         },
     },
@@ -13704,8 +13694,8 @@ export const ROOMS_INFO = {
                 },
                 exitBottom: {
                     outcome: {
-                        positionX: 136,
-                        positionY: 2792,
+                        positionX: 128,
+                        positionY: 2816 + 24,
                     },
                     requirements: [
                         getMovement('fall', 'pit', COST_UNKNOWN),

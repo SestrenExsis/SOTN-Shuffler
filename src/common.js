@@ -15,22 +15,6 @@ export function shuffleArray(rng, array) {
     return array
 }
 
-export function getStageAndRoomFromLink(linkName) {
-    if (linkName.startsWith('from') && linkName.includes('To')) {
-        // NOTE(sestren): This hack is to avoid matching the 'To' between stage names with the 'To' in ClockTower
-        const parts = linkName.replace('ClockTower', 'CLOCKTOWER').split('To')
-        const firstPart = parts.at(0).replace('CLOCKTOWER', 'ClockTower').slice(4)
-        const result = {
-            stage: firstPart.at(0).toLowerCase() + firstPart.slice(1),
-            room: 'loadingRoomTo' + parts.at(1).replace('CLOCKTOWER', 'ClockTower'),
-        }
-        return result
-    }
-    else {
-        return null
-    }
-}
-
 // Arrange the stages on the map so they fit together as much as possible
 // TODO(sestren): Allow overlapping load rooms if linked via teleporters
 // TODO(sestren): Come up with several possible arrangements, and choose the one that maximizes the number of overlapping load rooms

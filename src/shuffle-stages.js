@@ -4,11 +4,15 @@ import {
     shuffleArray
 } from './common.js'
 
-// Stages with two or fewer connections are referenced in comments as follows:
-// Dead-end : A stage that has only one stage connection
-// Hallway : A stage that has exactly two stage connections
+import {
+    TELEPORTERS,
+} from './constants.js'
 
-const teleporters = {
+// Stages with two or fewer connections are referenced in comments as follows:
+// Dead-end : A stage that has only one stage connection (e.g., Long Library)
+// Hallway : A stage that has exactly two stage connections (e.g., Colosseum)
+
+const LINKS = {
     fromAbandonedMineToCatacombs: {
         stage: 'abandonedMine',
         direction: 'left',
@@ -317,7 +321,7 @@ const teleporters = {
     },
 }
 
-const stages = {
+const STAGE_LINKS = {
     abandonedMine: {
         teleporterNames: [
             'fromAbandonedMineToCatacombs',
@@ -423,15 +427,14 @@ const stages = {
 export function getVanillaStageLinks() {
     const result = {}
     result.links = {}
-    Object.keys(teleporters)
-        .forEach((teleporterName) => {
-            const parts = teleporterName.replace('ClockTower', 'CLOCKTOWER').split('To')
-            const sourceStage = parts.at(0).replace('CLOCKTOWER', 'ClockTower').slice('from'.length)
-            const targetStage = parts.at(1).replace('CLOCKTOWER', 'ClockTower')
-            result.links[teleporterName] = 'from' + targetStage + 'To' + sourceStage
-        })
+    Object.keys(LINKS)
+    .forEach((teleporterName) => {
+        const sourceStage = TELEPORTERS[teleporterName].sourceStage
+        const targetStage = TELEPORTERS[teleporterName].targetStage
+        result.links[teleporterName] = 'from' + targetStage.at(0).toUpperCase() + targetStage.slice(1) + 'To' + sourceStage.at(0).toUpperCase() + sourceStage.slice(1)
+    })
     result.linkedStages = {}
-    Object.entries(stages)
+    Object.entries(STAGE_LINKS)
         .forEach(([stageName, linkInfo]) => {
             result.linkedStages[stageName] = Array.from(linkInfo.teleporterNames).sort()
         })
@@ -448,44 +451,44 @@ export function shuffleStages(seed) {
         result = {}
         // Try to match every teleporter with a random valid other teleporter
         const links = {}
-        Object.keys(teleporters)
-            .forEach((teleporterName) => {
-                links[teleporterName] = null
-            })
+        Object.keys(LINKS)
+        .forEach((teleporterName) => {
+            links[teleporterName] = null
+        })
         const linkedStages = {}
-        Object.keys(stages)
-            .forEach((stageName) => {
-                linkedStages[stageName] = new Set()
-            })
-        const teleporterNamesRemaining = new Set(Object.keys(teleporters))
+        Object.keys(STAGE_LINKS)
+        .forEach((stageName) => {
+            linkedStages[stageName] = new Set()
+        })
+        const teleporterNamesRemaining = new Set(Object.keys(LINKS))
         const work = new Set()
         work.add('fromCastleEntranceToAlchemyLaboratory')
         while (work.size > 0) {
             const workRemaining = shuffleArray(rng, Array.from(work.values()).sort())
             const sourceTeleporterName = workRemaining.at(0)
             work.delete(sourceTeleporterName)
-            const sourceTeleporter = teleporters[sourceTeleporterName]
-            const possibleLinks = Object.keys(teleporters)
-                .filter((targetTeleporterName) => {
-                    const targetTeleporter = teleporters[targetTeleporterName]
-                    return (
-                        teleporterNamesRemaining.has(targetTeleporterName) &&
-                        stages[sourceTeleporter.stage].teleporterNames.length >= targetTeleporter.minimumTargetLinkCount &&
-                        stages[targetTeleporter.stage].teleporterNames.length >= sourceTeleporter.minimumTargetLinkCount &&
-                        sourceTeleporter.stage != targetTeleporter.stage &&
-                        sourceTeleporter.direction != targetTeleporter.direction &&
-                        !sourceTeleporter.forbiddenConnections.has(targetTeleporterName) &&
-                        !targetTeleporter.forbiddenConnections.has(sourceTeleporterName) &&
-                        !linkedStages[sourceTeleporter.stage].has(targetTeleporter.stage) &&
-                        !linkedStages[targetTeleporter.stage].has(sourceTeleporter.stage)
-                    )
-                })
+            const sourceTeleporter = LINKS[sourceTeleporterName]
+            const possibleLinks = Object.keys(LINKS)
+            .filter((targetTeleporterName) => {
+                const targetTeleporter = LINKS[targetTeleporterName]
+                return (
+                    teleporterNamesRemaining.has(targetTeleporterName) &&
+                    STAGE_LINKS[sourceTeleporter.stage].teleporterNames.length >= targetTeleporter.minimumTargetLinkCount &&
+                    STAGE_LINKS[targetTeleporter.stage].teleporterNames.length >= sourceTeleporter.minimumTargetLinkCount &&
+                    sourceTeleporter.stage != targetTeleporter.stage &&
+                    sourceTeleporter.direction != targetTeleporter.direction &&
+                    !sourceTeleporter.forbiddenConnections.has(targetTeleporterName) &&
+                    !targetTeleporter.forbiddenConnections.has(sourceTeleporterName) &&
+                    !linkedStages[sourceTeleporter.stage].has(targetTeleporter.stage) &&
+                    !linkedStages[targetTeleporter.stage].has(sourceTeleporter.stage)
+                )
+            })
             if (possibleLinks.length < 1) {
                 validInd = false
                 break
             }
             const targetTeleporterName = shuffleArray(rng, possibleLinks.sort()).at(0)
-            const targetTeleporter = teleporters[targetTeleporterName]
+            const targetTeleporter = LINKS[targetTeleporterName]
             links[targetTeleporterName] = sourceTeleporterName
             links[sourceTeleporterName] = targetTeleporterName
             linkedStages[sourceTeleporter.stage].add(targetTeleporter.stage)
@@ -495,11 +498,11 @@ export function shuffleStages(seed) {
             work.delete(sourceTeleporterName)
             work.delete(targetTeleporterName)
             teleporterNamesRemaining
-                .forEach((nextTeleporterName) => {
-                    if (teleporters[nextTeleporterName].stage == targetTeleporter.stage) {
-                        work.add(nextTeleporterName)
-                    }
-                })
+            .forEach((nextTeleporterName) => {
+                if (LINKS[nextTeleporterName].stage == targetTeleporter.stage) {
+                    work.add(nextTeleporterName)
+                }
+            })
         }
         if (teleporterNamesRemaining.size > 0) {
             // console.log(teleporterNamesRemaining.size, Array.from(teleporterNamesRemaining).sort().at(0))
@@ -507,9 +510,9 @@ export function shuffleStages(seed) {
         }
         result.linkedStages = {}
         Object.entries(linkedStages)
-            .forEach(([stageName, stageLinks]) => {
-                result.linkedStages[stageName] = Array.from(stageLinks.values()).sort()
-            })
+        .forEach(([stageName, stageLinks]) => {
+            result.linkedStages[stageName] = Array.from(stageLinks.values()).sort()
+        })
         result.links = links
     }
     // console.log(result)
@@ -519,46 +522,47 @@ export function shuffleStages(seed) {
 export function getTeleporterChanges(extraction, links) {
     const teleporterData = {}
     Object.entries(links)
-        .forEach(([sourceTeleporterName, targetTeleporterName]) => {
-            const sourceTeleporterIndex = extraction.teleporters.aliases[sourceTeleporterName]
-            const targetTeleporterIndex = extraction.teleporters.aliases[targetTeleporterName]
-            const sourceTeleporter = extraction.teleporters.data[sourceTeleporterIndex]
-            const targetTeleporter = extraction.teleporters.data[targetTeleporterIndex]
-            const assignments = []
+    .forEach(([sourceTeleporterName, targetTeleporterName]) => {
+        const sourceTeleporterIndex = extraction.teleporters.aliases[sourceTeleporterName]
+        const targetTeleporterIndex = extraction.teleporters.aliases[targetTeleporterName]
+        const sourceTeleporter = extraction.teleporters.data[sourceTeleporterIndex]
+        const targetTeleporter = extraction.teleporters.data[targetTeleporterIndex]
+        const assignments = []
+        assignments.push([
+            sourceTeleporter.sourceStageId,
+            sourceTeleporter.targetStageId,
+            // NOTE(sestren): Notice that the target teleporter's stage order is swapped
+            // This reflection allows the original return target to be fetched
+            targetTeleporter.targetStageId,
+            targetTeleporter.sourceStageId,
+        ])
+        if (sourceTeleporter.sourceStageId === 'castleEntrance') {
             assignments.push([
-                sourceTeleporter.sourceStageId,
+                'castleEntranceRevisited',
                 sourceTeleporter.targetStageId,
-                // NOTE(sestren): Notice that the target teleporter's stage order is swapped
-                // This reflection allows the original return target to be fetched
                 targetTeleporter.targetStageId,
                 targetTeleporter.sourceStageId,
             ])
-            if (sourceTeleporter.sourceStageId === 'castleEntrance') {
-                assignments.push([
-                    'castleEntranceRevisited',
-                    sourceTeleporter.targetStageId,
-                    targetTeleporter.targetStageId,
-                    targetTeleporter.sourceStageId,
-                ])
+        }
+        assignments
+        .forEach(([sourceFrom, sourceTo, targetFrom, targetTo]) => {
+            if (sourceTo === 'castleEntranceRevisited') {
+                sourceTo = 'castleEntrance'
             }
-            assignments.forEach(([sourceFrom, sourceTo, targetFrom, targetTo]) => {
-                if (sourceTo === 'castleEntranceRevisited') {
-                    sourceTo = 'castleEntrance'
-                }
-                const teleporterNameA = 'from' + sourceFrom.at(0).toUpperCase() + sourceFrom.slice(1) + 'To' + sourceTo.at(0).toUpperCase() + sourceTo.slice(1)
-                const teleporterNameB = 'from' + targetFrom.at(0).toUpperCase() + targetFrom.slice(1) + 'To' + targetTo.at(0).toUpperCase() + targetTo.slice(1)
-                const teleporterIndexA = extraction.teleporters.aliases[teleporterNameA]
-                const teleporterIndexB = extraction.teleporters.aliases[teleporterNameB]
-                const teleporterA = extraction.teleporters.data[teleporterIndexA]
-                const teleporterB = extraction.teleporters.data[teleporterIndexB]
-                teleporterData[teleporterNameA] = {
-                    'playerX=': teleporterB.playerX,
-                    'playerY=': teleporterB.playerY,
-                    'roomOffset=': teleporterB.roomOffset,
-                    'targetStageId=': teleporterB.targetStageId,
-                }
-            })
+            const teleporterNameA = 'from' + sourceFrom.at(0).toUpperCase() + sourceFrom.slice(1) + 'To' + sourceTo.at(0).toUpperCase() + sourceTo.slice(1)
+            const teleporterNameB = 'from' + targetFrom.at(0).toUpperCase() + targetFrom.slice(1) + 'To' + targetTo.at(0).toUpperCase() + targetTo.slice(1)
+            const teleporterIndexA = extraction.teleporters.aliases[teleporterNameA]
+            const teleporterIndexB = extraction.teleporters.aliases[teleporterNameB]
+            const teleporterA = extraction.teleporters.data[teleporterIndexA]
+            const teleporterB = extraction.teleporters.data[teleporterIndexB]
+            teleporterData[teleporterNameA] = {
+                'playerX=': teleporterB.playerX,
+                'playerY=': teleporterB.playerY,
+                'roomOffset=': teleporterB.roomOffset,
+                'targetStageId=': teleporterB.targetStageId,
+            }
         })
+    })
     const result = {
         changeType: 'merge',
         merge: {

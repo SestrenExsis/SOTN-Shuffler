@@ -4,7 +4,7 @@ import {
     shuffleArray
 } from './common.js'
 
-const songs = {
+const SONGS = {
     abandonedMine: {
         stage: {
             defaultValue: 'abandonedPit',
@@ -435,38 +435,38 @@ export function shuffleSongs(seed) {
         boss: [],
     }
     const bossMusic = {}
-    Object.entries(songs)
-        .forEach(([stageName, songsInfo]) => {
-            // Add stage music to its own pool
-            Object.entries(songsInfo)
-                .filter(([songName, songInfo]) => {
-                    return songName.startsWith('stage')
-                })
-                .filter(([songName, songInfo]) => {
-                    return songInfo.defaultValue !== 'noAudio'
-                })
-                .forEach(([songName, songInfo]) => {
-                    stageMusic[stageName] = songInfo.defaultValue
-                    if (!songPools.stage.includes(songInfo.defaultValue)) {
-                        songPools.stage.push(songInfo.defaultValue)
-                    }
-                })
-            // Add boss music to its own pool, do nothing with it for now ...
-            Object.entries(songsInfo)
-                .filter(([songName, songInfo]) => {
-                    return songName.startsWith('boss')
-                })
-                .forEach(([songName, songInfo]) => {
-                    bossMusic[songName] = songInfo.defaultValue
-                })
+    Object.entries(SONGS)
+    .forEach(([stageName, songsInfo]) => {
+        // Add stage music to its own pool
+        Object.entries(songsInfo)
+        .filter(([songName, songInfo]) => {
+            return songName.startsWith('stage')
         })
+        .filter(([songName, songInfo]) => {
+            return songInfo.defaultValue !== 'noAudio'
+        })
+        .forEach(([songName, songInfo]) => {
+            stageMusic[stageName] = songInfo.defaultValue
+            if (!songPools.stage.includes(songInfo.defaultValue)) {
+                songPools.stage.push(songInfo.defaultValue)
+            }
+        })
+        // Add boss music to its own pool, do nothing with it for now ...
+        Object.entries(songsInfo)
+        .filter(([songName, songInfo]) => {
+            return songName.startsWith('boss')
+        })
+        .forEach(([songName, songInfo]) => {
+            bossMusic[songName] = songInfo.defaultValue
+        })
+    })
     const songsNeeded = Object.keys(stageMusic).length - songPools.stage.length
     const duplicateSongPool = shuffleArray(rng, songPools.stage).slice(0, songsNeeded)
     const fullSongPool = shuffleArray(rng, songPools.stage.concat(duplicateSongPool))
     Object.keys(stageMusic).toSorted()
-        .forEach((stageName) => {
-            stageMusic[stageName] = fullSongPool.pop()
-        })
+    .forEach((stageName) => {
+        stageMusic[stageName] = fullSongPool.pop()
+    })
     const result = {}
     result.stage = stageMusic
     return result
@@ -475,11 +475,11 @@ export function shuffleSongs(seed) {
 export function getSongChanges(songData) {
     const songChanges = {}
     Object.entries(songData.stage)
-        .forEach(([stageName, songName]) => {
-            songs[stageName].stage.keys.forEach((keyName) => {
-                songChanges[keyName + '='] = songName
-            })
+    .forEach(([stageName, songName]) => {
+        SONGS[stageName].stage.keys.forEach((keyName) => {
+            songChanges[keyName + '='] = songName
         })
+    })
     const result = {
         changeType: 'merge',
         merge: songChanges,
