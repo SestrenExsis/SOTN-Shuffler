@@ -7181,6 +7181,20 @@ export const MAP_PIXELS = {
             fillRect(COLORS.castleKeep, 1, 1, 3, 3),
         ],
     },
+    castleCenter: {
+        elevatorShaft: [
+            fillRect(COLORS.castleCenter, 1, 1, 7, 3),
+            fillRect(COLORS.castleCenter, 0, 2),
+            fillRect(COLORS.castleCenter, 8, 2),
+        ],
+        centerCube: [
+            fillRect(COLORS.castleCenter, 1, 1, 11, 11),
+            fillRect(COLORS.castleCenter, 0, 6),
+            fillRect(COLORS.wall, 4, 4, 5, 5),
+            fillRect(COLORS.castleCenter, 5, 5, 3, 3),
+            fillRect(COLORS.castleCenter, 8, 6),
+        ],
+    },
     catacombs: {
         exitToAbandonedMine: [
             fillRect(COLORS.catacombs, 1, 1, 7, 3),
@@ -7358,7 +7372,6 @@ export const MAP_PIXELS = {
             fillRect(COLORS.marbleGallery, 0, 2),
             fillRect(COLORS.marbleGallery, 2, 0),
             fillRect(COLORS.marbleGallery, 2, 4),
-            fillRect(COLORS.marbleGallery, 4, 2),
         ],
         rightOfClockRoom: [
             fillRect(COLORS.marbleGallery, 1, 1, 3, 11),
@@ -7368,6 +7381,12 @@ export const MAP_PIXELS = {
         saveRoomA: [
             fillRect(COLORS.saveRoom, 1, 1, 3, 3),
             fillRect(COLORS.marbleGallery, 2, 4),
+        ],
+        elevatorRoom: [
+            fillRect(COLORS.marbleGallery, 1, 1, 3, 3),
+            fillRect(COLORS.marbleGallery, 2, 0),
+            fillRect(COLORS.marbleGallery, 2, 4),
+            fillRect(COLORS.marbleGallery, 4, 2),
         ],
         powerUpRoom: [
             fillRect(COLORS.marbleGallery, 1, 1, 3, 3),
