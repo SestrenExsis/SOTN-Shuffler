@@ -6988,13 +6988,13 @@ export const MAP_PIXELS = {
             fillRect(COLORS.abandonedMine, 4, 6),
         ],
         loadingRoomToCatacombs: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.abandonedMine, 1, 1, 3, 3),
         ],
         loadingRoomToUndergroundCaverns: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.abandonedMine, 1, 1, 3, 3),
         ],
         loadingRoomToWarpRooms: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.abandonedMine, 1, 1, 3, 3),
         ],
         wellLitSkullRoom: [
             fillRect(COLORS.abandonedMine, 1, 1, 3, 7),
@@ -7041,13 +7041,13 @@ export const MAP_PIXELS = {
             fillRect(COLORS.alchemyLaboratory, 6, 4),
         ],
         loadingRoomToCastleEntrance: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.alchemyLaboratory, 1, 1, 3, 3),
         ],
         loadingRoomToMarbleGallery: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.alchemyLaboratory, 1, 1, 3, 3),
         ],
         loadingRoomToRoyalChapel: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.alchemyLaboratory, 1, 1, 3, 3),
         ],
         slograAndGaibonRoom: [
             fillRect(COLORS.alchemyLaboratory, 1, 1, 7, 15),
@@ -7082,7 +7082,7 @@ export const MAP_PIXELS = {
             fillRect(COLORS.saveRoom, 2, 0),
         ],
         loadingRoomToAlchemyLaboratory: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.castleEntrance, 1, 1, 3, 3),
         ],
         cubeOfZoeRoom: [
             fillRect(COLORS.castleEntrance, 1, 1, 11, 7),
@@ -7094,10 +7094,10 @@ export const MAP_PIXELS = {
             fillRect(COLORS.castleEntrance, 10, 8),
         ],
         loadingRoomToMarbleGallery: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.castleEntrance, 1, 1, 3, 3),
         ],
         loadingRoomToWarpRooms: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.castleEntrance, 1, 1, 3, 3),
         ],
         shortcutToWarpRooms: [
             fillRect(COLORS.castleEntrance, 1, 1, 3, 3),
@@ -7106,7 +7106,7 @@ export const MAP_PIXELS = {
             fillRect(COLORS.obstacle, 2, 2), // Obstacle
         ],
         loadingRoomToUndergroundCaverns: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.castleEntrance, 1, 1, 3, 3),
         ],
         shortcutToUndergroundCaverns: [
             fillRect(COLORS.castleEntrance, 1, 1, 3, 3),
@@ -7156,7 +7156,7 @@ export const MAP_PIXELS = {
             fillRect(COLORS.castleKeep, 4, 6),
         ],
         loadingRoomToRoyalChapel: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.castleKeep, 1, 1, 3, 3),
         ],
         lionTorchPlatform: [
             fillRect(COLORS.castleKeep, 1, 1, 7, 3),
@@ -7167,7 +7167,7 @@ export const MAP_PIXELS = {
             fillRect(COLORS.castleKeep, 8, 2),
         ],
         loadingRoomToClockTower: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.castleKeep, 1, 1, 3, 3),
         ],
         dualPlatforms: [
             fillRect(COLORS.castleKeep, 1, 1, 7, 3),
@@ -7178,7 +7178,21 @@ export const MAP_PIXELS = {
             fillRect(COLORS.redDoor, 6, 4),
         ],
         loadingRoomToWarpRooms: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.castleKeep, 1, 1, 3, 3),
+        ],
+    },
+    castleCenter: {
+        elevatorShaft: [
+            fillRect(COLORS.castleCenter, 1, 1, 7, 3),
+            fillRect(COLORS.castleCenter, 0, 2),
+            fillRect(COLORS.castleCenter, 8, 2),
+        ],
+        centerCube: [
+            fillRect(COLORS.castleCenter, 1, 1, 11, 11),
+            fillRect(COLORS.castleCenter, 0, 6),
+            fillRect(COLORS.wall, 4, 4, 5, 5),
+            fillRect(COLORS.castleCenter, 5, 5, 3, 3),
+            fillRect(COLORS.castleCenter, 8, 6),
         ],
     },
     catacombs: {
@@ -7189,7 +7203,7 @@ export const MAP_PIXELS = {
             fillRect(COLORS.catacombs, 6, 4),
         ],
         loadingRoomToAbandonedMine: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.catacombs, 1, 1, 3, 3),
         ],
         granfaloonsLair: [
             fillRect(COLORS.catacombs, 1, 1, 7, 7),
@@ -7209,7 +7223,7 @@ export const MAP_PIXELS = {
     },
     clockTower: {
         loadingRoomToCastleKeep: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.clockTower, 1, 1, 3, 3),
         ],
         karasumansRoom: [
             fillRect(COLORS.clockTower, 1, 1, 3, 3),
@@ -7223,7 +7237,7 @@ export const MAP_PIXELS = {
             fillRect(COLORS.clockTower, 6, 0),
         ],
         loadingRoomToOuterWall: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.clockTower, 1, 1, 3, 3),
         ],
         spire: [
             fillRect(COLORS.clockTower, 1, 9, 7, 3),
@@ -7262,7 +7276,7 @@ export const MAP_PIXELS = {
     },
     colosseum: {
         loadingRoomToRoyalChapel: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.colosseum, 1, 1, 3, 3),
         ],
         passagewayBetweenArenaAndRoyalChapel: [
             fillRect(COLORS.colosseum, 1, 1, 3, 19),
@@ -7287,7 +7301,7 @@ export const MAP_PIXELS = {
             fillRect(COLORS.colosseum, 4, 14),
         ],
         loadingRoomToOlroxsQuarters: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.colosseum, 1, 1, 3, 3),
         ],
     },
     longLibrary: {
@@ -7297,7 +7311,7 @@ export const MAP_PIXELS = {
             fillRect(COLORS.redDoor, 2, 12),
         ],
         loadingRoomToOuterWall: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.longLibrary, 1, 1, 3, 3),
         ],
         spellbookArea: [
             fillRect(COLORS.longLibrary, 1, 1, 11, 27),
@@ -7358,7 +7372,6 @@ export const MAP_PIXELS = {
             fillRect(COLORS.marbleGallery, 0, 2),
             fillRect(COLORS.marbleGallery, 2, 0),
             fillRect(COLORS.marbleGallery, 2, 4),
-            fillRect(COLORS.marbleGallery, 4, 2),
         ],
         rightOfClockRoom: [
             fillRect(COLORS.marbleGallery, 1, 1, 3, 11),
@@ -7368,6 +7381,12 @@ export const MAP_PIXELS = {
         saveRoomA: [
             fillRect(COLORS.saveRoom, 1, 1, 3, 3),
             fillRect(COLORS.marbleGallery, 2, 4),
+        ],
+        elevatorRoom: [
+            fillRect(COLORS.marbleGallery, 1, 1, 3, 3),
+            fillRect(COLORS.marbleGallery, 2, 0),
+            fillRect(COLORS.marbleGallery, 2, 4),
+            fillRect(COLORS.marbleGallery, 4, 2),
         ],
         powerUpRoom: [
             fillRect(COLORS.marbleGallery, 1, 1, 3, 3),
@@ -7379,10 +7398,10 @@ export const MAP_PIXELS = {
             fillRect(COLORS.redDoor, 2, 60),
         ],
         loadingRoomToOuterWall: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.marbleGallery, 1, 1, 3, 3),
         ],
         loadingRoomToCastleEntrance: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.marbleGallery, 1, 1, 3, 3),
         ],
         sShapedHallways: [
             fillRect(COLORS.marbleGallery, 1, 1, 3, 23),
@@ -7394,7 +7413,7 @@ export const MAP_PIXELS = {
             fillRect(COLORS.redDoor, 10, 0),
         ],
         loadingRoomToAlchemyLaboratory: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.marbleGallery, 1, 1, 3, 3),
         ],
         entrance: [
             fillRect(COLORS.marbleGallery, 1, 1, 3, 15),
@@ -7449,10 +7468,10 @@ export const MAP_PIXELS = {
             fillRect(COLORS.redDoor, 10, 4),
         ],
         loadingRoomToMarbleGallery: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.olroxsQuarters, 1, 1, 3, 3),
         ],
         loadingRoomToRoyalChapel: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.olroxsQuarters, 1, 1, 3, 3),
         ],
         catwalkCrypt: [
             fillRect(COLORS.olroxsQuarters, 1, 1, 3, 27),
@@ -7461,7 +7480,7 @@ export const MAP_PIXELS = {
             fillRect(COLORS.olroxsQuarters, 2, 28),
         ],
         loadingRoomToColosseum: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.olroxsQuarters, 1, 1, 3, 3),
         ],
         grandStaircase: [
             fillRect(COLORS.olroxsQuarters, 1, 1, 7, 11),
@@ -7480,7 +7499,7 @@ export const MAP_PIXELS = {
             fillRect(COLORS.redDoor, 22, 4),
         ],
         loadingRoomToWarpRooms: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.olroxsQuarters, 1, 1, 3, 3),
         ],
         echoOfBatRoom: [
             fillRect(COLORS.olroxsQuarters, 1, 1, 3, 11),
@@ -7508,13 +7527,13 @@ export const MAP_PIXELS = {
             fillRect(COLORS.outerWall, 34, 0),
         ],
         loadingRoomToWarpRooms: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.outerWall, 1, 1, 3, 3),
         ],
         loadingRoomToLongLibrary: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.outerWall, 1, 1, 3, 3),
         ],
         loadingRoomToClockTower: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.outerWall, 1, 1, 3, 3),
         ],
         exitToClockTower: [
             fillRect(COLORS.outerWall, 1, 1, 3, 3),
@@ -7523,7 +7542,7 @@ export const MAP_PIXELS = {
             fillRect(COLORS.outerWall, 4, 2),
         ],
         loadingRoomToMarbleGallery: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.outerWall, 1, 1, 3, 3),
         ],
         exitToMarbleGallery: [
             fillRect(COLORS.outerWall, 1, 1, 3, 3),
@@ -7594,7 +7613,7 @@ export const MAP_PIXELS = {
             fillRect(COLORS.royalChapel, 14, 12),
         ],
         loadingRoomToCastleKeep: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.royalChapel, 1, 1, 3, 3),
         ],
         saveRoomB: [
             fillRect(COLORS.saveRoom, 1, 1, 3, 3),
@@ -7607,7 +7626,7 @@ export const MAP_PIXELS = {
             fillRect(COLORS.redDoor, 2, 4),
         ],
         loadingRoomToOlroxsQuarters: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.royalChapel, 1, 1, 3, 3),
         ],
         nave: [
             fillRect(COLORS.royalChapel, 1, 1, 7, 7),
@@ -7617,7 +7636,7 @@ export const MAP_PIXELS = {
             fillRect(COLORS.redDoor, 6, 8),
         ],
         loadingRoomToColosseum: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.royalChapel, 1, 1, 3, 3),
         ],
         saveRoomA: [
             fillRect(COLORS.saveRoom, 1, 1, 3, 3),
@@ -7630,7 +7649,7 @@ export const MAP_PIXELS = {
             fillRect(COLORS.redDoor, 2, 4),
         ],
         loadingRoomToAlchemyLaboratory: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.royalChapel, 1, 1, 3, 3),
         ],
         chapelStaircase: [
             fillRect(COLORS.royalChapel, 1, 25, 11, 7),
@@ -7675,7 +7694,7 @@ export const MAP_PIXELS = {
             fillRect(COLORS.undergroundCaverns, 2, 0),
         ],
         loadingRoomToCastleEntrance: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.undergroundCaverns, 1, 1, 3, 3),
         ],
         exitToCastleEntrance: [
             fillRect(COLORS.undergroundCaverns, 1, 1, 3, 7),
@@ -7691,10 +7710,10 @@ export const MAP_PIXELS = {
             fillRect(COLORS.undergroundCaverns, 44, 2),
         ],
         loadingRoomToMarbleGallery: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.undergroundCaverns, 1, 1, 3, 3),
         ],
         loadingRoomToAbandonedMine: [
-            fillRect(COLORS.loadingRoom, 1, 1, 3, 3),
+            fillRect(COLORS.undergroundCaverns, 1, 1, 3, 3),
         ],
         exitToAbandonedMine: [
             fillRect(COLORS.undergroundCaverns, 1, 1, 3, 3),
@@ -7783,10 +7802,6 @@ export const MAP_PIXELS = {
             fillRect(COLORS.warpRooms, 1, 1, 3, 3),
             fillRect(COLORS.redDoor, 2, 4),
         ],
-        warpRoomToCastleEntrance: [
-            fillRect(COLORS.warpRooms, 1, 1, 3, 3),
-            fillRect(COLORS.redDoor, 2, 0),
-        ],
         warpRoomToCastleKeep: [
             fillRect(COLORS.warpRooms, 1, 1, 3, 3),
             fillRect(COLORS.redDoor, 2, 0),
@@ -7826,6 +7841,7 @@ export function getMapPixels(stageLinks, roomPositions) {
             const targetStage = TELEPORTERS[sourceTeleporterName].targetStage
             const joinedStage = TELEPORTERS[targetTeleporterName].sourceStage
             const targetRoom = 'loadingRoomTo' + targetStage.at(0).toUpperCase() + targetStage.slice(1)
+            result[sourceStage][targetRoom].push(fillRect(COLORS.loadingRoom, 1, 1, 3, 3))
             result[sourceStage][targetRoom].push(drawGlyph(COLORS[joinedStage], glyphName, 1, 1))
             assignments.set(sourceTeleporterName, glyphName)
         }
@@ -7834,6 +7850,7 @@ export function getMapPixels(stageLinks, roomPositions) {
             const targetStage = TELEPORTERS[targetTeleporterName].targetStage
             const joinedStage = TELEPORTERS[sourceTeleporterName].sourceStage
             const targetRoom = 'loadingRoomTo' + targetStage.at(0).toUpperCase() + targetStage.slice(1)
+            result[sourceStage][targetRoom].push(fillRect(COLORS.loadingRoom, 1, 1, 3, 3))
             result[sourceStage][targetRoom].push(drawGlyph(COLORS[joinedStage], glyphName, 1, 1))
             assignments.set(targetTeleporterName, glyphName)
         }
