@@ -1334,6 +1334,63 @@ const argv = yargs(process.argv.slice(2))
                 },
             }
             changesToAdd.push(mapChanges)
+            // Recalculate castle map reveals
+            const cellsToReveal = new Map()
+            let minRevealRow = 63
+            let minRevealColumn = 63
+            let maxRevealRow = 0
+            let maxRevealColumn = 0
+            for (let row = 0; row < mapGrid.length; row++) {
+                for (let column = 0; column < mapGrid.at(row).length; column++) {
+                    if (mapGrid.at(row).at(column) !== '0') {
+                        const revealRow = Math.floor(row / 4)
+                        const revealColumn = Math.floor(column / 4)
+                        const cellToReveal = [revealRow, revealColumn].join(',')
+                        cellsToReveal.set(cellToReveal, true)
+                        minRevealRow = Math.min(minRevealRow, revealRow)
+                        minRevealColumn = Math.min(minRevealColumn, revealColumn)
+                        maxRevealRow = Math.max(maxRevealRow, revealRow)
+                        maxRevealColumn = Math.max(maxRevealColumn, revealColumn)
+                    }
+                }
+            }
+            const bytesPerRow = Math.ceil((1 + maxRevealColumn - minRevealColumn) / 8)
+            const revealRows = Math.min(64, (1 + maxRevealRow - minRevealRow), Math.floor(2432 / (8 * bytesPerRow)))
+            const castleMapReveals = {
+                bytesPerRow: bytesPerRow,
+                grid: [],
+                left: Math.max(0, 1 + maxRevealColumn - (bytesPerRow * 8)),
+                rows: revealRows,
+                top: Math.max(0, 1 + maxRevealRow - revealRows),
+            }
+            for (let row = 0; row < revealRows; row++) {
+                castleMapReveals.grid.push(' '.repeat(8 * bytesPerRow))
+            }
+            cellsToReveal
+            .forEach((value, key) => {
+                const coordinate = key.split(',')
+                const row = coordinate.at(0) - castleMapReveals.top
+                const column = coordinate.at(1) - castleMapReveals.left
+                if (
+                    (row >= 0) &&
+                    (row < castleMapReveals.rows) &&
+                    (column >= 0) &&
+                    (column < (8 * bytesPerRow))
+                ) {
+                    const leftSide = castleMapReveals.grid.at(row).slice(0, column)
+                    const rightSide = castleMapReveals.grid.at(row).slice(column + 1)
+                    castleMapReveals.grid[row] = leftSide + '#' + rightSide
+                }
+            })
+            console.log('castleMapReveals:', inspect(castleMapReveals, { depth: 4 }))
+            const mapRevealChanges = {
+                changeType: 'merge',
+                merge: {
+                    'castleMapReveals.data=': castleMapReveals,
+                },
+            }
+            console.log('mapRevealChanges:', mapRevealChanges)
+            changesToAdd.push(mapRevealChanges)
             // Add hints to the file select menu
             if (argv.hinter?.seedName || argv.hinter?.settings) {
                 const hintMessages = [
