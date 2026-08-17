@@ -29,6 +29,7 @@ import {
     combineNodeGroups,
     getMapPixels,
     getRoomChanges,
+    getVanillaStageNodeGroups,
     MAP_PIXELS,
     NODE_GROUPS,
     shuffleRooms,
@@ -1118,41 +1119,47 @@ const argv = yargs(process.argv.slice(2))
                     shuffleData.debugInfo.finalSeedsUsed.stageShuffler = seed
                 }
                 const debug = {}
-                if (argv.roomShuffler?.on) {
-                    const seed = argv.roomShuffler.seed ?? (seedName + '.roomShuffler.' + shuffleData.debugInfo.solverAttemptId)
-                    const stageNodeGroups = {}
-                    shuffleData.debugInfo.finalSeedsUsed.stages = {}
-                    STAGE_NAMES
-                    .forEach((stageName) => {
-                        let stageAttemptCount = 0
-                        while (true) {
-                            const stageSeed = seed + '.' + stageName + '.' + stageAttemptCount
-                            // console.log('stageSeed:', stageSeed)
-                            const shuffledRooms = shuffleRooms(stageSeed, stageName, true)
-                            let validInd = true
-                            if (stageName in VALIDATIONS) {
-                                // console.log('stageName:', stageName)
-                                validInd = VALIDATIONS[stageName]
-                                .every((validation) => {
-                                    const logicSettings = {
-                                        solverAttemptId: shuffleData.debugInfo.solverAttemptId,
-                                        locationRewards: {},
-                                        stageLinks: {},
-                                        roomPositions: shuffledRooms.rooms,
-                                    }
-                                    return validate(logicSettings, validation)
-                                })
+                if (argv.roomShuffler?.on || argv.stageShuffler?.on) {
+                    let stageNodeGroups = {}
+                    if (argv.roomShuffler?.on) {
+                        const seed = argv.roomShuffler.seed ?? (seedName + '.roomShuffler.' + shuffleData.debugInfo.solverAttemptId)
+                        shuffleData.debugInfo.finalSeedsUsed.stages = {}
+                        STAGE_NAMES
+                        .forEach((stageName) => {
+                            let stageAttemptCount = 0
+                            while (true) {
+                                const stageSeed = seed + '.' + stageName + '.' + stageAttemptCount
+                                // console.log('stageSeed:', stageSeed)
+                                const shuffledRooms = shuffleRooms(stageSeed, stageName, true)
+                                let validInd = true
+                                if (stageName in VALIDATIONS) {
+                                    // console.log('stageName:', stageName)
+                                    validInd = VALIDATIONS[stageName]
+                                    .every((validation) => {
+                                        const logicSettings = {
+                                            solverAttemptId: shuffleData.debugInfo.solverAttemptId,
+                                            locationRewards: {},
+                                            stageLinks: {},
+                                            roomPositions: shuffledRooms.rooms,
+                                        }
+                                        return validate(logicSettings, validation)
+                                    })
+                                }
+                                if (validInd) {
+                                    stageNodeGroups[stageName] = shuffledRooms
+                                    debug[stageName] = stageNodeGroups[stageName].cells
+                                    shuffleData.debugInfo.finalSeedsUsed.stages[stageName] = stageSeed
+                                    break
+                                }
+                                stageAttemptCount += 1
                             }
-                            if (validInd) {
-                                stageNodeGroups[stageName] = shuffledRooms
-                                debug[stageName] = stageNodeGroups[stageName].cells
-                                shuffleData.debugInfo.finalSeedsUsed.stages[stageName] = stageSeed
-                                break
-                            }
-                            stageAttemptCount += 1
-                        }
-                    })
-                    console.log('debug:', inspect(debug, { depth: 4 }))
+                        })
+                        console.log('debug:', inspect(debug, { depth: 4 }))
+                        shuffleData.debugInfo.finalSeedsUsed.roomShuffler = seed
+                    }
+                    else {
+                        stageNodeGroups = getVanillaStageNodeGroups(extraction)
+                    }
                     // Attach warpRooms to the stages they lead to
                     Object.entries(stageConnections.links)
                     .filter(([teleporterSource, teleporterTarget]) => {
@@ -1180,10 +1187,10 @@ const argv = yargs(process.argv.slice(2))
                             throw Error(`Room not found for stage '${stageName}' and room '${roomName}'`)
                         }
                     })
-                    roomArrangements = arrangeStages(seed + '.stageArranger', stageNodeGroups)
+                    const seed = seedName + '.stageArranger'
+                    roomArrangements = arrangeStages(seed, stageNodeGroups)
                     const roomChanges = getRoomChanges(roomArrangements.rooms, MIN_MAP_ROW, MIN_MAP_COL)
                     changesToAdd.push(roomChanges)
-                    shuffleData.debugInfo.finalSeedsUsed.roomShuffler = seed
                 }
                 if (argv.rewardShuffler?.on) {
                     const seed = argv.rewardShuffler.seed ?? (seedName + '.rewardShuffler.' + shuffleData.debugInfo.solverAttemptId)
@@ -1429,7 +1436,6 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'Seed to provide for randomization',
                 type: 'string',
             })
-            // TODO(sestren): Add ability to turn room and stage-shuffling on or off independently of one another
             // .option('shuffleRooms', {
             //     describe: 'Whether or not to shuffle how rooms within a stage connect',
             //     type: 'boolean',
