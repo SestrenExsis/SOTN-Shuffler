@@ -8499,6 +8499,41 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
     if (blockedEdges.length > 0) {
         return null
     }
+    // NOTE(sestren): Sort rooms and edges before returning so that hashing can be consistent
+    result.edges = result.edges.sort((a, b) => {
+      if (a.roomName < b.roomName) {
+        return -1
+      }
+      else if (a.roomName > b.roomName) {
+        return 1
+      }
+      else if (a.edgeName < b.edgeName) {
+        return -1
+      }
+      else if (a.edgeName > b.edgeName) {
+        return 1
+      }
+      else {
+        return 0
+      }
+    })
+    result.rooms = result.rooms.sort((a, b) => {
+      if (a.stage < b.stage) {
+        return -1
+      }
+      else if (a.stage > b.stage) {
+        return 1
+      }
+      else if (a.room < b.room) {
+        return -1
+      }
+      else if (a.room > b.room) {
+        return 1
+      }
+      else {
+        return 0
+      }
+    })
     // console.log('result:', result)
     return result
 }
@@ -8637,7 +8672,7 @@ export function shuffleRooms(seed, stageName, applyNormalization) {
     }
     // console.log('attemptCount:', attemptCount)
     // console.log('result.cells:', result.cells)
-    console.log('shuffleRooms:', result)
+    // console.log('shuffleRooms:', result)
     return result
 }
 

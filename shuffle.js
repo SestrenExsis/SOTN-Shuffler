@@ -942,6 +942,10 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'Seed to provide for randomization',
                 type: 'string',
             })
+            .option('debugger.writeStageFiles', {
+                describe: 'Whether or not to write each stage file to the build/debug folder',
+                type: 'boolean',
+            })
         // Hinter options
             .option('hinter.seedName', {
                 describe: 'Whether or not to display the seed value on the file select screen',
@@ -1051,6 +1055,9 @@ const argv = yargs(process.argv.slice(2))
             if (argv.hinter) {
                 shuffleData.settings.hinter = argv.hinter
             }
+            if (argv.debugger) {
+                shuffleData.settings.debugger = argv.debugger
+            }
             if (argv.musicShuffler?.on) {
                 shuffleData.settings.musicShuffler = argv.musicShuffler
             }
@@ -1145,6 +1152,14 @@ const argv = yargs(process.argv.slice(2))
                                         return validate(logicSettings, validation)
                                     })
                                 }
+                                if (argv.debugger?.writeStageFiles ?? false) {
+                                    const stageHash = hashedObject(shuffledRooms)
+                                    fs.writeFileSync(`build/debugger/${stageName}-${stageHash}-random-${validInd}.json`, JSON.stringify({
+                                        hash: stageHash,
+                                        nodeGroup: shuffledRooms,
+                                        validInd: validInd,
+                                    }, null, 4))
+                                }
                                 if (validInd) {
                                     stageNodeGroups[stageName] = shuffledRooms
                                     debug[stageName] = stageNodeGroups[stageName].cells
@@ -1159,6 +1174,17 @@ const argv = yargs(process.argv.slice(2))
                     }
                     else {
                         stageNodeGroups = getVanillaStageNodeGroups(extraction)
+                        if (argv.debugger?.writeStageFiles ?? false) {
+                            Object.entries(stageNodeGroups)
+                            .forEach(([stageName, stageInfo]) => {
+                                const stageHash = hashedObject(stageInfo)
+                                fs.writeFileSync(`build/debugger/${stageName}-${stageHash}-vanilla.json`, JSON.stringify({
+                                    hash: stageHash,
+                                    nodeGroup: stageInfo,
+                                    validInd: true,
+                                }, null, 4))
+                            })
+                        }
                     }
                     // Attach warpRooms to the stages they lead to
                     Object.entries(stageConnections.links)
