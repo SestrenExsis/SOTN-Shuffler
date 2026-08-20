@@ -8237,44 +8237,6 @@ export const MAP_PIXELS = {
         ],
     },
 }
-
-export function getMapPixels(stageLinks, roomPositions) {
-    const chars = 'CDHIJKLNSTUVXYZ147+-####'
-    const assignments = new Map()
-    const result = structuredClone(MAP_PIXELS)
-    Object.entries(stageLinks)
-    .filter(([sourceTeleporterName, targetTeleporterName]) => {
-        // TODO(sestren): Don't draw labels if the loading rooms overlap (not just for Warp Rooms, will need roomPositions)
-        return ![
-            TELEPORTERS[sourceTeleporterName].sourceStage,
-            TELEPORTERS[targetTeleporterName].sourceStage,
-        ].includes('warpRooms')
-    })
-    .forEach(([sourceTeleporterName, targetTeleporterName]) => {
-        const charIndex = Math.floor(assignments.size / 2)
-        const glyphName = chars.at(charIndex)
-        if (!assignments.has(sourceTeleporterName)) {
-            const sourceStage = TELEPORTERS[sourceTeleporterName].sourceStage
-            const targetStage = TELEPORTERS[sourceTeleporterName].targetStage
-            const joinedStage = TELEPORTERS[targetTeleporterName].sourceStage
-            const targetRoom = 'loadingRoomTo' + targetStage.at(0).toUpperCase() + targetStage.slice(1)
-            result[sourceStage][targetRoom].push(fillRect(COLORS.loadingRoom, 1, 1, 3, 3))
-            result[sourceStage][targetRoom].push(drawGlyph(COLORS[joinedStage], glyphName, 1, 1))
-            assignments.set(sourceTeleporterName, glyphName)
-        }
-        if (!assignments.has(targetTeleporterName)) {
-            const sourceStage = TELEPORTERS[targetTeleporterName].sourceStage
-            const targetStage = TELEPORTERS[targetTeleporterName].targetStage
-            const joinedStage = TELEPORTERS[sourceTeleporterName].sourceStage
-            const targetRoom = 'loadingRoomTo' + targetStage.at(0).toUpperCase() + targetStage.slice(1)
-            result[sourceStage][targetRoom].push(fillRect(COLORS.loadingRoom, 1, 1, 3, 3))
-            result[sourceStage][targetRoom].push(drawGlyph(COLORS[joinedStage], glyphName, 1, 1))
-            assignments.set(targetTeleporterName, glyphName)
-        }
-    })
-    return result
-}
-
 // Find any unspecified map pixels and fill them in with a default that should work for most simple rooms
 Object.entries(NODE_GROUPS)
 .forEach(([stageName, nodeGroup]) => {
@@ -8320,6 +8282,43 @@ Object.entries(NODE_GROUPS)
         })
     })
 })
+
+export function getMapPixels(stageLinks, roomPositions) {
+    const chars = 'CDHIJKLNSTUVXYZ147+-####'
+    const assignments = new Map()
+    const result = structuredClone(MAP_PIXELS)
+    Object.entries(stageLinks)
+    .filter(([sourceTeleporterName, targetTeleporterName]) => {
+        // TODO(sestren): Don't draw labels if the loading rooms overlap (not just for Warp Rooms, will need roomPositions)
+        return ![
+            TELEPORTERS[sourceTeleporterName].sourceStage,
+            TELEPORTERS[targetTeleporterName].sourceStage,
+        ].includes('warpRooms')
+    })
+    .forEach(([sourceTeleporterName, targetTeleporterName]) => {
+        const charIndex = Math.floor(assignments.size / 2)
+        const glyphName = chars.at(charIndex)
+        if (!assignments.has(sourceTeleporterName)) {
+            const sourceStage = TELEPORTERS[sourceTeleporterName].sourceStage
+            const targetStage = TELEPORTERS[sourceTeleporterName].targetStage
+            const joinedStage = TELEPORTERS[targetTeleporterName].sourceStage
+            const targetRoom = 'loadingRoomTo' + targetStage.at(0).toUpperCase() + targetStage.slice(1)
+            result[sourceStage][targetRoom].push(fillRect(COLORS.loadingRoom, 1, 1, 3, 3))
+            result[sourceStage][targetRoom].push(drawGlyph(COLORS[joinedStage], glyphName, 1, 1))
+            assignments.set(sourceTeleporterName, glyphName)
+        }
+        if (!assignments.has(targetTeleporterName)) {
+            const sourceStage = TELEPORTERS[targetTeleporterName].sourceStage
+            const targetStage = TELEPORTERS[targetTeleporterName].targetStage
+            const joinedStage = TELEPORTERS[sourceTeleporterName].sourceStage
+            const targetRoom = 'loadingRoomTo' + targetStage.at(0).toUpperCase() + targetStage.slice(1)
+            result[sourceStage][targetRoom].push(fillRect(COLORS.loadingRoom, 1, 1, 3, 3))
+            result[sourceStage][targetRoom].push(drawGlyph(COLORS[joinedStage], glyphName, 1, 1))
+            assignments.set(targetTeleporterName, glyphName)
+        }
+    })
+    return result
+}
 
 export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOffset, options={}) {
     const result = {
@@ -8539,7 +8538,6 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
 }
 
 export function getVanillaStageNodeGroups(extraction) {
-    // TODO(sestren): Fix the matching between nodeGroupName and roomName
     const result = {}
     Object.entries(NODE_GROUPS)
     .filter(([stageName, nodeGroups]) => {

@@ -56,19 +56,19 @@ const MIN_MAP_COL = 1
 const MIN_MAP_ROW = 5
 
 const STAGE_NAMES = [
-    'abandonedMine',
-    'alchemyLaboratory',
-    'castleEntrance',
-    'castleKeep',
-    'catacombs',
-    'clockTower',
-    'colosseum',
-    'longLibrary',
-    'marbleGallery',
-    'olroxsQuarters',
-    'outerWall',
-    'royalChapel',
-    'undergroundCaverns',
+    'abandonedMine', // b71e5049
+    'alchemyLaboratory', // 3b71a88a
+    'castleEntrance', // c26a5062
+    'castleKeep', // c3d8062f
+    'catacombs', // ac96a224
+    'clockTower', // cc096706
+    'colosseum', // b1e56d5c
+    'longLibrary', // b7ef913a
+    'marbleGallery', // 5c9eb714
+    'olroxsQuarters', // 1925cd80
+    'outerWall', // 3b2daaad
+    'royalChapel', // 1c76841f
+    'undergroundCaverns', // 0c4c1b6d
 ]
 
 const VALIDATIONS = {
@@ -942,10 +942,6 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'Seed to provide for randomization',
                 type: 'string',
             })
-            .option('debugger.writeStageFiles', {
-                describe: 'Whether or not to write each stage file to the build/debug folder',
-                type: 'boolean',
-            })
         // Hinter options
             .option('hinter.seedName', {
                 describe: 'Whether or not to display the seed value on the file select screen',
@@ -1026,7 +1022,6 @@ const argv = yargs(process.argv.slice(2))
             .demandOption(['extraction', 'out'])
         },
         handler: (argv) => {
-            // TODO(sestren): Add ability to turn room and stage-shuffling on or off independently of one another
             console.log(argv)
             const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
             const shuffleData = {
@@ -1054,9 +1049,6 @@ const argv = yargs(process.argv.slice(2))
             shuffleData.debugInfo.seedName = seedName
             if (argv.hinter) {
                 shuffleData.settings.hinter = argv.hinter
-            }
-            if (argv.debugger) {
-                shuffleData.settings.debugger = argv.debugger
             }
             if (argv.musicShuffler?.on) {
                 shuffleData.settings.musicShuffler = argv.musicShuffler
@@ -1152,14 +1144,6 @@ const argv = yargs(process.argv.slice(2))
                                         return validate(logicSettings, validation)
                                     })
                                 }
-                                if (argv.debugger?.writeStageFiles ?? false) {
-                                    const stageHash = hashedObject(shuffledRooms)
-                                    fs.writeFileSync(`build/debugger/${stageName}-${stageHash}-random-${validInd}.json`, JSON.stringify({
-                                        hash: stageHash,
-                                        nodeGroup: shuffledRooms,
-                                        validInd: validInd,
-                                    }, null, 4))
-                                }
                                 if (validInd) {
                                     stageNodeGroups[stageName] = shuffledRooms
                                     debug[stageName] = stageNodeGroups[stageName].cells
@@ -1174,17 +1158,6 @@ const argv = yargs(process.argv.slice(2))
                     }
                     else {
                         stageNodeGroups = getVanillaStageNodeGroups(extraction)
-                        if (argv.debugger?.writeStageFiles ?? false) {
-                            Object.entries(stageNodeGroups)
-                            .forEach(([stageName, stageInfo]) => {
-                                const stageHash = hashedObject(stageInfo)
-                                fs.writeFileSync(`build/debugger/${stageName}-${stageHash}-vanilla.json`, JSON.stringify({
-                                    hash: stageHash,
-                                    nodeGroup: stageInfo,
-                                    validInd: true,
-                                }, null, 4))
-                            })
-                        }
                     }
                     // Attach warpRooms to the stages they lead to
                     Object.entries(stageConnections.links)
@@ -1587,31 +1560,41 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
-            .option('out', {
-                alias: 'o',
-                describe: 'Path to the output file to create',
-                type: 'string',
-                normalize: true,
-            })
+            // .option('out', {
+            //     alias: 'o',
+            //     describe: 'Path to the output file to create',
+            //     type: 'string',
+            //     normalize: true,
+            // })
             .option('seed', {
                 alias: 's',
-                describe: 'Seed to provide for randomization',
+                describe: 'Seed to provide for randomization (e.g., "SadBench10584.roomShuffler.38.longLibrary")',
                 type: 'string',
             })
             .option('stage', {
                 describe: 'Name of stage to shuffle rooms in',
                 type: 'string',
             })
-            .option('norm', {
-                describe: 'Whether or not to apply normalization to room connections before shuffling',
+            .option('amount', {
+                describe: 'How many shuffled room configurations to generate, setting to 0 will result in the vanilla stage',
+                type: 'number',
+                default: 0,
+            })
+            .option('normalize', {
+                describe: 'Whether or not to apply normalization to room connections',
                 type: 'boolean',
             })
-            .demandOption(['extraction', 'out'])
+            .option('debug', {
+                describe: 'Whether or not to write each stage file to the build/debug folder',
+                type: 'boolean',
+            })
+            .demandOption(['extraction', 'stage'])
         },
         handler: (argv) => {
-            let seed = argv.seed
-            if (!seed) {
-                seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+            let seedName = argv.seed
+            if (seedName === null) {
+                const seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+                seedName = getSeedName(seed)
             }
             const shuffleData = {
                 authors: [
@@ -1626,9 +1609,45 @@ const argv = yargs(process.argv.slice(2))
                 },
             }
             const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
-            const shuffledRooms = shuffleRooms(seed, argv.stage, argv.norm)
-            console.log('shuffledRooms:', shuffledRooms)
-            // const roomChanges = getRoomChanges(extraction, shuffledRooms.rooms, 16, 16)
+            let nodeGroups = []
+            if (argv.amount < 1) {
+                const vanillaStageNodeGroups = getVanillaStageNodeGroups(extraction)
+                nodeGroups.push(vanillaStageNodeGroups[argv.stage])
+            }
+            else {
+                for (let i = 0; i < argv.amount; i++) {
+                    const seed = [seedName, i].join('.')
+                    console.log(seed)
+                    nodeGroups.push(shuffleRooms(seed, argv.stage, argv.norm))
+                }
+            }
+            nodeGroups.forEach((nodeGroup) => {
+                let validInd = true
+                if (argv.stage in VALIDATIONS) {
+                    validInd = VALIDATIONS[argv.stage]
+                    .every((validation) => {
+                        const logicSettings = {
+                            solverAttemptId: 0,
+                            locationRewards: {},
+                            stageLinks: {},
+                            roomPositions: nodeGroup.rooms,
+                        }
+                        return validate(logicSettings, validation)
+                    })
+                }
+                // console.log('nodeGroup:', nodeGroup)
+                if (argv.debug ?? false) {
+                    const stageHash = hashedObject(nodeGroup)
+                    console.log('stageHash:', stageHash)
+                    const suffix = (argv.amount < 1) ? 'vanilla' : ['random', validInd].join('-')
+                    fs.writeFileSync(`build/debugger/${argv.stage}-${stageHash}-${suffix}.json`, JSON.stringify({
+                        hash: stageHash,
+                        nodeGroup: nodeGroup,
+                        validInd: validInd,
+                    }, null, 4))
+                }
+            })
+            // const roomChanges = getRoomChanges(extraction, nodeGroup.rooms, 16, 16)
             // shuffleData.changes.push(roomChanges)
             // fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))
         }
