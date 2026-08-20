@@ -4,6 +4,7 @@ import { inspect } from 'node:util'
 
 import {
     analyzeLogic,
+    analyzeStage,
     validate,
 } from './src/analyze-logic.js'
 
@@ -1635,6 +1636,7 @@ const argv = yargs(process.argv.slice(2))
                         return validate(logicSettings, validation)
                     })
                 }
+                // TODO(sestren): analyzeStage(logic)
                 // console.log('nodeGroup:', nodeGroup)
                 if (argv.debug ?? false) {
                     const stageHash = hashedObject(nodeGroup)

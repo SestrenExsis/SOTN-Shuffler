@@ -670,6 +670,10 @@ function getEdges(logic, startingState) {
     return result
 }
 
+export function analyzeStage() {
+
+}
+
 export function analyzeLogic(settings, scenario) {
     const result = {
         solved: false,
