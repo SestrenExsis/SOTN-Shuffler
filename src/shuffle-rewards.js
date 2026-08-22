@@ -47,6 +47,7 @@ const LOCATIONS = {
     locationBatCard: {
         defaultValue: 'relicBatCard',
         validRewardTypes: [ 'relic', ],
+        forbiddenRewards: [],
         // TODO(sestren): Allow replacing with an item (dropUnusedItem1, dropUnusedItem2)
         writes: {
             relic: [
@@ -65,6 +66,10 @@ const LOCATIONS = {
     locationCubeOfZoe: {
         defaultValue: 'relicCubeOfZoe',
         validRewardTypes: [ 'relic', ],
+        forbiddenRewards: [
+            'relicSoulOfBat',
+            'relicGravityBoots',
+        ],
         writes: {
             relic: [
                 {
@@ -97,6 +102,7 @@ const LOCATIONS = {
     locationDemonCard: {
         defaultValue: 'relicDemonCard',
         validRewardTypes: [ 'item', 'relic', ],
+        forbiddenRewards: [],
         writes: {
             item: [
                 {
@@ -157,6 +163,7 @@ const LOCATIONS = {
     locationEchoOfBat: {
         defaultValue: 'relicEchoOfBat',
         validRewardTypes: [ 'item', 'relic', ],
+        forbiddenRewards: [],
         writes: {
             item: [
                 {
@@ -217,6 +224,7 @@ const LOCATIONS = {
     locationFireOfBat: {
         defaultValue: 'relicFireOfBat',
         validRewardTypes: [ 'item', 'relic', ],
+        forbiddenRewards: [],
         writes: {
             item: [
                 {
@@ -274,9 +282,51 @@ const LOCATIONS = {
             ],
         },
     },
+    locationForceOfEcho: {
+        defaultValue: 'relicForceOfEcho',
+        validRewardTypes: [ 'relic', ],
+        forbiddenRewards: [
+            'itemGoldRing',
+            'itemSilverRing',
+            'itemSpikeBreaker',
+            'relicCubeOfZoe',
+            'relicDemonCard',
+            'relicEchoOfBat',
+            'relicFormOfMist',
+            'relicJewelOfOpen',
+            'relicLeapStone',
+            'relicMermanStatue',
+            'relicSoulOfBat',
+        ],
+        writes: {
+            relic: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 11,
+                    },
+                    keys: [
+                        'stages.reverseCaverns.entities.horizontal.locationForceOfEcho.entityTypeId',
+                        'stages.reverseCaverns.entities.vertical.locationForceOfEcho.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.reverseCaverns.entities.horizontal.locationForceOfEcho.params',
+                        'stages.reverseCaverns.entities.vertical.locationForceOfEcho.params',
+                    ],
+                },
+            ],
+        },
+    },
     locationFormOfMist: {
         defaultValue: 'relicFormOfMist',
         validRewardTypes: [ 'item', 'relic', ],
+        forbiddenRewards: [],
         writes: {
             item: [
                 {
@@ -334,9 +384,51 @@ const LOCATIONS = {
             ],
         },
     },
+    locationGasCloud: {
+        defaultValue: 'relicGasCloud',
+        validRewardTypes: [ 'relic', ],
+        forbiddenRewards: [
+            'itemGoldRing',
+            'itemSilverRing',
+            'itemSpikeBreaker',
+            'relicCubeOfZoe',
+            'relicDemonCard',
+            'relicEchoOfBat',
+            'relicFormOfMist',
+            'relicJewelOfOpen',
+            'relicLeapStone',
+            'relicMermanStatue',
+            'relicSoulOfBat',
+        ],
+        writes: {
+            relic: [
+                {
+                    value: {
+                        type: 'constant',
+                        constant: 11,
+                    },
+                    keys: [
+                        'stages.floatingCatacombs.entities.horizontal.locationGasCloud.entityTypeId',
+                        'stages.floatingCatacombs.entities.vertical.locationGasCloud.entityTypeId',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'rewardId',
+                    },
+                    keys: [
+                        'stages.floatingCatacombs.entities.horizontal.locationGasCloud.params',
+                        'stages.floatingCatacombs.entities.vertical.locationGasCloud.params',
+                    ],
+                },
+            ],
+        },
+    },
     locationGhostCard: {
         defaultValue: 'relicGhostCard',
         validRewardTypes: [ 'item', 'relic', ],
+        forbiddenRewards: [],
         writes: {
             item: [
                 {
@@ -397,6 +489,7 @@ const LOCATIONS = {
     locationJewelOfOpen: {
         defaultValue: 'relicJewelOfOpen',
         validRewardTypes: [ 'relic', ],
+        forbiddenRewards: [],
         writes: {
             relic: [
                 {
@@ -414,6 +507,9 @@ const LOCATIONS = {
     locationPowerOfMist: {
         defaultValue: 'relicPowerOfMist',
         validRewardTypes: [ 'item', 'relic', ],
+        forbiddenRewards: [
+            'relicSoulOfBat',
+        ],
         writes: {
             item: [
                 {
@@ -474,6 +570,7 @@ const LOCATIONS = {
     locationGravityBoots: {
         defaultValue: 'relicGravityBoots',
         validRewardTypes: [ 'relic', ],
+        forbiddenRewards: [],
         writes: {
             relic: [
                 {
@@ -502,6 +599,7 @@ const LOCATIONS = {
     locationHolySymbol: {
         defaultValue: 'relicHolySymbol',
         validRewardTypes: [ 'item', 'relic', ],
+        forbiddenRewards: [],
         writes: {
             item: [
                 {
@@ -563,6 +661,7 @@ const LOCATIONS = {
     locationLeapStone: {
         defaultValue: 'relicLeapStone',
         validRewardTypes: [ 'relic', ],
+        forbiddenRewards: [],
         writes: {
             relic: [
                 {
@@ -591,6 +690,7 @@ const LOCATIONS = {
     locationMermanStatue: {
         defaultValue: 'relicMermanStatue',
         validRewardTypes: [ 'item', 'relic', ],
+        forbiddenRewards: [],
         writes: {
             item: [
                 {
@@ -652,6 +752,9 @@ const LOCATIONS = {
     locationPowerOfWolf: {
         defaultValue: 'relicPowerOfWolf',
         validRewardTypes: [ 'item', 'relic', ],
+        forbiddenRewards: [
+            'relicSoulOfBat',
+        ],
         writes: {
             item: [
                 {
@@ -721,6 +824,7 @@ const LOCATIONS = {
     locationSkillOfWolf: {
         defaultValue: 'relicSkillOfWolf',
         validRewardTypes: [ 'relic', ],
+        forbiddenRewards: [],
         // TODO(sestren): Allow replacing with an item (dropUnusedItem1, dropUnusedItem2)
         writes: {
             relic: [
@@ -739,6 +843,9 @@ const LOCATIONS = {
     locationSoulOfBat: {
         defaultValue: 'relicSoulOfBat',
         validRewardTypes: [ 'item', 'relic', ],
+        forbiddenRewards: [
+            'relicFormOfMist',
+        ],
         writes: {
             item: [
                 {
@@ -799,6 +906,7 @@ const LOCATIONS = {
     locationSoulOfWolf: {
         defaultValue: 'relicSoulOfWolf',
         validRewardTypes: [ 'item', 'relic', ],
+        forbiddenRewards: [],
         writes: {
             item: [
                 {
@@ -859,6 +967,7 @@ const LOCATIONS = {
     locationSpiritOrb: {
         defaultValue: 'relicSpiritOrb',
         validRewardTypes: [ 'relic', ],
+        forbiddenRewards: [],
         writes: {
             relic: [
                 {
@@ -887,6 +996,7 @@ const LOCATIONS = {
     locationSwordCard: {
         defaultValue: 'relicSwordCard',
         validRewardTypes: [ 'item', 'relic', ],
+        forbiddenRewards: [],
         writes: {
             item: [
                 {
@@ -947,6 +1057,9 @@ const LOCATIONS = {
     locationFaerieCard: {
         defaultValue: 'relicFaerieCard',
         validRewardTypes: [ 'item', 'relic', ],
+        forbiddenRewards: [
+            'relicSoulOfBat',
+        ],
         writes: {
             item: [
                 {
@@ -1007,6 +1120,7 @@ const LOCATIONS = {
     locationFaerieScroll: {
         defaultValue: 'relicFaerieScroll',
         validRewardTypes: [ 'item', 'relic', ],
+        forbiddenRewards: [],
         writes: {
             item: [
                 {
@@ -1067,6 +1181,7 @@ const LOCATIONS = {
     locationSpikeBreaker: {
         defaultValue: 'itemSpikeBreaker',
         validRewardTypes: [ 'item', 'relic', ],
+        forbiddenRewards: [],
         writes: {
             item: [
                 {
@@ -1126,6 +1241,7 @@ const LOCATIONS = {
     locationSilverRing: {
         defaultValue: 'itemSilverRing',
         validRewardTypes: [ 'item', 'relic', ],
+        forbiddenRewards: [],
         writes: {
             item: [
                 {
@@ -1185,6 +1301,7 @@ const LOCATIONS = {
     locationGoldRing: {
         defaultValue: 'itemGoldRing',
         validRewardTypes: [ 'item', 'relic', ],
+        forbiddenRewards: [],
         writes: {
             item: [
                 {
@@ -1255,6 +1372,12 @@ export function shuffleRewards(seed) {
             .forEach((rewardType) => {
                 if (rewardName.startsWith(rewardType)) {
                     validRewardType = true
+                }
+            })
+            locationInfo.forbiddenRewards
+            .forEach((forbiddenReward) => {
+                if (rewardName === forbiddenReward) {
+                    validRewardType = false
                 }
             })
             if (!validRewardType) {
