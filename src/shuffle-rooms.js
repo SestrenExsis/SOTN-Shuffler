@@ -8537,47 +8537,60 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
     return result
 }
 
-export function getVanillaStageNodeGroups(extraction) {
-    const result = {}
-    Object.entries(NODE_GROUPS)
-    .filter(([stageName, nodeGroups]) => {
-        return stageName !== 'warpRooms'
-    })
-    .forEach(([stageName, nodeGroups]) => {
-        let stageTop = 63
-        let stageLeft = 63
-        Object.entries(extraction.stages[stageName].rooms.aliases)
+export function getVanillaRoomPositions(extraction) {
+    const result = []
+    Object.entries(extraction.stages)
+    .forEach(([stageName, stageInfo]) => {
+        Object.entries(stageInfo.rooms.aliases)
         .forEach(([roomName, roomIndex]) => {
             const roomInfo = extraction.stages[stageName].rooms.data[roomIndex]
-            stageTop = Math.min(stageTop, roomInfo.top)
-            stageLeft = Math.min(stageLeft, roomInfo.left)
+            const roomPosition = {
+                stage: stageName,
+                room: roomName,
+                row: roomInfo.top,
+                column: roomInfo.left,
+            }
+            result.push(roomPosition)
         })
-        result[stageName] = {
-            rooms: [],
-            cells: [
-                '.',
-            ],
-            edges: [],
-        }
-        Object.entries(nodeGroups)
-        .forEach(([nodeGroupName, nodeGroupInfo]) => {
-            // NOTE(sestren): Node groups are assumed to be named after one of the rooms in the group
-            const roomIndex = extraction.stages[stageName].rooms.aliases[nodeGroupName]
-            const roomInfo = extraction.stages[stageName].rooms.data[roomIndex]
-            const nodeRoomIndex = nodeGroupInfo.rooms
-            .map((nodeRoomInfo) => {
-                return nodeRoomInfo.room
-            })
-            .indexOf(nodeGroupName)
-            const nodeRoomInfo = nodeGroupInfo.rooms[nodeRoomIndex]
-            const offsetRow = roomInfo.top - stageTop - nodeRoomInfo.row
-            const offsetColumn = roomInfo.left - stageLeft - nodeRoomInfo.column
-            result[stageName] = combineNodeGroups(
-                result[stageName], nodeGroupInfo, offsetRow, offsetColumn, {
-                    allowMismatchedEdges: true,
-                    // allowOverlaps: true,
-                })
+    })
+    return result
+}
+
+export function getVanillaNodeGroupForStage(extraction, stageName) {
+    let result = {
+        rooms: [],
+        cells: [
+            '.',
+        ],
+        edges: [],
+    }
+    let stageTop = 63
+    let stageLeft = 63
+    Object.entries(extraction.stages[stageName].rooms.aliases)
+    .forEach(([roomName, roomIndex]) => {
+        const roomInfo = extraction.stages[stageName].rooms.data[roomIndex]
+        stageTop = Math.min(stageTop, roomInfo.top)
+        stageLeft = Math.min(stageLeft, roomInfo.left)
+    })
+    Object.entries(NODE_GROUPS[stageName])
+    .forEach(([nodeGroupName, nodeGroupInfo]) => {
+        // NOTE(sestren): Node groups are assumed to be named after one of the rooms in the group
+        const roomIndex = extraction.stages[stageName].rooms.aliases[nodeGroupName]
+        const roomInfo = extraction.stages[stageName].rooms.data[roomIndex]
+        const nodeRoomIndex = nodeGroupInfo.rooms
+        .map((nodeRoomInfo) => {
+            return nodeRoomInfo.room
         })
+        .indexOf(nodeGroupName)
+        const nodeRoomInfo = nodeGroupInfo.rooms[nodeRoomIndex]
+        const offsetRow = roomInfo.top - stageTop - nodeRoomInfo.row
+        const offsetColumn = roomInfo.left - stageLeft - nodeRoomInfo.column
+        result = combineNodeGroups(
+            result, nodeGroupInfo, offsetRow, offsetColumn, {
+                allowMismatchedEdges: true,
+                // allowOverlaps: true,
+            }
+        )
     })
     return result
 }

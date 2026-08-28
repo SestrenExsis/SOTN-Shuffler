@@ -292,7 +292,7 @@ function getLocationRewardCommands(settings) {
     return result
 }
 
-function getLogic(settings, enableElsewhere=false) {
+export function getLogic(settings, enableElsewhere=false) {
     const result = {}
     const roomPositions = settings.roomPositions ?? []
     // Process every location-reward combination
@@ -552,8 +552,7 @@ export function findGoal(logic, startingState, goalState, sameStage=false) {
     return result
 }
 
-export function validate(settings, validation) {
-    const logic = getLogic(settings, true)
+export function validate(logic, validation) {
     if (validation.debug ?? false) {
         console.log('logic:', JSON.stringify(logic, null, 4))
     }
@@ -668,10 +667,6 @@ function getEdges(logic, startingState) {
         }
     }
     return result
-}
-
-export function analyzeStage() {
-
 }
 
 export function analyzeLogic(settings, scenario) {

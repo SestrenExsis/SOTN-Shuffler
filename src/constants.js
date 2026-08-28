@@ -2,8 +2,7 @@
 const COST_PICKUP_ITEM = 1.0
 const COST_PICKUP_RELIC = 3.0
 const COST_QUICKGRAB_RELIC = 2.5
-const COST_UNKNOWN = 1.999
-
+const COST_UNKNOWN = 2.0
 export const LOGIC = {
     locations: {
         locationBatCard: {
@@ -15075,4 +15074,852 @@ export const ROOMS_INFO = {
             },
         },
     },
+}
+
+export const VALIDATIONS = {
+    abandonedMine: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionSummonDemonFamiliar: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusDemonSwitchActivated: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionSummonDemonFamiliar: true,
+                statusDemonSwitchActivated: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationDemonCard: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionSummonDemonFamiliar: true,
+                statusDemonSwitchActivated: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'abandonedMine',
+                room: 'cerberusRoom',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+    ],
+    alchemyLaboratory: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionUnlockBlueDoors: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusCannonActivated: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionUnlockBlueDoors: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationBatCard: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionUnlockBlueDoors: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSkillOfWolf: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    castleEntrance: [
+        {
+            startingState: {
+                stage: 'castleEntrance',
+                room: 'afterDrawbridge',
+                section: 'main',
+                debugEnableElsewhere: true,
+                time: 360.0,
+            },
+            goalState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                statusMetDeathInCastleEntrance: false,
+            },
+            goalType: 'forbidden',
+        },
+        {
+            startingState: {
+                stage: 'castleEntrance',
+                room: 'afterDrawbridge',
+                section: 'main',
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionWolfTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionWolfTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionWolfTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusPassageFromCastleEntranceToWarpRoomsOpened: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionWolfTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusSecretWallInMermanRoomOpened: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionWolfTransformation: true,
+                statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
+                statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
+                statusPassageFromCastleEntranceToWarpRoomsOpened: true,
+                statusSecretWallInMermanRoomOpened: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationCubeOfZoe: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionWolfTransformation: true,
+                statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
+                statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
+                statusPassageFromCastleEntranceToWarpRoomsOpened: true,
+                statusSecretWallInMermanRoomOpened: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationPowerOfWolf: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    castleKeep: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationGhostCard: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationLeapStone: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationPowerOfMist: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    catacombs: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                itemSpikeBreaker: 1,
+                progressionBatTransformation: true,
+                progressionEcholocation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSpikeBreaker: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    clockTower: [
+        // {
+        //     startingState: {
+        //         stage: 'elsewhere',
+        //         room: 'hub',
+        //         section: 'main',
+        //         progressionBatTransformation: true,
+        //         debugEnableElsewhere: true,
+        //         time: 120.0,
+        //     },
+        //     goalState: {
+        //         statusLeftGearRoomSolved: true,
+        //     },
+        //     goalType: 'required',
+        // },
+        // {
+        //     startingState: {
+        //         stage: 'elsewhere',
+        //         room: 'hub',
+        //         section: 'main',
+        //         progressionBatTransformation: true,
+        //         debugEnableElsewhere: true,
+        //         time: 120.0,
+        //     },
+        //     goalState: {
+        //         statusRightGearRoomSolved: true,
+        //     },
+        //     goalType: 'required',
+        // },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                statusLeftGearRoomSolved: true,
+                statusRightGearRoomSolved: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationFireOfBat: true,
+            },
+            goalType: 'required',
+        },
+        // NOTE(sestren): It should be possible to traverse the stage both ways without solving the Gear Puzzle
+        {
+            startingState: {
+                stage: 'clockTower',
+                room: 'loadingRoomToOuterWall',
+                section: 'main',
+                progressionBatTransformation: true,
+                debugEnableElsewhere: false,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'clockTower',
+                room: 'loadingRoomToCastleKeep',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'clockTower',
+                room: 'loadingRoomToCastleKeep',
+                section: 'main',
+                progressionBatTransformation: true,
+                debugEnableElsewhere: false,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'clockTower',
+                room: 'loadingRoomToOuterWall',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+    ],
+    colosseum: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationFormOfMist: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusBarrierInColosseumOpened: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    longLibrary: [
+        {
+            startingState: {
+                stage: 'longLibrary',
+                room: 'outsideShop',
+                section: 'main',
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionMistTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'longLibrary',
+                room: 'outsideShop',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionMistTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'longLibrary',
+                room: 'threeLayerRoom',
+                section: 'topLayer',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionMistTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'longLibrary',
+                room: 'threeLayerRoom',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionMistTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'longLibrary',
+                room: 'threeLayerRoom',
+                section: 'bottomLayer',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionMistTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationFaerieCard: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionMistTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationFaerieScroll: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionMistTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationJewelOfOpen: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionMistTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSoulOfBat: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    marbleGallery: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionItemMaterialization: true,
+                progressionUnlockBlueDoors: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusPressurePlateInMarbleGalleryActivated: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionItemMaterialization: true,
+                progressionUnlockBlueDoors: true,
+                statusPressurePlateInMarbleGalleryActivated: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationGravityBoots: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionItemMaterialization: true,
+                progressionUnlockBlueDoors: true,
+                statusPressurePlateInMarbleGalleryActivated: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSpiritOrb: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionItemMaterialization: true,
+                progressionUnlockBlueDoors: true,
+                statusPressurePlateInMarbleGalleryActivated: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'marbleGallery',
+                room: 'clockRoom',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'marbleGallery',
+                room: 'clockRoom',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+    ],
+    olroxsQuarters: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationEchoOfBat: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSwordCard: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'olroxsQuarters',
+                room: 'olroxsRoom',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+    ],
+    outerWall: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'outerWall',
+                room: 'doppelgangerRoom',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSoulOfWolf: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    royalChapel: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                itemSpikeBreaker: 1,
+                progressionBatTransformation: true,
+                progressionMistTransformation: true,
+                progressionUnlockBlueDoors: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusStatueInRoyalChapelMoved: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                itemSpikeBreaker: 1,
+                progressionBatTransformation: true,
+                progressionMistTransformation: true,
+                progressionUnlockBlueDoors: true,
+                statusStatueInRoyalChapelMoved: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'royalChapel',
+                room: 'hippogryphRoom',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                itemSpikeBreaker: 1,
+                progressionBatTransformation: true,
+                progressionMistTransformation: true,
+                progressionUnlockBlueDoors: true,
+                statusStatueInRoyalChapelMoved: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSilverRing: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    undergroundCaverns: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionProtectionFromWater: true,
+                progressionSummonFerryman: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationGoldRing: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionProtectionFromWater: true,
+                progressionSummonFerryman: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationHolySymbol: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionProtectionFromWater: true,
+                progressionSummonFerryman: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationMermanStatue: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionProtectionFromWater: true,
+                progressionSummonFerryman: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusButtonInUndergroundCavernsActivated: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionProtectionFromWater: true,
+                progressionSummonFerryman: true,
+                statusButtonInUndergroundCavernsActivated: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusBridgeInUndergroundCavernsBroken: true,
+            },
+            goalType: 'required',
+        },
+    ],
 }

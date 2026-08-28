@@ -426,19 +426,12 @@ const STAGE_LINKS = {
 
 export function getVanillaStageLinks() {
     const result = {}
-    result.links = {}
     Object.keys(LINKS)
     .forEach((teleporterName) => {
         const sourceStage = TELEPORTERS[teleporterName].sourceStage
         const targetStage = TELEPORTERS[teleporterName].targetStage
-        result.links[teleporterName] = 'from' + targetStage.at(0).toUpperCase() + targetStage.slice(1) + 'To' + sourceStage.at(0).toUpperCase() + sourceStage.slice(1)
+        result[teleporterName] = 'from' + targetStage.at(0).toUpperCase() + targetStage.slice(1) + 'To' + sourceStage.at(0).toUpperCase() + sourceStage.slice(1)
     })
-    result.linkedStages = {}
-    Object.entries(STAGE_LINKS)
-        .forEach(([stageName, linkInfo]) => {
-            result.linkedStages[stageName] = Array.from(linkInfo.teleporterNames).sort()
-        })
-    // console.log(result)
     return result
 }
 

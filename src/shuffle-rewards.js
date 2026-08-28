@@ -1339,6 +1339,15 @@ const LOCATIONS = {
     },
 }
 
+export function getVanillaRewardLocations() {
+    const result = {}
+    Object.entries(LOCATIONS)
+    .forEach(([locationName, locationInfo]) => {
+        result[locationName] = locationInfo.defaultValue
+    })
+    return result
+}
+
 export function shuffleRewards(seed) {
     const rng = seedrandom(seed)
     let result = {
