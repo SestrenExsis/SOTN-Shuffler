@@ -75,7 +75,7 @@ function simplify(state) {
     })
 }
 
-function updateStateWithOutcome(state, outcome, simplifyState=true) {
+export function updateStateWithOutcome(state, outcome, simplifyState=true) {
     Object.entries(outcome)
     .forEach(([propertyKey, propertyInfo]) => {
         switch (typeof propertyInfo) {
@@ -569,7 +569,7 @@ export function validate(logic, validation) {
     return result
 }
 
-function getEdges(logic, startingState) {
+export function getEdges(logic, startingState) {
     // NOTE(sestren): Starting state is assumed to be in Castle Entrance for now, and will probably not work for other stages yet
     const TIME_BUDGET = startingState.time
     // Calculate edges between nodes that are traversable from the starting node

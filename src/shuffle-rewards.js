@@ -1,46 +1,156 @@
 import seedrandom from 'seedrandom'
 
 import {
+    getEdges,
+    getLogic,
+    updateStateWithOutcome,
+} from './analyze-logic.js'
+
+import {
     shuffleArray
 } from './common.js'
+
+import {
+    LOGIC,
+    NODES,
+} from './constants.js'
 
 // TODO(sestren): solver-reward interactivity
 // Solver asks for a random reward that is left that satisfies a constraint (e.g., gives progression) and returns the location it placed it into
 
-const REWARD_IDS = {
-    relicSoulOfBat: 0,
-    relicFireOfBat: 1,
-    relicEchoOfBat: 2,
-    relicForceOfEcho: 3,
-    relicSoulOfWolf: 4,
-    relicPowerOfWolf: 5,
-    relicSkillOfWolf: 6,
-    relicFormOfMist: 7,
-    relicPowerOfMist: 8,
-    relicGasCloud: 9,
-    relicCubeOfZoe: 10,
-    relicSpiritOrb: 11,
-    relicGravityBoots: 12,
-    relicLeapStone: 13,
-    relicHolySymbol: 14,
-    relicFaerieScroll: 15,
-    relicJewelOfOpen: 16,
-    relicMermanStatue: 17,
-    relicBatCard: 18,
-    relicGhostCard: 19,
-    relicFaerieCard: 20,
-    relicDemonCard: 21,
-    relicSwordCard: 22,
-    relicSpriteCard: 23,
-    relicNosedevilCard: 24,
-    relicHeartOfVlad: 25,
-    relicToothOfVlad: 26,
-    relicRibOfVlad: 27,
-    relicRingOfVlad: 28,
-    relicEyeOfVlad: 29,
-    itemSpikeBreaker: 'itemSpikeBreaker',
-    itemGoldRing: 'itemGoldRing',
-    itemSilverRing: 'itemSilverRing',
+const REWARDS = {
+    relicSoulOfBat: {
+        rewardId: 0,
+        displayName: 'Soul of Bat',
+    },
+    relicFireOfBat: {
+        rewardId: 1,
+        displayName: 'Fire of Bat',
+    },
+    relicEchoOfBat: {
+        rewardId: 2,
+        displayName: 'Echo of Bat',
+    },
+    relicForceOfEcho: {
+        rewardId: 3,
+        displayName: 'Force of Echo',
+    },
+    relicSoulOfWolf: {
+        rewardId: 4,
+        displayName: 'Soul of Wolf',
+    },
+    relicPowerOfWolf: {
+        rewardId: 5,
+        displayName: 'Power of Wolf',
+    },
+    relicSkillOfWolf: {
+        rewardId: 6,
+        displayName: 'Skill of Wolf',
+    },
+    relicFormOfMist: {
+        rewardId: 7,
+        displayName: 'Form of Mist',
+    },
+    relicPowerOfMist: {
+        rewardId: 8,
+        displayName: 'Power of Mist',
+    },
+    relicGasCloud: {
+        rewardId: 9,
+        displayName: 'Gas Cloud',
+    },
+    relicCubeOfZoe: {
+        rewardId: 10,
+        displayName: 'Cube of Zoe',
+    },
+    relicSpiritOrb: {
+        rewardId: 11,
+        displayName: 'Spirit Orb',
+    },
+    relicGravityBoots: {
+        rewardId: 12,
+        displayName: 'Gravity Boots',
+    },
+    relicLeapStone: {
+        rewardId: 13,
+        displayName: 'Leap Stone',
+    },
+    relicHolySymbol: {
+        rewardId: 14,
+        displayName: 'Holy Symbol',
+    },
+    relicFaerieScroll: {
+        rewardId: 15,
+        displayName: 'Faerie Scroll',
+    },
+    relicJewelOfOpen: {
+        rewardId: 16,
+        displayName: 'Jewel of Open',
+    },
+    relicMermanStatue: {
+        rewardId: 17,
+        displayName: 'Merman Statue',
+    },
+    relicBatCard: {
+        rewardId: 18,
+        displayName: 'Bat Card',
+    },
+    relicGhostCard: {
+        rewardId: 19,
+        displayName: 'Ghost Card',
+    },
+    relicFaerieCard: {
+        rewardId: 20,
+        displayName: 'Faerie Card',
+    },
+    relicDemonCard: {
+        rewardId: 21,
+        displayName: 'Demon Card',
+    },
+    relicSwordCard: {
+        rewardId: 22,
+        displayName: 'Sword Card',
+    },
+    relicSpriteCard: {
+        rewardId: 23,
+        displayName: 'Sprite Card',
+    },
+    relicNosedevilCard: {
+        rewardId: 24,
+        displayName: 'Nosedevil Card',
+    },
+    relicHeartOfVlad: {
+        rewardId: 25,
+        displayName: 'Heart of Vlad',
+    },
+    relicToothOfVlad: {
+        rewardId: 26,
+        displayName: 'Tooth of Vlad',
+    },
+    relicRibOfVlad: {
+        rewardId: 27,
+        displayName: 'Rib of Vlad',
+    },
+    relicRingOfVlad: {
+        rewardId: 28,
+        displayName: 'Ring of Vlad',
+    },
+    relicEyeOfVlad: {
+        rewardId: 29,
+        displayName: 'Eye of Vlad',
+    },
+    itemSpikeBreaker: {
+        rewardId: 'itemSpikeBreaker',
+        displayName: 'Spike Breaker',
+    },
+    itemGoldRing: {
+        rewardId: 'itemGoldRing',
+        displayName: 'Gold Ring',
+    },
+    itemSilverRing: {
+        rewardId: 'itemSilverRing',
+        displayName: 'Silver Ring',
+    },
 }
 
 const LOCATIONS = {
@@ -499,6 +609,15 @@ const LOCATIONS = {
                     },
                     keys: [
                         'stages.longLibrary.constants.shopRelics.jewelOfOpen',
+                    ],
+                },
+                {
+                    value: {
+                        type: 'property',
+                        property: 'displayName',
+                    },
+                    keys: [
+                        'stages.longLibrary.constants.messages.shopItemName1.data',
                     ],
                 },
             ],
@@ -1291,8 +1410,8 @@ const LOCATIONS = {
                         property: 'rewardId',
                     },
                     keys: [
-                        'stages.royalChapel.entities.horizontal.locationSpikeBreaker.params',
-                        'stages.royalChapel.entities.vertical.locationSpikeBreaker.params',
+                        'stages.royalChapel.entities.horizontal.locationSilverRing.params',
+                        'stages.royalChapel.entities.vertical.locationSilverRing.params',
                     ],
                 },
             ],
@@ -1322,7 +1441,7 @@ const LOCATIONS = {
                         constant: 11,
                     },
                     keys: [
-                        'stages.undergroundCaverns.constants.spawnGoldRing.entityTypeId',
+                        'stages.undergroundCaverns.constants.spawnGoldRing.entityTypeId.data',
                     ],
                 },
                 {
@@ -1331,7 +1450,7 @@ const LOCATIONS = {
                         property: 'rewardId',
                     },
                     keys: [
-                        'stages.undergroundCaverns.constants.spawnGoldRing.params',
+                        'stages.undergroundCaverns.constants.spawnGoldRing.params.data',
                     ],
                 },
             ],
@@ -1345,6 +1464,227 @@ export function getVanillaRewardLocations() {
     .forEach(([locationName, locationInfo]) => {
         result[locationName] = locationInfo.defaultValue
     })
+    return result
+}
+
+export function assignLayeredRewards(seed, settings) {
+    const rng = seedrandom(seed)
+    let result = {
+        debugInfo: {
+            attemptCounter: 0,
+        },
+        invalidated: false,
+        locations: {},
+    }
+    settings.locationRewards = {}
+    result.debugInfo.attemptCounter += 1
+    const startingState = {
+        stage: 'castleEntrance',
+        room: 'afterDrawbridge',
+        section: 'main',
+        positionX: 136,
+        positionY: 640,
+        time: 120.0,
+        techniqueSolveBoxPuzzle: true,
+    }
+    // 26 locations in total
+    const rewards = {}
+    rewards.main = [ // Fixed, in-logic
+        'relicPowerOfMist', // last
+        'relicSoulOfBat',
+        'relicFormOfMist',
+        'relicLeapStone', // first
+    ]
+    const maxLayerCount = rewards.main.length
+    rewards.side = shuffleArray(rng, [ // Shuffled, in-logic
+        'itemGoldRing',
+        'itemSilverRing',
+        'itemSpikeBreaker',
+        'relicCubeOfZoe',
+        'relicDemonCard',
+        'relicEchoOfBat',
+        'relicJewelOfOpen',
+        'relicMermanStatue',
+    ])
+    rewards.bonus = [ // Fixed, out-of-logic
+        'relicGasCloud', // last
+        'relicGravityBoots',
+        'relicPowerOfWolf',
+        'relicSkillOfWolf',
+        'relicHolySymbol',
+        'relicSoulOfWolf', // first
+    ]
+    rewards.filler = shuffleArray(rng, [ // Shuffled, out-of-logic
+        'relicBatCard',
+        'relicFaerieCard',
+        'relicFaerieScroll',
+        'relicFireOfBat',
+        'relicForceOfEcho',
+        'relicGhostCard',
+        'relicSpiritOrb',
+        'relicSwordCard',
+    ])
+    rewards.inLogic = rewards.main.slice().concat(rewards.side.slice())
+    // Place rewards on current layer
+    let bonusRewardCount = 0
+    let sideRewardCount = 0
+    for (let currentLayer = 0; currentLayer <= maxLayerCount; currentLayer++) {
+        const logic = getLogic(settings)
+        const edges = getEdges(logic, startingState)
+        const currentLayerRewards = []
+        const availableChecks = []
+        if (rewards.main.length > 0) {
+            // Find available checks for pre-final layer
+            Object.entries(edges)
+            .filter(([currentNodeName, nextNodeNames]) => {
+                const parts = currentNodeName.split('.')
+                const stageName = parts.at(0)
+                const nodeName = parts.at(1)
+                return (
+                    stageName in NODES &&
+                    nodeName in NODES[stageName] &&
+                    'nodeType' in NODES[stageName][nodeName] &&
+                    ['action', 'check', 'warp'].includes(NODES[stageName][nodeName].nodeType) &&
+                    !(nodeName in result.locations)
+                )
+            })
+            .forEach(([currentNodeName, nextNodeNames]) => {
+                const parts = currentNodeName.split('.')
+                const stageName = parts.at(0)
+                const nodeName = parts.at(1)
+                const visits = new Map()
+                const work = [
+                    currentNodeName,
+                ]
+                visits.set(currentNodeName, true)
+                while (work.length > 0) {
+                    const currentNode = work.pop()
+                    if (currentNode === 'castleEntrance.locationCubeOfZoe') {
+                        switch (NODES[stageName][nodeName].nodeType) {
+                            case 'action':
+                                updateStateWithOutcome(startingState, NODES[stageName][nodeName].requirement)
+                                break
+                            case 'check':
+                                availableChecks.push(nodeName)
+                                break
+                            case 'warp':
+                                updateStateWithOutcome(startingState, NODES[stageName][nodeName].outcome)
+                                break
+                        }
+                        break
+                    }
+                    if (currentNode in edges) {
+                        Object.entries(edges[currentNode])
+                        .forEach(([nextNode, time]) => {
+                            if (visits.has(nextNode)) {
+                                return
+                            }
+                            else {
+                                work.push(nextNode)
+                                visits.set(nextNode, true)
+                            }
+                        })
+                    }
+                }
+            })
+            // Assign rewards for pre-final layer
+            currentLayerRewards.push(rewards.main.pop())
+            if (availableChecks.length < currentLayerRewards.length) {
+                result.invalidated = true
+                return result
+            }
+            while (
+                currentLayerRewards.length < availableChecks.length &&
+                sideRewardCount <= (2 * currentLayer) &&
+                rewards.side.length > 0
+            ) {
+                currentLayerRewards.push(rewards.side.pop())
+                sideRewardCount += 1
+            }
+            while (
+                currentLayerRewards.length < availableChecks.length &&
+                bonusRewardCount <= currentLayer &&
+                rewards.bonus.length > 0
+            ) {
+                currentLayerRewards.push(rewards.bonus.pop())
+                bonusRewardCount += 1
+            }
+            while (currentLayerRewards.length < availableChecks.length) {
+                if (rewards.filler.length > 0) {
+                    currentLayerRewards.push(rewards.filler.pop())
+                    continue
+                }
+                if (rewards.bonus.length > 0) {
+                    currentLayerRewards.push(rewards.bonus.pop())
+                    bonusRewardCount += 1
+                    continue
+                }
+            }
+        }
+        else {
+            // Find available checks for final layer
+            Object.entries(LOGIC.locations)
+            .filter(([locationName, locationInfo]) => {
+                return !(locationName in result.locations)
+            })
+            .forEach(([locationName, locationInfo]) => {
+                availableChecks.push(locationName)
+            })
+            // Assign rewards for final layer
+            while (rewards.side.length > 0) {
+                currentLayerRewards.push(rewards.side.pop())
+                sideRewardCount += 1
+            }
+            while (rewards.bonus.length > 0) {
+                currentLayerRewards.push(rewards.bonus.pop())
+                bonusRewardCount += 1
+            }
+            while (rewards.filler.length > 0) {
+                currentLayerRewards.push(rewards.filler.pop())
+            }
+        }
+        currentLayerRewards
+        .forEach((rewardName) => {
+            if (availableChecks.length < 1) {
+                result.invalidated = true
+                return
+            }
+            shuffleArray(rng, availableChecks)
+            const locationName = availableChecks
+            .find((locationName) => {
+                let validRewardType = false
+                LOCATIONS[locationName].validRewardTypes
+                .forEach((rewardType) => {
+                    if (rewardName.startsWith(rewardType)) {
+                        validRewardType = true
+                    }
+                })
+                LOCATIONS[locationName].forbiddenRewards
+                .forEach((forbiddenReward) => {
+                    if (rewardName === forbiddenReward) {
+                        validRewardType = false
+                    }
+                })
+                return validRewardType
+            })
+            if (locationName === undefined) {
+                result.invalidated = true
+                return
+            }
+            result.locations[locationName] = rewardName
+            if (rewards.inLogic.includes(rewardName)) {
+                settings.locationRewards[locationName] = rewardName
+                const locationOutcome = {}
+                locationOutcome[locationName] = true
+                updateStateWithOutcome(startingState, locationOutcome)
+                updateStateWithOutcome(startingState, LOGIC.rewards[rewardName].outcome)
+            }
+            availableChecks.splice(availableChecks.indexOf(locationName), 1)
+        })
+        if (result.invalidated) {
+            return result
+        }
+    }
     return result
 }
 
@@ -1403,7 +1743,8 @@ export function getRewardChanges(locations) {
     Object.entries(locations)
     .forEach(([locationName, rewardName]) => {
         const properties = {
-            rewardId: REWARD_IDS[rewardName],
+            rewardId: REWARDS[rewardName].rewardId,
+            displayName: REWARDS[rewardName].displayName,
         }
         const rewardType = (rewardName.startsWith('item')) ? 'item' : 'relic'
         LOCATIONS[locationName].writes[rewardType]

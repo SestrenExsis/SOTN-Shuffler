@@ -26,7 +26,7 @@ node lib/BIN-Patcher/bin extract -b "$BIN" -t "build/patcher/extraction-template
 python3 lib/BIN-Patcher/bins/sotn-us/generate-extraction-template.py "lib/BIN-Patcher/bins/sotn-us/data/extraction-template.yaml" "build/patcher/extraction-template.json" --previous "build/patcher/extraction.json"
 node lib/BIN-Patcher/bin extract -b "$BIN" -t "build/patcher/extraction-template.json" -e "build/patcher/extraction.json"
 
-python3 lib/BIN-Patcher/bins/sotn-us/post-process-extraction.py "build/patcher/extraction.json" "build/patcher/aliases.json" "build/patcher/extraction-processed.json"
+node lib/BIN-Patcher/bins/sotn-us/util teleporters -e "build/patcher/extraction.json" -o "build/patcher/extraction-processed.json"
 python3 lib/BIN-Patcher/bins/sotn-us/generate-change-dependencies-template.py "lib/BIN-Patcher/bins/sotn-us/data/change-dependencies-template.yaml" "build/patcher/change-dependencies.json"
 node lib/BIN-Patcher/bin alter -s "build/patcher/extraction-processed.json" -t "build/patcher/extraction-aliased.json" --aliases "build/patcher/aliases.json"
 node lib/BIN-Patcher/bin alter -s "build/patcher/extraction-aliased.json" -t "build/patcher/extraction-masked-aliased.json" --mask "data"

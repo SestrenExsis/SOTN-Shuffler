@@ -18,7 +18,8 @@ node shuffle multi -e "build/patcher/extraction-aliased.json" -o "build/current-
   --patcher.list="lib/BIN-Patcher/bins/sotn-us/patches/normalize-olroxs-quarters.json" \
   --patcher.list="lib/BIN-Patcher/bins/sotn-us/patches/normalize-underground-caverns.json" \
   --patcher.list="lib/BIN-Patcher/bins/sotn-us/patches/simplify-gear-puzzle.json" \
-  --rewardShuffler.on=false \
+  --rewardShuffler.on=true \
+  --rewardShuffler.method="layered" \
   --roomShuffler.on=true \
   --solver.on=true \
   --stageShuffler.on=true

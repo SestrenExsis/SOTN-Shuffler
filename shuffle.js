@@ -45,9 +45,10 @@ import {
 } from './src/shuffle-stages.js'
 
 import {
-    shuffleRewards,
     getRewardChanges,
     getVanillaRewardLocations,
+    assignLayeredRewards,
+    shuffleRewards,
 } from './src/shuffle-rewards.js'
 
 const MIN_MAP_COL = 1
@@ -131,6 +132,11 @@ const argv = yargs(process.argv.slice(2))
             .option('rewardShuffler.on', {
                 describe: 'Whether or not to shuffle quest rewards (aka, items and relics). If disabled, all other options in this category are ignored.',
                 type: 'boolean',
+            })
+            .option('rewardShuffler.method', {
+                describe: 'TODO(sestren): Describe rewardShuffler.method',
+                type: 'string',
+                default: 'unbiased',
             })
             .option('rewardShuffler.seed', {
                 describe: 'If supplied, this seed is always used for supplying randomness to the reward shuffler',
@@ -250,6 +256,7 @@ const argv = yargs(process.argv.slice(2))
             let changesToAdd = []
             let logicAnalysis = {
                 solved: false,
+                invalidated: false,
                 scenarios: [],
                 solverAttemptId: 0,
                 mapChangesRequired: false,
@@ -259,6 +266,7 @@ const argv = yargs(process.argv.slice(2))
             }
             // Some modules (those that modify or depend on logic) must be run inside a loop because the solver might need to verify them
             while (!logicAnalysis.solved) {
+                logicAnalysis.invalidated = false
                 shuffleData.debugInfo.solverAttemptId += 1
                 console.log('solverAttemptId:', shuffleData.debugInfo.solverAttemptId)
                 changesToAdd = []
@@ -346,20 +354,50 @@ const argv = yargs(process.argv.slice(2))
                     })
                     const seed = seedName + '.stageArranger'
                     logicAnalysis.roomPositions = arrangeStages(seed, stageNodeGroups).rooms
+                    // Move Forest Cutscene in Castle Entrance out of the way
+                    logicAnalysis.roomPositions.push(
+                        {
+                            stage: "castleEntrance",
+                            room: "forestCutscene",
+                            row: 0,
+                            column: 2,
+                        },
+                        {
+                            stage: "castleEntrance",
+                            room: "unknownRoom19",
+                            row: 0,
+                            column: 20,
+                        },
+                    )
                     changesToAdd.push(
                         getRoomChanges(logicAnalysis.roomPositions, MIN_MAP_ROW, MIN_MAP_COL)
                     )
                 }
                 if (argv.rewardShuffler?.on) {
                     const seed = argv.rewardShuffler.seed ?? (seedName + '.rewardShuffler.' + shuffleData.debugInfo.solverAttemptId)
-                    const questRewards = shuffleRewards(seed)
+                    let questRewards
+                    switch (argv.rewardShuffler.method) {
+                        case 'unbiased':
+                            questRewards = shuffleRewards(seed)
+                            break
+                        case 'layered':
+                            questRewards = assignLayeredRewards(seed, logicAnalysis)
+                            if (questRewards.invalidated) {
+                                logicAnalysis.invalidated = true
+                            }
+                            break
+                    }
                     logicAnalysis.locationRewards = questRewards.locations
                     const rewardChanges = getRewardChanges(questRewards.locations)
                     changesToAdd.push(rewardChanges)
                     shuffleData.debugInfo.finalSeedsUsed.rewardShuffler = seed
                 }
-                if (argv.solver?.on) {
-                    console.log('seedsUsedWhenSolving', shuffleData.debugInfo.finalSeedsUsed)
+                if (logicAnalysis.invalidated) {
+                    logicAnalysis.solved = false
+                }
+                else if (argv.solver?.on) {
+                    console.log('rewardLocationCount:', Object.keys(logicAnalysis.locationRewards).length)
+                    console.log('seedsUsedWhenSolving:', shuffleData.debugInfo.finalSeedsUsed)
                     shuffleData.debugInfo.solvable = false
                     const seed = argv.solver.seed ?? (seedName + '.solver.' + shuffleData.debugInfo.solverAttemptId)
                     logicAnalysis.solverAttemptId = shuffleData.debugInfo.solverAttemptId
