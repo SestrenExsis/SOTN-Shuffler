@@ -5317,6 +5317,14 @@ export const ROOMS_INFO = {
                                 time: COST_UNKNOWN,
                             },
                         },
+                        { // Upper Right Ledge - Fall and Well-Timed Double Jump
+                            section: 'upperRightLedge',
+                            progressionDoubleJump: true,
+                            statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
                         { // Upper Right Ledge - Precise Fall and Precise Jump Using Shortcut
                             section: 'upperRightLedge',
                             techniquePreciseJump: true,
