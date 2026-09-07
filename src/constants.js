@@ -11937,7 +11937,13 @@ export const ROOMS_INFO = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        {
+                            section: 'main',
+                            statusSecretPlatformInOuterWallActivated: true,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
                     ],
                 },
                 exitRight: {
@@ -11964,6 +11970,7 @@ export const ROOMS_INFO = {
                     outcome: {
                         positionX: 0 - 8,
                         positionY: 128,
+                        statusSecretPlatformInOuterWallActivated: false,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
@@ -11993,6 +12000,7 @@ export const ROOMS_INFO = {
                     outcome: {
                         positionX: 0 - 8,
                         positionY: 128,
+                        statusSecretPlatformInOuterWallActivated: false,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
@@ -12022,6 +12030,7 @@ export const ROOMS_INFO = {
                     outcome: {
                         positionX: 0 - 8,
                         positionY: 128,
+                        statusSecretPlatformInOuterWallActivated: false,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
@@ -12051,6 +12060,7 @@ export const ROOMS_INFO = {
                     outcome: {
                         positionX: 0 - 8,
                         positionY: 128,
+                        statusSecretPlatformInOuterWallActivated: false,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
@@ -12197,9 +12207,16 @@ export const ROOMS_INFO = {
                     outcome: {
                         positionX: 32,
                         positionY: 256 + 24,
+                        statusSecretPlatformInOuterWallActivated: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        {
+                            section: 'main',
+                            statusSecretPlatformInOuterWallActivated: false,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
                     ],
                 },
             },
