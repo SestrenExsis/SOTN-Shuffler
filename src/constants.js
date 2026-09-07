@@ -13407,6 +13407,15 @@ export const ROOMS_INFO = {
                         getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
+                useSaveRoom: {
+                    outcome: {
+                        positionX: 256 + 128,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', COST_UNKNOWN),
+                    ],
+                },
             },
         },
         hiddenCrystalEntrance: {
@@ -14376,7 +14385,52 @@ export const ROOMS_INFO = {
             regions: [
                 getRegion('main', 0, 0, 256, 256),
             ],
-            commands: {},
+            commands: {
+                defeatSuccubus: {
+                    outcome: {
+                        positionX: 0 - 128,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        { // Fight Succubus without jump or flight
+                            section: 'main',
+                            techniqueDefeatSuccubusAtZeroProgression: true,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
+                        { // Fight Succubus using Double Jump
+                            section: 'main',
+                            progressionDoubleJump: true,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
+                        { // Fight Succubus using Bat Transformation
+                            section: 'main',
+                            progressionBatTransformation: true,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
+                        { // Fight Succubus using Gravity Jump
+                            section: 'main',
+                            progressionGravityJump: true,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
+                        { // Fight Succubus using Powered Mist
+                            section: 'main',
+                            progressionMistTransformation: true,
+                            progressionLongerMistDuration: true,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
+                    ],
+                },
+            },
         },
         triggerTeleporterToCastleEntrance: {
             roomInfo: {
