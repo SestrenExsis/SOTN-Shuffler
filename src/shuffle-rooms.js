@@ -7454,8 +7454,8 @@ export const MAP_PIXELS = {
         ],
         exitToRoyalChapel: [
             fillRect(COLORS.alchemyLaboratory, 1, 1, 3, 3),
-            fillRect(COLORS.redDoor, 6, 0),
-            fillRect(COLORS.alchemyLaboratory, 6, 4),
+            fillRect(COLORS.redDoor, 2, 0),
+            fillRect(COLORS.alchemyLaboratory, 2, 4),
         ],
         loadingRoomToCastleEntrance: [
             fillRect(COLORS.alchemyLaboratory, 1, 1, 3, 3),
