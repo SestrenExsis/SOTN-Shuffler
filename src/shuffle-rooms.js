@@ -7468,6 +7468,9 @@ export const MAP_PIXELS = {
         ],
         slograAndGaibonRoom: [
             fillRect(COLORS.alchemyLaboratory, 1, 1, 7, 15),
+            fillRect(COLORS.alchemyLaboratory, 2, 0),
+            fillRect(COLORS.alchemyLaboratory, 2, 16),
+            fillRect(COLORS.alchemyLaboratory, 6, 16),
         ],
         tallSpittleboneRoom: [
             fillRect(COLORS.alchemyLaboratory, 1, 1, 19, 3),
@@ -7496,7 +7499,7 @@ export const MAP_PIXELS = {
         ],
         saveRoomA: [
             fillRect(COLORS.saveRoom, 1, 1, 3, 3),
-            fillRect(COLORS.saveRoom, 2, 0),
+            fillRect(COLORS.castleEntrance, 2, 0),
         ],
         loadingRoomToAlchemyLaboratory: [
             fillRect(COLORS.castleEntrance, 1, 1, 3, 3),
@@ -7719,6 +7722,15 @@ export const MAP_PIXELS = {
         ],
         loadingRoomToOlroxsQuarters: [
             fillRect(COLORS.colosseum, 1, 1, 3, 3),
+        ],
+        bottomOfElevatorShaft: [
+            fillRect(COLORS.colosseum, 1, 1, 7, 15),
+            fillRect(COLORS.longLibrary, 0, 2),
+            fillRect(COLORS.longLibrary, 0, 14),
+            fillRect(COLORS.longLibrary, 2, 0),
+            fillRect(COLORS.longLibrary, 2, 16),
+            fillRect(COLORS.longLibrary, 6, 0),
+            fillRect(COLORS.longLibrary, 6, 16),
         ],
     },
     longLibrary: {
@@ -8245,6 +8257,7 @@ Object.entries(NODE_GROUPS)
         if (stageName in MAP_PIXELS && nodeGroupName in MAP_PIXELS[stageName]) {
             return false
         }
+        // NOTE(sestren): Node groups with multiple rooms have empty space and internal passageways, so they won't make good templates for drawing simple rooms
         if (nodeGroupInfo.rooms.length > 1) {
             return false
         }
