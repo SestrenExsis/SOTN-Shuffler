@@ -8274,6 +8274,10 @@ Object.entries(NODE_GROUPS)
         MAP_PIXELS[stageName][nodeGroupName].push(
             fillRect(colorIndex, 1, 1, 4 * rows - 1, 4 * columns - 1)
         )
+        // NOTE(sestren): Entrances to save rooms should match the stage color
+        if (nodeGroupName.startsWith('saveRoom')) {
+            colorIndex = COLORS[stageName]
+        }
         nodeGroupInfo.edges
         .forEach((edgeInfo) => {
             MAP_PIXELS[stageName][nodeGroupName].push(
