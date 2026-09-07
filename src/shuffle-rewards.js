@@ -1489,12 +1489,15 @@ export function assignLayeredRewards(seed, settings) {
     }
     // 26 locations in total
     const rewards = {}
+    // random side that leads to new checks
+    // random main that leads to new checks
+    // 
     rewards.main = [ // Fixed, in-logic
-        'relicPowerOfMist', // last
-        'relicSoulOfBat',
+        'relicLeapStone',
         'relicFormOfMist',
-        'relicLeapStone', // first
-    ]
+        'relicSoulOfBat',
+        'relicGravityBoots',
+    ].reverse()
     const maxLayerCount = rewards.main.length
     rewards.side = shuffleArray(rng, [ // Shuffled, in-logic
         'itemGoldRing',
@@ -1507,13 +1510,13 @@ export function assignLayeredRewards(seed, settings) {
         'relicMermanStatue',
     ])
     rewards.bonus = [ // Fixed, out-of-logic
-        'relicGasCloud', // last
-        'relicGravityBoots',
+        'relicSoulOfWolf',
         'relicPowerOfWolf',
+        'relicGasCloud',
+        'relicPowerOfMist',
         'relicSkillOfWolf',
         'relicHolySymbol',
-        'relicSoulOfWolf', // first
-    ]
+    ].reverse()
     rewards.filler = shuffleArray(rng, [ // Shuffled, out-of-logic
         'relicBatCard',
         'relicFaerieCard',
@@ -1526,9 +1529,13 @@ export function assignLayeredRewards(seed, settings) {
     ])
     rewards.inLogic = rewards.main.slice().concat(rewards.side.slice())
     // Place rewards on current layer
+    let debug = {
+        layers: [],
+    }
     let bonusRewardCount = 0
     let sideRewardCount = 0
     for (let currentLayer = 0; currentLayer <= maxLayerCount; currentLayer++) {
+        debug.layers.push({})
         const logic = getLogic(settings)
         const edges = getEdges(logic, startingState)
         const currentLayerRewards = []
@@ -1672,6 +1679,7 @@ export function assignLayeredRewards(seed, settings) {
                 return
             }
             result.locations[locationName] = rewardName
+            debug.layers.at(-1)[locationName] = rewardName
             if (rewards.inLogic.includes(rewardName)) {
                 settings.locationRewards[locationName] = rewardName
                 const locationOutcome = {}
@@ -1685,6 +1693,7 @@ export function assignLayeredRewards(seed, settings) {
             return result
         }
     }
+    console.log('layers:', debug.layers)
     return result
 }
 
