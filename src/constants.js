@@ -7926,7 +7926,6 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('batForm', 'lowerLeftLedge', COST_UNKNOWN),
-                        getMovement('doubleJump', 'lowerLeftLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'lowerLeftLedge', COST_UNKNOWN),
                         getMovement('poweredMist', 'lowerLeftLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'lowerLeftLedge', COST_UNKNOWN),
@@ -7944,7 +7943,6 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('batForm', 'middleRightLedge', COST_UNKNOWN),
-                        getMovement('doubleJump', 'middleRightLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'middleRightLedge', COST_UNKNOWN),
                         getMovement('poweredMist', 'middleRightLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'middleRightLedge', COST_UNKNOWN),
