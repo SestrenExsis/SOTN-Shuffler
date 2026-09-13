@@ -8,7 +8,6 @@ mkdir "lib/BIN-Patcher/build"
 rm -f build/extraction-template.json
 rm -f build/extraction.json
 
-python3 lib/BIN-Patcher/tools/yaml-to-json.py "lib/BIN-Patcher/bins/sotn-us/data/aliases.yaml" "build/patcher/aliases.json"
 cp "build/patcher/aliases.json" "lib/BIN-Patcher/build/aliases.json"
 
 # If the next step fails, make sure you are passing the correct path to the BIN as the first argument

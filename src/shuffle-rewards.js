@@ -1733,20 +1733,22 @@ export function assignChainedRewards(seed, settings) {
         techniqueSolveBoxPuzzle: true,
     }
     // 24 locations in total
-    // Goal is to follow the chain of progression to Soul of Bat, then find both Rings
+    // Goal is to follow the chain of progression to Leap Stone, then Flight, then find both Rings
     const rewards = {}
+    rewards.locked = [ // Locked initially, added to main after reaching MID layer
+        'relicEchoOfBat',
+        'relicGravityBoots',
+        'relicPowerOfMist',
+        'relicSoulOfBat',
+    ]
     rewards.main = [ // Procedural, in-logic
         'itemSpikeBreaker',
         'relicCubeOfZoe',
         'relicDemonCard',
-        'relicEchoOfBat',
         'relicFormOfMist',
-        'relicGravityBoots',
         'relicJewelOfOpen',
         'relicLeapStone',
         'relicMermanStatue',
-        'relicPowerOfMist',
-        'relicSoulOfBat',
     ]
     rewards.side = [ // Fixed, in-logic
         'itemSilverRing',
@@ -1767,7 +1769,15 @@ export function assignChainedRewards(seed, settings) {
         'relicSpiritOrb',
         'relicSwordCard',
     ])
-    rewards.inLogic = rewards.main.slice().concat(rewards.side.slice())
+    rewards.progression = new Map()
+    rewards.main
+    .forEach((rewardName) => {
+        rewards.progression.set(rewardName, false)
+    })
+    rewards.side
+    .forEach((rewardName) => {
+        rewards.progression.set(rewardName, false)
+    })
     const assignments = {
         main: [],
         side: [],
@@ -1779,7 +1789,7 @@ export function assignChainedRewards(seed, settings) {
         layers: [],
     }
     let progressionStatus = 'EARLY'
-    while (rewards.main.length > 0) {
+    while ((rewards.main.length + rewards.locked.length) > 0) {
         debug.layers.push({})
         const logic = getLogic(settings)
         const edges = getEdges(logic, startingState)
@@ -1917,6 +1927,10 @@ export function assignChainedRewards(seed, settings) {
             }
         })
         if (currentReward.name === null) {
+            if (rewards.locked.length > 0) {
+                result.invalidated = true
+                return result
+            }
             // Find available checks for final layer
             Object.entries(LOGIC.locations)
             .filter(([locationName, locationInfo]) => {
@@ -1946,10 +1960,6 @@ export function assignChainedRewards(seed, settings) {
             }
         }
         else {
-            if (['relicSoulOfBat', 'relicPowerOfMist'].includes(currentReward.name)
-            ) {
-                progressionStatus = 'MID'
-            }
             rewards.main.splice(rewards.main.indexOf(currentReward.name), 1)
             currentLayerRewards.push(currentReward.name)
             assignments.main.push(currentLayerRewards.at(-1))
@@ -1957,9 +1967,29 @@ export function assignChainedRewards(seed, settings) {
                 result.invalidated = true
                 return result
             }
+            switch (progressionStatus) {
+                case 'EARLY':
+                    if (currentReward.name === 'relicLeapStone') {
+                        while (rewards.locked.length > 0) {
+                            rewards.main.push(rewards.locked.pop())
+                        }
+                        progressionStatus = 'MID'
+                    }
+                    break
+                case 'MID':
+                    if (['relicSoulOfBat', 'relicGravityBoots'].includes(currentReward.name)) {
+                        progressionStatus = 'LATE'
+                    }
+                    break
+                case 'LATE':
+                    progressionStatus = 'END'
+                    break
+                case 'END':
+                    break
+            }
             if (
                 (currentLayerRewards.length < availableChecks.length) &&
-                (progressionStatus !== 'EARLY') &&
+                (['LATE', 'END'].includes(progressionStatus)) &&
                 (rewards.side.length > 0)
             ) {
                 currentLayerRewards.push(rewards.side.pop())
@@ -1984,7 +2014,7 @@ export function assignChainedRewards(seed, settings) {
                     assignments.bonus.push(currentLayerRewards.at(-1))
                     continue
                 }
-                if (progressionStatus === 'LATE') {
+                if (['LATE', 'END'].includes(progressionStatus)) {
                     if (rewards.main.length > 0) {
                         currentLayerRewards.push(rewards.main.pop())
                         assignments.main.push(currentLayerRewards.at(-1))
@@ -2007,6 +2037,7 @@ export function assignChainedRewards(seed, settings) {
                 result.invalidated = true
                 return
             }
+            rewards.progression.set(rewardName, true)
             shuffleArray(rng, availableChecks)
             const locationName = availableChecks
             .find((checkName) => {
@@ -2031,7 +2062,7 @@ export function assignChainedRewards(seed, settings) {
             }
             result.locations[locationName] = rewardName
             debug.layers.at(-1)[locationName] = rewardName
-            if (rewards.inLogic.includes(rewardName)) {
+            if (rewards.progression.has(rewardName)) {
                 settings.locationRewards[locationName] = rewardName
                 const locationOutcome = {}
                 locationOutcome[locationName] = true
@@ -2042,9 +2073,6 @@ export function assignChainedRewards(seed, settings) {
         })
         if (result.invalidated) {
             return result
-        }
-        if (progressionStatus === 'MID') {
-            progressionStatus = 'LATE'
         }
     }
     if (
