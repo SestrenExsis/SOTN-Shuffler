@@ -19,10 +19,11 @@ node shuffle multi -e "build/patcher/extraction-aliased.json" -o "build/current-
   --patcher.list="lib/BIN-Patcher/bins/sotn-us/patches/normalize-underground-caverns.json" \
   --patcher.list="lib/BIN-Patcher/bins/sotn-us/patches/simplify-gear-puzzle.json" \
   --rewardShuffler.on=true \
-  --rewardShuffler.method="layered" \
+  --rewardShuffler.method="chained" \
   --roomShuffler.on=true \
   --solver.on=true \
   --stageShuffler.on=true
+#   --seed="OvertSpike17279879"
 
 node lib/BIN-Patcher/bin alter -s "build/patcher/extraction-masked-aliased.json" -t "build/current-patch.json"
 node lib/BIN-Patcher/bin patch -p "build/current-patch.json" -c "build/current-seed.json"

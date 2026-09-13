@@ -786,7 +786,7 @@ export function analyzeLogic(settings, scenario) {
                 result.solvedState = startingState
             }
             else {
-                console.log('**** FAILED ****')
+                // console.log('**** FAILED ****')
                 const goalsRemaining = {}
                 Object.entries(goalState)
                 .filter(([propertyKey, propertyInfo]) => {

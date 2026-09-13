@@ -2429,6 +2429,9 @@ function getMovement(requirementName, section, time) {
             result.progressionRisingUppercut = true
             result.techniqueRisingUppercut = true
             break
+        case 'wolfForm':
+            result.progressionWolfTransformation = true
+            break
         case 'wolfMistRise':
         case 'wolfMistRiseShort':
             result.progressionWolfTransformation = true
@@ -11288,7 +11291,9 @@ export const ROOMS_INFO = {
                         // section: 'leftOfTunnel',
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        // getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        // getMovement('wolfForm', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -11298,7 +11303,9 @@ export const ROOMS_INFO = {
                         // section: 'main',
                     },
                     requirements: [
-                        getMovement('basic', 'leftOfTunnel', COST_UNKNOWN),
+                        getMovement('batForm', 'leftOfTunnel', COST_UNKNOWN),
+                        // getMovement('poweredMist', 'leftOfTunnel', COST_UNKNOWN),
+                        // getMovement('wolfForm', 'leftOfTunnel', COST_UNKNOWN),
                     ],
                 },
             },

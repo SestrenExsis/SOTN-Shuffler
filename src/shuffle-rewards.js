@@ -178,7 +178,7 @@ const LOCATIONS = {
         validRewardTypes: [ 'relic', ],
         forbiddenRewards: [
             'relicSoulOfBat',
-            'relicGravityBoots',
+            // 'relicGravityBoots',
         ],
         writes: {
             relic: [
@@ -1489,16 +1489,12 @@ export function assignLayeredRewards(seed, settings) {
     }
     // 26 locations in total
     const rewards = {}
-    // random side that leads to new checks
-    // random main that leads to new checks
-    // 
     rewards.main = [ // Fixed, in-logic
         'relicLeapStone',
         'relicFormOfMist',
         'relicSoulOfBat',
         'relicGravityBoots',
     ].reverse()
-    const maxLayerCount = rewards.main.length
     rewards.side = shuffleArray(rng, [ // Shuffled, in-logic
         'itemGoldRing',
         'itemSilverRing',
@@ -1528,12 +1524,17 @@ export function assignLayeredRewards(seed, settings) {
         'relicSwordCard',
     ])
     rewards.inLogic = rewards.main.slice().concat(rewards.side.slice())
+    const counts = {
+        main: 0,
+        side: 0,
+        bonus: 0,
+        filler: 0,
+    }
+    const maxLayerCount = rewards.main.length
     // Place rewards on current layer
     let debug = {
         layers: [],
     }
-    let bonusRewardCount = 0
-    let sideRewardCount = 0
     for (let currentLayer = 0; currentLayer <= maxLayerCount; currentLayer++) {
         debug.layers.push({})
         const logic = getLogic(settings)
@@ -1596,36 +1597,40 @@ export function assignLayeredRewards(seed, settings) {
             })
             // Assign rewards for pre-final layer
             currentLayerRewards.push(rewards.main.pop())
+            counts.main += 1
             if (availableChecks.length < currentLayerRewards.length) {
                 result.invalidated = true
                 return result
             }
             while (
                 currentLayerRewards.length < availableChecks.length &&
-                sideRewardCount <= (2 * currentLayer) &&
+                counts.side <= (2 * counts.main) &&
                 rewards.side.length > 0
             ) {
                 currentLayerRewards.push(rewards.side.pop())
-                sideRewardCount += 1
+                counts.side += 1
             }
             while (
                 currentLayerRewards.length < availableChecks.length &&
-                bonusRewardCount <= currentLayer &&
+                counts.bonus <= counts.main &&
                 rewards.bonus.length > 0
             ) {
                 currentLayerRewards.push(rewards.bonus.pop())
-                bonusRewardCount += 1
+                counts.bonus += 1
             }
             while (currentLayerRewards.length < availableChecks.length) {
                 if (rewards.filler.length > 0) {
                     currentLayerRewards.push(rewards.filler.pop())
+                    counts.filler += 1
                     continue
                 }
                 if (rewards.bonus.length > 0) {
                     currentLayerRewards.push(rewards.bonus.pop())
-                    bonusRewardCount += 1
+                    counts.bonus += 1
                     continue
                 }
+                result.invalidated = true
+                return result
             }
         }
         else {
@@ -1640,14 +1645,15 @@ export function assignLayeredRewards(seed, settings) {
             // Assign rewards for final layer
             while (rewards.side.length > 0) {
                 currentLayerRewards.push(rewards.side.pop())
-                sideRewardCount += 1
+                counts.side += 1
             }
             while (rewards.bonus.length > 0) {
                 currentLayerRewards.push(rewards.bonus.pop())
-                bonusRewardCount += 1
+                counts.bonus += 1
             }
             while (rewards.filler.length > 0) {
                 currentLayerRewards.push(rewards.filler.pop())
+                counts.filler += 1
             }
         }
         currentLayerRewards
@@ -1692,6 +1698,362 @@ export function assignLayeredRewards(seed, settings) {
         if (result.invalidated) {
             return result
         }
+    }
+    console.log('layers:', debug.layers)
+    return result
+}
+
+export function assignChainedRewards(seed, settings) {
+    const rng = seedrandom(seed)
+    let result = {
+        debugInfo: {
+            attemptCounter: 0,
+        },
+        invalidated: false,
+        locations: {
+        },
+    }
+    // Second Castle checks are forced to be filler Bat upgrades
+    const secondCastleRewards = shuffleArray(rng, [
+        'relicFireOfBat',
+        'relicForceOfEcho',
+    ])
+    result.locations.locationGasCloud = secondCastleRewards.pop()
+    result.locations.locationForceOfEcho = secondCastleRewards.pop()
+    // ...
+    settings.locationRewards = {}
+    result.debugInfo.attemptCounter += 1
+    const startingState = {
+        stage: 'castleEntrance',
+        room: 'afterDrawbridge',
+        section: 'main',
+        positionX: 136,
+        positionY: 640,
+        time: 120.0,
+        techniqueSolveBoxPuzzle: true,
+    }
+    // 24 locations in total
+    // Goal is to follow the chain of progression to Soul of Bat, then find both Rings
+    const rewards = {}
+    rewards.main = [ // Procedural, in-logic
+        'itemSpikeBreaker',
+        'relicCubeOfZoe',
+        'relicDemonCard',
+        'relicEchoOfBat',
+        'relicFormOfMist',
+        'relicGravityBoots',
+        'relicJewelOfOpen',
+        'relicLeapStone',
+        'relicMermanStatue',
+        'relicPowerOfMist',
+        'relicSoulOfBat',
+    ]
+    rewards.side = [ // Fixed, in-logic
+        'itemSilverRing',
+        'itemGoldRing',
+    ].reverse()
+    rewards.bonus = [ // Fixed, out-of-logic
+        'relicSoulOfWolf',
+        'relicPowerOfWolf',
+        'relicGasCloud',
+        'relicSkillOfWolf',
+        'relicHolySymbol',
+    ].reverse()
+    rewards.filler = shuffleArray(rng, [ // Shuffled, out-of-logic
+        'relicBatCard',
+        'relicFaerieCard',
+        'relicFaerieScroll',
+        'relicGhostCard',
+        'relicSpiritOrb',
+        'relicSwordCard',
+    ])
+    rewards.inLogic = rewards.main.slice().concat(rewards.side.slice())
+    const assignments = {
+        main: [],
+        side: [],
+        bonus: [],
+        filler: [],
+    }
+    // Place rewards on current layer
+    let debug = {
+        layers: [],
+    }
+    let progressionStatus = 'EARLY'
+    while (rewards.main.length > 0) {
+        debug.layers.push({})
+        const logic = getLogic(settings)
+        const edges = getEdges(logic, startingState)
+        const currentLayerRewards = []
+        const availableChecks = []
+        // Find available checks for the current layer
+        Object.entries(edges)
+        .filter(([currentNodeName, nextNodeNames]) => {
+            const parts = currentNodeName.split('.')
+            const stageName = parts.at(0)
+            const nodeName = parts.at(1)
+            return (
+                stageName in NODES &&
+                nodeName in NODES[stageName] &&
+                'nodeType' in NODES[stageName][nodeName] &&
+                ['action', 'check', 'warp'].includes(NODES[stageName][nodeName].nodeType) &&
+                !(nodeName in result.locations)
+            )
+        })
+        .forEach(([currentNodeName, nextNodeNames]) => {
+            const parts = currentNodeName.split('.')
+            const stageName = parts.at(0)
+            const nodeName = parts.at(1)
+            const visits = new Map()
+            const work = [
+                currentNodeName,
+            ]
+            visits.set(currentNodeName, false)
+            while (work.length > 0) {
+                const currentNode = work.pop()
+                if (currentNode === 'castleEntrance.locationCubeOfZoe') {
+                    if (!(visits.get(nodeName) ?? false)) {
+                        switch (NODES[stageName][nodeName].nodeType) {
+                            case 'action':
+                                updateStateWithOutcome(startingState, NODES[stageName][nodeName].requirement)
+                                break
+                            case 'check':
+                                availableChecks.push(nodeName)
+                                break
+                            case 'warp':
+                                updateStateWithOutcome(startingState, NODES[stageName][nodeName].outcome)
+                                break
+                        }
+                        visits.set(nodeName, true)
+                    }
+                    break
+                }
+                if (currentNode in edges) {
+                    Object.entries(edges[currentNode])
+                    .forEach(([nextNode, time]) => {
+                        if (visits.has(nextNode)) {
+                            return
+                        }
+                        else {
+                            work.push(nextNode)
+                            visits.set(nextNode, true)
+                        }
+                    })
+                }
+            }
+        })
+        // Assign a main reward that unlocks the least number of new checks (must unlock at least 1)
+        shuffleArray(rng, rewards.main)
+        let currentReward = {
+            name: null,
+            checksUnlockedCount: Number.MAX_SAFE_INTEGER,
+        }
+        rewards.main
+        .forEach((rewardName) => {
+            const prospectiveState = Object.assign({}, startingState)
+            // const locationOutcome = {}
+            // locationOutcome[locationName] = true
+            // updateStateWithOutcome(prospectiveState, locationOutcome)
+            updateStateWithOutcome(prospectiveState, LOGIC.rewards[rewardName].outcome)
+            const edges = getEdges(logic, prospectiveState)
+            const prospectiveChecks = []
+            Object.entries(edges)
+            .filter(([currentNodeName, nextNodeNames]) => {
+                const parts = currentNodeName.split('.')
+                const stageName = parts.at(0)
+                const nodeName = parts.at(1)
+                return (
+                    stageName in NODES &&
+                    nodeName in NODES[stageName] &&
+                    'nodeType' in NODES[stageName][nodeName] &&
+                    ['action', 'check', 'warp'].includes(NODES[stageName][nodeName].nodeType) &&
+                    !(nodeName in result.locations)
+                )
+            })
+            .forEach(([currentNodeName, nextNodeNames]) => {
+                const parts = currentNodeName.split('.')
+                const stageName = parts.at(0)
+                const nodeName = parts.at(1)
+                const visits = new Map()
+                const work = [
+                    currentNodeName,
+                ]
+                visits.set(currentNodeName, true)
+                while (work.length > 0) {
+                    const currentNode = work.pop()
+                    if (currentNode === 'castleEntrance.locationCubeOfZoe') {
+                        switch (NODES[stageName][nodeName].nodeType) {
+                            case 'action':
+                                updateStateWithOutcome(prospectiveState, NODES[stageName][nodeName].requirement)
+                                break
+                            case 'check':
+                                prospectiveChecks.push(nodeName)
+                                break
+                            case 'warp':
+                                updateStateWithOutcome(prospectiveState, NODES[stageName][nodeName].outcome)
+                                break
+                        }
+                        break
+                    }
+                    if (currentNode in edges) {
+                        Object.entries(edges[currentNode])
+                        .forEach(([nextNode, time]) => {
+                            if (visits.has(nextNode)) {
+                                return
+                            }
+                            else {
+                                work.push(nextNode)
+                                visits.set(nextNode, true)
+                            }
+                        })
+                    }
+                }
+            })
+            if (
+                prospectiveChecks.length > availableChecks.length &&
+                (prospectiveChecks.length - availableChecks.length) < currentReward.checksUnlockedCount
+            ) {
+                currentReward.name = rewardName
+                currentReward.checksUnlockedCount = prospectiveChecks.length - availableChecks.length
+            }
+        })
+        if (currentReward.name === null) {
+            // Find available checks for final layer
+            Object.entries(LOGIC.locations)
+            .filter(([locationName, locationInfo]) => {
+                return !(locationName in result.locations)
+            })
+            .forEach(([locationName, locationInfo]) => {
+                if (!availableChecks.includes(locationName)) {
+                    availableChecks.push(locationName)
+                }
+            })
+            // Assign rewards for final layer
+            while (rewards.main.length > 0) {
+                currentLayerRewards.push(rewards.main.pop())
+                assignments.main.push(currentLayerRewards.at(-1))
+            }
+            while (rewards.side.length > 0) {
+                currentLayerRewards.push(rewards.side.pop())
+                assignments.side.push(currentLayerRewards.at(-1))
+            }
+            while (rewards.bonus.length > 0) {
+                currentLayerRewards.push(rewards.bonus.pop())
+                assignments.bonus.push(currentLayerRewards.at(-1))
+            }
+            while (rewards.filler.length > 0) {
+                currentLayerRewards.push(rewards.filler.pop())
+                assignments.filler.push(currentLayerRewards.at(-1))
+            }
+        }
+        else {
+            if (['relicSoulOfBat', 'relicPowerOfMist'].includes(currentReward.name)
+            ) {
+                progressionStatus = 'MID'
+            }
+            rewards.main.splice(rewards.main.indexOf(currentReward.name), 1)
+            currentLayerRewards.push(currentReward.name)
+            assignments.main.push(currentLayerRewards.at(-1))
+            if (availableChecks.length < currentLayerRewards.length) {
+                result.invalidated = true
+                return result
+            }
+            if (
+                (currentLayerRewards.length < availableChecks.length) &&
+                (progressionStatus !== 'EARLY') &&
+                (rewards.side.length > 0)
+            ) {
+                currentLayerRewards.push(rewards.side.pop())
+                assignments.side.push(currentLayerRewards.at(-1))
+            }
+            while (
+                (currentLayerRewards.length < availableChecks.length) &&
+                (assignments.bonus.length < assignments.main.length) &&
+                (rewards.bonus.length) > 0
+            ) {
+                currentLayerRewards.push(rewards.bonus.pop())
+                assignments.bonus.push(currentLayerRewards.at(-1))
+            }
+            while (currentLayerRewards.length < availableChecks.length) {
+                if (rewards.filler.length > 0) {
+                    currentLayerRewards.push(rewards.filler.pop())
+                    assignments.filler.push(currentLayerRewards.at(-1))
+                    continue
+                }
+                if (rewards.bonus.length > 0) {
+                    currentLayerRewards.push(rewards.bonus.pop())
+                    assignments.bonus.push(currentLayerRewards.at(-1))
+                    continue
+                }
+                if (progressionStatus === 'LATE') {
+                    if (rewards.main.length > 0) {
+                        currentLayerRewards.push(rewards.main.pop())
+                        assignments.main.push(currentLayerRewards.at(-1))
+                        continue
+                    }
+                    if (rewards.side.length > 0) {
+                        currentLayerRewards.push(rewards.side.pop())
+                        assignments.side.push(currentLayerRewards.at(-1))
+                        continue
+                    }
+                }
+                result.invalidated = true
+                return result
+            }
+        }
+        // ...
+        currentLayerRewards
+        .forEach((rewardName) => {
+            if (availableChecks.length < 1) {
+                result.invalidated = true
+                return
+            }
+            shuffleArray(rng, availableChecks)
+            const locationName = availableChecks
+            .find((checkName) => {
+                let validRewardType = false
+                LOCATIONS[checkName].validRewardTypes
+                .forEach((rewardType) => {
+                    if (rewardName.startsWith(rewardType)) {
+                        validRewardType = true
+                    }
+                })
+                LOCATIONS[checkName].forbiddenRewards
+                .forEach((forbiddenReward) => {
+                    if (rewardName === forbiddenReward) {
+                        validRewardType = false
+                    }
+                })
+                return validRewardType
+            })
+            if (locationName === undefined) {
+                result.invalidated = true
+                return
+            }
+            result.locations[locationName] = rewardName
+            debug.layers.at(-1)[locationName] = rewardName
+            if (rewards.inLogic.includes(rewardName)) {
+                settings.locationRewards[locationName] = rewardName
+                const locationOutcome = {}
+                locationOutcome[locationName] = true
+                updateStateWithOutcome(startingState, locationOutcome)
+                updateStateWithOutcome(startingState, LOGIC.rewards[rewardName].outcome)
+            }
+            availableChecks.splice(availableChecks.indexOf(locationName), 1)
+        })
+        if (result.invalidated) {
+            return result
+        }
+        if (progressionStatus === 'MID') {
+            progressionStatus = 'LATE'
+        }
+    }
+    if (
+        rewards.main.length > 0 ||
+        rewards.side.length > 0 ||
+        rewards.bonus.length > 0 ||
+        rewards.filler.length > 0
+    ) {
+        result.invalidated = true
     }
     console.log('layers:', debug.layers)
     return result

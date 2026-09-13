@@ -47,6 +47,7 @@ import {
 import {
     getRewardChanges,
     getVanillaRewardLocations,
+    assignChainedRewards,
     assignLayeredRewards,
     shuffleRewards,
 } from './src/shuffle-rewards.js'
@@ -320,7 +321,7 @@ const argv = yargs(process.argv.slice(2))
                             stageAttemptCount += 1
                         }
                     })
-                    console.log('debug:', inspect(debug, { depth: 4 }))
+                    // console.log('debug:', inspect(debug, { depth: 4 }))
                     shuffleData.debugInfo.finalSeedsUsed.roomShuffler = seed
                     logicAnalysis.mapChangesRequired = true
                 }
@@ -380,6 +381,12 @@ const argv = yargs(process.argv.slice(2))
                         case 'unbiased':
                             questRewards = shuffleRewards(seed)
                             break
+                        case 'chained':
+                            questRewards = assignChainedRewards(seed, logicAnalysis)
+                            if (questRewards.invalidated) {
+                                logicAnalysis.invalidated = true
+                            }
+                            break
                         case 'layered':
                             questRewards = assignLayeredRewards(seed, logicAnalysis)
                             if (questRewards.invalidated) {
@@ -396,8 +403,8 @@ const argv = yargs(process.argv.slice(2))
                     logicAnalysis.solved = false
                 }
                 else if (argv.solver?.on) {
-                    console.log('rewardLocationCount:', Object.keys(logicAnalysis.locationRewards).length)
-                    console.log('seedsUsedWhenSolving:', shuffleData.debugInfo.finalSeedsUsed)
+                    // console.log('rewardLocationCount:', Object.keys(logicAnalysis.locationRewards).length)
+                    // console.log('seedsUsedWhenSolving:', shuffleData.debugInfo.finalSeedsUsed)
                     shuffleData.debugInfo.solvable = false
                     const seed = argv.solver.seed ?? (seedName + '.solver.' + shuffleData.debugInfo.solverAttemptId)
                     logicAnalysis.solverAttemptId = shuffleData.debugInfo.solverAttemptId
@@ -458,8 +465,8 @@ const argv = yargs(process.argv.slice(2))
                     .every((scenario) => {
                         return scenario.result.solved
                     })
-                    console.log('logicAnalysis:', inspect(logicAnalysis, { depth: 4 }))
-                    console.log('')
+                    // console.log('logicAnalysis:', inspect(logicAnalysis, { depth: 4 }))
+                    // console.log('')
                     shuffleData.debugInfo.solved = logicAnalysis.solved
                     shuffleData.debugInfo.finalSeedsUsed.solver = seed
                 }
@@ -611,6 +618,7 @@ const argv = yargs(process.argv.slice(2))
             for (let index = 0; index < changesToAdd.length; index++) {
                 shuffleData.changes.push(changesToAdd.at(index))
             }
+            console.log('stageLinks:', inspect(logicAnalysis.stageLinks, { depth: 4 }))
             fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))
         }
     })
