@@ -7976,7 +7976,7 @@ export const MAP_PIXELS = {
         exitToMarbleGallery: [
             fillRect(COLORS.outerWall, 1, 1, 3, 3),
             fillRect(COLORS.outerWall, 0, 2),
-            fillRect(COLORS.outerWall, 2, 0),
+            fillRect(COLORS.redDoor, 2, 0),
             fillRect(COLORS.outerWall, 4, 2),
         ],
         lowerMedusaRoom: [
@@ -8338,6 +8338,8 @@ export function getMapPixels(stageLinks, roomPositions) {
 }
 
 export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOffset, options={}) {
+    const MAX_MAP_COL = 63
+    const MAX_MAP_ROW = 56
     const result = {
         rooms: [],
         cells: [],
@@ -8363,7 +8365,7 @@ export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOff
     })
     const rows = Math.max(baseNodeGroup.cells.length, nodeGroup.cells.length + rowOffset) - Math.min(0, rowOffset)
     const columns = Math.max(baseNodeGroup.cells.at(0).length, nodeGroup.cells.at(0).length + columnOffset) - Math.min(0, columnOffset)
-    if (rows >= 58 || columns >= 63) {
+    if (rows >= MAX_MAP_ROW || columns >= MAX_MAP_COL) {
         return null
     }
     result.cells = []
