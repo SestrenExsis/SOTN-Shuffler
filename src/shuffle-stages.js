@@ -474,6 +474,14 @@ export function shuffleStages(seed) {
                     !targetTeleporter.forbiddenConnections.has(sourceTeleporterName) &&
                     !linkedStages[sourceTeleporter.stage].has(targetTeleporter.stage) &&
                     !linkedStages[targetTeleporter.stage].has(sourceTeleporter.stage)
+                     &&
+                    // Do not allow Colosseum and Long Library to connect to the same stage
+                    !(
+                        (linkedStages[sourceTeleporter.stage].has('longLibrary') && targetTeleporter.stage === 'catacombs') ||
+                        (linkedStages[targetTeleporter.stage].has('longLibrary') && sourceTeleporter.stage === 'catacombs') ||
+                        (linkedStages[sourceTeleporter.stage].has('catacombs') && targetTeleporter.stage === 'longLibrary') ||
+                        (linkedStages[targetTeleporter.stage].has('catacombs') && sourceTeleporter.stage === 'longLibrary')
+                    )
                 )
             })
             if (possibleLinks.length < 1) {
@@ -508,7 +516,8 @@ export function shuffleStages(seed) {
         })
         result.links = links
     }
-    // console.log(result)
+    // console.log(result.linkedStages.catacombs)
+    // console.log(result.linkedStages.longLibrary)
     return result
 }
 
