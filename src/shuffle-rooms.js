@@ -7725,12 +7725,12 @@ export const MAP_PIXELS = {
         ],
         bottomOfElevatorShaft: [
             fillRect(COLORS.colosseum, 1, 1, 7, 15),
-            fillRect(COLORS.longLibrary, 0, 2),
-            fillRect(COLORS.longLibrary, 0, 14),
-            fillRect(COLORS.longLibrary, 2, 0),
-            fillRect(COLORS.longLibrary, 2, 16),
-            fillRect(COLORS.longLibrary, 6, 0),
-            fillRect(COLORS.longLibrary, 6, 16),
+            fillRect(COLORS.colosseum, 0, 2),
+            fillRect(COLORS.colosseum, 0, 14),
+            fillRect(COLORS.colosseum, 2, 0),
+            fillRect(COLORS.colosseum, 2, 16),
+            fillRect(COLORS.colosseum, 6, 0),
+            fillRect(COLORS.colosseum, 6, 16),
         ],
     },
     longLibrary: {
