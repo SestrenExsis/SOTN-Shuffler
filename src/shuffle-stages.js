@@ -516,8 +516,6 @@ export function shuffleStages(seed) {
         })
         result.links = links
     }
-    // console.log(result.linkedStages.catacombs)
-    // console.log(result.linkedStages.longLibrary)
     return result
 }
 

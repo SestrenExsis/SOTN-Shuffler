@@ -1505,7 +1505,7 @@ export function assignLayeredRewards(seed, settings) {
         'relicJewelOfOpen',
         'relicMermanStatue',
     ])
-    rewards.bonus = [ // Fixed, out-of-logic
+    rewards.bonus = [ // Fixed, out-of-logic (except for Soul of Wolf)
         'relicSoulOfWolf',
         'relicPowerOfWolf',
         'relicGasCloud',
@@ -1523,7 +1523,16 @@ export function assignLayeredRewards(seed, settings) {
         'relicSpiritOrb',
         'relicSwordCard',
     ])
-    rewards.inLogic = rewards.main.slice().concat(rewards.side.slice())
+    rewards.progression = new Map()
+    rewards.main
+    .forEach((rewardName) => {
+        rewards.progression.set(rewardName, false)
+    })
+    rewards.side
+    .forEach((rewardName) => {
+        rewards.progression.set(rewardName, false)
+    })
+    rewards.progression.set('relicSoulOfWolf', false)
     const counts = {
         main: 0,
         side: 0,
@@ -1686,7 +1695,7 @@ export function assignLayeredRewards(seed, settings) {
             }
             result.locations[locationName] = rewardName
             debug.layers.at(-1)[locationName] = rewardName
-            if (rewards.inLogic.includes(rewardName)) {
+            if (rewards.progression.has(rewardName)) {
                 settings.locationRewards[locationName] = rewardName
                 const locationOutcome = {}
                 locationOutcome[locationName] = true
@@ -1733,7 +1742,7 @@ export function assignChainedRewards(seed, settings) {
         techniqueSolveBoxPuzzle: true,
     }
     // 24 locations in total
-    // Goal is to follow the chain of progression to Leap Stone, then Flight, then find both Rings
+    // Goal is to follow the chain of progression to Flight, then find both Rings
     const rewards = {}
     rewards.locked = [ // Locked initially, added to main after reaching MID layer
         'relicEchoOfBat',
@@ -1754,7 +1763,7 @@ export function assignChainedRewards(seed, settings) {
         'itemSilverRing',
         'itemGoldRing',
     ].reverse()
-    rewards.bonus = [ // Fixed, out-of-logic
+    rewards.bonus = [ // Fixed, out-of-logic (except for Soul of Wolf)
         'relicSoulOfWolf',
         'relicPowerOfWolf',
         'relicGasCloud',
@@ -1778,6 +1787,7 @@ export function assignChainedRewards(seed, settings) {
     .forEach((rewardName) => {
         rewards.progression.set(rewardName, false)
     })
+    rewards.progression.set('relicSoulOfWolf', false)
     const assignments = {
         main: [],
         side: [],
@@ -1919,8 +1929,8 @@ export function assignChainedRewards(seed, settings) {
                 }
             })
             if (
-                prospectiveChecks.length > availableChecks.length &&
-                (prospectiveChecks.length - availableChecks.length) < currentReward.checksUnlockedCount
+                prospectiveChecks.length > availableChecks.length // &&
+                // (prospectiveChecks.length - availableChecks.length) < currentReward.checksUnlockedCount
             ) {
                 currentReward.name = rewardName
                 currentReward.checksUnlockedCount = prospectiveChecks.length - availableChecks.length
@@ -1969,7 +1979,7 @@ export function assignChainedRewards(seed, settings) {
             }
             switch (progressionStatus) {
                 case 'EARLY':
-                    if (currentReward.name === 'relicLeapStone') {
+                    if (['relicFormOfMist', 'relicLeapStone'].includes(currentReward.name)) {
                         while (rewards.locked.length > 0) {
                             rewards.main.push(rewards.locked.pop())
                         }

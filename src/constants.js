@@ -9826,6 +9826,7 @@ export const ROOMS_INFO = {
                             progressionMistTransformation: true,
                             progressionWolfTransformation: true,
                             progressionItemMaterialization: true,
+                            techniqueWolfMistRise: true,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
