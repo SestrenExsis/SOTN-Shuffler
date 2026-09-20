@@ -75,7 +75,7 @@ function simplify(state) {
     })
 }
 
-function updateStateWithOutcome(state, outcome, simplifyState=true) {
+export function updateStateWithOutcome(state, outcome, simplifyState=true) {
     Object.entries(outcome)
     .forEach(([propertyKey, propertyInfo]) => {
         switch (typeof propertyInfo) {
@@ -292,7 +292,7 @@ function getLocationRewardCommands(settings) {
     return result
 }
 
-function getLogic(settings, enableElsewhere=false) {
+export function getLogic(settings, enableElsewhere=false) {
     const result = {}
     const roomPositions = settings.roomPositions ?? []
     // Process every location-reward combination
@@ -552,8 +552,7 @@ export function findGoal(logic, startingState, goalState, sameStage=false) {
     return result
 }
 
-export function validate(settings, validation) {
-    const logic = getLogic(settings, true)
+export function validate(logic, validation) {
     if (validation.debug ?? false) {
         console.log('logic:', JSON.stringify(logic, null, 4))
     }
@@ -570,7 +569,7 @@ export function validate(settings, validation) {
     return result
 }
 
-function getEdges(logic, startingState) {
+export function getEdges(logic, startingState) {
     // NOTE(sestren): Starting state is assumed to be in Castle Entrance for now, and will probably not work for other stages yet
     const TIME_BUDGET = startingState.time
     // Calculate edges between nodes that are traversable from the starting node
@@ -787,7 +786,7 @@ export function analyzeLogic(settings, scenario) {
                 result.solvedState = startingState
             }
             else {
-                console.log('**** FAILED ****')
+                // console.log('**** FAILED ****')
                 const goalsRemaining = {}
                 Object.entries(goalState)
                 .filter(([propertyKey, propertyInfo]) => {

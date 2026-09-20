@@ -1,6 +1,12 @@
 
 import seedrandom from 'seedrandom'
 
+// NOTE(sestren): All word parts are capped at 5 letters long for now, to maximize the number of possible seed names
+// - When text is rendered in SOTN, digits consume 2 bytes, while letters consume 1 byte
+// - A single digit has ~3.32 bits of entropy, so ~1.16 bits of entropy per byte when displayed
+// - This means that the word list should roughly double in size for each additional letter allowed in length to 
+//   preserve the same entropy as simply adding another digit at the end instead
+// - The current word list has, approximately, an entropy of ~7.64 bits per word, which is more entropy than digits would offer in the same space
 const words = {
     adjectives: [
         'able',
@@ -128,7 +134,10 @@ const words = {
         'nifty',
         'noble',
         'noisy',
+        'odd',
         'okay',
+        'old',
+        'overt',
         'petty',
         'phony',
         'picky',
@@ -194,6 +203,9 @@ const words = {
         'wise',
         'witty',
         'wrong',
+        'young',
+        'zesty',
+        'zippy',
     ],
     nouns: [
         'abode',
@@ -293,6 +305,7 @@ const words = {
         'board',
         'boat',
         'boon',
+        'broom',
         'cairn',
         'card',
         'cart',
@@ -350,12 +363,15 @@ const words = {
         'lion',
         'lock',
         'loom',
+        'loot',
+        'lute',
         'miser',
         'moat',
         'mocha',
         'molar',
         'monk',
         'moon',
+        'mop',
         'morn',
         'moss',
         'moth',
@@ -428,14 +444,17 @@ const words = {
 }
 
 export function getSeedName(seed) {
+    const MAX_BYTES = 32
     const rng = seedrandom(seed)
     const adjective = words.adjectives.at(Math.floor(rng() * words.adjectives.length))
     const noun = words.nouns.at(Math.floor(rng() * words.nouns.length))
     let result = adjective.at(0).toUpperCase() + adjective.slice(1) + noun.at(0).toUpperCase() + noun.slice(1)
+    // NOTE(sestren): The byte count calculation naively assumes that adjectives/nouns will only contain a-z or A-Z characters
     let byteCount = result.length
     const maxDigits = 3 + Math.floor(rng() * 7)
     for (let i = 0; i < maxDigits; i++) {
-        if (byteCount >= 28) {
+        // NOTE(sestren): Subtract 2 to ensure enough room for an additional digit, subtract 1 to leave room for the null terminator of the string
+        if (byteCount >= (MAX_BYTES - 2 - 1)) {
             break
         }
         result += Math.floor(rng() * 10)

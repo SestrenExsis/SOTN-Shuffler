@@ -4,6 +4,7 @@ import { inspect } from 'node:util'
 
 import {
     analyzeLogic,
+    getLogic,
     validate,
 } from './src/analyze-logic.js'
 
@@ -14,6 +15,7 @@ import {
 
 import {
     TELEPORTERS,
+    VALIDATIONS,
 } from './src/constants.js'
 
 import {
@@ -29,6 +31,8 @@ import {
     combineNodeGroups,
     getMapPixels,
     getRoomChanges,
+    getVanillaNodeGroupForStage,
+    getVanillaRoomPositions,
     MAP_PIXELS,
     NODE_GROUPS,
     shuffleRooms,
@@ -41,882 +45,31 @@ import {
 } from './src/shuffle-stages.js'
 
 import {
-    shuffleRewards,
     getRewardChanges,
+    getVanillaRewardLocations,
+    assignChainedRewards,
+    assignLayeredRewards,
+    shuffleRewards,
 } from './src/shuffle-rewards.js'
-
-// NOTE(sestren): Proposed order of operations:
-//   - Shuffle the rooms within each stage
-//   - Shuffle the stage connections
-//   - Assign warp rooms to the stage they connect to
-//   - Arrange stages on the map
 
 const MIN_MAP_COL = 1
 const MIN_MAP_ROW = 5
 
 const STAGE_NAMES = [
-    'abandonedMine',
-    'alchemyLaboratory',
-    'castleEntrance',
-    'castleKeep',
-    'catacombs',
-    'clockTower',
-    'colosseum',
-    'longLibrary',
-    'marbleGallery',
-    'olroxsQuarters',
-    'outerWall',
-    'royalChapel',
-    'undergroundCaverns',
+    'abandonedMine', // b71e5049
+    'alchemyLaboratory', // 3b71a88a
+    'castleEntrance', // c26a5062
+    'castleKeep', // c3d8062f
+    'catacombs', // ac96a224
+    'clockTower', // cc096706
+    'colosseum', // b1e56d5c
+    'longLibrary', // b7ef913a
+    'marbleGallery', // 5c9eb714
+    'olroxsQuarters', // 1925cd80
+    'outerWall', // 3b2daaad
+    'royalChapel', // 1c76841f
+    'undergroundCaverns', // 0c4c1b6d
 ]
-
-const VALIDATIONS = {
-    abandonedMine: [
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionDoubleJump: true,
-                progressionSummonDemonFamiliar: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                statusDemonSwitchActivated: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionDoubleJump: true,
-                progressionSummonDemonFamiliar: true,
-                statusDemonSwitchActivated: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationDemonCard: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionDoubleJump: true,
-                progressionSummonDemonFamiliar: true,
-                statusDemonSwitchActivated: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                stage: 'abandonedMine',
-                room: 'cerberusRoom',
-                section: 'main',
-            },
-            goalType: 'required',
-        },
-    ],
-    alchemyLaboratory: [
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                progressionUnlockBlueDoors: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                statusCannonActivated: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                progressionUnlockBlueDoors: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationBatCard: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                progressionUnlockBlueDoors: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationSkillOfWolf: true,
-            },
-            goalType: 'required',
-        },
-    ],
-    castleEntrance: [
-        {
-            startingState: {
-                stage: 'castleEntrance',
-                room: 'afterDrawbridge',
-                section: 'main',
-                debugEnableElsewhere: true,
-                time: 360.0,
-            },
-            goalState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                statusMetDeathInCastleEntrance: false,
-            },
-            goalType: 'forbidden',
-        },
-        {
-            startingState: {
-                stage: 'castleEntrance',
-                room: 'afterDrawbridge',
-                section: 'main',
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                progressionWolfTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                progressionWolfTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                progressionWolfTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                statusPassageFromCastleEntranceToWarpRoomsOpened: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                progressionWolfTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                statusSecretWallInMermanRoomOpened: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                progressionWolfTransformation: true,
-                statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
-                statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
-                statusPassageFromCastleEntranceToWarpRoomsOpened: true,
-                statusSecretWallInMermanRoomOpened: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationCubeOfZoe: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                progressionWolfTransformation: true,
-                statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
-                statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
-                statusPassageFromCastleEntranceToWarpRoomsOpened: true,
-                statusSecretWallInMermanRoomOpened: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationPowerOfWolf: true,
-            },
-            goalType: 'required',
-        },
-    ],
-    castleKeep: [
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationGhostCard: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationLeapStone: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationPowerOfMist: true,
-            },
-            goalType: 'required',
-        },
-    ],
-    catacombs: [
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                itemSpikeBreaker: 1,
-                progressionBatTransformation: true,
-                progressionEcholocation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationSpikeBreaker: true,
-            },
-            goalType: 'required',
-        },
-    ],
-    clockTower: [
-        // {
-        //     startingState: {
-        //         stage: 'elsewhere',
-        //         room: 'hub',
-        //         section: 'main',
-        //         progressionBatTransformation: true,
-        //         debugEnableElsewhere: true,
-        //         time: 120.0,
-        //     },
-        //     goalState: {
-        //         statusLeftGearRoomSolved: true,
-        //     },
-        //     goalType: 'required',
-        // },
-        // {
-        //     startingState: {
-        //         stage: 'elsewhere',
-        //         room: 'hub',
-        //         section: 'main',
-        //         progressionBatTransformation: true,
-        //         debugEnableElsewhere: true,
-        //         time: 120.0,
-        //     },
-        //     goalState: {
-        //         statusRightGearRoomSolved: true,
-        //     },
-        //     goalType: 'required',
-        // },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                statusLeftGearRoomSolved: true,
-                statusRightGearRoomSolved: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationFireOfBat: true,
-            },
-            goalType: 'required',
-        },
-        // NOTE(sestren): It should be possible to traverse the stage both ways without solving the Gear Puzzle
-        {
-            startingState: {
-                stage: 'clockTower',
-                room: 'loadingRoomToOuterWall',
-                section: 'main',
-                progressionBatTransformation: true,
-                debugEnableElsewhere: false,
-                time: 120.0,
-            },
-            goalState: {
-                stage: 'clockTower',
-                room: 'loadingRoomToCastleKeep',
-                section: 'main',
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'clockTower',
-                room: 'loadingRoomToCastleKeep',
-                section: 'main',
-                progressionBatTransformation: true,
-                debugEnableElsewhere: false,
-                time: 120.0,
-            },
-            goalState: {
-                stage: 'clockTower',
-                room: 'loadingRoomToOuterWall',
-                section: 'main',
-            },
-            goalType: 'required',
-        },
-    ],
-    colosseum: [
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationFormOfMist: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                statusBarrierInColosseumOpened: true,
-            },
-            goalType: 'required',
-        },
-    ],
-    longLibrary: [
-        {
-            startingState: {
-                stage: 'longLibrary',
-                room: 'outsideShop',
-                section: 'main',
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionDoubleJump: true,
-                progressionMistTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                stage: 'longLibrary',
-                room: 'outsideShop',
-                section: 'main',
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionDoubleJump: true,
-                progressionMistTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                stage: 'longLibrary',
-                room: 'threeLayerRoom',
-                section: 'topLayer',
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionDoubleJump: true,
-                progressionMistTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                stage: 'longLibrary',
-                room: 'threeLayerRoom',
-                section: 'main',
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionDoubleJump: true,
-                progressionMistTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                stage: 'longLibrary',
-                room: 'threeLayerRoom',
-                section: 'bottomLayer',
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionDoubleJump: true,
-                progressionMistTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationFaerieCard: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionDoubleJump: true,
-                progressionMistTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationFaerieScroll: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionDoubleJump: true,
-                progressionMistTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationJewelOfOpen: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionDoubleJump: true,
-                progressionMistTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationSoulOfBat: true,
-            },
-            goalType: 'required',
-        },
-    ],
-    marbleGallery: [
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                progressionItemMaterialization: true,
-                progressionUnlockBlueDoors: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                statusPressurePlateInMarbleGalleryActivated: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                progressionItemMaterialization: true,
-                progressionUnlockBlueDoors: true,
-                statusPressurePlateInMarbleGalleryActivated: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationGravityBoots: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                progressionItemMaterialization: true,
-                progressionUnlockBlueDoors: true,
-                statusPressurePlateInMarbleGalleryActivated: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationSpiritOrb: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                progressionItemMaterialization: true,
-                progressionUnlockBlueDoors: true,
-                statusPressurePlateInMarbleGalleryActivated: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                stage: 'marbleGallery',
-                room: 'clockRoom',
-                section: 'main',
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                stage: 'marbleGallery',
-                room: 'clockRoom',
-                section: 'main',
-            },
-            goalType: 'required',
-        },
-    ],
-    olroxsQuarters: [
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationEchoOfBat: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationSwordCard: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                stage: 'olroxsQuarters',
-                room: 'olroxsRoom',
-                section: 'main',
-            },
-            goalType: 'required',
-        },
-    ],
-    outerWall: [
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                stage: 'outerWall',
-                room: 'doppelgangerRoom',
-                section: 'main',
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationSoulOfWolf: true,
-            },
-            goalType: 'required',
-        },
-    ],
-    royalChapel: [
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                itemSpikeBreaker: 1,
-                progressionBatTransformation: true,
-                progressionMistTransformation: true,
-                progressionUnlockBlueDoors: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                statusStatueInRoyalChapelMoved: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                itemSpikeBreaker: 1,
-                progressionBatTransformation: true,
-                progressionMistTransformation: true,
-                progressionUnlockBlueDoors: true,
-                statusStatueInRoyalChapelMoved: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                stage: 'royalChapel',
-                room: 'hippogryphRoom',
-                section: 'main',
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                itemSpikeBreaker: 1,
-                progressionBatTransformation: true,
-                progressionMistTransformation: true,
-                progressionUnlockBlueDoors: true,
-                statusStatueInRoyalChapelMoved: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationSilverRing: true,
-            },
-            goalType: 'required',
-        },
-    ],
-    undergroundCaverns: [
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                progressionProtectionFromWater: true,
-                progressionSummonFerryman: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationGoldRing: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                progressionProtectionFromWater: true,
-                progressionSummonFerryman: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationHolySymbol: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                progressionProtectionFromWater: true,
-                progressionSummonFerryman: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                locationMermanStatue: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                progressionProtectionFromWater: true,
-                progressionSummonFerryman: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                statusButtonInUndergroundCavernsActivated: true,
-            },
-            goalType: 'required',
-        },
-        {
-            startingState: {
-                stage: 'elsewhere',
-                room: 'hub',
-                section: 'main',
-                progressionBatTransformation: true,
-                progressionProtectionFromWater: true,
-                progressionSummonFerryman: true,
-                statusButtonInUndergroundCavernsActivated: true,
-                debugEnableElsewhere: true,
-                time: 120.0,
-            },
-            goalState: {
-                statusBridgeInUndergroundCavernsBroken: true,
-            },
-            goalType: 'required',
-        },
-    ],
-}
 
 const argv = yargs(process.argv.slice(2))
     .command({ // multi
@@ -978,8 +131,13 @@ const argv = yargs(process.argv.slice(2))
             })
         // Reward shuffler options
             .option('rewardShuffler.on', {
-                describe: 'Whether or not to shuffle quest rewards (aka, items and relicss). If disabled, all other options in this category are ignored.',
+                describe: 'Whether or not to shuffle quest rewards (aka, items and relics). If disabled, all other options in this category are ignored.',
                 type: 'boolean',
+            })
+            .option('rewardShuffler.method', {
+                describe: 'TODO(sestren): Describe rewardShuffler.method',
+                type: 'string',
+                default: 'unbiased',
             })
             .option('rewardShuffler.seed', {
                 describe: 'If supplied, this seed is always used for supplying randomness to the reward shuffler',
@@ -1021,7 +179,6 @@ const argv = yargs(process.argv.slice(2))
             .demandOption(['extraction', 'out'])
         },
         handler: (argv) => {
-            // TODO(sestren): Add ability to turn room and stage-shuffling on or off independently of one another
             console.log(argv)
             const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
             const shuffleData = {
@@ -1091,36 +248,48 @@ const argv = yargs(process.argv.slice(2))
             }
             if (argv.musicShuffler?.on) {
                 const seed = argv.musicShuffler.seed ?? (seedName + '.musicShuffler')
-                const shuffledSongs = shuffleSongs(seed)
-                const songChanges = getSongChanges(shuffledSongs)
-                shuffleData.changes.push(songChanges)
+                shuffleData.changes.push(
+                    getSongChanges(shuffleSongs(seed))
+                )
                 shuffleData.debugInfo.finalSeedsUsed.musicShuffler = seed
             }
             shuffleData.debugInfo.solverAttemptId = -1
             let changesToAdd = []
-            let stageConnections = getVanillaStageLinks()
-            let roomArrangements = {}
-            let questRewards = {}
             let logicAnalysis = {
                 solved: false,
+                invalidated: false,
                 scenarios: [],
+                solverAttemptId: 0,
+                mapChangesRequired: false,
+                locationRewards: getVanillaRewardLocations(),
+                stageLinks: getVanillaStageLinks(),
+                roomPositions: getVanillaRoomPositions(extraction),
             }
-            // Some modules (those that modify or depend on logic) must be run inside a loop because the solver must verify them
+            // Some modules (those that modify or depend on logic) must be run inside a loop because the solver might need to verify them
             while (!logicAnalysis.solved) {
+                logicAnalysis.invalidated = false
                 shuffleData.debugInfo.solverAttemptId += 1
                 console.log('solverAttemptId:', shuffleData.debugInfo.solverAttemptId)
                 changesToAdd = []
+                const debug = {}
+                let stageNodeGroups = {}
                 if (argv.stageShuffler?.on) {
                     const seed = argv.stageShuffler.seed ?? (seedName + '.stageShuffler.' + shuffleData.debugInfo.solverAttemptId)
-                    stageConnections = shuffleStages(seed)
-                    const teleporterChanges = getTeleporterChanges(extraction, stageConnections.links)
-                    changesToAdd.push(teleporterChanges)
+                    logicAnalysis.stageLinks = shuffleStages(seed).links
+                    if (!(argv.roomShuffler?.on ?? false)) {
+                        STAGE_NAMES
+                        .forEach((stageName) => {
+                            stageNodeGroups[stageName] = getVanillaNodeGroupForStage(extraction, stageName)
+                        })
+                    }
+                    changesToAdd.push(
+                        getTeleporterChanges(extraction, logicAnalysis.stageLinks)
+                    )
                     shuffleData.debugInfo.finalSeedsUsed.stageShuffler = seed
+                    logicAnalysis.mapChangesRequired = true
                 }
-                const debug = {}
                 if (argv.roomShuffler?.on) {
                     const seed = argv.roomShuffler.seed ?? (seedName + '.roomShuffler.' + shuffleData.debugInfo.solverAttemptId)
-                    const stageNodeGroups = {}
                     shuffleData.debugInfo.finalSeedsUsed.stages = {}
                     STAGE_NAMES
                     .forEach((stageName) => {
@@ -1134,13 +303,13 @@ const argv = yargs(process.argv.slice(2))
                                 // console.log('stageName:', stageName)
                                 validInd = VALIDATIONS[stageName]
                                 .every((validation) => {
-                                    const logicSettings = {
+                                    const logic = getLogic({
                                         solverAttemptId: shuffleData.debugInfo.solverAttemptId,
                                         locationRewards: {},
                                         stageLinks: {},
                                         roomPositions: shuffledRooms.rooms,
-                                    }
-                                    return validate(logicSettings, validation)
+                                    }, true)
+                                    return validate(logic, validation)
                                 })
                             }
                             if (validInd) {
@@ -1152,9 +321,13 @@ const argv = yargs(process.argv.slice(2))
                             stageAttemptCount += 1
                         }
                     })
-                    console.log('debug:', inspect(debug, { depth: 4 }))
+                    // console.log('debug:', inspect(debug, { depth: 4 }))
+                    shuffleData.debugInfo.finalSeedsUsed.roomShuffler = seed
+                    logicAnalysis.mapChangesRequired = true
+                }
+                if (logicAnalysis.mapChangesRequired) {
                     // Attach warpRooms to the stages they lead to
-                    Object.entries(stageConnections.links)
+                    Object.entries(logicAnalysis.stageLinks)
                     .filter(([teleporterSource, teleporterTarget]) => {
                         return teleporterSource.startsWith('fromWarpRoomsTo')
                     })
@@ -1180,28 +353,61 @@ const argv = yargs(process.argv.slice(2))
                             throw Error(`Room not found for stage '${stageName}' and room '${roomName}'`)
                         }
                     })
-                    roomArrangements = arrangeStages(seed + '.stageArranger', stageNodeGroups)
-                    const roomChanges = getRoomChanges(roomArrangements.rooms, MIN_MAP_ROW, MIN_MAP_COL)
-                    changesToAdd.push(roomChanges)
-                    shuffleData.debugInfo.finalSeedsUsed.roomShuffler = seed
+                    const seed = seedName + '.stageArranger'
+                    logicAnalysis.roomPositions = arrangeStages(seed, stageNodeGroups).rooms
+                    // Move Forest Cutscene in Castle Entrance out of the way
+                    logicAnalysis.roomPositions.push(
+                        {
+                            stage: "castleEntrance",
+                            room: "forestCutscene",
+                            row: 0,
+                            column: 2,
+                        },
+                        {
+                            stage: "castleEntrance",
+                            room: "unknownRoom19",
+                            row: 0,
+                            column: 20,
+                        },
+                    )
+                    changesToAdd.push(
+                        getRoomChanges(logicAnalysis.roomPositions, MIN_MAP_ROW, MIN_MAP_COL)
+                    )
                 }
                 if (argv.rewardShuffler?.on) {
                     const seed = argv.rewardShuffler.seed ?? (seedName + '.rewardShuffler.' + shuffleData.debugInfo.solverAttemptId)
-                    questRewards = shuffleRewards(seed)
+                    let questRewards
+                    switch (argv.rewardShuffler.method) {
+                        case 'unbiased':
+                            questRewards = shuffleRewards(seed)
+                            break
+                        case 'chained':
+                            questRewards = assignChainedRewards(seed, logicAnalysis)
+                            if (questRewards.invalidated) {
+                                logicAnalysis.invalidated = true
+                            }
+                            break
+                        case 'layered':
+                            questRewards = assignLayeredRewards(seed, logicAnalysis)
+                            if (questRewards.invalidated) {
+                                logicAnalysis.invalidated = true
+                            }
+                            break
+                    }
+                    logicAnalysis.locationRewards = questRewards.locations
                     const rewardChanges = getRewardChanges(questRewards.locations)
                     changesToAdd.push(rewardChanges)
                     shuffleData.debugInfo.finalSeedsUsed.rewardShuffler = seed
                 }
-                if (argv.solver?.on) {
-                    console.log('seedsUsedWhenSolving', shuffleData.debugInfo.finalSeedsUsed)
+                if (logicAnalysis.invalidated) {
+                    logicAnalysis.solved = false
+                }
+                else if (argv.solver?.on) {
+                    // console.log('rewardLocationCount:', Object.keys(logicAnalysis.locationRewards).length)
+                    // console.log('seedsUsedWhenSolving:', shuffleData.debugInfo.finalSeedsUsed)
                     shuffleData.debugInfo.solvable = false
                     const seed = argv.solver.seed ?? (seedName + '.solver.' + shuffleData.debugInfo.solverAttemptId)
-                    const logicSettings = {
-                        solverAttemptId: shuffleData.debugInfo.solverAttemptId,
-                        locationRewards: questRewards.locations,
-                        stageLinks: stageConnections.links,
-                        roomPositions: roomArrangements.rooms,
-                    }
+                    logicAnalysis.solverAttemptId = shuffleData.debugInfo.solverAttemptId
                     const startingState = {
                         stage: 'castleEntrance',
                         room: 'afterDrawbridge',
@@ -1214,7 +420,7 @@ const argv = yargs(process.argv.slice(2))
                     logicAnalysis.scenarios = []
                     logicAnalysis.scenarios.push({
                         name: 'Start with no checks and verify that all checks are reachable',
-                        result: analyzeLogic(logicSettings, {
+                        result: analyzeLogic(logicAnalysis, {
                             startingState: startingState,
                             startingNodeTypes: [],
                             goalState: {},
@@ -1226,7 +432,7 @@ const argv = yargs(process.argv.slice(2))
                     if (logicAnalysis.scenarios.at(-1).result.solved) {
                         logicAnalysis.scenarios.push({
                             name: 'Start with all checks and actions and verify that all warps are reachable',
-                            result: analyzeLogic(logicSettings, {
+                            result: analyzeLogic(logicAnalysis, {
                                 startingState: startingState,
                                 startingNodeTypes: [
                                     'check',
@@ -1243,7 +449,7 @@ const argv = yargs(process.argv.slice(2))
                         })
                         logicAnalysis.scenarios.push({
                             name: 'Start with all checks and verify that all actions are reachable',
-                            result: analyzeLogic(logicSettings, {
+                            result: analyzeLogic(logicAnalysis, {
                                 startingState: startingState,
                                 startingNodeTypes: [
                                     'check',
@@ -1259,8 +465,8 @@ const argv = yargs(process.argv.slice(2))
                     .every((scenario) => {
                         return scenario.result.solved
                     })
-                    console.log('logicAnalysis:', inspect(logicAnalysis, { depth: 4 }))
-                    console.log('')
+                    // console.log('logicAnalysis:', inspect(logicAnalysis, { depth: 4 }))
+                    // console.log('')
                     shuffleData.debugInfo.solved = logicAnalysis.solved
                     shuffleData.debugInfo.finalSeedsUsed.solver = seed
                 }
@@ -1272,125 +478,127 @@ const argv = yargs(process.argv.slice(2))
                     break
                 }
             }
-            // Add labels to map
-            let mapPixels = MAP_PIXELS
-            if (argv.hinter?.stageLinks && (
-                argv.stageShuffler?.on || argv.roomShuffler?.on
-            )) {
-                mapPixels = getMapPixels(stageConnections.links, roomArrangements.rooms)
-            }
             // Redraw map
-            const mapGrid = []
-            for (let row = 0; row < 256; row++) {
-                const rowData = '0'.repeat(256)
-                mapGrid.push(rowData)
-            }
-            roomArrangements.rooms
-            .filter((roomInfo) => {
-                return (
-                    roomInfo.stage in mapPixels &&
-                    roomInfo.room in mapPixels[roomInfo.stage]
-                )
-            })
-            .forEach((roomInfo) => {
-                for (let fillIndex = 0; fillIndex < mapPixels[roomInfo.stage][roomInfo.room].length; fillIndex++) {
-                    const fillData = mapPixels[roomInfo.stage][roomInfo.room].at(fillIndex)
-                    switch (fillData.command) {
-                        case 'fillRect':
-                            const pixelRow = 4 * (MIN_MAP_ROW + roomInfo.row) + fillData.parameters.top
-                            const pixelColumn = 4 * (MIN_MAP_COL + roomInfo.column) + fillData.parameters.left
-                            for (let rowOffset = 0; rowOffset < fillData.parameters.rows; rowOffset++) {
-                                const leftSide = mapGrid.at(pixelRow + rowOffset).slice(0, pixelColumn)
-                                const rightSide = mapGrid.at(pixelRow + rowOffset).slice(pixelColumn + fillData.parameters.columns)
-                                mapGrid[pixelRow + rowOffset] = leftSide + fillData.parameters.colorIndex.repeat(fillData.parameters.columns) + rightSide
-                            }
-                            break
-                        case 'drawGlyph':
-                            fillData.parameters.glyph
-                            .forEach((rowData, rowOffset) => {
-                                Array.from(rowData)
-                                .forEach((char, colOffset) => {
-                                    if (char === '.') {
-                                        return
-                                    }
-                                    const pixelRow = 4 * (MIN_MAP_ROW + roomInfo.row) + rowOffset + fillData.parameters.top
-                                    const pixelColumn = 4 * (MIN_MAP_COL + roomInfo.column) + colOffset + fillData.parameters.left
-                                    const leftSide = mapGrid.at(pixelRow).slice(0, pixelColumn)
-                                    const rightSide = mapGrid.at(pixelRow).slice(pixelColumn + 1)
-                                    mapGrid[pixelRow] = leftSide + fillData.parameters.colorIndex + rightSide
+            if (logicAnalysis.mapChangesRequired) {
+                // Add labels to map
+                let mapPixels = MAP_PIXELS
+                if (argv.hinter?.stageLinks && (
+                    argv.stageShuffler?.on || argv.roomShuffler?.on
+                )) {
+                    mapPixels = getMapPixels(logicAnalysis.stageLinks, logicAnalysis.roomPositions)
+                }
+                const mapGrid = []
+                for (let row = 0; row < 256; row++) {
+                    const rowData = '0'.repeat(256)
+                    mapGrid.push(rowData)
+                }
+                logicAnalysis.roomPositions
+                .filter((roomInfo) => {
+                    return (
+                        roomInfo.stage in mapPixels &&
+                        roomInfo.room in mapPixels[roomInfo.stage]
+                    )
+                })
+                .forEach((roomInfo) => {
+                    for (let fillIndex = 0; fillIndex < mapPixels[roomInfo.stage][roomInfo.room].length; fillIndex++) {
+                        const fillData = mapPixels[roomInfo.stage][roomInfo.room].at(fillIndex)
+                        switch (fillData.command) {
+                            case 'fillRect':
+                                const pixelRow = 4 * (MIN_MAP_ROW + roomInfo.row) + fillData.parameters.top
+                                const pixelColumn = 4 * (MIN_MAP_COL + roomInfo.column) + fillData.parameters.left
+                                for (let rowOffset = 0; rowOffset < fillData.parameters.rows; rowOffset++) {
+                                    const leftSide = mapGrid.at(pixelRow + rowOffset).slice(0, pixelColumn)
+                                    const rightSide = mapGrid.at(pixelRow + rowOffset).slice(pixelColumn + fillData.parameters.columns)
+                                    mapGrid[pixelRow + rowOffset] = leftSide + fillData.parameters.colorIndex.repeat(fillData.parameters.columns) + rightSide
+                                }
+                                break
+                            case 'drawGlyph':
+                                fillData.parameters.glyph
+                                .forEach((rowData, rowOffset) => {
+                                    Array.from(rowData)
+                                    .forEach((char, colOffset) => {
+                                        if (char === '.') {
+                                            return
+                                        }
+                                        const pixelRow = 4 * (MIN_MAP_ROW + roomInfo.row) + rowOffset + fillData.parameters.top
+                                        const pixelColumn = 4 * (MIN_MAP_COL + roomInfo.column) + colOffset + fillData.parameters.left
+                                        const leftSide = mapGrid.at(pixelRow).slice(0, pixelColumn)
+                                        const rightSide = mapGrid.at(pixelRow).slice(pixelColumn + 1)
+                                        mapGrid[pixelRow] = leftSide + fillData.parameters.colorIndex + rightSide
+                                    })
                                 })
-                            })
-                            break
-                        default:
-                            console.log(`WARNING: Unknown value for command property: ${fillData.command}`)
-                            break
+                                break
+                            default:
+                                console.log(`WARNING: Unknown value for command property: ${fillData.command}`)
+                                break
+                        }
+                    }
+                })
+                const mapChanges = {
+                    changeType: 'merge',
+                    merge: {
+                        'castleMap.data=': mapGrid,
+                    },
+                }
+                changesToAdd.push(mapChanges)
+                // Recalculate castle map reveals
+                const cellsToReveal = new Map()
+                let minRevealRow = 63
+                let minRevealColumn = 63
+                let maxRevealRow = 0
+                let maxRevealColumn = 0
+                for (let row = 0; row < mapGrid.length; row++) {
+                    for (let column = 0; column < mapGrid.at(row).length; column++) {
+                        if (mapGrid.at(row).at(column) !== '0') {
+                            const revealRow = Math.floor(row / 4)
+                            const revealColumn = Math.floor(column / 4)
+                            const cellToReveal = [revealRow, revealColumn].join(',')
+                            cellsToReveal.set(cellToReveal, true)
+                            minRevealRow = Math.min(minRevealRow, revealRow)
+                            minRevealColumn = Math.min(minRevealColumn, revealColumn)
+                            maxRevealRow = Math.max(maxRevealRow, revealRow)
+                            maxRevealColumn = Math.max(maxRevealColumn, revealColumn)
+                        }
                     }
                 }
-            })
-            const mapChanges = {
-                changeType: 'merge',
-                merge: {
-                    'castleMap.data=': mapGrid,
-                },
-            }
-            changesToAdd.push(mapChanges)
-            // Recalculate castle map reveals
-            const cellsToReveal = new Map()
-            let minRevealRow = 63
-            let minRevealColumn = 63
-            let maxRevealRow = 0
-            let maxRevealColumn = 0
-            for (let row = 0; row < mapGrid.length; row++) {
-                for (let column = 0; column < mapGrid.at(row).length; column++) {
-                    if (mapGrid.at(row).at(column) !== '0') {
-                        const revealRow = Math.floor(row / 4)
-                        const revealColumn = Math.floor(column / 4)
-                        const cellToReveal = [revealRow, revealColumn].join(',')
-                        cellsToReveal.set(cellToReveal, true)
-                        minRevealRow = Math.min(minRevealRow, revealRow)
-                        minRevealColumn = Math.min(minRevealColumn, revealColumn)
-                        maxRevealRow = Math.max(maxRevealRow, revealRow)
-                        maxRevealColumn = Math.max(maxRevealColumn, revealColumn)
+                const bytesPerRow = Math.ceil((1 + maxRevealColumn - minRevealColumn) / 8)
+                const revealRows = Math.min(64, (1 + maxRevealRow - minRevealRow), Math.floor(2432 / (8 * bytesPerRow)))
+                const castleMapReveals = {
+                    bytesPerRow: bytesPerRow,
+                    grid: [],
+                    left: Math.max(0, 1 + maxRevealColumn - (bytesPerRow * 8)),
+                    rows: revealRows,
+                    top: Math.max(0, 1 + maxRevealRow - revealRows),
+                }
+                for (let row = 0; row < revealRows; row++) {
+                    castleMapReveals.grid.push(' '.repeat(8 * bytesPerRow))
+                }
+                cellsToReveal
+                .forEach((value, key) => {
+                    const coordinate = key.split(',')
+                    const row = coordinate.at(0) - castleMapReveals.top
+                    const column = coordinate.at(1) - castleMapReveals.left
+                    if (
+                        (row >= 0) &&
+                        (row < castleMapReveals.rows) &&
+                        (column >= 0) &&
+                        (column < (8 * bytesPerRow))
+                    ) {
+                        const leftSide = castleMapReveals.grid.at(row).slice(0, column)
+                        const rightSide = castleMapReveals.grid.at(row).slice(column + 1)
+                        castleMapReveals.grid[row] = leftSide + '#' + rightSide
                     }
+                })
+                // console.log('castleMapReveals:', inspect(castleMapReveals, { depth: 4 }))
+                const mapRevealChanges = {
+                    changeType: 'merge',
+                    merge: {
+                        'castleMapReveals.data=': castleMapReveals,
+                    },
                 }
+                // console.log('mapRevealChanges:', mapRevealChanges)
+                changesToAdd.push(mapRevealChanges)
             }
-            const bytesPerRow = Math.ceil((1 + maxRevealColumn - minRevealColumn) / 8)
-            const revealRows = Math.min(64, (1 + maxRevealRow - minRevealRow), Math.floor(2432 / (8 * bytesPerRow)))
-            const castleMapReveals = {
-                bytesPerRow: bytesPerRow,
-                grid: [],
-                left: Math.max(0, 1 + maxRevealColumn - (bytesPerRow * 8)),
-                rows: revealRows,
-                top: Math.max(0, 1 + maxRevealRow - revealRows),
-            }
-            for (let row = 0; row < revealRows; row++) {
-                castleMapReveals.grid.push(' '.repeat(8 * bytesPerRow))
-            }
-            cellsToReveal
-            .forEach((value, key) => {
-                const coordinate = key.split(',')
-                const row = coordinate.at(0) - castleMapReveals.top
-                const column = coordinate.at(1) - castleMapReveals.left
-                if (
-                    (row >= 0) &&
-                    (row < castleMapReveals.rows) &&
-                    (column >= 0) &&
-                    (column < (8 * bytesPerRow))
-                ) {
-                    const leftSide = castleMapReveals.grid.at(row).slice(0, column)
-                    const rightSide = castleMapReveals.grid.at(row).slice(column + 1)
-                    castleMapReveals.grid[row] = leftSide + '#' + rightSide
-                }
-            })
-            console.log('castleMapReveals:', inspect(castleMapReveals, { depth: 4 }))
-            const mapRevealChanges = {
-                changeType: 'merge',
-                merge: {
-                    'castleMapReveals.data=': castleMapReveals,
-                },
-            }
-            console.log('mapRevealChanges:', mapRevealChanges)
-            changesToAdd.push(mapRevealChanges)
             // Add hints to the file select menu
             if (argv.hinter?.seedName || argv.hinter?.settings) {
                 const hintMessages = [
@@ -1410,6 +618,7 @@ const argv = yargs(process.argv.slice(2))
             for (let index = 0; index < changesToAdd.length; index++) {
                 shuffleData.changes.push(changesToAdd.at(index))
             }
+            console.log('stageLinks:', inspect(logicAnalysis.stageLinks, { depth: 4 }))
             fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))
         }
     })
@@ -1429,7 +638,6 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'Seed to provide for randomization',
                 type: 'string',
             })
-            // TODO(sestren): Add ability to turn room and stage-shuffling on or off independently of one another
             // .option('shuffleRooms', {
             //     describe: 'Whether or not to shuffle how rooms within a stage connect',
             //     type: 'boolean',
@@ -1466,13 +674,13 @@ const argv = yargs(process.argv.slice(2))
                             console.log('validation:', validation)
                             console.log('stage:', validation.startingState.stage)
                             console.log('room:', validation.startingState.room)
-                            const logicSettings = {
+                            const logic = getLogic({
                                 solverAttemptId: shuffleData.debugInfo.solverAttemptId,
                                 locationRewards: {},
                                 stageLinks: {},
                                 roomPositions: shuffledRooms.rooms,
-                            }
-                            return validate(logicSettings, validation)
+                            }, true)
+                            return validate(logic, validation)
                         })
                     }
                     if (validInd) {
@@ -1555,31 +763,41 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
-            .option('out', {
-                alias: 'o',
-                describe: 'Path to the output file to create',
-                type: 'string',
-                normalize: true,
-            })
+            // .option('out', {
+            //     alias: 'o',
+            //     describe: 'Path to the output file to create',
+            //     type: 'string',
+            //     normalize: true,
+            // })
             .option('seed', {
                 alias: 's',
-                describe: 'Seed to provide for randomization',
+                describe: 'Seed to provide for randomization (e.g., "SadBench10584.roomShuffler.38.longLibrary")',
                 type: 'string',
             })
             .option('stage', {
                 describe: 'Name of stage to shuffle rooms in',
                 type: 'string',
             })
-            .option('norm', {
-                describe: 'Whether or not to apply normalization to room connections before shuffling',
+            .option('amount', {
+                describe: 'How many shuffled room configurations to generate, setting to 0 will result in the vanilla stage',
+                type: 'number',
+                default: 0,
+            })
+            .option('normalize', {
+                describe: 'Whether or not to apply normalization to room connections',
                 type: 'boolean',
             })
-            .demandOption(['extraction', 'out'])
+            .option('debug', {
+                describe: 'Whether or not to write each stage file to the build/debug folder',
+                type: 'boolean',
+            })
+            .demandOption(['extraction', 'stage'])
         },
         handler: (argv) => {
-            let seed = argv.seed
-            if (!seed) {
-                seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+            let seedName = argv.seed
+            if (seedName === null) {
+                const seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+                seedName = getSeedName(seed)
             }
             const shuffleData = {
                 authors: [
@@ -1594,9 +812,47 @@ const argv = yargs(process.argv.slice(2))
                 },
             }
             const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
-            const shuffledRooms = shuffleRooms(seed, argv.stage, argv.norm)
-            console.log('shuffledRooms:', shuffledRooms)
-            // const roomChanges = getRoomChanges(extraction, shuffledRooms.rooms, 16, 16)
+            let nodeGroups = []
+            if (argv.amount < 1) {
+                // NOTE(sestren): Setting amount to 0 is interpeted as wanting the vanilla stage
+                nodeGroups.push(getVanillaNodeGroupForStage(extraction, argv.stage))
+            }
+            else {
+                for (let i = 0; i < argv.amount; i++) {
+                    const seed = [seedName, i].join('.')
+                    console.log(seed)
+                    nodeGroups.push(shuffleRooms(seed, argv.stage, argv.norm))
+                }
+            }
+            nodeGroups
+            .forEach((nodeGroup) => {
+                let validInd = true
+                if (argv.stage in VALIDATIONS) {
+                    validInd = VALIDATIONS[argv.stage]
+                    .every((validation) => {
+                        const logic = getLogic({
+                            solverAttemptId: 0,
+                            locationRewards: {},
+                            stageLinks: {},
+                            roomPositions: nodeGroup.rooms,
+                        }, true)
+                        return validate(logic, validation)
+                    })
+                }
+                // TODO(sestren): Consider a function for analyzeStage(logic)
+                // console.log('nodeGroup:', nodeGroup)
+                if (argv.debug ?? false) {
+                    const stageHash = hashedObject(nodeGroup)
+                    console.log('stageHash:', stageHash)
+                    const suffix = (argv.amount < 1) ? 'vanilla' : ['random', validInd].join('-')
+                    fs.writeFileSync(`build/debugger/${argv.stage}-${stageHash}-${suffix}.json`, JSON.stringify({
+                        hash: stageHash,
+                        nodeGroup: nodeGroup,
+                        validInd: validInd,
+                    }, null, 4))
+                }
+            })
+            // const roomChanges = getRoomChanges(extraction, nodeGroup.rooms, 16, 16)
             // shuffleData.changes.push(roomChanges)
             // fs.writeFileSync(argv.out, JSON.stringify(shuffleData, null, 4))
         }

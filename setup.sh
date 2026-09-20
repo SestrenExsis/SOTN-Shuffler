@@ -1,32 +1,17 @@
+#!/bin/bash
 BIN=$1
 
 mkdir "build"
 mkdir "build/patcher"
 mkdir "build/shuffler"
-mkdir "lib/BIN-Patcher/build"
 
-rm -f build/extraction-template.json
-rm -f build/extraction.json
+rm -f build/patcher/extraction.json
 
-python3 lib/BIN-Patcher/tools/yaml-to-json.py "lib/BIN-Patcher/data/aliases.yaml" "build/patcher/aliases.json"
-cp "build/patcher/aliases.json" "lib/BIN-Patcher/build/aliases.json"
+pushd lib/BIN-Patcher
+mkdir "build"
+node bins/sotn-us/util extract -b "$BIN" -o "build/extraction.json"
+node bins/sotn-us/util dependencies -t "bins/sotn-us/data/change-dependencies-template.json" -o "build/change-dependencies.json"
+popd
 
-# If the next step fails, make sure you are passing the correct path to the BIN as the first argument
-# After doing so, rerun this script
-
-python3 lib/BIN-Patcher/tools/generate-extraction-template.py "lib/BIN-Patcher/data/extraction-template.yaml" "build/patcher/extraction-template.json"
-node lib/BIN-Patcher/sotn extract -b "$BIN" -t "build/patcher/extraction-template.json" -e "build/patcher/extraction.json"
-
-python3 lib/BIN-Patcher/tools/generate-extraction-template.py "lib/BIN-Patcher/data/extraction-template.yaml" "build/patcher/extraction-template.json" --previous "build/patcher/extraction.json"
-node lib/BIN-Patcher/sotn extract -b "$BIN" -t "build/patcher/extraction-template.json" -e "build/patcher/extraction.json"
-
-python3 lib/BIN-Patcher/tools/generate-extraction-template.py "lib/BIN-Patcher/data/extraction-template.yaml" "build/patcher/extraction-template.json" --previous "build/patcher/extraction.json"
-node lib/BIN-Patcher/sotn extract -b "$BIN" -t "build/patcher/extraction-template.json" -e "build/patcher/extraction.json"
-
-python3 lib/BIN-Patcher/tools/generate-extraction-template.py "lib/BIN-Patcher/data/extraction-template.yaml" "build/patcher/extraction-template.json" --previous "build/patcher/extraction.json"
-node lib/BIN-Patcher/sotn extract -b "$BIN" -t "build/patcher/extraction-template.json" -e "build/patcher/extraction.json"
-
-python3 lib/BIN-Patcher/tools/post-process-extraction.py "build/patcher/extraction.json" "build/patcher/aliases.json" "build/patcher/extraction-processed.json"
-python3 lib/BIN-Patcher/tools/generate-change-dependencies-template.py "lib/BIN-Patcher/data/change-dependencies-template.yaml" "build/patcher/change-dependencies.json"
-node lib/BIN-Patcher/sotn alter -s "build/patcher/extraction-processed.json" -t "build/patcher/extraction-aliased.json" --aliases "build/patcher/aliases.json"
-node lib/BIN-Patcher/sotn alter -s "build/patcher/extraction-aliased.json" -t "build/patcher/extraction-masked-aliased.json" --mask "data"
+mv "lib/BIN-Patcher/build/extraction.json" "build/patcher/extraction.json"
+mv "lib/BIN-Patcher/build/change-dependencies.json" "build/patcher/change-dependencies.json"

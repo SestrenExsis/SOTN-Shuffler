@@ -2,8 +2,7 @@
 const COST_PICKUP_ITEM = 1.0
 const COST_PICKUP_RELIC = 3.0
 const COST_QUICKGRAB_RELIC = 2.5
-const COST_UNKNOWN = 1.999
-
+const COST_UNKNOWN = 2.0
 export const LOGIC = {
     locations: {
         locationBatCard: {
@@ -171,6 +170,7 @@ export const LOGIC = {
                     stage: 'undergroundCaverns',
                     room: 'falseSaveRoom',
                     locationGoldRing: false,
+                    statusSuccubusDefeated: true,
                 },
             ],
         },
@@ -2426,9 +2426,18 @@ function getMovement(requirementName, section, time) {
             result.progressionMistTransformation = true
             result.progressionLongerMistDuration = true
             break
+        case 'poweredMistLong':
+        case 'poweredMistFormLong':
+            result.progressionMistTransformation = true
+            result.progressionLongerMistDuration = true
+            result.techniqueLongPoweredMistTravel = true
+            break
         case 'risingUppercut':
             result.progressionRisingUppercut = true
             result.techniqueRisingUppercut = true
+            break
+        case 'wolfForm':
+            result.progressionWolfTransformation = true
             break
         case 'wolfMistRise':
         case 'wolfMistRiseShort':
@@ -3948,7 +3957,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -4210,7 +4219,7 @@ export const ROOMS_INFO = {
                         // getMovement('risingUppercut', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -4503,7 +4512,7 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('batForm', 'main', 7.5),
-                        getMovement('poweredMistForm', 'main', 10.5),
+                        getMovement('poweredMistLong', 'main', 10.5),
                     ],
                 },
                 toBeneathTrapdoor: {
@@ -4782,7 +4791,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'holeInCeiling', COST_UNKNOWN),
                         // getMovement('risingUppercut', 'holeInCeiling', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'holeInCeiling', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'holeInCeiling', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'holeInCeiling', COST_UNKNOWN),
                     ],
                 },
@@ -4878,7 +4887,7 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseLong', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -5024,7 +5033,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'highIntheAir', COST_UNKNOWN),
                         // getMovement('risingUppercut', 'highIntheAir', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'highIntheAir', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'highIntheAir', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'highIntheAir', COST_UNKNOWN),
                     ],
                 },
@@ -5067,12 +5076,12 @@ export const ROOMS_INFO = {
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('chainedRisingUppercuts', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'upperLeftLedge', COST_UNKNOWN),
                         getMovement('chainedRisingUppercuts', 'upperLeftLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'upperLeftLedge', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'upperLeftLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseLong', 'upperLeftLedge', COST_UNKNOWN),
                     ],
                 },
@@ -5095,7 +5104,7 @@ export const ROOMS_INFO = {
                         getMovement('fall', 'highInTheAir', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('chainedRisingUppercuts', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseLong', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -5185,7 +5194,7 @@ export const ROOMS_INFO = {
                         getMovement('batForm', 'pit', COST_UNKNOWN),
                         getMovement('chainedRisingUppercuts', 'pit', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'pit', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'pit', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'pit', COST_UNKNOWN),
                     ],
                 },
@@ -5286,7 +5295,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('chainedRisingUppercuts', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                         { // Main - Using Shortcut
@@ -5307,13 +5316,21 @@ export const ROOMS_INFO = {
                     requirements: [
                         // getMovement('risingUppercut', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                         { // Main - Candle Dive Kick (Forgiving)
                             section: 'main',
                             progressionDoubleJump: true,
                             techniqueForgivingCandleDiveKick: true,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
+                        { // Upper Right Ledge - Fall and Well-Timed Double Jump
+                            section: 'upperRightLedge',
+                            progressionDoubleJump: true,
+                            statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
@@ -5762,7 +5779,7 @@ export const ROOMS_INFO = {
                         // getMovement('risingUppercut', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -5998,11 +6015,11 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'topOfStairs', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'topOfStairs', COST_UNKNOWN),
-                        getMovement('poweredMist', 'topOfStairs', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'topOfStairs', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'topOfStairs', COST_UNKNOWN),
                         getMovement('batForm', 'bottomOfStairs', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'bottomOfStairs', COST_UNKNOWN),
-                        getMovement('poweredMist', 'bottomOfStairs', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'bottomOfStairs', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'bottomOfStairs', COST_UNKNOWN),
                     ],
                 },
@@ -6066,15 +6083,15 @@ export const ROOMS_INFO = {
                         getMovement('basic', 'anteroom', COST_UNKNOWN),
                         getMovement('batForm', 'upperRightLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'upperRightLedge', COST_UNKNOWN),
-                        getMovement('poweredMist', 'upperRightLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'upperRightLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'upperRightLedge', COST_UNKNOWN),
                         getMovement('batForm', 'powerOfMistLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'powerOfMistLedge', COST_UNKNOWN),
-                        getMovement('poweredMist', 'powerOfMistLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'powerOfMistLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'powerOfMistLedge', COST_UNKNOWN),
                         getMovement('batForm', 'bottomOfStairs', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'bottomOfStairs', COST_UNKNOWN),
-                        getMovement('poweredMist', 'bottomOfStairs', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'bottomOfStairs', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'bottomOfStairs', COST_UNKNOWN),
                     ],
                 },
@@ -6088,15 +6105,15 @@ export const ROOMS_INFO = {
                         getMovement('basic', 'upperRightLedge', COST_UNKNOWN),
                         getMovement('batForm', 'topOfStairs', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'topOfStairs', COST_UNKNOWN),
-                        getMovement('poweredMist', 'topOfStairs', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'topOfStairs', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'topOfStairs', COST_UNKNOWN),
                         getMovement('batForm', 'powerOfMistLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'powerOfMistLedge', COST_UNKNOWN),
-                        getMovement('poweredMist', 'powerOfMistLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'powerOfMistLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'powerOfMistLedge', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -6109,15 +6126,15 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'topOfStairs', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'topOfStairs', COST_UNKNOWN),
-                        getMovement('poweredMist', 'topOfStairs', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'topOfStairs', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'topOfStairs', COST_UNKNOWN),
                         getMovement('batForm', 'bottomOfStairs', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'bottomOfStairs', COST_UNKNOWN),
-                        getMovement('poweredMist', 'bottomOfStairs', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'bottomOfStairs', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'bottomOfStairs', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -6511,7 +6528,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7345,7 +7362,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7897,7 +7914,7 @@ export const ROOMS_INFO = {
                         getMovement('wolfMistRiseVeryLong', 'lowerLeftLedge', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'upperRightLedge', COST_UNKNOWN),
                         getMovement('doubleJump', 'upperRightLedge', COST_UNKNOWN),
@@ -7919,13 +7936,12 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('batForm', 'lowerLeftLedge', COST_UNKNOWN),
-                        getMovement('doubleJump', 'lowerLeftLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'lowerLeftLedge', COST_UNKNOWN),
-                        getMovement('poweredMist', 'lowerLeftLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'lowerLeftLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'lowerLeftLedge', COST_UNKNOWN),
                         getMovement('batForm', 'centerArea', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'centerArea', COST_UNKNOWN),
-                        getMovement('poweredMist', 'centerArea', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'centerArea', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'centerArea', COST_UNKNOWN),
                     ],
                 },
@@ -7937,13 +7953,12 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('batForm', 'middleRightLedge', COST_UNKNOWN),
-                        getMovement('doubleJump', 'middleRightLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'middleRightLedge', COST_UNKNOWN),
-                        getMovement('poweredMist', 'middleRightLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'middleRightLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'middleRightLedge', COST_UNKNOWN),
                         getMovement('batForm', 'centerArea', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'centerArea', COST_UNKNOWN),
-                        getMovement('poweredMist', 'centerArea', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'centerArea', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'centerArea', COST_UNKNOWN),
                     ],
                 },
@@ -7957,7 +7972,7 @@ export const ROOMS_INFO = {
                         getMovement('basic', 'upperLeftLedge', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'centerArea', COST_UNKNOWN),
                         getMovement('doubleJump', 'centerArea', COST_UNKNOWN),
@@ -7976,7 +7991,7 @@ export const ROOMS_INFO = {
                         getMovement('basic', 'upperRightLedge', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'centerArea', COST_UNKNOWN),
                         getMovement('doubleJump', 'centerArea', COST_UNKNOWN),
@@ -8277,7 +8292,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -9404,7 +9419,7 @@ export const ROOMS_INFO = {
                         // getMovement('risingUppercut', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseLong', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -9712,7 +9727,7 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -9762,7 +9777,7 @@ export const ROOMS_INFO = {
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('doubleJump', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -9811,6 +9826,7 @@ export const ROOMS_INFO = {
                             progressionMistTransformation: true,
                             progressionWolfTransformation: true,
                             progressionItemMaterialization: true,
+                            techniqueWolfMistRise: true,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
@@ -9911,10 +9927,10 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('batForm', 'pit', COST_UNKNOWN),
-                        getMovement('poweredMist', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'pit', COST_UNKNOWN),
                         getMovement('wolfMistRiseLong', 'pit', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseLong', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -9926,7 +9942,7 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('batForm', 'pit', COST_UNKNOWN),
-                        getMovement('poweredMist', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'pit', COST_UNKNOWN),
                         getMovement('wolfMistRiseLong', 'pit', COST_UNKNOWN),
                         getMovement('basic', 'leftLedge', COST_UNKNOWN),
                     ],
@@ -10819,7 +10835,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -10944,7 +10960,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -11283,7 +11299,9 @@ export const ROOMS_INFO = {
                         // section: 'leftOfTunnel',
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
+                        getMovement('wolfForm', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -11293,7 +11311,9 @@ export const ROOMS_INFO = {
                         // section: 'main',
                     },
                     requirements: [
-                        getMovement('basic', 'leftOfTunnel', COST_UNKNOWN),
+                        getMovement('batForm', 'leftOfTunnel', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'leftOfTunnel', COST_UNKNOWN),
+                        getMovement('wolfForm', 'leftOfTunnel', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11304,6 +11324,8 @@ export const ROOMS_INFO = {
                 height: 512,
             },
             regions: [
+                getRegion('leftLedge', 0, 96, 48, 64),
+                getRegion('rightLedge', 464, 96, 48, 64),
                 getRegion('main', 0, 0, 512, 512),
             ],
             commands: {
@@ -11323,6 +11345,41 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
+                    ],
+                },
+                toMain: {
+                    outcome: {
+                        positionX: 256,
+                        positionY: 432,
+                        // section: 'main',
+                    },
+                    requirements: [
+                        getMovement('basic', 'leftLedge', COST_UNKNOWN),
+                        getMovement('basic', 'rightLedge', COST_UNKNOWN),
+                    ],
+                },
+                toLeftLedge: {
+                    outcome: {
+                        positionX: 32,
+                        positionY: 128,
+                        // section: 'leftLedge',
+                    },
+                    requirements: [
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
+                    ],
+                },
+                toRightLedge: {
+                    outcome: {
+                        positionX: 480,
+                        positionY: 128,
+                        // section: 'rightLedge',
+                    },
+                    requirements: [
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11345,7 +11402,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftUpper: {
@@ -11356,7 +11413,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -11367,7 +11424,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -11387,7 +11444,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11529,7 +11586,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -11559,7 +11616,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -11863,7 +11920,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -11930,7 +11987,13 @@ export const ROOMS_INFO = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        {
+                            section: 'main',
+                            statusSecretPlatformInOuterWallActivated: true,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
                     ],
                 },
                 exitRight: {
@@ -11957,6 +12020,7 @@ export const ROOMS_INFO = {
                     outcome: {
                         positionX: 0 - 8,
                         positionY: 128,
+                        statusSecretPlatformInOuterWallActivated: false,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
@@ -11986,6 +12050,7 @@ export const ROOMS_INFO = {
                     outcome: {
                         positionX: 0 - 8,
                         positionY: 128,
+                        statusSecretPlatformInOuterWallActivated: false,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
@@ -12015,6 +12080,7 @@ export const ROOMS_INFO = {
                     outcome: {
                         positionX: 0 - 8,
                         positionY: 128,
+                        statusSecretPlatformInOuterWallActivated: false,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
@@ -12044,6 +12110,7 @@ export const ROOMS_INFO = {
                     outcome: {
                         positionX: 0 - 8,
                         positionY: 128,
+                        statusSecretPlatformInOuterWallActivated: false,
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
@@ -12190,9 +12257,16 @@ export const ROOMS_INFO = {
                     outcome: {
                         positionX: 32,
                         positionY: 256 + 24,
+                        statusSecretPlatformInOuterWallActivated: true,
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        {
+                            section: 'main',
+                            statusSecretPlatformInOuterWallActivated: false,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
                     ],
                 },
             },
@@ -12423,7 +12497,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13400,6 +13474,15 @@ export const ROOMS_INFO = {
                         getMovement('basic', 'main', COST_UNKNOWN),
                     ],
                 },
+                useSaveRoom: {
+                    outcome: {
+                        positionX: 256 + 128,
+                        positionY: 128,
+                    },
+                    requirements: [
+                        getMovement('basic', 'main', COST_UNKNOWN),
+                    ],
+                },
             },
         },
         hiddenCrystalEntrance: {
@@ -13419,7 +13502,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -13710,13 +13793,13 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'leftLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'leftLedge', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'leftLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'leftLedge', COST_UNKNOWN),
                         getMovement('batForm', 'rightLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'rightLedge', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'rightLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'rightLedge', COST_UNKNOWN),
                         getMovement('batForm', 'pit', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'pit', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'pit', COST_UNKNOWN),
                     ],
                 },
                 toLeftLedge: {
@@ -13729,10 +13812,10 @@ export const ROOMS_INFO = {
                         getMovement('fall', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'rightLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'rightLedge', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'rightLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'rightLedge', COST_UNKNOWN),
                         getMovement('batForm', 'pit', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'pit', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'pit', COST_UNKNOWN),
                     ],
                 },
                 toRightLedge: {
@@ -13744,10 +13827,10 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'leftLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'leftLedge', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'leftLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'leftLedge', COST_UNKNOWN),
                         getMovement('batForm', 'pit', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'pit', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'pit', COST_UNKNOWN),
                     ],
                 },
                 toPit: {
@@ -14369,7 +14452,58 @@ export const ROOMS_INFO = {
             regions: [
                 getRegion('main', 0, 0, 256, 256),
             ],
-            commands: {},
+            commands: {
+                defeatSuccubus: {
+                    outcome: {
+                        positionX: 0 - 128,
+                        positionY: 128,
+                        statusSuccubusDefeated: true,
+                    },
+                    requirements: [
+                        { // Fight Succubus without jump or flight
+                            section: 'main',
+                            techniqueDefeatSuccubusAtZeroProgression: true,
+                            statusSuccubusDefeated: false,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
+                        { // Fight Succubus using Double Jump
+                            section: 'main',
+                            progressionDoubleJump: true,
+                            statusSuccubusDefeated: false,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
+                        { // Fight Succubus using Bat Transformation
+                            section: 'main',
+                            progressionBatTransformation: true,
+                            statusSuccubusDefeated: false,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
+                        { // Fight Succubus using Gravity Jump
+                            section: 'main',
+                            progressionGravityJump: true,
+                            statusSuccubusDefeated: false,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
+                        { // Fight Succubus using Powered Mist
+                            section: 'main',
+                            progressionMistTransformation: true,
+                            progressionLongerMistDuration: true,
+                            statusSuccubusDefeated: false,
+                            costs: {
+                                time: COST_UNKNOWN,
+                            },
+                        },
+                    ],
+                },
+            },
         },
         triggerTeleporterToCastleEntrance: {
             roomInfo: {
@@ -15075,4 +15209,870 @@ export const ROOMS_INFO = {
             },
         },
     },
+}
+
+export const VALIDATIONS = {
+    abandonedMine: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionSummonDemonFamiliar: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusDemonSwitchActivated: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionSummonDemonFamiliar: true,
+                statusDemonSwitchActivated: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationDemonCard: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionDoubleJump: true,
+                progressionSummonDemonFamiliar: true,
+                statusDemonSwitchActivated: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'abandonedMine',
+                room: 'cerberusRoom',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+    ],
+    alchemyLaboratory: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionUnlockBlueDoors: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusCannonActivated: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionUnlockBlueDoors: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationBatCard: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionUnlockBlueDoors: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSkillOfWolf: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    castleEntrance: [
+        {
+            startingState: {
+                stage: 'castleEntrance',
+                room: 'afterDrawbridge',
+                section: 'main',
+                debugEnableElsewhere: true,
+                time: 360.0,
+            },
+            goalState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                statusMetDeathInCastleEntrance: false,
+            },
+            goalType: 'forbidden',
+        },
+        {
+            startingState: {
+                stage: 'castleEntrance',
+                room: 'afterDrawbridge',
+                section: 'main',
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionWolfTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionWolfTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionWolfTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusPassageFromCastleEntranceToWarpRoomsOpened: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionWolfTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusSecretWallInMermanRoomOpened: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionWolfTransformation: true,
+                statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
+                statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
+                statusPassageFromCastleEntranceToWarpRoomsOpened: true,
+                statusSecretWallInMermanRoomOpened: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationCubeOfZoe: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionWolfTransformation: true,
+                statusPassageFromCastleEntranceToMarbleGalleryOpened: true,
+                statusPassageFromCastleEntranceToUndergroundCavernsOpened: true,
+                statusPassageFromCastleEntranceToWarpRoomsOpened: true,
+                statusSecretWallInMermanRoomOpened: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationPowerOfWolf: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    castleKeep: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationGhostCard: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationLeapStone: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationPowerOfMist: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    catacombs: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                itemSpikeBreaker: 1,
+                progressionBatTransformation: true,
+                progressionEcholocation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSpikeBreaker: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    clockTower: [
+        // {
+        //     startingState: {
+        //         stage: 'elsewhere',
+        //         room: 'hub',
+        //         section: 'main',
+        //         progressionBatTransformation: true,
+        //         debugEnableElsewhere: true,
+        //         time: 120.0,
+        //     },
+        //     goalState: {
+        //         statusLeftGearRoomSolved: true,
+        //     },
+        //     goalType: 'required',
+        // },
+        // {
+        //     startingState: {
+        //         stage: 'elsewhere',
+        //         room: 'hub',
+        //         section: 'main',
+        //         progressionBatTransformation: true,
+        //         debugEnableElsewhere: true,
+        //         time: 120.0,
+        //     },
+        //     goalState: {
+        //         statusRightGearRoomSolved: true,
+        //     },
+        //     goalType: 'required',
+        // },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                statusLeftGearRoomSolved: true,
+                statusRightGearRoomSolved: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationFireOfBat: true,
+            },
+            goalType: 'required',
+        },
+        // NOTE(sestren): It should be possible to traverse the stage both ways without solving the Gear Puzzle
+        {
+            startingState: {
+                stage: 'clockTower',
+                room: 'loadingRoomToOuterWall',
+                section: 'main',
+                progressionBatTransformation: true,
+                debugEnableElsewhere: false,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'clockTower',
+                room: 'loadingRoomToCastleKeep',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'clockTower',
+                room: 'loadingRoomToCastleKeep',
+                section: 'main',
+                progressionBatTransformation: true,
+                debugEnableElsewhere: false,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'clockTower',
+                room: 'loadingRoomToOuterWall',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+    ],
+    colosseum: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationFormOfMist: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusBarrierInColosseumOpened: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    longLibrary: [
+        {
+            startingState: {
+                stage: 'longLibrary',
+                room: 'outsideShop',
+                section: 'main',
+                progressionDoubleJump: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionMistTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'longLibrary',
+                room: 'outsideShop',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionMistTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'longLibrary',
+                room: 'threeLayerRoom',
+                section: 'topLayer',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionMistTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'longLibrary',
+                room: 'threeLayerRoom',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionMistTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'longLibrary',
+                room: 'threeLayerRoom',
+                section: 'bottomLayer',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionMistTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'longLibrary',
+                room: 'shop',
+                section: 'beneathShop',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionMistTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationFaerieCard: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionMistTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationFaerieScroll: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionMistTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationJewelOfOpen: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionMistTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSoulOfBat: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    marbleGallery: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionItemMaterialization: true,
+                progressionUnlockBlueDoors: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusPressurePlateInMarbleGalleryActivated: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionItemMaterialization: true,
+                progressionUnlockBlueDoors: true,
+                statusPressurePlateInMarbleGalleryActivated: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationGravityBoots: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionItemMaterialization: true,
+                progressionUnlockBlueDoors: true,
+                statusPressurePlateInMarbleGalleryActivated: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSpiritOrb: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionItemMaterialization: true,
+                progressionUnlockBlueDoors: true,
+                statusPressurePlateInMarbleGalleryActivated: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'marbleGallery',
+                room: 'clockRoom',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'marbleGallery',
+                room: 'clockRoom',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+    ],
+    olroxsQuarters: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationEchoOfBat: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSwordCard: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'olroxsQuarters',
+                room: 'olroxsRoom',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+    ],
+    outerWall: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'outerWall',
+                room: 'doppelgangerRoom',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSoulOfWolf: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    royalChapel: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                itemSpikeBreaker: 1,
+                progressionBatTransformation: true,
+                progressionMistTransformation: true,
+                progressionUnlockBlueDoors: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusStatueInRoyalChapelMoved: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                itemSpikeBreaker: 1,
+                progressionBatTransformation: true,
+                progressionMistTransformation: true,
+                progressionUnlockBlueDoors: true,
+                statusStatueInRoyalChapelMoved: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                stage: 'royalChapel',
+                room: 'hippogryphRoom',
+                section: 'main',
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                itemSpikeBreaker: 1,
+                progressionBatTransformation: true,
+                progressionMistTransformation: true,
+                progressionUnlockBlueDoors: true,
+                statusStatueInRoyalChapelMoved: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationSilverRing: true,
+            },
+            goalType: 'required',
+        },
+    ],
+    undergroundCaverns: [
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionProtectionFromWater: true,
+                progressionSummonFerryman: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationGoldRing: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionProtectionFromWater: true,
+                progressionSummonFerryman: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationHolySymbol: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionProtectionFromWater: true,
+                progressionSummonFerryman: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                locationMermanStatue: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionProtectionFromWater: true,
+                progressionSummonFerryman: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusButtonInUndergroundCavernsActivated: true,
+            },
+            goalType: 'required',
+        },
+        {
+            startingState: {
+                stage: 'elsewhere',
+                room: 'hub',
+                section: 'main',
+                progressionBatTransformation: true,
+                progressionProtectionFromWater: true,
+                progressionSummonFerryman: true,
+                statusButtonInUndergroundCavernsActivated: true,
+                debugEnableElsewhere: true,
+                time: 120.0,
+            },
+            goalState: {
+                statusBridgeInUndergroundCavernsBroken: true,
+            },
+            goalType: 'required',
+        },
+    ],
 }
