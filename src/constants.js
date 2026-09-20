@@ -2426,6 +2426,12 @@ function getMovement(requirementName, section, time) {
             result.progressionMistTransformation = true
             result.progressionLongerMistDuration = true
             break
+        case 'poweredMistLong':
+        case 'poweredMistFormLong':
+            result.progressionMistTransformation = true
+            result.progressionLongerMistDuration = true
+            result.techniqueLongPoweredMistTravel = true
+            break
         case 'risingUppercut':
             result.progressionRisingUppercut = true
             result.techniqueRisingUppercut = true
@@ -3951,7 +3957,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -4213,7 +4219,7 @@ export const ROOMS_INFO = {
                         // getMovement('risingUppercut', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -4506,7 +4512,7 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('batForm', 'main', 7.5),
-                        getMovement('poweredMistForm', 'main', 10.5),
+                        getMovement('poweredMistLong', 'main', 10.5),
                     ],
                 },
                 toBeneathTrapdoor: {
@@ -4785,7 +4791,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'holeInCeiling', COST_UNKNOWN),
                         // getMovement('risingUppercut', 'holeInCeiling', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'holeInCeiling', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'holeInCeiling', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'holeInCeiling', COST_UNKNOWN),
                     ],
                 },
@@ -4881,7 +4887,7 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseLong', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -5027,7 +5033,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'highIntheAir', COST_UNKNOWN),
                         // getMovement('risingUppercut', 'highIntheAir', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'highIntheAir', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'highIntheAir', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'highIntheAir', COST_UNKNOWN),
                     ],
                 },
@@ -5070,12 +5076,12 @@ export const ROOMS_INFO = {
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('chainedRisingUppercuts', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'upperLeftLedge', COST_UNKNOWN),
                         getMovement('chainedRisingUppercuts', 'upperLeftLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'upperLeftLedge', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'upperLeftLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseLong', 'upperLeftLedge', COST_UNKNOWN),
                     ],
                 },
@@ -5098,7 +5104,7 @@ export const ROOMS_INFO = {
                         getMovement('fall', 'highInTheAir', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('chainedRisingUppercuts', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseLong', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -5188,7 +5194,7 @@ export const ROOMS_INFO = {
                         getMovement('batForm', 'pit', COST_UNKNOWN),
                         getMovement('chainedRisingUppercuts', 'pit', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'pit', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'pit', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'pit', COST_UNKNOWN),
                     ],
                 },
@@ -5289,7 +5295,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('chainedRisingUppercuts', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                         { // Main - Using Shortcut
@@ -5310,7 +5316,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         // getMovement('risingUppercut', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                         { // Main - Candle Dive Kick (Forgiving)
@@ -5773,7 +5779,7 @@ export const ROOMS_INFO = {
                         // getMovement('risingUppercut', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -6009,11 +6015,11 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'topOfStairs', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'topOfStairs', COST_UNKNOWN),
-                        getMovement('poweredMist', 'topOfStairs', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'topOfStairs', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'topOfStairs', COST_UNKNOWN),
                         getMovement('batForm', 'bottomOfStairs', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'bottomOfStairs', COST_UNKNOWN),
-                        getMovement('poweredMist', 'bottomOfStairs', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'bottomOfStairs', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'bottomOfStairs', COST_UNKNOWN),
                     ],
                 },
@@ -6077,15 +6083,15 @@ export const ROOMS_INFO = {
                         getMovement('basic', 'anteroom', COST_UNKNOWN),
                         getMovement('batForm', 'upperRightLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'upperRightLedge', COST_UNKNOWN),
-                        getMovement('poweredMist', 'upperRightLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'upperRightLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'upperRightLedge', COST_UNKNOWN),
                         getMovement('batForm', 'powerOfMistLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'powerOfMistLedge', COST_UNKNOWN),
-                        getMovement('poweredMist', 'powerOfMistLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'powerOfMistLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'powerOfMistLedge', COST_UNKNOWN),
                         getMovement('batForm', 'bottomOfStairs', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'bottomOfStairs', COST_UNKNOWN),
-                        getMovement('poweredMist', 'bottomOfStairs', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'bottomOfStairs', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'bottomOfStairs', COST_UNKNOWN),
                     ],
                 },
@@ -6099,15 +6105,15 @@ export const ROOMS_INFO = {
                         getMovement('basic', 'upperRightLedge', COST_UNKNOWN),
                         getMovement('batForm', 'topOfStairs', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'topOfStairs', COST_UNKNOWN),
-                        getMovement('poweredMist', 'topOfStairs', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'topOfStairs', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'topOfStairs', COST_UNKNOWN),
                         getMovement('batForm', 'powerOfMistLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'powerOfMistLedge', COST_UNKNOWN),
-                        getMovement('poweredMist', 'powerOfMistLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'powerOfMistLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'powerOfMistLedge', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -6120,15 +6126,15 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'topOfStairs', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'topOfStairs', COST_UNKNOWN),
-                        getMovement('poweredMist', 'topOfStairs', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'topOfStairs', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'topOfStairs', COST_UNKNOWN),
                         getMovement('batForm', 'bottomOfStairs', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'bottomOfStairs', COST_UNKNOWN),
-                        getMovement('poweredMist', 'bottomOfStairs', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'bottomOfStairs', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'bottomOfStairs', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -6522,7 +6528,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7356,7 +7362,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7908,7 +7914,7 @@ export const ROOMS_INFO = {
                         getMovement('wolfMistRiseVeryLong', 'lowerLeftLedge', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'upperRightLedge', COST_UNKNOWN),
                         getMovement('doubleJump', 'upperRightLedge', COST_UNKNOWN),
@@ -7931,11 +7937,11 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'lowerLeftLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'lowerLeftLedge', COST_UNKNOWN),
-                        getMovement('poweredMist', 'lowerLeftLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'lowerLeftLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'lowerLeftLedge', COST_UNKNOWN),
                         getMovement('batForm', 'centerArea', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'centerArea', COST_UNKNOWN),
-                        getMovement('poweredMist', 'centerArea', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'centerArea', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'centerArea', COST_UNKNOWN),
                     ],
                 },
@@ -7948,11 +7954,11 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'middleRightLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'middleRightLedge', COST_UNKNOWN),
-                        getMovement('poweredMist', 'middleRightLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'middleRightLedge', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'middleRightLedge', COST_UNKNOWN),
                         getMovement('batForm', 'centerArea', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'centerArea', COST_UNKNOWN),
-                        getMovement('poweredMist', 'centerArea', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'centerArea', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'centerArea', COST_UNKNOWN),
                     ],
                 },
@@ -7966,7 +7972,7 @@ export const ROOMS_INFO = {
                         getMovement('basic', 'upperLeftLedge', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'centerArea', COST_UNKNOWN),
                         getMovement('doubleJump', 'centerArea', COST_UNKNOWN),
@@ -7985,7 +7991,7 @@ export const ROOMS_INFO = {
                         getMovement('basic', 'upperRightLedge', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'centerArea', COST_UNKNOWN),
                         getMovement('doubleJump', 'centerArea', COST_UNKNOWN),
@@ -8286,7 +8292,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -9413,7 +9419,7 @@ export const ROOMS_INFO = {
                         // getMovement('risingUppercut', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseLong', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -9721,7 +9727,7 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -9771,7 +9777,7 @@ export const ROOMS_INFO = {
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('doubleJump', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRise', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -9920,10 +9926,10 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('batForm', 'pit', COST_UNKNOWN),
-                        getMovement('poweredMist', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'pit', COST_UNKNOWN),
                         getMovement('wolfMistRiseLong', 'pit', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
-                        getMovement('poweredMist', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseLong', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -9935,7 +9941,7 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('batForm', 'pit', COST_UNKNOWN),
-                        getMovement('poweredMist', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'pit', COST_UNKNOWN),
                         getMovement('wolfMistRiseLong', 'pit', COST_UNKNOWN),
                         getMovement('basic', 'leftLedge', COST_UNKNOWN),
                     ],
@@ -10828,7 +10834,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                         getMovement('wolfMistRiseVeryLong', 'main', COST_UNKNOWN),
                     ],
                 },
@@ -10953,7 +10959,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -11293,8 +11299,8 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
-                        // getMovement('poweredMist', 'main', COST_UNKNOWN),
-                        // getMovement('wolfForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
+                        getMovement('wolfForm', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -11305,8 +11311,8 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('batForm', 'leftOfTunnel', COST_UNKNOWN),
-                        // getMovement('poweredMist', 'leftOfTunnel', COST_UNKNOWN),
-                        // getMovement('wolfForm', 'leftOfTunnel', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'leftOfTunnel', COST_UNKNOWN),
+                        getMovement('wolfForm', 'leftOfTunnel', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11317,6 +11323,8 @@ export const ROOMS_INFO = {
                 height: 512,
             },
             regions: [
+                getRegion('leftLedge', 0, 96, 48, 64),
+                getRegion('rightLedge', 464, 96, 48, 64),
                 getRegion('main', 0, 0, 512, 512),
             ],
             commands: {
@@ -11336,6 +11344,41 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
+                    ],
+                },
+                toMain: {
+                    outcome: {
+                        positionX: 256,
+                        positionY: 432,
+                        // section: 'main',
+                    },
+                    requirements: [
+                        getMovement('basic', 'leftLedge', COST_UNKNOWN),
+                        getMovement('basic', 'rightLedge', COST_UNKNOWN),
+                    ],
+                },
+                toLeftLedge: {
+                    outcome: {
+                        positionX: 32,
+                        positionY: 128,
+                        // section: 'leftLedge',
+                    },
+                    requirements: [
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
+                    ],
+                },
+                toRightLedge: {
+                    outcome: {
+                        positionX: 480,
+                        positionY: 128,
+                        // section: 'rightLedge',
+                    },
+                    requirements: [
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11358,7 +11401,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftUpper: {
@@ -11369,7 +11412,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitRightUpper: {
@@ -11380,7 +11423,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeftLower: {
@@ -11400,7 +11443,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -11542,7 +11585,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -11572,7 +11615,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -11876,7 +11919,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -12453,7 +12496,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('basic', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13458,7 +13501,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('gravityJump', 'main', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'main', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'main', COST_UNKNOWN),
                     ],
                 },
                 exitLeft: {
@@ -13749,13 +13792,13 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'leftLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'leftLedge', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'leftLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'leftLedge', COST_UNKNOWN),
                         getMovement('batForm', 'rightLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'rightLedge', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'rightLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'rightLedge', COST_UNKNOWN),
                         getMovement('batForm', 'pit', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'pit', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'pit', COST_UNKNOWN),
                     ],
                 },
                 toLeftLedge: {
@@ -13768,10 +13811,10 @@ export const ROOMS_INFO = {
                         getMovement('fall', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'rightLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'rightLedge', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'rightLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'rightLedge', COST_UNKNOWN),
                         getMovement('batForm', 'pit', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'pit', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'pit', COST_UNKNOWN),
                     ],
                 },
                 toRightLedge: {
@@ -13783,10 +13826,10 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'leftLedge', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'leftLedge', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'leftLedge', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'leftLedge', COST_UNKNOWN),
                         getMovement('batForm', 'pit', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'pit', COST_UNKNOWN),
-                        getMovement('poweredMistForm', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'pit', COST_UNKNOWN),
                     ],
                 },
                 toPit: {
