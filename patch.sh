@@ -23,9 +23,9 @@ node shuffle multi -e "build/patcher/extraction-aliased.json" -o "build/current-
   --roomShuffler.on=true \
   --solver.on=true \
   --stageShuffler.on=true
-#   --seed="OvertSpike17279879"
+#   --seed="AgileKick3018"
 
-node lib/BIN-Patcher/bin alter -s "build/patcher/extraction-masked-aliased.json" -t "build/current-patch.json"
+node lib/BIN-Patcher/bin alter -s "build/patcher/extraction.json" -t "build/current-patch.json" --mask "data"
 node lib/BIN-Patcher/bin patch -p "build/current-patch.json" -c "build/current-seed.json"
 node lib/BIN-Patcher/bin patch -p "build/current-patch.json" -c "build/patcher/change-dependencies.json"
 node lib/BIN-Patcher/bin ppf   -p "build/current-patch.json" -t "build/current-patch.ppf"
