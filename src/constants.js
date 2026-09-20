@@ -170,6 +170,7 @@ export const LOGIC = {
                     stage: 'undergroundCaverns',
                     room: 'falseSaveRoom',
                     locationGoldRing: false,
+                    statusSuccubusDefeated: true,
                 },
             ],
         },
@@ -14412,11 +14413,13 @@ export const ROOMS_INFO = {
                     outcome: {
                         positionX: 0 - 128,
                         positionY: 128,
+                        statusSuccubusDefeated: true,
                     },
                     requirements: [
                         { // Fight Succubus without jump or flight
                             section: 'main',
                             techniqueDefeatSuccubusAtZeroProgression: true,
+                            statusSuccubusDefeated: false,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
@@ -14424,6 +14427,7 @@ export const ROOMS_INFO = {
                         { // Fight Succubus using Double Jump
                             section: 'main',
                             progressionDoubleJump: true,
+                            statusSuccubusDefeated: false,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
@@ -14431,6 +14435,7 @@ export const ROOMS_INFO = {
                         { // Fight Succubus using Bat Transformation
                             section: 'main',
                             progressionBatTransformation: true,
+                            statusSuccubusDefeated: false,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
@@ -14438,6 +14443,7 @@ export const ROOMS_INFO = {
                         { // Fight Succubus using Gravity Jump
                             section: 'main',
                             progressionGravityJump: true,
+                            statusSuccubusDefeated: false,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
@@ -14446,6 +14452,7 @@ export const ROOMS_INFO = {
                             section: 'main',
                             progressionMistTransformation: true,
                             progressionLongerMistDuration: true,
+                            statusSuccubusDefeated: false,
                             costs: {
                                 time: COST_UNKNOWN,
                             },
