@@ -8339,7 +8339,7 @@ export function getMapPixels(stageLinks, roomPositions) {
 
 export function combineNodeGroups(baseNodeGroup, nodeGroup, rowOffset, columnOffset, options={}) {
     const MAX_MAP_COL = 63
-    const MAX_MAP_ROW = 56
+    const MAX_MAP_ROW = 51
     const result = {
         rooms: [],
         cells: [],
