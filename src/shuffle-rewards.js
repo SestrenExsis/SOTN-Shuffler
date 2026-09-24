@@ -1743,6 +1743,15 @@ export function assignChainedRewards(seed, settings) {
     }
     // 24 locations in total
     // Goal is to follow the chain of progression to Flight, then find both Rings
+    const unlockPriority = {
+        itemSpikeBreaker: 3,
+        relicCubeOfZoe: 3,
+        relicDemonCard: 3,
+        relicFormOfMist: 3,
+        relicJewelOfOpen: 3,
+        relicMermanStatue: 3,
+        relicLeapStone: 2,
+    }
     const rewards = {}
     rewards.locked = [ // Locked initially, added to main after reaching MID layer
         'relicEchoOfBat',
@@ -1865,7 +1874,7 @@ export function assignChainedRewards(seed, settings) {
         shuffleArray(rng, rewards.main)
         let currentReward = {
             name: null,
-            checksUnlockedCount: Number.MAX_SAFE_INTEGER,
+            unlockPriority: 0,
         }
         rewards.main
         .forEach((rewardName) => {
@@ -1928,14 +1937,16 @@ export function assignChainedRewards(seed, settings) {
                     }
                 }
             })
+            console.log('###', prospectiveChecks.length - availableChecks.length, rewardName, unlockPriority[rewardName] ?? 1)
             if (
-                prospectiveChecks.length > availableChecks.length // &&
-                // (prospectiveChecks.length - availableChecks.length) < currentReward.checksUnlockedCount
+                prospectiveChecks.length > availableChecks.length &&
+                (unlockPriority[rewardName] ?? 1) > currentReward.unlockPriority
             ) {
                 currentReward.name = rewardName
-                currentReward.checksUnlockedCount = prospectiveChecks.length - availableChecks.length
+                currentReward.unlockPriority = unlockPriority[rewardName] ?? 1
             }
         })
+        console.log('>>>', currentReward.name)
         if (currentReward.name === null) {
             if (rewards.locked.length > 0) {
                 result.invalidated = true
