@@ -1890,6 +1890,7 @@ export function assignChainedRewards(seed, settings) {
         const edges = getEdges(logic, startingState)
         const currentLayerRewards = []
         const availableChecks = getReachableChecks(edges, startingState, result.locations)
+        console.log('availableChecks:', availableChecks)
         // Assign a main reward that unlocks at least one new location (prioritize non-movement)
         shuffleArray(rng, rewards.main)
         shuffleArray(rng, rewards.bonus)
@@ -1900,7 +1901,7 @@ export function assignChainedRewards(seed, settings) {
             updateStateWithOutcome(prospectiveState, LOGIC.rewards[rewardName].outcome)
             const edges = getEdges(logic, prospectiveState)
             const prospectiveChecks = getReachableChecks(edges, prospectiveState, result.locations, availableChecks)
-            console.log('   ', prospectiveChecks.length, rewardName, rewardPriority[rewardName] ?? 1)
+            console.log('   ', prospectiveChecks.length, rewardName, rewardPriority[rewardName] ?? 1, prospectiveChecks.join(', '))
             if (prospectiveChecks.length > 0) {
                 let rewardPriority = -1
                 switch (progressionStatus) {
