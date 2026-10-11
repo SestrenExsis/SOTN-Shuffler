@@ -228,7 +228,7 @@ const argv = yargs(process.argv.slice(2))
             // Apply all enabled modules
             console.log('seedName:', seedName)
             // Patcher
-            if (argv.patcher.on) {
+            if (argv.patcher?.on ?? false) {
                 const patches = argv.patcher.list ?? []
                 for (let i = 0; i < patches.length; i++) {
                     const patch = JSON.parse(fs.readFileSync(patches.at(i), 'utf8'))
