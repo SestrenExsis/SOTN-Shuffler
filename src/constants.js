@@ -3,6 +3,17 @@ const COST_PICKUP_ITEM = 1.0
 const COST_PICKUP_RELIC = 3.0
 const COST_QUICKGRAB_RELIC = 2.5
 const COST_UNKNOWN = 2.0
+const DISTANCE_TILE = 16
+// NOTE(sestren): Travelling through vertical screen transitions has to account for the top and bottom "gutters" and a small shift
+const DISTANCE_VERTICAL_SCREEN_TRANSITION = 44
+const DISTANCE_JUMP_FULL = 72
+const DISTANCE_JUMP = 4 * DISTANCE_TILE // Rounded down to account for suboptimal player inputs
+const DISTANCE_SECOND_JUMP = 55
+const DISTANCE_DOUBLE_JUMP = DISTANCE_JUMP + DISTANCE_SECOND_JUMP
+const DISTANCE_DOUBLE_JUMP_PRECISE = DISTANCE_JUMP_FULL + DISTANCE_SECOND_JUMP
+const DISTANCE_GRAVITY_JUMP = 24 * DISTANCE_TILE // Rounded down to 384 from 387
+// NOTE(sestren): Hitting the top of the camera as it scrolls upward during a gravity jump results in a weaker height gain
+const DISTANCE_GRAVITY_JUMP_HINDERED = 18 * DISTANCE_TILE // Rounded down to 288 from 291
 export const LOGIC = {
     locations: {
         locationBatCard: {
@@ -2465,6 +2476,43 @@ function getMovement(requirementName, section, time) {
     return result
 }
 
+function getUpwardMovement(requirementName, section, time, positionX, positionY) {
+    let currentPositionY = positionY
+    let deltaY = 0
+    switch (requirementName) {
+        // case 'bladeDash':
+        case 'jump':
+            deltaY = DISTANCE_JUMP_FULL
+            break
+        case 'doubleJump':
+            deltaY = DISTANCE_DOUBLE_JUMP
+            break
+        case 'gravityJump':
+            deltaY = DISTANCE_GRAVITY_JUMP
+            break
+        case 'poweredMistForm':
+            deltaY = DISTANCE_DOUBLE_JUMP
+            break
+        default:
+            break
+    }
+    currentPositionY -= deltaY
+    if (currentPositionY < DISTANCE_TILE) {
+        currentPositionY -= DISTANCE_VERTICAL_SCREEN_TRANSITION
+    }
+    const result = {
+        outcome: {
+            positionX: positionX,
+            positionY: 0 - 24,
+            verticalClimb: Math.max(currentPositionY - 24, 0),
+        },
+        requirements: [
+            getMovement(requirementName, section, time),
+        ],
+    }
+    return result
+}
+
 function getRegion(section, left, top, width, height) {
     const result = {
         requirements: [
@@ -4512,6 +4560,7 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         getMovement('batForm', 'main', 7.5),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
                         getMovement('poweredMistLong', 'main', 10.5),
                     ],
                 },
@@ -4555,7 +4604,7 @@ export const ROOMS_INFO = {
                 exitTop: {
                     outcome: {
                         positionX: 128,
-                        positionY: 0 - 56,
+                        positionY: 0 - 56, // TODO(sestren): Add velocityY
                     },
                     requirements: [
                         getMovement('jump', 'upperLedge', 0.7),
@@ -4786,7 +4835,7 @@ export const ROOMS_INFO = {
                 exitTop: {
                     outcome: {
                         positionX: 128,
-                        positionY: 0 - 56,
+                        positionY: 0 - 56, // TODO(sestren): Add velocityY
                     },
                     requirements: [
                         getMovement('batForm', 'holeInCeiling', COST_UNKNOWN),
@@ -5028,7 +5077,7 @@ export const ROOMS_INFO = {
                 exitTop: {
                     outcome: {
                         positionX: 128,
-                        positionY: 0 - 56,
+                        positionY: 0 - 56, // TODO(sestren): Add velocityY
                     },
                     requirements: [
                         getMovement('batForm', 'highIntheAir', COST_UNKNOWN),
@@ -7357,7 +7406,7 @@ export const ROOMS_INFO = {
                 exitTop: { // TODO(sestren): Put logic here
                     outcome: {
                         positionX: 1072,
-                        positionY: 0 - 24,
+                        positionY: 0 - 24, // TODO(sestren): Add velocityY
                     },
                     requirements: [
                         getMovement('batForm', 'main', COST_UNKNOWN),
@@ -9613,9 +9662,14 @@ export const ROOMS_INFO = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
                     ],
                 },
+                exitTopWithJump: getUpwardMovement('jump', 'main', COST_UNKNOWN, 128, 80),
+                exitTopWithDoubleJump: getUpwardMovement('doubleJump', 'main', COST_UNKNOWN, 128, 80),
+                exitTopWithPoweredMist: getUpwardMovement('poweredMist', 'main', COST_UNKNOWN, 128, 80),
+                exitTopWithGravityJump: getUpwardMovement('gravityJump', 'main', COST_UNKNOWN, 128, 80),
                 exitRight: {
                     outcome: {
                         positionX: 256 + 8,
@@ -9642,9 +9696,14 @@ export const ROOMS_INFO = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
                     ],
                 },
+                exitTopWithJump: getUpwardMovement('jump', 'main', COST_UNKNOWN, 128, 80),
+                exitTopWithDoubleJump: getUpwardMovement('doubleJump', 'main', COST_UNKNOWN, 128, 80),
+                exitTopWithPoweredMist: getUpwardMovement('poweredMist', 'main', COST_UNKNOWN, 128, 80),
+                exitTopWithGravityJump: getUpwardMovement('gravityJump', 'main', COST_UNKNOWN, 128, 80),
             },
         },
         blueDoorRoom: {
@@ -9975,9 +10034,14 @@ export const ROOMS_INFO = {
                         positionY: 0 - 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
                     ],
                 },
+                exitTopWithJump: getUpwardMovement('jump', 'main', COST_UNKNOWN, 128, 48),
+                exitTopWithDoubleJump: getUpwardMovement('doubleJump', 'main', COST_UNKNOWN, 128, 48),
+                exitTopWithPoweredMist: getUpwardMovement('poweredMist', 'main', COST_UNKNOWN, 128, 48),
+                exitTopWithGravityJump: getUpwardMovement('gravityJump', 'main', COST_UNKNOWN, 128, 48),
                 exitLeft: {
                     outcome: {
                         positionX: 0 - 8,
@@ -10499,7 +10563,7 @@ export const ROOMS_INFO = {
                 height: 512,
             },
             regions: [
-                getRegion('pit', 576, 480, 128, 32),
+                getRegion('pit', 576, 480, 96, 32),
                 getRegion('main', 0, 0, 768, 512),
             ],
             commands: {
@@ -10543,12 +10607,16 @@ export const ROOMS_INFO = {
                     outcome: {
                         positionX: 752,
                         positionY: 384,
+                        verticalClimb: 0,
                         // section: 'main',
                     },
                     requirements: [
                         {
                             section: 'pit',
                             statusPressurePlateInMarbleGalleryActivated: true,
+                            verticalClimb: {
+                                minimum: 64 - 24,
+                            },
                             costs: {
                                 time: COST_UNKNOWN,
                             },
@@ -10701,12 +10769,16 @@ export const ROOMS_INFO = {
                     outcome: {
                         positionX: 320,
                         positionY: 160,
+                        verticalClimb: 0,
                         // section: 'main',
                     },
                     requirements: [
                         {
                             section: 'pit',
                             statusPressurePlateInMarbleGalleryActivated: true,
+                            verticalClimb: {
+                                minimum: 64 - 24,
+                            },
                             costs: {
                                 time: COST_UNKNOWN,
                             },

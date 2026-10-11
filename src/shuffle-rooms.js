@@ -5754,6 +5754,7 @@ export const NODE_GROUPS = {
       ],
     },
     saveRoomA: {
+        // TODO(sestren): Save room with ID 14 has an entity that turns off the rain sound
       rooms: [
         {
           stage: "outerWall",
