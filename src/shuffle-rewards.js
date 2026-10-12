@@ -624,7 +624,7 @@ const LOCATIONS = {
         defaultValue: 'relicPowerOfMist',
         validRewardTypes: [ 'item', 'relic', ],
         forbiddenRewards: [
-            'relicSoulOfBat',
+            // 'relicSoulOfBat',
         ],
         writes: {
             item: [
@@ -869,7 +869,7 @@ const LOCATIONS = {
         defaultValue: 'relicPowerOfWolf',
         validRewardTypes: [ 'item', 'relic', ],
         forbiddenRewards: [
-            'relicSoulOfBat',
+            // 'relicSoulOfBat',
         ],
         writes: {
             item: [
@@ -1174,7 +1174,7 @@ const LOCATIONS = {
         defaultValue: 'relicFaerieCard',
         validRewardTypes: [ 'item', 'relic', ],
         forbiddenRewards: [
-            'relicSoulOfBat',
+            // 'relicSoulOfBat',
         ],
         writes: {
             item: [
@@ -1540,7 +1540,8 @@ export function assignLayeredRewards(seed, settings) {
         section: 'main',
         positionX: 136,
         positionY: 640,
-        time: 120.0,
+        time: 180.0,
+        techniqueLogicalRisks: true,
         techniqueSolveBoxPuzzle: true,
     }
     // 26 locations in total
@@ -1794,7 +1795,8 @@ export function assignChainedRewards(seed, settings) {
         section: 'main',
         positionX: 136,
         positionY: 640,
-        time: 120.0,
+        time: 180.0,
+        techniqueLogicalRisks: true,
         techniqueSolveBoxPuzzle: true,
     }
     // 24 locations in total

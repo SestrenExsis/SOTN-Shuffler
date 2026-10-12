@@ -2634,8 +2634,9 @@ export const ROOMS_INFO = {
                         positionY: 1024 + 24,
                     },
                     requirements: [
-                        // TODO(sestren): Add return logic
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('basicRisky', 'main', COST_UNKNOWN),
+                        getMovement('doubleJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
                     ],
                 },
                 toBehindDemonBlock: {
@@ -2867,8 +2868,9 @@ export const ROOMS_INFO = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        // TODO(sestren): Add return logic
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('basicRisky', 'main', COST_UNKNOWN),
+                        getMovement('doubleJump', 'main', COST_UNKNOWN),
+                        getMovement('poweredMist', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -2993,7 +2995,6 @@ export const ROOMS_INFO = {
                 getRegion('main', 0, 736, 256, 288),
             ],
             commands: {
-                // TODO(sestren): Add return logic
                 exitLeft: {
                     outcome: {
                         positionX: 0 - 8,
@@ -3044,7 +3045,7 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        // getMovement('basicRisky', 'layer0', COST_UNKNOWN),
+                        getMovement('basicRisky', 'layer0', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
                         // getMovement('risingUppercut', 'layer0', COST_UNKNOWN),
                         getMovement('batForm', 'layer0', COST_UNKNOWN),
@@ -3069,7 +3070,7 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        // getMovement('basicRisky', 'layer1', COST_UNKNOWN),
+                        getMovement('basicRisky', 'layer1', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
                         // getMovement('risingUppercut', 'layer1', COST_UNKNOWN),
                         getMovement('batForm', 'layer1', COST_UNKNOWN),
@@ -3094,7 +3095,7 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        // getMovement('basicRisky', 'layer2', COST_UNKNOWN),
+                        getMovement('basicRisky', 'layer2', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
                         // getMovement('risingUppercut', 'layer2', COST_UNKNOWN),
                         getMovement('batForm', 'layer2', COST_UNKNOWN),
@@ -3119,7 +3120,7 @@ export const ROOMS_INFO = {
                     },
                     requirements: [
                         // Moving downward, chance of return not guaranteed
-                        // getMovement('basicRisky', 'layer3', COST_UNKNOWN),
+                        getMovement('basicRisky', 'layer3', COST_UNKNOWN),
                         // Moving downward, chance of return guaranteed
                         // getMovement('risingUppercut', 'layer3', COST_UNKNOWN),
                         getMovement('batForm', 'layer3', COST_UNKNOWN),
@@ -3897,7 +3898,6 @@ export const ROOMS_INFO = {
                 getRegion('main', 0, 0, 512, 256),
             ],
             commands: {
-                // TODO(sestren): Add return logic
                 exitRight: {
                     outcome: {
                         positionX: 512 + 8,
@@ -3913,7 +3913,9 @@ export const ROOMS_INFO = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('basicRisky', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -4035,7 +4037,6 @@ export const ROOMS_INFO = {
                 getRegion('main', 0, 0, 768, 512),
             ],
             commands: {
-                // TODO(sestren): Add return logic
                 exitTop: {
                     outcome: {
                         positionX: 128,
@@ -4080,7 +4081,9 @@ export const ROOMS_INFO = {
                         positionY: 512 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('basicRisky', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
                     ],
                 },
                 toUpperRightLedge: {
@@ -6273,7 +6276,6 @@ export const ROOMS_INFO = {
                 getRegion('holeInFloor', 32, 448, 32, 64),
             ],
             commands: {
-                // TODO(sestren): Add return logic
                 exitTop: {
                     outcome: {
                         positionX: 176,
@@ -6316,7 +6318,9 @@ export const ROOMS_INFO = {
                         positionY: 512 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'holeInFloor', COST_UNKNOWN),
+                        getMovement('basicRisky', 'holeInFloor', COST_UNKNOWN),
+                        getMovement('batForm', 'holeInFloor', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'holeInFloor', COST_UNKNOWN),
                     ],
                 },
                 toHoleInCeiling: {
@@ -6578,7 +6582,6 @@ export const ROOMS_INFO = {
                 getRegion('main', 0, 256, 512, 256),
             ],
             commands: {
-                // TODO(sestren): Add return logic
                 exitLeftUpper: {
                     outcome: {
                         positionX: 0 - 8,
@@ -6613,7 +6616,9 @@ export const ROOMS_INFO = {
                         // section: 'main',
                     },
                     requirements: [
-                        getMovement('fall', 'upperLedges', COST_UNKNOWN),
+                        getMovement('basicRisky', 'upperLedges', COST_UNKNOWN),
+                        getMovement('batForm', 'upperLedges', COST_UNKNOWN),
+                        getMovement('gravityJump', 'upperLedges', COST_UNKNOWN),
                     ],
                 },
                 toUpperLedges: {
@@ -7413,7 +7418,6 @@ export const ROOMS_INFO = {
                 getRegion('main', 0, 0, 1280, 256),
             ],
             commands: {
-                // TODO(sestren): Add return logic
                 exitLeft: {
                     outcome: {
                         positionX: 0 - 8,
@@ -7429,7 +7433,9 @@ export const ROOMS_INFO = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('basicRisky', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -7948,7 +7954,7 @@ export const ROOMS_INFO = {
                 getRegion('main', 0, 1104, 1536, 176),
             ],
             commands: {
-                // TODO(sestren): Add return logic
+                // TODO(sestren): Add return logic - Flight
                 exitLeftUpper: {
                     outcome: {
                         positionX: 0 - 8,
@@ -9209,7 +9215,6 @@ export const ROOMS_INFO = {
                 getRegion('main', 144, 816, 624, 144),
             ],
             commands: {
-                // TODO(sestren): Add return logic
                 exitRightUpper: {
                     outcome: {
                         positionX: 1280 + 8,
@@ -9251,7 +9256,7 @@ export const ROOMS_INFO = {
                         // section: 'upperLevel',
                     },
                     requirements: [
-                        getMovement('fall', 'topRightLedge', COST_UNKNOWN),
+                        getMovement('basicRisky', 'topRightLedge', COST_UNKNOWN),
                         // getMovement('risingUppercut', 'middleLevel', COST_UNKNOWN),
                         getMovement('batForm', 'middleLevel', COST_UNKNOWN),
                         getMovement('doubleJump', 'middleLevel', COST_UNKNOWN),
@@ -9267,7 +9272,7 @@ export const ROOMS_INFO = {
                         // section: 'middleLevel',
                     },
                     requirements: [
-                        getMovement('fall', 'upperLevel', COST_UNKNOWN),
+                        getMovement('basicRisky', 'upperLevel', COST_UNKNOWN),
                         // getMovement('risingUppercut', 'lowerLevel', COST_UNKNOWN),
                         getMovement('batForm', 'lowerLevel', COST_UNKNOWN),
                         getMovement('doubleJump', 'lowerLevel', COST_UNKNOWN),
@@ -9283,7 +9288,7 @@ export const ROOMS_INFO = {
                         // section: 'lowerLevel',
                     },
                     requirements: [
-                        getMovement('fall', 'middleLevel', COST_UNKNOWN),
+                        getMovement('basicRisky', 'middleLevel', COST_UNKNOWN),
                         // getMovement('risingUppercut', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('doubleJump', 'main', COST_UNKNOWN),
@@ -9299,7 +9304,7 @@ export const ROOMS_INFO = {
                         // section: 'main',
                     },
                     requirements: [
-                        getMovement('fall', 'lowerLevel', COST_UNKNOWN),
+                        getMovement('basicRisky', 'lowerLevel', COST_UNKNOWN),
                         getMovement('mistForm', 'behindMistGate', COST_UNKNOWN),
                     ],
                 },
@@ -9473,7 +9478,6 @@ export const ROOMS_INFO = {
                 getRegion('main', 0, 0, 1792, 768),
             ],
             commands: {
-                // TODO(sestren): Add return logic
                 exitLeftUpper: {
                     outcome: {
                         positionX: 0 - 8,
@@ -9547,8 +9551,14 @@ export const ROOMS_INFO = {
                         // section: 'main',
                     },
                     requirements: [
-                        getMovement('fall', 'upperLeftLedge', COST_UNKNOWN),
-                        getMovement('fall', 'middleLeftLedge', COST_UNKNOWN),
+                        getMovement('basicRisky', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('gravityJump', 'upperLeftLedge', COST_UNKNOWN),
+                        getMovement('basicRisky', 'middleLeftLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'middleLeftLedge', COST_UNKNOWN),
+                        getMovement('gravityJump', 'middleLeftLedge', COST_UNKNOWN),
+                        getMovement('doubleJump', 'middleLeftLedge', COST_UNKNOWN),
+                        getMovement('poweredMist', 'middleLeftLedge', COST_UNKNOWN),
                     ],
                 },
             },
@@ -10646,7 +10656,6 @@ export const ROOMS_INFO = {
                 getRegion('main', 0, 0, 768, 512),
             ],
             commands: {
-                // TODO(sestren): Add return logic
                 exitLeft: {
                     outcome: {
                         positionX: 0 - 8,
@@ -10680,7 +10689,9 @@ export const ROOMS_INFO = {
                         positionY: 512 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'pit', COST_UNKNOWN),
+                        getMovement('basicRisky', 'pit', COST_UNKNOWN),
+                        getMovement('batForm', 'pit', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'pit', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -10818,7 +10829,6 @@ export const ROOMS_INFO = {
                 getRegion('main', 0, 0, 768, 256),
             ],
             commands: {
-                // TODO(sestren): Add return logic
                 exitLeft: {
                     outcome: {
                         positionX: 0 - 8,
@@ -10843,7 +10853,9 @@ export const ROOMS_INFO = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'pit', COST_UNKNOWN),
+                        getMovement('basicRisky', 'pit', COST_UNKNOWN),
+                        getMovement('batForm', 'pit', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'pit', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -11547,7 +11559,7 @@ export const ROOMS_INFO = {
                 getRegion('main', 0, 0, 1536, 1024),
             ],
             commands: {
-                // TODO(sestren): Add return logic
+                // TODO(sestren): Add return logic - Flight
                 exitTop: {
                     outcome: {
                         positionX: 1392,
@@ -11612,7 +11624,7 @@ export const ROOMS_INFO = {
                 getRegion('main', 0, 0, 1536, 256),
             ],
             commands: {
-                // TODO(sestren): Add return logic
+                // TODO(sestren): Add return logic - Flight
                 exitBottomLeft: {
                     outcome: {
                         positionX: 112,
@@ -11895,7 +11907,6 @@ export const ROOMS_INFO = {
                 getRegion('main', 0, 0, 512, 2304),
             ],
             commands: {
-                // TODO(sestren): Add return logic
                 exitTop: {
                     outcome: {
                         positionX: 416,
@@ -11939,7 +11950,10 @@ export const ROOMS_INFO = {
                         positionY: 2304 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('basicRisky', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('mistForm', 'main', COST_UNKNOWN),
+                        getMovement('gravityJump', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13454,7 +13468,6 @@ export const ROOMS_INFO = {
                 getRegion('main', 0, 0, 1024, 256),
             ],
             commands: {
-                // TODO(sestren): Add return logic
                 exitLeft: {
                     outcome: {
                         positionX: 0 - 8,
@@ -13479,12 +13492,9 @@ export const ROOMS_INFO = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        {
-                            section: 'beneathBridge',
-                            costs: {
-                                time: COST_UNKNOWN,
-                            },
-                        },
+                        getMovement('basicRisky', 'beneathBridge', COST_UNKNOWN),
+                        getMovement('batForm', 'beneathBridge', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'beneathBridge', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -13593,7 +13603,6 @@ export const ROOMS_INFO = {
                 getRegion('main', 0, 0, 512, 256),
             ],
             commands: {
-                // TODO(sestren): Add return logic
                 exitLeft: {
                     outcome: {
                         positionX: 0 - 8,
@@ -13609,7 +13618,9 @@ export const ROOMS_INFO = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('basicRisky', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13652,7 +13663,6 @@ export const ROOMS_INFO = {
                 getRegion('main', 0, 0, 256, 768),
             ],
             commands: {
-                // TODO(sestren): Add return logic
                 exitTop: {
                     outcome: {
                         positionX: 136,
@@ -13698,7 +13708,9 @@ export const ROOMS_INFO = {
                         positionY: 768 + 24,
                     },
                     requirements: [
-                        getMovement('fall', 'main', COST_UNKNOWN),
+                        getMovement('basicRisky', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -13898,7 +13910,6 @@ export const ROOMS_INFO = {
                 getRegion('pit', 80, 2768, 112, 48),
             ],
             commands: {
-                // TODO(sestren): Add return logic
                 exitLeft: {
                     outcome: {
                         positionX: 0 - 8,
@@ -13941,7 +13952,9 @@ export const ROOMS_INFO = {
                         positionY: 2816 + 24,
                     },
                     requirements: [
-                        getMovement('fall', 'pit', COST_UNKNOWN),
+                        getMovement('basicRisky', 'pit', COST_UNKNOWN),
+                        getMovement('batForm', 'pit', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'pit', COST_UNKNOWN),
                     ],
                 },
                 toMain: {
@@ -14244,7 +14257,6 @@ export const ROOMS_INFO = {
                 getRegion('main', 0, 0, 512, 256),
             ],
             commands: {
-                // TODO(sestren): Add return logic
                 exitLeft: {
                     outcome: {
                         positionX: 0 - 8,
@@ -14269,7 +14281,9 @@ export const ROOMS_INFO = {
                         positionY: 256 + 24,
                     },
                     requirements: [
-                        getMovement('basic', 'main', COST_UNKNOWN),
+                        getMovement('basicRisky', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -14566,7 +14580,6 @@ export const ROOMS_INFO = {
                 getRegion('main', 0, 0, 256, 2304),
             ],
             commands: {
-                // TODO(sestren): Add return logic
                 exitLeftUpper: {
                     outcome: {
                         positionX: 0 - 8,
@@ -14591,7 +14604,9 @@ export const ROOMS_INFO = {
                         positionY: 2304 + 24,
                     },
                     requirements: [
-                        getMovement('fall', 'main', COST_UNKNOWN),
+                        getMovement('basicRisky', 'main', COST_UNKNOWN),
+                        getMovement('batForm', 'main', COST_UNKNOWN),
+                        getMovement('multipleGravityJumps', 'main', COST_UNKNOWN),
                     ],
                 },
             },
@@ -14688,16 +14703,16 @@ export const ROOMS_INFO = {
             commands: {},
         },
         waterfall: {
-            // TODO(sestren): Add flight logic
             roomInfo: {
                 width: 512,
                 height: 1536,
             },
             regions: [
+                // TODO(sestren): Add more regions and logic?
                 getRegion('main', 0, 0, 512, 1536),
             ],
             commands: {
-                // TODO(sestren): Add return logic
+                // TODO(sestren): Add return logic - Flight
                 exitLeftUpper: {
                     outcome: {
                         positionX: 0 - 8,
@@ -15383,6 +15398,7 @@ export const VALIDATIONS = {
                 section: 'main',
                 progressionDoubleJump: true,
                 progressionSummonDemonFamiliar: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15399,6 +15415,7 @@ export const VALIDATIONS = {
                 progressionDoubleJump: true,
                 progressionSummonDemonFamiliar: true,
                 statusDemonSwitchActivated: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15415,6 +15432,7 @@ export const VALIDATIONS = {
                 progressionDoubleJump: true,
                 progressionSummonDemonFamiliar: true,
                 statusDemonSwitchActivated: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15434,6 +15452,7 @@ export const VALIDATIONS = {
                 section: 'main',
                 progressionBatTransformation: true,
                 progressionUnlockBlueDoors: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15449,6 +15468,7 @@ export const VALIDATIONS = {
                 section: 'main',
                 progressionBatTransformation: true,
                 progressionUnlockBlueDoors: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15464,6 +15484,7 @@ export const VALIDATIONS = {
                 section: 'main',
                 progressionBatTransformation: true,
                 progressionUnlockBlueDoors: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15611,6 +15632,7 @@ export const VALIDATIONS = {
                 room: 'hub',
                 section: 'main',
                 progressionBatTransformation: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15625,6 +15647,7 @@ export const VALIDATIONS = {
                 room: 'hub',
                 section: 'main',
                 progressionBatTransformation: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15639,6 +15662,7 @@ export const VALIDATIONS = {
                 room: 'hub',
                 section: 'main',
                 progressionBatTransformation: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15657,6 +15681,7 @@ export const VALIDATIONS = {
                 itemSpikeBreaker: 1,
                 progressionBatTransformation: true,
                 progressionEcholocation: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15703,6 +15728,7 @@ export const VALIDATIONS = {
                 progressionBatTransformation: true,
                 statusLeftGearRoomSolved: true,
                 statusRightGearRoomSolved: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15718,7 +15744,8 @@ export const VALIDATIONS = {
                 room: 'loadingRoomToOuterWall',
                 section: 'main',
                 progressionBatTransformation: true,
-                debugEnableElsewhere: false,
+                techniqueLogicalRisks: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -15734,7 +15761,8 @@ export const VALIDATIONS = {
                 room: 'loadingRoomToCastleKeep',
                 section: 'main',
                 progressionBatTransformation: true,
-                debugEnableElsewhere: false,
+                techniqueLogicalRisks: true,
+                debugEnableElsewhere: true,
                 time: 120.0,
             },
             goalState: {
@@ -15751,6 +15779,7 @@ export const VALIDATIONS = {
                 stage: 'elsewhere',
                 room: 'hub',
                 section: 'main',
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15764,6 +15793,7 @@ export const VALIDATIONS = {
                 stage: 'elsewhere',
                 room: 'hub',
                 section: 'main',
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15780,6 +15810,7 @@ export const VALIDATIONS = {
                 room: 'outsideShop',
                 section: 'main',
                 progressionDoubleJump: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15797,6 +15828,7 @@ export const VALIDATIONS = {
                 section: 'main',
                 progressionBatTransformation: true,
                 progressionMistTransformation: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15814,6 +15846,7 @@ export const VALIDATIONS = {
                 section: 'main',
                 progressionBatTransformation: true,
                 progressionMistTransformation: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15831,6 +15864,7 @@ export const VALIDATIONS = {
                 section: 'main',
                 progressionBatTransformation: true,
                 progressionMistTransformation: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15848,6 +15882,7 @@ export const VALIDATIONS = {
                 section: 'main',
                 progressionBatTransformation: true,
                 progressionMistTransformation: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15865,6 +15900,7 @@ export const VALIDATIONS = {
                 section: 'main',
                 progressionBatTransformation: true,
                 progressionMistTransformation: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15882,6 +15918,7 @@ export const VALIDATIONS = {
                 section: 'main',
                 progressionBatTransformation: true,
                 progressionMistTransformation: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15897,6 +15934,7 @@ export const VALIDATIONS = {
                 section: 'main',
                 progressionBatTransformation: true,
                 progressionMistTransformation: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15913,6 +15951,7 @@ export const VALIDATIONS = {
                 progressionBatTransformation: true,
                 progressionMistTransformation: true,
                 progressionItemMaterialization: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15928,6 +15967,7 @@ export const VALIDATIONS = {
                 section: 'main',
                 progressionBatTransformation: true,
                 progressionMistTransformation: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15946,6 +15986,7 @@ export const VALIDATIONS = {
                 progressionBatTransformation: true,
                 progressionItemMaterialization: true,
                 progressionUnlockBlueDoors: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15963,6 +16004,7 @@ export const VALIDATIONS = {
                 progressionItemMaterialization: true,
                 progressionUnlockBlueDoors: true,
                 statusPressurePlateInMarbleGalleryActivated: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15980,6 +16022,7 @@ export const VALIDATIONS = {
                 progressionItemMaterialization: true,
                 progressionUnlockBlueDoors: true,
                 statusPressurePlateInMarbleGalleryActivated: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -15997,6 +16040,7 @@ export const VALIDATIONS = {
                 progressionItemMaterialization: true,
                 progressionUnlockBlueDoors: true,
                 statusPressurePlateInMarbleGalleryActivated: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -16012,6 +16056,7 @@ export const VALIDATIONS = {
                 stage: 'elsewhere',
                 room: 'hub',
                 section: 'main',
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -16030,6 +16075,7 @@ export const VALIDATIONS = {
                 room: 'hub',
                 section: 'main',
                 progressionBatTransformation: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -16044,6 +16090,7 @@ export const VALIDATIONS = {
                 room: 'hub',
                 section: 'main',
                 progressionBatTransformation: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -16058,6 +16105,7 @@ export const VALIDATIONS = {
                 room: 'hub',
                 section: 'main',
                 progressionBatTransformation: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -16075,6 +16123,7 @@ export const VALIDATIONS = {
                 stage: 'elsewhere',
                 room: 'hub',
                 section: 'main',
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -16090,6 +16139,7 @@ export const VALIDATIONS = {
                 stage: 'elsewhere',
                 room: 'hub',
                 section: 'main',
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -16109,6 +16159,7 @@ export const VALIDATIONS = {
                 progressionBatTransformation: true,
                 progressionMistTransformation: true,
                 progressionUnlockBlueDoors: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -16127,6 +16178,7 @@ export const VALIDATIONS = {
                 progressionMistTransformation: true,
                 progressionUnlockBlueDoors: true,
                 statusStatueInRoyalChapelMoved: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -16147,6 +16199,7 @@ export const VALIDATIONS = {
                 progressionMistTransformation: true,
                 progressionUnlockBlueDoors: true,
                 statusStatueInRoyalChapelMoved: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -16165,6 +16218,7 @@ export const VALIDATIONS = {
                 progressionBatTransformation: true,
                 progressionProtectionFromWater: true,
                 progressionSummonFerryman: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -16181,6 +16235,7 @@ export const VALIDATIONS = {
                 progressionBatTransformation: true,
                 progressionProtectionFromWater: true,
                 progressionSummonFerryman: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -16197,6 +16252,7 @@ export const VALIDATIONS = {
                 progressionBatTransformation: true,
                 progressionProtectionFromWater: true,
                 progressionSummonFerryman: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -16213,6 +16269,7 @@ export const VALIDATIONS = {
                 progressionBatTransformation: true,
                 progressionProtectionFromWater: true,
                 progressionSummonFerryman: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },
@@ -16230,6 +16287,7 @@ export const VALIDATIONS = {
                 progressionProtectionFromWater: true,
                 progressionSummonFerryman: true,
                 statusButtonInUndergroundCavernsActivated: true,
+                techniqueLogicalRisks: true,
                 debugEnableElsewhere: true,
                 time: 120.0,
             },

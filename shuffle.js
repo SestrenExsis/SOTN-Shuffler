@@ -414,7 +414,8 @@ const argv = yargs(process.argv.slice(2))
                         section: 'main',
                         positionX: 136,
                         positionY: 640,
-                        time: 120.0,
+                        time: 180.0,
+                        techniqueLogicalRisks: true,
                         techniqueSolveBoxPuzzle: true,
                     }
                     logicAnalysis.scenarios = []
