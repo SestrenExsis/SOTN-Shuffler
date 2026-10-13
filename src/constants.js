@@ -9256,7 +9256,15 @@ export const ROOMS_INFO = {
                         // section: 'upperLevel',
                     },
                     requirements: [
+                        // Moving downward, chance of return not guaranteed
                         getMovement('basicRisky', 'topRightLedge', COST_UNKNOWN),
+                        // Moving downward, chance of return guaranteed
+                        // getMovement('risingUppercut', 'topRightLedge', COST_UNKNOWN),
+                        getMovement('batForm', 'topRightLedge', COST_UNKNOWN),
+                        getMovement('doubleJump', 'topRightLedge', COST_UNKNOWN),
+                        getMovement('gravityJump', 'topRightLedge', COST_UNKNOWN),
+                        getMovement('poweredMist', 'topRightLedge', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'topRightLedge', COST_UNKNOWN),
                         // getMovement('risingUppercut', 'middleLevel', COST_UNKNOWN),
                         getMovement('batForm', 'middleLevel', COST_UNKNOWN),
                         getMovement('doubleJump', 'middleLevel', COST_UNKNOWN),
@@ -9272,7 +9280,15 @@ export const ROOMS_INFO = {
                         // section: 'middleLevel',
                     },
                     requirements: [
+                        // Moving downward, chance of return not guaranteed
                         getMovement('basicRisky', 'upperLevel', COST_UNKNOWN),
+                        // Moving downward, chance of return guaranteed
+                        // getMovement('risingUppercut', 'upperLevel', COST_UNKNOWN),
+                        getMovement('batForm', 'upperLevel', COST_UNKNOWN),
+                        getMovement('doubleJump', 'upperLevel', COST_UNKNOWN),
+                        getMovement('gravityJump', 'upperLevel', COST_UNKNOWN),
+                        getMovement('poweredMist', 'upperLevel', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'upperLevel', COST_UNKNOWN),
                         // getMovement('risingUppercut', 'lowerLevel', COST_UNKNOWN),
                         getMovement('batForm', 'lowerLevel', COST_UNKNOWN),
                         getMovement('doubleJump', 'lowerLevel', COST_UNKNOWN),
@@ -9288,7 +9304,15 @@ export const ROOMS_INFO = {
                         // section: 'lowerLevel',
                     },
                     requirements: [
+                        // Moving downward, chance of return not guaranteed
                         getMovement('basicRisky', 'middleLevel', COST_UNKNOWN),
+                        // Moving downward, chance of return guaranteed
+                        // getMovement('risingUppercut', 'middleLevel', COST_UNKNOWN),
+                        getMovement('batForm', 'middleLevel', COST_UNKNOWN),
+                        getMovement('doubleJump', 'middleLevel', COST_UNKNOWN),
+                        getMovement('gravityJump', 'middleLevel', COST_UNKNOWN),
+                        getMovement('poweredMist', 'middleLevel', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'middleLevel', COST_UNKNOWN),
                         // getMovement('risingUppercut', 'main', COST_UNKNOWN),
                         getMovement('batForm', 'main', COST_UNKNOWN),
                         getMovement('doubleJump', 'main', COST_UNKNOWN),
@@ -9304,7 +9328,15 @@ export const ROOMS_INFO = {
                         // section: 'main',
                     },
                     requirements: [
+                        // Moving downward, chance of return not guaranteed
                         getMovement('basicRisky', 'lowerLevel', COST_UNKNOWN),
+                        // Moving downward, chance of return guaranteed
+                        // getMovement('risingUppercut', 'lowerLevel', COST_UNKNOWN),
+                        getMovement('batForm', 'lowerLevel', COST_UNKNOWN),
+                        getMovement('doubleJump', 'lowerLevel', COST_UNKNOWN),
+                        getMovement('gravityJump', 'lowerLevel', COST_UNKNOWN),
+                        getMovement('poweredMist', 'lowerLevel', COST_UNKNOWN),
+                        getMovement('wolfMistRise', 'lowerLevel', COST_UNKNOWN),
                         getMovement('mistForm', 'behindMistGate', COST_UNKNOWN),
                     ],
                 },
@@ -10223,7 +10255,7 @@ export const ROOMS_INFO = {
                     requirements: [
                         getMovement('batForm', 'pit', COST_UNKNOWN),
                         getMovement('multipleGravityJumps', 'pit', COST_UNKNOWN),
-                        getMovement('poweredMist', 'pit', COST_UNKNOWN),
+                        getMovement('poweredMistLong', 'pit', COST_UNKNOWN),
                     ],
                 },
                 toPit: {

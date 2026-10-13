@@ -419,18 +419,18 @@ const argv = yargs(process.argv.slice(2))
                         techniqueSolveBoxPuzzle: true,
                     }
                     logicAnalysis.scenarios = []
-                    logicAnalysis.scenarios.push({
-                        name: 'Start with no checks and verify that all checks are reachable',
-                        result: analyzeLogic(logicAnalysis, {
-                            startingState: startingState,
-                            startingNodeTypes: [],
-                            goalState: {},
-                            goalNodeTypes: [
-                                'check'
-                            ],
-                        }),
-                    })
-                    if (logicAnalysis.scenarios.at(-1).result.solved) {
+                    // logicAnalysis.scenarios.push({
+                    //     name: 'Start with no checks and verify that all checks are reachable',
+                    //     result: analyzeLogic(logicAnalysis, {
+                    //         startingState: startingState,
+                    //         startingNodeTypes: [],
+                    //         goalState: {},
+                    //         goalNodeTypes: [
+                    //             'check'
+                    //         ],
+                    //     }),
+                    // })
+                    // if (logicAnalysis.scenarios.at(-1).result.solved) {
                         logicAnalysis.scenarios.push({
                             name: 'Start with all checks and actions and verify that all warps are reachable',
                             result: analyzeLogic(logicAnalysis, {
@@ -461,12 +461,12 @@ const argv = yargs(process.argv.slice(2))
                                 ],
                             }),
                         })
-                    }
+                    // }
                     logicAnalysis.solved = logicAnalysis.scenarios
                     .every((scenario) => {
+                        console.log('scenario.result.solved:', scenario.result.solved)
                         return scenario.result.solved
                     })
-                    // console.log('logicAnalysis:', inspect(logicAnalysis, { depth: 4 }))
                     // console.log('')
                     shuffleData.debugInfo.solved = logicAnalysis.solved
                     shuffleData.debugInfo.finalSeedsUsed.solver = seed

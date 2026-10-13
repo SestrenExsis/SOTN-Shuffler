@@ -151,6 +151,26 @@ const REWARDS = {
 }
 
 const LOCATIONS = {
+    // TODO(sestren): Add additional locations?
+    // castleEntrance:
+    //  - locationHolyMail
+    //  - locationJewelSword
+    // marbleGallery:
+    //  - locationAlucartSword
+    // outerWall:
+    //  - locationJewelKnuckles
+    // clockTower:
+    //  - locationGoldPlate
+    // colosseum:
+    //  - locationKnightShield
+    // royalChapel:
+    //  - locationCutlass
+    // olroxsQuarters:
+    //  - locationOlroxsQuartersOnyx
+    // abandonedMines:
+    //  - locationRingOfAres
+    // catacombs:
+    //  - locationMormegil
     locationBatCard: {
         defaultValue: 'relicBatCard',
         validRewardTypes: [ 'relic', ],
@@ -1776,8 +1796,7 @@ export function assignChainedRewards(seed, settings) {
             attemptCounter: 0,
         },
         invalidated: false,
-        locations: {
-        },
+        locations: {},
     }
     // Second Castle checks are forced to be filler Bat upgrades
     const secondCastleRewards = shuffleArray(rng, [
@@ -1796,65 +1815,51 @@ export function assignChainedRewards(seed, settings) {
         positionX: 136,
         positionY: 640,
         time: 180.0,
-        techniqueLogicalRisks: true,
+        // techniqueLogicalRisks: true,
         techniqueSolveBoxPuzzle: true,
     }
     // 24 locations in total
     // Goal is to follow the chain of progression to Flight, then find both Rings
-    const rewardPriority = {
-        itemSpikeBreaker: 3,
-        relicCubeOfZoe: 3,
-        relicDemonCard: 3,
-        relicFormOfMist: 2,
-        relicGravityBoots: 1,
-        relicJewelOfOpen: 3,
-        relicLeapStone: 2,
-        relicMermanStatue: 3,
-        relicPowerOfMist: 1,
-        relicSoulOfBat: 1,
+    const minimumLayers = {
+        relicGravityBoots: 2,
+        // relicLeapStone: 2,
+        relicPowerOfMist: 2,
+        relicSoulOfBat: 2,
     }
-    const unlocks = {
-        relicFormOfMist: {
-            relicGasCloud: 'bonus',
-            relicPowerOfMist: 'main',
-            relicSoulOfBat: 'main',
-        },
-        relicLeapStone: {
-            relicGravityBoots: 'main',
-            relicSoulOfBat: 'main',
-        },
-        relicSoulOfBat: {
-            relicEchoOfBat: 'main',
-        },
-        relicSoulOfWolf: {
-            relicPowerOfWolf: 'bonus',
-            relicSkillOfWolf: 'bonus',
-        },
+    const rewardPriorities = {
+        itemSpikeBreaker: 0.9,
+        relicCubeOfZoe: 0.9,
+        relicDemonCard: 0.9,
+        relicFormOfMist: 0.7,
+        // relicGravityBoots: 0.3,
+        relicJewelOfOpen: 0.9,
+        relicLeapStone: 0.5,
+        relicMermanStatue: 0.9,
+        relicPowerOfMist: 0.3,
+        // relicSoulOfBat: 0.0,
     }
     const rewards = {}
-    rewards.locked = [ // Unlocked by other rewards being placed first
-        'itemGoldRing',
-        'itemSilverRing',
-        'relicEchoOfBat',
-        'relicGasCloud',
-        'relicGravityBoots',
-        'relicPowerOfMist',
-        'relicPowerOfWolf',
-        'relicSkillOfWolf',
-        'relicSoulOfBat',
-    ]
     rewards.main = [ // Procedural, in-logic
         'itemSpikeBreaker',
         'relicCubeOfZoe',
         'relicDemonCard',
+        'relicEchoOfBat',
         'relicFormOfMist',
+        'relicGravityBoots',
         'relicJewelOfOpen',
         'relicLeapStone',
         'relicMermanStatue',
+        'relicPowerOfMist',
+        'relicSoulOfBat',
     ]
     rewards.bonus = [ // Fixed, out-of-logic (except for Soul of Wolf)
-        'relicSoulOfWolf',
+        'itemGoldRing',
+        'itemSilverRing',
+        'relicGasCloud',
         'relicHolySymbol',
+        'relicPowerOfWolf',
+        'relicSkillOfWolf',
+        'relicSoulOfWolf',
     ]
     rewards.filler = shuffleArray(rng, [ // Shuffled, out-of-logic
         'relicBatCard',
@@ -1864,11 +1869,14 @@ export function assignChainedRewards(seed, settings) {
         'relicSpiritOrb',
         'relicSwordCard',
     ])
+    const rewardCount = rewards.main.length + rewards.bonus.length + rewards.filler.length + Object.entries(result.locations).length
     rewards.progression = new Map()
     rewards.main
     .forEach((rewardName) => {
         rewards.progression.set(rewardName, false)
     })
+    rewards.progression.set('itemGoldRing', false)
+    rewards.progression.set('itemSilverRing', false)
     rewards.progression.set('relicSoulOfWolf', false)
     const assignments = {
         main: [],
@@ -1879,66 +1887,16 @@ export function assignChainedRewards(seed, settings) {
     let debug = {
         layers: [],
     }
-    let ringLocations = {}
     let progressionStatus = 'PRE_FLIGHT'
-    while ((rewards.main.length + rewards.locked.length) > 0) {
+    while ((rewards.main.length) > 0) {
         debug.layers.push({})
-        Object.entries(ringLocations)
-        .forEach(([rewardName, locationName]) => {
-            debug.layers.at(-1)[locationName] = rewardName
-        })
-        ringLocations = {}
         const logic = getLogic(settings)
         const edges = getEdges(logic, startingState)
         const currentLayerRewards = []
         const availableChecks = getReachableChecks(edges, startingState, result.locations)
-        // Assign a main reward that unlocks at least one new location (prioritize non-movement)
-        shuffleArray(rng, rewards.main)
-        shuffleArray(rng, rewards.bonus)
-        const prospectiveRewards = []
-        rewards.main
-        .forEach((rewardName) => {
-            const prospectiveState = Object.assign({}, startingState)
-            updateStateWithOutcome(prospectiveState, LOGIC.rewards[rewardName].outcome)
-            const edges = getEdges(logic, prospectiveState)
-            const prospectiveChecks = getReachableChecks(edges, prospectiveState, result.locations, availableChecks)
-            console.log('   ', prospectiveChecks.length, rewardName, rewardPriority[rewardName] ?? 1)
-            if (prospectiveChecks.length > 0) {
-                let rewardPriority = -1
-                switch (progressionStatus) {
-                    case 'PRE_FLIGHT':
-                        rewardPriority = rewards.bonus.length + rewards.filler.length
-                        rewardPriority -= (prospectiveChecks.length - 1)
-                        if (rewardPriority >= 0 && rewardName in unlocks) {
-                            rewardPriority += (unlocks[rewardName].length ?? 0)
-                        }
-                        break
-                    case 'POST_FLIGHT':
-                        rewardPriority = prospectiveChecks.length
-                        break
-                    case 'FINAL':
-                        rewardPriority = rewards.bonus.length + rewards.filler.length
-                        rewardPriority -= (prospectiveChecks.length - 2)
-                        if (rewardPriority >= 0 && rewardName in unlocks) {
-                            rewardPriority += (unlocks[rewardName].length ?? 0)
-                        }
-                        break
-                }
-                prospectiveRewards.push({
-                    rewardName: rewardName,
-                    rewardPriority: rewardPriority,
-                    checks: prospectiveChecks,
-                })
-            }
-        })
-        if (prospectiveRewards.length < 1) {
-            if (rewards.locked.length > 0 || progressionStatus !== 'FINAL') {
-                console.log('--> 1908 (rewards.locked.length > 0 || progressionStatus !== \'FINAL\')')
-                console.log('rewards.locked:', rewards.locked)
-                console.log('progressionStatus:', progressionStatus)
-                result.invalidated = true
-                return result
-            }
+        console.log('totalChecks:', availableChecks.length + Object.entries(result.locations).length, rewardCount)
+        if ((availableChecks.length + Object.entries(result.locations).length) >= rewardCount) {
+            console.log('                aoiasjdfoiasjdfoijsadf         -- - - - ')
             // Find available checks for final layer
             Object.entries(LOGIC.locations)
             .filter(([locationName, locationInfo]) => {
@@ -1964,22 +1922,46 @@ export function assignChainedRewards(seed, settings) {
             }
         }
         else {
-            // Layer types: PRE_FLIGHT, POST_FLIGHT, FINAL
-            // 1 main reward PRE_FLIGHT, 2 main rewards POST_FLIGHT, 1 main reward FINAL
-            // 1 POST_FLIGHT main reward leads to Silver Ring
-            // 1 POST_FLIGHT main reward leads to Gold Ring
-            const mainCount = (progressionStatus === 'POST_FLIGHT') ? 2 : 1
+            console.log(' availableChecks:', availableChecks.length, availableChecks)
+            console.log(' result.locations:', Object.entries(result.locations).length, result.locations)
+            // Assign a main reward that unlocks at least one new location (prioritize non-movement)
+            shuffleArray(rng, rewards.main)
+            shuffleArray(rng, rewards.bonus)
+            const prospectiveRewards = []
+            rewards.main
+            .filter((rewardName) => {
+                return debug.layers.length >= (minimumLayers[rewardName] ?? 1)
+            })
+            .forEach((rewardName) => {
+                const prospectiveState = Object.assign({}, startingState)
+                updateStateWithOutcome(prospectiveState, LOGIC.rewards[rewardName].outcome)
+                const edges = getEdges(logic, prospectiveState)
+                const prospectiveChecks = getReachableChecks(edges, prospectiveState, result.locations, availableChecks)
+                console.log('  prospectiveChecks:', prospectiveChecks.length, rewardName, prospectiveChecks)
+                if (prospectiveChecks.length > 0) {
+                    let rewardPriority = prospectiveChecks.length - (rewardPriorities[rewardName] ?? 0.0) - (rng() / 10)
+                    prospectiveRewards.push({
+                        rewardName: rewardName,
+                        rewardPriority: rewardPriority,
+                        checks: prospectiveChecks,
+                    })
+                    console.log('   ', prospectiveChecks.length, rewardName, rewardPriority)
+                }
+            })
+            // ...
+            // Layer types: PRE_FLIGHT, POST_FLIGHT
+            const mainCount = 1
             if (prospectiveRewards.length < mainCount) {
                 console.log('--> 1943 (prospectiveRewards.length < mainCount)')
                 result.invalidated = true
                 return result
             }
             prospectiveRewards.sort((rewardA, rewardB) => {
-                return rewardA.rewardPriority - rewardB.rewardPriority
+                return rewardB.rewardPriority - rewardA.rewardPriority
             })
             // console.log('prospectiveRewards:', prospectiveRewards.length, prospectiveRewards)
             for (let i = 0; i < mainCount; i++) {
-                console.log('>>>', prospectiveRewards.length, prospectiveRewards.at(-1 - i).rewardName)
+                console.log('>>>', prospectiveRewards.at(-1 - i).rewardName, prospectiveRewards.length)
                 const rewardName = prospectiveRewards.at(-1 - i).rewardName
                 rewards.main.splice(rewards.main.indexOf(rewardName), 1)
                 currentLayerRewards.push(rewardName)
@@ -2009,7 +1991,7 @@ export function assignChainedRewards(seed, settings) {
                     assignments.bonus.push(currentLayerRewards.at(-1))
                     continue
                 }
-                if (progressionStatus === 'FINAL') {
+                if (progressionStatus === 'POST_FLIGHT') {
                     if (rewards.main.length > 0) {
                         currentLayerRewards.push(rewards.main.pop())
                         assignments.main.push(currentLayerRewards.at(-1))
@@ -2036,40 +2018,6 @@ export function assignChainedRewards(seed, settings) {
                     }
                     break
                 case 'POST_FLIGHT':
-                    // Assign the rings to locations that are locked individualy behind each of the two progressions this layer
-                    let locationsAssigned = []
-                    const ringAssignments = [
-                        {
-                            rewardName: 'itemSilverRing',
-                            chosenProgression: prospectiveRewards.at(-1),
-                        },
-                        {
-                            rewardName: 'itemGoldRing',
-                            chosenProgression: prospectiveRewards.at(-2),
-                        },
-                    ]
-                    ringAssignments
-                    .forEach((ringAssignment) => {
-                        shuffleArray(rng, ringAssignment.chosenProgression.checks)
-                        ringAssignment.chosenProgression.checks
-                        .filter((locationName) => {
-                            return 'item' in LOCATIONS[locationName].writes
-                        })
-                        .find((locationName) => {
-                            if (locationsAssigned.includes(locationName)) {
-                                return false
-                            }
-                            result.locations[locationName] = ringAssignment.rewardName
-                            ringLocations[ringAssignment.rewardName] = locationName
-                            rewards.locked.splice(rewards.locked.indexOf(ringAssignment.rewardName), 1)
-                            locationsAssigned.push(locationName)
-                            console.log(`  RING ${ringAssignment.rewardName} placed at ${locationName}`)
-                            return true
-                        })
-                    })
-                    progressionStatus = 'FINAL'
-                    break
-                case 'FINAL':
                     break
             }
         }
@@ -2115,16 +2063,6 @@ export function assignChainedRewards(seed, settings) {
                 updateStateWithOutcome(startingState, LOGIC.rewards[rewardName].outcome)
             }
             availableChecks.splice(availableChecks.indexOf(locationName), 1)
-            if (rewardName in unlocks) {
-                Object.entries(unlocks[rewardName])
-                .filter(([unlockedRewardName, poolName]) => {
-                    return rewards.locked.includes(unlockedRewardName)
-                })
-                .forEach(([unlockedRewardName, poolName]) => {
-                    rewards[poolName].push(unlockedRewardName)
-                    rewards.locked.splice(rewards.locked.indexOf(unlockedRewardName), 1)
-                })
-            }
         })
         if (result.invalidated) {
             console.log('--> 2089 (result.invalidated)')
